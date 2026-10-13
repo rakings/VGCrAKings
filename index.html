@@ -446,7 +446,7 @@ var o=$("s-out");if(!o.value){$("s-msg").textContent="Prima tocca Prepara la sch
 o.select();
 try{navigator.clipboard.writeText(o.value).then(function(){$("s-msg").textContent="Testo copiato."},function(){$("s-msg").textContent="Selezionato: copialo a mano."})}
 catch(e){$("s-msg").textContent="Selezionato: copialo a mano."}});
-var DONATE_URL="";
+var DONATE_URL="https://www.paypal.me/Andryk92";
 if(DONATE_URL){$("don-a").href=DONATE_URL;$("don").hidden=false}
 var NTFY_PREFIX="";
 var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,maddos:false,h:{}};
@@ -480,7 +480,7 @@ $("np").addEventListener("change",function(ev){var t=ev.target;if(t.dataset.np){
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
 $("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
 var SITE_URL="https://rakings.github.io/VGCrAKings";
-var CONTACT_EMAIL="https://rakings.github.io/VGCrAKings";
+var CONTACT_EMAIL="rakingsvgc@gmail.com";
 var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();DEFER=e;if(!$("sbar").hidden)goHash()});
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
 function shareText(e){return e.name+(e.date?" · "+fmt(e.date)+(e.time?" ore "+e.time:""):"")}
