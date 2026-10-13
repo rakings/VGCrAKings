@@ -1,0 +1,23 @@
+name: Promemoria un'ora prima
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 send_reminders.py
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+      - run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f reminder_state.json ] && git add reminder_state.json
+          git diff --staged --quiet || (git commit -m "Aggiorna promemoria" && git pull --rebase && git push)
