@@ -453,7 +453,7 @@ var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,maddos:false,
 try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv)}catch(e){}
 var NCAT=[["money","Money tournament","Nuovi tornei con montepremi in denaro."],["gc","Global Challenge","Annunci delle gare online ufficiali: date e iscrizioni."],["regionali","Avvisi Regionali","Nuovi Regionali ed eventi, apertura e scadenza delle iscrizioni."],["vr","Victory Road","Torneo annunciato e iscrizioni aperte."],["maddos","Maddos Cup","Torneo annunciato e iscrizioni aperte."]];
 function npOn(k){return k==="money"?!!NP.money:!!NP[k]}
-var ONESIGNAL_APP_ID="";
+var ONESIGNAL_APP_ID="eba93d46-8989-448a-918a-044c210fbc4c";
 var REM=[];try{REM=JSON.parse(localStorage.getItem("vgc-rem")||"[]")}catch(e){}
 window.OneSignalDeferred=window.OneSignalDeferred||[];
 function osdo(fn){if(ONESIGNAL_APP_ID==="demo")fn({User:{addTag:function(){},removeTag:function(){},addTags:function(){}},Notifications:{permission:true,requestPermission:function(){return Promise.resolve()}}});else OneSignalDeferred.push(fn)}
@@ -479,8 +479,8 @@ $("np").addEventListener("click",function(ev){if(ev.target===this||ev.target.clo
 $("np").addEventListener("change",function(ev){var t=ev.target;if(t.dataset.np){var k=t.dataset.np;if(k==="money")NP.money=t.checked?(NP.money||"all"):"";else NP[k]=t.checked}else if(t.dataset.npm)NP.money=t.dataset.npm;else if(t.dataset.nph){NP.h=NP.h||{};NP.h[t.dataset.nph]=t.checked}npSave();osSync();$("np").innerHTML=npHtml()});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
 $("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
-var SITE_URL="";
-var CONTACT_EMAIL="";
+var SITE_URL="https://rakings.github.io/VGCrAKings";
+var CONTACT_EMAIL="https://rakings.github.io/VGCrAKings";
 var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();DEFER=e;if(!$("sbar").hidden)goHash()});
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
 function shareText(e){return e.name+(e.date?" · "+fmt(e.date)+(e.time?" ore "+e.time:""):"")}
