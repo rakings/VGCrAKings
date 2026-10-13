@@ -1,0 +1,38 @@
+name: Aggiorna tornei
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 update_events.py
+        env:
+          LIMITLESS_KEY: ${{ secrets.LIMITLESS_KEY }}
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: python3 update_news.py
+        continue-on-error: true
+        env:
+          NEWS_BOT: ${{ vars.NEWS_BOT || '1' }}
+      - run: pip install pillow
+        continue-on-error: true
+      - run: python3 make_share_pages.py
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add events.json
+          [ -d e ] && git add -A e
+          [ -f news.json ] && git add news.json
+          [ -f notify_state.json ] && git add notify_state.json
+          [ -f news_cache.json ] && git add news_cache.json
+          git diff --staged --quiet || (git commit -m "Aggiorna tornei" && git pull --rebase && git push)
