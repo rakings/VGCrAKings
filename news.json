@@ -1,5 +1,5 @@
 {
-"updated": "2026-10-13T12:25:19+00:00",
+"updated": "2026-10-13T15:22:14+00:00",
 "news": [
 {
 "t": "Regionale",
@@ -633,6 +633,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Garchomp",
+44.14
+],
+[
+"Rillaboom",
+41.38
+],
+[
+"Incineroar",
+37.93
+],
+[
+"Sneasler",
+36.55
+],
+[
+"Kingambit",
+30.34
+],
+[
+"Raichu",
+27.59
+],
+[
+"Charizard",
+24.83
+],
+[
+"Archaludon",
+24.14
+],
+[
+"Basculegion",
+24.14
+],
+[
+"Pelipper",
+19.31
+]
 ]
 },
 {
@@ -1267,6 +1309,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Sneasler",
+54.84
+],
+[
+"Garchomp",
+51.61
+],
+[
+"Rillaboom",
+38.71
+],
+[
+"Incineroar",
+32.26
+],
+[
+"Charizard",
+25.81
+],
+[
+"Kingambit",
+25.81
+],
+[
+"Archaludon",
+22.58
+],
+[
+"Floette (Eternal)",
+22.58
+],
+[
+"Raichu",
+22.58
+],
+[
+"Venusaur",
+19.35
+]
 ]
 },
 {
@@ -1901,6 +1985,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Rillaboom",
+56.44
+],
+[
+"Incineroar",
+34.97
+],
+[
+"Sneasler",
+34.97
+],
+[
+"Raichu",
+32.52
+],
+[
+"Gholdengo",
+30.67
+],
+[
+"Garchomp",
+25.15
+],
+[
+"Kingambit",
+25.15
+],
+[
+"Salamence",
+20.86
+],
+[
+"Archaludon",
+17.79
+],
+[
+"Volcarona",
+16.56
+]
 ]
 },
 {
@@ -2535,6 +2661,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Sneasler",
+46.81
+],
+[
+"Rillaboom",
+46.81
+],
+[
+"Kingambit",
+42.55
+],
+[
+"Incineroar",
+34.04
+],
+[
+"Floette (Eternal)",
+25.53
+],
+[
+"Archaludon",
+23.4
+],
+[
+"Milotic",
+21.28
+],
+[
+"Garchomp",
+19.15
+],
+[
+"Salamence",
+19.15
+],
+[
+"Sinistcha",
+19.15
+]
 ]
 },
 {
@@ -3169,6 +3337,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Rillaboom",
+54.19
+],
+[
+"Sneasler",
+38.71
+],
+[
+"Gholdengo",
+38.06
+],
+[
+"Kingambit",
+34.19
+],
+[
+"Incineroar",
+32.26
+],
+[
+"Salamence",
+31.61
+],
+[
+"Arcanine (Hisui)",
+28.39
+],
+[
+"Raichu",
+27.74
+],
+[
+"Garchomp",
+18.71
+],
+[
+"Indeedee-F",
+17.42
+]
 ]
 },
 {
@@ -7625,6 +7835,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Kingambit",
+64.91
+],
+[
+"Charizard",
+42.11
+],
+[
+"Basculegion",
+40.35
+],
+[
+"Sylveon",
+35.09
+],
+[
+"Garchomp",
+33.33
+],
+[
+"Incineroar",
+31.58
+],
+[
+"Floette (Eternal)",
+28.07
+],
+[
+"Sneasler",
+26.32
+],
+[
+"Whimsicott",
+26.32
+],
+[
+"Staraptor",
+26.32
+]
 ]
 },
 {
@@ -10131,6 +10383,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Kingambit",
+70.51
+],
+[
+"Sneasler",
+53.85
+],
+[
+"Basculegion",
+52.56
+],
+[
+"Incineroar",
+42.31
+],
+[
+"Floette (Eternal)",
+39.74
+],
+[
+"Garchomp",
+35.26
+],
+[
+"Charizard",
+34.62
+],
+[
+"Froslass",
+25.0
+],
+[
+"Sinistcha",
+22.44
+],
+[
+"Whimsicott",
+21.15
+]
 ]
 },
 {
@@ -10765,6 +11059,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Kingambit",
+62.22
+],
+[
+"Basculegion",
+54.81
+],
+[
+"Garchomp",
+51.85
+],
+[
+"Floette (Eternal)",
+46.67
+],
+[
+"Incineroar",
+43.7
+],
+[
+"Charizard",
+43.7
+],
+[
+"Sneasler",
+34.07
+],
+[
+"Sinistcha",
+33.33
+],
+[
+"Whimsicott",
+23.7
+],
+[
+"Aerodactyl",
+11.85
+]
 ]
 },
 {
@@ -11399,6 +11735,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Kingambit",
+60.69
+],
+[
+"Basculegion",
+59.31
+],
+[
+"Garchomp",
+58.62
+],
+[
+"Charizard",
+42.76
+],
+[
+"Floette (Eternal)",
+34.48
+],
+[
+"Incineroar",
+31.72
+],
+[
+"Whimsicott",
+28.97
+],
+[
+"Sneasler",
+27.59
+],
+[
+"Sinistcha",
+22.07
+],
+[
+"Aerodactyl",
+20.69
+]
 ]
 },
 {
@@ -12030,6 +12408,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Incineroar",
+72.22
+],
+[
+"Miraidon",
+55.56
+],
+[
+"Calyrex (Shadow)",
+33.33
+],
+[
+"Urshifu (Rapid Strike)",
+33.33
+],
+[
+"Zamazenta",
+27.78
+],
+[
+"Chien (Pao)",
+27.78
+],
+[
+"Calyrex (Ice)",
+27.78
+],
+[
+"Terapagos",
+22.22
+],
+[
+"Rillaboom",
+22.22
+],
+[
+"Dragonite",
+22.22
+]
 ]
 },
 {
@@ -12664,6 +13084,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Miraidon",
+48.78
+],
+[
+"Incineroar",
+43.9
+],
+[
+"Urshifu (Rapid Strike)",
+34.15
+],
+[
+"Zamazenta",
+34.15
+],
+[
+"Calyrex (Ice)",
+31.71
+],
+[
+"Calyrex (Shadow)",
+31.71
+],
+[
+"Chien (Pao)",
+29.27
+],
+[
+"Rillaboom",
+24.39
+],
+[
+"Raging Bolt",
+19.51
+],
+[
+"Koraidon",
+19.51
+]
 ]
 },
 {
@@ -13297,6 +13759,48 @@
 }
 ]
 }
+],
+"stats": [
+[
+"Incineroar",
+46.67
+],
+[
+"Zamazenta",
+45.0
+],
+[
+"Miraidon",
+41.67
+],
+[
+"Calyrex (Shadow)",
+36.67
+],
+[
+"Chien (Pao)",
+28.33
+],
+[
+"Rillaboom",
+26.67
+],
+[
+"Raging Bolt",
+26.67
+],
+[
+"Urshifu (Rapid Strike)",
+25.0
+],
+[
+"Calyrex (Ice)",
+23.33
+],
+[
+"Amoonguss",
+23.33
+]
 ]
 },
 {
@@ -17980,45 +18484,75 @@
 "team": [
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Protect",
+"Rage Powder"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Bleakwind Storm",
+"Icy Wind",
+"Taunt"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Detect",
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Protect",
+"Shadow Ball"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Protect",
+"Sludge Bomb",
+"Sandsear Storm"
+]
 },
 {
 "n": "Chi (Yu)",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Beads of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Heat Wave",
+"Snarl",
+"Overheat",
+"Dark Pulse"
+]
 }
 ]
 },
@@ -18028,45 +18562,75 @@
 "team": [
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Ogerpon (Cornerstone)",
-"i": "",
-"a": "",
+"i": "Cornerstone Mask",
+"a": "Sturdy",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Power Whip",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Metal Coat",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Nasty Plot",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Light Screen",
+"Tailwind",
+"Encore"
+]
 }
 ]
 },
@@ -18076,45 +18640,75 @@
 "team": [
 {
 "n": "Urshifu",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Wicked Blow",
+"Close Combat",
+"Sucker Punch",
+"Detect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Horn Leech",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Sandsear Storm",
+"Protect"
+]
 },
 {
 "n": "Arcanine (Hisui)",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Rock Slide",
+"Flare Blitz",
+"Head Smash",
+"Extreme Speed"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderbolt",
+"Draco Meteor",
+"Thunderclap",
+"Snarl"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Thunder Wave",
+"Taunt"
+]
 }
 ]
 },
@@ -18124,45 +18718,75 @@
 "team": [
 {
 "n": "Moltres (Galar)",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Berserk",
 "nt": "",
-"m": []
+"m": [
+"Fiery Wrath",
+"Air Slash",
+"Snarl",
+"Dark Pulse"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Thunderbolt",
+"Electroweb",
+"Dragon Pulse"
+]
 },
 {
 "n": "Arcanine (Hisui)",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Rock Slide",
+"Extreme Speed",
+"Head Smash"
+]
 },
 {
 "n": "Sneasler",
-"i": "",
-"a": "",
+"i": "White Herb",
+"a": "Unburden",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Close Combat",
+"Gunk Shot",
+"Coaching"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Horn Leech",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Thunder Wave",
+"Icy Wind",
+"Taunt"
+]
 }
 ]
 },
@@ -18172,45 +18796,75 @@
 "team": [
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Sandsear Storm",
+"Earth Power",
+"Sludge Bomb",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Pollen Puff",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Archaludon",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Stamina",
 "nt": "",
-"m": []
+"m": [
+"Flash Cannon",
+"Dragon Pulse",
+"Electro Shot",
+"Body Press"
+]
 },
 {
 "n": "Pelipper",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Drizzle",
 "nt": "",
-"m": []
+"m": [
+"Hurricane",
+"Weather Ball",
+"Tailwind",
+"Wide Guard"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Fake Out",
+"Taunt",
+"Parting Shot"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Close Combat",
+"Surging Strikes",
+"Aqua Jet",
+"U-turn"
+]
 }
 ]
 }
@@ -18230,45 +18884,75 @@
 "team": [
 {
 "n": "Urshifu",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Wicked Blow",
+"Close Combat",
+"Sucker Punch",
+"Iron Head"
+]
 },
 {
 "n": "Iron Hands",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Close Combat",
+"Wild Charge",
+"Fake Out",
+"Swords Dance"
+]
 },
 {
 "n": "Farigiraf",
-"i": "",
-"a": "",
+"i": "Psychic Seed",
+"a": "Armor Tail",
 "nt": "",
-"m": []
+"m": [
+"Hyper Voice",
+"Expanding Force",
+"Protect",
+"Trick Room"
+]
 },
 {
 "n": "Torkoal",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Drought",
 "nt": "",
-"m": []
+"m": [
+"Eruption",
+"Earth Power",
+"Heat Wave",
+"Weather Ball"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Mental Herb",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Follow Me",
+"Healing Wish",
+"Imprison",
+"Trick Room"
+]
 },
 {
 "n": "Hatterene",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Magic Bounce",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Dazzling Gleam",
+"Protect",
+"Trick Room"
+]
 }
 ]
 },
@@ -18278,45 +18962,74 @@
 "team": [
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Rage Powder",
+"Sludge Bomb",
+"Protect"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Shadow Ball",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet"
+]
 }
 ]
 },
@@ -18326,45 +19039,75 @@
 "team": [
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Follow Me",
+"Helping Hand",
+"Trick Room",
+"Imprison"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Tachyon Cutter",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Urshifu",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Wicked Blow",
+"Close Combat",
+"U-turn",
+"Sucker Punch"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Knock Off",
+"U-turn",
+"Flare Blitz"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Moonblast",
+"Encore",
+"Endeavor"
+]
 }
 ]
 },
@@ -18374,45 +19117,74 @@
 "team": [
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Knock Off",
+"Flare Blitz",
+"U-turn"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Urshifu",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Sucker Punch",
+"Wicked Blow",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Horn Leech",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Shadow Ball",
+"Icy Wind",
+"Protect"
+]
 }
 ]
 },
@@ -18422,45 +19194,75 @@
 "team": [
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Chi (Yu)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Beads of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Heat Wave",
+"Overheat",
+"Dark Pulse",
+"Protect"
+]
 },
 {
 "n": "Dondozo",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Oblivious",
 "nt": "",
-"m": []
+"m": [
+"Wave Crash",
+"Order Up",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Tatsugiri",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Commander",
 "nt": "",
-"m": []
+"m": [
+"Draco Meteor",
+"Muddy Water",
+"Helping Hand",
+"Protect"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Extreme Speed",
+"Outrage",
+"Iron Head",
+"Stomping Tantrum"
+]
 },
 {
 "n": "Weezing (Galar)",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Neutralizing Gas",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Poison Gas",
+"Toxic Spikes",
+"Protect"
+]
 }
 ]
 },
@@ -18470,45 +19272,75 @@
 "team": [
 {
 "n": "Entei",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Stone Edge",
+"Stomping Tantrum",
+"Extreme Speed",
+"Sacred Fire"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Protect",
+"Sucker Punch",
+"Sacred Sword"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Electroweb",
+"Protect",
+"Draco Meteor"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"High Horsepower",
+"Wood Hammer",
+"Grassy Glide",
+"Fake Out"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Thunder Wave",
+"Icy Wind",
+"Taunt"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 }
 ]
 },
@@ -18518,45 +19350,75 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Grassy Glide",
+"Swords Dance",
+"Spiky Shield"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Shuca Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Helping Hand",
+"Parting Shot",
+"Fake Out"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Dragon Pulse",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 }
 ]
 },
@@ -18566,45 +19428,74 @@
 "team": [
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Tachyon Cutter",
+"Protect"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Follow Me",
+"Helping Hand",
+"Trick Room",
+"Imprison"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Shadow Ball",
+"Dazzling Gleam",
+"Icy Wind"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Tailwind",
+"Rain Dance",
+"Icy Wind"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 }
 ]
 }
@@ -18624,45 +19515,75 @@
 "team": [
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Tailwind",
+"Encore",
+"Light Screen"
+]
 },
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Metal Coat",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Make It Rain",
+"Nasty Plot",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Ogerpon (Cornerstone)",
-"i": "",
-"a": "",
+"i": "Cornerstone Mask",
+"a": "Sturdy",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Spiky Shield",
+"Follow Me",
+"Power Whip"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"U-turn",
+"Flare Blitz",
+"Fake Out"
+]
 },
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 }
 ]
 },
@@ -18672,45 +19593,75 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Ice Shard",
+"Protect"
+]
 },
 {
 "n": "Pelipper",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Drizzle",
 "nt": "",
-"m": []
+"m": [
+"Weather Ball",
+"Hurricane",
+"Wide Guard",
+"Tailwind"
+]
 },
 {
 "n": "Archaludon",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Stamina",
 "nt": "",
-"m": []
+"m": [
+"Electro Shot",
+"Dragon Pulse",
+"Body Press",
+"Flash Cannon"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Rage Powder",
+"Sludge Bomb",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"U-turn"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Shadow Ball",
+"Taunt"
+]
 }
 ]
 },
@@ -18719,46 +19670,76 @@
 "cc": "US",
 "team": [
 {
-"n": "Ursaluna",
-"i": "",
-"a": "",
+"n": "Urshifu (Rapid Strike)",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
-"n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Facade",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
-},
-{
-"n": "Flutter Mane",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Rage Powder",
+"Spore",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
+},
+{
+"n": "Flutter Mane",
+"i": "Choice Specs",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Moonblast",
+"Shadow Ball",
+"Dazzling Gleam",
+"Power Gem"
+]
 },
 {
 "n": "Cresselia",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Levitate",
 "nt": "",
-"m": []
+"m": [
+"Psychic",
+"Lunar Blessing",
+"Icy Wind",
+"Trick Room"
+]
 }
 ]
 },
@@ -18768,45 +19749,75 @@
 "team": [
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Tailwind",
+"Icy Wind",
+"Taunt"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Moonblast",
+"Dazzling Gleam",
+"Protect"
+]
 },
 {
 "n": "Chi (Yu)",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Beads of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Overheat",
+"Dark Pulse",
+"Snarl",
+"Heat Wave"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Held Item:",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Sandsear Storm",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 }
 ]
 },
@@ -18816,45 +19827,75 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"U-turn",
+"Aqua Jet"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Moonblast",
+"Dazzling Gleam",
+"Perish Song"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Follow Me",
+"Helping Hand",
+"Imprison",
+"Trick Room"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Sunny Day",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Tachyon Cutter",
+"Expanding Force",
+"Calm Mind"
+]
 }
 ]
 },
@@ -18864,45 +19905,75 @@
 "team": [
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Shadow Ball",
+"Protect"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Facade",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Rage Powder",
+"Protect",
+"Sludge Bomb"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Bleakwind Storm",
+"Icy Wind",
+"Protect"
+]
 }
 ]
 },
@@ -18912,45 +19983,75 @@
 "team": [
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Parting Shot",
+"Knock Off",
+"Flare Blitz"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Draco Meteor",
+"Snarl",
+"Electroweb"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Protect",
+"Icy Wind",
+"Bleakwind Storm"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Protect",
+"Rage Powder",
+"Sludge Bomb"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Protect",
+"Shadow Ball",
+"Substitute"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Protect",
+"Close Combat"
+]
 }
 ]
 },
@@ -18960,45 +20061,75 @@
 "team": [
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Extreme Speed",
+"Outrage",
+"Aerial Ace",
+"Stomping Tantrum"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Rage Powder",
+"Sludge Bomb",
+"Protect"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Sacred Sword",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderbolt",
+"Thunderclap",
+"Electroweb",
+"Draco Meteor"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"Parting Shot",
+"Fake Out"
+]
 }
 ]
 }
@@ -19018,45 +20149,75 @@
 "team": [
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Calm Mind",
+"Dragon Pulse",
+"Protect"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Wood Hammer",
+"Grassy Glide",
+"High Horsepower"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Grassy Glide",
+"Swords Dance",
+"Spiky Shield"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Protect",
+"Icy Wind",
+"Thunder Wave"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Taunt",
+"Knock Off",
+"Parting Shot"
+]
 }
 ]
 },
@@ -19066,45 +20227,75 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Tailwind",
+"Rain Dance",
+"Protect"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Tachyon Cutter",
+"Expanding Force",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Landorus (Therian)",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Stomping Tantrum",
+"Rock Slide",
+"Earthquake",
+"U-turn"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Dazzling Gleam",
+"Follow Me",
+"Helping Hand",
+"Trick Room"
+]
 }
 ]
 },
@@ -19114,45 +20305,75 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Sacred Sword",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Thundurus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Wildbolt Storm",
+"Thunder Wave",
+"Taunt",
+"Eerie Impulse"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Loaded Dice",
+"a": "Multiscale",
 "nt": "",
-"m": []
+"m": [
+"Scale Shot",
+"Extreme Speed",
+"Iron Head",
+"Protect"
+]
 },
 {
 "n": "Gouging (Fire)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Breaking Swipe",
+"Howl",
+"Heat Crash",
+"Protect"
+]
 },
 {
 "n": "Ting (Lu)",
-"i": "",
-"a": "",
+"i": "Clear Amulet",
+"a": "Vessel of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Earthquake",
+"Throat Chop",
+"Protect",
+"var LS_COPY = 'Copy to Clipboard', LS_COPY_SUCCESS = 'Copied!';"
+]
 }
 ]
 },
@@ -19162,45 +20383,74 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Rock Tomb",
+"U-turn"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Dazzling Gleam",
+"Follow Me",
+"Helping Hand",
+"Trick Room"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Tachyon Cutter",
+"Protect"
+]
 },
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 }
 ]
 },
@@ -19210,45 +20460,75 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Dragon Pulse",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Icy Wind",
+"Sucker Punch",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"Parting Shot",
+"Fake Out"
+]
 }
 ]
 },
@@ -19258,45 +20538,75 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Grassy Glide",
+"Swords Dance",
+"Spiky Shield"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Shuca Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Helping Hand",
+"Parting Shot",
+"Fake Out"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Dragon Pulse",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 }
 ]
 },
@@ -19306,45 +20616,75 @@
 "team": [
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Earthquake",
+"Protect",
+"Swords Dance"
+]
 },
 {
 "n": "Dondozo",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Oblivious",
 "nt": "",
-"m": []
+"m": [
+"Wave Crash",
+"Earthquake",
+"Order Up",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Horn Leech",
+"Spiky Shield",
+"Follow Me"
+]
 },
 {
 "n": "Tatsugiri",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Commander",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Muddy Water",
+"Draco Meteor",
+"Taunt"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Cresselia",
-"i": "",
-"a": "",
+"i": "Mental Herb",
+"a": "Levitate",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Lunar Blessing",
+"Trick Room",
+"Helping Hand"
+]
 }
 ]
 },
@@ -19354,45 +20694,74 @@
 "team": [
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Spore",
+"Rage Powder",
+"Sludge Bomb"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"U-turn",
+"Fake Out",
+"Flare Blitz",
+"Knock Off"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Detect",
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Moonblast",
+"Shadow Ball",
+"Substitute"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Facade",
+"Headlong Rush",
+"Earthquake"
+]
 }
 ]
 },
@@ -19402,45 +20771,75 @@
 "team": [
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Dragon Pulse",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Icy Wind",
+"Sucker Punch",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Taunt",
+"Parting Shot"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Splash Plate",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 }
 ]
 },
@@ -19450,45 +20849,75 @@
 "team": [
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Substitute",
+"Earth Power",
+"Sludge Bomb"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Calm Mind",
+"Dragon Pulse",
+"Thunderclap"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Detect",
+"Close Combat",
+"Aqua Jet",
+"Surging Strikes"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Sucker Punch",
+"Icy Wind",
+"Icicle Crash"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Parting Shot",
+"Taunt"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Wood Hammer",
+"U-turn",
+"Grassy Glide"
+]
 }
 ]
 },
@@ -19498,45 +20927,75 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Sacred Sword",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Rage Powder",
+"Protect",
+"Sludge Bomb",
+"Spore"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Aerial Ace",
+"Outrage",
+"Extreme Speed",
+"Low Kick"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Spiky Shield",
+"Wood Hammer",
+"Ivy Cudgel",
+"Follow Me"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dragon Pulse",
+"Thunderclap",
+"Electroweb",
+"Protect"
+]
 },
 {
 "n": "Heatran",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Flash Fire",
 "nt": "",
-"m": []
+"m": [
+"Magma Storm",
+"Earth Power",
+"Substitute",
+"Protect"
+]
 }
 ]
 },
@@ -19546,45 +21005,75 @@
 "team": [
 {
 "n": "Tatsugiri",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Commander",
 "nt": "",
-"m": []
+"m": [
+"Muddy Water",
+"Draco Meteor",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Roaring (Moon)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Acrobatics",
+"Knock Off",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Misty Terrain",
+"Taunt"
+]
 },
 {
 "n": "Dondozo",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Oblivious",
 "nt": "",
-"m": []
+"m": [
+"Wave Crash",
+"Order Up",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Glimmora",
-"i": "",
-"a": "",
+"i": "Power Herb",
+"a": "Toxic Debris",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Meteor Beam",
+"Mortal Spin",
+"Spiky Shield"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Draco Meteor",
+"Electroweb",
+"Snarl"
+]
 }
 ]
 },
@@ -19594,45 +21083,74 @@
 "team": [
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Icy Wind",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 }
 ]
 },
@@ -19642,45 +21160,75 @@
 "team": [
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Nasty Plot",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Fake Out",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Roaring (Moon)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Breaking Swipe",
+"Knock Off",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Sandsear Storm",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Protect"
+]
 }
 ]
 },
@@ -19690,45 +21238,75 @@
 "team": [
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Earthquake",
+"Headlong Rush",
+"Facade",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Spore",
+"Sludge Bomb",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Moonblast",
+"Icy Wind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Close Combat",
+"Surging Strikes",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sky Plate",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Tailwind",
+"Icy Wind",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"Fake Out",
+"U-turn"
+]
 }
 ]
 },
@@ -19738,45 +21316,75 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Taunt",
+"Parting Shot",
+"Fake Out"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Icy Wind",
+"Sucker Punch",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dragon Pulse",
+"Calm Mind",
+"Thunderclap",
+"Protect"
+]
 }
 ]
 },
@@ -19785,46 +21393,75 @@
 "cc": "JP",
 "team": [
 {
-"n": "Porygon2",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
-},
-{
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
+},
+{
+"n": "Porygon2",
+"i": "Eviolite",
+"a": "Download",
+"nt": "",
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 }
 ]
 },
@@ -19834,45 +21471,75 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Sacred Sword",
+"Ice Spinner",
+"Sucker Punch",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Draco Meteor",
+"Electroweb",
+"Snarl"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Outrage",
+"Extreme Speed",
+"Stomping Tantrum",
+"Aqua Jet"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Protect"
+]
 },
 {
 "n": "Entei",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Sacred Fire",
+"Extreme Speed",
+"Stone Edge",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Taunt",
+"Thunder Wave"
+]
 }
 ]
 },
@@ -19882,45 +21549,74 @@
 "team": [
 {
 "n": "Ting (Lu)",
-"i": "",
-"a": "",
+"i": "Clear Amulet",
+"a": "Vessel of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Earthquake",
+"Throat Chop",
+"Protect"
+]
 },
 {
 "n": "Thundurus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Wildbolt Storm",
+"Eerie Impulse",
+"Thunder Wave",
+"Taunt"
+]
 },
 {
 "n": "Gouging (Fire)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Breaking Swipe",
+"Howl",
+"Heat Crash",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Loaded Dice",
+"a": "Multiscale",
 "nt": "",
-"m": []
+"m": [
+"Scale Shot",
+"Extreme Speed",
+"Iron Head",
+"Protect"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Sacred Sword",
+"Protect"
+]
 }
 ]
 },
@@ -19929,46 +21625,76 @@
 "cc": "ES",
 "team": [
 {
-"n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
-},
-{
-"n": "Porygon2",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Earthquake",
+"Facade",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
-},
-{
-"n": "Ursaluna",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Rage Powder",
+"Pollen Puff",
+"Spore",
+"Sludge Bomb"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Fake Out",
+"U-turn",
+"Knock Off"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Life Orb",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Aqua Jet",
+"Detect",
+"Close Combat",
+"Surging Strikes"
+]
+},
+{
+"n": "Porygon2",
+"i": "Eviolite",
+"a": "Download",
+"nt": "",
+"m": [
+"Recover",
+"Trick Room",
+"Ice Beam",
+"var LS_COPY = 'Copy to Clipboard', LS_COPY_SUCCESS = 'Copied!';"
+]
 }
 ]
 },
@@ -19978,45 +21704,74 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Follow Me",
+"Spiky Shield",
+"Wood Hammer"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Icy Wind",
+"Shadow Ball"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Protect",
+"Tachyon Cutter"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Psychic",
+"Helping Hand",
+"Trick Room",
+"Follow Me"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Protect",
+"Rain Dance",
+"Bleakwind Storm"
+]
 }
 ]
 },
@@ -20026,45 +21781,75 @@
 "team": [
 {
 "n": "Pelipper",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Drizzle",
 "nt": "",
-"m": []
+"m": [
+"Hurricane",
+"Weather Ball",
+"Wide Guard",
+"Protect"
+]
 },
 {
 "n": "Baxcalibur",
-"i": "",
-"a": "",
+"i": "Loaded Dice",
+"a": "Thermal Exchange",
 "nt": "",
-"m": []
+"m": [
+"Icicle Spear",
+"Scale Shot",
+"Ice Shard",
+"Protect"
+]
 },
 {
 "n": "Iron Hands",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Wild Charge",
+"Drain Punch",
+"Heavy Slam",
+"Fake Out"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Sandsear Storm",
+"Earth Power",
+"Sludge Bomb",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Horn Leech",
+"Follow Me",
+"Spiky Shield"
+]
 }
 ]
 },
@@ -20074,45 +21859,75 @@
 "team": [
 {
 "n": "Iron Hands",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Close Combat",
+"Wild Charge",
+"Fake Out",
+"Swords Dance"
+]
 },
 {
 "n": "Urshifu",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Wicked Blow",
+"Close Combat",
+"Sucker Punch",
+"Poison Jab"
+]
 },
 {
 "n": "Torkoal",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Drought",
 "nt": "",
-"m": []
+"m": [
+"Eruption",
+"Heat Wave",
+"Weather Ball",
+"Earth Power"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Mental Herb",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Imprison",
+"Follow Me",
+"Healing Wish",
+"Trick Room"
+]
 },
 {
 "n": "Farigiraf",
-"i": "",
-"a": "",
+"i": "Psychic Seed",
+"a": "Armor Tail",
 "nt": "",
-"m": []
+"m": [
+"Hyper Voice",
+"Expanding Force",
+"Nasty Plot",
+"Trick Room"
+]
 },
 {
 "n": "Hatterene",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Magic Bounce",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Dazzling Gleam",
+"Protect",
+"Trick Room"
+]
 }
 ]
 },
@@ -20122,45 +21937,75 @@
 "team": [
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Grassy Glide",
+"Wood Hammer",
+"High Horsepower",
+"Fake Out"
+]
 },
 {
 "n": "Arcanine (Hisui)",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Rock Slide",
+"Extreme Speed",
+"Head Smash"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Fake Tears",
+"Tailwind",
+"Encore"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Protect",
+"Electroweb",
+"Dragon Pulse"
+]
 },
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Make It Rain",
+"Protect",
+"Nasty Plot",
+"Shadow Ball"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Protect"
+]
 }
 ]
 },
@@ -20170,45 +22015,75 @@
 "team": [
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"High Horsepower",
+"Fake Out"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Helping Hand",
+"Fake Out",
+"Parting Shot"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dragon Pulse",
+"Thunderclap",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Sucker Punch",
+"Icy Wind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 }
 ]
 },
@@ -20218,45 +22093,74 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Imprison",
+"Helping Hand",
+"Follow Me",
+"Trick Room"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Icy Wind",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Dragon Fang",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Tachyon Cutter",
+"Expanding Force",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Protect"
+]
 }
 ]
 },
@@ -20266,45 +22170,74 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Sacred Sword",
+"Sucker Punch",
+"Icicle Crash"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Detect",
+"Close Combat",
+"Surging Strikes",
+"Taunt"
+]
 },
 {
 "n": "Gouging (Fire)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Burning Bulwark",
+"Heat Crash",
+"Howl",
+"Breaking Swipe"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Clear Amulet",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"High Horsepower",
+"Grassy Glide",
+"Wood Hammer"
+]
 },
 {
 "n": "Kingambit",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Defiant",
 "nt": "",
-"m": []
+"m": [
+"Iron Head",
+"Sucker Punch",
+"Kowtow Cleave"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Stomping Tantrum",
+"Aerial Ace",
+"Extreme Speed",
+"Outrage"
+]
 }
 ]
 },
@@ -20314,45 +22247,75 @@
 "team": [
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"High Horsepower",
+"Fake Out"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dragon Pulse",
+"Thunderclap",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Splash Plate",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Grassy Glide",
+"Swords Dance",
+"Spiky Shield"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Taunt",
+"Thunder Wave"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Flare Blitz",
+"Fake Out",
+"Parting Shot"
+]
 }
 ]
 },
@@ -20362,45 +22325,75 @@
 "team": [
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Rage Powder",
+"Spore",
+"Pollen Puff"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Shuca Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Parting Shot",
+"Fake Out",
+"Knock Off"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"U-turn",
+"Aqua Jet"
+]
 },
 {
 "n": "Archaludon",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Stamina",
 "nt": "",
-"m": []
+"m": [
+"Electro Shot",
+"Draco Meteor",
+"Flash Cannon",
+"Snarl"
+]
 },
 {
 "n": "Pelipper",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Drizzle",
 "nt": "",
-"m": []
+"m": [
+"Weather Ball",
+"Hurricane",
+"Tailwind",
+"Wide Guard"
+]
 }
 ]
 },
@@ -20410,45 +22403,75 @@
 "team": [
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Trick",
+"Dazzling Gleam"
+]
 },
 {
 "n": "Ting (Lu)",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Vessel of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ruination",
+"Sand Tomb",
+"Protect",
+"Body Press"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Icicle Crash",
+"Sucker Punch",
+"Protect",
+"Sacred Sword"
+]
 },
 {
 "n": "Dragonite",
-"i": "",
-"a": "",
+"i": "Loaded Dice",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Scale Shot",
+"Extreme Speed",
+"Protect",
+"Iron Head"
+]
 },
 {
 "n": "Gouging (Fire)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Heat Crash",
+"Breaking Swipe",
+"Protect",
+"Howl"
+]
 },
 {
 "n": "Dondozo",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Oblivious",
 "nt": "",
-"m": []
+"m": [
+"Wave Crash",
+"Fissure",
+"Protect",
+"Yawn"
+]
 }
 ]
 },
@@ -20458,45 +22481,75 @@
 "team": [
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Sacred Sword",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Power Whip",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Entei",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Inner Focus",
 "nt": "",
-"m": []
+"m": [
+"Sacred Fire",
+"Extreme Speed",
+"Stone Edge",
+"Flare Blitz"
+]
 },
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 },
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Metal Coat",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Nasty Plot",
+"Protect"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Tailwind",
+"Fake Tears",
+"Encore"
+]
 }
 ]
 },
@@ -20506,45 +22559,74 @@
 "team": [
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Parting Shot",
+"Flare Blitz",
+"Knock Off"
+]
 },
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Tachyon Cutter",
+"Expanding Force"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Psychic",
+"Follow Me",
+"Helping Hand",
+"Trick Room"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Sandsear Storm",
+"Earth Power",
+"Sludge Bomb"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Spiky Shield",
+"Follow Me",
+"Ivy Cudgel",
+"Horn Leech"
+]
 },
 {
 "n": "Chien (Pao)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Icicle Crash",
+"Crunch",
+"Icy Wind"
+]
 }
 ]
 }
@@ -20564,45 +22646,74 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Protect"
+]
 },
 {
 "n": "Zoroark (Hisui)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Illusion",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Hyper Voice",
+"Protect"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Tailwind",
+"Encore",
+"Helping Hand"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"High Horsepower",
+"Fake Out"
+]
 },
 {
 "n": "Regidrago",
-"i": "",
-"a": "",
+"i": "Dragon Fang",
+"a": "Dragon's Maw",
 "nt": "",
-"m": []
+"m": [
+"Dragon Energy",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
 },
 {
 "n": "Kingambit",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Defiant",
 "nt": "",
-"m": []
+"m": [
+"Kowtow Cleave",
+"Iron Head",
+"Sucker Punch",
+"Protect"
+]
 }
 ]
 },
@@ -20612,45 +22723,75 @@
 "team": [
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Knock Off",
+"Parting Shot",
+"Taunt"
+]
 },
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Swords Dance",
+"Ivy Cudgel",
+"Grassy Glide",
+"Spiky Shield"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Icy Wind",
+"Thunder Wave",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Calm Mind",
+"Thunderclap",
+"Dragon Pulse",
+"Protect"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Grassy Glide",
+"Wood Hammer",
+"High Horsepower"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Protect"
+]
 }
 ]
 },
@@ -20660,45 +22801,75 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Spiky Shield",
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Tailwind",
+"Bleakwind Storm",
+"Sunny Day"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Farigiraf",
-"i": "",
-"a": "",
+"i": "Throat Spray",
+"a": "Armor Tail",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Trick Room",
+"Hyper Voice",
+"Psychic"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Facade",
+"Headlong Rush",
+"Earthquake"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Shadow Ball",
+"Power Gem"
+]
 }
 ]
 },
@@ -20708,45 +22879,75 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Facade",
+"Protect",
+"Earthquake"
+]
 },
 {
 "n": "Cresselia",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Levitate",
 "nt": "",
-"m": []
+"m": [
+"Psychic",
+"Icy Wind",
+"Trick Room",
+"Lunar Blessing"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dazzling Gleam",
+"Shadow Ball",
+"Moonblast",
+"Power Gem"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Rage Powder",
+"Spore",
+"Sludge Bomb",
+"Protect"
+]
 }
 ]
 },
@@ -20756,45 +22957,74 @@
 "team": [
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"Detect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
 }
 ]
 },
@@ -20804,45 +23034,75 @@
 "team": [
 {
 "n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Grassy Glide",
+"Swords Dance",
+"Spiky Shield"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Taunt",
+"Fake Out",
+"Parting Shot"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Thunderclap",
+"Dragon Pulse",
+"Calm Mind",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Psychic",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Protect"
+]
 },
 {
 "n": "Rillaboom",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Grassy Surge",
 "nt": "",
-"m": []
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"Fake Out",
+"High Horsepower"
+]
 }
 ]
 },
@@ -20852,45 +23112,75 @@
 "team": [
 {
 "n": "Roaring (Moon)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Acrobatics",
+"Dragon Dance",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Power Gem",
+"Shadow Ball",
+"Dazzling Gleam"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Helping Hand",
+"Parting Shot"
+]
 },
 {
 "n": "Iron Hands",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Drain Punch",
+"Heavy Slam",
+"Volt Switch"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Pollen Puff",
+"Rage Powder",
+"Spore",
+"Sludge Bomb"
+]
 }
 ]
 },
@@ -20899,46 +23189,75 @@
 "cc": "AU",
 "team": [
 {
-"n": "Tornadus",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
-},
-{
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Tachyon Cutter",
+"Protect"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Follow Me",
+"Helping Hand",
+"Dazzling Gleam",
+"Trick Room"
+]
 },
 {
-"n": "Landorus",
-"i": "",
-"a": "",
+"n": "Tornadus",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
-},
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Band",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"U-turn",
+"Aqua Jet"
+]
+},
+{
+"n": "Ogerpon (Hearthflame)",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
+"nt": "",
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
+},
+{
+"n": "Landorus",
+"i": "Life Orb",
+"a": "Sheer Force",
+"nt": "",
+"m": [
+"Earth Power",
+"Sandsear Storm",
+"Sludge Bomb",
+"Protect"
+]
 }
 ]
 }
@@ -20958,45 +23277,75 @@
 "team": [
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Earthquake",
+"Facade",
+"Protect"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Rage Powder",
+"Pollen Puff",
+"Spore",
+"Sludge Bomb"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Fake Out",
+"U-turn",
+"Knock Off"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Sharp Beak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Aqua Jet",
+"Detect",
+"Close Combat",
+"Surging Strikes"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Recover",
+"Trick Room",
+"Ice Beam",
+"var LS_COPY = 'Copy to Clipboard', LS_COPY_SUCCESS = 'Copied!';"
+]
 }
 ]
 },
@@ -21005,46 +23354,76 @@
 "cc": "AR",
 "team": [
 {
-"n": "Flutter Mane",
-"i": "",
-"a": "",
+"n": "Farigiraf",
+"i": "Throat Spray",
+"a": "Armor Tail",
 "nt": "",
-"m": []
-},
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Psychic",
+"Trick Room",
+"Protect",
+"Hyper Voice"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Headlong Rush",
+"Protect",
+"Earthquake",
+"Facade"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"U-turn",
+"Flare Blitz",
+"Fake Out",
+"Knock Off"
+]
+},
+{
+"n": "Ogerpon (Hearthflame)",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
+"nt": "",
+"m": [
+"Spiky Shield",
+"Follow Me",
+"Ivy Cudgel",
+"Wood Hammer"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Tailwind",
+"Sunny Day",
+"Protect",
+"Bleakwind Storm"
+]
 },
 {
-"n": "Farigiraf",
-"i": "",
-"a": "",
+"n": "Flutter Mane",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dazzling Gleam",
+"Shadow Ball",
+"Power Gem",
+"Moonblast"
+]
 }
 ]
 },
@@ -21053,46 +23432,76 @@
 "cc": "BR",
 "team": [
 {
-"n": "Torkoal",
-"i": "",
-"a": "",
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
-},
-{
-"n": "Farigiraf",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
-},
-{
-"n": "Flutter Mane",
-"i": "",
-"a": "",
-"nt": "",
-"m": []
+"m": [
+"Facade",
+"Headlong Rush",
+"Earthquake",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
 },
 {
-"n": "Ursaluna",
-"i": "",
-"a": "",
+"n": "Flutter Mane",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Shadow Ball",
+"Trick Room"
+]
+},
+{
+"n": "Farigiraf",
+"i": "Sitrus Berry",
+"a": "Armor Tail",
+"nt": "",
+"m": [
+"Psychic",
+"Hyper Voice",
+"Trick Room",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Cornerstone)",
-"i": "",
-"a": "",
+"i": "Cornerstone Mask",
+"a": "Sturdy",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Power Whip",
+"Spiky Shield",
+"Follow Me"
+]
+},
+{
+"n": "Torkoal",
+"i": "Charcoal",
+"a": "Drought",
+"nt": "",
+"m": [
+"Eruption",
+"Heat Wave",
+"Helping Hand",
+"Protect"
+]
 }
 ]
 },
@@ -21102,45 +23511,74 @@
 "team": [
 {
 "n": "Gholdengo",
-"i": "",
-"a": "",
+"i": "Metal Coat",
+"a": "Good as Gold",
 "nt": "",
-"m": []
+"m": [
+"Shadow Ball",
+"Make It Rain",
+"Nasty Plot",
+"Protect"
+]
 },
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Earthquake",
+"Headlong Rush",
+"Protect"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Rain Dance",
+"Tailwind",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Fake Out",
+"Knock Off",
+"Flare Blitz",
+"Parting Shot"
+]
 }
 ]
 },
@@ -21150,45 +23588,75 @@
 "team": [
 {
 "n": "Weezing (Galar)",
-"i": "",
-"a": "",
+"i": "Sitrus Berry",
+"a": "Neutralizing Gas",
 "nt": "",
-"m": []
+"m": [
+"Strange Steam",
+"Poison Gas",
+"Toxic Spikes",
+"Protect"
+]
 },
 {
 "n": "Flutter Mane",
-"i": "",
-"a": "",
+"i": "Choice Specs",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Dazzling Gleam",
+"Shadow Ball",
+"Icy Wind"
+]
 },
 {
 "n": "Dondozo",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Oblivious",
 "nt": "",
-"m": []
+"m": [
+"Wave Crash",
+"Earthquake",
+"Order Up",
+"Protect"
+]
 },
 {
 "n": "Tatsugiri",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Commander",
 "nt": "",
-"m": []
+"m": [
+"Muddy Water",
+"Draco Meteor",
+"Taunt",
+"Protect"
+]
 },
 {
 "n": "Chi (Yu)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Beads of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Heat Wave",
+"Ruination",
+"Overheat",
+"Snarl"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Draco Meteor",
+"Thunderclap",
+"Thunderbolt",
+"Snarl"
+]
 }
 ]
 },
@@ -21198,45 +23666,74 @@
 "team": [
 {
 "n": "Porygon2",
-"i": "",
-"a": "",
+"i": "Eviolite",
+"a": "Download",
 "nt": "",
-"m": []
+"m": [
+"Ice Beam",
+"Recover",
+"Trick Room"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Mental Herb",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Protect",
+"Rage Powder",
+"Sludge Bomb",
+"Spore"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Mystic Water",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
 },
 {
 "n": "Tornadus",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Bleakwind Storm",
+"Protect",
+"Tailwind",
+"Rain Dance"
+]
 },
 {
 "n": "Ursaluna",
-"i": "",
-"a": "",
+"i": "Flame Orb",
+"a": "Guts",
 "nt": "",
-"m": []
+"m": [
+"Facade",
+"Earthquake",
+"Headlong Rush",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Assault Vest",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Knock Off",
+"Flare Blitz",
+"Fake Out",
+"U-turn"
+]
 }
 ]
 },
@@ -21246,45 +23743,75 @@
 "team": [
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"U-turn",
+"Close Combat",
+"Ice Spinner"
+]
 },
 {
 "n": "Amoonguss",
-"i": "",
-"a": "",
+"i": "Mental Herb",
+"a": "Regenerator",
 "nt": "",
-"m": []
+"m": [
+"Sludge Bomb",
+"Rage Powder",
+"Spore",
+"Protect"
+]
 },
 {
 "n": "Raging Bolt",
-"i": "",
-"a": "",
+"i": "Leftovers",
+"a": "Protosynthesis",
 "nt": "",
-"m": []
+"m": [
+"Dragon Pulse",
+"Calm Mind",
+"Thunderclap",
+"Protect"
+]
 },
 {
 "n": "Landorus",
-"i": "",
-"a": "",
+"i": "Life Orb",
+"a": "Sheer Force",
 "nt": "",
-"m": []
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Substitute",
+"Protect"
+]
 },
 {
 "n": "Incineroar",
-"i": "",
-"a": "",
+"i": "Safety Goggles",
+"a": "Intimidate",
 "nt": "",
-"m": []
+"m": [
+"Flare Blitz",
+"Parting Shot",
+"Fake Out",
+"Taunt"
+]
 },
 {
 "n": "Ogerpon (Wellspring)",
-"i": "",
-"a": "",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Follow Me",
+"Wood Hammer",
+"Spiky Shield"
+]
 }
 ]
 },
@@ -21294,45 +23821,74 @@
 "team": [
 {
 "n": "Iron (Crown)",
-"i": "",
-"a": "",
+"i": "Booster Energy",
+"a": "Quark Drive",
 "nt": "",
-"m": []
+"m": [
+"Expanding Force",
+"Tachyon Cutter",
+"Protect"
+]
 },
 {
 "n": "Urshifu (Rapid Strike)",
-"i": "",
-"a": "",
+"i": "Focus Sash",
+"a": "Unseen Fist",
 "nt": "",
-"m": []
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Protect"
+]
 },
 {
 "n": "Chi (Yu)",
-"i": "",
-"a": "",
+"i": "Choice Scarf",
+"a": "Beads of Ruin",
 "nt": "",
-"m": []
+"m": [
+"Heat Wave",
+"Overheat",
+"Dark Pulse",
+"Psychic"
+]
 },
 {
 "n": "Indeedee-F",
-"i": "",
-"a": "",
+"i": "Rocky Helmet",
+"a": "Psychic Surge",
 "nt": "",
-"m": []
+"m": [
+"Dazzling Gleam",
+"Follow Me",
+"Helping Hand",
+"Protect"
+]
 },
 {
 "n": "Whimsicott",
-"i": "",
-"a": "",
+"i": "Covert Cloak",
+"a": "Prankster",
 "nt": "",
-"m": []
+"m": [
+"Moonblast",
+"Tailwind",
+"Fake Tears",
+"Encore"
+]
 },
 {
 "n": "Ogerpon (Cornerstone)",
-"i": "",
-"a": "",
+"i": "Cornerstone Mask",
+"a": "Sturdy",
 "nt": "",
-"m": []
+"m": [
+"Ivy Cudgel",
+"Wood Hammer",
+"Follow Me",
+"Spiky Shield"
+]
 }
 ]
 }
@@ -23519,5 +26075,144 @@
 "id": 420
 }
 ],
-"types": {}
+"types": {
+"Farigiraf": [
+"Normale",
+"Psico"
+],
+"Incineroar": [
+"Fuoco",
+"Buio"
+],
+"Charizard": [
+"Fuoco",
+"Volante"
+],
+"Sylveon": [
+"Folletto"
+],
+"Venusaur": [
+"Erba",
+"Veleno"
+],
+"Garchomp": [
+"Drago",
+"Terra"
+],
+"Archaludon": [
+"Acciaio",
+"Drago"
+],
+"Pelipper": [
+"Acqua",
+"Volante"
+],
+"Grimmsnarl": [
+"Buio",
+"Folletto"
+],
+"Politoed": [
+"Acqua"
+],
+"Raichu": [
+"Elettro"
+],
+"Gholdengo": [
+"Acciaio",
+"Spettro"
+],
+"Swampert": [
+"Acqua",
+"Terra"
+],
+"Staraptor": [
+"Normale",
+"Volante"
+],
+"Sinistcha": [
+"Erba",
+"Spettro"
+],
+"Rillaboom": [
+"Erba"
+],
+"Kingambit": [
+"Buio",
+"Acciaio"
+],
+"Sneasler": [
+"Lotta",
+"Veleno"
+],
+"Floette (Eternal)": [
+"Folletto"
+],
+"Salamence": [
+"Drago",
+"Volante"
+],
+"Basculegion": [],
+"Golisopod": [
+"Coleottero",
+"Acqua"
+],
+"Dragonite": [
+"Drago",
+"Volante"
+],
+"Toxapex": [
+"Veleno",
+"Acqua"
+],
+"Torkoal": [
+"Fuoco"
+],
+"Delphox": [
+"Fuoco",
+"Psico"
+],
+"Volcarona": [
+"Coleottero",
+"Fuoco"
+],
+"Arcanine (Hisui)": [
+"Fuoco",
+"Roccia"
+],
+"Meowstic-F": [
+"Psico"
+],
+"Indeedee": [],
+"Kommo-o": [
+"Drago",
+"Lotta"
+],
+"Vivillon": [
+"Coleottero",
+"Volante"
+],
+"Gengar": [
+"Spettro",
+"Veleno"
+],
+"Froslass": [
+"Ghiaccio",
+"Spettro"
+],
+"Glimmora": [
+"Roccia",
+"Veleno"
+],
+"Armarouge": [
+"Fuoco",
+"Psico"
+],
+"Indeedee-F": [
+"Psico",
+"Normale"
+],
+"Milotic": [
+"Acqua"
+]
+}
 }
