@@ -22,49 +22,78 @@ def get(url):
 
 # ---------- Limitless ----------
 def limitless():
-    q = urllib.parse.urlencode({"game": "VGC", "limit": 100})
-    out = []
-    for t in json.loads(get(API + "?" + q)):
-        name = t.get("name", "")
-        money = re.search(r"[€$£]\s?\d|\d[\d.,]*\s?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)
-        reg = re.search(r"\bM-[A-Z]\b", name, re.I)
-        bo = re.search(r"\bBo([13])\b", name, re.I)
-        org = t.get("organizer") or {}
-        raw = t.get("date") or ""
-        try:
-            dt = datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(ROME)
-            date, hhmm = dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
-        except Exception:
-            date, hhmm = raw[:10] or None, None
-        out.append({
-            "name": name, "org": org.get("name", "") if isinstance(org, dict) else "",
-            "mode": "online", "type": "Torneo", "fee": None,
-            "cash": True if money else None,  # mai False: senza indicazione resta "non indicato"
-            "prize": money.group(0).strip() if money else "",
-            "reg": reg.group(0).upper() if reg else None,
-            "bo": "Bo" + bo.group(1) if bo else None,
-            "date": date, "time": hhmm, "players": t.get("players"),
-            "url": "https://play.limitlesstcg.com/tournament/%s/details" % t["id"],
-        })
+    """Scarica tutte le pagine disponibili dall'API, evitando il limite fisso dei primi 100."""
+    out, seen = [], set()
+    page_size = 100
+    for page in range(1, 101):
+        q = urllib.parse.urlencode({"game": "VGC", "limit": page_size, "page": page})
+        payload = json.loads(get(API + "?" + q))
+        if not isinstance(payload, list) or not payload:
+            break
+        new_count = 0
+        for t in payload:
+            tid = str(t.get("id") or t.get("url") or (t.get("name", "") + str(t.get("date", ""))))
+            if tid in seen:
+                continue
+            seen.add(tid); new_count += 1
+            name = t.get("name", "")
+            money = re.search(r"[€$£]\s?\d|\d[\d.,]*\s?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)
+            reg = re.search(r"\bM-[A-Z]\b", name, re.I)
+            bo = re.search(r"\bBo([13])\b", name, re.I)
+            org = t.get("organizer") or {}
+            raw = t.get("date") or ""
+            try:
+                dt = datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(ROME)
+                date, hhmm = dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
+            except Exception:
+                date, hhmm = raw[:10] or None, None
+            out.append({"name": name, "org": org.get("name", "") if isinstance(org, dict) else "",
+                "mode": "online", "type": "Torneo", "fee": None,
+                "cash": True if money else None, "prize": money.group(0).strip() if money else "",
+                "reg": reg.group(0).upper() if reg else None, "bo": "Bo" + bo.group(1) if bo else None,
+                "date": date, "time": hhmm, "players": t.get("players"),
+                "url": "https://play.limitlesstcg.com/tournament/%s/details" % t["id"]})
+        print("Limitless pagina %d: %d risultati, %d nuovi" % (page, len(payload), new_count))
+        if new_count == 0 or len(payload) < page_size:
+            break
     return out
 
 # ---------- Victory Road ----------
 def vr_slugs():
+    """Scopre gli eventi dai calendari e dagli archivi online, non solo da slug mensili ipotizzati."""
     now = datetime.now(timezone.utc)
+    out, seen = [], set()
+    def add(slug):
+        slug = slug.strip("/")
+        if slug and slug not in seen:
+            seen.add(slug); out.append(slug)
     sigle = [m[:3] for m in MESI]
-    out = []
-    for k in range(3):  # mese corrente e i due successivi
+    for k in range(3):
         i = now.month - 1 + k
         for suf in ["", "-2", "-3", "-4", "-5"]:
-            out.append("vr-%s%02d%s" % (sigle[i % 12], (now.year + i // 12) % 100, suf))
-    for n in ("i", "ii", "iii", "iv", "v"):  # Global Challenge: gare online ufficiali nel gioco
-        out.append("%d-global-challenge-%s" % (now.year + (1 if now.month >= 6 else 0), n))
-    try:  # link trovati nella home
-        for s in re.findall(r'href="https://victoryroad\.pro/(vr[a-z0-9-]+)/?"', get(VR)):
-            if s not in out:
-                out.append(s)
-    except Exception as e:
-        print("Home di Victory Road non letta:", e)
+            add("vr-%s%02d%s" % (sigle[i % 12], (now.year + i // 12) % 100, suf))
+    for n in ("i", "ii", "iii", "iv", "v"):
+        add("%d-global-challenge-%s" % (now.year + (1 if now.month >= 6 else 0), n))
+    seeds = [VR, VR + "2026-season-calendar/", VR + "2027-season-calendar/", VR + "category/online/"]
+    seeds += [VR + "category/online/page/%d/" % n for n in range(2, 7)]
+    event_words = ("vr-", "global-challenge", "regional", "championship", "challenge", "arena", "world-cup", "san-francisco", "singapore", "international")
+    for seed in seeds:
+        try:
+            page_html = get(seed)
+        except Exception as e:
+            print("Victory Road: pagina indice non letta %s: %s" % (seed, e)); continue
+        for href in re.findall("href=[\"']([^\"']+)[\"']", page_html, re.I):
+            absolute = urllib.parse.urljoin(seed, html.unescape(href))
+            u = urllib.parse.urlparse(absolute)
+            if u.netloc.lower() not in ("victoryroad.pro", "www.victoryroad.pro"):
+                continue
+            parts = [x for x in u.path.split("/") if x]
+            if len(parts) != 1:
+                continue
+            slug = parts[0].lower()
+            if any(word in slug for word in event_words) and slug not in ("2026-season-calendar", "2027-season-calendar"):
+                add(slug)
+    print("Victory Road: individuati %d slug da controllare" % len(out))
     return out
 
 def vr_parse(slug, page):
@@ -114,10 +143,12 @@ def victory_road():
         time.sleep(1)  # poche richieste, con calma
         try:
             ev = vr_parse(slug, get(VR + slug + "/"))
-        except Exception:
-            continue  # pagina inesistente
+        except Exception as e:
+            print("Victory Road: impossibile leggere %s: %s" % (slug, e))
+            continue
         if ev:
             out.append(ev)
+    print("Victory Road: importati %d eventi" % len(out))
     return out
 
 # ---------- Regionali ----------
@@ -273,7 +304,9 @@ def main():
     by = {}
     for nome, fonte in (("Limitless", limitless), ("Victory Road", victory_road), ("Regionali", regionali)):
         try:
-            for e in fonte():
+            raccolti = fonte()
+            print("%s: %d eventi letti" % (nome, len(raccolti)))
+            for e in raccolti:
                 by[e["url"]] = e
         except Exception as ex:
             print("Errore con %s: %s" % (nome, ex))
@@ -290,7 +323,10 @@ def main():
     except Exception:
         old = None
     notify_all(events)
-    if not events or old == events:
+    if not events:
+        print("ERRORE: nessun evento valido; non sovrascrivo events.json esistente")
+        return
+    if old == events:
         print("Nessuna novità")
         return
     data = {"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "events": events}
