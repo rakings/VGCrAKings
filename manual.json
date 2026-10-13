@@ -1,0 +1,19 @@
+[
+ {
+  "name": "VR October Challenge #2",
+  "org": "Victory Road",
+  "mode": "online",
+  "type": "Torneo",
+  "fee": 11.5,
+  "cur": "$",
+  "feeNote": "+ tassa Battlefy",
+  "cash": true,
+  "prize": "montepremi, ~40% al vincitore",
+  "reg": "M-C",
+  "bo": null,
+  "date": "2026-10-10",
+  "end": "2026-10-11",
+  "time": null,
+  "url": "https://victoryroad.pro/vr-oct26-2/"
+ }
+]

@@ -1,0 +1,43 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Diagnostica · rAKings VGC</title>
+<style>:root{--bg:#fff3f0;--card:#fff;--ink:#2b0a0c;--mute:#7c4b4d;--line:#f4c6c2;--acc:#e11d2e}@media (prefers-color-scheme:dark){:root{--bg:#1d0b0d;--card:#2c1316;--ink:#fff1ef;--mute:#e0aaa6;--line:#512529}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:18px 14px 60px;max-width:720px;margin:0 auto}
+h1{font-size:1.5rem;margin:6px 0}p.l{color:var(--mute);margin:0 0 14px}.row{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;display:flex;gap:10px}
+.ic{flex:none;font-size:1.25rem;width:26px;text-align:center}.t>b{display:block}.t span{color:var(--mute);font-size:.9rem;word-break:break-word}.ok{border-color:#16a864}.warn{border-color:#f2b705}.ko{border-color:var(--acc)}
+button{border:0;border-radius:999px;background:var(--acc);color:#fff;font-weight:700;padding:11px 18px;font-size:1rem;margin:6px 6px 6px 0;cursor:pointer}code{background:#e11d2e22;padding:1px 5px;border-radius:5px}a{color:var(--acc)}</style></head><body>
+<p><a href="index.html">← Torna al sito</a></p>
+<h1>Diagnostica del sito</h1><p class="l">Controlla da sola cosa funziona e cosa manca: verde = a posto, giallo = da guardare, rosso = da sistemare. Non serve la console del browser.</p>
+<div id="out"></div><p id="sum" style="font-weight:700"></p>
+<button id="clean">Pulisci registrazioni vecchie e dati</button><button id="again" style="background:#7c3aed">Ricontrolla</button>
+<p class="l">"Pulisci" toglie dal browser i service worker e le copie salvate del sito (utile dopo aver rifatto il deposito) e le tue scelte salvate: lingua, tornei seguiti, notifiche.</p>
+<script>
+var OUT=document.getElementById("out"),RES=[];
+function row(st,t,d){var r=document.createElement("div");r.className="row "+st;r.innerHTML='<div class="ic">'+(st==="ok"?"✅":st==="warn"?"⚠️":st==="ko"?"❌":"⏳")+'</div><div class="t"><b></b><span></span></div>';r.querySelector("b").textContent=t;r.querySelector("span").innerHTML=d||"";OUT.appendChild(r);RES.push(st)}
+function get(u,j){return fetch(u+(u.indexOf("?")<0?"?":"&")+"t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return j?r.json():r.text()})}
+function eh(u){var h=5381;for(var i=0;i<u.length;i++)h=(h*33+u.charCodeAt(i))>>>0;return h.toString(36)}
+async function run(){OUT.innerHTML="";RES=[];var idx="";
+row(location.protocol==="https:"?"ok":"warn","Indirizzo sicuro (https)",location.protocol==="https:"?location.origin+location.pathname:"Su un indirizzo senza https le notifiche e l'installazione non funzionano.");
+try{idx=await get("index.html");row("ok","Pagina principale (index.html)",Math.round(idx.length/1024)+" KB trovati.");
+ var sc=idx.match(/<script>[\s\S]*?<\/script>/g)||[],bad="";sc.forEach(function(s,i){try{new Function(s.replace(/^<script>|<\/script>$/g,""))}catch(e){bad+="Blocco "+(i+1)+": "+e.message+". "}});
+ row(bad?"ko":"ok","Codice del sito senza errori di sintassi",bad?bad+"Ricarica <code>index.html</code> originale dallo zip.":"Nessun errore trovato nel codice.");
+ var su=(idx.match(/var SITE_URL="([^"]*)"/)||[])[1];row(!su?"warn":(su.replace(/\/$/,"")===location.origin?"ok":"warn"),"Indirizzo del sito scritto nel codice (SITE_URL)",!su?"Vuoto: servono per le anteprime di condivisione. Scrivi <code>"+location.origin+"</code>.":(su.replace(/\/$/,"")===location.origin?su:"C'è scritto "+su+" ma il sito è su "+location.origin+"."));
+ var oid=(idx.match(/var ONESIGNAL_APP_ID="([^"]*)"/)||[])[1],nt=(idx.match(/var NTFY_PREFIX="([^"]*)"/)||[])[1];
+ row(/^[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(oid||"")?"ok":(nt?"warn":"warn"),"Notifiche: App ID di OneSignal",oid?(/^[0-9a-f]{8}-/i.test(oid)?"Impostato.":"Il valore non sembra un App ID: copialo dal pannello di OneSignal."):(nt?"Non c'è l'App ID, ma c'è il ripiego ntfy.":"Vuoto: le notifiche non sono attive."));
+ var n=(idx.match(/cdn\.onesignal\.com/g)||[]).length;row(n>1?"ko":"ok","Nessun codice OneSignal duplicato",n>1?"Nel sito ci sono "+n+" richiami a OneSignal: ce ne deve essere uno solo. Togli il codice copiato dal pannello di OneSignal.":"A posto.");
+}catch(e){row("ko","Pagina principale (index.html)","Non trovata ("+e.message+"). I file non sono stati caricati nella cartella principale del deposito.")}
+try{var sw=await get("sw.js");row(/OneSignalSDK\.sw\.js/.test(sw)?"ok":"warn","File del service worker (sw.js)","Trovato.")}catch(e){row("ko","File del service worker (sw.js)","Non trovato ("+e.message+").")}
+for(var f of ["OneSignalSDKWorker.js","OneSignalSDKUpdaterWorker.js"]){try{await get(f);row("warn","File extra di OneSignal: "+f,"Esiste nel deposito ma il sito non lo usa. Eliminalo per non fare confusione.")}catch(e){}}
+var ev=null;try{ev=await get("events.json",true);var t=ev.updated?new Date(ev.updated):null,age=t?(Date.now()-t)/36e5:null;row(!ev.events||!ev.events.length?"warn":(age!==null&&age>12?"warn":"ok"),"Dati dei tornei (events.json)",(ev.events?ev.events.length:0)+" tornei"+(t?", aggiornati "+t.toLocaleString("it-IT")+(age>12?". Sono vecchi: controlla la scheda Actions.":"."):"."))}
+catch(e){row("ko","Dati dei tornei (events.json)","Non trovato ("+e.message+"). Il bot non ha ancora girato: apri la scheda <b>Actions</b> del deposito e fai partire <b>Aggiorna tornei</b>. Se non lo vedi, mancano i file in <code>.github/workflows</code>.")}
+try{var nw=await get("news.json",true);row("ok","News (news.json)","Trovato.")}catch(e){row("warn","News (news.json)","Non trovato: arriva con il primo giro del bot, o è spento (NEWS_BOT=0).")}
+if(ev&&ev.events&&ev.events.length){var e0=ev.events.find(function(x){return x.url})||ev.events[0];try{await get("e/"+eh(e0.url)+".html");row("ok","Pagine di condivisione (cartella e)","Trovate: i link condivisi mostrano l'anteprima.")}catch(e){row("warn","Pagine di condivisione (cartella e)","Non ancora create. Servono la variabile <code>SITE_URL</code> su GitHub e un giro del bot.")}}
+try{var m=await get("manifest.webmanifest",true);var miss=[];for(var ic of m.icons||[]){try{await get(ic.src)}catch(e){miss.push(ic.src)}}row(miss.length?"ko":"ok","App installabile (manifest e icone)",miss.length?"Icone mancanti: "+miss.join(", "):"Manifest e icone a posto.")}catch(e){row("ko","App installabile (manifest)","Non trovato ("+e.message+").")}
+try{await get("i18n-data.js");row("ok","Traduzioni (i18n-data.js)","Trovate.")}catch(e){row("warn","Traduzioni (i18n-data.js)","Non trovate: il sito resta solo in italiano.")}
+try{await get("share-card.jpg");row("ok","Immagine di condivisione","Trovata.")}catch(e){row("warn","Immagine di condivisione","Non trovata (share-card.jpg).")}
+try{var regs=await navigator.serviceWorker.getRegistrations();var old=regs.filter(function(r){return /OneSignalSDKWorker/.test(r.active&&r.active.scriptURL||"")});
+ row(old.length?"warn":"ok","Service worker registrati in questo browser",regs.length?regs.map(function(r){return (r.active?r.active.scriptURL:r.scope)}).join("<br>"):"Nessuno ancora (si registra aprendo il sito)."+(old.length?"<br>C'è una registrazione vecchia di OneSignal: tocca Pulisci.":""))}catch(e){row("warn","Service worker registrati in questo browser","Non leggibili qui.")}
+row("Notification" in window?(Notification.permission==="granted"?"ok":"warn"):"warn","Permesso notifiche su questo dispositivo","Notification" in window?({granted:"Concesso.",denied:"Negato: va riattivato dalle impostazioni del browser o del telefono.",default:"Non ancora chiesto: ingranaggio → Attiva le notifiche."})[Notification.permission]:"Questo browser non le supporta (su iPhone serve l'app sulla schermata Home).");
+var ko=RES.filter(function(x){return x==="ko"}).length,w=RES.filter(function(x){return x==="warn"}).length;document.getElementById("sum").textContent=ko?"Da sistemare: "+ko+" punto/i rosso/i.":(w?"Tutto funziona, "+w+" punto/i da guardare.":"Tutto a posto!")}
+document.getElementById("again").onclick=run;
+document.getElementById("clean").onclick=async function(){try{(await navigator.serviceWorker.getRegistrations()).forEach(function(r){r.unregister()});(await caches.keys()).forEach(function(k){caches.delete(k)});Object.keys(localStorage).forEach(function(k){if(k.indexOf("vgc-")===0||k.indexOf("onesignal")>-1||k.indexOf("OneSignal")>-1)localStorage.removeItem(k)})}catch(e){}alert("Fatto. Ricarica la pagina.");run()};
+run();
+</script></body></html>

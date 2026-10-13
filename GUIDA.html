@@ -1,0 +1,218 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Guida · mettere online rAKings VGC</title>
+<style>:root{--bg:#fff3f0;--card:#fff;--ink:#2b0a0c;--mute:#7c4b4d;--line:#f4c6c2;--acc:#e11d2e;--grad:linear-gradient(135deg,#e11d2e,#7c3aed);box-sizing:border-box;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+@media (prefers-color-scheme:dark){:root{--bg:#1d0b0d;--card:#2c1316;--ink:#fff1ef;--mute:#e0aaa6;--line:#512529}}
+*,*::before,*::after{box-sizing:inherit}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:20px 16px 60px}h1{font-size:1.7rem;line-height:1.15;margin:6px 0 8px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mute);margin:0 0 16px}.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0}
+.st{background:var(--card);border:2px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden}.st[open]{border-color:var(--acc)}
+.st summary{cursor:pointer;padding:12px 14px;font-weight:700;display:flex;gap:10px;align-items:center;list-style:none}.st summary::-webkit-details-marker{display:none}
+.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:.9rem}.bd{padding:0 14px 14px}
+h3{margin:14px 0 4px;font-size:1rem}code{background:color-mix(in srgb,var(--acc) 12%,transparent);padding:1px 6px;border-radius:6px;font-size:.88em;word-break:break-all}
+.code{position:relative;margin:8px 0}.code pre{margin:0;padding:12px;border-radius:10px;background:#14102a;color:#eaf0ff;font-size:.74rem;line-height:1.4;overflow:auto;max-height:260px}
+.cp{position:absolute;top:6px;right:6px;border:0;border-radius:999px;background:var(--acc);color:#fff;font-weight:700;padding:5px 12px;cursor:pointer}
+.tip,.warn{border-radius:10px;padding:8px 12px;margin:10px 0;font-size:.92rem}.tip{background:#ffd21f33;border:1px solid #ffd21f}.warn{background:#e11d2e22;border:1px solid var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:8px 0}th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:color-mix(in srgb,var(--acc) 10%,transparent)}
+.ck{list-style:none;padding:0}.ck li{padding:6px 0 6px 28px;position:relative}.ck li::before{content:"☐";position:absolute;left:0;font-size:1.1rem}ol,ul{padding-left:20px}</style></head><body><main>
+<h1>Mettere online rAKings VGC</h1>
+<p class="lead">Guida passo per passo, pensata per farla da telefono. Tempo: circa un'ora, quasi tutta attesa.</p>
+<div class="box"><b>Cosa serve</b><ul><li>Lo zip <code>tornei-vgc-sito.zip</code> che ti ho preparato.</li><li>Un account <b>GitHub</b> (gratuito) e, per le notifiche dentro l'app, uno su <b>OneSignal</b> (gratuito).</li><li>Un indirizzo email per i contatti e la privacy.</li></ul>
+<p style="margin:6px 0 0">Tocca ogni passo per aprirlo. I nomi dei menu possono cambiare un po' nel tempo.</p></div>
+<details class="st" open><summary><span class="n">1</span>Crea l'account GitHub e il deposito del sito</summary><div class="bd">
+<ol><li>Vai su <b>github.com</b> e tocca <b>Sign up</b>. Scegli un nome utente semplice: finirà nell'indirizzo del sito (<code>nomeutente.github.io</code>).</li>
+<li>Conferma l'email, poi tocca il <b>+</b> in alto e <b>New repository</b>.</li>
+<li>Nome: <b>esattamente</b> <code>NOMEUTENTE.github.io</code>, con il tuo nome utente (per esempio <code>rakings.github.io</code>). Così il sito sta all'indirizzo semplice e le notifiche funzionano meglio. Lascia <b>Public</b> e spunta <b>Add a README file</b>. Tocca <b>Create repository</b>.</li></ol>
+<p class="tip">Dal telefono, nel browser apri il menu e scegli <b>Sito desktop</b>: i menu di GitHub, soprattutto Settings, si trovano molto più facilmente.</p>
+<p>Il tuo sito avrà questo indirizzo: <code>https://NOMEUTENTE.github.io/</code></p></div></details>
+<details class="st"><summary><span class="n">2</span>Carica i file del sito</summary><div class="bd">
+<p>Prima <b>decomprimi lo zip</b> <code>tornei-vgc-sito.zip</code> (con l'app File del telefono, o sul computer). Hai due strade.</p>
+<h3>A. Dal computer (consigliata, 5 minuti)</h3>
+<ol><li>Apri il deposito su GitHub, tocca <b>Add file → Upload files</b>.</li>
+<li>Trascina <b>tutto il contenuto della cartella decompressa</b>, compresa la cartella nascosta <code>.github</code>.</li>
+<li>In basso tocca <b>Commit changes</b>.</li></ol>
+<h3>B. Solo dal telefono</h3>
+<ol><li><b>Add file → Upload files</b> e seleziona <b>tutti i file</b> della cartella (non le cartelle): <code>index.html</code>, <code>privacy.html</code>, <code>i18n-data.js</code>, <code>sw.js</code>, <code>manifest.webmanifest</code>, <code>manual.json</code>, <code>regionali.json</code>, le immagini (<code>icon-*.png</code>, <code>badge-96.png</code>, <code>favicon-64.png</code>, <code>logo-egg.webp</code>, <code>share-card.jpg</code>) e i quattro programmi <code>update_events.py</code>, <code>update_news.py</code>, <code>make_share_pages.py</code>, <code>send_reminders.py</code>. Poi <b>Commit changes</b>.</li>
+<li>La cartella <code>.github</code> non si carica da telefono: crea i due file a mano. Tocca <b>Add file → Create new file</b>, nel nome scrivi <code>.github/workflows/update.yml</code> (le barre creano le cartelle), incolla il testo qui sotto e tocca <b>Commit changes</b>. Poi ripeti per <code>.github/workflows/reminders.yml</code>.</li></ol>
+<p><b>update.yml</b></p><div class="code"><button class="cp" data-c="name: Aggiorna tornei
+on:
+  schedule:
+    - cron: &quot;0 */3 * * *&quot;
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 update_events.py
+        env:
+          LIMITLESS_KEY: ${{ secrets.LIMITLESS_KEY }}
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: python3 update_news.py
+        continue-on-error: true
+        env:
+          NEWS_BOT: ${{ vars.NEWS_BOT || &#x27;1&#x27; }}
+      - run: pip install pillow
+        continue-on-error: true
+      - run: python3 make_share_pages.py
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: |
+          git config user.name &quot;bot&quot;
+          git config user.email &quot;bot@users.noreply.github.com&quot;
+          git add events.json
+          [ -d e ] &amp;&amp; git add -A e
+          [ -f news.json ] &amp;&amp; git add news.json
+          [ -f notify_state.json ] &amp;&amp; git add notify_state.json
+          [ -f news_cache.json ] &amp;&amp; git add news_cache.json
+          git diff --staged --quiet || (git commit -m &quot;Aggiorna tornei&quot; &amp;&amp; git pull --rebase &amp;&amp; git push)
+">Copia</button><pre>name: Aggiorna tornei
+on:
+  schedule:
+    - cron: &quot;0 */3 * * *&quot;
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 update_events.py
+        env:
+          LIMITLESS_KEY: ${{ secrets.LIMITLESS_KEY }}
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: python3 update_news.py
+        continue-on-error: true
+        env:
+          NEWS_BOT: ${{ vars.NEWS_BOT || &#x27;1&#x27; }}
+      - run: pip install pillow
+        continue-on-error: true
+      - run: python3 make_share_pages.py
+        continue-on-error: true
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - run: |
+          git config user.name &quot;bot&quot;
+          git config user.email &quot;bot@users.noreply.github.com&quot;
+          git add events.json
+          [ -d e ] &amp;&amp; git add -A e
+          [ -f news.json ] &amp;&amp; git add news.json
+          [ -f notify_state.json ] &amp;&amp; git add notify_state.json
+          [ -f news_cache.json ] &amp;&amp; git add news_cache.json
+          git diff --staged --quiet || (git commit -m &quot;Aggiorna tornei&quot; &amp;&amp; git pull --rebase &amp;&amp; git push)
+</pre></div><p><b>reminders.yml</b></p><div class="code"><button class="cp" data-c="name: Promemoria un&#x27;ora prima
+on:
+  schedule:
+    - cron: &quot;*/15 * * * *&quot;
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 send_reminders.py
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+      - run: |
+          git config user.name &quot;bot&quot;
+          git config user.email &quot;bot@users.noreply.github.com&quot;
+          [ -f reminder_state.json ] &amp;&amp; git add reminder_state.json
+          git diff --staged --quiet || (git commit -m &quot;Aggiorna promemoria&quot; &amp;&amp; git pull --rebase &amp;&amp; git push)
+">Copia</button><pre>name: Promemoria un&#x27;ora prima
+on:
+  schedule:
+    - cron: &quot;*/15 * * * *&quot;
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 send_reminders.py
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+      - run: |
+          git config user.name &quot;bot&quot;
+          git config user.email &quot;bot@users.noreply.github.com&quot;
+          [ -f reminder_state.json ] &amp;&amp; git add reminder_state.json
+          git diff --staged --quiet || (git commit -m &quot;Aggiorna promemoria&quot; &amp;&amp; git pull --rebase &amp;&amp; git push)
+</pre></div></div></details>
+<details class="st"><summary><span class="n">3</span>Accendi il sito (GitHub Pages) e i permessi del bot</summary><div class="bd">
+<ol><li>Nel deposito: <b>Settings → Pages</b>. In <b>Build and deployment</b> scegli <b>Source: Deploy from a branch</b>, ramo <b>main</b>, cartella <b>/ (root)</b>, poi <b>Save</b>.</li>
+<li>Dopo uno o due minuti, nella stessa pagina compare l'indirizzo del sito. Aprilo: dovresti vedere il logo con l'uovo. Gli elenchi saranno vuoti finché il bot non gira.</li>
+<li><b>Settings → Actions → General → Workflow permissions</b>: scegli <b>Read and write permissions</b> e tocca <b>Save</b>. Senza questo il bot non può salvare i dati.</li></ol></div></details>
+<details class="st"><summary><span class="n">4</span>Scrivi gli indirizzi dentro il sito</summary><div class="bd">
+<p>Apri <code>index.html</code> nel deposito, tocca la <b>matita</b> (Edit) e, con <b>Trova nella pagina</b> del browser, cerca queste righe e riempile tra le virgolette. Poi <b>Commit changes</b>.</p>
+<table><tr><th>Riga</th><th>Cosa scrivere</th></tr>
+<tr><td><code>var SITE_URL="";</code></td><td>l'indirizzo del sito, con https e senza barra finale: <code>https://nomeutente.github.io</code></td></tr>
+<tr><td><code>var ONESIGNAL_APP_ID="";</code></td><td>l'App ID di OneSignal (passo 6)</td></tr>
+<tr><td><code>var CONTACT_EMAIL="";</code></td><td>l'email che riceve i risultati dei locali (compare il pulsante "Invia per email")</td></tr>
+<tr><td><code>var DONATE_URL="";</code></td><td>il tuo link Ko-fi, PayPal.me o simili (compare "Offri un caffè")</td></tr>
+<tr><td><code>var NTFY_PREFIX="";</code></td><td>solo se non usi OneSignal: un nome lungo e originale per i canali ntfy</td></tr></table>
+<p class="tip">Apri anche <code>privacy.html</code> e sostituisci <b>[NOME]</b> e <b>[EMAIL]</b>.</p></div></details>
+<details class="st"><summary><span class="n">5</span>Variabili e segreti del bot</summary><div class="bd">
+<p>In <b>Settings → Secrets and variables → Actions</b>. Le variabili sono nella scheda <b>Variables</b>, i segreti in <b>Secrets</b>: tocca <b>New repository variable / secret</b>.</p>
+<table><tr><th>Nome</th><th>Tipo</th><th>Valore</th></tr>
+<tr><td><code>SITE_URL</code></td><td>variabile</td><td>lo stesso indirizzo di prima</td></tr>
+<tr><td><code>ONESIGNAL_APP_ID</code></td><td>variabile</td><td>l'App ID di OneSignal</td></tr>
+<tr><td><code>ONESIGNAL_API_KEY</code></td><td><b>segreto</b></td><td>la REST API Key di OneSignal (mai nel sito, mai in chat)</td></tr>
+<tr><td><code>NEWS_BOT</code></td><td>variabile, facoltativa</td><td><code>0</code> per spegnere la lettura di Limitless VGC</td></tr>
+<tr><td><code>NTFY_PREFIX</code></td><td>variabile, facoltativa</td><td>solo se usi ntfy al posto di OneSignal</td></tr>
+<tr><td><code>LIMITLESS_KEY</code></td><td>segreto, facoltativo</td><td>solo se Limitless ti dà una chiave</td></tr></table></div></details>
+<details class="st"><summary><span class="n">6</span>Notifiche dentro l'app con OneSignal</summary><div class="bd">
+<ol><li>Vai su <b>onesignal.com</b>, crea un account gratuito e una <b>nuova app</b> di tipo <b>Web</b>.</li>
+<li>Come indirizzo del sito inserisci quello del passo 3. Come icona predefinita puoi usare <code>.../icon-192.png</code>.</li>
+<li>In <b>Settings → Keys &amp; IDs</b> copia l'<b>App ID</b> e la <b>REST API Key</b>: l'ID va nel sito (passo 4) e nella variabile, la chiave solo nel segreto (passo 5).</li>
+<li><b>Non incollare mai nel sito il codice che OneSignal ti mostra</b> ("Add code to site"): il nostro lo contiene già e due codici insieme si bloccano a vicenda. Serve solo l'App ID.</li>
+<li>Apri il sito dal telefono, tocca l'ingranaggio, attiva una categoria e <b>Attiva le notifiche su questo telefono</b>: devi vedere la richiesta di permesso.</li></ol>
+<p class="tip"><b>iPhone:</b> le notifiche funzionano solo se prima aggiungi il sito alla schermata Home (Safari → Condividi → Aggiungi alla schermata Home).</p>
+<p class="warn">Non l'ho potuto provare con un account vero, e i siti su GitHub stanno in una sottocartella: se le notifiche non partono, il ripiego è ntfy (variabile <code>NTFY_PREFIX</code>) oppure un indirizzo proprio per il sito.</p></div></details>
+<details class="st"><summary><span class="n">7</span>Fai partire il bot per la prima volta</summary><div class="bd">
+<ol><li>Nel deposito apri la scheda <b>Actions</b>, scegli <b>Aggiorna tornei</b> e tocca <b>Run workflow</b>.</li>
+<li>Dopo qualche minuto deve diventare <b>verde</b>. Torna nel deposito: devono comparire <code>events.json</code>, <code>news.json</code>, <code>news_cache.json</code> e la cartella <code>e</code> con le pagine di condivisione.</li>
+<li>Apri il sito: ora ci sono i tornei. La lettura delle news è parziale al primo giro e si completa nei giri successivi (ogni 3 ore).</li></ol>
+<p class="warn">Il bot è stato provato su pagine simulate, non sui siti veri. Se un passaggio diventa <b>rosso</b>, tocca il nome del lavoro e leggi l'ultima riga del registro: se mi mandi quel testo lo sistemo.</p>
+<p>Il primo giro <b>non manda notifiche</b>, per non travolgere nessuno con i tornei già esistenti.</p></div></details>
+<details class="st"><summary><span class="n">8</span>Controllo finale, da fare sul telefono</summary><div class="bd">
+<p class="tip"><b>Prima di tutto:</b> apri <code>https://NOMEUTENTE.github.io/diagnostica.html</code>. Controlla da sola cosa funziona e cosa manca (dati dei tornei, notifiche, file, errori nel codice) con righe verdi, gialle e rosse: non serve la console del browser. Il pulsante <b>Pulisci</b> toglie le registrazioni vecchie rimaste nel browser dopo aver rifatto il deposito.</p>
+<ul class="ck"><li>Il sito si apre e si vede il logo.</li><li>Cambia lingua da <b>ingranaggio → Lingua</b>.</li><li>I filtri e il calendario funzionano.</li><li>Tocca <b>Installa</b> (Android: menu del browser → Installa app) e apri l'app dall'icona.</li><li>Tocca il tasto <b>Condividi</b> su un torneo e mandalo a un amico: controlla l'anteprima in WhatsApp e Telegram.</li><li>Attiva una notifica e controlla che il permesso venga chiesto.</li><li>Prova il modulo della top 8: compila un posto, anche solo con il codice del rental team, e tocca <b>Prepara la scheda</b>.</li><li><b>Google Calendar</b> e <b>Apple / Outlook</b> su un torneo con data.</li></ul>
+<p>Le anteprime di WhatsApp e Telegram vengono conservate per un po': se cambi qualcosa e non vedi la novità, aspetta o prova con un altro torneo.</p></div></details>
+<details class="st"><summary><span class="n">9</span>Prima di far girare la voce</summary><div class="bd">
+<ul class="ck"><li><b>Scrivi a Limitless</b> (<code>contact@limitlesstcg.com</code>) per chiedere il permesso di usare i loro risultati: la bozza è nella nostra conversazione. Se rispondono di no, metti <code>NEWS_BOT</code> a <code>0</code>.</li><li><b>Privacy:</b> compila <code>privacy.html</code> con nome ed email, e fai controllare il testo se puoi.</li><li><b>Disclaimer:</b> in fondo alla pagina c'è già l'avviso che il progetto non è affiliato a Nintendo, Game Freak, Creatures o The Pokémon Company.</li><li><b>Donazioni:</b> sono un reddito. Tienile presenti per le tasse e per l'eventuale autorizzazione di chi lavora nel pubblico.</li><li><b>Locali:</b> decidi dove ricevere i moduli (<code>CONTACT_EMAIL</code>) e controlla ogni segnalazione prima di inserirla.</li></ul></div></details>
+<details class="st"><summary><span class="n">10</span>Come aggiornare il sito in futuro</summary><div class="bd">
+<ol><li>Mi dici cosa cambiare e ti preparo lo zip nuovo (se apri una nuova conversazione, carica il tuo <code>index.html</code> attuale).</li>
+<li>Carica <b>solo i file cambiati</b>, di solito <code>index.html</code> e gli script. <b>Non sovrascrivere</b> i file che il bot riempie da solo: <code>events.json</code>, <code>news.json</code>, <code>news_cache.json</code>, <code>notify_state.json</code>, <code>reminder_state.json</code> e la cartella <code>e</code>.</li>
+<li>Dopo aver caricato <code>index.html</code>, <b>rimetti gli indirizzi del passo 4</b>, o dimmeli e li lascio già scritti.</li></ol>
+<p><b>Aggiunte a mano:</b> un torneo che il bot non trova (per esempio una Global Challenge) va in <code>manual.json</code>; i Regionali e gli eventi ufficiali sono in <code>regionali.json</code>. Basta copiare una voce esistente.</p></div></details>
+<details class="st"><summary><span class="n">11</span>Se qualcosa non funziona</summary><div class="bd">
+<table><tr><th>Problema</th><th>Cosa controllare</th></tr>
+<tr><td>Nella console: "Illegal return statement" o altri errori di sintassi</td><td>Hai modificato qualcosa dentro <code>index.html</code> oltre alle righe del passo 4. Ricarica il file originale dallo zip (Upload files con lo stesso nome lo sostituisce) e rifai solo il passo 4.</td></tr>
+<tr><td>Nella console: 404 su <code>events.json</code> o <code>news.json</code></td><td>Il bot non ha ancora girato. Apri <b>Actions</b>: se non vedi "Aggiorna tornei", mancano i file della cartella <code>.github/workflows</code> (passo 2); se è rosso, leggi l'ultima riga.</td></tr>
+<tr><td>Nella console: 404 su <code>OneSignalSDKWorker.js</code></td><td>C'è un secondo codice di OneSignal nel sito: toglilo. Il nostro usa il file <code>sw.js</code>.</td></tr>
+<tr><td>Il sito dà errore 404</td><td>Settings → Pages: ramo <b>main</b>, cartella <b>/ (root)</b>; aspetta due minuti.</td></tr>
+<tr><td>Il lavoro Actions è rosso</td><td>Apri l'esecuzione e leggi l'ultima riga rossa. Se dice "permission", rivedi il passo 3.</td></tr>
+<tr><td>Non ci sono tornei</td><td>Dopo il primo avvio controlla che <code>events.json</code> esista.</td></tr>
+<tr><td>Le notifiche non arrivano</td><td>Controlla le variabili del passo 5 e che il permesso del telefono sia attivo. Su iPhone serve l'app sulla Home.</td></tr>
+<tr><td>L'anteprima del link non compare</td><td>Controlla <code>SITE_URL</code> (con https, senza barra finale) e che esista la cartella <code>e</code>.</td></tr>
+<tr><td>Vedo ancora la versione vecchia</td><td>Chiudi e riapri l'app; se serve cancella i dati del sito dal browser.</td></tr></table></div></details>
+<p class="lead" style="margin-top:20px">Se ti blocchi in un punto, scrivimi il numero del passo e cosa vedi sullo schermo.</p>
+</main><script>document.addEventListener("click",function(e){var b=e.target.closest(".cp");if(!b)return;var t=b.dataset.c;function ok(){b.textContent="Copiato!";setTimeout(function(){b.textContent="Copia"},1500)}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb();function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(x){}a.remove()}})</script></body></html>
