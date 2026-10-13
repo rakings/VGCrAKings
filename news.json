@@ -1,9 +1,9 @@
 {
-"updated": "2026-10-13T15:22:14+00:00",
+"updated": "2026-10-13T18:24:30+00:00",
 "news": [
 {
 "t": "Regionale",
-"n": "Regional Lousville, KY",
+"n": "Regional Louisville, KY",
 "d": "10 ottobre 2026 · 1013 giocatori · Regolamento M-C",
 "top": 8,
 "real": true,
@@ -23899,112 +23899,112 @@
 [
 "Joseph Ugarte",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 1
 ],
 [
 "Andrew Figueras",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 2
 ],
 [
 "Dorian Kang",
 "CA",
-"Lousville, KY",
+"Louisville, KY",
 445,
 3
 ],
 [
 "JJ Miller",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 4
 ],
 [
 "Ryan Loseto",
 "CA",
-"Lousville, KY",
+"Louisville, KY",
 445,
 5
 ],
 [
 "Toler Webb",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 6
 ],
 [
 "Keanu Inosanto",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 7
 ],
 [
 "Brian Hough",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 8
 ],
 [
 "Paul Chua",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 9
 ],
 [
 "Cary D'Ortona",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 10
 ],
 [
 "Justin Burns",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 11
 ],
 [
 "Wu Yichun",
 "CN",
-"Lousville, KY",
+"Louisville, KY",
 445,
 12
 ],
 [
 "Caden Croft",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 13
 ],
 [
 "Carson Confer",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 14
 ],
 [
 "Wyatt Fout",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 15
 ],
 [
 "London Faust",
 "US",
-"Lousville, KY",
+"Louisville, KY",
 445,
 16
 ],
@@ -26213,6 +26213,295 @@
 ],
 "Milotic": [
 "Acqua"
+],
+"Excadrill": [
+"Terra",
+"Acciaio"
+],
+"Tyranitar": [
+"Roccia",
+"Buio"
+],
+"Corviknight": [
+"Volante",
+"Acciaio"
+],
+"Metagross": [
+"Acciaio",
+"Psico"
+],
+"Ceruledge": [
+"Fuoco",
+"Spettro"
+],
+"Whimsicott": [
+"Erba",
+"Folletto"
+],
+"Lycanroc (Dusk)": [
+"Roccia"
+],
+"Scovillain": [
+"Erba",
+"Fuoco"
+],
+"Aerodactyl": [
+"Roccia",
+"Volante"
+],
+"Tsareena": [
+"Erba"
+],
+"Blastoise": [
+"Acqua"
+],
+"Primarina": [
+"Acqua",
+"Folletto"
+],
+"Blaziken": [
+"Fuoco",
+"Lotta"
+],
+"Kleavor": [
+"Coleottero",
+"Roccia"
+],
+"Camerupt": [
+"Fuoco",
+"Terra"
+],
+"Kangaskhan": [
+"Normale"
+],
+"Vanilluxe": [
+"Ghiaccio"
+],
+"Aegislash": [],
+"Maushold": [],
+"Ninetales (Alola)": [
+"Ghiaccio",
+"Folletto"
+],
+"Abomasnow": [
+"Erba",
+"Ghiaccio"
+],
+"Mudsdale": [
+"Terra"
+],
+"Mamoswine": [
+"Ghiaccio",
+"Terra"
+],
+"Hydreigon": [
+"Buio",
+"Drago"
+],
+"Gardevoir": [
+"Psico",
+"Folletto"
+],
+"Weavile": [
+"Buio",
+"Ghiaccio"
+],
+"Snorlax": [
+"Normale"
+],
+"Samurott (Hisui)": [
+"Acqua",
+"Buio"
+],
+"Talonflame": [
+"Fuoco",
+"Volante"
+],
+"Steelix": [
+"Acciaio",
+"Terra"
+],
+"Rotom (Wash)": [
+"Elettro",
+"Acqua"
+],
+"Palafin": [],
+"Espathra": [
+"Psico"
+],
+"Terapagos": [
+"Normale"
+],
+"Miraidon": [
+"Elettro",
+"Drago"
+],
+"Urshifu (Rapid Strike)": [
+"Lotta",
+"Acqua"
+],
+"Calyrex (Shadow)": [
+"Psico",
+"Spettro"
+],
+"Zamazenta": [
+"Lotta"
+],
+"Chien (Pao)": [
+"Buio",
+"Ghiaccio"
+],
+"Ogerpon (Hearthflame)": [
+"Erba"
+],
+"Raging Bolt": [
+"Elettro",
+"Drago"
+],
+"Calyrex (Ice)": [
+"Psico",
+"Ghiaccio"
+],
+"Koraidon": [
+"Lotta",
+"Drago"
+],
+"Landorus": [],
+"Smeargle": [
+"Normale"
+],
+"Ogerpon (Cornerstone)": [
+"Erba"
+],
+"Amoonguss": [
+"Erba",
+"Veleno"
+],
+"Lunala": [
+"Psico",
+"Spettro"
+],
+"Ursaluna": [
+"Terra",
+"Normale"
+],
+"Ogerpon (Wellspring)": [
+"Erba"
+],
+"Iron (Treads)": [
+"Terra",
+"Acciaio"
+],
+"Flutter Mane": [
+"Spettro",
+"Folletto"
+],
+"Brute (Bonnet)": [
+"Erba",
+"Buio"
+],
+"Iron Hands": [
+"Lotta",
+"Elettro"
+],
+"Iron Bundle": [
+"Ghiaccio",
+"Acqua"
+],
+"Clefairy": [
+"Folletto"
+],
+"Kyogre": [
+"Acqua"
+],
+"Chi (Yu)": [
+"Buio",
+"Fuoco"
+],
+"Tornadus": [],
+"Zacian": [
+"Folletto"
+],
+"Roaring (Moon)": [
+"Drago",
+"Buio"
+],
+"Annihilape": [
+"Lotta",
+"Spettro"
+],
+"Araquanid": [
+"Acqua",
+"Coleottero"
+],
+"Iron (Crown)": [
+"Acciaio",
+"Psico"
+],
+"Landorus (Therian)": [
+"Terra",
+"Volante"
+],
+"Great Tusk": [
+"Terra",
+"Lotta"
+],
+"Dondozo": [
+"Acqua"
+],
+"Tatsugiri": [],
+"Regidrago": [
+"Drago"
+],
+"Urshifu": [],
+"Ninetales": [
+"Fuoco"
+],
+"Cresselia": [
+"Psico"
+],
+"Entei": [
+"Fuoco"
+],
+"Porygon2": [
+"Normale"
+],
+"Articuno": [
+"Ghiaccio",
+"Volante"
+],
+"Moltres (Galar)": [
+"Buio",
+"Volante"
+],
+"Hatterene": [
+"Psico",
+"Folletto"
+],
+"Weezing (Galar)": [
+"Veleno",
+"Folletto"
+],
+"Thundurus": [],
+"Gouging (Fire)": [
+"Fuoco",
+"Drago"
+],
+"Ting (Lu)": [
+"Buio",
+"Terra"
+],
+"Heatran": [
+"Fuoco",
+"Acciaio"
+],
+"Baxcalibur": [
+"Drago",
+"Ghiaccio"
+],
+"Zoroark (Hisui)": [
+"Normale",
+"Spettro"
 ]
 }
 }
