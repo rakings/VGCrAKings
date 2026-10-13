@@ -1,84 +1,38 @@
-```yaml
 name: Aggiorna tornei
-
 on:
   schedule:
     - cron: "0 */3 * * *"
   workflow_dispatch:
-
 permissions:
   contents: write
-
-concurrency:
-  group: aggiorna-tornei
-  cancel-in-progress: false
-
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-
-      - name: Sincronizza il repository
-        run: |
-          git pull --rebase origin "$GITHUB_REF_NAME"
-
-      - name: Aggiorna tornei
-        run: python3 update_events.py
+      - run: python3 update_events.py
         env:
           LIMITLESS_KEY: ${{ secrets.LIMITLESS_KEY }}
           NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
           SITE_URL: ${{ vars.SITE_URL }}
-
-      - name: Aggiorna notizie
-        run: python3 update_news.py
+      - run: python3 update_news.py
         continue-on-error: true
         env:
           NEWS_BOT: ${{ vars.NEWS_BOT || '1' }}
-
-      - name: Installa Pillow
-        run: pip install pillow
+      - run: pip install pillow
         continue-on-error: true
-
-      - name: Genera pagine condivisibili
-        run: python3 make_share_pages.py
+      - run: python3 make_share_pages.py
         continue-on-error: true
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-
-      - name: Salva aggiornamenti
-        run: |
+      - run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
-
           git add events.json
-
-          if [ -d e ]; then
-            git add -A e
-          fi
-
-          if [ -f news.json ]; then
-            git add news.json
-          fi
-
-          if [ -f notify_state.json ]; then
-            git add notify_state.json
-          fi
-
-          if [ -f news_cache.json ]; then
-            git add news_cache.json
-          fi
-
-          if git diff --cached --quiet; then
-            echo "Nessuna modifica da salvare."
-            exit 0
-          fi
-
-          git commit -m "Aggiorna tornei"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
-```
+          [ -d e ] && git add -A e
+          [ -f news.json ] && git add news.json
+          [ -f notify_state.json ] && git add notify_state.json
+          [ -f news_cache.json ] && git add news_cache.json
+          git diff --staged --quiet || (git commit -m "Aggiorna tornei" && git pull --rebase && git push)
