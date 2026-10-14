@@ -508,12 +508,18 @@ if(!("Notification" in window)){say("Questo browser non supporta le notifiche. A
 if(Notification.permission==="denied"){say("Le notifiche sono bloccate per questo sito: sbloccale dalle impostazioni del browser (icona accanto all'indirizzo, oppure Impostazioni sito > Notifiche) e riprova.");return}
 if(!npAny()){["money","gc","regionali","vr","maddos"].forEach(function(k){NP[k]=k==="money"?"all":true});npSave();auto=true;$("np").innerHTML=npHtml()}
 say("Un attimo...");
-var tm=setTimeout(function(){say("Nessuna risposta dal servizio notifiche. Ricarica la pagina; se continua, controlla che nessuna estensione blocchi onesignal.com e che l'indirizzo del sito coincida con quello impostato su OneSignal.")},7000);
+var tm=setTimeout(function(){say("OneSignal non risulta pronto. Ricarica la pagina; se continua, controlla che nessuna estensione blocchi onesignal.com e che l'indirizzo del sito coincida con quello impostato su OneSignal.")},7000);
 osdo(function(OS){clearTimeout(tm);
 var fail=function(e){say("Non \u00e8 stato possibile attivare le notifiche: "+((e&&e.message)||e||"errore sconosciuto"))};
 var done=function(){osSync();var ok=false,id="";try{ok=Notification.permission==="granted"&&OS.User.PushSubscription.optedIn!==false;id=OS.User.PushSubscription.id||""}catch(e){ok=Notification.permission==="granted"}
 say(ok?("Notifiche attive su questo dispositivo."+(id?" Codice iscrizione: "+String(id).slice(0,8)+".":"")+(auto?" Ho attivato tutte le categorie: puoi cambiarle qui sopra.":"")):"Permesso non concesso: puoi attivarlo dalle impostazioni del browser o del telefono.")};
-try{OS.Notifications.requestPermission().then(function(){return OS.User.PushSubscription.optIn()}).then(done,fail)}catch(e){fail(e)}})}});
+say("Passo 1 di 2: se compare una finestra del browser, scegli Consenti.");
+var t1=setTimeout(function(){say("Il browser non mostra la richiesta di permesso. Se usi l'app installata, apri il sito in una scheda normale di Chrome e riprova. Controlla anche l'icona accanto all'indirizzo (campanella barrata) o Impostazioni sito > Notifiche, e metti Consenti per questo sito.")},12000);
+var perm=Notification.permission==="granted"?Promise.resolve("granted"):Promise.resolve(Notification.requestPermission());
+perm.then(function(p){clearTimeout(t1);if(p!=="granted")throw new Error("permesso non concesso.");
+say("Passo 2 di 2: completo l'iscrizione a OneSignal...");
+var t2=setTimeout(function(){say("Permesso concesso, ma l'iscrizione a OneSignal non si completa. Ricarica la pagina e riprova; se resta cos\u00ec, l'indirizzo del sito su OneSignal potrebbe non coincidere con quello vero.")},10000);
+return OS.User.PushSubscription.optIn().then(function(){clearTimeout(t2)},function(e){clearTimeout(t2);throw e})}).then(done,function(e){clearTimeout(t1);fail(e)})})}});
 $("np").addEventListener("change",function(ev){var t=ev.target;if(t.dataset.np){var k=t.dataset.np;if(k==="money")NP.money=t.checked?(NP.money||"all"):"";else NP[k]=t.checked}else if(t.dataset.npm)NP.money=t.dataset.npm;else if(t.dataset.nph){NP.h=NP.h||{};NP.h[t.dataset.nph]=t.checked}npSave();osSync();$("np").innerHTML=npHtml()});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
 $("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
