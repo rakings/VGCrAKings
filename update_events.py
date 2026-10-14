@@ -12,19 +12,132 @@ ROME = ZoneInfo("Europe/Rome")
 MESI = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 UA = "tornei-vgc-bot (sito della community, con link alle fonti)"
 
-def get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    key = os.environ.get("LIMITLESS_KEY")
-    if key and url.startswith(API):
-        req.add_header("X-Access-Key", key)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return r.read().decode("utf-8", "replace")
+def get(url, tries=3):
+    """Legge una pagina. Riprova se c'è un errore temporaneo; 404 e 410 (pagina che non esiste) subito."""
+    last = None
+    for i in range(tries):
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        key = os.environ.get("LIMITLESS_KEY")
+        if key and url.startswith(API):
+            req.add_header("X-Access-Key", key)
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return r.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as e:
+            if e.code in (404, 410):
+                raise
+            last = e
+        except Exception as e:
+            last = e
+        if i < tries - 1:
+            time.sleep(3 * (i + 1))
+    raise last
+
+PARTIAL = set()  # fonti lette solo in parte in questo giro
+KEEP = set()     # pagine non lette per un errore temporaneo: si tiene la copia precedente
+LIVE = set()     # tornei che Limitless dà "in corso" adesso: restano finché non finiscono
+GRACE_H = 8      # ore dopo l'inizio in cui un torneo con orario resta in elenco (poi si considera finito)
 
 # ---------- Limitless ----------
 def limitless():
-    q = urllib.parse.urlencode({"game": "VGC", "limit": 100})
+    out, seen = [], set()
+    for page in range(1, 6):  # fino a 5 pagine da 100: un solo giro non basta se i tornei sono tanti
+        q = urllib.parse.urlencode({"game": "VGC", "limit": 100, "page": page})
+        try:
+            batch = json.loads(get(API + "?" + q))
+            if not isinstance(batch, list):
+                raise ValueError("risposta inattesa: " + str(batch)[:200])
+        except Exception as ex:
+            if page == 1:
+                raise
+            print("Limitless pagina %d non letta: %s" % (page, ex))
+            PARTIAL.add("Limitless")
+            break
+        nuovi = [t for t in batch if t.get("id") not in seen]
+        if not nuovi:
+            break
+        for t in nuovi:
+            seen.add(t.get("id"))
+        out.extend(limitless_event(t) for t in nuovi)
+        if len(batch) < 20:
+            break
+    return out
+
+SITE = "https://play.limitlesstcg.com"
+# pagine pubbliche di Limitless: elenco "in corso" e "prossimi 7 giorni" che si vedono sul sito
+PAGINE = (("/tournaments?game=VGC", 1), ("/tournaments/upcoming?game=VGC", 3), ("/tournaments/ongoing?game=VGC", 1))
+RE_ID = re.compile(r"/tournament/([0-9a-f]{24})/(?:details|register|registrations|pairings)")
+RE_ISCRITTI = re.compile(r"""href=["'][^"']*?/tournament/([0-9a-f]{24})/registrations["'][^>]*>\s*(\d+)""")
+
+def limitless_upcoming(have):
+    """L'API /tournaments può non elencare i tornei con iscrizioni aperte. Per non perderne nessuno si
+    leggono gli ID dalle pagine pubbliche di Limitless e i dettagli di ognuno dall'API ufficiale."""
+    ids, iscritti = [], {}
+    for path, max_pag in PAGINE:
+        for pg in range(1, max_pag + 1):
+            url = SITE + path + ("&page=%d" % pg if pg > 1 else "")
+            try:
+                page = get(url)
+            except urllib.error.HTTPError as e:
+                if e.code not in (404, 410):
+                    print("Limitless %s non letta: HTTP %s" % (path, e.code))
+                    PARTIAL.add("Limitless")
+                break
+            except Exception as ex:
+                print("Limitless %s non letta: %s" % (path, ex))
+                PARTIAL.add("Limitless")
+                break
+            trovati = list(dict.fromkeys(RE_ID.findall(page)))
+            if "ongoing" in path:
+                LIVE.update(SITE + "/tournament/%s/details" % i for i in trovati)
+            nuovi = [i for i in trovati if i not in ids]
+            if not nuovi:
+                break
+            ids.extend(nuovi)
+            for i, n in RE_ISCRITTI.findall(page):
+                iscritti[i] = int(n)
+            time.sleep(1)
+    print("Limitless: %d tornei trovati nelle pagine pubbliche" % len(ids))
     out = []
-    for t in json.loads(get(API + "?" + q)):
+    for i in ids[:200]:
+        url = SITE + "/tournament/%s/details" % i
+        if url in have:
+            continue
+        time.sleep(0.5)
+        try:
+            t = json.loads(get(API + "/%s/details" % i))
+        except urllib.error.HTTPError as e:
+            if e.code not in (403, 404, 410):  # privato o rimosso: si salta; altri errori: si tiene la copia vecchia
+                print("Limitless %s: dettagli non letti (HTTP %s)" % (i, e.code))
+                KEEP.add(url)
+            continue
+        except Exception as ex:
+            print("Limitless %s: dettagli non letti (%s)" % (i, ex))
+            KEEP.add(url)
+            continue
+        if not isinstance(t, dict) or t.get("game") not in (None, "VGC") or t.get("isPublic") is False:
+            continue
+        ev = limitless_event(t)
+        ev["players"] = iscritti.get(i, t.get("players") or None)  # iscritti attuali; per i tornei futuri il numero dell'API non vale
+        out.append(ev)
+    return out
+
+def limitless_all():
+    out = []
+    try:
+        out = limitless()
+    except Exception as ex:
+        print("Limitless (elenco API) non letto: %s" % ex)
+        PARTIAL.add("Limitless")
+    try:
+        out.extend(limitless_upcoming({e["url"] for e in out}))
+    except Exception as ex:
+        print("Limitless (pagine pubbliche) non lette: %s" % ex)
+        PARTIAL.add("Limitless")
+    return out
+
+def limitless_event(t):
+    if True:
         name = t.get("name", "")
         money = re.search(r"[€$£]\s?\d|\d[\d.,]*\s?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)
         reg = re.search(r"\bM-[A-Z]\b", name, re.I)
@@ -36,7 +149,7 @@ def limitless():
             date, hhmm = dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
         except Exception:
             date, hhmm = raw[:10] or None, None
-        out.append({
+        return {
             "name": name, "org": org.get("name", "") if isinstance(org, dict) else "",
             "mode": "online", "type": "Torneo", "fee": None,
             "cash": True if money else None,  # mai False: senza indicazione resta "non indicato"
@@ -45,17 +158,16 @@ def limitless():
             "bo": "Bo" + bo.group(1) if bo else None,
             "date": date, "time": hhmm, "players": t.get("players"),
             "url": "https://play.limitlesstcg.com/tournament/%s/details" % t["id"],
-        })
-    return out
+        }
 
 # ---------- Victory Road ----------
 def vr_slugs():
     now = datetime.now(timezone.utc)
     sigle = [m[:3] for m in MESI]
     out = []
-    for k in range(3):  # mese corrente e i due successivi
+    for k in range(4):  # mese corrente e i tre successivi
         i = now.month - 1 + k
-        for suf in ["", "-2", "-3", "-4", "-5"]:
+        for suf in ["", "-2", "-3", "-4", "-5", "-6"]:
             out.append("vr-%s%02d%s" % (sigle[i % 12], (now.year + i // 12) % 100, suf))
     for n in ("i", "ii", "iii", "iv", "v"):  # Global Challenge: gare online ufficiali nel gioco
         out.append("%d-global-challenge-%s" % (now.year + (1 if now.month >= 6 else 0), n))
@@ -112,12 +224,29 @@ def victory_road():
     out = []
     for slug in vr_slugs():
         time.sleep(1)  # poche richieste, con calma
+        url = VR + slug + "/"
         try:
-            ev = vr_parse(slug, get(VR + slug + "/"))
-        except Exception:
-            continue  # pagina inesistente
+            page = get(url)
+        except urllib.error.HTTPError as e:
+            if e.code not in (404, 410):  # errore temporaneo, non pagina inesistente
+                print("Victory Road %s non letta: HTTP %s" % (slug, e.code))
+                KEEP.add(url)
+            continue
+        except Exception as ex:
+            print("Victory Road %s non letta: %s" % (slug, ex))
+            KEEP.add(url)
+            continue
+        try:
+            ev = vr_parse(slug, page)
+        except Exception as ex:
+            print("Victory Road %s non riconosciuta: %s" % (slug, ex))
+            KEEP.add(url)
+            continue
         if ev:
             out.append(ev)
+        elif "Victory Road" in page:
+            print("Victory Road %s: pagina senza data riconoscibile" % slug)
+            KEEP.add(url)
     return out
 
 # ---------- Regionali ----------
@@ -290,21 +419,70 @@ def notify_all(events):
     json.dump(sorted(k for k in sent if k.split("|")[0] in urls), open(STATE, "w", encoding="utf-8"))
 
 # ---------- unione ----------
+def source_of(e):
+    u = e.get("url") or ""
+    if e.get("mode") == "regional":
+        return "Regionali"
+    if "limitlesstcg.com" in u:
+        return "Limitless"
+    if "victoryroad.pro" in u:
+        return "Victory Road"
+    return None
+
+def ancora_valido(e, now):
+    """Un torneo sparisce dall'elenco quando è finito: con orario, GRACE_H ore dopo l'inizio;
+    senza orario o su più giorni, alla fine dell'ultimo giorno (ora di Roma). Senza data resta."""
+    if e.get("url") in LIVE:
+        return True
+    d = e.get("end") or e.get("date")
+    if not d:
+        return True
+    try:
+        if e.get("time") and not e.get("end"):
+            inizio = datetime.strptime(e["date"] + " " + e["time"], "%Y-%m-%d %H:%M").replace(tzinfo=ROME)
+            return now < inizio + timedelta(hours=GRACE_H)
+        fine = datetime.strptime(d, "%Y-%m-%d").replace(tzinfo=ROME) + timedelta(days=1)
+        return now < fine
+    except Exception:
+        return True  # in caso di dubbio il torneo resta
+
 def main():
-    by = {}
-    for nome, fonte in (("Limitless", limitless), ("Victory Road", victory_road), ("Regionali", regionali)):
+    try:
+        prev = json.load(open(OUT, encoding="utf-8")).get("events") or []
+    except Exception:
+        prev = []
+    by, failed = {}, set()
+    for nome, fonte in (("Limitless", limitless_all), ("Victory Road", victory_road), ("Regionali", regionali)):
         try:
-            for e in fonte():
+            got = fonte()
+            print("%s: %d eventi letti" % (nome, len(got)))
+            for e in got:
                 by[e["url"]] = e
         except Exception as ex:
+            failed.add(nome)
             print("Errore con %s: %s" % (nome, ex))
+    failed |= PARTIAL
+    # se una fonte ha avuto un errore, i suoi tornei non spariscono: restano quelli del giro precedente
+    for e in prev:
+        u = e.get("url")
+        if u and u not in by and (source_of(e) in failed or u in KEEP):
+            by[u] = e
+            print("Tenuto dalla copia precedente: %s" % e.get("name"))
+    # se la pagina di iscrizione RK9 non si è letta, restano scadenza e costo già noti
+    pmap = {e.get("url"): e for e in prev}
+    for e in by.values():
+        o = pmap.get(e.get("url"))
+        if o and e.get("mode") == "regional":
+            for k in ("regClose", "price"):
+                if k not in e and k in o:
+                    e[k] = o[k]
     try:  # eventi a mano: hanno la precedenza
         for e in json.load(open("manual.json", encoding="utf-8")):
             by[e["url"]] = e
     except Exception:
         pass
-    limit = (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d")
-    events = [e for e in by.values() if (e.get("end") or e.get("date") or "9999") >= limit]
+    ora = datetime.now(ROME)
+    events = [e for e in by.values() if ancora_valido(e, ora)]
     events.sort(key=lambda e: e.get("date") or "9999")
     try:
         old = json.load(open(OUT, encoding="utf-8")).get("events")
@@ -318,4 +496,5 @@ def main():
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("Salvati %d tornei" % len(events))
 
-main()
+if __name__ == "__main__":
+    main()
