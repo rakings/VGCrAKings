@@ -198,6 +198,17 @@ button,a,select,summary,label{touch-action:manipulation}
 #l-send{text-decoration:none;display:inline-block;text-align:center}
 #l-send[hidden]{display:none}
 li.nw.loc:not(.intro){border-color:var(--accent);border-left-color:var(--accent);box-shadow:0 0 0 2.5px #fff,0 2px 10px rgba(124,58,237,.12)}
+.pwa{position:relative;display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:10px 42px 10px 12px;border-radius:14px;background:var(--card);border:2px solid var(--accent);box-shadow:0 0 0 2.5px #fff,0 2px 12px rgba(0,0,0,.15)}
+.pwa[hidden]{display:none !important}
+.pwa-ic{font-size:1.6rem;line-height:1}
+.pwa-t{flex:1;min-width:0}.pwa-t b{display:block}.pwa-t span{display:block;font-size:.8rem;color:var(--mute);line-height:1.3}
+.pwa-x{position:absolute;top:6px;right:8px;width:30px;height:30px;border:0;border-radius:50%;background:transparent;color:var(--mute);font-size:1.1rem;cursor:pointer;padding:0}
+.pwa.ios{display:block;padding:12px 44px 12px 12px}
+.ios-t{margin:0 0 10px;font-size:.88rem;line-height:1.45}
+.ios-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ios-steps li{display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;font-size:.72rem;line-height:1.25}
+.ios-steps i{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--tint);color:var(--accent)}
+.ios-steps li{border:0 !important;background:none !important;box-shadow:none !important;padding:0 !important;margin:0 !important;min-width:0}
 .count{color:var(--mute);font-size:.9rem;margin:0 0 10px}
 ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 li{background:var(--card);border:1px solid var(--line);border-left-width:8px;border-radius:12px;padding:12px 14px}
@@ -230,6 +241,17 @@ textarea{min-height:140px}
 
 
 
+<div class="pwa" id="pwa-bar" hidden>
+<span class="pwa-ic" aria-hidden="true">📲</span>
+<div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div>
+<button class="btn main" id="pwa-btn" type="button">Installa</button>
+<button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button>
+</div>
+<div class="pwa ios" id="ios-tip" role="note" hidden>
+<button class="pwa-x" id="ios-x" type="button" aria-label="Chiudi">✕</button>
+<p class="ios-t">Per scaricare l'app e attivare le notifiche push per rimanere sempre aggiornato sui tornei: tocca l'icona di Condivisione 📤 su Safari, seleziona 'Aggiungi alla schermata Home' e poi apri l'app dalla Home Screen per abilitare le notifiche.</p>
+<ol class="ios-steps"><li><i><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg></i><span>Tocca Condividi</span></li><li><i><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></i><span>Aggiungi alla schermata Home</span></li><li><i><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></i><span>Apri l'app dalla Home e attiva le notifiche</span></li></ol>
+</div>
 <div class="filters">
 <div class="grp" id="f-view" role="group" aria-label="Vista"><button data-vw="list" aria-pressed="true">Elenco</button><button data-vw="cal" aria-pressed="false">Calendario</button></div>
 <div class="grp" id="f-prize" role="group" aria-label="Premi">
@@ -463,7 +485,7 @@ function osSync(){if(ONESIGNAL_APP_ID)osdo(function(OS){OS.User.addTags(osTags()
 function npSave(){try{localStorage.setItem(NPK,JSON.stringify(NP))}catch(e){}}
 function npTopic(k){return NTFY_PREFIX+"-"+(k==="money"&&NP.money==="33"?"money33":k)}
 function npHtml(){var act=NCAT.filter(function(c){return npOn(c[0])});
-var h='<div class="sheet2" role="document"><div class="calbar"><b id="np-t">Impostazioni</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div>'+langRow()+'<h2 style="font-size:1.05rem;margin:14px 0 4px">Notifiche personalizzate</h2><p class="meta" style="margin:0 0 8px">Scegli solo quello che ti interessa: riceverai avvisi soltanto sulle categorie attivate. Niente spam dei tornei che non ti riguardano.</p>';
+var h='<div class="sheet2" role="document"><div class="calbar"><b id="np-t">Impostazioni</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div>'+langRow()+instRow()+'<h2 style="font-size:1.05rem;margin:14px 0 4px">Notifiche personalizzate</h2><p class="meta" style="margin:0 0 8px">Scegli solo quello che ti interessa: riceverai avvisi soltanto sulle categorie attivate. Niente spam dei tornei che non ti riguardano.</p>';
 NCAT.forEach(function(c){var k=c[0];h+='<div class="opt"><label class="sw"><input type="checkbox" data-np="'+k+'"'+(npOn(k)?' checked':'')+'><span>'+c[1]+'<small>'+c[2]+'</small></span></label>';
 if(k==="money"&&npOn("money"))h+='<div class="sub"><label><input type="radio" name="npm" data-npm="all"'+(NP.money!=="33"?' checked':'')+'> Tutti i money tournament</label><label><input type="radio" name="npm" data-npm="33"'+(NP.money==="33"?' checked':'')+'> Solo quelli che superano 33 iscritti</label></div>';
 if(npOn(k))h+='<div class="sub"><label><input type="checkbox" data-nph="'+k+'"'+(NP.h&&NP.h[k]?' checked':'')+'> Avvisami anche 1 ora prima dell\'inizio <small>(per i tornei con orario noto)</small></label></div>';
@@ -481,7 +503,25 @@ document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hi
 $("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
 var SITE_URL="https://rakings.github.io/VGCrAKings";
 var CONTACT_EMAIL="rakingsvgc@gmail.com";
-var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();DEFER=e;if(!$("sbar").hidden)goHash()});
+var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();DEFER=e;pwaRefresh();if(!$("sbar").hidden)goHash()});
+/* ---- Installazione dell'app (PWA) ---- */
+var PWA={k:"vgc-pwa-x",ik:"vgc-ios-x",giorni:14};
+function pwaStandalone(){return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true}
+function pwaIOS(){return /iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)}
+function pwaChiuso(k){try{var t=+localStorage.getItem(k);return !!t&&Date.now()-t<PWA.giorni*864e5}catch(e){return false}}
+function pwaChiudi(k){try{localStorage.setItem(k,String(Date.now()))}catch(e){}pwaRefresh()}
+function pwaRefresh(){var gia=pwaStandalone();
+$("pwa-bar").hidden=!(DEFER&&!gia&&!pwaChiuso(PWA.k));
+$("ios-tip").hidden=!(pwaIOS()&&!gia&&!pwaChiuso(PWA.ik))}
+function pwaInstalla(){if(!DEFER)return;DEFER.prompt();DEFER.userChoice.then(function(){DEFER=null;pwaRefresh()})}
+function pwaFromSettings(){$("np").hidden=true;if(DEFER){pwaInstalla();return}try{localStorage.removeItem(PWA.ik)}catch(e){}pwaRefresh();window.scrollTo(0,0)}
+function instRow(){if(pwaStandalone())return "";if(DEFER||pwaIOS())return '<div class="opt"><button class="btn" type="button" data-pwa="1" style="width:100%;border-radius:12px"><span>📲</span> Installa l\'app</button></div>';return ""}
+$("pwa-btn").addEventListener("click",pwaInstalla);
+$("pwa-x").addEventListener("click",function(){pwaChiudi(PWA.k)});
+$("ios-x").addEventListener("click",function(){pwaChiudi(PWA.ik)});
+window.addEventListener("appinstalled",function(){DEFER=null;pwaRefresh()});
+try{window.matchMedia("(display-mode: standalone)").addEventListener("change",pwaRefresh)}catch(e){}
+pwaRefresh();
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
 function shareText(e){return e.name+(e.date?" · "+fmt(e.date)+(e.time?" ore "+e.time:""):"")}
 function shareEv(e){var u=shareUrl(e),t=shareText(e);
@@ -559,7 +599,7 @@ function applyTr(){TRBUSY=true;OBS.disconnect();try{trTree(document.body);docume
 function langRow(){var n=LANGS.filter(function(l){return l[0]===LANG})[0][1];return '<div class="opt"><button class="btn" type="button" data-openlang="1" style="width:100%;display:flex;justify-content:space-between;align-items:center;border-radius:12px"><span>🌐 Lingua</span><span><b>'+n+'</b> ›</span></button></div>'}
 function langMenu(){$("np").innerHTML='<div class="sheet2" role="document"><div class="calbar"><button class="cnav" data-npback="1" aria-label="Indietro">‹</button><b id="np-t">Lingua</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div><div class="langs">'+LANGS.map(function(l){return '<button class="btn'+(l[0]===LANG?' main':'')+'" type="button" data-lang="'+l[0]+'" lang="'+l[0]+'">'+(l[0]===LANG?"✓ ":"")+l[1]+'</button>'}).join("")+'</div></div>';$("np").hidden=false}
 function setLang(c){LANGS.forEach(function(l){if(l[0]===c){LANG=c;LCL=l[2]}});try{localStorage.setItem("vgc-lang",c)}catch(e){}$("np").hidden=true;loadTr(function(){buildTr();rebuildCal();render();applyTr();if(typeof CAL!=="undefined"&&$("sbar")&&!$("sbar").hidden)goHash()})}
-$("np").addEventListener("click",function(ev){var b=ev.target.closest("[data-lang]");if(b){setLang(b.dataset.lang);return}if(ev.target.closest("[data-openlang]")){langMenu();return}if(ev.target.closest("[data-npback]")){$("np").innerHTML=npHtml()}});
+$("np").addEventListener("click",function(ev){var b=ev.target.closest("[data-lang]");if(b){setLang(b.dataset.lang);return}if(ev.target.closest("[data-openlang]")){langMenu();return}if(ev.target.closest("[data-pwa]")){pwaFromSettings();return}if(ev.target.closest("[data-npback]")){$("np").innerHTML=npHtml()}});
 buildTr();rebuildCal();
 
 osSync();
