@@ -110,6 +110,7 @@ li.nw.sp{border-left-color:var(--coin)}
 h1{padding-right:52px}
 .np{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center}
 .np[hidden]{display:none}
+#os-ask{width:100%;padding:13px 16px;font-size:1rem;border-radius:12px;box-shadow:0 2px 0 rgba(0,0,0,.3);touch-action:manipulation}#os-msg{min-height:1.2em;margin:8px 0 0;font-weight:600}
 .sheet2{background:var(--bg);width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px))}
 .opt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}
 .opt label.sw{display:flex;gap:10px;align-items:flex-start;font-weight:700}
@@ -440,7 +441,7 @@ function eh(u){var h=5381;for(var i=0;i<u.length;i++)h=(h*33+u.charCodeAt(i))>>>
 function rem(e){if(FOLL.indexOf(e.url)<0)return "";if(!ONESIGNAL_APP_ID&&!NTFY_PREFIX)return "";if(!e.time)return '<p class="meta" style="margin:8px 0 0">Orario di inizio non disponibile: il promemoria non è possibile.</p>';var h=eh(e.url);
 if(ONESIGNAL_APP_ID){var on=REM.indexOf(h)>-1;return '<div class="act"><button class="btn'+(on?' main':'')+'" type="button" data-rem="'+h+'">'+(on?'✓ Promemoria 1 ora prima attivo':'⏰ Avvisami 1 ora prima')+'</button></div>'}
 var t=NTFY_PREFIX+"-t-"+h;return '<div class="act"><a class="btn" href="ntfy://ntfy.sh/'+t+'">⏰ Avvisami 1 ora prima</a><a href="https://ntfy.sh/'+t+'" target="_blank" rel="noopener" style="align-self:center">apri nel browser</a></div>'}
-$("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-rem]");if(!b)return;var h=b.dataset.rem,i=REM.indexOf(h);osdo(function(OS){var go=function(){if(i<0){REM.push(h);OS.User.addTag("t_"+h,"1")}else{REM.splice(i,1);OS.User.removeTag("t_"+h)}try{localStorage.setItem("vgc-rem",JSON.stringify(REM))}catch(e){}render()};if(i<0&&!OS.Notifications.permission)OS.Notifications.requestPermission().then(go);else go()})});
+$("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-rem]");if(!b)return;var h=b.dataset.rem,i=REM.indexOf(h);osdo(function(OS){var go=function(){if(i<0){REM.push(h);OS.User.addTag("t_"+h,"1")}else{REM.splice(i,1);OS.User.removeTag("t_"+h)}try{localStorage.setItem("vgc-rem",JSON.stringify(REM))}catch(e){}render()};if(i<0&&!OS.Notifications.permission)OS.Notifications.requestPermission().then(function(){return OS.User.PushSubscription.optIn()}).then(go,go);else go()})});
 function cal(e){if(!e.date)return "";var r=span(e),g="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.name)+"&dates="+r[0]+"/"+r[1]+(e.time?"&ctz=Europe/Rome":"")+"&location="+encodeURIComponent(e.where||"Online")+"&details="+encodeURIComponent(trStr("Dettagli")+": "+(e.url||""));
 return '<div class="act"><a class="btn" href="'+esc(g)+'" target="_blank" rel="noopener">Google Calendar</a><button class="btn" type="button" data-ics="'+EVENTS.indexOf(e)+'">Apple / Outlook</button></div>'}
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-ics]");if(!b)return;var e=EVENTS[b.dataset.ics],r=span(e),x=function(t){return String(t).replace(/[\\;,]/g,"\\$&").replace(/\n/g,"\\n")};
@@ -477,11 +478,12 @@ var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,maddos:false,
 try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv)}catch(e){}
 var NCAT=[["money","Money tournament","Nuovi tornei con montepremi in denaro."],["gc","Global Challenge","Annunci delle gare online ufficiali: date e iscrizioni."],["regionali","Avvisi Regionali","Nuovi Regionali ed eventi, apertura e scadenza delle iscrizioni."],["vr","Victory Road","Torneo annunciato e iscrizioni aperte."],["maddos","Maddos Cup","Torneo annunciato e iscrizioni aperte."]];
 function npOn(k){return k==="money"?!!NP.money:!!NP[k]}
+function npAny(){return NCAT.some(function(c){return npOn(c[0])})}
 var ONESIGNAL_APP_ID="eba93d46-8989-448a-918a-044c210fbc4c";
 var REM=[];try{REM=JSON.parse(localStorage.getItem("vgc-rem")||"[]")}catch(e){}
 window.OneSignalDeferred=window.OneSignalDeferred||[];
 function osdo(fn){if(ONESIGNAL_APP_ID==="demo")fn({User:{addTag:function(){},removeTag:function(){},addTags:function(){}},Notifications:{permission:true,requestPermission:function(){return Promise.resolve()}}});else OneSignalDeferred.push(fn)}
-if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");var osc=document.createElement("script");osc.src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";osc.defer=true;document.head.appendChild(osc);OneSignalDeferred.push(function(OS){return OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B+"sw.js",serviceWorkerParam:{scope:B}})})}
+if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");var osc=document.createElement("script");osc.src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";osc.defer=true;osc.onerror=function(){window.OSFAIL=1};document.head.appendChild(osc);OneSignalDeferred.push(function(OS){return OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B+"sw.js",serviceWorkerParam:{scope:B}})})}
 function osTags(){var t={};NCAT.forEach(function(c){var k=c[0];t["c_"+k]=npOn(k)?(k==="money"?(NP.money==="33"?"33":"all"):"1"):"0";t["h_"+k]=(NP.h&&NP.h[k])?"1":"0"});return t}
 function osSync(){if(ONESIGNAL_APP_ID)osdo(function(OS){OS.User.addTags(osTags())})}
 function npSave(){try{localStorage.setItem(NPK,JSON.stringify(NP))}catch(e){}}
@@ -499,7 +501,19 @@ else{h+='<p class="meta" style="margin:0 0 6px">1. Installa l\'app gratuita ntfy
 act.forEach(function(c){var t=npTopic(c[0]);h+='<div class="sub-row"><a class="btn main" href="ntfy://ntfy.sh/'+t+'">Attiva: '+c[1]+(c[0]==="money"&&NP.money==="33"?' (oltre 33)':'')+'</a><a href="https://ntfy.sh/'+t+'" target="_blank" rel="noopener">apri nel browser</a></div>';if(NP.h&&NP.h[c[0]])h+='<div class="sub-row"><a class="btn main" href="ntfy://ntfy.sh/'+t+'-1h">Attiva: '+c[1]+' (1 ora prima)</a><a href="https://ntfy.sh/'+t+'-1h" target="_blank" rel="noopener">apri nel browser</a></div>'})}
 return h+'</div>'}
 $("gear").addEventListener("click",function(){$("np").innerHTML=npHtml();$("np").hidden=false});
-$("np").addEventListener("click",function(ev){if(ev.target===this||ev.target.closest("[data-npc]"))this.hidden=true;if(ev.target.id==="os-ask")osdo(function(OS){OS.Notifications.requestPermission().then(function(){osSync();var m=$("os-msg");if(m)m.textContent=OS.Notifications.permission?"Notifiche attive su questo telefono.":"Permesso non concesso: puoi attivarlo dalle impostazioni del telefono."})})});
+$("np").addEventListener("click",function(ev){if(ev.target===this||ev.target.closest("[data-npc]"))this.hidden=true;if(ev.target.closest("#os-ask")){var auto=false,say=function(t){var m=$("os-msg");if(m)m.textContent=t};
+if(pwaIOS()&&!pwaStandalone()){say("Su iPhone devi prima aggiungere il sito alla schermata Home (Condividi > Aggiungi alla schermata Home), poi aprirlo da l\u00ec e riprovare.");return}
+if(window.OSFAIL){say("Il servizio notifiche non si \u00e8 caricato: disattiva eventuali blocchi pubblicit\u00e0/privacy per questo sito, controlla la connessione e ricarica la pagina.");return}
+if(!("Notification" in window)){say("Questo browser non supporta le notifiche. Apri il sito direttamente in Chrome o Safari (non dentro WhatsApp, Telegram o Instagram).");return}
+if(Notification.permission==="denied"){say("Le notifiche sono bloccate per questo sito: sbloccale dalle impostazioni del browser (icona accanto all'indirizzo, oppure Impostazioni sito > Notifiche) e riprova.");return}
+if(!npAny()){["money","gc","regionali","vr","maddos"].forEach(function(k){NP[k]=k==="money"?"all":true});npSave();auto=true;$("np").innerHTML=npHtml()}
+say("Un attimo...");
+var tm=setTimeout(function(){say("Nessuna risposta dal servizio notifiche. Ricarica la pagina; se continua, controlla che nessuna estensione blocchi onesignal.com e che l'indirizzo del sito coincida con quello impostato su OneSignal.")},7000);
+osdo(function(OS){clearTimeout(tm);
+var fail=function(e){say("Non \u00e8 stato possibile attivare le notifiche: "+((e&&e.message)||e||"errore sconosciuto"))};
+var done=function(){osSync();var ok=false,id="";try{ok=Notification.permission==="granted"&&OS.User.PushSubscription.optedIn!==false;id=OS.User.PushSubscription.id||""}catch(e){ok=Notification.permission==="granted"}
+say(ok?("Notifiche attive su questo dispositivo."+(id?" Codice iscrizione: "+String(id).slice(0,8)+".":"")+(auto?" Ho attivato tutte le categorie: puoi cambiarle qui sopra.":"")):"Permesso non concesso: puoi attivarlo dalle impostazioni del browser o del telefono.")};
+try{OS.Notifications.requestPermission().then(function(){return OS.User.PushSubscription.optIn()}).then(done,fail)}catch(e){fail(e)}})}});
 $("np").addEventListener("change",function(ev){var t=ev.target;if(t.dataset.np){var k=t.dataset.np;if(k==="money")NP.money=t.checked?(NP.money||"all"):"";else NP[k]=t.checked}else if(t.dataset.npm)NP.money=t.dataset.npm;else if(t.dataset.nph){NP.h=NP.h||{};NP.h[t.dataset.nph]=t.checked}npSave();osSync();$("np").innerHTML=npHtml()});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
 $("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
