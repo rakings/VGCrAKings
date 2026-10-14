@@ -20,4 +20,5 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           [ -f reminder_state.json ] && git add reminder_state.json
+          [ -f notifiche_promemoria.json ] && git add notifiche_promemoria.json
           git diff --staged --quiet || (git commit -m "Aggiorna promemoria" && git pull --rebase && git push)
