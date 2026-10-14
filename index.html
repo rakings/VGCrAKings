@@ -483,7 +483,7 @@ var ONESIGNAL_APP_ID="eba93d46-8989-448a-918a-044c210fbc4c";
 var REM=[];try{REM=JSON.parse(localStorage.getItem("vgc-rem")||"[]")}catch(e){}
 window.OneSignalDeferred=window.OneSignalDeferred||[];
 function osdo(fn){if(ONESIGNAL_APP_ID==="demo")fn({User:{addTag:function(){},removeTag:function(){},addTags:function(){}},Notifications:{permission:true,requestPermission:function(){return Promise.resolve()}}});else OneSignalDeferred.push(fn)}
-if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");var osc=document.createElement("script");osc.src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";osc.defer=true;osc.onerror=function(){window.OSFAIL=1};document.head.appendChild(osc);OneSignalDeferred.push(function(OS){return OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B+"sw.js",serviceWorkerParam:{scope:B}})})}
+if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");var osc=document.createElement("script");osc.src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";osc.defer=true;osc.onerror=function(){window.OSFAIL=1};document.head.appendChild(osc);OneSignalDeferred.push(function(OS){return Promise.resolve(OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B+"sw.js",serviceWorkerParam:{scope:B}})).catch(function(e){window.OSINITERR=(e&&e.message)||String(e)})})}
 function osTags(){var t={};NCAT.forEach(function(c){var k=c[0];t["c_"+k]=npOn(k)?(k==="money"?(NP.money==="33"?"33":"all"):"1"):"0";t["h_"+k]=(NP.h&&NP.h[k])?"1":"0"});return t}
 function osSync(){if(ONESIGNAL_APP_ID)osdo(function(OS){OS.User.addTags(osTags())})}
 function npSave(){try{localStorage.setItem(NPK,JSON.stringify(NP))}catch(e){}}
@@ -518,7 +518,9 @@ var t1=setTimeout(function(){say("Il browser non mostra la richiesta di permesso
 var perm=Notification.permission==="granted"?Promise.resolve("granted"):Promise.resolve(Notification.requestPermission());
 perm.then(function(p){clearTimeout(t1);if(p!=="granted")throw new Error("permesso non concesso.");
 say("Passo 2 di 2: completo l'iscrizione a OneSignal...");
-var t2=setTimeout(function(){say("Permesso concesso, ma l'iscrizione a OneSignal non si completa. Ricarica la pagina e riprova; se resta cos\u00ec, l'indirizzo del sito su OneSignal potrebbe non coincidere con quello vero.")},10000);
+var t2=setTimeout(function(){var er=window.OSINITERR?(" Errore OneSignal: "+window.OSINITERR+"."):"";
+(navigator.serviceWorker?navigator.serviceWorker.getRegistrations():Promise.resolve([])).then(function(r){var sw=r.length?r.map(function(x){var w=x.active||x.waiting||x.installing;return w?(w.scriptURL.split("/").slice(-2).join("/")+" ("+w.state+")"):"nessuno"}).join(", "):"nessun service worker registrato";
+say("Permesso concesso, ma l'iscrizione non si completa."+er+" Service worker: "+sw+". Apri diagnostica.html, premi Pulisci, chiudi tutte le schede del sito e riprova. Se resta cos\u00ec, mandami questo messaggio.")},function(){say("Permesso concesso, ma l'iscrizione non si completa."+er)})},10000);
 return OS.User.PushSubscription.optIn().then(function(){clearTimeout(t2)},function(e){clearTimeout(t2);throw e})}).then(done,function(e){clearTimeout(t1);fail(e)})})}});
 $("np").addEventListener("change",function(ev){var t=ev.target;if(t.dataset.np){var k=t.dataset.np;if(k==="money")NP.money=t.checked?(NP.money||"all"):"";else NP[k]=t.checked}else if(t.dataset.npm)NP.money=t.dataset.npm;else if(t.dataset.nph){NP.h=NP.h||{};NP.h[t.dataset.nph]=t.checked}npSave();osSync();$("np").innerHTML=npHtml()});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
