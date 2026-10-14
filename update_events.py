@@ -235,12 +235,26 @@ def send_os(filters, title, body, click):
         print("ATTENZIONE: nessun destinatario (nessuno iscritto con questi tag):", r.get("errors"))
     return r
 
+def log_notif(topic, title, body, click, fname):
+    """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
+    try:
+        try:
+            lst = json.load(open(fname, encoding="utf-8"))
+        except Exception:
+            lst = []
+        lst.append({"t": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "topic": topic, "title": title,
+                    "body": body, "url": click if (click or "").startswith("http") else ""})
+        json.dump(lst[-40:], open(fname, "w", encoding="utf-8"), ensure_ascii=False)
+    except Exception as ex:
+        print("Cronologia non salvata:", ex)
+
 def deliver(topic, title, body, click):
     """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
     if os_on():
         send_os(os_filters(topic), title, body, click)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
+    log_notif(topic, title, body, click, "notifiche_avvisi.json")
 
 def notify_all(events):
     if not (os.environ.get("NTFY_PREFIX") or os_on()) or not events:
