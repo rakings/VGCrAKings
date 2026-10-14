@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T18:23:01+00:00",
+ "updated": "2026-10-14T21:20:24+00:00",
  "events": [
   {
    "name": "TARTAN'S ROAD TO NICE #42! - [CHAMPIONS REG M-C!]",
@@ -92,21 +92,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acb82f7115c12b73a5a12dc/details"
   },
   {
-   "name": "Matcha Gotcha's Tourney (PRIVATE)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-13",
-   "time": "00:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6aca5142115c12b73a5a0946/details"
-  },
-  {
    "name": "RookideeVGC Qualifier| Prize Shiny Corviknight",
    "org": "",
    "mode": "online",
@@ -122,6 +107,36 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16a52245696afb35158d7/details"
   },
   {
+   "name": "Matcha Gotcha's Tourney (PRIVATE)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-13",
+   "time": "00:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6aca5142115c12b73a5a0946/details"
+  },
+  {
+   "name": "Alpensee Tour (Reg M-C) #79",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-14",
+   "time": "19:00",
+   "players": 100,
+   "url": "https://play.limitlesstcg.com/tournament/6abaa280783097f8dcb72a7b/details"
+  },
+  {
    "name": "Shaymin Showdown",
    "org": "",
    "mode": "online",
@@ -135,6 +150,21 @@
    "time": "16:30",
    "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6acf7b90115c12b73a5a3b77/details"
+  },
+  {
+   "name": "Pado's Dojo Reg M-C Pratice #4 🍥",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-14",
+   "time": "15:00",
+   "players": 70,
+   "url": "https://play.limitlesstcg.com/tournament/6accb8138a8383117e3ea179/details"
   },
   {
    "name": "Ace Cup S1",
