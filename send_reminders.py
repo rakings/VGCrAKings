@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Promemoria circa un'ora prima dell'inizio dei tornei con orario noto.
 Legge solo events.json (nessuna richiesta ad altri siti) e scrive su ntfy.sh nei canali PREFISSO-categoria-1h."""
-import json, os, urllib.request
+import json, os, urllib.request, urllib.error
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
@@ -64,7 +64,14 @@ def send_os(filters, title, body, click):
         data["chrome_web_badge"] = site + "/badge-96.png"
     req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
                                  headers={"Content-Type": "application/json", "Authorization": "Key " + os.environ["ONESIGNAL_API_KEY"]})
-    urllib.request.urlopen(req, timeout=30).read()
+    try:
+        r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
+    except urllib.error.HTTPError as ex:
+        raise RuntimeError("OneSignal HTTP %s: %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:300]))
+    print("OneSignal:", json.dumps(r)[:300])
+    if r.get("errors") and not r.get("id"):
+        print("ATTENZIONE: nessun destinatario (nessuno iscritto con questi tag):", r.get("errors"))
+    return r
 
 def deliver(topic, title, body, click):
     """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
