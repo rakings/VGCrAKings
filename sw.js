@@ -1,4 +1,3 @@
-
 try{importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js")}catch(e){}
 const C="vgc-v1",H="vgc-hist";
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(["./","index.html","manifest.webmanifest","icon-192.png"])));self.skipWaiting()});
