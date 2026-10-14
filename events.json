@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T15:24:18+00:00",
+ "updated": "2026-10-14T18:23:01+00:00",
  "events": [
   {
    "name": "TARTAN'S ROAD TO NICE #42! - [CHAMPIONS REG M-C!]",
@@ -92,6 +92,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6acb82f7115c12b73a5a12dc/details"
   },
   {
+   "name": "Matcha Gotcha's Tourney (PRIVATE)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-13",
+   "time": "00:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6aca5142115c12b73a5a0946/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny Corviknight",
    "org": "",
    "mode": "online",
@@ -107,7 +122,7 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16a52245696afb35158d7/details"
   },
   {
-   "name": "Matcha Gotcha's Tourney (PRIVATE)",
+   "name": "Shaymin Showdown",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -116,10 +131,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-10-13",
-   "time": "00:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6aca5142115c12b73a5a0946/details"
+   "date": "2026-10-14",
+   "time": "16:30",
+   "players": 26,
+   "url": "https://play.limitlesstcg.com/tournament/6acf7b90115c12b73a5a3b77/details"
   },
   {
    "name": "Ace Cup S1",
