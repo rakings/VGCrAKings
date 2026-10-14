@@ -1,68 +1,8 @@
 {
- "updated": "2026-10-13T10:38:50+00:00",
+ "updated": "2026-10-14T00:17:48+00:00",
  "events": [
   {
-   "name": "Amyverse VGC Champions Arena #14 ❤️ Cash Prize!",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "Cash",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-12",
-   "time": "20:00",
-   "players": 130,
-   "url": "https://play.limitlesstcg.com/tournament/6ac4406e85920e4d25364fd1/details"
-  },
-  {
-   "name": "👻Mimikyu's Spooky Tourney🎃 | Prize: Shiny Gengar",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-12",
-   "time": "10:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6ac78b64245696afb3518d6f/details"
-  },
-  {
-   "name": "Sunday Nightmare Invitational 06",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-12",
-   "time": "03:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ac8eb93115c12b73a59fa30/details"
-  },
-  {
-   "name": "Caramelo Raro VGC tournament weekly 2",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-12",
-   "time": "03:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6abb0017880ed327106df044/details"
-  },
-  {
-   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "name": "TARTAN'S ROAD TO NICE #42! - [CHAMPIONS REG M-C!]",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -71,13 +11,13 @@
    "prize": "",
    "reg": "M-C",
    "bo": null,
-   "date": "2026-10-12",
-   "time": "03:00",
-   "players": 61,
-   "url": "https://play.limitlesstcg.com/tournament/6aba172d783097f8dcb725fc/details"
+   "date": "2026-10-13",
+   "time": "19:00",
+   "players": 82,
+   "url": "https://play.limitlesstcg.com/tournament/6ac559b885920e4d25365899/details"
   },
   {
-   "name": "Panucho: Road to Puebla VGC",
+   "name": "SS Fight Club 2",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -86,10 +26,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-10-12",
-   "time": "02:00",
-   "players": 23,
-   "url": "https://play.limitlesstcg.com/tournament/6ac978a68a8383117e3e825f/details"
+   "date": "2026-10-13",
+   "time": "15:30",
+   "players": 22,
+   "url": "https://play.limitlesstcg.com/tournament/6ace153c8a8383117e3eaef3/details"
   },
   {
    "name": "Pokepal Smackdown #162 (Champions) (Reg M-C)",
@@ -137,21 +77,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acb82f7115c12b73a5a12dc/details"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny Corviknight",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-13",
-   "time": "00:00",
-   "players": 44,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16a52245696afb35158d7/details"
-  },
-  {
    "name": "Matcha Gotcha's Tourney (PRIVATE)",
    "org": "",
    "mode": "online",
@@ -165,6 +90,21 @@
    "time": "00:00",
    "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6aca5142115c12b73a5a0946/details"
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny Corviknight",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-13",
+   "time": "00:00",
+   "players": 44,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16a52245696afb35158d7/details"
   },
   {
    "name": "VR October Challenge #3",
