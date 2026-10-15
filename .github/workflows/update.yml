@@ -21,6 +21,13 @@ jobs:
         continue-on-error: true
         env:
           NEWS_BOT: ${{ vars.NEWS_BOT || '1' }}
+      - run: python3 notify_players.py
+        continue-on-error: true
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
       - run: pip install pillow
         continue-on-error: true
       - run: python3 make_share_pages.py
@@ -34,6 +41,7 @@ jobs:
           [ -d e ] && git add -A e
           [ -f news.json ] && git add news.json
           [ -f notify_state.json ] && git add notify_state.json
+          [ -f notify_players_state.json ] && git add notify_players_state.json
           [ -f notifiche_avvisi.json ] && git add notifiche_avvisi.json
           [ -f news_cache.json ] && git add news_cache.json
           git diff --staged --quiet || (git commit -m "Aggiorna tornei" && git pull --rebase && git push)
