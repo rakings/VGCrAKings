@@ -1,6 +1,21 @@
 {
- "updated": "2026-10-15T03:39:04+00:00",
+ "updated": "2026-10-15T06:42:46+00:00",
  "events": [
+  {
+   "name": "Practica para Puebla",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-15",
+   "time": "04:30",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6acfbe228a8383117e3ebc10/details"
+  },
   {
    "name": "Hatterene Series Weekly #7 2027 - 7PM EDT - M-C",
    "org": "",
