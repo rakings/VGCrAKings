@@ -24,7 +24,7 @@ def get(url, tries=3):
             with urllib.request.urlopen(req, timeout=30) as r:
                 return r.read().decode("utf-8", "replace")
         except urllib.error.HTTPError as e:
-            if e.code in (404, 410):
+            if e.code in (400, 401, 403, 404, 410):  # errore definitivo: inutile riprovare
                 raise
             last = e
         except Exception as e:
@@ -33,6 +33,7 @@ def get(url, tries=3):
             time.sleep(3 * (i + 1))
     raise last
 
+PREV = {}        # eventi salvati al giro precedente (url -> evento)
 PARTIAL = set()  # fonti lette solo in parte in questo giro
 KEEP = set()     # pagine non lette per un errore temporaneo: si tiene la copia precedente
 LIVE = set()     # tornei che Limitless dà "in corso" adesso: restano finché non finiscono
@@ -69,6 +70,48 @@ PAGINE = (("/tournaments?game=VGC", 1), ("/tournaments/upcoming?game=VGC", 3), (
 RE_ID = re.compile(r"/tournament/([0-9a-f]{24})/(?:details|register|registrations|pairings)")
 RE_ISCRITTI = re.compile(r"""href=["'][^"']*?/tournament/([0-9a-f]{24})/registrations["'][^>]*>\s*(\d+)""")
 
+def _dt_from(txt):
+    """Prova a leggere una data/ora (epoch in secondi o millisecondi, oppure ISO 8601) e la dà in UTC."""
+    txt = (txt or "").strip()
+    try:
+        if re.fullmatch(r"\d{10,13}", txt):
+            n = int(txt)
+            return datetime.fromtimestamp(n / 1000 if n > 10**11 else n, tz=timezone.utc)
+        d = datetime.fromisoformat(txt.replace("Z", "+00:00"))
+        return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+RE_DATE = (re.compile(r'data-time=["\'](\d{10,13})["\']'),
+           re.compile(r'<time[^>]*datetime=["\']([^"\']+)["\']'),
+           re.compile(r'data-date=["\']([^"\']+)["\']'),
+           re.compile(r'"startDate"\s*:\s*"([^"]+)"'),
+           re.compile(r'"date"\s*:\s*"(\d{4}-\d{2}-\d{2}T[^"]+)"'))
+
+def limitless_page(i):
+    """Dettagli di un torneo letti dalla sua pagina pubblica: nome, organizzatore, data e ora di inizio."""
+    page = get(SITE + "/tournament/%s/details" % i)
+    m = (re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)["\']', page)
+         or re.search(r'<title[^>]*>([^<]+)</title>', page))
+    name = html.unescape(m.group(1)).strip() if m else ""
+    name = re.sub(r"\s*[-|\u2013]\s*Limitless\w*\s*$", "", name, flags=re.I).strip()
+    m = re.search(r"Organized by\s*(?:<[^>]*>\s*)*([^<\n]+)", page)
+    org = html.unescape(m.group(1)).strip() if m else ""
+    dt = None
+    for rx in RE_DATE:
+        for raw in rx.findall(page):
+            dt = _dt_from(raw)
+            if dt:
+                break
+        if dt:
+            break
+    if not name or not dt:
+        ctx = re.findall(r".{0,60}(?:data-time|datetime|data-date|startDate).{0,80}", page)[:3]
+        print("Limitless %s: pagina letta ma %s non trovato. Titolo=%r; indizi=%r" % (i, "nome" if not name else "data", name[:60], ctx))
+        return None
+    return {"id": i, "name": name, "organizer": {"name": org}, "game": "VGC",
+            "date": dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")}
+
 def limitless_upcoming(have):
     """L'API /tournaments può non elencare i tornei con iscrizioni aperte. Per non perderne nessuno si
     leggono gli ID dalle pagine pubbliche di Limitless e i dettagli di ognuno dall'API ufficiale."""
@@ -99,23 +142,52 @@ def limitless_upcoming(have):
             time.sleep(1)
     print("Limitless: %d tornei trovati nelle pagine pubbliche" % len(ids))
     out = []
+    api_ok = True  # se l'API risponde 400 per questi tornei si passa alle pagine pubbliche
     for i in ids[:200]:
         url = SITE + "/tournament/%s/details" % i
         if url in have:
             continue
-        time.sleep(0.5)
-        try:
-            t = json.loads(get(API + "/%s/details" % i))
-        except urllib.error.HTTPError as e:
-            if e.code not in (403, 404, 410):  # privato o rimosso: si salta; altri errori: si tiene la copia vecchia
-                print("Limitless %s: dettagli non letti (HTTP %s)" % (i, e.code))
+        old = PREV.get(url)
+        if old and old.get("date"):  # già noto dal giro precedente: si aggiorna solo il numero di iscritti
+            ev = dict(old)
+            ev["players"] = iscritti.get(i, ev.get("players"))
+            out.append(ev)
+            continue
+        t = None
+        if api_ok:
+            time.sleep(0.5)
+            try:
+                t = json.loads(get(API + "/%s/details" % i))
+            except urllib.error.HTTPError as e:
+                if e.code == 400:
+                    api_ok = False
+                    print("Limitless: l'API non fornisce i dettagli (HTTP 400): leggo le pagine pubbliche dei tornei")
+                elif e.code in (401, 403, 404, 410):  # privato o rimosso: si prova la pagina pubblica
+                    pass
+                else:
+                    print("Limitless %s: dettagli non letti (HTTP %s)" % (i, e.code))
+                    KEEP.add(url)
+                    continue
+            except Exception as ex:
+                print("Limitless %s: dettagli non letti (%s)" % (i, ex))
                 KEEP.add(url)
-            continue
-        except Exception as ex:
-            print("Limitless %s: dettagli non letti (%s)" % (i, ex))
-            KEEP.add(url)
-            continue
-        if not isinstance(t, dict) or t.get("game") not in (None, "VGC") or t.get("isPublic") is False:
+                continue
+        if not isinstance(t, dict):
+            time.sleep(0.5)
+            try:
+                t = limitless_page(i)
+            except urllib.error.HTTPError as e:
+                if e.code not in (403, 404, 410):
+                    print("Limitless %s: pagina non letta (HTTP %s)" % (i, e.code))
+                    KEEP.add(url)
+                continue
+            except Exception as ex:
+                print("Limitless %s: pagina non letta (%s)" % (i, ex))
+                KEEP.add(url)
+                continue
+            if not t:
+                continue
+        if t.get("game") not in (None, "VGC") or t.get("isPublic") is False:
             continue
         ev = limitless_event(t)
         ev["players"] = iscritti.get(i, t.get("players") or None)  # iscritti attuali; per i tornei futuri il numero dell'API non vale
@@ -451,6 +523,7 @@ def main():
         prev = json.load(open(OUT, encoding="utf-8")).get("events") or []
     except Exception:
         prev = []
+    PREV.update({e["url"]: e for e in prev if e.get("url")})
     by, failed = {}, set()
     for nome, fonte in (("Limitless", limitless_all), ("Victory Road", victory_road), ("Regionali", regionali)):
         try:
