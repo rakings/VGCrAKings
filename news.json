@@ -1,5 +1,5 @@
 {
-"updated": "2026-10-15T16:17:02+00:00",
+"updated": "2026-10-15T18:21:41+00:00",
 "news": [
 {
 "t": "Regionale",
@@ -25923,6 +25923,46 @@
 "id": 443
 },
 {
+"pl": "Nico Davide Cognetta",
+"t": "Regional Frankfurt",
+"p": 10,
+"d": "26 settembre 2026",
+"n": 1129,
+"id": 443
+},
+{
+"pl": "Giuseppe Alario",
+"t": "Regional Frankfurt",
+"p": 12,
+"d": "26 settembre 2026",
+"n": 1129,
+"id": 443
+},
+{
+"pl": "Francesco Pio Pero",
+"t": "Regional Frankfurt",
+"p": 13,
+"d": "26 settembre 2026",
+"n": 1129,
+"id": 443
+},
+{
+"pl": "Giovanni Manuel Tonelli",
+"t": "Regional Frankfurt",
+"p": 14,
+"d": "26 settembre 2026",
+"n": 1129,
+"id": 443
+},
+{
+"pl": "Lorenzo Colombo",
+"t": "Regional Frankfurt",
+"p": 15,
+"d": "26 settembre 2026",
+"n": 1129,
+"id": 443
+},
+{
 "pl": "Stefano Greppi",
 "t": "World Championships 2026",
 "p": 7,
@@ -25942,6 +25982,22 @@
 "pl": "Francesco Pio Pero",
 "t": "NAIC 2026, New Orleans",
 "p": 1,
+"d": "11 giugno 2026",
+"n": 1096,
+"id": 436
+},
+{
+"pl": "Federico Camporesi",
+"t": "NAIC 2026, New Orleans",
+"p": 11,
+"d": "11 giugno 2026",
+"n": 1096,
+"id": 436
+},
+{
+"pl": "Marco Hemantha Kaludura Silva",
+"t": "NAIC 2026, New Orleans",
+"p": 12,
 "d": "11 giugno 2026",
 "n": 1096,
 "id": 436
@@ -25995,6 +26051,46 @@
 "id": 435
 },
 {
+"pl": "Nico Davide Cognetta",
+"t": "Special Event Turin",
+"p": 9,
+"d": "6 giugno 2026",
+"n": 940,
+"id": 435
+},
+{
+"pl": "Matteo Ballini",
+"t": "Special Event Turin",
+"p": 10,
+"d": "6 giugno 2026",
+"n": 940,
+"id": 435
+},
+{
+"pl": "Francesco Pio Pero",
+"t": "Special Event Turin",
+"p": 11,
+"d": "6 giugno 2026",
+"n": 940,
+"id": 435
+},
+{
+"pl": "Giulio Tarlao",
+"t": "Special Event Turin",
+"p": 15,
+"d": "6 giugno 2026",
+"n": 940,
+"id": 435
+},
+{
+"pl": "Nicholas Belometti",
+"t": "Special Event Turin",
+"p": 16,
+"d": "6 giugno 2026",
+"n": 940,
+"id": 435
+},
+{
 "pl": "Marco Hemantha Kaludura Silva",
 "t": "Regional Utrecht",
 "p": 4,
@@ -26035,6 +26131,30 @@
 "id": 428
 },
 {
+"pl": "Stefano Greppi",
+"t": "Regional Prague",
+"p": 10,
+"d": "25 aprile 2026",
+"n": 558,
+"id": 428
+},
+{
+"pl": "Luca Lussignoli",
+"t": "Regional Prague",
+"p": 13,
+"d": "25 aprile 2026",
+"n": 558,
+"id": 428
+},
+{
+"pl": "Matteo Velata",
+"t": "Regional Prague",
+"p": 15,
+"d": "25 aprile 2026",
+"n": 558,
+"id": 428
+},
+{
 "pl": "Roberto Parente",
 "t": "Special Event Seville",
 "p": 6,
@@ -26070,6 +26190,30 @@
 "pl": "Davide Fazio",
 "t": "EUIC 2026, London",
 "p": 6,
+"d": "13 febbraio 2026",
+"n": 1455,
+"id": 420
+},
+{
+"pl": "Giuseppe Musicco",
+"t": "EUIC 2026, London",
+"p": 9,
+"d": "13 febbraio 2026",
+"n": 1455,
+"id": 420
+},
+{
+"pl": "Andrea Pagano",
+"t": "EUIC 2026, London",
+"p": 12,
+"d": "13 febbraio 2026",
+"n": 1455,
+"id": 420
+},
+{
+"pl": "Sidy Badiane",
+"t": "EUIC 2026, London",
+"p": 14,
 "d": "13 febbraio 2026",
 "n": 1455,
 "id": 420
