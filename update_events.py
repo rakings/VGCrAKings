@@ -388,6 +388,9 @@ def candidates(e):
         dd = days_to(e["regClose"]) if e.get("regClose") else None
         if dd is not None and 0 <= dd <= 3:
             out.append(("regionali", "close", "Regionali: iscrizioni in chiusura"))
+    # torneo locale segnalato da un organizzatore (inserito a mano in manual.json): dal vivo, oppure Lega / Sfida di Lega / Coppa di Lega
+    if e.get("mode") == "live" or "lega" in (e.get("type") or "").lower() or e.get("local") is True:
+        out.append(("locali", "new", "Torneo locale segnalato"))
     for cat, key, label in (("vr", "victory road", "Victory Road"), ("maddos", "maddo", "Maddos Cup")):
         if key in low:
             out.append((cat, "new", label + ": torneo annunciato"))
@@ -485,6 +488,8 @@ def notify_all(events):
             else:
                 for title, e in items:
                     quando = e.get("date") or "data sul link"
+                    if e.get("where") and topic == "locali":
+                        quando += " - " + e["where"]
                     extra = (" - iscrizioni fino al " + e["regClose"]) if e.get("regClose") else ""
                     deliver(topic, title, "%s\n%s%s" % (e["name"], quando, extra), e.get("signup") or e.get("url") or "")
             print("Avvisi inviati su %s: %d" % (topic, len(items)))
