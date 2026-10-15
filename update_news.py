@@ -226,7 +226,7 @@ def main():
         for r in res["rows"]:
             if t["type"] == "Regionale" and r["p"] <= 16:
                 bp.append([r["pl"], r["cc"], re.sub(r"^Regional\s+", "", t["name"]), t["id"], r["p"]])
-            if r["cc"] == "IT" and r["p"] <= 8:
+            if r["cc"] == "IT" and r["p"] <= 16:
                 ita.append({"pl": r["pl"], "t": t["name"], "p": r["p"], "d": dateit(t["date"]), "n": t["players"], "id": t["id"]})
     for t in lst:  # vincitori italiani anche se la pagina non è ancora stata letta
         if t["wcc"] == "IT" and not any(x["id"] == t["id"] and x["p"] == 1 for x in ita):
