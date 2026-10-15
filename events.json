@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15T12:23:06+00:00",
+ "updated": "2026-10-15T15:25:31+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7c404245696afb3518eec/details"
   },
   {
-   "name": "Off Meta Fight Club #7 (NEW Rules)",
-   "org": "DevinTLegend",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-15",
-   "time": "02:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6aca6fc6115c12b73a5a0b4c/details"
-  },
-  {
    "name": "Tenki",
    "org": "TenkiPK",
    "mode": "online",
@@ -212,6 +197,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac908358a8383117e3e7b56/details"
   },
   {
+   "name": "Off Meta Fight Club #7 (NEW Rules)",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-15",
+   "time": "02:00",
+   "players": null,
+   "url": "https://play.limitlesstcg.com/tournament/6aca6fc6115c12b73a5a0b4c/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 17!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -223,23 +223,8 @@
    "bo": null,
    "date": "2026-10-15",
    "time": "19:30",
-   "players": 36,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6aa95de5f1243e65f98020c6/details"
-  },
-  {
-   "name": "Best of Three Thursday Practice Tourney 5",
-   "org": "r/VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-16",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad02d1a115c12b73a5a44cf/details"
   },
   {
    "name": "Talon",
@@ -253,8 +238,38 @@
    "bo": null,
    "date": "2026-10-16",
    "time": "01:00",
-   "players": 44,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aab46ea38886b36383c21d6/details"
+  },
+  {
+   "name": "5º Torneio Liga CWB Pokémon Champions",
+   "org": "Liga CWB",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-16",
+   "time": "01:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ad0cab6115c12b73a5a4735/details"
+  },
+  {
+   "name": "Best of Three Thursday Practice Tourney 5",
+   "org": "r/VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-16",
+   "time": "01:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad02d1a115c12b73a5a44cf/details"
   },
   {
    "name": "PWC - Battle in the Colosseum #31",
@@ -298,7 +313,7 @@
    "bo": null,
    "date": "2026-10-16",
    "time": "17:00",
-   "players": 149,
+   "players": 148,
    "url": "https://play.limitlesstcg.com/tournament/6ac9235f8a8383117e3e7ca4/details"
   },
   {
@@ -313,7 +328,7 @@
    "bo": null,
    "date": "2026-10-16",
    "time": "17:30",
-   "players": 28,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6acd3b3b8a8383117e3ea7b0/details"
   },
   {
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "00:00",
-   "players": 57,
+   "players": 67,
    "url": "https://play.limitlesstcg.com/tournament/6acdb7b7115c12b73a5a2cd5/details"
   },
   {
@@ -392,6 +407,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8469685920e4d25367464/details"
   },
   {
+   "name": "Pokemon Dominicana - Champions League #16",
+   "org": "Smilegazer League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "02:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad0e8cf115c12b73a5a4818/details"
+  },
+  {
    "name": "🇧🇷 Hit Break #6 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -418,7 +448,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "13:30",
-   "players": 49,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6a7c50af2b308b6067b51ef4/details"
   },
   {
@@ -448,7 +478,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "15:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aca656a8a8383117e3e8d3c/details"
   },
   {
@@ -478,7 +508,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "16:00",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ab541d0e905c1db6874962f/details"
   },
   {
@@ -493,7 +523,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "18:00",
-   "players": 20,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6acee85f115c12b73a5a38b3/details"
   },
   {
@@ -508,7 +538,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "19:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
   },
   {
@@ -591,21 +621,6 @@
    "url": "https://victoryroad.pro/2027-nice/"
   },
   {
-   "name": "OTS Pokemon VGC Arena #2",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "00:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aceaa77115c12b73a5a35cd/details"
-  },
-  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -619,6 +634,21 @@
    "time": "00:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
+  },
+  {
+   "name": "OTS Pokemon VGC Arena #2",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "00:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aceaa77115c12b73a5a35cd/details"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #3",
@@ -662,7 +692,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "13:30",
-   "players": 21,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ad0631c115c12b73a5a4614/details"
   },
   {
@@ -722,7 +752,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "19:00",
-   "players": 9,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
   },
   {
@@ -812,7 +842,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -857,7 +887,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -1102,7 +1132,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
@@ -1117,7 +1147,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "13:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
   },
   {
@@ -1252,7 +1282,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
@@ -1451,7 +1481,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1481,7 +1511,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
