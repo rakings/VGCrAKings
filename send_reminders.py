@@ -21,6 +21,8 @@ def cats(e):
         out.append("money")
         if (e.get("players") or 0) > 33:
             out.append("money33")
+    if e.get("mode") == "live" or "lega" in (e.get("type") or "").lower() or e.get("local") is True:
+        out.append("locali")
     if "victory road" in low:
         out.append("vr")
     if "maddo" in low:
