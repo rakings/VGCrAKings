@@ -1,8 +1,8 @@
 {
- "updated": "2026-10-15T00:37:13+00:00",
+ "updated": "2026-10-15T03:39:04+00:00",
  "events": [
   {
-   "name": "Alpensee Tour (Reg M-C) #79",
+   "name": "Hatterene Series Weekly #7 2027 - 7PM EDT - M-C",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -11,10 +11,10 @@
    "prize": "",
    "reg": "M-C",
    "bo": null,
-   "date": "2026-10-14",
-   "time": "19:00",
-   "players": 100,
-   "url": "https://play.limitlesstcg.com/tournament/6abaa280783097f8dcb72a7b/details"
+   "date": "2026-10-15",
+   "time": "01:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ac0fdfc85920e4d25362ca8/details"
   },
   {
    "name": "VR October Challenge #3",
