@@ -508,10 +508,10 @@ function nRel(x){var t=x.topic||"";if(t.indexOf("t-")===0)return REM.indexOf(t.s
 if(c==="money")return NP.money==="all"&&(!one||h);if(c==="money33")return NP.money==="33"&&(!one||h);return !!NP[c]&&(!one||h)}
 function nList(){return NLOG.filter(function(x){return x.ms>NCUT&&(x.dev||nRel(x))})}
 function nBadge(){var d=$("bell")&&$("bell").querySelector(".nb");if(!d)return;var n=nList().filter(function(x){return x.ms>NSEEN}).length;d.textContent=n>9?"9+":String(n);d.hidden=!n}
-function nClear(){try{if(navigator.clearAppBadge)navigator.clearAppBadge().catch(function(){})}catch(e){}
-try{if(navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.getNotifications().then(function(ns){ns.forEach(function(n){n.close()})}).catch(function(){})})}).catch(function(){})}catch(e){}}
-function nLoad(){var u=["notifiche_avvisi.json","notifiche_promemoria.json"],srv=[],dev=[],k=0,tot=u.length+1;
-var fin=function(){if(++k<tot)return;var all=dev.slice();srv.forEach(function(x){var dup=dev.some(function(d){return d.title===x.title&&d.body===x.body&&Math.abs(d.ms-x.ms)<9e5});if(!dup)all.push(x)});all.sort(function(a,b){return b.ms-a.ms});NLOG=all.slice(0,80);nBadge()};
+function nClear(chiudi){try{if(navigator.clearAppBadge)navigator.clearAppBadge().catch(function(){})}catch(e){}
+try{if(chiudi===true&&navigator.serviceWorker)navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.getNotifications().then(function(ns){ns.forEach(function(n){n.close()})}).catch(function(){})})}).catch(function(){})}catch(e){}}
+function nLoad(cb){var u=["notifiche_avvisi.json","notifiche_promemoria.json"],srv=[],dev=[],k=0,tot=u.length+1;
+var fin=function(){if(++k<tot)return;var all=dev.slice();srv.forEach(function(x){var dup=dev.some(function(d){return d.title===x.title&&d.body===x.body&&Math.abs(d.ms-x.ms)<9e5});if(!dup)all.push(x)});all.sort(function(a,b){return b.ms-a.ms});NLOG=all.slice(0,80);nBadge();if(cb)cb()};
 u.forEach(function(f){fetch(f,{cache:"no-store"}).then(function(r){return r.ok?r.json():[]}).catch(function(){return[]}).then(function(a){(Array.isArray(a)?a:[]).forEach(function(x){x.ms=Date.parse(x.t)||0;srv.push(x)});fin()})});
 try{caches.open("vgc-hist").then(function(c){return c.match("hist.json")}).then(function(r){return r?r.json():[]}).catch(function(){return[]}).then(function(a){(Array.isArray(a)?a:[]).forEach(function(x){x.ms=+x.t||0;x.dev=1;dev.push(x)});fin()})}catch(e){fin()}}
 function nHtml(){var l=nList().slice(0,30),h='<div class="sheet2" role="document"><div class="calbar"><b id="np-t">Cronologia notifiche</b><button class="cnav" data-npc="1" aria-label="Chiudi">\u2715</button></div><p class="meta" style="margin:0 0 8px">Gli ultimi avvisi sulle categorie che hai attivato.</p><div class="opt"><button class="btn" type="button" data-nclear="1" style="width:100%;border-radius:12px">\ud83e\uddf9 Segna come lette e azzera il contatore</button></div><div class="opt"><button class="btn" type="button" data-ncut="1" style="width:100%;border-radius:12px">Svuota la cronologia</button></div>';
@@ -520,10 +520,12 @@ l.forEach(function(x){var nw=x.ms>NSEEN,d=x.ms?new Date(x.ms).toLocaleString(LCL
 var inner='<b>'+esc(x.title||"")+'</b>'+(nw?' <span class="nnew">nuovo</span>':'')+'<br><span>'+esc(x.body||"").replace(/\n/g,"<br>")+'</span><br><small>'+esc(d)+'</small>';
 h+=/^https?:/.test(x.url||"")?'<a class="nit" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="nit">'+inner+'</div>'});
 return h+'</div>'}
-$("bell").addEventListener("click",function(){$("np").innerHTML=nHtml();$("np").hidden=false;nClear();NSEEN=Date.now();nSave();nBadge()});
-$("np").addEventListener("click",function(ev){if(ev.target.closest("[data-nclear]")){NSEEN=Date.now();nSave();nClear();nBadge();$("np").innerHTML=nHtml()}else if(ev.target.closest("[data-ncut]")){NCUT=Date.now();NSEEN=NCUT;nSave();nClear();nBadge();$("np").innerHTML=nHtml()}});
+function nRedraw(vis){var o=$("np");if(o.hidden||!o.querySelector("[data-nclear]"))return;var s=NSEEN;if(vis!==undefined)NSEEN=vis;o.innerHTML=nHtml();NSEEN=s}
+$("bell").addEventListener("click",function(){var vis=NSEEN;$("np").innerHTML=nHtml();$("np").hidden=false;nLoad(function(){nRedraw(vis)});nClear();NSEEN=Date.now();nSave();nBadge()});
+$("np").addEventListener("click",function(ev){if(ev.target.closest("[data-nclear]")){NSEEN=Date.now();nSave();nClear(true);nBadge();$("np").innerHTML=nHtml()}else if(ev.target.closest("[data-ncut]")){NCUT=Date.now();NSEEN=NCUT;nSave();nClear(true);nBadge();$("np").innerHTML=nHtml()}});
 document.addEventListener("visibilitychange",function(){if(!document.hidden){nClear();nLoad()}});
 nLoad();nClear();
+try{navigator.serviceWorker.addEventListener("message",function(ev){if(ev.data&&ev.data.vgcHist)nLoad(function(){nRedraw()})})}catch(e){}
 $("gear").addEventListener("click",function(){$("np").innerHTML=npHtml();$("np").hidden=false});
 $("np").addEventListener("click",function(ev){if(ev.target===this||ev.target.closest("[data-npc]"))this.hidden=true;if(ev.target.closest("#os-ask")){var auto=false,say=function(t){var m=$("os-msg");if(m)m.textContent=t};
 if(pwaIOS()&&!pwaStandalone()){say("Su iPhone devi prima aggiungere il sito alla schermata Home (Condividi > Aggiungi alla schermata Home), poi aprirlo da l\u00ec e riprovare.");return}
