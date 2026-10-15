@@ -67,8 +67,10 @@ def limitless():
 SITE = "https://play.limitlesstcg.com"
 # pagine pubbliche di Limitless: elenco "in corso" e "prossimi 7 giorni" che si vedono sul sito
 PAGINE = (("/tournaments?game=VGC", 1), ("/tournaments/upcoming?game=VGC", 3), ("/tournaments/ongoing?game=VGC", 1))
-RE_ID = re.compile(r"/tournament/([0-9a-f]{24})/(?:details|register|registrations|pairings)")
-RE_ISCRITTI = re.compile(r"""href=["'][^"']*?/tournament/([0-9a-f]{24})/registrations["'][^>]*>\s*(\d+)""")
+# l'ID è di 24 caratteri esadecimali, ma gli eventi in evidenza (stellina) hanno un indirizzo personalizzato, es. "pokebros2026"
+ID = r"([0-9A-Za-z][0-9A-Za-z_-]{2,60})"
+RE_ID = re.compile(r"/tournament/" + ID + r"/(?:details|register|registrations|pairings)")
+RE_ISCRITTI = re.compile(r"""href=["'][^"']*?/tournament/""" + ID + r"""/registrations["'][^>]*>\s*(\d+)""")
 
 def _dt_from(txt):
     """Prova a leggere una data/ora (epoch in secondi o millisecondi, oppure ISO 8601) e la dà in UTC."""
@@ -189,6 +191,7 @@ def limitless_upcoming(have):
                 continue
         if t.get("game") not in (None, "VGC") or t.get("isPublic") is False:
             continue
+        t["id"] = i  # l'indirizzo è quello della pagina pubblica (con gli eventi in evidenza l'API può dare un ID diverso)
         ev = limitless_event(t)
         ev["players"] = iscritti.get(i, t.get("players") or None)  # iscritti attuali; per i tornei futuri il numero dell'API non vale
         out.append(ev)
