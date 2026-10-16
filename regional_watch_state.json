@@ -1,0 +1,214 @@
+{
+ "ev": {
+  "2027-nice-pokemon-regional-championships": {
+   "name": "Nice Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-nice-2027",
+   "opens": null
+  },
+  "2027-puebla-pokemon-regional-championships": {
+   "name": "Puebla Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-puebla-2027",
+   "opens": null
+  },
+  "2027-gdansk-pokemon-regional-championships": {
+   "name": "Gdansk Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-gdansk-2026",
+   "opens": null
+  },
+  "2027-latin-america-pokemon-international-championships": {
+   "name": "Latin America International Championships",
+   "link": "https://rk9.gg/events/pokemon",
+   "opens": null
+  },
+  "2027-stuttgart-pokemon-regional-championships": {
+   "name": "Stuttgart Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-stuttgart-2026",
+   "opens": null
+  },
+  "2027-las-vegas-pokemon-regional-championships": {
+   "name": "Las Vegas Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-las-vegas-2026",
+   "opens": "2026-10-08T02:00:00+00:00"
+  },
+  "2027-louisville-pokemon-regional-championships": {
+   "name": "Louisville Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-louisville-2027",
+   "opens": null
+  },
+  "2027-recife-pokemon-regional-championships": {
+   "name": "Recife Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-recife-2027",
+   "opens": null
+  },
+  "2027-frankfurt-pokemon-regional-championships": {
+   "name": "Frankfurt Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-frankfurt-2026",
+   "opens": null
+  },
+  "2027-brisbane-pokemon-regional-championships": {
+   "name": "Brisbane Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-brisbane-2026",
+   "opens": null
+  },
+  "2027-baltimore-pokemon-regional-championships": {
+   "name": "Baltimore Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-baltimore-2027",
+   "opens": null
+  },
+  "2026-north-america-pokemon-international-championships": {
+   "name": "North America International Championships",
+   "link": "https://rk9.gg/events/pokemon",
+   "opens": null
+  },
+  "2026-turin-pokemon-special-championships": {
+   "name": "Turin Special Championships",
+   "link": "https://rk9.gg/event/pokemon-turin-2026",
+   "opens": null
+  },
+  "2026-indianapolis-pokemon-regional-championships": {
+   "name": "Indianapolis Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-indianapolis-2026",
+   "opens": null
+  },
+  "2026-melbourne-pokemon-regional-championships": {
+   "name": "Melbourne Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-melbourne-2026",
+   "opens": null
+  },
+  "2026-campinas-pokemon-regional-championships": {
+   "name": "Campinas Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-campinas-2026",
+   "opens": null
+  },
+  "2026-utrecht-pokemon-regional-championships": {
+   "name": "Utrecht Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-utrecht-2026",
+   "opens": null
+  },
+  "2026-los-angeles-pokemon-regional-championships": {
+   "name": "Los Angeles Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-los-angeles-2026",
+   "opens": null
+  },
+  "2026-prague-pokemon-regional-championships": {
+   "name": "Prague Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-prague-2026",
+   "opens": null
+  },
+  "2026-queretaro-pokemon-regional-championships": {
+   "name": "Querétaro Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-queretaro-2026",
+   "opens": null
+  },
+  "2026-orlando-pokemon-regional-championships": {
+   "name": "Orlando Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-orlando-2026",
+   "opens": null
+  },
+  "2026-seville-pokemon-special-championships": {
+   "name": "Seville Special Championships",
+   "link": "https://rk9.gg/event/pokemon-seville-2026",
+   "opens": null
+  },
+  "2026-houston-pokemon-regional-championships": {
+   "name": "Houston Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-houston-2026",
+   "opens": null
+  },
+  "2026-curitiba-pokemon-regional-championships": {
+   "name": "Curitiba Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-curitiba-2026",
+   "opens": null
+  },
+  "2026-seattle-pokemon-regional-championships": {
+   "name": "Seattle Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-seattle-2026",
+   "opens": null
+  },
+  "2026-europe-pokemon-international-championships": {
+   "name": "Europe International Championships",
+   "link": "https://rk9.gg/events/pokemon",
+   "opens": null
+  },
+  "2026-santiago-pokemon-regional-championships": {
+   "name": "Santiago Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-santiago-2026",
+   "opens": null
+  },
+  "2026-sydney-pokemon-regional-championships": {
+   "name": "Sydney Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-sydney-2026",
+   "opens": null
+  },
+  "2026-merida-pokemon-regional-championships": {
+   "name": "Mérida Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-merida-2026",
+   "opens": null
+  },
+  "2026-birmingham-pokemon-regional-championships": {
+   "name": "Birmingham Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-birmingham-2026",
+   "opens": null
+  },
+  "2026-toronto-pokemon-regional-championships": {
+   "name": "Toronto Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-toronto-2026",
+   "opens": null
+  },
+  "2026-stuttgart-pokemon-regional-championships": {
+   "name": "Stuttgart Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-stuttgart-2026",
+   "opens": null
+  },
+  "2026-latin-america-pokemon-international-championships": {
+   "name": "Latin America International Championships",
+   "link": "https://rk9.gg/events/pokemon",
+   "opens": null
+  },
+  "2026-las-vegas-pokemon-regional-championships": {
+   "name": "Las Vegas Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-las-vegas-2026",
+   "opens": null
+  },
+  "2026-gdansk-pokemon-regional-championships": {
+   "name": "Gdańsk Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-gdansk-2026",
+   "opens": null
+  },
+  "2026-brisbane-pokemon-regional-championships": {
+   "name": "Brisbane Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-brisbane-2026",
+   "opens": null
+  },
+  "2026-lille-pokemon-regional-championships": {
+   "name": "Lille Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-lille-2026",
+   "opens": null
+  },
+  "2026-milwaukee-pokemon-regional-championships": {
+   "name": "Milwaukee Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-milwaukee-2026",
+   "opens": null
+  },
+  "2026-belo-horizonte-pokemon-regional-championships": {
+   "name": "Belo Horizonte Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-belo-horizonte-2026",
+   "opens": null
+  },
+  "2026-pittsburgh-pokemon-regional-championships": {
+   "name": "Pittsburgh Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-pittsburgh-2026",
+   "opens": null
+  },
+  "2026-monterrey-pokemon-regional-championships": {
+   "name": "Monterrey Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-monterrey-2026",
+   "opens": null
+  },
+  "2026-frankfurt-pokemon-regional-championships": {
+   "name": "Frankfurt Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-frankfurt-2026",
+   "opens": null
+  }
+ }
+}
