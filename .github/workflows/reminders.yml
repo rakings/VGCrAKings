@@ -16,6 +16,8 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
       - run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"

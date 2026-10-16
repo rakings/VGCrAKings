@@ -16,6 +16,8 @@ jobs:
           NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
       - run: python3 update_news.py
         continue-on-error: true
@@ -27,6 +29,8 @@ jobs:
           NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
       - run: pip install pillow
         continue-on-error: true
