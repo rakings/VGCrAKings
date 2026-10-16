@@ -45,8 +45,11 @@ def vr_champions():
     out, seen = [], set()
     pre = re.sub(r"<br\s*/?>", " ", page, flags=re.I)  # il banner va a capo dopo il nome: "Kiran Singh<br>is the VR ..."
     pre = re.sub(r"</?(?:b|strong|em|i|u|span)\b[^>]*>", "", pre)  # il nome può stare in un grassetto (il link accanto resta separato)
-    for m in re.finditer(r"[^<>]*\bChampion\b[^<>]*", pre):  # un banner = un pezzo di testo tra due tag
-        txt = html.unescape(re.sub(r"\s+", " ", m.group(0))).strip()
+    pre = re.sub(r"<(script|style)\b.*?</\1>", " ", pre, flags=re.S | re.I)  # niente codice: pagine enormi e lente da leggere
+    for piece in re.split(r"<[^>]*>", pre):  # un banner = un pezzo di testo tra due tag (ricerca lineare, non può bloccarsi)
+        if "Champion" not in piece:
+            continue
+        txt = html.unescape(re.sub(r"\s+", " ", piece)).strip()
         r = RE_CHAMP.match(txt)
         if not r or (r[1], r[2]) in seen:
             continue
