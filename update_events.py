@@ -422,25 +422,56 @@ def os_filters(topic):
         f.append({"field": "tag", "key": "h_" + ("money" if cat in ("money", "money33") else cat), "relation": "=", "value": "1"})
     return f
 
-def send_os(filters, title, body, click):
-    data = {"app_id": os.environ["ONESIGNAL_APP_ID"], "target_channel": "push", "filters": filters,
+def send_os(filters, title, body, click, ids=None):
+    """Invia con OneSignal: ai filtri sui tag (vecchio sistema) oppure a un elenco di iscrizioni (archivio iscritti)."""
+    base = {"app_id": os.environ["ONESIGNAL_APP_ID"], "target_channel": "push",
             "headings": {"en": title, "it": title}, "contents": {"en": body, "it": body}}
     if click.startswith("http"):
-        data["url"] = click
+        base["url"] = click
     site = os.environ.get("SITE_URL", "").rstrip("/")
     if site.startswith("http"):  # logo accanto alla notifica
-        data["chrome_web_icon"] = site + "/icon-192.png"
-        data["chrome_web_badge"] = site + "/badge-96.png"
-    req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
-                                 headers={"Content-Type": "application/json", "Authorization": "Key " + os.environ["ONESIGNAL_API_KEY"]})
-    try:
-        r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
-    except urllib.error.HTTPError as ex:
-        raise RuntimeError("OneSignal HTTP %s: %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:300]))
-    print("OneSignal:", json.dumps(r)[:300])
-    if r.get("errors") and not r.get("id"):
-        print("ATTENZIONE: nessun destinatario (nessuno iscritto con questi tag):", r.get("errors"))
+        base["chrome_web_icon"] = site + "/icon-192.png"
+        base["chrome_web_badge"] = site + "/badge-96.png"
+    batches = [dict(base, filters=filters)] if ids is None else [dict(base, include_subscription_ids=ids[k:k + 2000]) for k in range(0, len(ids), 2000)]
+    r = {}
+    for data in batches:
+        req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
+                                     headers={"Content-Type": "application/json", "Authorization": "Key " + os.environ["ONESIGNAL_API_KEY"]})
+        try:
+            r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
+        except urllib.error.HTTPError as ex:
+            raise RuntimeError("OneSignal HTTP %s: %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:300]))
+        print("OneSignal:", json.dumps(r)[:300])
+        if r.get("errors") and not r.get("id"):
+            print("ATTENZIONE: nessun destinatario:", r.get("errors"))
     return r
+
+# ---------- archivio iscritti (Cloudflare Worker): sostituisce i tag di OneSignal, limitati a 6 sul piano gratuito ----------
+_SUBS = None
+
+def subs_on():
+    return bool(os.environ.get("SUBS_URL") and os.environ.get("SUBS_TOKEN"))
+
+def subs_list():
+    global _SUBS
+    if _SUBS is None:
+        req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + "/list", headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "User-Agent": UA})
+        try:
+            _SUBS = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8")).get("subs") or []
+        except urllib.error.HTTPError as ex:
+            raise RuntimeError("Archivio iscritti: HTTP %s" % ex.code)
+        print("Archivio iscritti: %d iscrizioni" % len(_SUBS))
+    return _SUBS
+
+def subs_for(topic):
+    """ID delle iscrizioni che hanno scelto questo canale (stessa logica dei vecchi filtri sui tag)."""
+    subs = subs_list()
+    if topic.startswith("t-"):
+        return [s["id"] for s in subs if topic[2:] in (s.get("f") or [])]
+    cat, one = (topic[:-3], True) if topic.endswith("-1h") else (topic, False)
+    base = "money" if cat in ("money", "money33") else cat
+    want = "money=all" if cat == "money" else "money=33" if cat == "money33" else cat
+    return [s["id"] for s in subs if want in (s.get("c") or []) and (not one or base in (s.get("h") or []))]
 
 def log_notif(topic, title, body, click, fname):
     """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
@@ -458,7 +489,14 @@ def log_notif(topic, title, body, click, fname):
 def deliver(topic, title, body, click):
     """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
     if os_on():
-        send_os(os_filters(topic), title, body, click)
+        if subs_on():
+            ids = subs_for(topic)
+            if ids:
+                send_os(None, title, body, click, ids=ids)
+            else:
+                print("Nessun iscritto per il canale", topic)
+        else:
+            send_os(os_filters(topic), title, body, click)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_avvisi.json")
@@ -469,6 +507,7 @@ def notify_all(events):
     first = not os.path.exists(STATE)
     sent = set(load(STATE, []))
     todo = {}  # (url, topic) -> {kind: titolo}
+    added = {}  # topic -> chiavi nuove: se l'invio fallisce si tolgono, così si riprova al giro dopo
     for e in events:
         for topic, kind, title in candidates(e):
             key = "%s|%s|%s" % (e.get("url"), topic, kind)
@@ -476,6 +515,7 @@ def notify_all(events):
                 continue
             sent.add(key)
             if not first:
+                added.setdefault(topic, []).append(key)
                 todo.setdefault((e["url"], topic), {})[kind] = (title, e)
     by_topic = {}
     for (url, topic), kinds in todo.items():
@@ -495,6 +535,7 @@ def notify_all(events):
             print("Avvisi inviati su %s: %d" % (topic, len(items)))
         except Exception as ex:
             print("Avviso non inviato su %s: %s" % (topic, ex))
+            sent.difference_update(added.get(topic, []))
     urls = {e.get("url") for e in events}
     json.dump(sorted(k for k in sent if k.split("|")[0] in urls), open(STATE, "w", encoding="utf-8"))
 

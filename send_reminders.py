@@ -40,40 +40,8 @@ def eh(u):
         n = d[h % 36] + n; h //= 36
     return n or "0"
 
-def os_on():
-    return bool(os.environ.get("ONESIGNAL_APP_ID") and os.environ.get("ONESIGNAL_API_KEY"))
-
-def os_filters(topic):
-    """Filtri OneSignal: le scelte dell'utente (tag) impostate dall'ingranaggio del sito."""
-    if topic.startswith("t-"):
-        return [{"field": "tag", "key": "t_" + topic[2:], "relation": "=", "value": "1"}]
-    cat, one = (topic[:-3], True) if topic.endswith("-1h") else (topic, False)
-    val = "all" if cat == "money" else "33" if cat == "money33" else "1"
-    key = "c_money" if cat in ("money", "money33") else "c_" + cat
-    f = [{"field": "tag", "key": key, "relation": "=", "value": val}]
-    if one:
-        f.append({"field": "tag", "key": "h_" + ("money" if cat in ("money", "money33") else cat), "relation": "=", "value": "1"})
-    return f
-
-def send_os(filters, title, body, click):
-    data = {"app_id": os.environ["ONESIGNAL_APP_ID"], "target_channel": "push", "filters": filters,
-            "headings": {"en": title, "it": title}, "contents": {"en": body, "it": body}}
-    if click.startswith("http"):
-        data["url"] = click
-    site = os.environ.get("SITE_URL", "").rstrip("/")
-    if site.startswith("http"):  # logo accanto alla notifica
-        data["chrome_web_icon"] = site + "/icon-192.png"
-        data["chrome_web_badge"] = site + "/badge-96.png"
-    req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
-                                 headers={"Content-Type": "application/json", "Authorization": "Key " + os.environ["ONESIGNAL_API_KEY"]})
-    try:
-        r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
-    except urllib.error.HTTPError as ex:
-        raise RuntimeError("OneSignal HTTP %s: %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:300]))
-    print("OneSignal:", json.dumps(r)[:300])
-    if r.get("errors") and not r.get("id"):
-        print("ATTENZIONE: nessun destinatario (nessuno iscritto con questi tag):", r.get("errors"))
-    return r
+# l'invio con OneSignal (e l'archivio iscritti) è lo stesso di update_events.py
+from update_events import os_on, os_filters, send_os, subs_on, subs_for
 
 def log_notif(topic, title, body, click, fname):
     """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
@@ -91,7 +59,14 @@ def log_notif(topic, title, body, click, fname):
 def deliver(topic, title, body, click):
     """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
     if os_on():
-        send_os(os_filters(topic), title, body, click)
+        if subs_on():
+            ids = subs_for(topic)
+            if ids:
+                send_os(None, title, body, click, ids=ids)
+            else:
+                print("Nessun iscritto per il canale", topic)
+        else:
+            send_os(os_filters(topic), title, body, click)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_promemoria.json")
