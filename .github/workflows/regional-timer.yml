@@ -1,0 +1,35 @@
+name: Regionali - avviso 8 minuti prima
+on:
+  schedule:
+    # nessuna richiesta a RK9: legge solo il file con gli orari già annunciati e fa qualcosa solo se un'apertura è vicina
+    - cron: "3,19,34,48 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: regional-timer
+  cancel-in-progress: false
+jobs:
+  timer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u regional_watch.py timer
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - if: always()
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f regional_pre_state.json ] && git add regional_pre_state.json
+          [ -f notifiche_avvisi.json ] && git add notifiche_avvisi.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Regionali: avviso prima dell'apertura"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
+          exit 1

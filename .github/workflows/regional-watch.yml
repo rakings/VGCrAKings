@@ -1,0 +1,38 @@
+name: Regionali - controllo iscrizioni RK9
+on:
+  schedule:
+    # 4 letture al giorno (ora italiana estiva: 09:14, 12:52, 17:21, 21:43)
+    - cron: "14 7 * * *"
+    - cron: "52 10 * * *"
+    - cron: "21 15 * * *"
+    - cron: "43 19 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: regional-state
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u regional_watch.py check
+        env:
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
+          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - if: always()
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f regional_watch_state.json ] && git add regional_watch_state.json
+          [ -f notifiche_avvisi.json ] && git add notifiche_avvisi.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Regionali: iscrizioni RK9"
+          for i in 1 2 3; do git pull --rebase -X theirs && git push && exit 0; sleep 5; done
+          exit 1

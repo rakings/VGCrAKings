@@ -1,7 +1,23 @@
 name: Aggiorna tornei
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    # 15 aggiornamenti al giorno, volutamente irregolari: più radi di notte, più fitti a pranzo, nel pomeriggio e la sera
+    # (18:31-20:19 = iscrizioni dei Regionali italiani). Gli orari di GitHub sono in UTC: in inverno cadono un'ora prima.
+    - cron: "7 22 * * *"   # 00:07 ora italiana (estiva)
+    - cron: "34 0 * * *"   # 02:34 ora italiana (estiva)
+    - cron: "3 3 * * *"   # 05:03 ora italiana (estiva)
+    - cron: "19 5 * * *"   # 07:19 ora italiana (estiva)
+    - cron: "2 7 * * *"   # 09:02 ora italiana (estiva)
+    - cron: "41 8 * * *"   # 10:41 ora italiana (estiva)
+    - cron: "17 10 * * *"   # 12:17 ora italiana (estiva)
+    - cron: "26 11 * * *"   # 13:26 ora italiana (estiva)
+    - cron: "52 12 * * *"   # 14:52 ora italiana (estiva)
+    - cron: "18 14 * * *"   # 16:18 ora italiana (estiva)
+    - cron: "27 15 * * *"   # 17:27 ora italiana (estiva)
+    - cron: "31 16 * * *"   # 18:31 ora italiana (estiva)
+    - cron: "22 17 * * *"   # 19:22 ora italiana (estiva)
+    - cron: "19 18 * * *"   # 20:19 ora italiana (estiva)
+    - cron: "52 19 * * *"   # 21:52 ora italiana (estiva)
   workflow_dispatch:
 permissions:
   contents: write
@@ -9,6 +25,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      - name: Attesa casuale (da 0 a 4 minuti dopo l'orario programmato)
+        if: github.event_name == 'schedule'
+        run: sleep $((RANDOM % 240))
       - uses: actions/checkout@v4
       - run: python3 update_events.py
         env:
@@ -23,8 +42,9 @@ jobs:
         continue-on-error: true
         env:
           NEWS_BOT: ${{ vars.NEWS_BOT || '1' }}
-      - run: python3 notify_players.py
+      - run: python3 -u notify_players.py
         continue-on-error: true
+        timeout-minutes: 3
         env:
           NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
