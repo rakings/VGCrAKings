@@ -611,6 +611,11 @@ def main():
     except Exception:
         old = None
     notify_all(events)
+    if subs_on():  # controllo: quante iscrizioni ci sono nell'archivio (compare nel log, anche senza avvisi)
+        try:
+            subs_list()
+        except Exception as ex:
+            print("Archivio iscritti non letto:", ex)
     if not events or old == events:
         print("Nessuna novità")
         return
