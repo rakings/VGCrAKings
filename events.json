@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16T06:22:31+00:00",
+ "updated": "2026-10-16T07:57:00+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -167,36 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7c404245696afb3518eec/details"
   },
   {
-   "name": "Best of Three Thursday Practice Tourney 5",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-16",
-   "time": "01:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ad02d1a115c12b73a5a44cf/details"
-  },
-  {
-   "name": "5º Torneio Liga CWB Pokémon Champions",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-16",
-   "time": "01:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6ad0cab6115c12b73a5a4735/details"
-  },
-  {
    "name": "Road To Puebla #2",
    "org": "Ewokpadawan",
    "mode": "online",
@@ -227,6 +197,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aab46ea38886b36383c21d6/details"
   },
   {
+   "name": "RandBats Double elimination",
+   "org": "Mahir PokéVgc",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-16",
+   "time": "15:30",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ad1cc7c115c12b73a5a4fec/details"
+  },
+  {
    "name": "⛩️$30 VGC Champions Tournament Ep 33!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-10-16",
    "time": "17:00",
-   "players": 169,
+   "players": 170,
    "url": "https://play.limitlesstcg.com/tournament/6ac9235f8a8383117e3e7ca4/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-10-16",
    "time": "17:30",
-   "players": 42,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6acd3b3b8a8383117e3ea7b0/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": "Bo3",
    "date": "2026-10-16",
    "time": "18:25",
-   "players": 36,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6a9956a8ab080c8c957f8984/details"
   },
   {
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "00:00",
-   "players": 89,
+   "players": 90,
    "url": "https://play.limitlesstcg.com/tournament/6acdb7b7115c12b73a5a2cd5/details"
   },
   {
@@ -332,21 +317,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8469685920e4d25367464/details"
   },
   {
-   "name": "Pokemon Dominicana - Champions League #16",
-   "org": "Smilegazer League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "02:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ad0e8cf115c12b73a5a4818/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #6 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -360,6 +330,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
+  },
+  {
+   "name": "Pokemon Dominicana - Champions League #16",
+   "org": "Smilegazer League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "02:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ad0e8cf115c12b73a5a4818/details"
   },
   {
    "name": "Champions League VGC October (Prize: Shiny Gengar)",
@@ -437,21 +422,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab541d0e905c1db6874962f/details"
   },
   {
-   "name": "⛩️$20 VGC Champions Tournament Ep 34!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$2",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "18:00",
-   "players": 37,
-   "url": "https://play.limitlesstcg.com/tournament/6acee85f115c12b73a5a38b3/details"
-  },
-  {
    "name": "MetaVGC Arena #1 - Reg MC - Prizes: R$ 50 + Shinys",
    "org": "Oak Stadium",
    "mode": "online",
@@ -467,19 +437,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad0f6c68a8383117e3ec545/details"
   },
   {
-   "name": "Culture Cup #2 | Practice Tour",
-   "org": "iClan",
+   "name": "⛩️$20 VGC Champions Tournament Ep 34!⛩️",
+   "org": "Chadweezy95",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
-   "cash": null,
-   "prize": "",
+   "cash": true,
+   "prize": "$2",
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "19:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
+   "time": "18:00",
+   "players": 38,
+   "url": "https://play.limitlesstcg.com/tournament/6acee85f115c12b73a5a38b3/details"
   },
   {
    "name": "VGC Puzzles Practise round 2",
@@ -495,6 +465,21 @@
    "time": "19:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
+  },
+  {
+   "name": "Culture Cup #2 | Practice Tour",
+   "org": "iClan",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
   },
   {
    "name": "Women",
@@ -632,7 +617,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "13:30",
-   "players": 32,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ad0631c115c12b73a5a4614/details"
   },
   {
@@ -662,7 +647,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "15:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad116378a8383117e3ec722/details"
   },
   {
@@ -692,7 +677,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:30",
-   "players": 26,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
@@ -891,6 +876,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
+   "name": "Tenki",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-22",
+   "time": "17:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
+  },
+  {
    "name": "VGC Gemeinde Showdown #12",
    "org": "VGC Gemeinde",
    "mode": "online",
@@ -962,7 +962,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 13,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -981,21 +981,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7c967245696afb3518f1b/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -1009,6 +994,21 @@
    "time": "14:00",
    "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 25,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "VGC Indigo League #4 (Prize: Kyogre)",
