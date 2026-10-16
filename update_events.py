@@ -12,7 +12,7 @@ ROME = ZoneInfo("Europe/Rome")
 MESI = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 UA = "tornei-vgc-bot (sito della community, con link alle fonti)"
 
-def get(url, tries=3):
+def get(url, tries=3, timeout=30):
     """Legge una pagina. Riprova se c'è un errore temporaneo; 404 e 410 (pagina che non esiste) subito."""
     last = None
     for i in range(tries):
@@ -21,7 +21,7 @@ def get(url, tries=3):
         if key and url.startswith(API):
             req.add_header("X-Access-Key", key)
         try:
-            with urllib.request.urlopen(req, timeout=30) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return r.read().decode("utf-8", "replace")
         except urllib.error.HTTPError as e:
             if e.code in (400, 401, 403, 404, 410):  # errore definitivo: inutile riprovare
