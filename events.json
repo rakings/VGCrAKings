@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T20:06:30+00:00",
+ "updated": "2026-10-17T22:32:31+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acbf8838a8383117e3e9c5c/details"
   },
   {
-   "name": "Culture Cup #2 | Practice Tour",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "19:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
-  },
-  {
    "name": "VGC Puzzles Practise round 2",
    "org": "",
    "mode": "online",
@@ -242,7 +227,7 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
   },
   {
-   "name": "Outlanders Battle Night #10",
+   "name": "Culture Cup #2 | Practice Tour",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -252,24 +237,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "15:00",
+   "time": "19:00",
    "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ad0352f115c12b73a5a44f9/details"
-  },
-  {
-   "name": "Øutcasts' Saturday Night #2 [1st: Shiny Garchomp]",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "15:00",
-   "players": 31,
-   "url": "https://play.limitlesstcg.com/tournament/6aca656a8a8383117e3e8d3c/details"
+   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
   },
   {
    "name": "Thavorian Trials 11",
@@ -315,21 +285,6 @@
    "time": "18:00",
    "players": 135,
    "url": "https://play.limitlesstcg.com/tournament/6acee85f115c12b73a5a38b3/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #06",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "16:00",
-   "players": 68,
-   "url": "https://play.limitlesstcg.com/tournament/6ab541d0e905c1db6874962f/details"
   },
   {
    "name": "Champions League VGC October (Prize: Shiny Gengar)",
@@ -408,7 +363,15 @@
    "end": "2026-10-18",
    "time": null,
    "where": "Nizza, Francia",
-   "url": "https://victoryroad.pro/2027-nice/"
+   "url": "https://victoryroad.pro/2027-nice/",
+   "signup": "https://rk9.gg/tournament/NC002-zBMwK69ABS7RRV",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior €40, Senior €40, Master €70",
+   "startAt": "2026-10-17T06:30:00Z",
+   "tz": "Europe/Paris",
+   "juniorAt": "2026-10-17T07:00:00Z",
+   "seniorAt": "2026-10-17T07:00:00Z"
   },
   {
    "name": "OTS Pokemon VGC Arena #2",
@@ -437,7 +400,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "03:00",
-   "players": 17,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6acd02ff8a8383117e3ea37e/details"
   },
   {
@@ -452,7 +415,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "11:00",
-   "players": 23,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6aca05d9115c12b73a5a0635/details"
   },
   {
@@ -512,7 +475,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
   },
   {
@@ -527,7 +490,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:30",
-   "players": 37,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
@@ -587,7 +550,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "16:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
   },
   {
@@ -632,7 +595,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -692,7 +655,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -752,7 +715,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -887,7 +850,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 59,
+   "players": 61,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -902,7 +865,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -947,7 +910,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 30,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -962,7 +925,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -977,7 +940,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
@@ -1043,7 +1006,13 @@
    "signup": "https://rk9.gg/tournament/PB002-r871Zfmc4WQbIO",
    "signupLabel": "Iscriviti su RK9",
    "regClose": "2026-10-21",
-   "price": "Junior MX$800, Senior MX$800, Master MX$1,300"
+   "price": "Junior MX$800, Senior MX$800, Master MX$1,300",
+   "regCloseAt": "2026-10-22T05:59:00Z",
+   "tz": "America/Mexico_City",
+   "listAt": "2026-10-24T13:30:00Z",
+   "startAt": "2026-10-24T14:30:00Z",
+   "juniorAt": "2026-10-24T15:00:00Z",
+   "seniorAt": "2026-10-24T15:00:00Z"
   },
   {
    "name": "🎃 Alpenspooktober 🎃",
@@ -1089,6 +1058,21 @@
    "time": "16:00",
    "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
+  },
+  {
+   "name": "Women",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "20:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
@@ -1274,21 +1258,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
-   "name": "VGC Indigo League #5 (Prize: Shiny Metagross)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "14:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
-  },
-  {
    "name": "Gdańsk Regional Championships",
    "org": "",
    "mode": "regional",
@@ -1302,7 +1271,15 @@
    "end": "2026-11-01",
    "time": null,
    "where": "Danzica, Polonia",
-   "url": "https://victoryroad.pro/2027-gdansk/"
+   "url": "https://victoryroad.pro/2027-gdansk/",
+   "signup": "https://rk9.gg/tournament/GD02yFCaTDuKwnIR9IKd",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior €40, Senior €40, Master €70",
+   "startAt": "2025-11-01T07:30:00Z",
+   "tz": "Europe/Warsaw",
+   "juniorAt": "2025-11-01T08:00:00Z",
+   "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
    "name": "Caramelo Raro- De pago",
@@ -1380,21 +1357,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
   },
   {
-   "name": "VGC Indigo League #6 (Prize: Eternal Floette)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "11:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
-  },
-  {
    "name": "Underground Champions [$100 Tournament]",
    "org": "The Underground",
    "mode": "online",
@@ -1406,7 +1368,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1560,7 +1522,15 @@
    "end": "2026-11-29",
    "time": null,
    "where": "Stoccarda, Germania",
-   "url": "https://serebii.net/playpokemon/2027/stuttgartregionalchampionships.shtml"
+   "url": "https://serebii.net/playpokemon/2027/stuttgartregionalchampionships.shtml",
+   "signup": "https://rk9.gg/tournament/SG02gVKM38QMVGTcAiZN",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior €40, Senior €40, Master €70",
+   "startAt": "2025-11-29T07:30:00Z",
+   "tz": "Europe/Berlin",
+   "juniorAt": "2025-11-29T08:00:00Z",
+   "seniorAt": "2025-11-29T08:00:00Z"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -1621,7 +1591,16 @@
    "end": "2026-12-06",
    "time": null,
    "where": "Las Vegas, Stati Uniti",
-   "url": "https://serebii.net/playpokemon/2027/lasvegasregionalchampionships.shtml"
+   "url": "https://serebii.net/playpokemon/2027/lasvegasregionalchampionships.shtml",
+   "opensAt": "2026-10-08T02:00:00Z",
+   "signup": "https://rk9.gg/tournament/LV02kSgge3zYTKAwlomv",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior $40, Senior $40, Master $80",
+   "startAt": "2025-11-15T16:30:00Z",
+   "tz": "America/Los_Angeles",
+   "juniorAt": "2025-11-15T17:00:00Z",
+   "seniorAt": "2025-11-15T17:00:00Z"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -1833,7 +1812,15 @@
    "end": "2027-01-17",
    "time": null,
    "where": "Sydney, Australia",
-   "url": "https://serebii.net/playpokemon/2027/sydneyregionalchampionships.shtml"
+   "url": "https://serebii.net/playpokemon/2027/sydneyregionalchampionships.shtml",
+   "signup": "https://rk9.gg/tournament/SY02sMDp6JmCcnCynSLn",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior A$40, Senior A$40, Master A$50",
+   "startAt": "2026-02-06T21:30:00Z",
+   "tz": "Australia/Sydney",
+   "juniorAt": "2026-02-06T22:00:00Z",
+   "seniorAt": "2026-02-06T22:00:00Z"
   },
   {
    "name": "REG. |👑CROWN FIGHT Bo3 TOUR #97👑",
