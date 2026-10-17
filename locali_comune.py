@@ -93,6 +93,7 @@ def ordina(d):
     d["locali"].sort(key=lambda v: (v.get("iso", ""), v.get("id", 0)), reverse=True)
 
 
+RE_FORMA = re.compile(r"^(Alola|Alolan|Galar|Galarian|Hisui|Hisuian|Paldea|Paldean|Eternal|Therian|Incarnate|Wash|Heat|Frost|Fan|Mow|Origin|Altered|Sky|Land|Rapid[ -]Strike|Single[ -]Strike|Dusk|Dawn|Midday|Midnight|Ice|Shadow|Hearthflame|Wellspring|Cornerstone|Teal|Terastal|Stellar|Bloodmoon|Zero|Hero|Blade|Shield|Crowned|Hangry|Full Belly|Male|Female|Combat|Blaze|Aqua|Low Key|Amped|Complete|Black|White|Resolute|Ordinary|Primal|Mega|Mega X|Mega Y)$", re.I)
 RE_SHOWDOWN = re.compile(r"(^|\n)\s*(Ability:|-\s)|\s@\s|\bNature\b", re.I)
 
 
@@ -115,7 +116,7 @@ def parse_team(testo):
             nm, it = h[:k], h[k + 3:]
         nm = re.sub(r"\s*\((M|F)\)\s*$", "", nm)
         pm = re.search(r"\(([^)]+)\)\s*$", nm)
-        if pm:
+        if pm and not RE_FORMA.match(pm.group(1).strip()):   # "Floette (Eternal)" è una forma, "Rilla (Rillaboom)" un soprannome
             nm = pm.group(1)
         a = nt = ""
         mv = []

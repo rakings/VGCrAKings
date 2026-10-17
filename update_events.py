@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Raccoglie i tornei VGC da Limitless e da Victory Road e salva events.json.
 Usa solo la libreria standard. Gli eventi di manual.json hanno la precedenza."""
-import html, json, os, re, time, urllib.parse, urllib.request, urllib.error
+import html, json, os, re, time, unicodedata, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -331,9 +331,68 @@ def plain(page):
     t = re.sub(r"<(script|style).*?</\1>", " ", page, flags=re.S | re.I)
     return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", t)).replace("\xa0", " "))
 
-def rk9_info(e):
-    """Legge scadenza e costo dell'iscrizione dalla pagina RK9, se il Regionale ha un link."""
+# Orari scritti da RK9 come "Tournament start  October 17, 2026  08:30 CEST (Europe/Paris)": si converte tutto in UTC
+# usando il fuso IANA tra parentesi, così il sito può mostrarli in ora italiana senza errori di fuso.
+RK9_WHEN = r"%s\W{0,6}([A-Za-z]+)\.? (\d{1,2}),? (\d{4})\W{0,8}(\d{1,2}):(\d{2})\s*([ap]m)?\W{0,6}(?:[A-Z]{2,5}\W{0,6})?\(([A-Za-z_]+/[A-Za-z_]+(?:/[A-Za-z_]+)?)\)"
+RK9_CAMPI = (("regCloseAt", "Registration closes"), ("listAt", "List submission closes"), ("startAt", "Tournament start"),
+             ("juniorAt", "Junior division:"), ("seniorAt", "Senior division:"), ("opensAt", "Registration opens"))
+RK9_TENUTI = ("signup", "signupLabel", "signupAuto", "regClose", "price", "regCloseAt", "listAt", "startAt", "juniorAt", "seniorAt", "opensAt", "tz")
+
+def rk9_when(text, label):
+    """Dà ('2026-10-17T06:30:00Z', 'Europe/Paris') oppure None."""
+    m = re.search(RK9_WHEN % label, text, re.I)
+    if not m:
+        return None
+    mon = [k for k, x in enumerate(MESI_EN) if x[:3] == m[1][:3].lower()]
+    if not mon:
+        return None
+    h, mi = int(m[4]), int(m[5])
+    if m[6]:
+        h = h % 12 + (12 if m[6].lower() == "pm" else 0)
+    try:
+        loc = datetime(int(m[3]), mon[0] + 1, int(m[2]), h, mi, tzinfo=ZoneInfo(m[7]))
+    except Exception:
+        return None
+    return loc.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), m[7]
+
+def slug_nome(s):
+    return re.sub(r"[^a-z0-9]+", "-", unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower()).strip("-")
+
+def rk9_watch(e):
+    """Dal file del bot Regionali (nessuna richiesta): link della pagina evento RK9 e, se annunciata, l'apertura delle iscrizioni."""
+    link, opens = "", None
+    try:
+        st = load("regional_watch_state.json", {}).get("ev", {})
+    except Exception:
+        return ""
+    k = slug_nome(e.get("name"))
+    for v in st.values():
+        if slug_nome(v.get("name")) != k:
+            continue
+        if "/event/" in (v.get("link") or ""):
+            link = v["link"]
+        if v.get("opens"):
+            opens = v["opens"]
+    if opens and not e.get("opensAt"):
+        try:
+            e["opensAt"] = datetime.fromisoformat(opens).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        except ValueError:
+            pass
+    return link
+
+def rk9_vgc_link(event_url):
+    """Nella pagina evento RK9 c'è un blocco per ogni gioco (TCG, VGC, Pokémon GO): si prende il link del VGC."""
+    page = get(event_url)
+    m = re.search(r"""(?is)VGC[^<]{0,80}</h\d>.{0,600}?href=["'](?:https?://(?:www\.)?rk9\.gg)?(/tournament/[A-Za-z0-9_-]+)""", page)
+    return "https://rk9.gg" + m.group(1) if m else ""
+
+def rk9_info(e, event_link=""):
+    """Legge dalla pagina di iscrizione RK9 scadenze, orari di inizio e costo."""
     s = e.get("signup") or ""
+    if "rk9.gg/tournament/" not in s and event_link:
+        s = rk9_vgc_link(event_link)
+        if s:
+            e["signup"], e["signupLabel"], e["signupAuto"] = s, "Iscriviti su RK9", True
     if "rk9.gg/tournament/" not in s:
         return
     text = plain(get(s))
@@ -344,12 +403,22 @@ def rk9_info(e):
     if prezzi:
         nomi = {"Junior": "Junior", "Senior": "Senior", "Masters": "Master"}
         e["price"] = ", ".join("%s %s" % (nomi[k], v.replace(".00", "")) for k, v in prezzi)
+    for campo, label in RK9_CAMPI:
+        w = rk9_when(text, label)
+        if w:
+            e[campo] = w[0]
+            e["tz"] = w[1]
 
 def regionali():
     out = json.load(open("regionali.json", encoding="utf-8"))
+    oggi = datetime.now(ROME).date()
+    orizzonte = (oggi + timedelta(days=90)).isoformat()
     for e in out:
         try:
-            rk9_info(e)
+            link = rk9_watch(e)
+            # solo gli eventi in corso o dei prossimi 90 giorni: gli altri non hanno ancora una pagina utile
+            if (e.get("end") or e.get("date") or "") >= oggi.isoformat() and (e.get("date") or "") <= orizzonte:
+                rk9_info(e, link)
         except Exception as ex:
             print("Iscrizione non letta per %s: %s" % (e["name"], ex))
     return out
@@ -383,7 +452,9 @@ def candidates(e):
         out.append(("gc", "new", "Global Challenge"))
     if e.get("mode") == "regional":
         out.append(("regionali", "new", "Regionali: nuovo evento"))
-        if e.get("signup") or e.get("regClose"):
+        # il link trovato in automatico non fa partire l'avviso "iscrizioni aperte" (lo danno già il bot Regionali e l'annuncio):
+        # altrimenti al primo giro arriverebbero avvisi vecchi su tutti i Regionali già aperti
+        if (e.get("signup") or e.get("regClose")) and not e.get("signupAuto"):
             out.append(("regionali", "open", "Regionali: iscrizioni aperte"))
         dd = days_to(e["regClose"]) if e.get("regClose") else None
         if dd is not None and 0 <= dd <= 3:
@@ -595,7 +666,7 @@ def main():
     for e in by.values():
         o = pmap.get(e.get("url"))
         if o and e.get("mode") == "regional":
-            for k in ("regClose", "price"):
+            for k in RK9_TENUTI:
                 if k not in e and k in o:
                     e[k] = o[k]
     try:  # eventi a mano: hanno la precedenza
