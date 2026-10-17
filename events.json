@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T18:50:18+00:00",
+ "updated": "2026-10-17T20:06:30+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,7 +197,7 @@
    "url": "https://play.limitlesstcg.com/tournament/6acef1498a8383117e3eb80d/details"
   },
   {
-   "name": "Øutcasts' Saturday Night #2 [1st: Shiny Garchomp]",
+   "name": "Women's League VGC #18",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -207,9 +207,39 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "15:00",
-   "players": 31,
-   "url": "https://play.limitlesstcg.com/tournament/6aca656a8a8383117e3e8d3c/details"
+   "time": "21:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6acbf8838a8383117e3e9c5c/details"
+  },
+  {
+   "name": "Culture Cup #2 | Practice Tour",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "19:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
+  },
+  {
+   "name": "VGC Puzzles Practise round 2",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "19:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
   },
   {
    "name": "Outlanders Battle Night #10",
@@ -227,7 +257,7 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad0352f115c12b73a5a44f9/details"
   },
   {
-   "name": "VGC Indigo League #3 (Prize: Shiny Rayquaza)",
+   "name": "Øutcasts' Saturday Night #2 [1st: Shiny Garchomp]",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -237,13 +267,13 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "14:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6ab69a66783097f8dcb70575/details"
+   "time": "15:00",
+   "players": 31,
+   "url": "https://play.limitlesstcg.com/tournament/6aca656a8a8383117e3e8d3c/details"
   },
   {
-   "name": "Culture Cup #2 | Practice Tour",
-   "org": "iClan",
+   "name": "Thavorian Trials 11",
+   "org": "Thavorian Skies",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -252,24 +282,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "19:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
-  },
-  {
-   "name": "VGC Puzzles Practise round 2",
-   "org": "VGC Puzzles Official",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "19:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
+   "time": "22:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6acd64518a8383117e3ea99c/details"
   },
   {
    "name": "MetaVGC Arena #1 - Reg MC - Prizes: R$ 50 + Shinys",
@@ -362,36 +377,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
-   "name": "Women",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "21:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6acbf8838a8383117e3e9c5c/details"
-  },
-  {
-   "name": "Thavorian Trials 11",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "22:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6acd64518a8383117e3ea99c/details"
-  },
-  {
    "name": "VR October Challenge #3",
    "org": "Victory Road",
    "mode": "online",
@@ -452,7 +437,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "03:00",
-   "players": 14,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6acd02ff8a8383117e3ea37e/details"
   },
   {
@@ -467,7 +452,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "11:00",
-   "players": 20,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6aca05d9115c12b73a5a0635/details"
   },
   {
@@ -527,7 +512,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
   },
   {
@@ -546,21 +531,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
-   "name": "Xperience Play — MH Expo Pokemon Champions $500#1",
-   "org": "Xperience Play",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "19:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
-  },
-  {
    "name": "IanVGC In House Tournament",
    "org": "IanVGC",
    "mode": "online",
@@ -574,6 +544,21 @@
    "time": "19:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ad114fe8a8383117e3ec71c/details"
+  },
+  {
+   "name": "Xperience Play — MH Expo Pokemon Champions $500#1",
+   "org": "Xperience Play",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "19:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
   },
   {
    "name": "Chaos League Sunday Slam #117",
@@ -647,7 +632,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -752,7 +737,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -812,7 +797,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -962,7 +947,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
