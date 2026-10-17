@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T13:21:32+00:00",
+ "updated": "2026-10-17T14:47:47+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,6 +197,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6acef1498a8383117e3eb80d/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #06",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "16:00",
+   "players": 68,
+   "url": "https://play.limitlesstcg.com/tournament/6ab541d0e905c1db6874962f/details"
+  },
+  {
    "name": "Outlanders Battle Night #10",
    "org": "Outlanders Trainers' Camp",
    "mode": "online",
@@ -287,21 +302,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad0e8cf115c12b73a5a4818/details"
   },
   {
-   "name": "ValkrixVGC Pokemon Champions League #06",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "16:00",
-   "players": 68,
-   "url": "https://play.limitlesstcg.com/tournament/6ab541d0e905c1db6874962f/details"
-  },
-  {
    "name": "⛩️$20 VGC Champions Tournament Ep 34!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "18:00",
-   "players": 103,
+   "players": 115,
    "url": "https://play.limitlesstcg.com/tournament/6acee85f115c12b73a5a38b3/details"
   },
   {
@@ -328,23 +328,8 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "18:00",
-   "players": 74,
+   "players": 78,
    "url": "https://play.limitlesstcg.com/tournament/6ad0f6c68a8383117e3ec545/details"
-  },
-  {
-   "name": "VGC Puzzles Practise round 2",
-   "org": "VGC Puzzles Official",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
-   "time": "19:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
   },
   {
    "name": "Culture Cup #2 | Practice Tour",
@@ -360,6 +345,21 @@
    "time": "19:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6acd4514115c12b73a5a2699/details"
+  },
+  {
+   "name": "VGC Puzzles Practise round 2",
+   "org": "VGC Puzzles Official",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-17",
+   "time": "19:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ab3ee02f127b1b52c280675/details"
   },
   {
    "name": "Women",
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-17",
    "time": "22:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6acd64518a8383117e3ea99c/details"
   },
   {
@@ -497,7 +497,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "15:00",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac121bf85920e4d25362ebb/details"
   },
   {
@@ -542,7 +542,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:30",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
@@ -587,7 +587,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "23:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6acfe5ff8a8383117e3ebdde/details"
   },
   {
@@ -647,7 +647,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -662,7 +662,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "00:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
   },
   {
@@ -707,7 +707,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -767,7 +767,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -887,7 +887,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 49,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -936,21 +936,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
-   "name": "VGC Indigo League #4 (Prize: Kyogre)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -964,6 +949,21 @@
    "time": "14:00",
    "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "VGC Indigo League #4 (Prize: Kyogre)",
+   "org": "Champions International",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
    "name": "🏆|CORONATION CHAMPIONSHIP SEASON 2 FINAL",
