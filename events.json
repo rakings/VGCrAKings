@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T20:07:46+00:00",
+ "updated": "2026-10-18T22:33:42+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,46 +182,34 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
-   "name": "VR October Challenge #3",
-   "org": "Victory Road",
+   "name": "Xperience Play — MH Expo Pokemon Champions $500#1",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
-   "fee": 11.5,
-   "cur": "$",
-   "feeNote": "+ tassa Battlefy",
-   "cash": true,
-   "prize": "montepremi",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-17",
-   "end": "2026-10-18",
-   "time": null,
-   "url": "https://victoryroad.pro/vr-oct26-3/",
-   "signup": "https://battlefy.com/victoryroad/victory-road-october-challenge-3/6acd034d403a120019b8d6fc/info?infoTab=details"
-  },
-  {
-   "name": "Nice Regional Championships",
-   "org": "",
-   "mode": "regional",
-   "type": "Regionale",
    "fee": null,
    "cash": true,
-   "prize": "in base alle presenze",
-   "reg": "M-C",
+   "prize": "$5",
+   "reg": null,
    "bo": null,
-   "date": "2026-10-17",
-   "end": "2026-10-18",
-   "time": null,
-   "where": "Nizza, Francia",
-   "url": "https://victoryroad.pro/2027-nice/",
-   "signup": "https://rk9.gg/tournament/NC002-zBMwK69ABS7RRV",
-   "signupLabel": "Iscriviti su RK9",
-   "signupAuto": true,
-   "price": "Junior €40, Senior €40, Master €70",
-   "startAt": "2026-10-17T06:30:00Z",
-   "tz": "Europe/Paris",
-   "juniorAt": "2026-10-17T07:00:00Z",
-   "seniorAt": "2026-10-17T07:00:00Z"
+   "date": "2026-10-18",
+   "time": "19:00",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
+  },
+  {
+   "name": "Mudkip's Marsh Pit #7",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "17:30",
+   "players": 43,
+   "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
    "name": "Neko Gaming Store VGC #2",
@@ -239,68 +227,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
   },
   {
-   "name": "Sunday Showdown #3",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "15:30",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6ad116378a8383117e3ec722/details"
-  },
-  {
-   "name": "✨👑 King's Gambit #11 | Reg M-C 👑✨",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "15:00",
-   "players": 45,
-   "url": "https://play.limitlesstcg.com/tournament/6ac121bf85920e4d25362ebb/details"
-  },
-  {
-   "name": "Xperience Play — MH Expo Pokemon Champions $500#1",
-   "org": "Xperience Play",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "19:00",
-   "players": 40,
-   "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
-  },
-  {
-   "name": "Mudkip",
-   "org": "Mudkip's Marsh Pit",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "17:30",
-   "players": 49,
-   "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
-  },
-  {
    "name": "VGC Trainer School; champions M/C #5",
-   "org": "VGC Trainers School",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -310,7 +238,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 61,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
   },
   {
@@ -329,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acfe5ff8a8383117e3ebdde/details"
   },
   {
-   "name": "Shadow Sneak Showdown-Shiny Gengar Prize",
-   "org": "Mahir PokéVgc",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "16:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
-  },
-  {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
    "org": "Sketch Academy",
    "mode": "online",
@@ -355,23 +268,8 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "03:00",
-   "players": 17,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
-  },
-  {
-   "name": "The Drywall Series #24",
-   "org": "The Drywalls Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "12:30",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
   },
   {
    "name": "VGC Reg M-C Ingame Tour #9 (Shiny Gyarados)",
@@ -385,7 +283,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "17:00",
-   "players": 8,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
@@ -404,6 +302,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
+   "name": "The Drywall Series #24",
+   "org": "The Drywalls Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "12:30",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny Pawmot",
    "org": "RookideeVGC",
    "mode": "online",
@@ -415,7 +328,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
   },
   {
@@ -430,7 +343,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "01:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ace5fde8a8383117e3eb117/details"
   },
   {
@@ -505,7 +418,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -670,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -719,21 +632,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -745,8 +643,23 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 47,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
@@ -1340,7 +1253,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
