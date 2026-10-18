@@ -6,8 +6,10 @@ MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", 
 RETENTION_GIORNI = 142         # 4 mesi e 22 giorni
 AUTORE_BOT = "github-actions[bot]"
 ETICHETTE = (("locali-da-approvare", "fbca04"), ("approvato", "0e8a16"),
-             ("rifiutato", "d93f0b"), ("rimosso", "b60205"))
+             ("rifiutato", "d93f0b"), ("rimosso", "b60205"), ("annuncio-da-approvare", "1d76db"))
 LOCALI = "locali.json"
+ANNUNCI = "annunci.json"
+ANNUNCI_GIORNI = 30            # un annuncio approvato resta online 30 giorni
 STATO = "locali_state.json"
 
 
@@ -81,6 +83,28 @@ def _chiama(url, method, data, token):
     with urllib.request.urlopen(req, timeout=30) as r:
         raw = r.read().decode("utf-8")
     return json.loads(raw) if raw else {}
+
+
+def carica_annunci(path=ANNUNCI):
+    """Come carica_locali: se il file è rovinato ci si ferma senza toccarlo."""
+    if not os.path.exists(path):
+        return {"annunci": []}
+    try:
+        d = json.load(open(path, encoding="utf-8"))
+        if not isinstance(d, dict) or not isinstance(d.get("annunci"), list):
+            raise ValueError("manca la lista \"annunci\"")
+        return d
+    except Exception as ex:
+        raise RuntimeError("annunci.json non è valido (%s): non lo modifico. Correggilo o ripristinalo e riprova." % ex)
+
+
+def salva_annunci(d, path=ANNUNCI):
+    d["annunci"].sort(key=lambda v: v.get("pub", ""), reverse=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(d, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    os.replace(tmp, path)
 
 
 def gh(method, path, data=None):

@@ -503,7 +503,7 @@ def send_os(filters, title, body, click, ids=None):
     if site.startswith("http"):  # logo accanto alla notifica
         base["chrome_web_icon"] = site + "/icon-192.png"
         base["chrome_web_badge"] = site + "/badge-96.png"
-    batches = [dict(base, filters=filters)] if ids is None else [dict(base, include_subscription_ids=ids[k:k + 2000]) for k in range(0, len(ids), 2000)]
+    batches = [dict(base, included_segments=["Subscribed Users"]) if filters == "TUTTI" else dict(base, filters=filters)] if ids is None else [dict(base, include_subscription_ids=ids[k:k + 2000]) for k in range(0, len(ids), 2000)]
     r = {}
     for data in batches:
         req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
@@ -571,6 +571,21 @@ def deliver(topic, title, body, click):
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_avvisi.json")
+
+def deliver_tutti(title, body, click):
+    """Avviso OBBLIGATORIO (annunci del sito): arriva a tutti gli iscritti, qualunque spunta abbiano scelto."""
+    if os_on():
+        if subs_on():
+            ids = [s["id"] for s in subs_list() if s.get("id")]
+            if ids:
+                send_os(None, title, body, click, ids=ids)
+            else:
+                print("Nessun iscritto a cui mandare l'annuncio")
+        else:
+            send_os("TUTTI", title, body, click)
+    else:
+        say(os.environ.get("NTFY_PREFIX", "") + "-annunci", title, body, click)
+    log_notif("annunci", title, body, click, "notifiche_avvisi.json")
 
 def notify_all(events):
     if not (os.environ.get("NTFY_PREFIX") or os_on()) or not events:
