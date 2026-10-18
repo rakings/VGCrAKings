@@ -1,6 +1,12 @@
 {
  "annunci": [
   {
+   "id": 6,
+   "t": "prova link e tendina",
+   "d": "Link e tendina prova",
+   "pub": "2026-10-18T19:28:13Z"
+  },
+  {
    "id": 4,
    "t": "il primo annuncio prova",
    "d": "Annuncio prova di VGCrAKings",
