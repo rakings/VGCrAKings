@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T11:49:32+00:00",
+ "updated": "2026-10-18T13:22:16+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -137,21 +137,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac451ec245696afb35174a1/details"
   },
   {
-   "name": "Rising Stars - S5 (Double Battle)",
-   "org": "BoTS PTCG Pocket",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-12",
-   "time": "08:30",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6aaa8d7e38886b36383c179a/details"
-  },
-  {
    "name": "🧊 Glacial Shadows • Interno #2 🧊",
    "org": "TEAM GALAR",
    "mode": "online",
@@ -269,6 +254,21 @@
    "seniorAt": "2026-10-17T07:00:00Z"
   },
   {
+   "name": "King",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "15:00",
+   "players": 33,
+   "url": "https://play.limitlesstcg.com/tournament/6ac121bf85920e4d25362ebb/details"
+  },
+  {
    "name": "Monotype Mayhem ( by bakaiti villa )",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -299,21 +299,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca05d9115c12b73a5a0635/details"
   },
   {
-   "name": "King",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "15:00",
-   "players": 33,
-   "url": "https://play.limitlesstcg.com/tournament/6ac121bf85920e4d25362ebb/details"
-  },
-  {
    "name": "Sunday Showdown #3",
    "org": "BoTS PTCG Pocket",
    "mode": "online",
@@ -325,23 +310,8 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "15:30",
-   "players": 25,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad116378a8383117e3ec722/details"
-  },
-  {
-   "name": "Neko Gaming Store VGC #2",
-   "org": "Fiery Sparks",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "17:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
   },
   {
    "name": "VGC Trainer School; champions M/C #5",
@@ -355,8 +325,23 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 31,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
+  },
+  {
+   "name": "Neko Gaming Store VGC #2",
+   "org": "Fiery Sparks",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "17:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
   },
   {
    "name": "Mudkip",
@@ -370,7 +355,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:30",
-   "players": 44,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
@@ -385,7 +370,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "19:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
   },
   {
@@ -400,7 +385,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "23:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6acfe5ff8a8383117e3ebdde/details"
   },
   {
@@ -415,7 +400,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "16:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
   },
   {
@@ -432,6 +417,21 @@
    "time": "03:00",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
+  },
+  {
+   "name": "The Drywall Series #24",
+   "org": "The Drywalls Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "12:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
   },
   {
    "name": "VGC Reg M-C Ingame Tour #9 (Shiny Gyarados)",
@@ -460,7 +460,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -505,7 +505,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -580,7 +580,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -610,7 +610,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -730,7 +730,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -790,7 +790,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 35,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -936,7 +936,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 13,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
@@ -1101,7 +1101,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
