@@ -20,15 +20,16 @@ def main():
         log("Nessuna novità da notificare.")
         return 0
     import update_events as ue  # stesso invio delle altre notifiche (OneSignal o ntfy)
-    sito = os.environ.get("SITE_URL", "")
+    sito = os.environ.get("SITE_URL", "").rstrip("/")
     for v in sorted(nuovi, key=lambda x: x["pub"]):
-        ue.deliver("locali8", "Nuova top 8: %s" % v["s"], "%s · %s · %s" % (v["t"], v["c"], v["d"]), sito)
+        ue.deliver("locali8", "Nuova top 8: %s" % v["s"], "%s · %s · %s" % (v["t"], v["c"], v["d"]), sito + "/#locali")
         stato["notificati"].append(v["id"])
         salva_stato(stato)
         log("Notifica inviata per il report %s." % v["id"])
     for v in sorted(ann, key=lambda x: x["pub"]):
         testo = (v.get("d") or "").replace("\n", " ").strip()
-        ue.deliver_tutti("Annuncio: %s" % v["t"], (testo[:140] + "…") if len(testo) > 140 else testo or "Apri il sito per i dettagli.", sito)
+        ue.deliver_tutti("Annuncio: %s" % v["t"], (testo[:140] + "…") if len(testo) > 140 else testo or "Apri il sito per i dettagli.",
+                       "%s/#annuncio-%s" % (sito, v["id"]))
         stato["notificati"].append(v["id"])
         salva_stato(stato)
         log("Notifica a tutti inviata per l'annuncio %s." % v["id"])

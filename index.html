@@ -733,9 +733,19 @@ function annVisti(){try{return JSON.parse(localStorage.getItem(ANNS)||"[]")||[]}
 /* il pallino sul tasto Info compare solo per gli annunci degli ultimi 14 giorni che non hai ancora aperto */
 function annNuovi(){var v=annVisti(),lim=new Date(Date.now()-14*864e5).toISOString();return annAttivi().some(function(a){return v.indexOf(a.id)<0&&String(a.pub||"")>=lim})}
 function annSeen(){var v=annVisti(),n=false;annAttivi().forEach(function(a){if(v.indexOf(a.id)<0){v.push(a.id);n=true}});if(n)try{localStorage.setItem(ANNS,JSON.stringify(v.slice(-200)))}catch(e){}}
-function annHtml(){var l=annAttivi(),m=ANNALL?l:l.slice(0,ANNMAX);return m.map(function(a){return '<li class="nw inf"><details><summary>'+(a.pin?'<span class="tag t-coin">\uD83D\uDCCC In evidenza</span> ':'')+'<span class="tag t-reg">Annuncio</span>'+(a.pub?' <span class="tag t-none">'+esc(fmt(String(a.pub).slice(0,10)))+'</span>':'')+'<br><b>'+esc(a.t)+'</b></summary>'+(/^img\/annunci\/\d+\.jpg$/.test(a.img||"")?'<img class="annimg" src="'+esc(a.img)+'" alt="" loading="lazy">':'')+(a.d?'<p class="meta" style="white-space:pre-line">'+esc(a.d)+'</p>':'')+'</details></li>'}).join("")+(l.length>m.length?'<li class="nw inf"><button class="btn" type="button" data-annall="1">Mostra tutti gli annunci ('+l.length+')</button></li>':"")}
+function annHtml(){var l=annAttivi(),m=ANNALL?l:l.slice(0,ANNMAX);return m.map(function(a){return '<li class="nw inf" data-aid="'+esc(a.id)+'"><details><summary>'+(a.pin?'<span class="tag t-coin">\uD83D\uDCCC In evidenza</span> ':'')+'<span class="tag t-reg">Annuncio</span>'+(a.pub?' <span class="tag t-none">'+esc(fmt(String(a.pub).slice(0,10)))+'</span>':'')+'<br><b>'+esc(a.t)+'</b></summary>'+(/^img\/annunci\/\d+\.jpg$/.test(a.img||"")?'<img class="annimg" src="'+esc(a.img)+'" alt="" loading="lazy">':'')+(a.d?'<p class="meta" style="white-space:pre-line">'+esc(a.d)+'</p>':'')+'</details></li>'}).join("")+(l.length>m.length?'<li class="nw inf"><button class="btn" type="button" data-annall="1">Mostra tutti gli annunci ('+l.length+')</button></li>':"")}
 document.addEventListener("click",function(ev){var x=ev.target&&ev.target.closest?ev.target.closest("[data-annall]"):null;if(!x)return;ANNALL=true;render()});
-fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){ANN=(d&&Array.isArray(d.annunci))?d.annunci:[];render()}).catch(function(){});
+fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){ANN=(d&&Array.isArray(d.annunci))?d.annunci:[];render();annApri()}).catch(function(){});
+/* Link dalle notifiche: #annuncio-ID apre Info con quella tendina aperta; #locali apre la sezione Locali */
+var ANNGO=null;
+function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/);
+if(m){ANNGO=+m[1];annSeen();NV="info"}else if(h==="#locali"){NV="loc";try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}else return;
+var bt=document.querySelector('#f-mode button[data-v="news"]');if(bt)bt.click();else{st.mode="news";render()}
+window.scrollTo(0,0);annApri()}
+function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
+if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
+if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length)ANNGO=null}
+window.addEventListener("hashchange",annGo);annGo();
 </script>
 <script>if("serviceWorker"in navigator){var swGo=function(){navigator.serviceWorker.getRegistration().then(function(r){if(!r)navigator.serviceWorker.register("sw.js").catch(function(){})}).catch(function(){})};if(typeof ONESIGNAL_APP_ID!=="undefined"&&ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo")window.addEventListener("load",function(){setTimeout(swGo,4000)});else swGo()}</script>
 </body>
