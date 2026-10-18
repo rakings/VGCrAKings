@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T01:13:37+00:00",
+ "updated": "2026-10-18T03:30:02+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,7 +197,7 @@
    "url": "https://play.limitlesstcg.com/tournament/6acef1498a8383117e3eb80d/details"
   },
   {
-   "name": "Women's League VGC #18",
+   "name": "Thavorian Trials 11",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -207,23 +207,8 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-17",
-   "time": "21:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6acbf8838a8383117e3e9c5c/details"
-  },
-  {
-   "name": "Thavorian Trials 11",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-17",
    "time": "22:00",
-   "players": 16,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6acd64518a8383117e3ea99c/details"
   },
   {
@@ -314,6 +299,21 @@
    "seniorAt": "2026-10-17T07:00:00Z"
   },
   {
+   "name": "OTS Pokemon VGC Arena #2",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "00:00",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6aceaa77115c12b73a5a35cd/details"
+  },
+  {
    "name": "🍬 CARAMELO RARO — WEEKLY #3",
    "org": "Papuno - Caramelo Raro",
    "mode": "online",
@@ -329,21 +329,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acd02ff8a8383117e3ea37e/details"
   },
   {
-   "name": "OTS Pokemon VGC Arena #2",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "00:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6aceaa77115c12b73a5a35cd/details"
-  },
-  {
    "name": "Trinity Championship 16 (Double Format)",
    "org": "Trinity Portal",
    "mode": "online",
@@ -355,7 +340,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "11:00",
-   "players": 29,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6aca05d9115c12b73a5a0635/details"
   },
   {
@@ -415,7 +400,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
   },
   {
@@ -430,7 +415,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:00",
-   "players": 19,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
   },
   {
@@ -445,7 +430,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "17:30",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6acf4c228a8383117e3eb8b5/details"
   },
   {
@@ -460,7 +445,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "19:00",
-   "players": 17,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
   },
   {
@@ -520,7 +505,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "03:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
   },
   {
@@ -640,7 +625,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -685,7 +670,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 32,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -775,7 +760,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -839,6 +824,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7c967245696afb3518f1b/details"
   },
   {
+   "name": "🇧🇷 Hit Break #7 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
+  },
+  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -880,7 +880,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
@@ -983,6 +983,21 @@
    "time": "13:00",
    "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
+  },
+  {
+   "name": "ValkrixVGC Pokemon Champions League #07",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "15:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
@@ -1194,7 +1209,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
