@@ -726,13 +726,15 @@ fetch("news.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r
 if(d.types)Object.keys(d.types).forEach(function(k){MT[k]=d.types[k]});
 if(d.news&&d.news.length)NEWS=d.news;if(d.bp&&d.bp.length)BP=d.bp;if(d.ita)ITA=d.ita;render()}).catch(function(){});
 fetch("locali.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d&&Array.isArray(d.locali)){LOC=d.locali;render()}}).catch(function(){});
-/* Annunci (annunci.json): compaiono nella sezione Info, in un menu a tendina come i report dei locali */
-var ANN=[],ANNS="vgc-ann-seen";
-function annAttivi(){var oggi=new Date().toISOString().slice(0,10);return ANN.filter(function(a){return a&&a.t&&(!a.exp||a.exp>=oggi)})}
+/* Annunci (annunci.json): archivio nella sezione Info, in menu a tendina; quelli "fissati" stanno in cima; non scadono */
+var ANN=[],ANNS="vgc-ann-seen",ANNALL=false,ANNMAX=12;
+function annAttivi(){return ANN.filter(function(a){return a&&a.t}).sort(function(x,y){return (y.pin?1:0)-(x.pin?1:0)||String(y.pub||"").localeCompare(String(x.pub||""))})}
 function annVisti(){try{return JSON.parse(localStorage.getItem(ANNS)||"[]")||[]}catch(e){return[]}}
-function annNuovi(){var v=annVisti();return annAttivi().some(function(a){return v.indexOf(a.id)<0})}
-function annSeen(){var v=annVisti(),n=false;annAttivi().forEach(function(a){if(v.indexOf(a.id)<0){v.push(a.id);n=true}});if(n)try{localStorage.setItem(ANNS,JSON.stringify(v.slice(-50)))}catch(e){}}
-function annHtml(){return annAttivi().map(function(a){return '<li class="nw inf"><details><summary><span class="tag t-reg">Annuncio</span>'+(a.pub?' <span class="tag t-none">'+esc(fmt(String(a.pub).slice(0,10)))+'</span>':'')+'<br><b>'+esc(a.t)+'</b></summary>'+(/^img\/annunci\/\d+\.jpg$/.test(a.img||"")?'<img class="annimg" src="'+esc(a.img)+'" alt="" loading="lazy">':'')+(a.d?'<p class="meta" style="white-space:pre-line">'+esc(a.d)+'</p>':'')+'</details></li>'}).join("")}
+/* il pallino sul tasto Info compare solo per gli annunci degli ultimi 14 giorni che non hai ancora aperto */
+function annNuovi(){var v=annVisti(),lim=new Date(Date.now()-14*864e5).toISOString();return annAttivi().some(function(a){return v.indexOf(a.id)<0&&String(a.pub||"")>=lim})}
+function annSeen(){var v=annVisti(),n=false;annAttivi().forEach(function(a){if(v.indexOf(a.id)<0){v.push(a.id);n=true}});if(n)try{localStorage.setItem(ANNS,JSON.stringify(v.slice(-200)))}catch(e){}}
+function annHtml(){var l=annAttivi(),m=ANNALL?l:l.slice(0,ANNMAX);return m.map(function(a){return '<li class="nw inf"><details><summary>'+(a.pin?'<span class="tag t-coin">\uD83D\uDCCC In evidenza</span> ':'')+'<span class="tag t-reg">Annuncio</span>'+(a.pub?' <span class="tag t-none">'+esc(fmt(String(a.pub).slice(0,10)))+'</span>':'')+'<br><b>'+esc(a.t)+'</b></summary>'+(/^img\/annunci\/\d+\.jpg$/.test(a.img||"")?'<img class="annimg" src="'+esc(a.img)+'" alt="" loading="lazy">':'')+(a.d?'<p class="meta" style="white-space:pre-line">'+esc(a.d)+'</p>':'')+'</details></li>'}).join("")+(l.length>m.length?'<li class="nw inf"><button class="btn" type="button" data-annall="1">Mostra tutti gli annunci ('+l.length+')</button></li>':"")}
+document.addEventListener("click",function(ev){var x=ev.target&&ev.target.closest?ev.target.closest("[data-annall]"):null;if(!x)return;ANNALL=true;render()});
 fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){ANN=(d&&Array.isArray(d.annunci))?d.annunci:[];render()}).catch(function(){});
 </script>
 <script>if("serviceWorker"in navigator){var swGo=function(){navigator.serviceWorker.getRegistration().then(function(r){if(!r)navigator.serviceWorker.register("sw.js").catch(function(){})}).catch(function(){})};if(typeof ONESIGNAL_APP_ID!=="undefined"&&ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo")window.addEventListener("load",function(){setTimeout(swGo,4000)});else swGo()}</script>
