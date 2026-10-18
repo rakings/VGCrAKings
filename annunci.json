@@ -1,12 +1,6 @@
 {
  "annunci": [
   {
-   "id": 5,
-   "t": "prova",
-   "d": "Proviamo i link e notifiche",
-   "pub": "2026-10-18T19:20:40Z"
-  },
-  {
    "id": 4,
    "t": "il primo annuncio prova",
    "d": "Annuncio prova di VGCrAKings",
