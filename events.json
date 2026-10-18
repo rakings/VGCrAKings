@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T07:29:14+00:00",
+ "updated": "2026-10-18T09:02:50+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -284,21 +284,6 @@
    "seniorAt": "2026-10-17T07:00:00Z"
   },
   {
-   "name": "🍬 CARAMELO RARO — WEEKLY #3",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "03:00",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6acd02ff8a8383117e3ea37e/details"
-  },
-  {
    "name": "Trinity Championship 16 (Double Format)",
    "org": "Trinity Portal",
    "mode": "online",
@@ -325,7 +310,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "13:30",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6ad0631c115c12b73a5a4614/details"
   },
   {
@@ -340,7 +325,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "15:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ac121bf85920e4d25362ebb/details"
   },
   {
@@ -359,21 +344,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad116378a8383117e3ec722/details"
   },
   {
-   "name": "Neko Gaming Store VGC #2",
-   "org": "Fiery Sparks",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "17:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
-  },
-  {
    "name": "VGC Trainer School; champions M/C #5",
    "org": "VGC Trainers School",
    "mode": "online",
@@ -387,6 +357,21 @@
    "time": "17:00",
    "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ac91bfb8a8383117e3e7c3d/details"
+  },
+  {
+   "name": "Neko Gaming Store VGC #2",
+   "org": "Fiery Sparks",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-18",
+   "time": "17:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ad41838115c12b73a5a693e/details"
   },
   {
    "name": "Mudkip",
@@ -415,7 +400,7 @@
    "bo": null,
    "date": "2026-10-18",
    "time": "19:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6a39d9b5c87cd9ff0a30d8a7/details"
   },
   {
@@ -462,6 +447,21 @@
    "time": "03:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
+  },
+  {
+   "name": "VGC Reg M-C Ingame Tour #9 (Shiny Gyarados)",
+   "org": "Disquake VGC Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "17:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #15 ❤️ Cash Prize!",
@@ -580,7 +580,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -595,7 +595,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -730,7 +730,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 62,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -921,8 +921,23 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
+  },
+  {
+   "name": "Champions",
+   "org": "The Umbreon Cartel",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
    "name": "🎃 Alpenspooktober 🎃",
