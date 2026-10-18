@@ -6,10 +6,10 @@ MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", 
 RETENTION_GIORNI = 142         # 4 mesi e 22 giorni
 AUTORE_BOT = "github-actions[bot]"
 ETICHETTE = (("locali-da-approvare", "fbca04"), ("approvato", "0e8a16"),
-             ("rifiutato", "d93f0b"), ("rimosso", "b60205"), ("annuncio-da-approvare", "1d76db"))
+             ("rifiutato", "d93f0b"), ("rimosso", "b60205"), ("annuncio-da-approvare", "1d76db"), ("fissato", "e4b400"))
 LOCALI = "locali.json"
-ANNUNCI = "annunci.json"
-ANNUNCI_GIORNI = 30            # un annuncio approvato resta online 30 giorni
+ANNUNCI = "annunci.json"       # archivio degli annunci: restano online finché non li togli con "rimosso"
+ANNUNCI_MAX = 62               # massimo annunci in archivio: oltre, si tolgono i più vecchi NON fissati
 STATO = "locali_state.json"
 
 
@@ -105,6 +105,25 @@ def salva_annunci(d, path=ANNUNCI):
         json.dump(d, f, ensure_ascii=False, indent=1)
         f.write("\n")
     os.replace(tmp, path)
+
+
+def taglia_annunci(d, radice=".", massimo=ANNUNCI_MAX):
+    """Tiene al massimo `massimo` annunci: si tolgono i più vecchi tra quelli NON fissati, con le loro foto.
+    Dà l'elenco degli id tolti."""
+    lista = d["annunci"]
+    if len(lista) <= massimo:
+        return []
+    candidati = sorted([v for v in lista if not v.get("pin")], key=lambda v: v.get("pub", ""))
+    tolti = candidati[:len(lista) - massimo]
+    for v in tolti:
+        if re.match(r"^img/annunci/\d+\.jpg$", v.get("img") or ""):
+            try:
+                os.remove(os.path.join(radice, v["img"]))
+            except OSError:
+                pass
+    sigle = {id(v) for v in tolti}
+    d["annunci"] = [v for v in lista if id(v) not in sigle]
+    return [v.get("id") for v in tolti]
 
 
 def gh(method, path, data=None):

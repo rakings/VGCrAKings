@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Repository PUBBLICO. Pulizia giornaliera:
   - toglie da locali.json i report più vecchi di 4 mesi e 22 giorni (142 giorni); i report senza data ("iso") non si toccano
-  - toglie da annunci.json gli annunci scaduti (data "exp")"""
-import os, re, sys
+  - tiene al massimo 62 annunci in annunci.json: si tolgono i più vecchi NON fissati, con le loro foto
+    (i fissati non si cancellano mai; gli annunci non hanno scadenza)"""
+import sys
 from datetime import datetime, timedelta, timezone
 
-from locali_comune import RETENTION_GIORNI, carica_annunci, carica_locali, log, salva_annunci, salva_locali
+from locali_comune import (ANNUNCI_MAX, RETENTION_GIORNI, carica_annunci, carica_locali, log, salva_annunci, salva_locali,
+                           taglia_annunci)
 
 
 def main():
@@ -19,18 +21,10 @@ def main():
         salva_locali(d)
     log("Report tolti perché più vecchi di %d giorni: %d" % (RETENTION_GIORNI, tolti))
     a = carica_annunci()
-    validi = [v for v in a["annunci"] if not v.get("exp") or v["exp"] >= oggi.isoformat()]
-    scaduti = len(a["annunci"]) - len(validi)
-    if scaduti:
-        for v in a["annunci"]:
-            if v not in validi and re.match(r"^img/annunci/\d+\.jpg$", v.get("img") or ""):
-                try:
-                    os.remove(v["img"])
-                except OSError:
-                    pass
-        a["annunci"] = validi
+    fuori = taglia_annunci(a, ".")
+    if fuori:
         salva_annunci(a)
-    log("Annunci scaduti tolti: %d" % scaduti)
+    log("Annunci tolti per il limite di %d: %d" % (ANNUNCI_MAX, len(fuori)))
     return 0
 
 
