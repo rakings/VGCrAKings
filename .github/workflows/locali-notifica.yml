@@ -2,7 +2,7 @@ name: Locali - notifica nuova top 8
 on:
   push:
     branches: [main]
-    paths: [locali.json]
+    paths: [locali.json, annunci.json]
 permissions:
   contents: write
 concurrency:
