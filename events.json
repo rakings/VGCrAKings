@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T21:34:55+00:00",
+ "updated": "2026-10-19T22:36:35+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
+   "name": "VGC Reg M-C Ingame Tour #9 (Shiny Gyarados)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "17:00",
+   "players": 44,
+   "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
+  },
+  {
    "name": "Amyverse VGC Champions Arena #15 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -195,21 +210,6 @@
    "time": "20:00",
    "players": 87,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
-  },
-  {
-   "name": "VGC Reg M-C Ingame Tour #9 (Shiny Gyarados)",
-   "org": "Disquake VGC Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "17:00",
-   "players": 53,
-   "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
    "name": "Shadow Sneak Showdown-Shiny Gengar Prize",
@@ -257,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
   },
   {
-   "name": "The Drywall Series #24",
-   "org": "The Drywalls Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "00:30",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
-  },
-  {
    "name": "Intimidators Champions Challenge #51 REG M-C",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "01:00",
-   "players": 26,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6ad5ff65115c12b73a5a789a/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "01:30",
-   "players": 9,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ace5fde8a8383117e3eb117/details"
   },
   {
@@ -313,8 +298,23 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "02:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad57d30115c12b73a5a76a2/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-20",
+   "time": "05:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad6960b115c12b73a5a7e93/details"
   },
   {
    "name": "SS Fight Club 3",
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 32,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 38,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 33,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -508,7 +508,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -628,7 +628,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -658,7 +658,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -722,21 +722,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
-   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 36,
-   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
-  },
-  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -750,6 +735,21 @@
    "time": "14:00",
    "players": 63,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 37,
+   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
    "name": "Øutcasts",
@@ -808,7 +808,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
   },
   {
