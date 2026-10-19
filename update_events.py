@@ -469,6 +469,18 @@ def candidates(e):
                 out.append((cat, "open", label + ": iscrizioni aperte"))
     return out
 
+# Dove porta il tocco di una notifica quando non c'è un link esterno preciso (torneo, iscrizione...):
+# alla sezione giusta del sito, non alla home. Il sito legge questi # (vedi DLINK in index.html).
+SITO_DEFAULT = "https://rakings.github.io/VGCrAKings"
+SEZIONI = {"money": "online", "gc": "online", "maddos": "online", "vr": "online", "regionali": "regionali",
+           "locali": "locali", "locali8": "locali", "player": "italiani", "winner": "grandi", "vrwin": "info"}
+
+def sito_url(topic=""):
+    base = (os.environ.get("SITE_URL") or "").strip().rstrip("/")
+    if not base.startswith("http"):
+        base = SITO_DEFAULT          # se la variabile SITE_URL manca, il collegamento resta comunque valido
+    return base + "/" + ("#" + SEZIONI[topic] if topic in SEZIONI else "")
+
 def say(topic, title, body, click):
     head = {"Title": title.encode("ascii", "ignore").decode(), "Tags": "trophy"}
     if click.startswith("http"):
@@ -610,14 +622,14 @@ def notify_all(events):
     for topic, items in by_topic.items():
         try:
             if len(items) > 5:
-                deliver(topic, "Nuovi avvisi VGC", "\n".join(e["name"] for _, e in items[:5]) + "\ne altri %d" % (len(items) - 5), os.environ.get("SITE_URL", ""))
+                deliver(topic, "Nuovi avvisi VGC", "\n".join(e["name"] for _, e in items[:5]) + "\ne altri %d" % (len(items) - 5), sito_url(topic))
             else:
                 for title, e in items:
                     quando = e.get("date") or "data sul link"
                     if e.get("where") and topic == "locali":
                         quando += " - " + e["where"]
                     extra = (" - iscrizioni fino al " + e["regClose"]) if e.get("regClose") else ""
-                    deliver(topic, title, "%s\n%s%s" % (e["name"], quando, extra), e.get("signup") or e.get("url") or "")
+                    deliver(topic, title, "%s\n%s%s" % (e["name"], quando, extra), e.get("signup") or e.get("url") or sito_url(topic))
             print("Avvisi inviati su %s: %d" % (topic, len(items)))
         except Exception as ex:
             print("Avviso non inviato su %s: %s" % (topic, ex))

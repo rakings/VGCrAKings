@@ -2,6 +2,7 @@
 """Promemoria circa un'ora prima dell'inizio dei tornei con orario noto.
 Legge solo events.json (nessuna richiesta ad altri siti) e scrive su ntfy.sh nei canali PREFISSO-categoria-1h."""
 import json, os, urllib.request, urllib.error
+from update_events import sito_url
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -101,7 +102,7 @@ def main():
             if key in sent:
                 continue
             try:
-                deliver(topic, "Tra circa un'ora", "%s\nInizio alle %s" % (e["name"], e["time"]), e.get("signup") or e.get("url") or "")
+                deliver(topic, "Tra circa un'ora", "%s\nInizio alle %s" % (e["name"], e["time"]), e.get("signup") or e.get("url") or sito_url(topic))
                 sent[key] = start.isoformat()
                 print("Promemoria:", c, e["name"])
             except Exception as ex:

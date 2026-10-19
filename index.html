@@ -501,10 +501,9 @@ catch(e){$("s-msg").textContent="Selezionato: copialo a mano."}});
 var DONATE_URL="https://www.paypal.me/Andryk92";
 if(DONATE_URL){$("don-a").href=DONATE_URL;$("don").hidden=false}
 var NTFY_PREFIX="";
-var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,maddos:false,locali:false,locali8:false,player:false,winner:false,h:{}};
+var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,maddos:false,locali:false,locali8:false,player:false,winner:false,vrwin:false,h:{}};
 try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv)}catch(e){}
-var NCAT=[["money","Money tournament","Nuovi tornei con montepremi in denaro."],["gc","Global Challenge","Annunci delle gare online ufficiali: date e iscrizioni."],["regionali","Avvisi Regionali","Nuovi Regionali ed eventi, apertura e scadenza delle iscrizioni."],["vr","Victory Road","Torneo annunciato, iscrizioni aperte e vincitore."],["maddos","Maddos Cup","Torneo annunciato e iscrizioni aperte."],["locali","Tornei locali","Nuovi tornei locali (Sfide e Coppe di Lega) segnalati dagli organizzatori."],["locali8","Top 8 dei locali","Quando viene pubblicato il risultato (Top 8) di un torneo locale.",1],["player","Player in evidenza","Un nuovo italiano in evidenza: top 16 nei grandi tornei.",1],["winner","Vincitore di un Regionale","Chi vince un Regionale, di qualsiasi nazionalità.",1]];
-if(NP.vrwin){NP.vr=true;delete NP.vrwin;try{localStorage.setItem(NPK,JSON.stringify(NP))}catch(e){}}
+var NCAT=[["money","Money tournament","Nuovi tornei con montepremi in denaro."],["gc","Global Challenge","Annunci delle gare online ufficiali: date e iscrizioni."],["regionali","Avvisi Regionali","Nuovi Regionali ed eventi, apertura e scadenza delle iscrizioni."],["vr","Victory Road","Torneo annunciato e iscrizioni aperte."],["maddos","Maddos Cup","Torneo annunciato e iscrizioni aperte."],["locali","Tornei locali","Nuovi tornei locali (Sfide e Coppe di Lega) segnalati dagli organizzatori."],["locali8","Top 8 dei locali","Quando viene pubblicato il risultato (Top 8) di un torneo locale.",1],["player","Player in evidenza","Un nuovo italiano in evidenza: top 16 nei grandi tornei.",1],["winner","Vincitore di un Regionale","Chi vince un Regionale, di qualsiasi nazionalità.",1],["vrwin","Vincitore Victory Road","Chi vince un torneo Victory Road (VR Challenge).",1,"vr"]];
 function npOn(k){return k==="money"?!!NP.money:!!NP[k]}
 function npAny(){return NCAT.some(function(c){return npOn(c[0])})}
 var ONESIGNAL_APP_ID="eba93d46-8989-448a-918a-044c210fbc4c";
@@ -540,9 +539,10 @@ if(at){var f=o.querySelector("["+at+'="'+v+'"]');if(f)try{f.focus({preventScroll
 function npTopic(k){return NTFY_PREFIX+"-"+(k==="money"&&NP.money==="33"?"money33":k)}
 function npHtml(){var act=NCAT.filter(function(c){return npOn(c[0])});
 var h='<div class="sheet2" role="document"><div class="calbar"><b id="np-t">Impostazioni</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div>'+(ONESIGNAL_APP_ID?'<div class="notbox">'+'<p class="meta" style="margin:0 0 8px">Gli avvisi arrivano direttamente da questa app. Su iPhone, aggiungi prima il sito alla schermata Home.</p><p class="hint" id="os-st" aria-live="polite">'+npStatoTxt()+'</p><button class="btn main" type="button" id="os-ask"'+(npOnDev()?' style="display:none"':'')+'>Attiva le notifiche su questo telefono</button><button class="btn" type="button" id="os-off"'+(npOnDev()?'':' style="display:none"')+'>Disattiva le notifiche</button><p class="hint" id="os-msg" aria-live="polite"></p><p class="hint" id="os-tags" aria-live="polite">'+osTagTxt()+'</p>'+(ONESIGNAL_APP_ID==="demo"?'<p class="meta">Anteprima: qui comparirà la richiesta di permesso del telefono.</p>':'')+'</div>':'')+langRow()+instRow()+'<h2 style="font-size:1.05rem;margin:14px 0 4px">Notifiche personalizzate</h2><p class="meta" style="margin:0 0 8px">Scegli solo quello che ti interessa: riceverai avvisi soltanto sulle categorie attivate. Niente spam dei tornei che non ti riguardano.</p>';
-NCAT.forEach(function(c){var k=c[0];h+='<div class="opt"><label class="sw"><input type="checkbox" data-np="'+k+'"'+(npOn(k)?' checked':'')+'><span>'+c[1]+'<small>'+c[2]+'</small></span></label>';
+NCAT.forEach(function(c){var k=c[0];if(c[4])return;h+='<div class="opt"><label class="sw"><input type="checkbox" data-np="'+k+'"'+(npOn(k)?' checked':'')+'><span>'+c[1]+'<small>'+c[2]+'</small></span></label>';
 if(k==="money"&&npOn("money"))h+='<div class="sub"><label><input type="radio" name="npm" data-npm="all"'+(NP.money!=="33"?' checked':'')+'> Tutti i money tournament</label><label><input type="radio" name="npm" data-npm="33"'+(NP.money==="33"?' checked':'')+'> Solo quelli che superano 33 iscritti</label></div>';
 if(npOn(k)&&!c[3])h+='<div class="sub"><label><input type="checkbox" data-nph="'+k+'"'+(NP.h&&NP.h[k]?' checked':'')+'> Avvisami anche 1 ora prima dell\'inizio <small>(per i tornei con orario noto)</small></label></div>';
+NCAT.forEach(function(d){if(d[4]===k)h+='<div class="sub"><label><input type="checkbox" data-np="'+d[0]+'"'+(npOn(d[0])?' checked':'')+'> Avvisami anche del vincitore <small>(chi vince un torneo Victory Road)</small></label></div>'});
 h+='</div>'});
 if(!ONESIGNAL_APP_ID)h+='<h2 style="font-size:1.05rem;margin:14px 0 4px">Come ricevere gli avvisi</h2>';
 if(ONESIGNAL_APP_ID){}else if(!NTFY_PREFIX)h+='<p class="meta">Gli avvisi non sono ancora attivi su questo sito.</p>';
@@ -553,7 +553,7 @@ return h+'</div>'}
 /* ---- Cronologia notifiche ---- */
 var NLOG=[],NSEEN=0,NCUT=0;try{NSEEN=+localStorage.getItem("vgc-nseen")||0;NCUT=+localStorage.getItem("vgc-ncut")||0}catch(e){}
 function nSave(){try{localStorage.setItem("vgc-nseen",String(NSEEN));localStorage.setItem("vgc-ncut",String(NCUT))}catch(e){}}
-function nRel(x){var t=x.topic||"";if(t==="vrwin")t="vr";if(t.indexOf("t-")===0)return REM.indexOf(t.slice(2))>-1;var one=/-1h$/.test(t),c=one?t.slice(0,-3):t,h=!!(NP.h&&NP.h[c==="money33"?"money":c]);
+function nRel(x){var t=x.topic||"";if(t.indexOf("t-")===0)return REM.indexOf(t.slice(2))>-1;var one=/-1h$/.test(t),c=one?t.slice(0,-3):t,h=!!(NP.h&&NP.h[c==="money33"?"money":c]);
 if(c==="money")return NP.money==="all"&&(!one||h);if(c==="money33")return NP.money==="33"&&(!one||h);return !!NP[c]&&(!one||h)}
 function nList(){return NLOG.filter(function(x){return x.ms>NCUT&&(x.dev||nRel(x))})}
 function nBadge(){var d=$("bell")&&$("bell").querySelector(".nb");if(!d)return;var n=nList().filter(function(x){return x.ms>NSEEN}).length;d.textContent=n>9?"9+":String(n);d.hidden=!n}
@@ -582,7 +582,7 @@ if(window.OSFAIL){say("Riprovo a collegarmi al servizio notifiche...");window.os
 if(!("Notification" in window)){say("Questo browser non supporta le notifiche. Apri il sito direttamente in Chrome o Safari (non dentro WhatsApp, Telegram o Instagram).");return}
 if(Notification.permission==="denied"){say("Le notifiche sono bloccate per questo sito: sbloccale dalle impostazioni del browser (icona accanto all'indirizzo, oppure Impostazioni sito > Notifiche) e riprova.");return}
 var permP=Notification.permission==="granted"?Promise.resolve("granted"):new Promise(function(r){var q;try{q=Notification.requestPermission(r)}catch(e){r("default");return}if(q&&q.then)q.then(r,function(){r("default")})});
-if(!npAny()){["money","gc","regionali","vr","maddos","locali","locali8","player","winner"].forEach(function(k){NP[k]=k==="money"?"all":true});npSave();auto=true;$("np").innerHTML=npHtml()}
+if(!npAny()){["money","gc","regionali","vr","maddos","locali","locali8","player","winner","vrwin"].forEach(function(k){NP[k]=k==="money"?"all":true});npSave();auto=true;$("np").innerHTML=npHtml()}
 say("Un attimo...");
 var tm=setTimeout(function(){say("OneSignal non risulta pronto. Ricarica la pagina; se continua, controlla che nessuna estensione blocchi onesignal.com e che l'indirizzo del sito coincida con quello impostato su OneSignal.")},7000);
 osdo(function(OS){clearTimeout(tm);
@@ -739,13 +739,17 @@ document.addEventListener("click",function(ev){var x=ev.target&&ev.target.closes
 fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){ANN=(d&&Array.isArray(d.annunci))?d.annunci:[];render();annApri()}).catch(function(){});
 /* Link dalle notifiche: #annuncio-ID apre Info con quella tendina aperta; #locali apre la sezione Locali */
 var ANNGO=null;
-function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/);
-if(m){ANNGO=ANNOPEN=+m[1];annSeen();NV="info"}else if(h==="#locali"){NV="loc";try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}else return;
-var bt=document.querySelector('#f-mode button[data-v="news"]');if(bt)bt.click();else{st.mode="news";render()}
+var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["news","info"],tutti:["all"],online:["online"],regionali:["regional"]};
+function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),mode="news";
+if(m){ANNGO=ANNOPEN=+m[1];annSeen();NV="info"}
+else if(d&&DLINK[d[1]]){var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+else return;
+var bt=document.querySelector('#f-mode button[data-v="'+mode+'"]');if(bt)bt.click();else{st.mode=mode;render()}
 window.scrollTo(0,0);annApri()}
 function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
 if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
-if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"});setTimeout(function(){document.addEventListener("pointerdown",function(){ANNOPEN=null},{once:true,capture:true})},500)}else if(ANN.length){ANNGO=ANNOPEN=null}}
+if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}
+document.addEventListener("toggle",function(ev){var d=ev.target,li=d&&d.closest?d.closest("[data-aid]"):null;if(li&&!d.open&&+li.dataset.aid===ANNOPEN)ANNOPEN=null},true);
 window.addEventListener("hashchange",annGo);annGo();
 </script>
 <script>if("serviceWorker"in navigator){var swGo=function(){navigator.serviceWorker.getRegistration().then(function(r){if(!r)navigator.serviceWorker.register("sw.js").catch(function(){})}).catch(function(){})};if(typeof ONESIGNAL_APP_ID!=="undefined"&&ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo")window.addEventListener("load",function(){setTimeout(swGo,4000)});else swGo()}</script>

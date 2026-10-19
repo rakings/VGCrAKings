@@ -2,7 +2,7 @@
 """Avviso "Player in evidenza": quando in news.json compare un nuovo italiano in evidenza
 (top 16 di un grande torneo) manda una notifica sul canale "player".
 Manda anche l'avviso "Vincitore di un Regionale" (canale "winner"): primo posto, di qualsiasi nazionalità.
-Manda anche "Vincitore Victory Road" (stesso canale "vr" di Victory Road: torneo annunciato, iscrizioni aperte e vincitore): legge il banner "X is the VR ... Champion!" della home di victoryroad.pro.
+Manda anche "Vincitore Victory Road" (canale "vrwin"): legge il banner "X is the VR ... Champion!" della home di victoryroad.pro.
 Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (OneSignal o ntfy).
 Il primo giro non manda nulla: memorizza solo lo stato. Poi avvisa soltanto per i tornei
 più recenti di quelli già noti, così il caricamento a ritroso dello storico non genera avvisi."""
@@ -154,13 +154,13 @@ def main():
     log("notify_players: da inviare: %d player, %d vincitori, %d VR" % (len(new), len(wins), len(vr_new)))
     try:
         if len(new) > 5:
-            ue.deliver(TOPIC, "Player in evidenza", "\n".join("%s - %s" % (x["pl"], x["t"]) for x in new[:5]) + "\ne altri %d" % (len(new) - 5), site)
+            ue.deliver(TOPIC, "Player in evidenza", "\n".join("%s - %s" % (x["pl"], x["t"]) for x in new[:5]) + "\ne altri %d" % (len(new) - 5), ue.sito_url(TOPIC))
         else:
             for x in new:
                 ue.deliver(TOPIC, "Player in evidenza: %s" % x["pl"], "%s a %s%s" % (place(x["p"]), x["t"], (" (%s)" % x["d"]) if x.get("d") else ""),
                            "https://limitlessvgc.com/tournaments/%s" % x["id"])
         for pl, ev, link in vr_new:
-            ue.deliver("vr", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link)), link)
+            ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link)), link)
         for r in wins:
             ue.deliver("winner", "Vincitore Regionale: %s" % r[0],
                        "\n".join(["Regional %s%s" % (r[2], (" (%s)" % r[1]) if r[1] else "")] + reg_top8(news, r[3])),
