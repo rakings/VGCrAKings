@@ -32,6 +32,37 @@ def cats(e):
         out.append("gc")
     return out
 
+def tipo(e):
+    low = ((e.get("name") or "") + " " + (e.get("org") or "")).lower()
+    if e.get("type") == "Global Challenge":
+        return "Global Challenge"
+    if "victory road" in low:
+        return "Victory Road"
+    if "maddo" in low:
+        return "Maddos Cup"
+    if e.get("mode") == "live" or "lega" in (e.get("type") or "").lower() or e.get("local") is True:
+        return "Torneo locale"
+    if e.get("cash") is True:
+        return "Money tournament"
+    return "Torneo online"
+
+def messaggio(e, start, now):
+    """Titolo e testo chiari: quale torneo, tra quanto, a che ora (ora italiana), di che tipo."""
+    mins = max(5, int(round((start - now).total_seconds() / 60 / 5)) * 5)
+    tra = "tra circa 1 ora" if mins >= 55 else "tra %d minuti" % mins
+    nome = (e.get("name") or "Torneo").strip()
+    if len(nome) > 70:
+        nome = nome[:67].rstrip() + "..."
+    giorno = start.date() - now.date()
+    quando = "oggi" if giorno.days == 0 else "domani" if giorno.days == 1 else start.strftime("%d/%m")
+    righe = ["%s - inizia %s, %s alle %s (ora italiana)" % (tipo(e), tra, quando, start.strftime("%H:%M"))]
+    if e.get("fee") == 0:
+        righe.append("Iscrizione gratuita")
+    elif e.get("fee"):
+        righe.append("Iscrizione: %s%s" % (e.get("cur") or "", ("%g" % e["fee"])))
+    righe.append("Tocca per aprire il torneo")
+    return "Inizia %s: %s" % (tra, nome), "\n".join(righe)
+
 def eh(u):
     h = 5381
     for ch in u:
@@ -102,7 +133,8 @@ def main():
             if key in sent:
                 continue
             try:
-                deliver(topic, "Tra circa un'ora", "%s\nInizio alle %s" % (e["name"], e["time"]), e.get("signup") or e.get("url") or sito_url(topic))
+                titolo, testo = messaggio(e, start, now)
+                deliver(topic, titolo, testo, e.get("signup") or e.get("url") or sito_url(topic))
                 sent[key] = start.isoformat()
                 print("Promemoria:", c, e["name"])
             except Exception as ex:

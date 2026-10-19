@@ -7,6 +7,7 @@ Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (OneSignal o nt
 Il primo giro non manda nulla: memorizza solo lo stato. Poi avvisa soltanto per i tornei
 più recenti di quelli già noti, così il caricamento a ritroso dello storico non genera avvisi."""
 import html, json, os, re, signal, sys, time, urllib.request
+from datetime import datetime, timedelta
 import update_events as ue
 
 STATE = "notify_players_state.json"
@@ -15,7 +16,7 @@ TOPIC = "player"
 def place(p):
     return "Vincitore" if p == 1 else "%d° posto" % p
 
-RE_CHAMP = re.compile(r"^\W*([^!\n]{2,60}?)\s+is the\s+(VR [^!\n]{3,60}?)\s+Champion\b", re.I)
+RE_CHAMP = re.compile(r"^\W*([^!\n]{2,60}?)\s+(?:is|are) the\s+((?:VR|Victory Road) [^!\n]{3,60}?)\s+Champions?\b", re.I)
 
 def fetch_limited(url, total=45):
     """Legge una pagina con un tempo massimo COMPLESSIVO: anche se il sito risponde a gocce non si resta appesi."""
@@ -54,11 +55,61 @@ def vr_champions():
         if not r or (r[1], r[2]) in seen:
             continue
         seen.add((r[1], r[2]))
+        evname = re.sub(r"^Victory Road ", "VR ", r[2].strip(), flags=re.I)  # stesso nome che usa la scheda del torneo
         pos = page.find(r[1].split()[-1])
         link = re.search(r'href=["\'](https://victoryroad\.pro/vr[a-z0-9-]+/?)["\']', page[max(pos, 0):max(pos, 0) + 1500])
-        out.append((r[1].strip(), r[2].strip(), link[1] if link else ue.VR))
+        out.append((r[1].strip(), evname, link[1] if link else ue.VR))
+    for pl, ev, link in vr_finished(page, {e for _, e, _ in out}):
+        log("notify_players: vincitore preso dalla pagina del torneo (banner assente o diverso): %s - %s" % (pl, ev))
+        out.append((pl, ev, link))
+    log("notify_players: vincitori VR trovati: %s" % (", ".join("%s (%s)" % (p, e) for p, e, _ in out) or "nessuno"))
     if not out and re.search(r"is the [^<>]{3,80} Champion", html.unescape(page)):
         print("Victory Road: c'è un banner 'Champion' ma non è stato riconosciuto (formato diverso dal previsto)")
+    return out
+
+def vr_finished(home, known):
+    """Rete di sicurezza: se il banner della home manca o ha un formato nuovo, guarda le pagine dei VR finiti negli
+    ultimi 3 giorni e prende il 1° posto dalla tabella 'Top cut'. Dà [(giocatore, torneo, link)]."""
+    out = []
+    try:
+        today = datetime.now(ue.ROME).date()
+        slugs = []
+        for s in re.findall(r'href=["\']https://victoryroad\.pro/(vr[a-z0-9-]+)/?["\']', home):
+            if s not in slugs:
+                slugs.append(s)
+        sigle = [m[:3] for m in ue.MESI]
+        for back in (0, 1):  # mese corrente e precedente: vr-oct26, vr-oct26-2, vr-oct26-3...
+            i = today.month - 1 - back
+            for suf in ("", "-2", "-3", "-4", "-5", "-6"):
+                sl = "vr-%s%02d%s" % (sigle[i % 12], (today.year + i // 12) % 100, suf)
+                if sl not in slugs:
+                    slugs.append(sl)
+        t0 = time.monotonic()
+        for slug in slugs[:14]:
+            if time.monotonic() - t0 > 60:
+                break
+            link = ue.VR + slug + "/"
+            try:
+                page = fetch_limited(link, total=15)
+                ev = ue.vr_parse(slug, page)
+            except Exception:
+                continue  # pagina inesistente o non leggibile: si passa oltre
+            if not ev or ev["name"] in known:
+                continue
+            try:
+                last = datetime.fromisoformat(ev.get("end") or ev["date"]).date()
+            except Exception:
+                continue
+            if not today - timedelta(days=3) <= last <= today:
+                continue
+            top = vr_top8(link)
+            m = re.match(r"1\.\s+(.*?)(?:\s+\([A-Za-z]{2,3}\))?(?:\s+-\s+\$.*)?$", top[0]) if top else None
+            if m and m[1].strip():
+                out.append((m[1].strip(), ev["name"], link))
+                known.add(ev["name"])  # uno stesso torneo non si conta due volte
+            time.sleep(0.5)
+    except Exception as ex:
+        print("Controllo pagine VR non riuscito:", ex)
     return out
 
 def reg_top8(news, tid):
@@ -130,9 +181,11 @@ def main():
     champs = vr_champions()
     log("notify_players: home VR letta" if champs is not None else "notify_players: home VR non letta")
     if champs is not None:
+        done = {k.split("|", 2)[2] for k in sent if k.startswith("V|") and k.count("|") >= 2}  # tornei VR già registrati
         for pl, ev, link in champs:
             key = "V|%s|%s" % (pl, ev)
-            if key not in sent:
+            if key not in sent and ev not in done:
+                done.add(ev)
                 sent.add(key)
                 if vr_ready:  # la prima volta si memorizza soltanto
                     vr_new.append((pl, ev, link))
