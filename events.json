@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T10:46:05+00:00",
+ "updated": "2026-10-19T12:01:24+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "SS Fight Club 3",
-   "org": "Mahir PokéVgc",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "13:30",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
-  },
-  {
    "name": "Shadow Sneak Showdown-Shiny Gengar Prize",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -223,7 +208,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "14:30",
-   "players": 42,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
   },
   {
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "17:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 41,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -272,6 +257,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
   },
   {
+   "name": "SS Fight Club 3",
+   "org": "Mahir PokéVgc",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "13:30",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny Pawmot",
    "org": "RookideeVGC",
    "mode": "online",
@@ -283,8 +283,23 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "00:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
+  },
+  {
+   "name": "Intimidators Champions Challenge #51 REG M-C",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-20",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad5ff65115c12b73a5a789a/details"
   },
   {
    "name": "Pokepal Smackdown #163 (Champions) (Reg M-C)",
@@ -298,7 +313,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "01:30",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ace5fde8a8383117e3eb117/details"
   },
   {
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -388,7 +403,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 32,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -478,7 +493,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -508,7 +523,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "19:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b3c2f127b1b52c27f9bd/details"
   },
   {
@@ -598,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 73,
+   "players": 74,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -613,7 +628,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -677,6 +692,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 59,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
+  },
+  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -690,21 +720,6 @@
    "time": "14:00",
    "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
-  },
-  {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 54,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
