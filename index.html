@@ -232,6 +232,9 @@ li h2{font-size:1.1rem;margin:0 0 2px}
 .t-live{background:color-mix(in srgb,var(--live) 26%,transparent);color:var(--live)}
 .t-coin{background:var(--coin);color:var(--coin-ink)}
 .t-none{background:var(--none);color:var(--mute)}
+:root{--money:#ff7a00}.t-money{background:var(--money);color:#2b0a0c}
+.dots{flex-wrap:wrap;justify-content:center}.mgrid .dots{gap:2px}.mgrid .dots i{width:6px;height:6px}
+.dleg{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 10px;font-size:.72rem;color:var(--mute)}.dleg span{display:inline-flex;align-items:center;gap:4px}.dleg i{width:8px;height:8px;border-radius:50%;display:inline-block}
 .empty{padding:24px;text-align:center;color:var(--mute)}
 details{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 summary{font-weight:700;cursor:pointer}
@@ -423,11 +426,14 @@ var CAL={on:false,y:0,m:0,day:"",view:"days"};
 var MN=[],WD=[],WDL=[];
 function iso(y,m,d){return y+"-"+p2(m+1)+"-"+p2(d)}
 function inDay(e,d){return !!e.date&&e.date<=d&&d<=(e.end||e.date)}
+function dotCols(e){var c=[dotCol(e)];if(e.org==="Victory Road")c.push("var(--vr)");if(e.type==="Global Challenge")c.push("#fff");if(e.cash===true)c.push("var(--money)");return c}
+function dotSt(c){return "background:"+c+((c==="#fff"||c==="#000")?";box-shadow:inset 0 0 0 1.5px var(--mute)":"")}
 function dotCol(e){return e.mode==="online"?"var(--online)":e.type==="Mondiale"?"#000":e.type==="Internazionale"?"var(--intl)":e.type==="Special Event"?"var(--coin)":"var(--amber)"}
 function calInit(){var n=new Date();CAL.y=n.getFullYear();CAL.m=n.getMonth();CAL.day=iso(CAL.y,CAL.m,n.getDate())}
 function calHtml(ev){var dim=new Date(CAL.y,CAL.m+1,0).getDate(),h='<div class="calbar"><button class="cnav" data-cn="-1" aria-label="Mese precedente">‹</button><b>'+MN[CAL.m]+' '+CAL.y+'</b><button class="cnav" data-cn="1" aria-label="Mese successivo">›</button></div>';
 h+='<div class="grp" style="margin:0 0 10px"><button data-cv="days" aria-pressed="'+(CAL.view==="days")+'">Giorni</button><button data-cv="month" aria-pressed="'+(CAL.view==="month")+'">Mese</button></div>';
-function dots(d){var seen=[],o="";ev.forEach(function(e){if(inDay(e,d)){var c=dotCol(e);if(seen.indexOf(c)<0&&seen.length<3){seen.push(c);o+='<i style="background:'+c+'"></i>'}}});return o}
+h+='<div class="dleg">'+[["var(--online)","Online"],["var(--money)","Money tournament"],["var(--vr)","Victory Road"],["#fff","Global Challenge"],["var(--amber)","Regionale"],["var(--coin)","Special Event"],["var(--intl)","Internazionale"],["#000","Mondiale"]].map(function(x){return '<span><i style="'+dotSt(x[0])+'"></i>'+x[1]+'</span>'}).join("")+'</div>';
+function dots(d){var seen=[],o="";ev.forEach(function(e){if(inDay(e,d)){dotCols(e).forEach(function(c){if(seen.indexOf(c)<0&&seen.length<6){seen.push(c);o+='<i style="'+dotSt(c)+'"></i>'}})}});return o}
 var d,k;
 if(CAL.view==="days"){h+='<div class="strip">';for(d=1;d<=dim;d++){k=iso(CAL.y,CAL.m,d);h+='<button class="day" data-day="'+k+'" aria-pressed="'+(CAL.day===k)+'"><b>'+d+'</b><span>'+WD[new Date(CAL.y,CAL.m,d).getDay()]+'</span><span class="dots">'+dots(k)+'</span></button>'}h+='</div>'}
 else{var f=(new Date(CAL.y,CAL.m,1).getDay()+6)%7;h+='<div class="mgrid">'+["L","M","M","G","V","S","D"].map(function(x){return '<span class="mh">'+x+'</span>'}).join("");for(var i=0;i<f;i++)h+='<span></span>';for(d=1;d<=dim;d++){k=iso(CAL.y,CAL.m,d);h+='<button class="day" data-day="'+k+'" aria-pressed="'+(CAL.day===k)+'"><b>'+d+'</b><span class="dots">'+dots(k)+'</span></button>'}h+='</div>'}
@@ -441,7 +447,7 @@ $("f-big").addEventListener("click",function(){st.big=!st.big;this.setAttribute(
 function render(){
 var nw=st.mode==="news";document.querySelector(".filters").style.display=nw?"none":"";$("q").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
 var ev=EVENTS.filter(function(e){
-return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.mode))&&(st.prize==="all"||(st.prize==="cash"?e.cash===true:e.cash===false))
+return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.mode))&&(st.prize==="all"||(st.prize==="cash"?e.cash===true:e.cash!==true))
 &&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||e.bo===st.bo)
 &&(!st.fee||(st.fee==="free"?e.fee===0:e.fee>0))&&(!st.big||e.players==null||e.players>33)&&(!st.q||(e.name+" "+(e.org||"")+" "+(e.where||"")+" "+(e.type||"")+" "+(e.reg||"")).toLowerCase().indexOf(st.q)>-1)
 
@@ -450,7 +456,7 @@ var cl=$("cal");if(CAL.on){cl.innerHTML=calHtml(ev);var sd=cl.querySelector(".st
 if(!ev.length){$("list").innerHTML='<li class="empty">'+(CAL.on?"Nessun torneo in questo giorno.":st.mode==="follow"?"Non segui ancora nessun torneo. Tocca il + su una scheda.":st.mode==="regional"?"Nessun Regionale con questi filtri.":"Nessun torneo con questi filtri. Prova ad azzerarli.")+'</li>';return}
 $("list").innerHTML=ev.map(function(e){
 var t=(e.mode==="online"?'<span class="tag t-online">Online</span>':'<span class="tag '+(e.type==="Special Event"?"t-reg":e.type==="Internazionale"?"t-int":e.type==="Mondiale"?"t-ww":"t-rg")+'">'+esc(e.type||"Regionale")+'</span>'+(e.italia?'<span class="tag t-it">In Italia</span>':''))+(e.org==="Victory Road"?'<span class="tag t-vr">Victory Road</span>':'')+(e.type==="Global Challenge"?'<span class="tag t-gc">Global Challenge</span>':'')+
-(e.cash===true?'<span class="tag t-coin">Money tournament'+(e.prize?": "+esc(e.prize):"")+'</span>':e.cash===false?'<span class="tag t-none">For Fun</span>':'<span class="tag t-none">Premio non indicato</span>')+
+(e.cash===true?'<span class="tag t-money">Money tournament'+(e.prize?": "+esc(e.prize):"")+'</span>':'<span class="tag t-none">For Fun</span>')+
 (e.fee==null?'':'<span class="tag t-none">'+(e.fee?"Iscrizione "+String(e.fee).replace(".",",")+" "+(e.cur||"€")+(e.feeNote?" "+esc(e.feeNote):""):"Gratis")+'</span>')+
 (e.reg||e.bo?'<span class="tag t-none">'+[e.reg?"Reg. "+esc(e.reg):"",e.bo?esc(e.bo):""].filter(Boolean).join(" · ")+'</span>':"");
 var title=e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.name)+'</a>':esc(e.name);
