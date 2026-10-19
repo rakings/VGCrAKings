@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T17:06:40+00:00",
+ "updated": "2026-10-19T17:50:24+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 67,
+   "players": 87,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "12:30",
-   "players": 14,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "00:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "01:00",
-   "players": 5,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad5ff65115c12b73a5a789a/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "02:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad57d30115c12b73a5a76a2/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 33,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "04:30",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad558f1115c12b73a5a7512/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -538,7 +538,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "19:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aa95eb7f1243e65f98020cf/details"
   },
   {
@@ -553,7 +553,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -570,6 +570,21 @@
    "time": "01:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
+  },
+  {
+   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟒",
+   "org": "IRGamers",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "01:15",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad6518b8a8383117e3ef51c/details"
   },
   {
    "name": "PWC - Battle in the Colosseum #32",
@@ -707,21 +722,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
-   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 35,
-   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
-  },
-  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -735,6 +735,21 @@
    "time": "14:00",
    "players": 61,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 35,
+   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
    "name": "Øutcasts",
@@ -793,7 +808,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
   },
   {
