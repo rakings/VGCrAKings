@@ -75,18 +75,43 @@ def eh(u):
 # l'invio con OneSignal (e l'archivio iscritti) è lo stesso di update_events.py
 from update_events import os_on, os_filters, send_os, subs_on, subs_for
 
-def log_notif(topic, title, body, click, fname):
+def log_notif(topic, title, body, click, fname, topics=None):
     """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
     try:
         try:
             lst = json.load(open(fname, encoding="utf-8"))
         except Exception:
             lst = []
-        lst.append({"t": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "topic": topic, "title": title,
-                    "body": body, "url": click if (click or "").startswith("http") else ""})
+        x = {"t": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "topic": topic, "title": title,
+             "body": body, "url": click if (click or "").startswith("http") else ""}
+        if topics and len(topics) > 1:
+            x["topics"] = topics  # canali che l'hanno richiesta: la cronologia la mostra a chi ne segue anche uno solo
+        lst.append(x)
         json.dump(lst[-40:], open(fname, "w", encoding="utf-8"), ensure_ascii=False)
     except Exception as ex:
         print("Cronologia non salvata:", ex)
+
+def deliver_union(topics, title, body, click):
+    """Un SOLO promemoria per torneo a chi ha attiva la categoria, a chi ha premuto il + sul torneo, o a entrambi.
+    Con l'archivio iscritti si uniscono gli elenchi e nessuno riceve due volte lo stesso avviso."""
+    if os_on():
+        if subs_on():
+            ids = []
+            for t in topics:
+                for i in subs_for(t):
+                    if i not in ids:
+                        ids.append(i)
+            if ids:
+                send_os(None, title, body, click, ids=ids)
+            else:
+                print("Nessun iscritto per i canali", topics)
+        else:  # vecchio sistema a tag: i filtri non si possono unire, un invio per canale
+            for t in topics:
+                send_os(os_filters(t), title, body, click)
+    else:
+        for t in topics:
+            say(os.environ.get("NTFY_PREFIX", "") + "-" + t, title, body, click)
+    log_notif(topics[0], title, body, click, "notifiche_promemoria.json", topics)
 
 def deliver(topic, title, body, click):
     """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
@@ -127,18 +152,18 @@ def main():
             continue
         if not timedelta(0) < start - now <= timedelta(minutes=70):
             continue
-        # canali per categoria e canale del singolo torneo (per chi lo segue con il +)
-        for c, topic in [(c, c + "-1h") for c in cats(e)] + [("t", "t-" + eh(e.get("url") or ""))]:
-            key = "%s|%s" % (e.get("url"), c)
-            if key in sent:
-                continue
-            try:
-                titolo, testo = messaggio(e, start, now)
-                deliver(topic, titolo, testo, e.get("signup") or e.get("url") or sito_url(topic))
-                sent[key] = start.isoformat()
-                print("Promemoria:", c, e["name"])
-            except Exception as ex:
-                print("Promemoria non inviato:", ex)
+        # categorie del torneo + canale del singolo torneo (chi lo segue con il +): UN solo invio all'unione degli iscritti
+        topics = [c + "-1h" for c in cats(e)] + ["t-" + eh(e.get("url") or "")]
+        key = "%s|1h" % e.get("url")
+        if any(k.startswith("%s|" % e.get("url")) for k in sent):  # compresi i vecchi segni "url|categoria"
+            continue
+        try:
+            titolo, testo = messaggio(e, start, now)
+            deliver_union(topics, titolo, testo, e.get("signup") or e.get("url") or sito_url(topics[0]))
+            sent[key] = start.isoformat()
+            print("Promemoria:", e["name"], topics)
+        except Exception as ex:
+            print("Promemoria non inviato:", ex)
     sent = {k: v for k, v in sent.items() if datetime.fromisoformat(v) > now - timedelta(days=2)}
     json.dump(sent, open(STATE, "w", encoding="utf-8"))
 

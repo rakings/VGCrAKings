@@ -473,7 +473,7 @@ def candidates(e):
 # alla sezione giusta del sito, non alla home. Il sito legge questi # (vedi DLINK in index.html).
 SITO_DEFAULT = "https://rakings.github.io/VGCrAKings"
 SEZIONI = {"money": "online", "gc": "online", "maddos": "online", "vr": "online", "regionali": "regionali",
-           "locali": "locali", "locali8": "locali", "player": "italiani", "winner": "grandi", "vrwin": "info"}
+           "locali": "locali", "locali8": "locali", "player": "italiani", "winner": "grandi", "vrwin": "grandi"}
 
 def sito_url(topic=""):
     base = (os.environ.get("SITE_URL") or "").strip().rstrip("/")

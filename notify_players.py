@@ -119,19 +119,37 @@ def reg_top8(news, tid):
             return ["%d. %s%s" % (i + 1, r["pl"], (" (%s)" % r["cc"]) if r.get("cc") else "") for i, r in enumerate((n.get("rows") or [])[:8])]
     return []
 
-def vr_top8(link):
-    """Top 8 di un torneo VR dalla tabella 'Top cut' della pagina dell'evento (colonne: posto, Swiss, bandiera, giocatore, premio...).
-    Se la tabella non si legge si torna senza la lista: l'avviso parte lo stesso, solo col vincitore."""
+MESI_IT = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+VR_JSON = "news_vr.json"
+
+def vr_page(link):
+    """Legge la pagina di un torneo VR: top 8 dalla tabella 'Top cut' (posto, Swiss, bandiera, giocatore, premio, squadra)
+    e le info (date, giocatori, formato, regolamento). Se qualcosa non si legge, torna ciò che c'è."""
+    out = {"rows": [], "ev": None, "players": None, "fmt": None}
     if not link or link.rstrip("/") == ue.VR.rstrip("/"):
-        return []
+        return out
     try:
         page = fetch_limited(link)
+    except Exception as ex:
+        print("Pagina VR non letta:", ex)
+        return out
+    try:
+        slug = link.rstrip("/").split("/")[-1]
+        out["ev"] = ue.vr_parse(slug, page)
+        text = re.sub(r"<(script|style).*?</\1>", " ", page, flags=re.S | re.I)
+        text = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", text)).replace("\xa0", " "))
+        p = re.search(r"Attendance\W{0,5}(\d[\d.,]*)\s*players?", text, re.I)
+        out["players"] = re.sub(r"\D", "", p[1]) if p else None
+        f = re.search(r"Format\W{0,3}(.{3,120}?)\s+Organi[sz]er", text)
+        out["fmt"] = f[1].strip() if f else None
+    except Exception as ex:
+        print("Info VR non lette:", ex)
+    try:
         m = re.search(r"Top cut", page, re.I)
         t = re.search(r"<table.*?</table>", page[m.end():] if m else page, re.S | re.I)
         if not t:
-            return []
+            return out
         txt = lambda c: html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", c))).strip()
-        out = []
         for tr in re.findall(r"<tr.*?</tr>", t.group(0), re.S | re.I):
             cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", tr, re.S | re.I)
             if len(cells) < 4 or not txt(cells[0]).isdigit() or int(txt(cells[0])) > 8:
@@ -142,12 +160,68 @@ def vr_top8(link):
             if not re.fullmatch(r"[A-Za-z]{2,3}", fl):
                 g = re.search(r'(?:alt|title)=["\']([A-Za-z]{2,3})["\']|/([A-Za-z]{2,3})\.(?:png|svg|webp|gif)', cells[2])
                 fl = (g[1] or g[2]) if g else ""
-            pr = re.search(r"\$\s?[\d.,]+", txt(cells[4])) if len(cells) > 4 else None
-            out.append("%d. %s%s%s" % (int(txt(cells[0])), name, (" (%s)" % fl.upper()) if fl else "", (" - " + pr[0].replace(" ", "")) if pr else ""))
-        return out[:8]
+            pz, ex = "", ""
+            if len(cells) > 4:
+                cp = txt(cells[4])
+                pr = re.search(r"\$\s?[\d.,]+", cp)
+                pz = pr[0].replace(" ", "") if pr else ""
+                ex = re.sub(r"\$\s?[\d.,]+", "", cp).strip()  # es. "VRtSG": invito o premio extra scritto accanto
+            mons = []
+            if len(cells) > 5:  # nomi dei Pokémon dalle immagini della squadra (alt/title), se ci sono
+                for g in re.findall(r'<img[^>]+?(?:alt|title)=["\']([^"\']{3,25})["\']', cells[5], re.I):
+                    g = html.unescape(g).strip()
+                    if re.fullmatch(r"[A-Za-zÀ-ÿ' .:\-]+", g) and g not in mons:
+                        mons.append(g)
+            out["rows"].append({"pos": int(txt(cells[0])), "pl": name, "cc": fl.upper(), "pz": pz, "ex": ex, "mons": mons[:6]})
+        out["rows"] = out["rows"][:8]
     except Exception as ex:
         print("Top 8 VR non letta:", ex)
-        return []
+    return out
+
+def vr_top8(link, data=None):
+    """Righe di testo per la notifica: '1. Nome (US) - $785'."""
+    d = data or vr_page(link)
+    return ["%d. %s%s%s" % (r["pos"], r["pl"], (" (%s)" % r["cc"]) if r["cc"] else "", (" - " + r["pz"]) if r["pz"] else "") for r in d["rows"]]
+
+def dataita(ev):
+    try:
+        a = datetime.fromisoformat(ev["date"]); b = datetime.fromisoformat(ev["end"]) if ev.get("end") else None
+    except Exception:
+        return ""
+    if b and b != a:
+        return ("%d–%d %s %d" % (a.day, b.day, MESI_IT[b.month - 1], b.year)) if a.month == b.month else ("%d %s – %d %s %d" % (a.day, MESI_IT[a.month - 1], b.day, MESI_IT[b.month - 1], b.year))
+    return "%d %s %d" % (a.day, MESI_IT[a.month - 1], a.year)
+
+def vr_article(name, link, data):
+    """Articolo per la sezione Grandi tornei del sito (news_vr.json): top 8, premi, giocatori, formato, regolamento."""
+    if not data["rows"]:
+        return None
+    ev = data["ev"] or {}
+    parts = [x for x in (dataita(ev), ("%s giocatori" % data["players"]) if data["players"] else "", ("Regolamento %s" % ev["reg"]) if ev.get("reg") else "") if x]
+    fmt = data["fmt"] or ""
+    for en, it in (("2-phase Swiss rounds", "round svizzeri in 2 fasi"), ("Swiss rounds", "round svizzeri"), ("top cut", "top cut"), ("Open team lists", "· team list aperte"), ("Closed team lists", "· team list chiuse")):
+        fmt = re.sub(en, it, fmt, flags=re.I)
+    rows = []
+    for r in data["rows"]:
+        x = {"pl": r["pl"], "cc": r["cc"], "pz": " · ".join(v for v in (r["pz"], r["ex"]) if v)}
+        if r["mons"]:
+            x["mons"] = r["mons"]
+        rows.append(x)
+    return {"t": "Victory Road", "n": name, "d": " · ".join(parts), "top": len(rows), "real": True, "src": link, "srcn": "Victory Road",
+            "fmt": fmt, "ts": (ev.get("end") or ev.get("date") or ""), "rows": rows}
+
+def vr_salva(art):
+    try:
+        try:
+            lst = json.load(open(VR_JSON, encoding="utf-8"))
+        except Exception:
+            lst = []
+        lst = [art] + [x for x in lst if x.get("n") != art["n"]]
+        json.dump(lst[:8], open(VR_JSON, "w", encoding="utf-8"), ensure_ascii=False)
+        return True
+    except Exception as ex:
+        print("Articolo VR non salvato:", ex)
+        return False
 
 def log(*a):
     print(*a)
@@ -213,7 +287,10 @@ def main():
                 ue.deliver(TOPIC, "Player in evidenza: %s" % x["pl"], "%s a %s%s" % (place(x["p"]), x["t"], (" (%s)" % x["d"]) if x.get("d") else ""),
                            "https://limitlessvgc.com/tournaments/%s" % x["id"])
         for pl, ev, link in vr_new:
-            ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link)), link)
+            data = vr_page(link)
+            art = vr_article(ev, link, data)
+            click = ue.sito_url("vrwin") if (art and vr_salva(art)) else link  # senza articolo si apre la pagina di Victory Road
+            ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link, data)), click)
         for r in wins:
             ue.deliver("winner", "Vincitore Regionale: %s" % r[0],
                        "\n".join(["Regional %s%s" % (r[2], (" (%s)" % r[1]) if r[1] else "")] + reg_top8(news, r[3])),
