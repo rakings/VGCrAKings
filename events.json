@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T03:30:39+00:00",
+ "updated": "2026-10-19T05:53:11+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
-   "name": "Chaos League Sunday Slam #117",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-18",
-   "time": "23:00",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6acfe5ff8a8383117e3ebdde/details"
-  },
-  {
    "name": "4fun dominguito",
    "org": "Liga guatemalteca HIT",
    "mode": "online",
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "14:30",
-   "players": 17,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "17:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 30,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "02:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad57d30115c12b73a5a76a2/details"
   },
   {
@@ -433,7 +418,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 9,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -448,7 +433,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -598,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -613,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 69,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -628,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -703,7 +688,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 47,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -819,7 +804,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -849,7 +834,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "05:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
   },
   {
@@ -1384,6 +1369,21 @@
    "tz": "Europe/Berlin",
    "juniorAt": "2025-11-29T08:00:00Z",
    "seniorAt": "2025-11-29T08:00:00Z"
+  },
+  {
+   "name": "Xperience Play-Monthly Champions $500 Tournament#1",
+   "org": "Xperience Play",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
