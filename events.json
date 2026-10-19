@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T05:53:11+00:00",
+ "updated": "2026-10-19T07:44:54+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-19",
+   "time": "03:00",
+   "players": 61,
+   "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
+  },
+  {
    "name": "4fun dominguito",
    "org": "Liga guatemalteca HIT",
    "mode": "online",
@@ -197,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "Sketch Academy Sunday Regulation M-C Tournament",
-   "org": "Sketch Academy",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "03:00",
-   "players": 27,
-   "url": "https://play.limitlesstcg.com/tournament/6aba1756880ed327106de55f/details"
-  },
-  {
    "name": "Shadow Sneak Showdown-Shiny Gengar Prize",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "14:30",
-   "players": 24,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "17:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad478a3115c12b73a5a6e4c/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "20:00",
-   "players": 32,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6acd93fd8a8383117e3eac3f/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-19",
    "time": "12:30",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad4b7288a8383117e3ee96a/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -804,7 +804,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -1092,7 +1092,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 33,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
