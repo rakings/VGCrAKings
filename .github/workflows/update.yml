@@ -64,6 +64,7 @@ jobs:
           git add events.json
           [ -d e ] && git add -A e
           [ -f news.json ] && git add news.json
+          [ -f news_vr.json ] && git add news_vr.json
           [ -f notify_state.json ] && git add notify_state.json
           [ -f notify_players_state.json ] && git add notify_players_state.json
           [ -f notifiche_avvisi.json ] && git add notifiche_avvisi.json
