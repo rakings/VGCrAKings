@@ -347,9 +347,11 @@ var STATS=[["Sneasler", 54.84], ["Garchomp", 51.61], ["Rillaboom", 38.71], ["Inc
 var NEWS=[{t:"Regionale",n:"Regional Recife",d:"3 ottobre 2026 · 222 giocatori · Regolamento M-C",top:8,real:true,src:"https://limitlessvgc.com/tournaments/444",rows:REC.map(function(r){return {pl:r[0],cc:r[1],team:r[2].map(mk)}}),stats:STATS},{t:"Internazionale",n:"Internazionale di esempio",top:32},{t:"Mondiale",n:"Mondiali di esempio",top:64}];
 function rowsHtml(n,a,b){var h="";for(var i=a;i<=b;i++){var r=n.rows?n.rows[i-1]:{pl:"Giocatore "+i,cc:(n.t==="Internazionale"&&i===3?"IT":""),team:TEAMS[i%3].map(slot)};if(!r)break;h+='<div class="row'+(r.cc==="IT"?" it":"")+'"><b>'+i+'° · '+esc(r.pl)+(r.cc==="IT"?' <span class="tag t-it">Italia</span>':'')+(r.cc?' <span class="meta" style="margin:0">('+esc(r.cc)+')</span>':'')+'</b>'+(r.pz?'<span class="meta" style="display:block;margin:0">Premio: '+esc(r.pz)+'</span>':'')+(r.team?'<div class="team">'+r.team.map(monHtml).join("")+'</div><details class="ots"><summary>Open Team Sheet</summary>'+sheetHtml(r.team)+'</details>':(r.mons&&r.mons.length?'<span class="meta" style="display:block;margin:2px 0 0">'+r.mons.map(esc).join(" \u00b7 ")+'</span>':''))+'</div>'}return h}
 function statsHtml(n){return '<details class="more"><summary>Pokémon più usati (dati di Limitless)</summary>'+n.stats.map(function(x){return '<div class="bar"><span class="lab">'+phHtml(x[0])+esc(x[0])+'</span><span class="track"><i style="width:'+x[1]+'%"></i></span><b>'+String(x[1]).replace(".",",")+'%</b></div>'}).join("")+'</details>'}
-var VRN=[];
+var VRN=[],VRGO=null,VRDONE=false;
+function vrId(n){return (n.src||"").replace(/\/+$/,"").split("/").pop().replace(/^vr-/,"")}
+function vrApri(){if(!VRGO||VRDONE)return;var el=document.querySelector('[data-vr="'+VRGO+'"]');if(el){VRDONE=true;var d=el.querySelector("details");if(d)d.open=true;el.scrollIntoView({block:"start"})}}
 function newsHtml(){return VRN.concat(NEWS).map(function(n){var c=n.t==="Mondiale"?"ww":n.t==="Internazionale"?"int":n.t==="Special Event"?"sp":"rg",g=n.t==="Mondiale"?"t-ww":n.t==="Internazionale"?"t-int":n.t==="Special Event"?"t-reg":"t-rg";
-return '<li class="nw '+c+'"><details><summary><span class="tag '+g+'">'+n.t+'</span> '+(n.real?'<span class="tag t-coin">Dati reali</span>':'<span class="tag t-reg">Esempio</span>')+'<br><b>'+esc(n.n)+'</b><span class="meta" style="display:block;margin:2px 0 0">'+esc(n.d||"Dati inventati")+' · Top '+n.top+(n.rows&&n.rows[0]&&n.rows[0].team?' · tocca per vedere le squadre':' · tocca per vedere la top '+n.top)+'</span></summary>'+rowsHtml(n,1,Math.min(8,n.top))+(n.top>8?'<details class="more"><summary>Dal 9° al '+n.top+'°</summary>'+rowsHtml(n,9,n.top)+'</details>':'')+(n.stats?statsHtml(n):'')+(n.fmt?'<p class="meta">Formato: '+esc(n.fmt)+'</p>':'')+(n.src?'<p class="meta">Fonte: <a href="'+esc(n.src)+'" target="_blank" rel="noopener">'+esc(n.srcn||"Limitless VGC")+'</a></p>':'')+'</details></li>'}).join("")}
+var vid=n.srcn?vrId(n):"";return '<li class="nw '+c+'"'+(vid?' data-vr="'+esc(vid)+'"':'')+'><details'+(vid&&vid===VRGO?' open':'')+'><summary><span class="tag '+g+'">'+n.t+'</span> '+(n.real?'<span class="tag t-coin">Dati reali</span>':'<span class="tag t-reg">Esempio</span>')+'<br><b>'+esc(n.n)+'</b><span class="meta" style="display:block;margin:2px 0 0">'+esc(n.d||"Dati inventati")+' · Top '+n.top+(n.rows&&n.rows[0]&&n.rows[0].team?' · tocca per vedere le squadre':' · tocca per vedere la top '+n.top)+'</span></summary>'+rowsHtml(n,1,Math.min(8,n.top))+(n.top>8?'<details class="more"><summary>Dal 9° al '+n.top+'°</summary>'+rowsHtml(n,9,n.top)+'</details>':'')+(n.stats?statsHtml(n):'')+(n.fmt?'<p class="meta">Formato: '+esc(n.fmt)+'</p>':'')+(n.src?(n.srcn?'<p class="meta"><a href="'+esc(n.src)+'" target="_blank" rel="noopener"><b>Apri la pagina del torneo su '+esc(n.srcn)+' \u203a</b></a></p>':'<p class="meta">Fonte: <a href="'+esc(n.src)+'" target="_blank" rel="noopener">Limitless VGC</a></p>'):'')+'</details></li>'}).join("")}
 var ITA=[{pl:"Francesco Pio Pero",t:"NAIC 2026, New Orleans",p:1,d:"11 giugno 2026",n:1096,id:436},{pl:"Marco Hemantha Kaludura Silva",t:"Special Event Turin",p:1,d:"6 giugno 2026",n:940,id:435}];
 function italiHtml(){var a='target="_blank" rel="noopener"';return '<li class="nw it"><details open><summary><span class="tag t-it">Italia</span> <span class="tag t-coin">Dati reali</span><br><b>Italiani in evidenza</b><span class="meta" style="display:block;margin:2px 0 0">Italiani in top 16 dei grandi tornei del 2026</span></summary>'+(ITA.length?ITA.map(function(x){return '<div class="row it"><b>'+esc(x.pl)+'</b><span class="meta" style="margin:0">'+(x.p===1?"Vincitore":x.p+"° posto")+' · '+esc(x.t)+(x.d?" · "+esc(x.d):"")+(x.n?" · "+x.n+" giocatori":"")+'</span><a href="https://limitlessvgc.com/tournaments/'+x.id+'" '+a+'>Vedi risultati e squadre</a></div>'}).join(""):'<p class="meta">Nessun italiano in top 16 nei tornei letti finora.</p>')+'<p class="meta">Fonte: Limitless VGC</p></details></li>'}
 function infoHtml(){var a='target="_blank" rel="noopener"';function r(t,x){return '<div class="row"><b>'+t+'</b><span class="meta" style="margin:0">'+x+'</span></div>'}
@@ -727,7 +729,7 @@ fetch("events.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return
 fetch("news.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
 if(d.types)Object.keys(d.types).forEach(function(k){MT[k]=d.types[k]});
 if(d.news&&d.news.length)NEWS=d.news;if(d.bp&&d.bp.length)BP=d.bp;if(d.ita)ITA=d.ita;render()}).catch(function(){});
-fetch("news_vr.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():[]}).then(function(d){if(Array.isArray(d)&&d.length){VRN=d;render()}}).catch(function(){});
+fetch("news_vr.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():[]}).then(function(d){if(Array.isArray(d)&&d.length){VRN=d;render();vrApri()}}).catch(function(){});
 fetch("locali.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d&&Array.isArray(d.locali)){LOC=d.locali;render()}}).catch(function(){});
 /* Annunci (annunci.json): archivio nella sezione Info, in menu a tendina; quelli "fissati" stanno in cima; non scadono */
 var ANN=[],ANNS="vgc-ann-seen",ANNALL=false,ANNMAX=12,ANNOPEN=null;
@@ -742,12 +744,13 @@ fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;retur
 /* Link dalle notifiche: #annuncio-ID apre Info con quella tendina aperta; #locali apre la sezione Locali */
 var ANNGO=null;
 var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["news","info"],tutti:["all"],online:["online"],regionali:["regional"]};
-function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),mode="news";
-if(m){ANNGO=ANNOPEN=+m[1];annSeen();NV="info"}
-else if(d&&DLINK[d[1]]){var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),mode="news";
+if(v){VRGO=v[1];VRDONE=false;NV="big"}
+else if(m){ANNGO=ANNOPEN=+m[1];annSeen();NV="info"}
+else if(d&&DLINK[d[1]]){VRGO=null;var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
 else return;
 var bt=document.querySelector('#f-mode button[data-v="'+mode+'"]');if(bt)bt.click();else{st.mode=mode;render()}
-window.scrollTo(0,0);annApri()}
+window.scrollTo(0,0);annApri();vrApri()}
 function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
 if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
 if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}

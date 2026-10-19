@@ -223,6 +223,33 @@ def vr_salva(art):
         print("Articolo VR non salvato:", ex)
         return False
 
+def vr_backfill(champs):
+    """Crea l'articolo (news_vr.json) dei vincitori VR che ne sono ancora privi, senza mandare notifiche:
+    serve per i tornei già avvisati prima che esistesse l'articolo."""
+    try:
+        try:
+            have = {x.get("n") for x in json.load(open(VR_JSON, encoding="utf-8"))}
+        except Exception:
+            have = set()
+        for pl, ev, link in champs[:3]:
+            if ev in have:
+                continue
+            links = [link] if link and link.rstrip("/") != ue.VR.rstrip("/") else []
+            m = re.search(r"VR (\w+) Challenge #(\d+)", ev)  # banner senza link: si prova l'indirizzo vr-oct26-3
+            if m and not links:
+                yy = datetime.now(ue.ROME).year % 100
+                n = int(m[2])
+                links = [ue.VR + "vr-%s%02d%s/" % (m[1][:3].lower(), yy, "" if n == 1 else "-%d" % n)]
+            for lk in links:
+                art = vr_article(ev, lk, vr_page(lk))
+                if art and vr_salva(art):
+                    log("notify_players: articolo VR creato: %s" % ev)
+                    break
+            else:
+                log("notify_players: articolo VR non creato (pagina o top 8 non leggibili): %s" % ev)
+    except Exception as ex:
+        print("Articoli VR non creati:", ex)
+
 def log(*a):
     print(*a)
     sys.stdout.flush()
@@ -255,6 +282,7 @@ def main():
     champs = vr_champions()
     log("notify_players: home VR letta" if champs is not None else "notify_players: home VR non letta")
     if champs is not None:
+        vr_backfill(champs)
         done = {k.split("|", 2)[2] for k in sent if k.startswith("V|") and k.count("|") >= 2}  # tornei VR già registrati
         for pl, ev, link in champs:
             key = "V|%s|%s" % (pl, ev)
@@ -289,7 +317,9 @@ def main():
         for pl, ev, link in vr_new:
             data = vr_page(link)
             art = vr_article(ev, link, data)
-            click = ue.sito_url("vrwin") if (art and vr_salva(art)) else link  # senza articolo si apre la pagina di Victory Road
+            click = link  # senza articolo si apre la pagina di Victory Road
+            if art and vr_salva(art):  # con l'articolo: il sito si apre su quel torneo, già aperto (poi l'articolo rimanda a Victory Road)
+                click = ue.sito_url("vrwin").split("#")[0] + "#vr-" + re.sub(r"^vr-", "", link.rstrip("/").split("/")[-1])
             ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link, data)), click)
         for r in wins:
             ue.deliver("winner", "Vincitore Regionale: %s" % r[0],
