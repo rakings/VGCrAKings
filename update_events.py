@@ -462,7 +462,8 @@ def candidates(e):
     # torneo locale segnalato da un organizzatore (inserito a mano in manual.json): dal vivo, oppure Lega / Sfida di Lega / Coppa di Lega
     if e.get("mode") == "live" or "lega" in (e.get("type") or "").lower() or e.get("local") is True:
         out.append(("locali", "new", "Torneo locale segnalato"))
-    for cat, key, label in (("vr", "victory road", "Victory Road"), ("maddos", "maddo", "Maddos Cup")):
+    # Victory Road non passa di qui: i suoi tornei si annunciano con un articolo sul sito VR (avviso "vrreg" in notify_players.py)
+    for cat, key, label in (("maddos", "maddo", "Maddos Cup"),):
         if key in low:
             out.append((cat, "new", label + ": torneo annunciato"))
             if opened:
@@ -472,7 +473,7 @@ def candidates(e):
 # Dove porta il tocco di una notifica quando non c'è un link esterno preciso (torneo, iscrizione...):
 # alla sezione giusta del sito, non alla home. Il sito legge questi # (vedi DLINK in index.html).
 SITO_DEFAULT = "https://rakings.github.io/VGCrAKings"
-SEZIONI = {"money": "online", "gc": "online", "maddos": "online", "vr": "online", "regionali": "regionali",
+SEZIONI = {"money": "online", "gc": "online", "maddos": "online", "vr": "online", "vrreg": "online", "regionali": "regionali",
            "locali": "locali", "locali8": "locali", "player": "italiani", "winner": "grandi", "vrwin": "grandi"}
 
 def sito_url(topic=""):

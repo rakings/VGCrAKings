@@ -33,12 +33,60 @@ def fetch_limited(url, total=45):
             buf.append(ch)
     return b"".join(buf).decode("utf-8", "replace")
 
+VR_HOME = {"html": None}
+RE_ANN = re.compile(r"(VR [A-Za-z]+ Challenge #\d+)\b[^.!?]{0,60}?\bannounced\b[^.!?]{0,40}?\bsign-?ups? (?:are )?open", re.I)
+
+def vr_annunci(page, oggi=None):
+    """Articoli del sito VR tipo "The VR October Challenge #4 has been announced, and sign-ups are open!".
+    Dà [(nome torneo, link articolo, {date, end})] solo per tornei non ancora finiti."""
+    oggi = oggi or datetime.now(ue.ROME).date()
+    out, visti = [], set()
+    for m in re.finditer(r"[^<>]+", page):  # pezzi di testo tra due tag (ricerca lineare); il titolo può stare dentro un link o accanto a "Read more"
+        titolo = html.unescape(re.sub(r"\s+", " ", m[0])).strip()
+        if "announced" not in titolo:
+            continue
+        r = RE_ANN.search(titolo)
+        if not r or r[1].lower() in visti:
+            continue
+        visti.add(r[1].lower())
+        pr = re.search(r'href=["\'](https://victoryroad\.pro/[^"\'#]+)["\'][^>]*>\s*(?:<[^>]+>\s*)*$', page[max(0, m.start() - 500):m.start()])
+        po = re.search(r'href=["\'](https://victoryroad\.pro/[^"\'#]+)["\']', page[m.end():m.end() + 2500])
+        link = (pr or po).group(1) if (pr or po) else ue.VR
+        dopo = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style)\b.*?</\1>", " ", page[m.end():m.end() + 4000], flags=re.S | re.I))))
+        d = re.search(r"held online on (\d{1,2})(?:\s*[–—-]\s*(\d{1,2}))?\s+([A-Za-z]+)\s+(\d{4})", dopo) or re.search(r"\bon (\d{1,2})(?:\s*[–—-]\s*(\d{1,2}))?\s+([A-Za-z]+)\s+(\d{4})", dopo)
+        if not d or d[3].lower() not in ue.MESI:
+            log("notify_players: annuncio VR senza data riconoscibile: %s" % r[1])
+            continue
+        mese, anno = ue.MESI.index(d[3].lower()) + 1, int(d[4])
+        inizio, fine = "%04d-%02d-%02d" % (anno, mese, int(d[1])), "%04d-%02d-%02d" % (anno, mese, int(d[2] or d[1]))
+        if datetime.fromisoformat(fine).date() < oggi:
+            continue  # torneo già finito: niente avviso su un annuncio vecchio
+        out.append((r[1].strip(), link, {"date": inizio, "end": fine if fine != inizio else None}))
+    # seconda fonte: la slide della home "VR October Challenge #4 - The next VR event is held online on 24-25 October. Sign up, ..."
+    txt = html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style)\b.*?</\1>", " ", page, flags=re.S | re.I))))
+    for m in re.finditer(r"(VR [A-Za-z]+ Challenge #\d+)\s+The next VR event is held online on (\d{1,2})(?:\s*[–—-]\s*(\d{1,2}))?\s+([A-Za-z]+)\b[^.!?]{0,15}[.!]?\s*Sign[- ]?up", txt, re.I):
+        nome = m[1].strip()
+        if nome.lower() in visti or m[4].lower() not in ue.MESI:
+            continue
+        visti.add(nome.lower())
+        mese, anno = ue.MESI.index(m[4].lower()) + 1, oggi.year
+        inizio, fine = "%04d-%02d-%02d" % (anno, mese, int(m[2])), "%04d-%02d-%02d" % (anno, mese, int(m[3] or m[2]))
+        if (oggi - datetime.fromisoformat(fine).date()).days > 180:  # la slide non scrive l'anno: se la data sembra molto passata è dell'anno dopo
+            inizio, fine = inizio.replace(str(anno), str(anno + 1), 1), fine.replace(str(anno), str(anno + 1), 1)
+        if datetime.fromisoformat(fine).date() < oggi:
+            continue
+        pos = page.find("The next VR event is held online")
+        lk = re.search(r'href=["\'](https://victoryroad\.pro/[^"\'#]+)["\']', page[pos:pos + 2500]) if pos >= 0 else None
+        out.append((nome, lk[1] if lk else ue.VR, {"date": inizio, "end": fine if fine != inizio else None}))
+    return out
+
 def vr_champions():
     """Banner della home di Victory Road: "Kiran Singh is the VR October Challenge #2 Champion!".
     Solo i tornei VR (i Regionali sono già coperti dall'avviso del vincitore). Dà [(giocatore, torneo, link)] oppure None se la home non si legge."""
     try:
         t0 = time.monotonic()
         page = fetch_limited(ue.VR)
+        VR_HOME["html"] = page
         log("notify_players: home VR scaricata in %.1f secondi" % (time.monotonic() - t0))
     except Exception as ex:
         print("Home di Victory Road non letta:", ex)
@@ -291,6 +339,11 @@ def main():
                 sent.add(key)
                 if vr_ready:  # la prima volta si memorizza soltanto
                     vr_new.append((pl, ev, link))
+    ann = []  # annunci Victory Road con iscrizioni aperte (avviso "vrreg")
+    for nome, link, ev in vr_annunci(VR_HOME["html"] or ""):
+        if ("R|%s" % nome) not in sent:
+            sent.add("R|%s" % nome)
+            ann.append((nome, link, ev))
     wins = []  # vincitori dei Regionali (bp: [giocatore, paese, torneo, id, posizione])
     for r in news.get("bp") or []:
         if len(r) > 4 and r[4] == 1 and ("W|%s" % r[3]) not in sent:
@@ -306,7 +359,7 @@ def main():
         if int(x["id"]) > min_id:
             new.append(x)
     site = os.environ.get("SITE_URL", "")
-    log("notify_players: da inviare: %d player, %d vincitori, %d VR" % (len(new), len(wins), len(vr_new)))
+    log("notify_players: da inviare: %d player, %d vincitori, %d VR, %d iscrizioni VR" % (len(new), len(wins), len(vr_new), len(ann)))
     try:
         if len(new) > 5:
             ue.deliver(TOPIC, "Player in evidenza", "\n".join("%s - %s" % (x["pl"], x["t"]) for x in new[:5]) + "\ne altri %d" % (len(new) - 5), ue.sito_url(TOPIC))
@@ -314,6 +367,8 @@ def main():
             for x in new:
                 ue.deliver(TOPIC, "Player in evidenza: %s" % x["pl"], "%s a %s%s" % (place(x["p"]), x["t"], (" (%s)" % x["d"]) if x.get("d") else ""),
                            "https://limitlessvgc.com/tournaments/%s" % x["id"])
+        for nome, link, ev in ann:
+            ue.deliver("vrreg", "Victory Road: iscrizioni aperte", "%s\n%s" % (nome, dataita(ev)), link)
         for pl, ev, link in vr_new:
             data = vr_page(link)
             art = vr_article(ev, link, data)
@@ -325,7 +380,7 @@ def main():
             ue.deliver("winner", "Vincitore Regionale: %s" % r[0],
                        "\n".join(["Regional %s%s" % (r[2], (" (%s)" % r[1]) if r[1] else "")] + reg_top8(news, r[3])),
                        "https://limitlessvgc.com/tournaments/%s" % r[3])
-        print("Avvisi inviati: %d player, %d vincitori, %d VR" % (len(new), len(wins), len(vr_new)))
+        print("Avvisi inviati: %d player, %d vincitori, %d VR, %d iscrizioni VR" % (len(new), len(wins), len(vr_new), len(ann)))
     except Exception as ex:
         print("Avviso player non inviato:", ex)
         return  # lo stato non si aggiorna: si riprova al giro dopo
