@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T16:06:53+00:00",
+ "updated": "2026-10-20T17:04:04+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,6 +197,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
+   "name": "TARTAN TAKEDOWN #43! - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-20",
+   "time": "19:00",
+   "players": 90,
+   "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
+  },
+  {
    "name": "VGC UmbreNews 20.10.2026 #36 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -242,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad6960b115c12b73a5a7e93/details"
   },
   {
-   "name": "TARTAN TAKEDOWN #43! - [CHAMPIONS REG M-C!]",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "19:00",
-   "players": 90,
-   "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
-  },
-  {
    "name": "🇧🇷 Hit Nexus #1 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "01:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad30947115c12b73a5a5e5a/details"
   },
   {
@@ -287,21 +287,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7cadb245696afb3518f2d/details"
   },
   {
-   "name": "Gym Leader GAUNTLET (Monotype Tour)",
-   "org": "DevinTLegend",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "02:00",
-   "players": 52,
-   "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
-  },
-  {
    "name": "HeroicTitan’s VGC Battle Arena",
    "org": "The PokeKitchen Battle Series",
    "mode": "online",
@@ -313,8 +298,23 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad6d1218a8383117e3efd9a/details"
+  },
+  {
+   "name": "Gym Leader GAUNTLET (Monotype Tour)",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-21",
+   "time": "02:00",
+   "players": 54,
+   "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
    "name": "Tuesday Throwdowns #1",
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 48,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -662,21 +662,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
-   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 41,
-   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
-  },
-  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -692,19 +677,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
-   "name": "Outlanders Championship League S1",
-   "org": "Outlanders Trainers' Camp",
+   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
-   "cash": null,
-   "prize": "",
+   "cash": true,
+   "prize": "50€",
    "reg": null,
    "bo": null,
    "date": "2026-10-24",
-   "time": "15:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
+   "time": "14:00",
+   "players": 41,
+   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
    "name": "Øutcasts",
@@ -720,6 +705,21 @@
    "time": "15:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
+  },
+  {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
@@ -931,6 +931,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
   },
   {
+   "name": "DucPokémonChampions#11",
+   "org": "DUC E-SPORT",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "14:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad794a98a8383117e3f0147/details"
+  },
+  {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
    "org": "Wolfey Sub Server",
    "mode": "online",
@@ -1017,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
@@ -1062,7 +1077,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fee785920e4d25362ce6/details"
   },
   {
@@ -1284,7 +1299,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
