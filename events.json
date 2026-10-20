@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T13:32:35+00:00",
+ "updated": "2026-10-20T14:57:15+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aca89b18a8383117e3e8f77/details"
   },
   {
-   "name": "Shadow Sneak Showdown-Shiny Gengar Prize",
-   "org": "Mahir PokéVgc",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "14:30",
-   "players": 49,
-   "url": "https://play.limitlesstcg.com/tournament/6ad1f5c08a8383117e3ecdd8/details"
-  },
-  {
    "name": "4fun dominguito",
    "org": "Liga guatemalteca HIT",
    "mode": "online",
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 36,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 71,
+   "players": 77,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "01:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad30947115c12b73a5a5e5a/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 51,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 27,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -403,7 +388,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 49,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -418,7 +403,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -435,6 +420,21 @@
    "time": "17:00",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
+  },
+  {
+   "name": "VGC UmbreNews 22.10.2026 #E1 - Champion",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-22",
+   "time": "18:30",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad772518a8383117e3f0054/details"
   },
   {
    "name": "VGC Gemeinde Showdown #12",
@@ -583,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 93,
+   "players": 97,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -673,7 +673,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -688,7 +688,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 73,
+   "players": 74,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -707,6 +707,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
+  },
+  {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
    "org": "Liga CWB",
    "mode": "online",
@@ -718,7 +733,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
@@ -780,6 +795,24 @@
    "time": "22:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
+  },
+  {
+   "name": "VR October Challenge #4",
+   "org": "Victory Road",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": 11.5,
+   "cur": "$",
+   "feeNote": "+ tassa Battlefy",
+   "cash": true,
+   "prize": "montepremi",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-24",
+   "end": "2026-10-25",
+   "time": null,
+   "url": "https://victoryroad.pro/vr-oct26-4/",
+   "signup": "https://battlefy.com/victoryroad/victory-road-october-challenge-4/6ad6638c938db70019d67ad5/info?infoTab=details"
   },
   {
    "name": "Puebla Regional Championships",
@@ -999,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
