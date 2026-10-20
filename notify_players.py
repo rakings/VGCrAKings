@@ -368,7 +368,7 @@ def main():
                 ue.deliver(TOPIC, "Player in evidenza: %s" % x["pl"], "%s a %s%s" % (place(x["p"]), x["t"], (" (%s)" % x["d"]) if x.get("d") else ""),
                            "https://limitlessvgc.com/tournaments/%s" % x["id"])
         for nome, link, ev in ann:
-            ue.deliver("vrreg", "Victory Road: iscrizioni aperte", "%s\n%s" % (nome, dataita(ev)), link)
+            ue.deliver_multi(["vrreg", "vr"], "Victory Road: iscrizioni aperte", "%s\n%s" % (nome, dataita(ev)), link)  # chi ha attivo "Victory Road" o la casella dedicata: un solo avviso
         for pl, ev, link in vr_new:
             data = vr_page(link)
             art = vr_article(ev, link, data)

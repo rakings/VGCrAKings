@@ -557,15 +557,18 @@ def subs_for(topic):
     want = "money=all" if cat == "money" else "money=33" if cat == "money33" else cat
     return [s["id"] for s in subs if want in (s.get("c") or []) and (not one or base in (s.get("h") or []))]
 
-def log_notif(topic, title, body, click, fname):
+def log_notif(topic, title, body, click, fname, topics=None):
     """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
     try:
         try:
             lst = json.load(open(fname, encoding="utf-8"))
         except Exception:
             lst = []
-        lst.append({"t": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "topic": topic, "title": title,
-                    "body": body, "url": click if (click or "").startswith("http") else ""})
+        x = {"t": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "topic": topic, "title": title,
+             "body": body, "url": click if (click or "").startswith("http") else ""}
+        if topics and len(topics) > 1:
+            x["topics"] = topics  # la cronologia la mostra a chi ha attivo anche uno solo di questi canali
+        lst.append(x)
         json.dump(lst[-40:], open(fname, "w", encoding="utf-8"), ensure_ascii=False)
     except Exception as ex:
         print("Cronologia non salvata:", ex)
@@ -584,6 +587,26 @@ def deliver(topic, title, body, click):
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_avvisi.json")
+
+def deliver_multi(topics, title, body, click):
+    """Un solo avviso a chi ha attivo almeno uno dei canali (nessuno lo riceve due volte), con una sola riga in cronologia."""
+    if os_on() and subs_on():
+        ids = []
+        for t in topics:
+            for i in subs_for(t):
+                if i not in ids:
+                    ids.append(i)
+        if ids:
+            send_os(None, title, body, click, ids=ids)
+        else:
+            print("Nessun iscritto per i canali", topics)
+    elif os_on():  # vecchio sistema a tag: i filtri non si possono unire, un invio per canale
+        for t in topics:
+            send_os(os_filters(t), title, body, click)
+    else:
+        for t in topics:
+            say(os.environ.get("NTFY_PREFIX", "") + "-" + t, title, body, click)
+    log_notif(topics[0], title, body, click, "notifiche_avvisi.json", topics)
 
 def deliver_tutti(title, body, click):
     """Avviso OBBLIGATORIO (annunci del sito): arriva a tutti gli iscritti, qualunque spunta abbiano scelto."""
