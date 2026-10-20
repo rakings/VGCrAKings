@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T05:50:04+00:00",
+ "updated": "2026-10-20T07:37:34+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -227,51 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad57d30115c12b73a5a76a2/details"
   },
   {
-   "name": "Pokepal Smackdown #163 (Champions) (Reg M-C)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "01:30",
-   "players": 34,
-   "url": "https://play.limitlesstcg.com/tournament/6ace5fde8a8383117e3eb117/details"
-  },
-  {
-   "name": "Intimidators Champions Challenge #51 REG M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "01:05",
-   "players": 52,
-   "url": "https://play.limitlesstcg.com/tournament/6ad5ff65115c12b73a5a789a/details"
-  },
-  {
-   "name": "RookideeVGC Qualifier| Prize Shiny Pawmot",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "00:00",
-   "players": 39,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16be5245696afb35158f4/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
    "org": "Pomelo",
    "mode": "online",
@@ -298,7 +253,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "14:30",
-   "players": 18,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
   },
   {
@@ -328,7 +283,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 44,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -373,7 +328,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -418,7 +373,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 26,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -718,7 +673,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 65,
+   "players": 66,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -733,7 +688,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -864,7 +819,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
