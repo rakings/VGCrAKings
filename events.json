@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T12:07:34+00:00",
+ "updated": "2026-10-20T13:32:35+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-20",
-   "time": "05:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6ad6960b115c12b73a5a7e93/details"
-  },
-  {
    "name": "SS Fight Club 3",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -242,6 +227,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
   },
   {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-20",
+   "time": "05:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6ad6960b115c12b73a5a7e93/details"
+  },
+  {
    "name": "VGC UmbreNews 20.10.2026 #36 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 28,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 64,
+   "players": 71,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -302,21 +302,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac7cadb245696afb3518f2d/details"
   },
   {
-   "name": "Gym Leader GAUNTLET (Monotype Tour)",
-   "org": "DevinTLegend",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "02:00",
-   "players": 48,
-   "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
-  },
-  {
    "name": "HeroicTitan’s VGC Battle Arena",
    "org": "The PokeKitchen Battle Series",
    "mode": "online",
@@ -330,6 +315,21 @@
    "time": "02:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad6d1218a8383117e3efd9a/details"
+  },
+  {
+   "name": "Gym Leader GAUNTLET (Monotype Tour)",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-21",
+   "time": "02:00",
+   "players": 51,
+   "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
    "name": "Tuesday Throwdowns #1",
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 47,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -538,7 +538,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "14:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 38,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -673,7 +673,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -688,7 +688,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 70,
+   "players": 73,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -834,7 +834,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "00:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
@@ -849,7 +849,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "05:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
   },
   {
@@ -864,7 +864,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
@@ -941,6 +941,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
+  },
+  {
+   "name": "Amyverse VGC Champions Arena #16 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-26",
+   "time": "19:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
