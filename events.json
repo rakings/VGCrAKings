@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T10:47:21+00:00",
+ "updated": "2026-10-20T11:57:02+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "14:30",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 23,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 58,
+   "players": 62,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 47,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 45,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -527,6 +527,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aa619adf1243e65f97ffc43/details"
   },
   {
+   "name": "Malaysia Poke Ball League #12",
+   "org": "Malaysia Poke Ball League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "14:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
+  },
+  {
    "name": "Metal",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -538,7 +553,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "23:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
@@ -568,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 92,
+   "players": 93,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -583,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 35,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -647,21 +662,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 70,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -675,6 +675,21 @@
    "time": "14:00",
    "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 70,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "Øutcasts",
@@ -804,7 +819,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -1444,6 +1459,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16db585920e4d25363415/details"
+  },
+  {
+   "name": "London Corviknights VGC Weekly Tour 24!",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-03",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad7442e8a8383117e3efee1/details"
   },
   {
    "name": "REG. ❓|👑CROWN FIGHT Bo3 TOUR #92👑",
