@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T17:04:04+00:00",
+ "updated": "2026-10-20T17:47:57+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad6d1218a8383117e3efd9a/details"
   },
   {
@@ -317,6 +317,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
+   "name": "La ultima y nos vamos a Puebla",
+   "org": "Sucker Punch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-21",
+   "time": "04:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad7a00e115c12b73a5a860f/details"
+  },
+  {
    "name": "Tuesday Throwdowns #1",
    "org": "The #1 Fanatics",
    "mode": "online",
@@ -328,7 +343,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "04:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad558f1115c12b73a5a7512/details"
   },
   {
@@ -358,7 +373,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 50,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -583,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 97,
+   "players": 98,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -673,7 +688,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 74,
+   "players": 76,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
