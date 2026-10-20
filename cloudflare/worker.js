@@ -3,7 +3,7 @@
 // Il sito scrive con POST; il bot di GitHub legge con GET /list (serve il token ADMIN_TOKEN).
 // Collegamenti da creare nel pannello Cloudflare: KV namespace con nome variabile SUBS,
 // segreto ADMIN_TOKEN, (facoltativa) variabile ALLOW_ORIGIN con l'indirizzo del sito.
-const CATS = ["money", "gc", "regionali", "vr", "maddos", "locali", "locali8", "player", "winner", "vrwin"];
+const CATS = ["money", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin"];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const REFRESH_MS = 5 * 24 * 3600 * 1000;   // si riscrive solo se qualcosa cambia o dopo 5 giorni (limite di scritture KV)
 const TTL_S = 150 * 24 * 3600;             // chi non apre il sito per 150 giorni esce dall'archivio
