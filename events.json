@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T09:14:08+00:00",
+ "updated": "2026-10-20T10:47:21+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "14:30",
-   "players": 23,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ad5eef1115c12b73a5a7853/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "17:30",
-   "players": 19,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6acf21b08a8383117e3eb87d/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-20",
    "time": "19:00",
-   "players": 54,
+   "players": 58,
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "01:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad30947115c12b73a5a5e5a/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "02:00",
-   "players": 44,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6acfd4e08a8383117e3ebd51/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 42,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 17,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 88,
+   "players": 92,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -583,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 33,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -658,7 +658,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 67,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -673,7 +673,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 40,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -1206,7 +1206,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1223,6 +1223,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
+  },
+  {
+   "name": "London Corviknights VGC Weekly Tour 21!",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -1269,6 +1284,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
+  },
+  {
+   "name": "London Corviknights VGC Weekly Tour 22!",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -1345,6 +1375,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
+  },
+  {
+   "name": "London Corviknights VGC Weekly Tour 23!",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details"
   },
   {
    "name": "Stuttgart Regional Championships",
