@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T16:08:58+00:00",
+ "updated": "2026-10-21T17:06:27+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,6 +212,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
+   "name": "Alpensee Tour (Reg M-C) #80",
+   "org": "Alpensee eSports e.V.",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-21",
+   "time": "19:00",
+   "players": 105,
+   "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
+  },
+  {
    "name": "Mamoswine Online 10-20-26",
    "org": "MinnDak VGC",
    "mode": "online",
@@ -242,36 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad30947115c12b73a5a5e5a/details"
   },
   {
-   "name": "Alpensee Tour (Reg M-C) #80",
-   "org": "Alpensee eSports e.V.",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "19:00",
-   "players": 105,
-   "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
-  },
-  {
-   "name": "Hatterene Series Weekly #8 2027 - 6PM UTC - M-C",
-   "org": "Hatterene Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "20:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
-  },
-  {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#80",
    "org": "HM4coach & The Boys",
    "mode": "online",
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 98,
+   "players": 100,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -388,7 +373,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -478,7 +463,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 26,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -493,7 +478,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 105,
+   "players": 106,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -811,21 +796,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
   },
   {
-   "name": "Trinity Championship 17 (Double Format)",
-   "org": "Trinity Portal",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "10:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
-  },
-  {
    "name": "🎃 Alpenspooktober 🎃",
    "org": "Alpensee eSports e.V.",
    "mode": "online",
@@ -841,6 +811,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
+   "name": "Trinity Championship 17 (Double Format)",
+   "org": "Trinity Portal",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "10:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
+  },
+  {
    "name": "Ultra Beast Cup 2 - by Bakaiti Villa",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -852,7 +837,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -974,6 +959,21 @@
    "time": "23:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
+  },
+  {
+   "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
+   "org": "The #1 Fanatics",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "00:30",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
    "name": "Alpensee Tour (Reg M-C) #81",
@@ -1198,6 +1198,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
+   "name": "Alpensee Tour (Reg M-C) #82",
+   "org": "Alpensee eSports e.V.",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-04",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 20!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1211,6 +1226,21 @@
    "time": "19:30",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-06",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
    "name": "PWC - Battle in the Colosseum #33",
@@ -1273,6 +1303,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
+   "name": "Alpensee Tour (Reg M-C) #83",
+   "org": "Alpensee eSports e.V.",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-11",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 21!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1286,6 +1331,21 @@
    "time": "19:30",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -1347,6 +1407,21 @@
    "time": "19:30",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -1509,6 +1584,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad7442e8a8383117e3efee1/details"
   },
   {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-04",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8ecc3115c12b73a5a905e/details"
+  },
+  {
    "name": "REG. ❓|👑CROWN FIGHT Bo3 TOUR #92👑",
    "org": "Kampfstube",
    "mode": "online",
@@ -1579,6 +1669,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16df185920e4d25363417/details"
   },
   {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-11",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8ed9a8a8383117e3f0bae/details"
+  },
+  {
    "name": "REG. |👑CROWN FIGHT Bo3 TOUR #93👑",
    "org": "Kampfstube",
    "mode": "online",
@@ -1607,6 +1712,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ebf85920e4d25363472/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-18",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8edbe8a8383117e3f0baf/details"
   },
   {
    "name": "REG.|👑CROWN FIGHT Bo3 TOUR #94👑",
@@ -1682,6 +1802,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16f1d245696afb351590d/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2027-01-01",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eea18a8383117e3f0bb6/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
