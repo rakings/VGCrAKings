@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T09:15:06+00:00",
+ "updated": "2026-10-21T10:48:15+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,36 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
-   "name": "Tuesday Throwdowns #1",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "04:30",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6ad558f1115c12b73a5a7512/details"
-  },
-  {
-   "name": "La ultima y nos vamos a Puebla",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "04:15",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ad7a00e115c12b73a5a860f/details"
-  },
-  {
    "name": "Mamoswine Online 10-20-26",
    "org": "MinnDak VGC",
    "mode": "online",
@@ -283,7 +253,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "06:00",
-   "players": 44,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ad5866a115c12b73a5a7746/details"
   },
   {
@@ -298,7 +268,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 72,
+   "players": 75,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -313,7 +283,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "20:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 73,
+   "players": 76,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -343,8 +313,23 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
+  },
+  {
+   "name": "WARTORTLE WEDNESDAYS #69 REG M-C BO3 OTS",
+   "org": "WST GAMES",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": "Bo3",
+   "date": "2026-10-22",
+   "time": "04:30",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad88b6e8a8383117e3f0958/details"
   },
   {
    "name": "Tenki",
@@ -628,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 84,
+   "players": 85,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -792,7 +777,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 31,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -1239,7 +1224,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
