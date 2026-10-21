@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T19:03:30+00:00",
+ "updated": "2026-10-21T20:16:03+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 112,
+   "players": 118,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -435,6 +435,21 @@
    "time": "14:00",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
+  },
+  {
+   "name": "Meeklosh",
+   "org": "meeklosh",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "21:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
   },
   {
    "name": "Metal",
@@ -523,7 +538,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:15",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f8e88a8383117e3f0cb1/details"
   },
   {
@@ -602,21 +617,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
-   "name": "Øutcasts",
-   "org": "Øutcasts Dominion Intl.",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "15:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
-  },
-  {
    "name": "Outlanders Championship League S1",
    "org": "Outlanders Trainers' Camp",
    "mode": "online",
@@ -630,6 +630,21 @@
    "time": "15:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
+  },
+  {
+   "name": "Øutcasts",
+   "org": "Øutcasts Dominion Intl.",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
@@ -766,21 +781,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
-   "name": "-1 Defense Series",
-   "org": "Pokemon Champions Talca",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "00:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
-  },
-  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -794,6 +794,21 @@
    "time": "00:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
+  },
+  {
+   "name": "-1 Defense Series",
+   "org": "Pokemon Champions Talca",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #4",
@@ -826,21 +841,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
   },
   {
-   "name": "Trinity Championship 17 (Double Format)",
-   "org": "Trinity Portal",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "10:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
-  },
-  {
    "name": "🎃 Alpenspooktober 🎃",
    "org": "Alpensee eSports e.V.",
    "mode": "online",
@@ -854,6 +854,21 @@
    "time": "10:00",
    "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
+  },
+  {
+   "name": "Trinity Championship 17 (Double Format)",
+   "org": "Trinity Portal",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "10:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
   },
   {
    "name": "Ultra Beast Cup 2 - by Bakaiti Villa",
@@ -1017,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
