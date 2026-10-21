@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T17:52:08+00:00",
+ "updated": "2026-10-21T19:03:30+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 103,
+   "players": 112,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 25,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "01:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 107,
+   "players": 108,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -523,7 +523,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:15",
-   "players": 0,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f8e88a8383117e3f0cb1/details"
   },
   {
@@ -583,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 45,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 92,
+   "players": 93,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -658,7 +658,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:15",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6a9956d5a4272c53be645934/details"
   },
   {
@@ -766,6 +766,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
+   "name": "-1 Defense Series",
+   "org": "Pokemon Champions Talca",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
+  },
+  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -852,7 +867,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -882,7 +897,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "14:30",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ad794a98a8383117e3f0147/details"
   },
   {
@@ -957,7 +972,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -972,7 +987,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
@@ -1002,7 +1017,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -1017,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -1062,7 +1077,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "00:00",
-   "players": 4,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
