@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T11:59:40+00:00",
+ "updated": "2026-10-21T13:33:26+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-21",
    "time": "19:00",
-   "players": 78,
+   "players": 80,
    "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "00:00",
-   "players": 82,
+   "players": 87,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": "Bo3",
    "date": "2026-10-22",
    "time": "04:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad88b6e8a8383117e3f0958/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 17,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -508,7 +508,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 50,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -583,7 +583,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -598,23 +598,8 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 86,
+   "players": 87,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
-   "name": "Outlanders Championship League S1",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "15:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "Øutcasts",
@@ -630,6 +615,21 @@
    "time": "15:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
+  },
+  {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "Pokémon Champions Classic 2 (READ THE RULES)",
@@ -811,6 +811,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
   },
   {
+   "name": "Trinity Championship 17 (Double Format)",
+   "org": "Trinity Portal",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "10:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
+  },
+  {
    "name": "🎃 Alpenspooktober 🎃",
    "org": "Alpensee eSports e.V.",
    "mode": "online",
@@ -837,7 +852,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 1,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -942,7 +957,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -1047,7 +1062,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
@@ -1153,6 +1168,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6accf67d8a8383117e3ea309/details"
   },
   {
+   "name": "Same First Letter",
+   "org": "Mahir PokéVgc",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "09:30",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -1224,7 +1254,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
