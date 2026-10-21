@@ -656,7 +656,8 @@ function instRow(){if(pwaStandalone())return "";if(DEFER||pwaIOS())return '<div 
 $("pwa-btn").addEventListener("click",pwaInstalla);
 $("pwa-x").addEventListener("click",function(){pwaChiudi(PWA.k)});
 $("ios-x").addEventListener("click",function(){pwaChiudi(PWA.ik)});
-window.addEventListener("appinstalled",function(){DEFER=null;pwaRefresh()});
+function pwaMarca(){try{localStorage.setItem("vgc-app","1")}catch(e){}}
+window.addEventListener("appinstalled",function(){DEFER=null;pwaMarca();pwaRefresh()});if(pwaStandalone())pwaMarca();
 try{window.matchMedia("(display-mode: standalone)").addEventListener("change",pwaRefresh)}catch(e){}
 pwaRefresh();
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
@@ -745,10 +746,12 @@ function langCode(){return LC[LANG]||String(LANG).toUpperCase()}
 var THEMES=[];/* temi futuri: {id:"nome-tecnico",n:"Nome mostrato"} */
 function themeMenu(){var m=$("tmenu");if(!m)return;if(!m.hidden){m.hidden=true;return}m.innerHTML='<b style="display:block;margin:0 0 6px">Tema</b>'+(THEMES.length?THEMES.map(function(t){return '<button class="btn" type="button" data-th="'+t.id+'" style="display:block;width:100%;margin:4px 0">'+t.n+'</button>'}).join(""):'<p class="meta" style="margin:0">Presto disponibili.</p>');m.hidden=false}
 function instHelp(os){var ua=navigator.userAgent,and=/android/i.test(ua),ph=and||pwaIOS(),st=pwaStandalone(),b,tit;
-if(!st&&DEFER&&((os==="android"&&and)||(os==="pc"&&!ph))){pwaFromSettings();return}
-if(st)b='<p class="meta">L\u2019app è già installata su questo dispositivo \u2713</p>';
+var mio=(os==="android"&&and)||(os==="pc"&&!ph);
+if(!st&&DEFER&&mio){pwaInstalla();$("np").hidden=true;return}
+var gia=st||(mio&&!DEFER&&(function(){try{return localStorage.getItem("vgc-app")==="1"}catch(e){return false}})());
+if(gia)b='<p class="meta">L\u2019app è già installata su questo dispositivo \u2713 Aprila dall\u2019icona rAKings nella schermata Home.</p>';
 else{var ok=(os==="ios"&&pwaIOS())||(os==="android"&&and)||(os==="pc"&&!ph);
-b=(os==="ios"?'<ol class="isteps"><li>Apri questo sito con <b>Safari</b> sul tuo iPhone o iPad.</li><li>Tocca <b>Condividi</b> \ud83d\udce4 in basso.</li><li>Scegli <b>Aggiungi alla schermata Home</b>.</li><li>Apri l\u2019app dall\u2019icona appena creata.</li></ol>':os==="android"?'<ol class="isteps"><li>Apri questo sito con <b>Chrome</b> sul tuo telefono Android.</li><li>Tocca il menu <b>\u22ee</b> in alto a destra.</li><li>Scegli <b>Installa app</b> (o <b>Aggiungi a schermata Home</b>).</li></ol>':'<ol class="isteps"><li><b>Chrome o Edge</b>: clicca l\u2019icona <b>Installa</b> nella barra dell\u2019indirizzo, oppure il menu (\u22ee o \u22ef) e scegli <b>Installa</b>.</li><li><b>Safari su Mac</b>: menu <b>File</b> \u2192 <b>Aggiungi al Dock</b>.</li><li>Firefox non supporta l\u2019installazione delle app.</li></ol>')+(ok?'':'<p class="meta">Queste istruzioni valgono per un altro dispositivo: aprilo da lì.</p>')}
+b=(os==="ios"?'<ol class="isteps"><li>Apri questo sito con <b>Safari</b> sul tuo iPhone o iPad.</li><li>Tocca <b>Condividi</b> \ud83d\udce4 in basso.</li><li>Scegli <b>Aggiungi alla schermata Home</b>.</li><li>Apri l\u2019app dall\u2019icona appena creata.</li></ol>':os==="android"?'<ol class="isteps"><li>Apri questo sito con <b>Chrome</b> sul tuo telefono Android.</li><li>Tocca il menu <b>\u22ee</b> in alto a destra.</li><li>Scegli <b>Installa app</b>. Se vedi solo \u201cAggiungi a schermata Home\u201d, ricarica la pagina e riprova: quella voce crea un semplice collegamento, non installa l\u2019app.</li></ol>':'<ol class="isteps"><li><b>Chrome o Edge</b>: clicca l\u2019icona <b>Installa</b> nella barra dell\u2019indirizzo, oppure il menu (\u22ee o \u22ef) e scegli <b>Installa</b>.</li><li><b>Safari su Mac</b>: menu <b>File</b> \u2192 <b>Aggiungi al Dock</b>.</li><li>Firefox non supporta l\u2019installazione delle app.</li></ol>')+(ok?'':'<p class="meta">Queste istruzioni valgono per un altro dispositivo: aprilo da lì.</p>')}
 tit=os==="ios"?"Installa su iPhone":os==="android"?"Installa su Android":"Installa su PC (Windows e Mac)";
 $("np").innerHTML='<div class="sheet2" role="document"><div class="calbar"><button class="cnav" data-npback="1" aria-label="Indietro">\u2039</button><b id="np-t">'+tit+'</b><button class="cnav" data-npc="1" aria-label="Chiudi">\u2715</button></div>'+b+'</div>';$("np").hidden=false}
 $("np").addEventListener("click",function(ev){if(ev.target.closest("[data-theme]")){themeMenu();return}var tm=$("tmenu");if(tm&&!tm.hidden&&!ev.target.closest("#tmenu"))tm.hidden=true;var ib=ev.target.closest("[data-ins]");if(ib){instHelp(ib.dataset.ins);return}var b=ev.target.closest("[data-lang]");if(b){setLang(b.dataset.lang);return}if(ev.target.closest("[data-openlang]")){langMenu();return}if(ev.target.closest("[data-pwa]")){pwaFromSettings();return}if(ev.target.closest("[data-npback]")){$("np").innerHTML=npHtml()}});
