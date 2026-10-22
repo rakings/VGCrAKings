@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T07:40:41+00:00",
+ "updated": "2026-10-22T09:14:35+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 37,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "18:30",
-   "players": 14,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ad772518a8383117e3f0054/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "19:30",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6aa95eb7f1243e65f98020cf/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 32,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "01:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "14:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 125,
+   "players": 134,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -553,7 +553,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 99,
+   "players": 100,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -643,7 +643,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:15",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6a9956d5a4272c53be645934/details"
   },
   {
@@ -852,7 +852,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -987,7 +987,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -1032,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -1256,6 +1256,21 @@
    "time": "19:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#81",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-05",
+   "time": "00:00",
+   "players": 119,
+   "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
    "name": "London Corviknights VGC Weekly Tour 20!",
