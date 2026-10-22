@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T22:40:08+00:00",
+ "updated": "2026-10-22T01:14:29+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac559ee85920e4d2536589b/details"
   },
   {
-   "name": "Alpensee Tour (Reg M-C) #80",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "19:00",
-   "players": 110,
-   "url": "https://play.limitlesstcg.com/tournament/6abaa28a783097f8dcb72a7c/details"
-  },
-  {
    "name": "Mamoswine Online 10-20-26",
    "org": "MinnDak VGC",
    "mode": "online",
@@ -257,21 +242,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad30947115c12b73a5a5e5a/details"
   },
   {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#80",
-   "org": "HM4coach & The Boys",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-22",
-   "time": "00:00",
-   "players": 126,
-   "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
-  },
-  {
    "name": "Off Meta Fight Club #8",
    "org": "DevinTLegend",
    "mode": "online",
@@ -283,7 +253,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "02:00",
-   "players": 29,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ad549058a8383117e3eed6c/details"
   },
   {
@@ -298,8 +268,23 @@
    "bo": "Bo3",
    "date": "2026-10-22",
    "time": "04:30",
-   "players": 7,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad88b6e8a8383117e3f0958/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-22",
+   "time": "05:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ad948d7115c12b73a5a9541/details"
   },
   {
    "name": "Tenki",
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "17:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad1d260115c12b73a5a4ffa/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "18:30",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad772518a8383117e3f0054/details"
   },
   {
@@ -358,8 +343,23 @@
    "bo": null,
    "date": "2026-10-22",
    "time": "19:30",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aa95eb7f1243e65f98020cf/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#80",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-22",
+   "time": "00:00",
+   "players": 121,
+   "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
    "name": "MetaVGC Arena #2 | Off-Meta Edition| $10 Prize",
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "01:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "14:00",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "23:00",
-   "players": 13,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -508,7 +508,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 57,
+   "players": 59,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 46,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 93,
+   "players": 96,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -643,7 +643,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -660,6 +660,21 @@
    "time": "18:00",
    "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny Whimsicott",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "18:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
   },
   {
    "name": "🏆|CORONATION CHAMPIONSHIP SEASON 2 FINAL",
@@ -781,21 +796,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
-   "name": "Champions",
-   "org": "The Umbreon Cartel",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "00:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
-  },
-  {
    "name": "-1 Defense Series",
    "org": "Pokemon Champions Talca",
    "mode": "online",
@@ -809,6 +809,21 @@
    "time": "00:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
+  },
+  {
+   "name": "Champions",
+   "org": "The Umbreon Cartel",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #4",
@@ -897,7 +912,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "13:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
   },
   {
@@ -1017,7 +1032,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -1032,7 +1047,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -1077,7 +1092,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -1359,7 +1374,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1655,7 +1670,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
