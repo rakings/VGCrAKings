@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T17:51:48+00:00",
+ "updated": "2026-10-22T19:03:53+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "Mamoswine Online 10-20-26",
-   "org": "MinnDak VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-21",
-   "time": "01:45",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ac7cadb245696afb3518f2d/details"
-  },
-  {
    "name": "London Corviknights VGC Weekly Tour 18!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "00:00",
-   "players": 47,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "01:00",
-   "players": 33,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "14:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "21:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
   },
   {
@@ -403,7 +388,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 151,
+   "players": 153,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -433,7 +418,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad39c698a8383117e3ee0c3/details"
   },
   {
@@ -508,7 +493,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 52,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -523,7 +508,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 108,
+   "players": 109,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -852,7 +837,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:00",
-   "players": 45,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
@@ -1155,7 +1140,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "13:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
   },
   {
