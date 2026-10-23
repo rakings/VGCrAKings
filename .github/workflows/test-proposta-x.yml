@@ -1,0 +1,16 @@
+name: Proposta X di prova
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 proposte_x.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          X_REPO: ${{ vars.X_REPO }}
+          X_TOKEN: ${{ secrets.X_TOKEN }}

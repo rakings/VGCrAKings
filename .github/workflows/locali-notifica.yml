@@ -5,6 +5,7 @@ on:
     paths: [locali.json, annunci.json]
 permissions:
   contents: write
+  issues: write
 concurrency:
   group: locali-notifica
   cancel-in-progress: false
@@ -24,6 +25,10 @@ jobs:
           SUBS_URL: ${{ vars.SUBS_URL }}
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          X_ISSUES: ${{ vars.X_ISSUES }}
+          X_REPO: ${{ vars.X_REPO }}
+          X_TOKEN: ${{ secrets.X_TOKEN }}
       - name: Salva stato e cronologia
         if: always()
         run: |

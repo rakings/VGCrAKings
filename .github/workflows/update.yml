@@ -21,6 +21,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  issues: write
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -38,6 +39,10 @@ jobs:
           SUBS_URL: ${{ vars.SUBS_URL }}
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          X_ISSUES: ${{ vars.X_ISSUES }}
+          X_REPO: ${{ vars.X_REPO }}
+          X_TOKEN: ${{ secrets.X_TOKEN }}
       - run: python3 update_news.py
         continue-on-error: true
         env:
@@ -52,12 +57,20 @@ jobs:
           SUBS_URL: ${{ vars.SUBS_URL }}
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          X_ISSUES: ${{ vars.X_ISSUES }}
+          X_REPO: ${{ vars.X_REPO }}
+          X_TOKEN: ${{ secrets.X_TOKEN }}
       - run: pip install pillow
         continue-on-error: true
       - run: python3 make_share_pages.py
         continue-on-error: true
         env:
           SITE_URL: ${{ vars.SITE_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          X_ISSUES: ${{ vars.X_ISSUES }}
+          X_REPO: ${{ vars.X_REPO }}
+          X_TOKEN: ${{ secrets.X_TOKEN }}
       - run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
