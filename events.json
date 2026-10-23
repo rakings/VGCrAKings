@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T17:52:42+00:00",
+ "updated": "2026-10-23T19:03:28+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
+   "name": "VGC Indigo League #4 (Prize: Eternal Floette)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "14:00",
+   "players": 80,
+   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
+  },
+  {
    "name": "Malaysia Poke Ball League #12",
    "org": "",
    "mode": "online",
@@ -195,36 +210,6 @@
    "time": "14:00",
    "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
-  },
-  {
-   "name": "Palafin Pals Jet Punch Series 🌊✊Reg M-C #4",
-   "org": "Palafin Pals",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "18:00",
-   "players": 22,
-   "url": "https://play.limitlesstcg.com/tournament/6adb348897e21d82e5c6d12c/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "01:00",
-   "players": 82,
-   "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
    "name": "Meeklosh",
@@ -242,6 +227,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
   },
   {
+   "name": "Palafin Pals Jet Punch Series 🌊✊Reg M-C #4",
+   "org": "Palafin Pals",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "18:00",
+   "players": 22,
+   "url": "https://play.limitlesstcg.com/tournament/6adb348897e21d82e5c6d12c/details"
+  },
+  {
    "name": "Metal",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "23:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
@@ -272,21 +272,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
-   "name": "VGC Indigo League #4 (Prize: Kyogre)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 102,
-   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
-  },
-  {
    "name": "Friday Fight Night 78! $50 Prize & Team Report",
    "org": "Team Rainbow Gaming",
    "mode": "online",
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 133,
+   "players": 137,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -377,6 +362,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "05:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6adb9cc491617679e849f133/details"
+  },
+  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 168,
+   "players": 173,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 7,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
   },
   {
@@ -527,6 +527,24 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
   },
   {
+   "name": "VR October Challenge #4",
+   "org": "Victory Road",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": 11.5,
+   "cur": "$",
+   "feeNote": "+ tassa Battlefy",
+   "cash": true,
+   "prize": "montepremi",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-24",
+   "end": "2026-10-25",
+   "time": null,
+   "url": "https://victoryroad.pro/vr-oct26-4/",
+   "signup": "https://battlefy.com/victoryroad/victory-road-october-challenge-4/6ad6638c938db70019d67ad5/info?infoTab=details"
+  },
+  {
    "name": "Puebla Regional Championships",
    "org": "",
    "mode": "regional",
@@ -551,24 +569,6 @@
    "juniorAt": "2026-10-24T15:00:00Z",
    "seniorAt": "2026-10-24T15:00:00Z",
    "regCloseAt": "2026-10-22T05:59:00Z"
-  },
-  {
-   "name": "VR October Challenge #4",
-   "org": "Victory Road",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": 11.5,
-   "cur": "$",
-   "feeNote": "+ tassa Battlefy",
-   "cash": true,
-   "prize": "montepremi",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-24",
-   "end": "2026-10-25",
-   "time": null,
-   "url": "https://victoryroad.pro/vr-oct26-4/",
-   "signup": "https://battlefy.com/victoryroad/victory-road-october-challenge-4/6ad6638c938db70019d67ad5/info?infoTab=details"
   },
   {
    "name": "Champions",
@@ -762,7 +762,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
   },
   {
@@ -781,21 +781,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad114fe8a8383117e3ec71c/details"
   },
   {
-   "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
-   "org": "Hatterene Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "20:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
-  },
-  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -809,6 +794,21 @@
    "time": "20:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
+  },
+  {
+   "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "20:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
@@ -912,7 +912,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -1329,7 +1329,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
