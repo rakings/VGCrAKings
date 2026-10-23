@@ -559,6 +559,12 @@ def subs_for(topic):
 
 def log_notif(topic, title, body, click, fname, topics=None):
     """Tiene le ultime notifiche inviate: il sito le mostra nella cronologia (campanella)."""
+    if fname == "notifiche_avvisi.json":  # ogni avviso vero diventa anche una Issue con il link "Pubblica su X"
+        try:
+            import proposte_x
+            proposte_x.proponi(topic, title, body, click)
+        except Exception as ex:
+            print("Proposta X saltata:", ex)
     try:
         try:
             lst = json.load(open(fname, encoding="utf-8"))
