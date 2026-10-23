@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T20:10:19+00:00",
+ "updated": "2026-10-23T22:35:55+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,23 +182,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "Meeklosh",
-   "org": "meeklosh",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "21:00",
-   "players": 32,
-   "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
-  },
-  {
    "name": "Palafin Pals Jet Punch Series 🌊✊Reg M-C #4",
-   "org": "Palafin Pals",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -208,7 +193,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "18:00",
-   "players": 22,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6adb348897e21d82e5c6d12c/details"
   },
   {
@@ -227,8 +212,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
-   "name": "Rising Stars - Finale (Double Battle)",
-   "org": "BoTS PTCG Pocket",
+   "name": "Meeklosh",
+   "org": "meeklosh",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -236,10 +221,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-10-24",
-   "time": "15:30",
-   "players": 181,
-   "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
+   "date": "2026-10-23",
+   "time": "21:00",
+   "players": 32,
+   "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
   },
   {
    "name": "Friday Fight Night 78! $50 Prize & Team Report",
@@ -257,6 +242,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
+   "name": "Rising Stars - Finale (Double Battle)",
+   "org": "BoTS PTCG Pocket",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:30",
+   "players": 181,
+   "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
+  },
+  {
    "name": "Thalera Champions Cheese #19 - POKÉMONAS",
    "org": "Thalera",
    "mode": "online",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:00",
-   "players": 22,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad39c698a8383117e3ee0c3/details"
   },
   {
@@ -283,23 +283,8 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:15",
-   "players": 10,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f8e88a8383117e3f0cb1/details"
-  },
-  {
-   "name": "Corner Clash",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "01:30",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad40917115c12b73a5a68cf/details"
   },
   {
    "name": "Mamoswine Online 10-23-26",
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:45",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac7c967245696afb3518f1b/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "02:00",
-   "players": 4,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
@@ -347,21 +332,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb9cc491617679e849f133/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 174,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -373,8 +343,23 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 64,
+   "players": 66,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 183,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "Outlanders Championship League S1",
@@ -448,7 +433,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
   },
   {
@@ -582,7 +567,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "02:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad654f78a8383117e3ef539/details"
   },
   {
@@ -627,7 +612,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
   },
   {
@@ -687,23 +672,8 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 51,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
-  },
-  {
-   "name": "Sunday Nightmare Invitational 07",
-   "org": "Pokémon VG do Litoral",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
@@ -719,6 +689,21 @@
    "time": "16:00",
    "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
+  },
+  {
+   "name": "Sunday Nightmare Invitational 07",
+   "org": "Pokémon VG do Litoral",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "16:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
    "name": "Mudkip",
@@ -1017,7 +1002,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -1112,6 +1097,21 @@
    "time": "13:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
+  },
+  {
+   "name": "✨Tournoi Team 𝑿𝑻𝑹𝑬𝑴 Champions✨",
+   "org": "Legendixo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "14:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6a871f7a78baaa6d1c2244b0/details"
   },
   {
    "name": "Women",
