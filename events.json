@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T05:52:38+00:00",
+ "updated": "2026-10-23T07:38:43+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "VGC UmbreNews 22.10.2026 #E1 - Champion",
-   "org": "UmbreNews",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-22",
-   "time": "18:30",
-   "players": 32,
-   "url": "https://play.limitlesstcg.com/tournament/6ad772518a8383117e3f0054/details"
-  },
-  {
    "name": "PWC - Battle in the Colosseum #32",
    "org": "",
    "mode": "online",
@@ -210,36 +195,6 @@
    "time": "02:00",
    "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6aa619adf1243e65f97ffc43/details"
-  },
-  {
-   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟒",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "01:15",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6ad6518b8a8383117e3ef51c/details"
-  },
-  {
-   "name": "MetaVGC Arena #2 | Off-Meta Edition| $10 Prize",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$1",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "00:00",
-   "players": 44,
-   "url": "https://play.limitlesstcg.com/tournament/6ad62e87115c12b73a5a79a3/details"
   },
   {
    "name": "Talon",
@@ -313,7 +268,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 53,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
@@ -328,7 +283,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:30",
-   "players": 163,
+   "players": 164,
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
@@ -343,7 +298,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 96,
+   "players": 99,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -433,7 +388,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 135,
+   "players": 138,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -448,7 +403,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 55,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -493,7 +448,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
@@ -717,7 +672,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
   },
   {
@@ -732,7 +687,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
@@ -807,7 +762,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:30",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
   },
   {
@@ -837,7 +792,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "20:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
@@ -1004,6 +959,21 @@
    "time": "00:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fee785920e4d25362ce6/details"
+  },
+  {
+   "name": "Off Meta Fight Club #8 ($40 USD prize pool)",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$4",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-29",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
    "name": "TAYO",
@@ -1254,7 +1224,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 117,
+   "players": 118,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
