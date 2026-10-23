@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T14:57:22+00:00",
+ "updated": "2026-10-23T16:08:34+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -183,7 +183,7 @@
   },
   {
    "name": "Malaysia Poke Ball League #12",
-   "org": "Malaysia Poke Ball League",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -195,21 +195,6 @@
    "time": "14:00",
    "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ac9a5df8a8383117e3e85d6/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "01:00",
-   "players": 82,
-   "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
   },
   {
    "name": "Palafin Pals Jet Punch Series 🌊✊Reg M-C #4",
@@ -227,6 +212,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb348897e21d82e5c6d12c/details"
   },
   {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-23",
+   "time": "01:00",
+   "players": 82,
+   "url": "https://play.limitlesstcg.com/tournament/6aab46f538886b36383c21d7/details"
+  },
+  {
    "name": "Meeklosh",
    "org": "meeklosh",
    "mode": "online",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "21:00",
-   "players": 19,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad919f8115c12b73a5a937c/details"
   },
   {
@@ -253,23 +253,8 @@
    "bo": null,
    "date": "2026-10-23",
    "time": "23:00",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
-  },
-  {
-   "name": "VGC Indigo League #4 (Prize: Kyogre)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 102,
-   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
   },
   {
    "name": "Rising Stars - Finale (Double Battle)",
@@ -287,6 +272,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
+   "name": "VGC Indigo League #4 (Prize: Kyogre)",
+   "org": "Champions International",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 102,
+   "url": "https://play.limitlesstcg.com/tournament/6abb9694783097f8dcb73471/details"
+  },
+  {
    "name": "Friday Fight Night 78! $50 Prize & Team Report",
    "org": "Team Rainbow Gaming",
    "mode": "online",
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "00:00",
-   "players": 120,
+   "players": 123,
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "01:45",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac7c967245696afb3518f1b/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "02:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad4208e8a8383117e3ee551/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 162,
+   "players": 163,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 58,
+   "players": 61,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 7,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:15",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6a9956d5a4272c53be645934/details"
   },
   {
@@ -732,23 +732,8 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 49,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
-  },
-  {
-   "name": "Sunday Nightmare Invitational 07",
-   "org": "Pokémon VG do Litoral",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
@@ -764,6 +749,21 @@
    "time": "16:00",
    "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
+  },
+  {
+   "name": "Sunday Nightmare Invitational 07",
+   "org": "Pokémon VG do Litoral",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "16:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
    "name": "Mudkip",
@@ -1049,6 +1049,21 @@
    "time": "00:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
+  },
+  {
+   "name": "VGC Indigo League #5 (Prize: Shiny Metagross)",
+   "org": "Champions International",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "14:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
    "name": "Spooky Cup | VGC-Tournament | Vol. 2 (NO REG MC)",
@@ -1404,7 +1419,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
