@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T13:24:41+00:00",
+ "updated": "2026-10-24T14:51:58+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 56,
+   "players": 84,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
@@ -328,23 +328,8 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 18,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
-  },
-  {
-   "name": "🟊 M-C CHAMPIONS Showdown #2 🟊",
-   "org": "Tropical Hour Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "18:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
   },
   {
    "name": "4to Torneo Bimestral - Copa Santa Fe 2026",
@@ -373,8 +358,23 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "22:00",
-   "players": 11,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
+  },
+  {
+   "name": "🟊 M-C CHAMPIONS Showdown #2 🟊",
+   "org": "Tropical Hour Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "18:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
   },
   {
    "name": "Outlanders Championship League S1",
@@ -443,27 +443,12 @@
    "signupLabel": "Iscriviti su RK9",
    "regClose": "2026-10-21",
    "price": "Junior MX$800, Senior MX$800, Master MX$1,300",
-   "listAt": "2026-10-24T13:30:00Z",
-   "tz": "America/Mexico_City",
    "startAt": "2026-10-24T14:30:00Z",
+   "tz": "America/Mexico_City",
    "juniorAt": "2026-10-24T15:00:00Z",
    "seniorAt": "2026-10-24T15:00:00Z",
-   "regCloseAt": "2026-10-22T05:59:00Z"
-  },
-  {
-   "name": "Champions",
-   "org": "The Umbreon Cartel",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "00:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
+   "regCloseAt": "2026-10-22T05:59:00Z",
+   "listAt": "2026-10-24T13:30:00Z"
   },
   {
    "name": "-1 Defense Series",
@@ -477,8 +462,23 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "00:00",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
+  },
+  {
+   "name": "Champions",
+   "org": "The Umbreon Cartel",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #4",
@@ -492,7 +492,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "02:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad654f78a8383117e3ef539/details"
   },
   {
@@ -597,7 +597,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -766,21 +766,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
-   "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
-   "org": "Bean Battles",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "19:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
-  },
-  {
    "name": "TARTAN",
    "org": "Scotland VGC",
    "mode": "online",
@@ -794,6 +779,21 @@
    "time": "19:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
+  },
+  {
+   "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
+   "org": "Bean Battles",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "19:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
    "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
@@ -897,7 +897,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -927,7 +927,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "19:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aa9616f38886b36383c0cf2/details"
   },
   {
