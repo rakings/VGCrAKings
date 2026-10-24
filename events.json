@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T15:59:14+00:00",
+ "updated": "2026-10-24T17:00:35+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,6 +197,36 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
+   "name": "Astral's Special Event | Reg M-C",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "16:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6adca1ed97e21d82e5c6e0fe/details"
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny Whimsicott",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "18:00",
+   "players": 43,
+   "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
+  },
+  {
    "name": "⛩️$30 VGC Champions Tournament Ep 35!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -212,21 +242,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 311,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -240,6 +255,21 @@
    "time": "14:00",
    "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 311,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
@@ -302,21 +332,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny Whimsicott",
-   "org": "RookideeVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "18:00",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
-  },
-  {
    "name": "4to Torneo Bimestral - Copa Santa Fe 2026",
    "org": "Santa Fe VGC",
    "mode": "online",
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "22:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
   },
   {
@@ -358,7 +373,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "18:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
   },
   {
@@ -436,21 +451,6 @@
    "listAt": "2026-10-24T13:30:00Z"
   },
   {
-   "name": "Champions",
-   "org": "The Umbreon Cartel",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "00:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
-  },
-  {
    "name": "-1 Defense Series",
    "org": "Pokemon Champions Talca",
    "mode": "online",
@@ -464,6 +464,21 @@
    "time": "00:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad85ab3115c12b73a5a8dc3/details"
+  },
+  {
+   "name": "Champions",
+   "org": "The Umbreon Cartel",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "00:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #4",
@@ -507,7 +522,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
   },
   {
@@ -582,7 +597,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 57,
+   "players": 59,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -627,7 +642,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:30",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
   },
   {
@@ -777,7 +792,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -792,7 +807,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -1183,21 +1198,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-06",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
-  },
-  {
    "name": "PWC - Battle in the Colosseum #33",
    "org": "PWC",
    "mode": "online",
@@ -1211,6 +1211,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ab478e2e905c1db687491c1/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-06",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
    "name": "VGC Gemeinde Showdown #13",
