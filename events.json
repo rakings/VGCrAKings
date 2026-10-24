@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T07:33:49+00:00",
+ "updated": "2026-10-24T09:05:13+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
   },
   {
-   "name": "Mamoswine Online 10-23-26",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "01:45",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ac7c967245696afb3518f1b/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
    "org": "Pomelo",
    "mode": "online",
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 70,
+   "players": 74,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 214,
+   "players": 237,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 29,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
   },
   {
@@ -418,7 +403,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "22:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
   },
   {
@@ -612,7 +597,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 54,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -717,7 +702,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "02:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
   },
   {
@@ -732,7 +717,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -794,6 +779,21 @@
    "time": "19:00",
    "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
+  },
+  {
+   "name": "TARTAN",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "19:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
    "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
@@ -897,7 +897,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
