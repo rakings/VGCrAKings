@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T09:05:13+00:00",
+ "updated": "2026-10-24T10:43:28+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 74,
+   "players": 79,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
@@ -283,23 +283,8 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "14:00",
-   "players": 237,
+   "players": 260,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
-   "name": "Outlanders Championship League S1",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "15:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "Øutcasts",
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "15:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -328,23 +313,8 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "17:00",
-   "players": 32,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6adad3b491617679e849eb19/details"
-  },
-  {
-   "name": "Pokémon Champions Classic 2 (READ THE RULES)",
-   "org": "Liga CWB",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "18:00",
-   "players": 21,
-   "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny Whimsicott",
@@ -360,6 +330,21 @@
    "time": "18:00",
    "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad94c04115c12b73a5a957b/details"
+  },
+  {
+   "name": "Pokémon Champions Classic 2 (READ THE RULES)",
+   "org": "Liga CWB",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "18:00",
+   "players": 21,
+   "url": "https://play.limitlesstcg.com/tournament/6ad38a37115c12b73a5a6221/details"
   },
   {
    "name": "🟊 M-C CHAMPIONS Showdown #2 🟊",
@@ -405,6 +390,21 @@
    "time": "22:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
+  },
+  {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "15:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "VR October Challenge #4",
@@ -552,7 +552,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -597,7 +597,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 55,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -612,7 +612,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
@@ -642,7 +642,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:30",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
   },
   {
@@ -792,7 +792,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
@@ -809,6 +809,21 @@
    "time": "00:30",
    "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
+  },
+  {
+   "name": "Tenki",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
    "name": "GLORY OF CHAMPIONS #2 - REGULATION M-C",
@@ -1035,7 +1050,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 37,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
