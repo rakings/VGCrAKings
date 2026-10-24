@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T17:47:12+00:00",
+ "updated": "2026-10-24T18:54:31+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
   },
   {
-   "name": "Metal",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-23",
-   "time": "23:00",
-   "players": 32,
-   "url": "https://play.limitlesstcg.com/tournament/6ad565e8115c12b73a5a75e0/details"
-  },
-  {
    "name": "Astral's Special Event | Reg M-C",
    "org": "",
    "mode": "online",
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-10-24",
    "time": "22:00",
-   "players": 24,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad162e48a8383117e3ecb05/details"
   },
   {
@@ -462,7 +447,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "00:00",
-   "players": 14,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
@@ -522,7 +507,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "10:00",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
   },
   {
@@ -597,7 +582,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 59,
+   "players": 61,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -676,6 +661,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
+   "name": "VGC UU Regulation M-C Weekly #1",
+   "org": "VGC UU Circuit",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "21:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
+  },
+  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -717,7 +717,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -807,7 +807,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 14,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -867,7 +867,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 6,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -897,7 +897,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
