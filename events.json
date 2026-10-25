@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T13:23:41+00:00",
+ "updated": "2026-10-25T14:50:44+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8ed86115c12b73a59fa3b/details"
   },
   {
-   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 83,
-   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
-  },
-  {
    "name": "Maddo",
    "org": "Maddo's Cup",
    "mode": "online",
@@ -210,6 +195,21 @@
    "time": "14:00",
    "players": 311,
    "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 83,
+   "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
   },
   {
    "name": "🇧🇷 Hit Break #7 | Pokémon Champions",
@@ -331,6 +331,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #07",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "15:00",
+   "players": 125,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
+  },
+  {
    "name": "Under 510 BST Tournament",
    "org": "Fazz Cup",
    "mode": "online",
@@ -376,8 +391,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
-   "name": "DucPokémonChampions#11",
-   "org": "DUC E-SPORT",
+   "name": "Wolfey Patreon Tournament - Spooky Cup!",
+   "org": "Wolfey Sub Server",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -386,24 +401,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-25",
-   "time": "14:30",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ad794a98a8383117e3f0147/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #07",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "15:00",
-   "players": 125,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
+   "time": "16:00",
+   "players": 63,
+   "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
    "name": "Sunday Nightmare Invitational 07",
@@ -421,21 +421,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
-   "name": "Wolfey Patreon Tournament - Spooky Cup!",
-   "org": "Wolfey Sub Server",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:00",
-   "players": 62,
-   "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
-  },
-  {
    "name": "Mudkip",
    "org": "Mudkip's Marsh Pit",
    "mode": "online",
@@ -447,7 +432,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:30",
-   "players": 32,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
   },
   {
@@ -477,7 +462,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "20:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
@@ -507,7 +492,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "22:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
   },
   {
@@ -552,7 +537,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -627,7 +612,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -642,7 +627,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -717,7 +702,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -807,7 +792,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -900,7 +885,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 41,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -1014,7 +999,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
@@ -1048,6 +1033,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
+   "name": "Hatterene Series Weekly #10 2027 - 7PM UTC - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-04",
+   "time": "20:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ade0e1e97e21d82e5c6ed13/details"
+  },
+  {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#81",
    "org": "HM4coach & The Boys",
    "mode": "online",
@@ -1059,7 +1059,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 119,
+   "players": 120,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
