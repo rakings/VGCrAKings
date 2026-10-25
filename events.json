@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T14:50:44+00:00",
+ "updated": "2026-10-25T15:59:53+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8ed86115c12b73a59fa3b/details"
   },
   {
-   "name": "Maddo",
-   "org": "Maddo's Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "time": "14:00",
-   "players": 311,
-   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
-  },
-  {
    "name": "⚔️Torre Lotta Cup #2⚔️ 🏆50€ Amazon Gift Cards🏆",
    "org": "LaggerVGC",
    "mode": "online",
@@ -210,6 +195,21 @@
    "time": "14:00",
    "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6ac29a5d245696afb35163d7/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-24",
+   "time": "14:00",
+   "players": 311,
+   "url": "https://play.limitlesstcg.com/tournament/6acba9c9115c12b73a5a14c3/details"
   },
   {
    "name": "🇧🇷 Hit Break #7 | Pokémon Champions",
@@ -316,6 +316,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
+   "name": "Trinity Tournament 17 (Double Format)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "10:00",
+   "players": 23,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
+  },
+  {
    "name": "🎃 Alpenspooktober 🎃",
    "org": "",
    "mode": "online",
@@ -329,6 +344,36 @@
    "time": "10:00",
    "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
+  },
+  {
+   "name": "Mudkip",
+   "org": "Mudkip's Marsh Pit",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "16:30",
+   "players": 40,
+   "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
+  },
+  {
+   "name": "Wolfey Patreon Tournament - Spooky Cup!",
+   "org": "Wolfey Sub Server",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "16:00",
+   "players": 63,
+   "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
    "name": "ValkrixVGC Pokemon Champions League #07",
@@ -361,21 +406,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
   },
   {
-   "name": "Trinity Championship 17 (Double Format)",
-   "org": "Trinity Portal",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "10:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
-  },
-  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -389,21 +419,6 @@
    "time": "00:00",
    "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
-  },
-  {
-   "name": "Wolfey Patreon Tournament - Spooky Cup!",
-   "org": "Wolfey Sub Server",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:00",
-   "players": 63,
-   "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
    "name": "Sunday Nightmare Invitational 07",
@@ -421,36 +436,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
   },
   {
-   "name": "Mudkip",
-   "org": "Mudkip's Marsh Pit",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:30",
-   "players": 40,
-   "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
-  },
-  {
-   "name": "🟊 M-C CHAMPIONS Throwdown #2 🟊",
-   "org": "Tropical Hour Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "18:30",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ad61c168a8383117e3ef223/details"
-  },
-  {
    "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
    "org": "Hatterene Series",
    "mode": "online",
@@ -462,7 +447,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "20:00",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
@@ -522,8 +507,23 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "02:00",
-   "players": 13,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
+  },
+  {
+   "name": "MM Inhouse Tournament",
+   "org": "Pokémon Philippines Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-26",
+   "time": "11:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ade146b91617679e84a0a54/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #16 ❤️ Cash Prize!",
@@ -586,21 +586,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
-   "name": "TARTAN",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "19:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
-  },
-  {
    "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
    "org": "Bean Battles",
    "mode": "online",
@@ -614,6 +599,21 @@
    "time": "19:00",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
+  },
+  {
+   "name": "TARTAN",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "19:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
    "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
