@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T09:07:54+00:00",
+ "updated": "2026-10-25T10:44:00+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -301,6 +301,21 @@
    "listAt": "2026-10-24T13:30:00Z"
   },
   {
+   "name": "Sunday Sabong #5",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "05:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
+  },
+  {
    "name": "Trinity Championship 17 (Double Format)",
    "org": "Trinity Portal",
    "mode": "online",
@@ -331,21 +346,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
-   "name": "Sunday Sabong #5",
-   "org": "Play N' Connect",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "05:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6ad586588a8383117e3eefb7/details"
-  },
-  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -372,7 +372,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "11:30",
-   "players": 42,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
   },
   {
@@ -387,7 +387,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "13:00",
-   "players": 29,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
   },
   {
@@ -417,7 +417,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "15:00",
-   "players": 89,
+   "players": 92,
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
@@ -447,7 +447,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "16:00",
-   "players": 59,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6acf6032115c12b73a5a39fe/details"
   },
   {
@@ -492,7 +492,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "20:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
@@ -507,7 +507,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "21:00",
-   "players": 5,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
   },
   {
@@ -522,7 +522,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "22:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
   },
   {
@@ -567,7 +567,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -582,7 +582,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
@@ -612,7 +612,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -627,7 +627,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
@@ -642,7 +642,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -657,7 +657,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -687,7 +687,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "17:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
@@ -822,7 +822,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -867,7 +867,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -1149,7 +1149,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
