@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T20:05:08+00:00",
+ "updated": "2026-10-25T22:31:24+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -271,6 +271,21 @@
    "listAt": "2026-10-24T13:30:00Z"
   },
   {
+   "name": "VGC UU Regulation M-C Weekly #1",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "21:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
+  },
+  {
    "name": "Mudkip's Marsh Pit #8",
    "org": "",
    "mode": "online",
@@ -284,6 +299,21 @@
    "time": "16:30",
    "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
+  },
+  {
+   "name": "Chaos League Sunday Slam #118",
+   "org": "Chaos League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "22:00",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
   },
   {
    "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
@@ -331,36 +361,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
-   "name": "VGC UU Regulation M-C Weekly #1",
-   "org": "VGC UU Circuit",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "21:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
-  },
-  {
-   "name": "Chaos League Sunday Slam #118",
-   "org": "Chaos League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "22:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
-  },
-  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -387,7 +387,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "02:00",
-   "players": 20,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
   },
   {
@@ -417,7 +417,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 22,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -432,7 +432,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
@@ -462,7 +462,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -507,7 +507,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 29,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -582,7 +582,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -597,7 +597,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:00",
-   "players": 2,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fee785920e4d25362ce6/details"
   },
   {
@@ -612,7 +612,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -627,7 +627,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
@@ -717,7 +717,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -737,6 +737,21 @@
    "time": null,
    "url": "https://victoryroad.pro/2027-global-challenge-ii/",
    "signup": null
+  },
+  {
+   "name": "Corner Clash",
+   "org": "Raichu Rivalry VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "00:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ade638297e21d82e5c6f0ca/details"
   },
   {
    "name": "Mamoswine Online 10-30-26",
@@ -881,6 +896,21 @@
    "time": "09:30",
    "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
+  },
+  {
+   "name": "🎃Astral",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
