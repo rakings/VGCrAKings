@@ -20,6 +20,7 @@
 
   function optedOut() { try { return localStorage.getItem(OPTK) === "1"; } catch (e) { return false; } }
   function setOpt(v) { try { if (v) localStorage.setItem(OPTK, "1"); else localStorage.removeItem(OPTK); } catch (e) {} }
+  function siteOff() { try { return localStorage.getItem("vgc-off") === "1"; } catch (e) { return false; } }  // chi ha premuto "Disattiva" sul sito
   function perm() { return typeof Notification !== "undefined" && Notification.permission === "granted"; }
   function fire() { listeners.slice().forEach(function (f) { try { f(); } catch (e) {} }); }
 
@@ -75,7 +76,7 @@
   var OS = {
     init: function () {
       return loadMods().then(function () {
-        if (perm() && !optedOut()) return fetchToken().catch(function () {});
+        if (perm() && !optedOut() && !siteOff()) return fetchToken().catch(function () {});
       });
     },
     Notifications: {
