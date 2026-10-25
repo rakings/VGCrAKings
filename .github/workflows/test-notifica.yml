@@ -1,6 +1,11 @@
 name: Notifica di prova
 on:
   workflow_dispatch:
+    inputs:
+      topic:
+        description: "Canale (TUTTI = tutti gli iscritti; oppure gc, money, regionali, vr, locali8...)"
+        required: false
+        default: "TUTTI"
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -10,4 +15,8 @@ jobs:
         env:
           ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
           ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
+          TEST_TOPIC: ${{ inputs.topic }}
