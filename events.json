@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T16:57:57+00:00",
+ "updated": "2026-10-25T17:46:36+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -271,6 +271,21 @@
    "listAt": "2026-10-24T13:30:00Z"
   },
   {
+   "name": "Under 510 BST Tournament",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-25",
+   "time": "13:00",
+   "players": 25,
+   "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
+  },
+  {
    "name": "Ultra Beast Cup 2 - by Bakaiti Villa",
    "org": "",
    "mode": "online",
@@ -284,36 +299,6 @@
    "time": "11:45",
    "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad894d78a8383117e3f0971/details"
-  },
-  {
-   "name": "Trinity Tournament 17 (Double Format)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "10:00",
-   "players": 23,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8b7028a8383117e3f0a38/details"
-  },
-  {
-   "name": "🎃 Alpenspooktober 🎃",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "10:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6ac699a885920e4d2536623b/details"
   },
   {
    "name": "Mudkip",
@@ -361,21 +346,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
   },
   {
-   "name": "Under 510 BST Tournament",
-   "org": "Fazz Cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "13:00",
-   "players": 32,
-   "url": "https://play.limitlesstcg.com/tournament/6ace28418a8383117e3eaf85/details"
-  },
-  {
    "name": "Champions",
    "org": "The Umbreon Cartel",
    "mode": "online",
@@ -391,21 +361,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ace30868a8383117e3eafce/details"
   },
   {
-   "name": "Sunday Nightmare Invitational 07",
-   "org": "Pokémon VG do Litoral",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "16:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
-  },
-  {
    "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
    "org": "Hatterene Series",
    "mode": "online",
@@ -417,7 +372,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "20:00",
-   "players": 11,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
@@ -447,7 +402,7 @@
    "bo": null,
    "date": "2026-10-25",
    "time": "22:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
   },
   {
@@ -492,7 +447,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "11:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ade146b91617679e84a0a54/details"
   },
   {
@@ -507,7 +462,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -552,7 +507,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -672,7 +627,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -777,7 +732,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
@@ -969,7 +924,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
