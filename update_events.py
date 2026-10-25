@@ -491,8 +491,12 @@ def say(topic, title, body, click):
     req = urllib.request.Request("https://ntfy.sh/" + topic, data=body.encode("utf-8"), headers=head, method="POST")
     urllib.request.urlopen(req, timeout=30).read()
 
+def fcm_on():
+    """Se c'e' il segreto FCM_SERVICE_ACCOUNT gli avvisi partono con Firebase (e non piu' con OneSignal)."""
+    return bool(os.environ.get("FCM_SERVICE_ACCOUNT"))
+
 def os_on():
-    return bool(os.environ.get("ONESIGNAL_APP_ID") and os.environ.get("ONESIGNAL_API_KEY"))
+    return fcm_on() or bool(os.environ.get("ONESIGNAL_APP_ID") and os.environ.get("ONESIGNAL_API_KEY"))
 
 def os_filters(topic):
     """Filtri OneSignal: le scelte dell'utente (tag) impostate dall'ingranaggio del sito."""
@@ -508,6 +512,10 @@ def os_filters(topic):
 
 def send_os(filters, title, body, click, ids=None):
     """Invia con OneSignal: ai filtri sui tag (vecchio sistema) oppure a un elenco di iscrizioni (archivio iscritti)."""
+    if fcm_on():  # con Firebase si manda sempre a un elenco di token dell'archivio iscritti
+        if ids is None:
+            raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
+        return send_fcm(ids, title, body, click)
     base = {"app_id": os.environ["ONESIGNAL_APP_ID"], "target_channel": "push",
             "headings": {"en": title, "it": title}, "contents": {"en": body, "it": body}}
     if click.startswith("http"):
@@ -530,6 +538,104 @@ def send_os(filters, title, body, click, ids=None):
             print("ATTENZIONE: nessun destinatario:", r.get("errors"))
     return r
 
+# ---------- Firebase (FCM): sostituisce OneSignal ----------
+_FCM = {}
+
+def fcm_access_token():
+    """Chiave di accesso a Google per Firebase. Si firma con 'openssl' (c'e' gia' su GitHub Actions): nessuna libreria da installare."""
+    import base64, subprocess, tempfile
+    if _FCM.get("tok") and time.time() < _FCM["exp"] - 120:
+        return _FCM["tok"]
+    try:
+        info = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])
+        key, mail = info["private_key"], info["client_email"]
+    except Exception:
+        raise RuntimeError("FCM_SERVICE_ACCOUNT non e' valido: va incollato tutto il contenuto del file JSON della chiave di servizio.")
+    b64 = lambda b: base64.urlsafe_b64encode(b).rstrip(b"=").decode()
+    now = int(time.time())
+    head = b64(json.dumps({"alg": "RS256", "typ": "JWT"}, separators=(",", ":")).encode())
+    claims = b64(json.dumps({"iss": mail, "scope": "https://www.googleapis.com/auth/firebase.messaging",
+                             "aud": "https://oauth2.googleapis.com/token", "iat": now, "exp": now + 3600}, separators=(",", ":")).encode())
+    msg = (head + "." + claims).encode()
+    fd, path = tempfile.mkstemp()
+    try:
+        os.write(fd, key.encode())
+        os.close(fd)
+        sig = subprocess.run(["openssl", "dgst", "-sha256", "-sign", path], input=msg, capture_output=True, check=True).stdout
+    except Exception:
+        raise RuntimeError("Firma per Firebase non riuscita (chiave di servizio non valida?).")
+    finally:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+    form = urllib.parse.urlencode({"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+                                   "assertion": head + "." + claims + "." + b64(sig)}).encode()
+    req = urllib.request.Request("https://oauth2.googleapis.com/token", data=form,
+                                 headers={"Content-Type": "application/x-www-form-urlencoded", "User-Agent": UA})
+    try:
+        r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8"))
+    except urllib.error.HTTPError as ex:
+        raise RuntimeError("Accesso a Google rifiutato: HTTP %s %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:200]))
+    _FCM["tok"], _FCM["exp"] = r["access_token"], now + int(r.get("expires_in", 3600))
+    return _FCM["tok"]
+
+def send_fcm(ids, title, body, click):
+    """Manda l'avviso a un elenco di token Firebase (a gruppi in parallelo). I token morti si tolgono dall'archivio iscritti."""
+    global _SUBS
+    from concurrent.futures import ThreadPoolExecutor
+    access = fcm_access_token()
+    project = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])["project_id"]
+    url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % project
+    data = {"title": title, "body": body}
+    if click:
+        data["link"] = click
+    hdr = {"Authorization": "Bearer " + access, "Content-Type": "application/json; charset=UTF-8", "User-Agent": UA}
+
+    def one(tok):
+        payload = json.dumps({"message": {"token": tok, "notification": {"title": title, "body": body}, "data": data,
+                                          "webpush": {"headers": {"Urgency": "high", "TTL": "86400"}}}}).encode("utf-8")
+        for attempt in range(4):
+            try:
+                urllib.request.urlopen(urllib.request.Request(url, data=payload, headers=hdr, method="POST"), timeout=30).read()
+                return "ok", ""
+            except urllib.error.HTTPError as ex:
+                msg = ex.read().decode("utf-8", "replace")
+                if ex.code == 404 or "UNREGISTERED" in msg or "not a valid FCM registration token" in msg:
+                    return "dead", ""
+                if ex.code in (429, 500, 502, 503, 504) and attempt < 3:
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                return "err", "%s %s" % (ex.code, msg[:150].replace("\n", " "))
+            except Exception as ex:  # rete
+                if attempt < 3:
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                return "err", str(ex)[:150]
+
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        res = list(pool.map(one, ids))
+    ok = sum(1 for r in res if r[0] == "ok")
+    dead = [t for t, r in zip(ids, res) if r[0] == "dead"]
+    errs = [(t, r[1]) for t, r in zip(ids, res) if r[0] == "err"]
+    print("Firebase: inviate %d, token morti %d, errori %d." % (ok, len(dead), len(errs)))
+    for t, m in errs[:3]:
+        print("  errore ...%s: %s" % (t[-6:], m))
+    if dead and subs_on():
+        for k in range(0, len(dead), 200):
+            req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + "/remove", data=json.dumps({"ids": dead[k:k + 200]}).encode("utf-8"), method="POST",
+                                         headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "Content-Type": "text/plain", "User-Agent": UA})
+            try:
+                urllib.request.urlopen(req, timeout=30).read()
+            except Exception as ex:
+                print("Pulizia token morti non riuscita:", str(ex)[:100])
+        gone = set(dead)
+        if _SUBS:
+            _SUBS = [x for x in _SUBS if x.get("id") not in gone]
+    if ids and ok == 0 and errs:
+        raise RuntimeError("Firebase: nessuna notifica inviata (%s)" % errs[0][1])
+    return {"id": "fcm", "recipients": ok}
+
 # ---------- archivio iscritti (Cloudflare Worker): sostituisce i tag di OneSignal, limitati a 6 sul piano gratuito ----------
 _SUBS = None
 
@@ -539,7 +645,7 @@ def subs_on():
 def subs_list():
     global _SUBS
     if _SUBS is None:
-        req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + "/list", headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "User-Agent": UA})
+        req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + ("/list?kind=fcm" if fcm_on() else "/list"), headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "User-Agent": UA})
         try:
             _SUBS = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8")).get("subs") or []
         except urllib.error.HTTPError as ex:

@@ -3,6 +3,23 @@
 e stampa la risposta di OneSignal, così si vede subito se chiave/ID sono giusti e quanti iscritti ci sono."""
 import json, os, urllib.request, urllib.error
 
+if os.environ.get("FCM_SERVICE_ACCOUNT"):  # Firebase: stesso invio usato dagli avvisi veri
+    import update_events as ue
+    if not ue.subs_on():
+        print("ERRORE: mancano SUBS_URL (variabile) o SUBS_TOKEN (secret) su GitHub.")
+        raise SystemExit(1)
+    topic = os.environ.get("TEST_TOPIC", "").strip() or "TUTTI"
+    titolo, testo = "Prova rAKings VGC", "Se leggi questo, le notifiche funzionano (canale: %s)." % topic
+    try:
+        if topic.upper() == "TUTTI":
+            ue.deliver_tutti(titolo, testo, ue.sito_url())
+        else:
+            ue.deliver(topic, titolo, testo, ue.sito_url())
+    except RuntimeError as ex:
+        print("ERRORE:", ex)
+        raise SystemExit(1)
+    raise SystemExit(0)
+
 app = os.environ.get("ONESIGNAL_APP_ID", "")
 key = os.environ.get("ONESIGNAL_API_KEY", "")
 if not app or not key:
