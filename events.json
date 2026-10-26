@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T03:33:14+00:00",
+ "updated": "2026-10-26T05:54:44+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -227,36 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
-   "name": "Chaos League Sunday Slam #118",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "22:00",
-   "players": 36,
-   "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
-  },
-  {
-   "name": "VGC UU Regulation M-C Weekly #1",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "21:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
-  },
-  {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
    "org": "Wolfey Sub Server",
    "mode": "online",
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "11:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ade146b91617679e84a0a54/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 31,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -358,7 +328,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:00",
-   "players": 17,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
@@ -373,7 +343,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adac00497e21d82e5c6cfa8/details"
   },
   {
@@ -403,7 +373,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -463,7 +433,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 37,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -538,7 +508,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -553,7 +523,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -643,7 +613,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 9,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -688,7 +658,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -796,7 +766,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -867,6 +837,21 @@
    "tz": "Europe/Warsaw",
    "juniorAt": "2025-11-01T08:00:00Z",
    "seniorAt": "2025-11-01T08:00:00Z"
+  },
+  {
+   "name": "🇧🇷 Hit Break #8 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
    "name": "Caramelo Raro- De pago",
@@ -1045,7 +1030,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1062,6 +1047,21 @@
    "time": "20:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6adb86f791617679e849ef7c/details"
+  },
+  {
+   "name": "Women",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "21:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -1090,7 +1090,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
