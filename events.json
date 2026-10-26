@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T22:31:24+00:00",
+ "updated": "2026-10-26T01:30:06+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -227,50 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
-   "name": "VR October Challenge #4",
-   "org": "Victory Road",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": 11.5,
-   "cur": "$",
-   "feeNote": "+ tassa Battlefy",
-   "cash": true,
-   "prize": "montepremi",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-24",
-   "end": "2026-10-25",
-   "time": null,
-   "url": "https://victoryroad.pro/vr-oct26-4/",
-   "signup": "https://battlefy.com/victoryroad/victory-road-october-challenge-4/6ad6638c938db70019d67ad5/info?infoTab=details"
-  },
-  {
-   "name": "Puebla Regional Championships",
-   "org": "",
-   "mode": "regional",
-   "type": "Regionale",
-   "fee": null,
-   "cash": true,
-   "prize": "in base alle presenze",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-24",
-   "end": "2026-10-25",
-   "time": null,
-   "where": "Puebla, Messico",
-   "url": "https://serebii.net/playpokemon/2027/pueblaregionalchampionships.shtml",
-   "signup": "https://rk9.gg/tournament/PB002-r871Zfmc4WQbIO",
-   "signupLabel": "Iscriviti su RK9",
-   "regClose": "2026-10-21",
-   "price": "Junior MX$800, Senior MX$800, Master MX$1,300",
-   "startAt": "2026-10-24T14:30:00Z",
-   "tz": "America/Mexico_City",
-   "juniorAt": "2026-10-24T15:00:00Z",
-   "seniorAt": "2026-10-24T15:00:00Z",
-   "regCloseAt": "2026-10-22T05:59:00Z",
-   "listAt": "2026-10-24T13:30:00Z"
-  },
-  {
    "name": "VGC UU Regulation M-C Weekly #1",
    "org": "",
    "mode": "online",
@@ -286,19 +242,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6adcf4ff97e21d82e5c6e647/details"
   },
   {
-   "name": "Mudkip's Marsh Pit #8",
+   "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
    "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": null,
    "prize": "",
-   "reg": null,
+   "reg": "M-C",
    "bo": null,
    "date": "2026-10-25",
-   "time": "16:30",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6ac7702585920e4d2536693d/details"
+   "time": "20:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
    "name": "Chaos League Sunday Slam #118",
@@ -314,21 +270,6 @@
    "time": "22:00",
    "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6add173f91617679e84a023a/details"
-  },
-  {
-   "name": "Hatterene Series Weekly #8 2027 - 7PM UTC - M-C",
-   "org": "Hatterene Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-25",
-   "time": "20:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6ac0fe6185920e4d25362ce2/details"
   },
   {
    "name": "Wolfey Patreon Tournament - Spooky Cup!",
@@ -391,6 +332,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
   },
   {
+   "name": "Sunday Nightmare Invitational 07",
+   "org": "Pokémon VG do Litoral",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-26",
+   "time": "00:00",
+   "players": null,
+   "url": "https://play.limitlesstcg.com/tournament/6adb6a5097e21d82e5c6d3c9/details"
+  },
+  {
    "name": "MM Inhouse Tournament",
    "org": "Pokémon Philippines Community",
    "mode": "online",
@@ -417,7 +373,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 25,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -447,8 +403,23 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "23:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6adac00497e21d82e5c6cfa8/details"
+  },
+  {
+   "name": "HOTG Online Series - Champions - S102",
+   "org": "Competitive Corner RD",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "01:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6adea1f297e21d82e5c6f371/details"
   },
   {
    "name": "VGC UmbreNews 27.10.2026 #37 - Champion",
@@ -507,7 +478,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 33,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -567,7 +538,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -612,7 +583,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -627,7 +598,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
@@ -717,7 +688,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -909,7 +880,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 4,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
