@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T05:54:44+00:00",
+ "updated": "2026-10-26T07:48:39+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -258,7 +258,7 @@
   },
   {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
-   "org": "Sketch Academy",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "02:00",
-   "players": 27,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6aba1781783097f8dcb725fd/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-26",
    "time": "19:00",
-   "players": 33,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
@@ -463,23 +463,8 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "12:00",
-   "players": 0,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6add569291617679e84a04c8/details"
-  },
-  {
-   "name": "Tenki",
-   "org": "TenkiPK",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-28",
-   "time": "17:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
    "name": "GLORY OF CHAMPIONS #2 - REGULATION M-C",
@@ -493,7 +478,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "18:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad923ae115c12b73a5a941c/details"
   },
   {
@@ -508,7 +493,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -523,8 +508,23 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
+  },
+  {
+   "name": "Tenki",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "17:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
    "name": "Hatterene Series Weekly #9 2027 - 7PM EDT - M-C",
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -899,6 +899,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "Sketch Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-02",
+   "time": "03:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -1062,6 +1077,21 @@
    "time": "21:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
+  },
+  {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "Sketch Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "03:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
