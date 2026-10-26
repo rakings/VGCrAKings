@@ -1,0 +1,60 @@
+name: VGC Stats - raccolta dati (Pokedata)
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "elenco = elenco di tutti i regionali - evento = un solo regionale - auto = quelli in corso e quelli finiti non ancora raccolti"
+        required: true
+        default: "elenco"
+        type: choice
+        options:
+          - "elenco"
+          - "evento"
+          - "auto"
+      id:
+        description: "Solo per modo evento: id Pokedata del regionale (Nizza: 1000076)"
+        required: false
+        default: "1000076"
+      salva:
+        description: "no = solo prova, non salva nulla - si = salva i file in vgcstats/"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
+  # --- Aggiornamento automatico: DISATTIVATO. Per attivarlo togli il # davanti alle righe qui sotto. ---
+  # schedule:
+  #   - cron: "*/20 * * * 5,6,0,1"   # ogni 20 minuti da venerdi a lunedi (regionali in corso)
+  #   - cron: "0 6 * * *"            # una volta al giorno (regionali finiti)
+permissions:
+  contents: write
+concurrency:
+  group: vgc-stats
+  cancel-in-progress: false
+jobs:
+  raccolta:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MODO: ${{ inputs.modo || 'auto' }}
+      TORNEO: ${{ inputs.id }}
+      SALVA: ${{ github.event_name == 'schedule' && 'si' || inputs.salva }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Raccolta
+        run: |
+          W=""
+          [ "$SALVA" = "si" ] && W="--write"
+          case "$MODO" in
+            elenco) python3 -u vgc_stats.py --list $W ;;
+            evento) python3 -u vgc_stats.py --id "$TORNEO" $W ;;
+            *)      python3 -u vgc_stats.py --auto $W ;;
+          esac
+      - name: Salva i file nella repo
+        if: ${{ always() && (github.event_name == 'schedule' || inputs.salva == 'si') }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -d vgcstats ] && git add -A vgcstats
+          git diff --staged --quiet || (git commit -m "VGC Stats: aggiornamento dati" && git pull --rebase && git push)
