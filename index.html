@@ -292,7 +292,7 @@ textarea{min-height:140px}
 .devby{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--mute);text-align:left}.devby a{color:inherit;font-weight:700;text-decoration:underline}</style>
 </head>
 <body>
-<main><p class="devby">Developed by: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
+<main><p class="devby">Developed by: X: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a> · IG: <a href="https://www.instagram.com/AndreaK_92/" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
 <header class="brand"><img class="logo" src="logo-egg.webp" alt="Logo rAKings VGC" width="190" height="234"><div class="txt"><h1>rAKings VGC</h1><p class="head">Tornei ufficiali VGC e Tornei online</p><p class="lead">Solo videogioco Pokémon. Ogni torneo ha il tipo, il costo, il regolamento e un marcatore dorato se mette in palio denaro.</p><a class="src" href="https://shairaba.github.io/pokemon-events-italia/index.html" target="_blank" rel="noopener">
 <b>Eventi ufficiali VGC in Italia</b>
 <span class="short">Elenco e calendario dal vivo</span><span class="long">Calendario eventi dal vivo · dal sito Pokémon Event Locator but better</span>
@@ -660,7 +660,7 @@ var t1=setTimeout(function(){say("Il browser non mostra la richiesta di permesso
 var perm=permP;
 perm.then(function(p){clearTimeout(t1);if(p!=="granted")throw new Error("permesso non concesso.");
 say("Passo 2 di 2: completo l'iscrizione a OneSignal...");
-var t2=setTimeout(function(){var er=window.OSINITERR?(" Errore OneSignal: "+window.OSINITERR+"."):"";if(navigator.brave)er+=" Su Brave attiva \u00ABUsa i servizi Google per i messaggi push\u00BB in Impostazioni > Privacy e sicurezza, poi riavvia Brave e riprova.";
+var t2=setTimeout(function(){var er=window.OSINITERR?(" Errore notifiche: "+window.OSINITERR+"."):"";if(navigator.brave)er+=" Su Brave attiva \u00ABUsa i servizi Google per i messaggi push\u00BB in Impostazioni > Privacy e sicurezza, poi riavvia Brave e riprova.";
 (navigator.serviceWorker?navigator.serviceWorker.getRegistrations():Promise.resolve([])).then(function(r){var sw=r.length?r.map(function(x){var w=x.active||x.waiting||x.installing;return w?(w.scriptURL.split("/").slice(-2).join("/")+" ("+w.state+")"):"nessuno"}).join(", "):"nessun service worker registrato";
 say("Permesso concesso, ma l'iscrizione non si completa."+er+" Service worker: "+sw+". Apri diagnostica.html, premi Pulisci, chiudi tutte le schede del sito e riprova. Se resta cos\u00ec, mandami questo messaggio.")},function(){say("Permesso concesso, ma l'iscrizione non si completa."+er)})},10000);
 return OS.User.PushSubscription.optIn().then(function(){clearTimeout(t2)},function(e){clearTimeout(t2);throw e})}).then(done,function(e){clearTimeout(t1);fail(e)})})}});
