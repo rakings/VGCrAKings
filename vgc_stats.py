@@ -344,7 +344,7 @@ def collect(ev, write):
     old = load(os.path.join(folder, "meta.json"), {})
     meta = {"id": tid, "name": ev["name"], "city": ev["city"], "date": ev["start"], "end": ev["end"], "reg": ev["reg"],
             "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished",
-            "teams": len(teams), "top": TOP, "day1_rounds": day1, "source": "Pokedata (apiv3), dati RK9",
+            "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "Pokedata (apiv3), dati RK9",
             "players_fields": ["id", "name", "country", "placement", "wins", "losses", "day2", "cut", "team"],
             "swiss": "per giocatore, una voce per round: id avversario + esito (W vinta, L persa, T pari, B bye; -1 = avversario non risolto)",
             "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime())}
