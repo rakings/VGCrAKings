@@ -650,7 +650,7 @@ if(Notification.permission==="denied"){say("Le notifiche sono bloccate per quest
 var permP=Notification.permission==="granted"?Promise.resolve("granted"):new Promise(function(r){var q;try{q=Notification.requestPermission(r)}catch(e){r("default");return}if(q&&q.then)q.then(r,function(){r("default")})});
 if(!npAny()){["money","gc","regionali","vr","vrreg","maddos","locali","locali8","player","winner","vrwin"].forEach(function(k){NP[k]=k==="money"?"all":true});npSave();auto=true;$("np").innerHTML=npHtml()}
 say("Un attimo...");
-var tm=setTimeout(function(){say("OneSignal non risulta pronto. Ricarica la pagina; se continua, controlla che nessuna estensione blocchi onesignal.com e che l'indirizzo del sito coincida con quello impostato su OneSignal.")},7000);
+var tm=setTimeout(function(){say("Il servizio notifiche non risulta pronto. Ricarica la pagina; se continua, controlla che nessuna estensione o blocco pubblicit\u00e0/privacy blocchi gstatic.com (Google), poi riprova.")},7000);
 osdo(function(OS){clearTimeout(tm);
 var fail=function(e){say("Non \u00e8 stato possibile attivare le notifiche: "+((e&&e.message)||e||"errore sconosciuto"))};
 var done=function(){try{localStorage.removeItem("vgc-off")}catch(e){}osSync();var ok=false,id="";try{ok=Notification.permission==="granted"&&OS.User.PushSubscription.optedIn!==false;id=OS.User.PushSubscription.id||""}catch(e){ok=Notification.permission==="granted"}
@@ -713,7 +713,7 @@ $("np").innerHTML='<div class="sheet2"><div class="calbar"><b id="np-t">Condivid
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-sh]");if(b)shareEv(EVENTS[b.dataset.sh])});
 $("np").addEventListener("click",function(ev){var b=ev.target.closest("[data-cpl]");if(b)cpy(b.dataset.cpl,b,"Copia link")});
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-cpl]");if(b)cpy(b.dataset.cpl,b,b.dataset.lab||"Copia link")});
-$("sbar").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.inst&&DEFER){DEFER.prompt();return}if(b.dataset.sall){$("q").value="";st.q="";$("sbar").hidden=true;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}render()}});
+$("sbar").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.inst&&DEFER){DEFER.prompt();return}if(b.dataset.sall){$("q").value="";st.q="";$("sbar").hidden=true;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}render()}});
 function goHash(){var m=location.hash.match(/^#e=([0-9a-z]+)$/);if(!m)return;var ev=null;EVENTS.forEach(function(e){if(eh(e.url)===m[1])ev=e});
 var ios=/iphone|ipad/i.test(navigator.userAgent),stand=(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||navigator.standalone;
 var inst=stand?"":(DEFER?' <button class="btn main" type="button" data-inst="1">Installa l\'app</button>':(ios?' <span class="meta">Per installare l\'app: tocca Condividi e poi "Aggiungi alla schermata Home".</span>':""));
@@ -834,16 +834,47 @@ var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],loc
 function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),mode="news",wantBK=false;
 if(v){VRGO=v[1];VRDONE=false;NV="big"}
 else if(m){ANNGO=ANNOPEN=+m[1];annSeen();mode="all";wantBK=true}
-else if(d&&DLINK[d[1]]){VRGO=null;var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];if(d[1]==="info")wantBK=true;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}}
+else if(d&&DLINK[d[1]]){VRGO=null;var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];if(d[1]==="info")wantBK=true;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}}
 else return;
 var bt=document.querySelector('#f-mode button[data-v="'+mode+'"]');if(bt)bt.click();else{st.mode=mode;render()}
 if(wantBK){BK=true;render()}
 window.scrollTo(0,0);annApri();vrApri()}
 function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
 if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
-if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}
+if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}
 document.addEventListener("toggle",function(ev){var d=ev.target,li=d&&d.closest?d.closest("[data-aid]"):null;if(li&&!d.open&&+li.dataset.aid===ANNOPEN)ANNOPEN=null},true);
 window.addEventListener("hashchange",annGo);annGo();
+var VGO={id:"",t:0};
+function vgcGo(u,id,viaBc){try{var x=new URL(u,location.href);var dir=function(p){return p.replace(/[^\/]*$/,"")};
+if(x.origin!==location.origin||dir(x.pathname)!==dir(location.pathname))return;
+if(id&&VGO.id===id)return;VGO.id=id||"";VGO.t=Date.now();
+var run=function(){if(x.hash){try{history.replaceState(history.state,"",location.pathname+location.search+x.hash)}catch(e){location.hash=x.hash;return}annGo()}};
+if(viaBc){setTimeout(function(){if(document.hasFocus())run()},350)}else run()}catch(e){}}
+try{var VBC=new BroadcastChannel("vgc-nav");VBC.onmessage=function(ev){if(ev&&ev.data&&ev.data.url)vgcGo(ev.data.url,ev.data.id,true)}}catch(e){}
+if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",function(ev){if(ev.data&&ev.data.vgcGo)vgcGo(ev.data.vgcGo,ev.data.id,false)});
+/* Tasto indietro stile app (solo con il sito installato): prima chiude pannelli e torna alla Home, poi chiede conferma per uscire. */
+(function(){
+var sa=false;try{sa=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}catch(e){}
+if(!sa||!window.history||!history.pushState)return;
+var L0=0,on=false,last=0,tt=null,EV=["pointerup","touchend","keydown","click"];
+function home(){return st.mode==="all"&&!BK&&$("np").hidden}
+function toast(){var d=document.getElementById("vgc-bt");if(!d){d=document.createElement("div");d.id="vgc-bt";d.style.cssText="position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:rgba(20,10,16,.92);color:#fff;padding:10px 16px;border-radius:20px;font:600 14px system-ui,sans-serif;z-index:99999;pointer-events:none;max-width:86vw;text-align:center";document.body.appendChild(d)}
+d.textContent=/^it/i.test(String(LANG))?"Premi ancora indietro per uscire":"Press back again to exit";d.style.display="block";clearTimeout(tt);tt=setTimeout(function(){d.style.display="none"},2000)}
+function goHome(){if(!$("np").hidden){$("np").hidden=true;return}
+if(BK){var b=document.querySelector("[data-bk]");if(b)b.click()}
+if(st.mode!=="all"){var a=document.querySelector('#f-mode [data-v="all"]');if(a)a.click()}
+try{window.scrollTo(0,0)}catch(e){}}
+function push(){try{history.pushState({vgcG:1},"")}catch(e){}}
+function init(){if(on)return;on=true;EV.forEach(function(t){removeEventListener(t,init,true)});
+try{L0=history.length;history.replaceState(Object.assign({},history.state||{},{vgcB:1}),"");push()}catch(e){}}
+EV.forEach(function(t){addEventListener(t,init,true)});
+addEventListener("popstate",function(ev){var s=ev.state;if(!on||!s||!(s.vgcB||s.vgcG))return;
+try{if(!home()){goHome();push();return}
+var t=Date.now();if(t-last<2200){last=0;history.go(-(history.length-L0));return}
+last=t;toast();push()}catch(e){push()}});
+})();
+
+
 </script>
 <script>if("serviceWorker"in navigator){var swGo=function(){navigator.serviceWorker.getRegistration().then(function(r){if(!r)navigator.serviceWorker.register("sw.js").catch(function(){})}).catch(function(){})};if(typeof ONESIGNAL_APP_ID!=="undefined"&&ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo")window.addEventListener("load",function(){setTimeout(swGo,4000)});else swGo()}</script>
 </body>

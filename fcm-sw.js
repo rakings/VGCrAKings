@@ -46,12 +46,14 @@ self.addEventListener("notificationclick", function (e) {
   var link = (e.notification.data && e.notification.data.link) || "./";
   var base = new URL("./", self.location.href);        // radice del sito
   var url = new URL(link, base).href;
-  var root = url === base.href;                        // nessuna sezione: basta riportare in primo piano il sito
+  var inSite = url.indexOf(base.href) === 0;
+  var go = { url: url, id: String(Date.now()) + Math.random() };
   e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
-    for (var i = 0; i < list.length; i++) {
-      var c = list[i];
-      if (("focus" in c) && (c.url === url || (root && c.url.indexOf(base.href) === 0))) return c.focus();
-    }
-    return self.clients.openWindow(url);
+    var c = null;
+    if (inSite) for (var i = 0; i < list.length; i++) { if (list[i].url.indexOf(base.href) === 0 && "focus" in list[i]) { c = list[i]; break; } }
+    if (!c) return self.clients.openWindow(url);          // sito chiuso o link esterno: si apre normalmente
+    // sito gia' aperto: lo porto in primo piano e gli dico dove andare (niente seconda finestra)
+    try { new BroadcastChannel("vgc-nav").postMessage(go); } catch (x) {}
+    return c.focus().then(function (w) { try { (w || c).postMessage({ vgcGo: url, id: go.id }); } catch (x) {} }, function () {});
   }));
 });
