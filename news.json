@@ -1,6 +1,682 @@
 {
-"updated": "2026-10-27T07:45:22+00:00",
+"updated": "2026-10-27T09:21:46+00:00",
 "news": [
+{
+"t": "Regionale",
+"n": "Regional Puebla",
+"d": "24 ottobre 2026 · 333 giocatori · Regolamento M-C",
+"top": 8,
+"real": true,
+"src": "https://limitlessvgc.com/tournaments/447",
+"rows": [
+{
+"pl": "Kyle Livinghouse",
+"cc": "US",
+"team": [
+{
+"n": "Sneasler",
+"i": "White Herb",
+"a": "Unburden",
+"nt": "Adamant",
+"m": [
+"Close Combat",
+"Dire Claw",
+"Rock Tomb",
+"Protect"
+]
+},
+{
+"n": "Whimsicott",
+"i": "Focus Sash",
+"a": "Prankster",
+"nt": "Timid",
+"m": [
+"Protect",
+"Encore",
+"Moonblast",
+"Tailwind"
+]
+},
+{
+"n": "Charizard",
+"i": "Charizardite Y",
+"a": "Blaze",
+"nt": "Modest",
+"m": [
+"Weather Ball",
+"Protect",
+"Heat Wave",
+"Solar Beam"
+]
+},
+{
+"n": "Kingambit",
+"i": "Chople Berry",
+"a": "Defiant",
+"nt": "Adamant",
+"m": [
+"Sucker Punch",
+"Iron Head",
+"Kowtow Cleave",
+"Low Kick"
+]
+},
+{
+"n": "Garchomp",
+"i": "Life Orb",
+"a": "Rough Skin",
+"nt": "Jolly",
+"m": [
+"Rock Slide",
+"Earthquake",
+"Dragon Claw",
+"Protect"
+]
+},
+{
+"n": "Froslass",
+"i": "Froslassite",
+"a": "Cursed Body",
+"nt": "Timid",
+"m": [
+"Blizzard",
+"Aurora Veil",
+"Shadow Ball",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Renzo Navarro",
+"cc": "PE",
+"team": [
+{
+"n": "Staraptor",
+"i": "Staraptite",
+"a": "Intimidate",
+"nt": "Jolly",
+"m": [
+"Close Combat",
+"Brave Bird",
+"Tailwind",
+"Protect"
+]
+},
+{
+"n": "Raichu",
+"i": "Raichunite Y",
+"a": "Lightning Rod",
+"nt": "Timid",
+"m": [
+"Zap Cannon",
+"Focus Blast",
+"Fake Out",
+"Protect"
+]
+},
+{
+"n": "Arcanine (Hisui)",
+"i": "Focus Sash",
+"a": "Rock Head",
+"nt": "Jolly",
+"m": [
+"Flare Blitz",
+"Extreme Speed",
+"Rock Slide",
+"Protect"
+]
+},
+{
+"n": "Primarina",
+"i": "Leftovers",
+"a": "Liquid Voice",
+"nt": "Modest",
+"m": [
+"Hyper Voice",
+"Moonblast",
+"Calm Mind",
+"Protect"
+]
+},
+{
+"n": "Gholdengo",
+"i": "Life Orb",
+"a": "Good as Gold",
+"nt": "Modest",
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Nasty Plot",
+"Protect"
+]
+},
+{
+"n": "Rillaboom",
+"i": "Miracle Seed",
+"a": "Grassy Surge",
+"nt": "Adamant",
+"m": [
+"Wood Hammer",
+"Grassy Glide",
+"High Horsepower",
+"Fake Out"
+]
+}
+]
+},
+{
+"pl": "Arthur Mosca",
+"cc": "MX",
+"team": [
+{
+"n": "Excadrill",
+"i": "Focus Sash",
+"a": "Sand Rush",
+"nt": "Adamant",
+"m": [
+"High Horsepower",
+"Iron Head",
+"Rock Slide",
+"Protect"
+]
+},
+{
+"n": "Staraptor",
+"i": "Staraptite",
+"a": "Intimidate",
+"nt": "Jolly",
+"m": [
+"Brave Bird",
+"Close Combat",
+"Tailwind",
+"Protect"
+]
+},
+{
+"n": "Sinistcha",
+"i": "Rocky Helmet",
+"a": "Hospitality",
+"nt": "Bold",
+"m": [
+"Matcha Gotcha",
+"Strength Sap",
+"Rage Powder",
+"Protect"
+]
+},
+{
+"n": "Milotic",
+"i": "Sitrus Berry",
+"a": "Competitive",
+"nt": "Calm",
+"m": [
+"Scald",
+"Ice Beam",
+"Icy Wind",
+"Protect"
+]
+},
+{
+"n": "Gholdengo",
+"i": "Life Orb",
+"a": "Good as Gold",
+"nt": "Modest",
+"m": [
+"Make It Rain",
+"Shadow Ball",
+"Nasty Plot",
+"Protect"
+]
+},
+{
+"n": "Tyranitar",
+"i": "Tyranitarite",
+"a": "Sand Stream",
+"nt": "Jolly",
+"m": [
+"Rock Slide",
+"Knock Off",
+"Dragon Dance",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Zach Holowiak",
+"cc": "US",
+"team": [
+{
+"n": "Rillaboom",
+"i": "Miracle Seed",
+"a": "Grassy Surge",
+"nt": "Adamant",
+"m": [
+"Grassy Glide",
+"Wood Hammer",
+"Fake Out",
+"U-turn"
+]
+},
+{
+"n": "Blaziken",
+"i": "Blazikenite",
+"a": "Speed Boost",
+"nt": "Adamant",
+"m": [
+"Detect",
+"Flare Blitz",
+"Close Combat",
+"Rock Slide"
+]
+},
+{
+"n": "Kingambit",
+"i": "Black Glasses",
+"a": "Defiant",
+"nt": "Adamant",
+"m": [
+"Sucker Punch",
+"Kowtow Cleave",
+"Swords Dance",
+"Protect"
+]
+},
+{
+"n": "Sneasler",
+"i": "Grassy Seed",
+"a": "Unburden",
+"nt": "Adamant",
+"m": [
+"Rock Slide",
+"Close Combat",
+"Dire Claw",
+"Protect"
+]
+},
+{
+"n": "Primarina",
+"i": "Leftovers",
+"a": "Liquid Voice",
+"nt": "Modest",
+"m": [
+"Protect",
+"Calm Mind",
+"Hyper Voice",
+"Moonblast"
+]
+},
+{
+"n": "Raichu",
+"i": "Raichunite Y",
+"a": "Lightning Rod",
+"nt": "Timid",
+"m": [
+"Fake Out",
+"Zap Cannon",
+"Focus Blast",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "David Rodriguez",
+"cc": "CR",
+"team": [
+{
+"n": "Kingambit",
+"i": "Chople Berry",
+"a": "Defiant",
+"nt": "Adamant",
+"m": [
+"Kowtow Cleave",
+"Low Kick",
+"Sucker Punch",
+"Iron Head"
+]
+},
+{
+"n": "Garchomp",
+"i": "Life Orb",
+"a": "Rough Skin",
+"nt": "Jolly",
+"m": [
+"Dragon Claw",
+"Earthquake",
+"Rock Slide",
+"Protect"
+]
+},
+{
+"n": "Whimsicott",
+"i": "Focus Sash",
+"a": "Prankster",
+"nt": "Timid",
+"m": [
+"Moonblast",
+"Tailwind",
+"Encore",
+"Protect"
+]
+},
+{
+"n": "Basculegion",
+"i": "Mystic Water",
+"a": "Adaptability",
+"nt": "Adamant",
+"m": [
+"Wave Crash",
+"Aqua Jet",
+"Last Respects",
+"Protect"
+]
+},
+{
+"n": "Charizard",
+"i": "Charizardite Y",
+"a": "Blaze",
+"nt": "Modest",
+"m": [
+"Weather Ball",
+"Heat Wave",
+"Solar Beam",
+"Protect"
+]
+},
+{
+"n": "Sneasler",
+"i": "White Herb",
+"a": "Unburden",
+"nt": "Adamant",
+"m": [
+"Close Combat",
+"Dire Claw",
+"Fake Out",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Otoniel Longorio López",
+"cc": "MX",
+"team": [
+{
+"n": "Charizard",
+"i": "Charizardite Y",
+"a": "Blaze",
+"nt": "Modest",
+"m": [
+"Protect",
+"Heat Wave",
+"Weather Ball",
+"Solar Beam"
+]
+},
+{
+"n": "Farigiraf",
+"i": "Sitrus Berry",
+"a": "Armor Tail",
+"nt": "Bold",
+"m": [
+"Psychic",
+"Trick Room",
+"Thunderbolt",
+"Helping Hand"
+]
+},
+{
+"n": "Aerodactyl",
+"i": "Aerodactylite",
+"a": "Unnerve",
+"nt": "Jolly",
+"m": [
+"Tailwind",
+"Rock Slide",
+"Protect",
+"Dual Wingbeat"
+]
+},
+{
+"n": "Kingambit",
+"i": "Focus Sash",
+"a": "Defiant",
+"nt": "Adamant",
+"m": [
+"Low Kick",
+"Kowtow Cleave",
+"Iron Head",
+"Sucker Punch"
+]
+},
+{
+"n": "Garchomp",
+"i": "Choice Scarf",
+"a": "Rough Skin",
+"nt": "Adamant",
+"m": [
+"Earthquake",
+"Dragon Claw",
+"Stomping Tantrum",
+"Rock Slide"
+]
+},
+{
+"n": "Sylveon",
+"i": "Fairy Feather",
+"a": "Pixilate",
+"nt": "Modest",
+"m": [
+"Detect",
+"Hyper Voice",
+"Hyper Beam",
+"Quick Attack"
+]
+}
+]
+},
+{
+"pl": "Chase Matteo",
+"cc": "US",
+"team": [
+{
+"n": "Grimmsnarl",
+"i": "Light Clay",
+"a": "Prankster",
+"nt": "Impish",
+"m": [
+"Light Screen",
+"Reflect",
+"Parting Shot",
+"Spirit Break"
+]
+},
+{
+"n": "Pelipper",
+"i": "Sitrus Berry",
+"a": "Drizzle",
+"nt": "Calm",
+"m": [
+"Weather Ball",
+"Hurricane",
+"Protect",
+"Tailwind"
+]
+},
+{
+"n": "Garchomp",
+"i": "Choice Scarf",
+"a": "Rough Skin",
+"nt": "Adamant",
+"m": [
+"Dragon Claw",
+"Earthquake",
+"Rock Slide",
+"Bulldoze"
+]
+},
+{
+"n": "Venusaur",
+"i": "Focus Sash",
+"a": "Chlorophyll",
+"nt": "Modest",
+"m": [
+"Sludge Bomb",
+"Sleep Powder",
+"Earth Power",
+"Protect"
+]
+},
+{
+"n": "Archaludon",
+"i": "Leftovers",
+"a": "Stamina",
+"nt": "Modest",
+"m": [
+"Dragon Pulse",
+"Protect",
+"Electro Shot",
+"Snarl"
+]
+},
+{
+"n": "Charizard",
+"i": "Charizardite Y",
+"a": "Blaze",
+"nt": "Modest",
+"m": [
+"Protect",
+"Heat Wave",
+"Weather Ball",
+"Hurricane"
+]
+}
+]
+},
+{
+"pl": "Luis Perez Alcocer",
+"cc": "MX",
+"team": [
+{
+"n": "Incineroar",
+"i": "Leftovers",
+"a": "Intimidate",
+"nt": "Relaxed",
+"m": [
+"Fake Out",
+"Snarl",
+"Flare Blitz",
+"Parting Shot"
+]
+},
+{
+"n": "Venusaur",
+"i": "Focus Sash",
+"a": "Chlorophyll",
+"nt": "Modest",
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Sleep Powder",
+"Protect"
+]
+},
+{
+"n": "Charizard",
+"i": "Charizardite Y",
+"a": "Blaze",
+"nt": "Modest",
+"m": [
+"Heat Wave",
+"Ancient Power",
+"Weather Ball",
+"Protect"
+]
+},
+{
+"n": "Garchomp",
+"i": "Garchompite Z",
+"a": "Rough Skin",
+"nt": "Modest",
+"m": [
+"Power Gem",
+"Draco Meteor",
+"Earth Power",
+"Protect"
+]
+},
+{
+"n": "Sylveon",
+"i": "Fairy Feather",
+"a": "Pixilate",
+"nt": "Modest",
+"m": [
+"Detect",
+"Hyper Voice",
+"Yawn",
+"Quick Attack"
+]
+},
+{
+"n": "Farigiraf",
+"i": "Sitrus Berry",
+"a": "Armor Tail",
+"nt": "Modest",
+"m": [
+"Psychic",
+"Protect",
+"Trick Room",
+"Thunderbolt"
+]
+}
+]
+}
+],
+"stats": [
+[
+"Sneasler",
+43.75
+],
+[
+"Garchomp",
+41.67
+],
+[
+"Charizard",
+39.58
+],
+[
+"Raichu",
+37.5
+],
+[
+"Incineroar",
+35.42
+],
+[
+"Pelipper",
+33.33
+],
+[
+"Archaludon",
+31.25
+],
+[
+"Kingambit",
+27.08
+],
+[
+"Rillaboom",
+25.0
+],
+[
+"Venusaur",
+20.83
+]
+]
+},
 {
 "t": "Regionale",
 "n": "Regional Nice",
@@ -12456,679 +13132,6 @@
 ]
 },
 {
-"t": "Special Event",
-"n": "Special Event Lima",
-"d": "23 maggio 2026 · 77 giocatori",
-"top": 8,
-"real": true,
-"src": "https://limitlessvgc.com/tournaments/433",
-"rows": [
-{
-"pl": "Cristhian Andrade",
-"cc": "BR",
-"team": [
-{
-"n": "Sinistcha",
-"i": "Eject Button",
-"a": "Hospitality",
-"nt": "",
-"m": [
-"Shadow Ball",
-"Rage Powder",
-"Life Dew",
-"Protect"
-]
-},
-{
-"n": "Terapagos",
-"i": "Electric Seed",
-"a": "Tera Shift",
-"nt": "",
-"m": [
-"Earth Power",
-"Protect",
-"Calm Mind"
-]
-},
-{
-"n": "Miraidon",
-"i": "Choice Scarf",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Electro Drift",
-"Volt Switch",
-"Draco Meteor",
-"Snarl"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Knock Off",
-"Fake Out",
-"Flare Blitz",
-"U-turn"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Focus Sash",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"Aqua Jet",
-"Detect"
-]
-},
-{
-"n": "Toxapex",
-"i": "Leftovers",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Infestation",
-"Toxic",
-"Wide Guard",
-"Baneful Bunker"
-]
-}
-]
-},
-{
-"pl": "Eduardo Ramirez",
-"cc": "DO",
-"team": [
-{
-"n": "Dragonite",
-"i": "Choice Band",
-"a": "Inner Focus",
-"nt": "",
-"m": [
-"Extreme Speed",
-"Outrage",
-"Low Kick",
-"Aqua Jet"
-]
-},
-{
-"n": "Zamazenta",
-"i": "Rusted Shield",
-"a": "Dauntless Shield",
-"nt": "",
-"m": [
-"Body Press",
-"Iron Head",
-"Wide Guard",
-"Protect"
-]
-},
-{
-"n": "Raging Bolt",
-"i": "Life Orb",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Thunderclap",
-"Thunderbolt",
-"Draco Meteor",
-"Protect"
-]
-},
-{
-"n": "Chien (Pao)",
-"i": "Assault Vest",
-"a": "Sword of Ruin",
-"nt": "",
-"m": [
-"Ice Spinner",
-"Sucker Punch",
-"Ruination",
-"Icy Wind"
-]
-},
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "Hearthflame Mask",
-"a": "Mold Breaker",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Follow Me",
-"Spiky Shield",
-"Taunt"
-]
-},
-{
-"n": "Calyrex (Shadow)",
-"i": "Focus Sash",
-"a": "As One",
-"nt": "",
-"m": [
-"Astral Barrage",
-"Psychic",
-"Encore",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Javier Nain",
-"cc": "CL",
-"team": [
-{
-"n": "Koraidon",
-"i": "Clear Amulet",
-"a": "Orichalcum Pulse",
-"nt": "",
-"m": [
-"Low Kick",
-"Flare Blitz",
-"Protect",
-"Flame Charge"
-]
-},
-{
-"n": "Smeargle",
-"i": "Focus Sash",
-"a": "Moody",
-"nt": "",
-"m": [
-"Spore",
-"Follow Me",
-"Spiky Shield",
-"Ruination"
-]
-},
-{
-"n": "Landorus",
-"i": "Life Orb",
-"a": "Sheer Force",
-"nt": "",
-"m": [
-"Earth Power",
-"Sludge Bomb",
-"Protect",
-"Sandsear Storm"
-]
-},
-{
-"n": "Incineroar",
-"i": "Safety Goggles",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Flare Blitz",
-"Knock Off",
-"Fake Out",
-"Parting Shot"
-]
-},
-{
-"n": "Rillaboom",
-"i": "Assault Vest",
-"a": "Grassy Surge",
-"nt": "",
-"m": [
-"Wood Hammer",
-"U-turn",
-"Fake Out",
-"Grassy Glide"
-]
-},
-{
-"n": "Calyrex (Ice)",
-"i": "Leftovers",
-"a": "As One",
-"nt": "",
-"m": [
-"Glacial Lance",
-"Leech Seed",
-"Protect",
-"Trick Room"
-]
-}
-]
-},
-{
-"pl": "Len Deuel",
-"cc": "US",
-"team": [
-{
-"n": "Terapagos",
-"i": "Leftovers",
-"a": "Tera Shift",
-"nt": "",
-"m": [
-"Earth Power",
-"Calm Mind",
-"Protect"
-]
-},
-{
-"n": "Calyrex (Shadow)",
-"i": "Focus Sash",
-"a": "As One",
-"nt": "",
-"m": [
-"Astral Barrage",
-"Will-O-Wisp",
-"Pollen Puff",
-"Protect"
-]
-},
-{
-"n": "Rillaboom",
-"i": "Assault Vest",
-"a": "Grassy Surge",
-"nt": "",
-"m": [
-"Fake Out",
-"Wood Hammer",
-"U-turn",
-"Grassy Glide"
-]
-},
-{
-"n": "Ogerpon (Cornerstone)",
-"i": "Cornerstone Mask",
-"a": "Sturdy",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Follow Me",
-"Power Whip",
-"Spiky Shield"
-]
-},
-{
-"n": "Incineroar",
-"i": "Safety Goggles",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Will-O-Wisp",
-"Knock Off",
-"Fake Out",
-"Parting Shot"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Protect",
-"Rage Powder",
-"Pollen Puff",
-"Spore"
-]
-}
-]
-},
-{
-"pl": "Gonzalo Barrera",
-"cc": "PE",
-"team": [
-{
-"n": "Miraidon",
-"i": "Choice Specs",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Electro Drift",
-"Volt Switch",
-"Draco Meteor",
-"Dazzling Gleam"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Facade",
-"Earthquake",
-"Headlong Rush",
-"Protect"
-]
-},
-{
-"n": "Lunala",
-"i": "Electric Seed",
-"a": "Shadow Shield",
-"nt": "",
-"m": [
-"Moongeist Beam",
-"Moonblast",
-"Wide Guard",
-"Trick Room"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Choice Band",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Aqua Jet",
-"Close Combat",
-"U-turn"
-]
-},
-{
-"n": "Whimsicott",
-"i": "Covert Cloak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Moonblast",
-"Tailwind",
-"Light Screen",
-"Encore"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Flare Blitz",
-"Knock Off",
-"U-turn",
-"Fake Out"
-]
-}
-]
-},
-{
-"pl": "Valentino Parra",
-"cc": "PE",
-"team": [
-{
-"n": "Miraidon",
-"i": "Choice Scarf",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Electro Drift",
-"Draco Meteor",
-"Snarl",
-"Volt Switch"
-]
-},
-{
-"n": "Zamazenta",
-"i": "Rusted Shield",
-"a": "Dauntless Shield",
-"nt": "",
-"m": [
-"Protect",
-"Body Press",
-"Wide Guard",
-"Iron Head"
-]
-},
-{
-"n": "Chien (Pao)",
-"i": "Focus Sash",
-"a": "Sword of Ruin",
-"nt": "",
-"m": [
-"Protect",
-"Icicle Crash",
-"Crunch",
-"Ice Shard"
-]
-},
-{
-"n": "Dragonite",
-"i": "Choice Band",
-"a": "Inner Focus",
-"nt": "",
-"m": [
-"Extreme Speed",
-"Low Kick",
-"Aqua Jet",
-"Iron Head"
-]
-},
-{
-"n": "Volcarona",
-"i": "Rocky Helmet",
-"a": "Flame Body",
-"nt": "",
-"m": [
-"Rage Powder",
-"Struggle Bug",
-"Fiery Dance",
-"Protect"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Flare Blitz",
-"Knock Off",
-"U-turn"
-]
-}
-]
-},
-{
-"pl": "Dorian Quiñonez",
-"cc": "PE",
-"team": [
-{
-"n": "Miraidon",
-"i": "Choice Scarf",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Electro Drift",
-"Snarl",
-"Draco Meteor",
-"Volt Switch"
-]
-},
-{
-"n": "Incineroar",
-"i": "Clear Amulet",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Flare Blitz",
-"Knock Off",
-"Fake Out",
-"Parting Shot"
-]
-},
-{
-"n": "Terapagos",
-"i": "Electric Seed",
-"a": "Tera Shift",
-"nt": "",
-"m": [
-"Earth Power",
-"Calm Mind",
-"Protect"
-]
-},
-{
-"n": "Ogerpon (Wellspring)",
-"i": "Wellspring Mask",
-"a": "Water Absorb",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Encore",
-"Follow Me",
-"Spiky Shield"
-]
-},
-{
-"n": "Sinistcha",
-"i": "Focus Sash",
-"a": "Hospitality",
-"nt": "",
-"m": [
-"Shadow Ball",
-"Rage Powder",
-"Trick Room",
-"Protect"
-]
-},
-{
-"n": "Iron (Treads)",
-"i": "Life Orb",
-"a": "Quark Drive",
-"nt": "",
-"m": [
-"High Horsepower",
-"Steel Roller",
-"Iron Head",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Renzo Navarro",
-"cc": "PE",
-"team": [
-{
-"n": "Brute (Bonnet)",
-"i": "Covert Cloak",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Spore",
-"Rage Powder",
-"Seed Bomb",
-"Sucker Punch"
-]
-},
-{
-"n": "Flutter Mane",
-"i": "Focus Sash",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Moonblast",
-"Icy Wind",
-"Taunt",
-"Protect"
-]
-},
-{
-"n": "Iron Hands",
-"i": "Assault Vest",
-"a": "Quark Drive",
-"nt": "",
-"m": [
-"Low Kick",
-"Wild Charge",
-"Fake Out",
-"Volt Switch"
-]
-},
-{
-"n": "Koraidon",
-"i": "Clear Amulet",
-"a": "Orichalcum Pulse",
-"nt": "",
-"m": [
-"Flare Blitz",
-"Flame Charge",
-"Collision Course",
-"Protect"
-]
-},
-{
-"n": "Incineroar",
-"i": "Safety Goggles",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Knock Off",
-"Fake Out",
-"Parting Shot",
-"Helping Hand"
-]
-},
-{
-"n": "Calyrex (Shadow)",
-"i": "Life Orb",
-"a": "As One",
-"nt": "",
-"m": [
-"Astral Barrage",
-"Psychic",
-"Protect",
-"Pollen Puff"
-]
-}
-]
-}
-],
-"stats": [
-[
-"Incineroar",
-72.22
-],
-[
-"Miraidon",
-55.56
-],
-[
-"Calyrex (Shadow)",
-33.33
-],
-[
-"Urshifu (Rapid Strike)",
-33.33
-],
-[
-"Zamazenta",
-27.78
-],
-[
-"Chien (Pao)",
-27.78
-],
-[
-"Calyrex (Ice)",
-27.78
-],
-[
-"Terapagos",
-22.22
-],
-[
-"Rillaboom",
-22.22
-],
-[
-"Dragonite",
-22.22
-]
-]
-},
-{
 "t": "Regionale",
 "n": "Regional Melbourne",
 "d": "23 maggio 2026 · 291 giocatori",
@@ -13801,6 +13804,679 @@
 [
 "Koraidon",
 19.51
+]
+]
+},
+{
+"t": "Special Event",
+"n": "Special Event Lima",
+"d": "23 maggio 2026 · 77 giocatori",
+"top": 8,
+"real": true,
+"src": "https://limitlessvgc.com/tournaments/433",
+"rows": [
+{
+"pl": "Cristhian Andrade",
+"cc": "BR",
+"team": [
+{
+"n": "Sinistcha",
+"i": "Eject Button",
+"a": "Hospitality",
+"nt": "",
+"m": [
+"Shadow Ball",
+"Rage Powder",
+"Life Dew",
+"Protect"
+]
+},
+{
+"n": "Terapagos",
+"i": "Electric Seed",
+"a": "Tera Shift",
+"nt": "",
+"m": [
+"Earth Power",
+"Protect",
+"Calm Mind"
+]
+},
+{
+"n": "Miraidon",
+"i": "Choice Scarf",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Electro Drift",
+"Volt Switch",
+"Draco Meteor",
+"Snarl"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Knock Off",
+"Fake Out",
+"Flare Blitz",
+"U-turn"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Focus Sash",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"Detect"
+]
+},
+{
+"n": "Toxapex",
+"i": "Leftovers",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Infestation",
+"Toxic",
+"Wide Guard",
+"Baneful Bunker"
+]
+}
+]
+},
+{
+"pl": "Eduardo Ramirez",
+"cc": "DO",
+"team": [
+{
+"n": "Dragonite",
+"i": "Choice Band",
+"a": "Inner Focus",
+"nt": "",
+"m": [
+"Extreme Speed",
+"Outrage",
+"Low Kick",
+"Aqua Jet"
+]
+},
+{
+"n": "Zamazenta",
+"i": "Rusted Shield",
+"a": "Dauntless Shield",
+"nt": "",
+"m": [
+"Body Press",
+"Iron Head",
+"Wide Guard",
+"Protect"
+]
+},
+{
+"n": "Raging Bolt",
+"i": "Life Orb",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Thunderclap",
+"Thunderbolt",
+"Draco Meteor",
+"Protect"
+]
+},
+{
+"n": "Chien (Pao)",
+"i": "Assault Vest",
+"a": "Sword of Ruin",
+"nt": "",
+"m": [
+"Ice Spinner",
+"Sucker Punch",
+"Ruination",
+"Icy Wind"
+]
+},
+{
+"n": "Ogerpon (Hearthflame)",
+"i": "Hearthflame Mask",
+"a": "Mold Breaker",
+"nt": "",
+"m": [
+"Ivy Cudgel",
+"Follow Me",
+"Spiky Shield",
+"Taunt"
+]
+},
+{
+"n": "Calyrex (Shadow)",
+"i": "Focus Sash",
+"a": "As One",
+"nt": "",
+"m": [
+"Astral Barrage",
+"Psychic",
+"Encore",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Javier Nain",
+"cc": "CL",
+"team": [
+{
+"n": "Koraidon",
+"i": "Clear Amulet",
+"a": "Orichalcum Pulse",
+"nt": "",
+"m": [
+"Low Kick",
+"Flare Blitz",
+"Protect",
+"Flame Charge"
+]
+},
+{
+"n": "Smeargle",
+"i": "Focus Sash",
+"a": "Moody",
+"nt": "",
+"m": [
+"Spore",
+"Follow Me",
+"Spiky Shield",
+"Ruination"
+]
+},
+{
+"n": "Landorus",
+"i": "Life Orb",
+"a": "Sheer Force",
+"nt": "",
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Protect",
+"Sandsear Storm"
+]
+},
+{
+"n": "Incineroar",
+"i": "Safety Goggles",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Flare Blitz",
+"Knock Off",
+"Fake Out",
+"Parting Shot"
+]
+},
+{
+"n": "Rillaboom",
+"i": "Assault Vest",
+"a": "Grassy Surge",
+"nt": "",
+"m": [
+"Wood Hammer",
+"U-turn",
+"Fake Out",
+"Grassy Glide"
+]
+},
+{
+"n": "Calyrex (Ice)",
+"i": "Leftovers",
+"a": "As One",
+"nt": "",
+"m": [
+"Glacial Lance",
+"Leech Seed",
+"Protect",
+"Trick Room"
+]
+}
+]
+},
+{
+"pl": "Len Deuel",
+"cc": "US",
+"team": [
+{
+"n": "Terapagos",
+"i": "Leftovers",
+"a": "Tera Shift",
+"nt": "",
+"m": [
+"Earth Power",
+"Calm Mind",
+"Protect"
+]
+},
+{
+"n": "Calyrex (Shadow)",
+"i": "Focus Sash",
+"a": "As One",
+"nt": "",
+"m": [
+"Astral Barrage",
+"Will-O-Wisp",
+"Pollen Puff",
+"Protect"
+]
+},
+{
+"n": "Rillaboom",
+"i": "Assault Vest",
+"a": "Grassy Surge",
+"nt": "",
+"m": [
+"Fake Out",
+"Wood Hammer",
+"U-turn",
+"Grassy Glide"
+]
+},
+{
+"n": "Ogerpon (Cornerstone)",
+"i": "Cornerstone Mask",
+"a": "Sturdy",
+"nt": "",
+"m": [
+"Ivy Cudgel",
+"Follow Me",
+"Power Whip",
+"Spiky Shield"
+]
+},
+{
+"n": "Incineroar",
+"i": "Safety Goggles",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Will-O-Wisp",
+"Knock Off",
+"Fake Out",
+"Parting Shot"
+]
+},
+{
+"n": "Amoonguss",
+"i": "Rocky Helmet",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Protect",
+"Rage Powder",
+"Pollen Puff",
+"Spore"
+]
+}
+]
+},
+{
+"pl": "Gonzalo Barrera",
+"cc": "PE",
+"team": [
+{
+"n": "Miraidon",
+"i": "Choice Specs",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Electro Drift",
+"Volt Switch",
+"Draco Meteor",
+"Dazzling Gleam"
+]
+},
+{
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
+"nt": "",
+"m": [
+"Facade",
+"Earthquake",
+"Headlong Rush",
+"Protect"
+]
+},
+{
+"n": "Lunala",
+"i": "Electric Seed",
+"a": "Shadow Shield",
+"nt": "",
+"m": [
+"Moongeist Beam",
+"Moonblast",
+"Wide Guard",
+"Trick Room"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Choice Band",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Surging Strikes",
+"Aqua Jet",
+"Close Combat",
+"U-turn"
+]
+},
+{
+"n": "Whimsicott",
+"i": "Covert Cloak",
+"a": "Prankster",
+"nt": "",
+"m": [
+"Moonblast",
+"Tailwind",
+"Light Screen",
+"Encore"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Flare Blitz",
+"Knock Off",
+"U-turn",
+"Fake Out"
+]
+}
+]
+},
+{
+"pl": "Valentino Parra",
+"cc": "PE",
+"team": [
+{
+"n": "Miraidon",
+"i": "Choice Scarf",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Electro Drift",
+"Draco Meteor",
+"Snarl",
+"Volt Switch"
+]
+},
+{
+"n": "Zamazenta",
+"i": "Rusted Shield",
+"a": "Dauntless Shield",
+"nt": "",
+"m": [
+"Protect",
+"Body Press",
+"Wide Guard",
+"Iron Head"
+]
+},
+{
+"n": "Chien (Pao)",
+"i": "Focus Sash",
+"a": "Sword of Ruin",
+"nt": "",
+"m": [
+"Protect",
+"Icicle Crash",
+"Crunch",
+"Ice Shard"
+]
+},
+{
+"n": "Dragonite",
+"i": "Choice Band",
+"a": "Inner Focus",
+"nt": "",
+"m": [
+"Extreme Speed",
+"Low Kick",
+"Aqua Jet",
+"Iron Head"
+]
+},
+{
+"n": "Volcarona",
+"i": "Rocky Helmet",
+"a": "Flame Body",
+"nt": "",
+"m": [
+"Rage Powder",
+"Struggle Bug",
+"Fiery Dance",
+"Protect"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
+}
+]
+},
+{
+"pl": "Dorian Quiñonez",
+"cc": "PE",
+"team": [
+{
+"n": "Miraidon",
+"i": "Choice Scarf",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Electro Drift",
+"Snarl",
+"Draco Meteor",
+"Volt Switch"
+]
+},
+{
+"n": "Incineroar",
+"i": "Clear Amulet",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Flare Blitz",
+"Knock Off",
+"Fake Out",
+"Parting Shot"
+]
+},
+{
+"n": "Terapagos",
+"i": "Electric Seed",
+"a": "Tera Shift",
+"nt": "",
+"m": [
+"Earth Power",
+"Calm Mind",
+"Protect"
+]
+},
+{
+"n": "Ogerpon (Wellspring)",
+"i": "Wellspring Mask",
+"a": "Water Absorb",
+"nt": "",
+"m": [
+"Ivy Cudgel",
+"Encore",
+"Follow Me",
+"Spiky Shield"
+]
+},
+{
+"n": "Sinistcha",
+"i": "Focus Sash",
+"a": "Hospitality",
+"nt": "",
+"m": [
+"Shadow Ball",
+"Rage Powder",
+"Trick Room",
+"Protect"
+]
+},
+{
+"n": "Iron (Treads)",
+"i": "Life Orb",
+"a": "Quark Drive",
+"nt": "",
+"m": [
+"High Horsepower",
+"Steel Roller",
+"Iron Head",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Renzo Navarro",
+"cc": "PE",
+"team": [
+{
+"n": "Brute (Bonnet)",
+"i": "Covert Cloak",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Spore",
+"Rage Powder",
+"Seed Bomb",
+"Sucker Punch"
+]
+},
+{
+"n": "Flutter Mane",
+"i": "Focus Sash",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Moonblast",
+"Icy Wind",
+"Taunt",
+"Protect"
+]
+},
+{
+"n": "Iron Hands",
+"i": "Assault Vest",
+"a": "Quark Drive",
+"nt": "",
+"m": [
+"Low Kick",
+"Wild Charge",
+"Fake Out",
+"Volt Switch"
+]
+},
+{
+"n": "Koraidon",
+"i": "Clear Amulet",
+"a": "Orichalcum Pulse",
+"nt": "",
+"m": [
+"Flare Blitz",
+"Flame Charge",
+"Collision Course",
+"Protect"
+]
+},
+{
+"n": "Incineroar",
+"i": "Safety Goggles",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Knock Off",
+"Fake Out",
+"Parting Shot",
+"Helping Hand"
+]
+},
+{
+"n": "Calyrex (Shadow)",
+"i": "Life Orb",
+"a": "As One",
+"nt": "",
+"m": [
+"Astral Barrage",
+"Psychic",
+"Protect",
+"Pollen Puff"
+]
+}
+]
+}
+],
+"stats": [
+[
+"Incineroar",
+72.22
+],
+[
+"Miraidon",
+55.56
+],
+[
+"Calyrex (Shadow)",
+33.33
+],
+[
+"Urshifu (Rapid Strike)",
+33.33
+],
+[
+"Zamazenta",
+27.78
+],
+[
+"Chien (Pao)",
+27.78
+],
+[
+"Calyrex (Ice)",
+27.78
+],
+[
+"Terapagos",
+22.22
+],
+[
+"Rillaboom",
+22.22
+],
+[
+"Dragonite",
+22.22
 ]
 ]
 },
@@ -16380,640 +17056,6 @@
 },
 {
 "t": "Regionale",
-"n": "Regional Querétaro",
-"d": "4 aprile 2026 · 270 giocatori",
-"top": 8,
-"real": true,
-"src": "https://limitlessvgc.com/tournaments/427",
-"rows": [
-{
-"pl": "Alexander Canseco",
-"cc": "MX",
-"team": [
-{
-"n": "Flutter Mane",
-"i": "Focus Sash",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Moonblast",
-"Shadow Ball",
-"Icy Wind",
-"Protect"
-]
-},
-{
-"n": "Lunala",
-"i": "Power Herb",
-"a": "Shadow Shield",
-"nt": "",
-"m": [
-"Moongeist Beam",
-"Meteor Beam",
-"Trick Room",
-"Wide Guard"
-]
-},
-{
-"n": "Brute (Bonnet)",
-"i": "Covert Cloak",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Seed Bomb",
-"Sucker Punch",
-"Rage Powder",
-"Spore"
-]
-},
-{
-"n": "Chi (Yu)",
-"i": "Choice Scarf",
-"a": "Beads of Ruin",
-"nt": "",
-"m": [
-"Heat Wave",
-"Dark Pulse",
-"Overheat",
-"Snarl"
-]
-},
-{
-"n": "Koraidon",
-"i": "Life Orb",
-"a": "Orichalcum Pulse",
-"nt": "",
-"m": [
-"Close Combat",
-"Flare Blitz",
-"Flame Charge",
-"Protect"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Headlong Rush",
-"Facade",
-"Earthquake",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Otoniel Longorio López",
-"cc": "MX",
-"team": [
-{
-"n": "Miraidon",
-"i": "Choice Specs",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Volt Switch",
-"Electro Drift",
-"Dazzling Gleam",
-"Draco Meteor"
-]
-},
-{
-"n": "Whimsicott",
-"i": "Covert Cloak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Moonblast",
-"Tailwind",
-"Encore",
-"Light Screen"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Flare Blitz",
-"Knock Off",
-"U-turn"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Choice Band",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"Aqua Jet",
-"U-turn"
-]
-},
-{
-"n": "Lunala",
-"i": "Electric Seed",
-"a": "Shadow Shield",
-"nt": "",
-"m": [
-"Dazzling Gleam",
-"Moongeist Beam",
-"Trick Room",
-"Wide Guard"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Earthquake",
-"Headlong Rush",
-"Facade",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Enrique Grimaldo",
-"cc": "US",
-"team": [
-{
-"n": "Pelipper",
-"i": "Ability Shield",
-"a": "Drizzle",
-"nt": "",
-"m": [
-"Hurricane",
-"Weather Ball",
-"Protect",
-"Wide Guard"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Choice Scarf",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"U-turn",
-"Iron Head"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Pollen Puff",
-"Spore",
-"Rage Powder",
-"Clear Smog"
-]
-},
-{
-"n": "Miraidon",
-"i": "Choice Specs",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Electro Drift",
-"Dragon Pulse",
-"Volt Switch",
-"Dazzling Gleam"
-]
-},
-{
-"n": "Incineroar",
-"i": "Safety Goggles",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Will-O-Wisp",
-"Knock Off",
-"Fake Out",
-"Parting Shot"
-]
-},
-{
-"n": "Calyrex (Ice)",
-"i": "Clear Amulet",
-"a": "As One",
-"nt": "",
-"m": [
-"Glacial Lance",
-"High Horsepower",
-"Trick Room",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Roi Gómez García",
-"cc": "ES",
-"team": [
-{
-"n": "Calyrex (Ice)",
-"i": "Leftovers",
-"a": "As One",
-"nt": "",
-"m": [
-"Protect",
-"Glacial Lance",
-"Leech Seed",
-"Trick Room"
-]
-},
-{
-"n": "Iron Hands",
-"i": "Assault Vest",
-"a": "Quark Drive",
-"nt": "",
-"m": [
-"Fake Out",
-"Drain Punch",
-"Low Kick",
-"Wild Charge"
-]
-},
-{
-"n": "Incineroar",
-"i": "Covert Cloak",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Will-O-Wisp",
-"Knock Off",
-"Parting Shot"
-]
-},
-{
-"n": "Grimmsnarl",
-"i": "Light Clay",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Spirit Break",
-"Reflect",
-"Light Screen",
-"Thunder Wave"
-]
-},
-{
-"n": "Araquanid",
-"i": "Electric Seed",
-"a": "Water Bubble",
-"nt": "",
-"m": [
-"Protect",
-"Liquidation",
-"Infestation",
-"Wide Guard"
-]
-},
-{
-"n": "Miraidon",
-"i": "Life Orb",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Protect",
-"Electro Drift",
-"Volt Switch",
-"Draco Meteor"
-]
-}
-]
-},
-{
-"pl": "Jeshua Rivera",
-"cc": "MX",
-"team": [
-{
-"n": "Whimsicott",
-"i": "Covert Cloak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Moonblast",
-"Tailwind",
-"Light Screen",
-"Encore"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Choice Band",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Close Combat",
-"Surging Strikes",
-"U-turn",
-"Aqua Jet"
-]
-},
-{
-"n": "Miraidon",
-"i": "Choice Specs",
-"a": "Hadron Engine",
-"nt": "",
-"m": [
-"Volt Switch",
-"Dazzling Gleam",
-"Electro Drift",
-"Draco Meteor"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Headlong Rush",
-"Facade",
-"Earthquake",
-"Protect"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Knock Off",
-"Flare Blitz",
-"U-turn",
-"Fake Out"
-]
-},
-{
-"n": "Lunala",
-"i": "Electric Seed",
-"a": "Shadow Shield",
-"nt": "",
-"m": [
-"Moongeist Beam",
-"Moonblast",
-"Trick Room",
-"Wide Guard"
-]
-}
-]
-},
-{
-"pl": "Aditya Subramanian",
-"cc": "US",
-"team": [
-{
-"n": "Dragonite",
-"i": "Choice Band",
-"a": "Inner Focus",
-"nt": "",
-"m": [
-"Extreme Speed",
-"Outrage",
-"Low Kick",
-"Aqua Jet"
-]
-},
-{
-"n": "Calyrex (Shadow)",
-"i": "Focus Sash",
-"a": "As One",
-"nt": "",
-"m": [
-"Astral Barrage",
-"Encore",
-"Psychic",
-"Protect"
-]
-},
-{
-"n": "Zamazenta",
-"i": "Rusted Shield",
-"a": "Dauntless Shield",
-"nt": "",
-"m": [
-"Body Press",
-"Heavy Slam",
-"Wide Guard",
-"Protect"
-]
-},
-{
-"n": "Raging Bolt",
-"i": "Life Orb",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Thunderclap",
-"Protect",
-"Thunderbolt",
-"Draco Meteor"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Spore",
-"Protect",
-"Rage Powder",
-"Sludge Bomb"
-]
-},
-{
-"n": "Chien (Pao)",
-"i": "Assault Vest",
-"a": "Sword of Ruin",
-"nt": "",
-"m": [
-"Ice Spinner",
-"Ruination",
-"Icy Wind",
-"Sucker Punch"
-]
-}
-]
-},
-{
-"pl": "Hugo Negrete",
-"cc": "MX",
-"team": [
-{
-"n": "Raging Bolt",
-"i": "Booster Energy",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Thunderbolt",
-"Thunderclap",
-"Dragon Pulse",
-"Protect"
-]
-},
-{
-"n": "Zamazenta",
-"i": "Rusted Shield",
-"a": "Dauntless Shield",
-"nt": "",
-"m": [
-"Body Press",
-"Heavy Slam",
-"Wide Guard",
-"Protect"
-]
-},
-{
-"n": "Calyrex (Shadow)",
-"i": "Focus Sash",
-"a": "As One",
-"nt": "",
-"m": [
-"Astral Barrage",
-"Psychic",
-"Encore",
-"Protect"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Sludge Bomb",
-"Spore",
-"Rage Powder",
-"Protect"
-]
-},
-{
-"n": "Dragonite",
-"i": "Choice Band",
-"a": "Inner Focus",
-"nt": "",
-"m": [
-"Extreme Speed",
-"Low Kick",
-"Outrage",
-"Aqua Jet"
-]
-},
-{
-"n": "Chien (Pao)",
-"i": "Assault Vest",
-"a": "Sword of Ruin",
-"nt": "",
-"m": [
-"Icy Wind",
-"Sucker Punch",
-"Ruination",
-"Ice Spinner"
-]
-}
-]
-},
-{
-"pl": "Luis Perez Alcocer",
-"cc": "MX",
-"team": [
-{
-"n": "Calyrex (Ice)",
-"i": "Leftovers",
-"a": "As One",
-"nt": "",
-"m": [
-"Glacial Lance",
-"Protect",
-"Leech Seed",
-"Trick Room"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Rage Powder",
-"Spore",
-"Pollen Puff",
-"Protect"
-]
-},
-{
-"n": "Landorus",
-"i": "Life Orb",
-"a": "Sheer Force",
-"nt": "",
-"m": [
-"Earth Power",
-"Sludge Bomb",
-"Sandsear Storm",
-"Protect"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Knock Off",
-"Flare Blitz",
-"U-turn"
-]
-},
-{
-"n": "Kyogre",
-"i": "Mystic Water",
-"a": "Drizzle",
-"nt": "",
-"m": [
-"Water Spout",
-"Hydro Pump",
-"Protect",
-"Thunder"
-]
-},
-{
-"n": "Smeargle",
-"i": "Focus Sash",
-"a": "Moody",
-"nt": "",
-"m": [
-"Fake Out",
-"Spore",
-"Follow Me",
-"Decorate"
-]
-}
-]
-}
-]
-},
-{
-"t": "Regionale",
 "n": "Regional Orlando, FL",
 "d": "4 aprile 2026 · 676 giocatori",
 "top": 8,
@@ -17640,6 +17682,640 @@
 "Fake Out",
 "U-turn",
 "Grassy Glide"
+]
+}
+]
+}
+]
+},
+{
+"t": "Regionale",
+"n": "Regional Querétaro",
+"d": "4 aprile 2026 · 270 giocatori",
+"top": 8,
+"real": true,
+"src": "https://limitlessvgc.com/tournaments/427",
+"rows": [
+{
+"pl": "Alexander Canseco",
+"cc": "MX",
+"team": [
+{
+"n": "Flutter Mane",
+"i": "Focus Sash",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Moonblast",
+"Shadow Ball",
+"Icy Wind",
+"Protect"
+]
+},
+{
+"n": "Lunala",
+"i": "Power Herb",
+"a": "Shadow Shield",
+"nt": "",
+"m": [
+"Moongeist Beam",
+"Meteor Beam",
+"Trick Room",
+"Wide Guard"
+]
+},
+{
+"n": "Brute (Bonnet)",
+"i": "Covert Cloak",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Seed Bomb",
+"Sucker Punch",
+"Rage Powder",
+"Spore"
+]
+},
+{
+"n": "Chi (Yu)",
+"i": "Choice Scarf",
+"a": "Beads of Ruin",
+"nt": "",
+"m": [
+"Heat Wave",
+"Dark Pulse",
+"Overheat",
+"Snarl"
+]
+},
+{
+"n": "Koraidon",
+"i": "Life Orb",
+"a": "Orichalcum Pulse",
+"nt": "",
+"m": [
+"Close Combat",
+"Flare Blitz",
+"Flame Charge",
+"Protect"
+]
+},
+{
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
+"nt": "",
+"m": [
+"Headlong Rush",
+"Facade",
+"Earthquake",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Otoniel Longorio López",
+"cc": "MX",
+"team": [
+{
+"n": "Miraidon",
+"i": "Choice Specs",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Volt Switch",
+"Electro Drift",
+"Dazzling Gleam",
+"Draco Meteor"
+]
+},
+{
+"n": "Whimsicott",
+"i": "Covert Cloak",
+"a": "Prankster",
+"nt": "",
+"m": [
+"Moonblast",
+"Tailwind",
+"Encore",
+"Light Screen"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Fake Out",
+"Flare Blitz",
+"Knock Off",
+"U-turn"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Choice Band",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Surging Strikes",
+"Close Combat",
+"Aqua Jet",
+"U-turn"
+]
+},
+{
+"n": "Lunala",
+"i": "Electric Seed",
+"a": "Shadow Shield",
+"nt": "",
+"m": [
+"Dazzling Gleam",
+"Moongeist Beam",
+"Trick Room",
+"Wide Guard"
+]
+},
+{
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
+"nt": "",
+"m": [
+"Earthquake",
+"Headlong Rush",
+"Facade",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Enrique Grimaldo",
+"cc": "US",
+"team": [
+{
+"n": "Pelipper",
+"i": "Ability Shield",
+"a": "Drizzle",
+"nt": "",
+"m": [
+"Hurricane",
+"Weather Ball",
+"Protect",
+"Wide Guard"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Choice Scarf",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Surging Strikes",
+"Close Combat",
+"U-turn",
+"Iron Head"
+]
+},
+{
+"n": "Amoonguss",
+"i": "Rocky Helmet",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Pollen Puff",
+"Spore",
+"Rage Powder",
+"Clear Smog"
+]
+},
+{
+"n": "Miraidon",
+"i": "Choice Specs",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Electro Drift",
+"Dragon Pulse",
+"Volt Switch",
+"Dazzling Gleam"
+]
+},
+{
+"n": "Incineroar",
+"i": "Safety Goggles",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Will-O-Wisp",
+"Knock Off",
+"Fake Out",
+"Parting Shot"
+]
+},
+{
+"n": "Calyrex (Ice)",
+"i": "Clear Amulet",
+"a": "As One",
+"nt": "",
+"m": [
+"Glacial Lance",
+"High Horsepower",
+"Trick Room",
+"Protect"
+]
+}
+]
+},
+{
+"pl": "Roi Gómez García",
+"cc": "ES",
+"team": [
+{
+"n": "Calyrex (Ice)",
+"i": "Leftovers",
+"a": "As One",
+"nt": "",
+"m": [
+"Protect",
+"Glacial Lance",
+"Leech Seed",
+"Trick Room"
+]
+},
+{
+"n": "Iron Hands",
+"i": "Assault Vest",
+"a": "Quark Drive",
+"nt": "",
+"m": [
+"Fake Out",
+"Drain Punch",
+"Low Kick",
+"Wild Charge"
+]
+},
+{
+"n": "Incineroar",
+"i": "Covert Cloak",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Fake Out",
+"Will-O-Wisp",
+"Knock Off",
+"Parting Shot"
+]
+},
+{
+"n": "Grimmsnarl",
+"i": "Light Clay",
+"a": "Prankster",
+"nt": "",
+"m": [
+"Spirit Break",
+"Reflect",
+"Light Screen",
+"Thunder Wave"
+]
+},
+{
+"n": "Araquanid",
+"i": "Electric Seed",
+"a": "Water Bubble",
+"nt": "",
+"m": [
+"Protect",
+"Liquidation",
+"Infestation",
+"Wide Guard"
+]
+},
+{
+"n": "Miraidon",
+"i": "Life Orb",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Protect",
+"Electro Drift",
+"Volt Switch",
+"Draco Meteor"
+]
+}
+]
+},
+{
+"pl": "Jeshua Rivera",
+"cc": "MX",
+"team": [
+{
+"n": "Whimsicott",
+"i": "Covert Cloak",
+"a": "Prankster",
+"nt": "",
+"m": [
+"Moonblast",
+"Tailwind",
+"Light Screen",
+"Encore"
+]
+},
+{
+"n": "Urshifu (Rapid Strike)",
+"i": "Choice Band",
+"a": "Unseen Fist",
+"nt": "",
+"m": [
+"Close Combat",
+"Surging Strikes",
+"U-turn",
+"Aqua Jet"
+]
+},
+{
+"n": "Miraidon",
+"i": "Choice Specs",
+"a": "Hadron Engine",
+"nt": "",
+"m": [
+"Volt Switch",
+"Dazzling Gleam",
+"Electro Drift",
+"Draco Meteor"
+]
+},
+{
+"n": "Ursaluna",
+"i": "Flame Orb",
+"a": "Guts",
+"nt": "",
+"m": [
+"Headlong Rush",
+"Facade",
+"Earthquake",
+"Protect"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Knock Off",
+"Flare Blitz",
+"U-turn",
+"Fake Out"
+]
+},
+{
+"n": "Lunala",
+"i": "Electric Seed",
+"a": "Shadow Shield",
+"nt": "",
+"m": [
+"Moongeist Beam",
+"Moonblast",
+"Trick Room",
+"Wide Guard"
+]
+}
+]
+},
+{
+"pl": "Aditya Subramanian",
+"cc": "US",
+"team": [
+{
+"n": "Dragonite",
+"i": "Choice Band",
+"a": "Inner Focus",
+"nt": "",
+"m": [
+"Extreme Speed",
+"Outrage",
+"Low Kick",
+"Aqua Jet"
+]
+},
+{
+"n": "Calyrex (Shadow)",
+"i": "Focus Sash",
+"a": "As One",
+"nt": "",
+"m": [
+"Astral Barrage",
+"Encore",
+"Psychic",
+"Protect"
+]
+},
+{
+"n": "Zamazenta",
+"i": "Rusted Shield",
+"a": "Dauntless Shield",
+"nt": "",
+"m": [
+"Body Press",
+"Heavy Slam",
+"Wide Guard",
+"Protect"
+]
+},
+{
+"n": "Raging Bolt",
+"i": "Life Orb",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Thunderclap",
+"Protect",
+"Thunderbolt",
+"Draco Meteor"
+]
+},
+{
+"n": "Amoonguss",
+"i": "Rocky Helmet",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Spore",
+"Protect",
+"Rage Powder",
+"Sludge Bomb"
+]
+},
+{
+"n": "Chien (Pao)",
+"i": "Assault Vest",
+"a": "Sword of Ruin",
+"nt": "",
+"m": [
+"Ice Spinner",
+"Ruination",
+"Icy Wind",
+"Sucker Punch"
+]
+}
+]
+},
+{
+"pl": "Hugo Negrete",
+"cc": "MX",
+"team": [
+{
+"n": "Raging Bolt",
+"i": "Booster Energy",
+"a": "Protosynthesis",
+"nt": "",
+"m": [
+"Thunderbolt",
+"Thunderclap",
+"Dragon Pulse",
+"Protect"
+]
+},
+{
+"n": "Zamazenta",
+"i": "Rusted Shield",
+"a": "Dauntless Shield",
+"nt": "",
+"m": [
+"Body Press",
+"Heavy Slam",
+"Wide Guard",
+"Protect"
+]
+},
+{
+"n": "Calyrex (Shadow)",
+"i": "Focus Sash",
+"a": "As One",
+"nt": "",
+"m": [
+"Astral Barrage",
+"Psychic",
+"Encore",
+"Protect"
+]
+},
+{
+"n": "Amoonguss",
+"i": "Rocky Helmet",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Sludge Bomb",
+"Spore",
+"Rage Powder",
+"Protect"
+]
+},
+{
+"n": "Dragonite",
+"i": "Choice Band",
+"a": "Inner Focus",
+"nt": "",
+"m": [
+"Extreme Speed",
+"Low Kick",
+"Outrage",
+"Aqua Jet"
+]
+},
+{
+"n": "Chien (Pao)",
+"i": "Assault Vest",
+"a": "Sword of Ruin",
+"nt": "",
+"m": [
+"Icy Wind",
+"Sucker Punch",
+"Ruination",
+"Ice Spinner"
+]
+}
+]
+},
+{
+"pl": "Luis Perez Alcocer",
+"cc": "MX",
+"team": [
+{
+"n": "Calyrex (Ice)",
+"i": "Leftovers",
+"a": "As One",
+"nt": "",
+"m": [
+"Glacial Lance",
+"Protect",
+"Leech Seed",
+"Trick Room"
+]
+},
+{
+"n": "Amoonguss",
+"i": "Rocky Helmet",
+"a": "Regenerator",
+"nt": "",
+"m": [
+"Rage Powder",
+"Spore",
+"Pollen Puff",
+"Protect"
+]
+},
+{
+"n": "Landorus",
+"i": "Life Orb",
+"a": "Sheer Force",
+"nt": "",
+"m": [
+"Earth Power",
+"Sludge Bomb",
+"Sandsear Storm",
+"Protect"
+]
+},
+{
+"n": "Incineroar",
+"i": "Assault Vest",
+"a": "Intimidate",
+"nt": "",
+"m": [
+"Fake Out",
+"Knock Off",
+"Flare Blitz",
+"U-turn"
+]
+},
+{
+"n": "Kyogre",
+"i": "Mystic Water",
+"a": "Drizzle",
+"nt": "",
+"m": [
+"Water Spout",
+"Hydro Pump",
+"Protect",
+"Thunder"
+]
+},
+{
+"n": "Smeargle",
+"i": "Focus Sash",
+"a": "Moody",
+"nt": "",
+"m": [
+"Fake Out",
+"Spore",
+"Follow Me",
+"Decorate"
 ]
 }
 ]
@@ -23307,640 +23983,121 @@
 ]
 }
 ]
-},
-{
-"t": "Regionale",
-"n": "Regional Sydney",
-"d": "7 febbraio 2026 · 278 giocatori",
-"top": 8,
-"real": true,
-"src": "https://limitlessvgc.com/tournaments/418",
-"rows": [
-{
-"pl": "Drew Bliss",
-"cc": "AU",
-"team": [
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Mystic Water",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"Aqua Jet",
-"Protect"
-]
-},
-{
-"n": "Zoroark (Hisui)",
-"i": "Life Orb",
-"a": "Illusion",
-"nt": "",
-"m": [
-"Shadow Ball",
-"Hyper Voice",
-"Protect"
-]
-},
-{
-"n": "Whimsicott",
-"i": "Focus Sash",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Moonblast",
-"Tailwind",
-"Encore",
-"Helping Hand"
-]
-},
-{
-"n": "Rillaboom",
-"i": "Assault Vest",
-"a": "Grassy Surge",
-"nt": "",
-"m": [
-"Wood Hammer",
-"Grassy Glide",
-"High Horsepower",
-"Fake Out"
-]
-},
-{
-"n": "Regidrago",
-"i": "Dragon Fang",
-"a": "Dragon's Maw",
-"nt": "",
-"m": [
-"Dragon Energy",
-"Draco Meteor",
-"Earth Power",
-"Protect"
-]
-},
-{
-"n": "Kingambit",
-"i": "Safety Goggles",
-"a": "Defiant",
-"nt": "",
-"m": [
-"Kowtow Cleave",
-"Iron Head",
-"Sucker Punch",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Yuxiang Wang",
-"cc": "CN",
-"team": [
-{
-"n": "Incineroar",
-"i": "Sitrus Berry",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Knock Off",
-"Parting Shot",
-"Taunt"
-]
-},
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "Hearthflame Mask",
-"a": "Mold Breaker",
-"nt": "",
-"m": [
-"Swords Dance",
-"Ivy Cudgel",
-"Grassy Glide",
-"Spiky Shield"
-]
-},
-{
-"n": "Flutter Mane",
-"i": "Booster Energy",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Moonblast",
-"Icy Wind",
-"Thunder Wave",
-"Protect"
-]
-},
-{
-"n": "Raging Bolt",
-"i": "Leftovers",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Calm Mind",
-"Thunderclap",
-"Dragon Pulse",
-"Protect"
-]
-},
-{
-"n": "Rillaboom",
-"i": "Assault Vest",
-"a": "Grassy Surge",
-"nt": "",
-"m": [
-"Fake Out",
-"Grassy Glide",
-"Wood Hammer",
-"High Horsepower"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Focus Sash",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Aqua Jet",
-"Close Combat",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Yuxiang Peng",
-"cc": "AU",
-"team": [
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "Hearthflame Mask",
-"a": "Mold Breaker",
-"nt": "",
-"m": [
-"Spiky Shield",
-"Ivy Cudgel",
-"Wood Hammer",
-"Follow Me"
-]
-},
-{
-"n": "Tornadus",
-"i": "Covert Cloak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Protect",
-"Tailwind",
-"Bleakwind Storm",
-"Sunny Day"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Flare Blitz",
-"Knock Off",
-"U-turn"
-]
-},
-{
-"n": "Farigiraf",
-"i": "Throat Spray",
-"a": "Armor Tail",
-"nt": "",
-"m": [
-"Protect",
-"Trick Room",
-"Hyper Voice",
-"Psychic"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Protect",
-"Facade",
-"Headlong Rush",
-"Earthquake"
-]
-},
-{
-"n": "Flutter Mane",
-"i": "Choice Specs",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Moonblast",
-"Dazzling Gleam",
-"Shadow Ball",
-"Power Gem"
-]
-}
-]
-},
-{
-"pl": "Kynan Campbell",
-"cc": "AU",
-"team": [
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Mystic Water",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"Taunt",
-"Protect"
-]
-},
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Headlong Rush",
-"Facade",
-"Protect",
-"Earthquake"
-]
-},
-{
-"n": "Cresselia",
-"i": "Safety Goggles",
-"a": "Levitate",
-"nt": "",
-"m": [
-"Psychic",
-"Icy Wind",
-"Trick Room",
-"Lunar Blessing"
-]
-},
-{
-"n": "Flutter Mane",
-"i": "Choice Specs",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Dazzling Gleam",
-"Shadow Ball",
-"Moonblast",
-"Power Gem"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Flare Blitz",
-"Knock Off",
-"U-turn",
-"Fake Out"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Rocky Helmet",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Rage Powder",
-"Spore",
-"Sludge Bomb",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Joji Kaieda",
-"cc": "AU",
-"team": [
-{
-"n": "Ursaluna",
-"i": "Flame Orb",
-"a": "Guts",
-"nt": "",
-"m": [
-"Facade",
-"Headlong Rush",
-"Earthquake",
-"Protect"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Life Orb",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Aqua Jet",
-"Close Combat",
-"Detect"
-]
-},
-{
-"n": "Incineroar",
-"i": "Assault Vest",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Flare Blitz",
-"Knock Off",
-"U-turn"
-]
-},
-{
-"n": "Porygon2",
-"i": "Eviolite",
-"a": "Download",
-"nt": "",
-"m": [
-"Ice Beam",
-"Recover",
-"Trick Room"
-]
-},
-{
-"n": "Tornadus",
-"i": "Sharp Beak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Bleakwind Storm",
-"Rain Dance",
-"Tailwind",
-"Protect"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Sitrus Berry",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Sludge Bomb",
-"Spore",
-"Rage Powder",
-"Protect"
-]
-}
-]
-},
-{
-"pl": "Yoav Reuven",
-"cc": "AU",
-"team": [
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "Hearthflame Mask",
-"a": "Mold Breaker",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Grassy Glide",
-"Swords Dance",
-"Spiky Shield"
-]
-},
-{
-"n": "Incineroar",
-"i": "Rocky Helmet",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Knock Off",
-"Taunt",
-"Fake Out",
-"Parting Shot"
-]
-},
-{
-"n": "Raging Bolt",
-"i": "Booster Energy",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Thunderclap",
-"Dragon Pulse",
-"Calm Mind",
-"Protect"
-]
-},
-{
-"n": "Landorus",
-"i": "Life Orb",
-"a": "Sheer Force",
-"nt": "",
-"m": [
-"Earth Power",
-"Sludge Bomb",
-"Psychic",
-"Protect"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Mystic Water",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"Aqua Jet",
-"Protect"
-]
-},
-{
-"n": "Rillaboom",
-"i": "Assault Vest",
-"a": "Grassy Surge",
-"nt": "",
-"m": [
-"Wood Hammer",
-"Grassy Glide",
-"Fake Out",
-"High Horsepower"
-]
-}
-]
-},
-{
-"pl": "Jude Gerard Lee Wei Cong",
-"cc": "SG",
-"team": [
-{
-"n": "Roaring (Moon)",
-"i": "Booster Energy",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Knock Off",
-"Acrobatics",
-"Dragon Dance",
-"Protect"
-]
-},
-{
-"n": "Flutter Mane",
-"i": "Choice Specs",
-"a": "Protosynthesis",
-"nt": "",
-"m": [
-"Moonblast",
-"Power Gem",
-"Shadow Ball",
-"Dazzling Gleam"
-]
-},
-{
-"n": "Incineroar",
-"i": "Safety Goggles",
-"a": "Intimidate",
-"nt": "",
-"m": [
-"Fake Out",
-"Flare Blitz",
-"Helping Hand",
-"Parting Shot"
-]
-},
-{
-"n": "Iron Hands",
-"i": "Assault Vest",
-"a": "Quark Drive",
-"nt": "",
-"m": [
-"Fake Out",
-"Drain Punch",
-"Heavy Slam",
-"Volt Switch"
-]
-},
-{
-"n": "Ogerpon (Wellspring)",
-"i": "Wellspring Mask",
-"a": "Water Absorb",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Wood Hammer",
-"Follow Me",
-"Spiky Shield"
-]
-},
-{
-"n": "Amoonguss",
-"i": "Sitrus Berry",
-"a": "Regenerator",
-"nt": "",
-"m": [
-"Pollen Puff",
-"Rage Powder",
-"Spore",
-"Sludge Bomb"
-]
-}
-]
-},
-{
-"pl": "Dimitri Koziaris",
-"cc": "AU",
-"team": [
-{
-"n": "Iron (Crown)",
-"i": "Booster Energy",
-"a": "Quark Drive",
-"nt": "",
-"m": [
-"Expanding Force",
-"Tachyon Cutter",
-"Protect"
-]
-},
-{
-"n": "Indeedee-F",
-"i": "Rocky Helmet",
-"a": "Psychic Surge",
-"nt": "",
-"m": [
-"Follow Me",
-"Helping Hand",
-"Dazzling Gleam",
-"Trick Room"
-]
-},
-{
-"n": "Tornadus",
-"i": "Covert Cloak",
-"a": "Prankster",
-"nt": "",
-"m": [
-"Bleakwind Storm",
-"Rain Dance",
-"Tailwind",
-"Protect"
-]
-},
-{
-"n": "Urshifu (Rapid Strike)",
-"i": "Choice Band",
-"a": "Unseen Fist",
-"nt": "",
-"m": [
-"Surging Strikes",
-"Close Combat",
-"U-turn",
-"Aqua Jet"
-]
-},
-{
-"n": "Ogerpon (Hearthflame)",
-"i": "Hearthflame Mask",
-"a": "Mold Breaker",
-"nt": "",
-"m": [
-"Ivy Cudgel",
-"Wood Hammer",
-"Follow Me",
-"Spiky Shield"
-]
-},
-{
-"n": "Landorus",
-"i": "Life Orb",
-"a": "Sheer Force",
-"nt": "",
-"m": [
-"Earth Power",
-"Sandsear Storm",
-"Sludge Bomb",
-"Protect"
-]
-}
-]
-}
-]
 }
 ],
 "bp": [
+[
+"Kyle Livinghouse",
+"US",
+"Puebla",
+447,
+1
+],
+[
+"Renzo Navarro",
+"PE",
+"Puebla",
+447,
+2
+],
+[
+"Arthur Mosca",
+"MX",
+"Puebla",
+447,
+3
+],
+[
+"Zach Holowiak",
+"US",
+"Puebla",
+447,
+4
+],
+[
+"David Rodriguez",
+"CR",
+"Puebla",
+447,
+5
+],
+[
+"Otoniel Longorio López",
+"MX",
+"Puebla",
+447,
+6
+],
+[
+"Chase Matteo",
+"US",
+"Puebla",
+447,
+7
+],
+[
+"Luis Perez Alcocer",
+"MX",
+"Puebla",
+447,
+8
+],
+[
+"Jimmy Suárez",
+"CO",
+"Puebla",
+447,
+9
+],
+[
+"alexander canseco salas",
+"MX",
+"Puebla",
+447,
+10
+],
+[
+"Ernesto Serpa",
+"PE",
+"Puebla",
+447,
+11
+],
+[
+"Jonathan Josue Barradas Ruiz",
+"MX",
+"Puebla",
+447,
+12
+],
+[
+"Emanuel Hernandez",
+"MX",
+"Puebla",
+447,
+13
+],
+[
+"Enrique Grimaldo",
+"US",
+"Puebla",
+447,
+14
+],
+[
+"José Javier Loyo Gutiérrez",
+"MX",
+"Puebla",
+447,
+15
+],
+[
+"Alejandro Rolon",
+"MX",
+"Puebla",
+447,
+16
+],
 [
 "Louis Fontvieille",
 "FR",
@@ -25286,118 +25443,6 @@
 16
 ],
 [
-"Alexander Canseco",
-"MX",
-"Querétaro",
-427,
-1
-],
-[
-"Otoniel Longorio López",
-"MX",
-"Querétaro",
-427,
-2
-],
-[
-"Enrique Grimaldo",
-"US",
-"Querétaro",
-427,
-3
-],
-[
-"Roi Gómez García",
-"ES",
-"Querétaro",
-427,
-4
-],
-[
-"Jeshua Rivera",
-"MX",
-"Querétaro",
-427,
-5
-],
-[
-"Aditya Subramanian",
-"US",
-"Querétaro",
-427,
-6
-],
-[
-"Hugo Negrete",
-"MX",
-"Querétaro",
-427,
-7
-],
-[
-"Luis Perez Alcocer",
-"MX",
-"Querétaro",
-427,
-8
-],
-[
-"Victor Manoath",
-"MX",
-"Querétaro",
-427,
-9
-],
-[
-"Jordan Flores",
-"MX",
-"Querétaro",
-427,
-10
-],
-[
-"Hector Miguel Hurtado Romero",
-"MX",
-"Querétaro",
-427,
-11
-],
-[
-"José Roberto Núñez",
-"MX",
-"Querétaro",
-427,
-12
-],
-[
-"Saúl Morones",
-"MX",
-"Querétaro",
-427,
-13
-],
-[
-"Andrew Armstrong",
-"US",
-"Querétaro",
-427,
-14
-],
-[
-"Steven stewart",
-"MX",
-"Querétaro",
-427,
-15
-],
-[
-"Daniela Hernandez",
-"MX",
-"Querétaro",
-427,
-16
-],
-[
 "Bhushan Thumsi",
 "US",
 "Orlando, FL",
@@ -25507,6 +25552,118 @@
 "US",
 "Orlando, FL",
 426,
+16
+],
+[
+"Alexander Canseco",
+"MX",
+"Querétaro",
+427,
+1
+],
+[
+"Otoniel Longorio López",
+"MX",
+"Querétaro",
+427,
+2
+],
+[
+"Enrique Grimaldo",
+"US",
+"Querétaro",
+427,
+3
+],
+[
+"Roi Gómez García",
+"ES",
+"Querétaro",
+427,
+4
+],
+[
+"Jeshua Rivera",
+"MX",
+"Querétaro",
+427,
+5
+],
+[
+"Aditya Subramanian",
+"US",
+"Querétaro",
+427,
+6
+],
+[
+"Hugo Negrete",
+"MX",
+"Querétaro",
+427,
+7
+],
+[
+"Luis Perez Alcocer",
+"MX",
+"Querétaro",
+427,
+8
+],
+[
+"Victor Manoath",
+"MX",
+"Querétaro",
+427,
+9
+],
+[
+"Jordan Flores",
+"MX",
+"Querétaro",
+427,
+10
+],
+[
+"Hector Miguel Hurtado Romero",
+"MX",
+"Querétaro",
+427,
+11
+],
+[
+"José Roberto Núñez",
+"MX",
+"Querétaro",
+427,
+12
+],
+[
+"Saúl Morones",
+"MX",
+"Querétaro",
+427,
+13
+],
+[
+"Andrew Armstrong",
+"US",
+"Querétaro",
+427,
+14
+],
+[
+"Steven stewart",
+"MX",
+"Querétaro",
+427,
+15
+],
+[
+"Daniela Hernandez",
+"MX",
+"Querétaro",
+427,
 16
 ],
 [
@@ -25843,118 +26000,6 @@
 "US",
 "Seattle, WA",
 421,
-16
-],
-[
-"Drew Bliss",
-"AU",
-"Sydney",
-418,
-1
-],
-[
-"Yuxiang Wang",
-"CN",
-"Sydney",
-418,
-2
-],
-[
-"Yuxiang Peng",
-"AU",
-"Sydney",
-418,
-3
-],
-[
-"Kynan Campbell",
-"AU",
-"Sydney",
-418,
-4
-],
-[
-"Joji Kaieda",
-"AU",
-"Sydney",
-418,
-5
-],
-[
-"Yoav Reuven",
-"AU",
-"Sydney",
-418,
-6
-],
-[
-"Jude Gerard Lee Wei Cong",
-"SG",
-"Sydney",
-418,
-7
-],
-[
-"Dimitri Koziaris",
-"AU",
-"Sydney",
-418,
-8
-],
-[
-"Fan Zhang",
-"UK",
-"Sydney",
-418,
-9
-],
-[
-"Dinh Thong Nguyen",
-"NZ",
-"Sydney",
-418,
-10
-],
-[
-"Matthew Robinson",
-"AU",
-"Sydney",
-418,
-11
-],
-[
-"Celine Grima",
-"AU",
-"Sydney",
-418,
-12
-],
-[
-"Lucas Attana",
-"AU",
-"Sydney",
-418,
-13
-],
-[
-"Riley Hackwill",
-"AU",
-"Sydney",
-418,
-14
-],
-[
-"Chloe Bourke",
-"AU",
-"Sydney",
-418,
-15
-],
-[
-"XUAN ZHENGYI",
-"CN",
-"Sydney",
-418,
 16
 ]
 ],
