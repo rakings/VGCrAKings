@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T19:52:13+00:00",
+ "updated": "2026-10-27T20:24:36+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 145,
+   "players": 155,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "01:00",
-   "players": 6,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6adeae4497e21d82e5c6f40a/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "11:00",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6adfe9c922fd412b92a4dce8/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "18:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad923ae115c12b73a5a941c/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 34,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -542,21 +542,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "00:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
-  },
-  {
    "name": "VGCJer Indigo Open",
    "org": "VGCJeremy",
    "mode": "online",
@@ -570,6 +555,21 @@
    "time": "00:00",
    "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "00:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "[Reg M-C Bo3] THURSDAY NIGHT THROWDOWN #5",
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
@@ -643,7 +643,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -970,7 +970,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
@@ -1032,6 +1032,21 @@
    "time": "00:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
+  },
+  {
+   "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-03",
+   "time": "17:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
    "name": "Beaniest Battle of the Beans #2 M-C Shiny Prizing",
