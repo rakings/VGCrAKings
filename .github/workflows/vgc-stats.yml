@@ -23,10 +23,15 @@ on:
         options:
           - "no"
           - "si"
-  # --- Aggiornamento automatico: DISATTIVATO. Per attivarlo togli il # davanti alle righe qui sotto. ---
-  # schedule:
-  #   - cron: "*/20 * * * 5,6,0,1"   # ogni 20 minuti da venerdi a lunedi (regionali in corso)
-  #   - cron: "0 6 * * *"            # una volta al giorno (regionali finiti)
+  # --- Aggiornamento automatico: ATTIVO. Per spegnerlo metti un # davanti alle righe "cron". ---
+  # Orari in UTC. Ora italiana invernale (fino a fine marzo) = UTC + 1; da fine marzo (ora legale) = UTC + 2.
+  # Minuti 07 e 37 (non 00 e 30): a inizio ora GitHub e' piu' carico e ritarda di piu'.
+  schedule:
+    - cron: "7,37 17-23 * * 5,6,0"   # venerdi-domenica, ogni mezz'ora: 18:07 - 00:37 ora italiana (14 controlli)
+    - cron: "7,37 0 * * 6,0,1"       # sabato-lunedi: 01:07 e 01:37 ora italiana (2 controlli, fine serata)
+    - cron: "7 5 * * *"              # ogni giorno alle 06:07 ora italiana: regionali finiti e nuovi
+    # Per coprire anche il GIORNO (regionali europei dal vivo) togli il # alla riga qui sotto:
+    # - cron: "7,37 7-16 * * 5,6,0"  # 08:07 - 17:37 ora italiana
 permissions:
   contents: write
 concurrency:
