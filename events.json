@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T18:02:05+00:00",
+ "updated": "2026-10-27T19:52:13+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -242,19 +242,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8ee598a8383117e3f0bb4/details"
   },
   {
-   "name": "VGC UmbreNews 27.10.2026 #37 - Champion",
-   "org": "UmbreNews",
+   "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
+   "org": "Bean Battles",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": null,
    "prize": "",
-   "reg": null,
+   "reg": "M-C",
    "bo": null,
    "date": "2026-10-27",
-   "time": "17:30",
-   "players": 84,
-   "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
+   "time": "19:00",
+   "players": 25,
+   "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
    "name": "TARTAN",
@@ -272,19 +272,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
-   "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
-   "org": "Bean Battles",
+   "name": "VGC UmbreNews 27.10.2026 #37 - Champion",
+   "org": "UmbreNews",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": null,
    "prize": "",
-   "reg": "M-C",
+   "reg": null,
    "bo": null,
    "date": "2026-10-27",
-   "time": "19:00",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
+   "time": "17:30",
+   "players": 84,
+   "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
    "name": "Battle Cruise VGC Side",
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 147,
+   "players": 145,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "01:00",
-   "players": 3,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6adeae4497e21d82e5c6f40a/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "18:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad923ae115c12b73a5a941c/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "17:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
@@ -523,7 +523,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 31,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -643,7 +643,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 35,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -676,7 +676,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "00:00",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae0b79c22fd412b92a4e15a/details"
   },
   {
@@ -755,21 +755,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
   },
   {
-   "name": "Outlanders Championship League S1",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "14:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
-  },
-  {
    "name": "Øutcasts",
    "org": "Øutcasts Dominion Intl.",
    "mode": "online",
@@ -783,6 +768,21 @@
    "time": "14:00",
    "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
+  },
+  {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "14:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
    "name": "Regulation M-C: Open League #4",
