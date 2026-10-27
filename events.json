@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T13:41:29+00:00",
+ "updated": "2026-10-27T15:07:55+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 56,
+   "players": 69,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 108,
+   "players": 115,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "12:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6add569291617679e84a04c8/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:30",
-   "players": 7,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6adfac4180a8f79408d1ed95/details"
   },
   {
@@ -508,7 +508,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 35,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -523,7 +523,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "02:30",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
@@ -538,7 +538,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "19:30",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aa9616f38886b36383c0cf2/details"
   },
   {
@@ -553,7 +553,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "00:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
   },
   {
@@ -628,7 +628,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 15,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -673,7 +673,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 30,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -693,6 +693,21 @@
    "time": null,
    "url": "https://victoryroad.pro/2027-global-challenge-ii/",
    "signup": null
+  },
+  {
+   "name": "Thalera Champions Cheese #20 - HALLOWEEN",
+   "org": "Thalera",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "00:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ae0b79c22fd412b92a4e15a/details"
   },
   {
    "name": "X1 Remote Battle League 13ª Edição - Reg M-C",
@@ -766,7 +781,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "13:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
   },
   {
@@ -811,7 +826,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 12,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
