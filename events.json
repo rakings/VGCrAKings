@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T22:42:37+00:00",
+ "updated": "2026-10-27T01:22:53+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -227,19 +227,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6aaa8da8f1243e65f98029f7/details"
   },
   {
-   "name": "ValkrixVGC Pokemon Champions League #07",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "Amyverse VGC Champions Arena #16 ❤️ Cash Prize!",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
-   "cash": null,
-   "prize": "",
+   "cash": true,
+   "prize": "Cash",
    "reg": null,
    "bo": null,
-   "date": "2026-10-25",
-   "time": "15:00",
-   "players": 125,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54228f127b1b52c2811ed/details"
+   "date": "2026-10-26",
+   "time": "19:00",
+   "players": 109,
+   "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
   },
   {
    "name": "The Drywalls Series #24",
@@ -257,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adac00497e21d82e5c6cfa8/details"
   },
   {
-   "name": "Spooky Cup - $500 PRIZE POOL",
-   "org": "Wolfey Sub Server",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-26",
-   "time": "22:00",
-   "players": 203,
-   "url": "https://play.limitlesstcg.com/tournament/6adf94b780a8f79408d1eb2f/details"
-  },
-  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -287,49 +272,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16cc2245696afb35158fd/details"
   },
   {
-   "name": "Amyverse VGC Champions Arena #16 ❤️ Cash Prize!",
-   "org": "The Amyverse",
+   "name": "Spooky Cup - $500 PRIZE POOL",
+   "org": "Wolfey Sub Server",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": true,
-   "prize": "Cash",
+   "prize": "$5",
    "reg": null,
    "bo": null,
    "date": "2026-10-26",
-   "time": "19:00",
-   "players": 123,
-   "url": "https://play.limitlesstcg.com/tournament/6ad75a2d8a8383117e3eff78/details"
-  },
-  {
-   "name": "Intimidators Champions Challenge #52 REG M-C",
-   "org": "INTIMIDATORS VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "00:00",
-   "players": 53,
-   "url": "https://play.limitlesstcg.com/tournament/6adf3a9180a8f79408d1e7e8/details"
-  },
-  {
-   "name": "Pokepal Smackdown #164 (Champions) (Reg M-C)",
-   "org": "MI PokéPals",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "00:30",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6adf580080a8f79408d1e893/details"
+   "time": "22:00",
+   "players": 203,
+   "url": "https://play.limitlesstcg.com/tournament/6adf94b780a8f79408d1eb2f/details"
   },
   {
    "name": "HOTG Online Series - Champions - S102",
@@ -347,6 +302,51 @@
    "url": "https://play.limitlesstcg.com/tournament/6adea1f297e21d82e5c6f371/details"
   },
   {
+   "name": "Pokepal Smackdown #164 (Champions) (Reg M-C)",
+   "org": "MI PokéPals",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "00:30",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6adf580080a8f79408d1e893/details"
+  },
+  {
+   "name": "Intimidators Champions Challenge #52 REG M-C",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "00:00",
+   "players": 53,
+   "url": "https://play.limitlesstcg.com/tournament/6adf3a9180a8f79408d1e7e8/details"
+  },
+  {
+   "name": "ValkrixVGC Rising Champions League #01",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-27",
+   "time": "10:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6adfdd1c22fd412b92a4dbde/details"
+  },
+  {
    "name": "VGC UmbreNews 27.10.2026 #37 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "17:30",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ada09eb115c12b73a5a9904/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-27",
    "time": "19:00",
-   "players": 20,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "00:30",
-   "players": 61,
+   "players": 69,
    "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
@@ -433,8 +433,23 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "01:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adeae4497e21d82e5c6f40a/details"
+  },
+  {
+   "name": "ValkrixVGC Rising Champions League #02",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "11:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6adfe9c922fd412b92a4dce8/details"
   },
   {
    "name": "Mid-Week Smoke #12 1/2",
@@ -478,7 +493,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -493,7 +508,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -598,7 +613,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 20,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -613,7 +628,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
   },
   {
@@ -643,7 +658,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "00:00",
-   "players": 18,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
   },
   {
@@ -658,7 +673,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -736,7 +751,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "00:15",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adfbd7122fd412b92a4d932/details"
   },
   {
@@ -970,7 +985,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
   },
   {
@@ -989,6 +1004,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+  },
+  {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
    "org": "Sketch Academy",
    "mode": "online",
@@ -1002,6 +1032,21 @@
    "time": "03:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
+  },
+  {
+   "name": "Amyverse VGC Champions Arena #17 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-02",
+   "time": "20:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
