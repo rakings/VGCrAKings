@@ -141,5 +141,6 @@ else if(t.id==="vg-pr"){S.reg=t.value||"all";S.msg="";draw()}}
 function init(){return J("index.json").then(function(x){IDX=x;S.treg=x.current;return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
-if(S.ready||S.fail){draw();return}draw();init().then(draw)}};
+if(S.ready||S.fail){draw();return}draw();init().then(draw)},
+back:function(){if(!host||!S.ready||S.fail)return false;if(S.mon){S.mon=null;drawRes();return true}if(S.sec!=="arc"){S.sec="arc";S.mon=null;draw();window.scrollTo(0,0);return true}return false}};
 })();
