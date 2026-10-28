@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T15:12:32+00:00",
+ "updated": "2026-10-28T16:23:59+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "18:00",
-   "players": 60,
+   "players": 73,
    "url": "https://play.limitlesstcg.com/tournament/6ad923ae115c12b73a5a941c/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 64,
+   "players": 69,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 43,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:30",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6adfac4180a8f79408d1ed95/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 53,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 52,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -508,7 +508,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -601,7 +601,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "00:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae0b79c22fd412b92a4e15a/details"
   },
   {
@@ -618,6 +618,21 @@
    "time": "00:15",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adfbd7122fd412b92a4d932/details"
+  },
+  {
+   "name": "BPL SPOOKY CUP",
+   "org": "Goblin Lair Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "00:15",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
    "name": "Corner Clash",
@@ -736,7 +751,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
@@ -865,7 +880,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
@@ -895,7 +910,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
@@ -955,7 +970,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -1499,6 +1514,21 @@
    "time": null,
    "where": "San Paolo, Brasile",
    "url": "https://serebii.net/playpokemon/2027/latinamericainternationalchampionships.shtml"
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
   },
   {
    "name": "VGC Gemeinde Stuttgart Prep",
