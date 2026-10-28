@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "elenco = elenco di tutti i regionali - evento = un solo regionale - auto = quelli in corso e quelli finiti non ancora raccolti"
+        description: "elenco = elenco dei regionali - evento = un solo regionale - auto = in corso e finiti da raccogliere - live = controlli ripetuti finche' un regionale e' in corso"
         required: true
         default: "elenco"
         type: choice
@@ -11,6 +11,7 @@ on:
           - "elenco"
           - "evento"
           - "auto"
+          - "live"
       id:
         description: "Solo per modo evento: id Pokedata del regionale (Nizza: 1000076)"
         required: false
@@ -24,14 +25,20 @@ on:
           - "no"
           - "si"
   # --- Aggiornamento automatico: ATTIVO. Per spegnerlo metti un # davanti alle righe "cron". ---
-  # Orari in UTC. Ora italiana invernale (fino a fine marzo) = UTC + 1; da fine marzo (ora legale) = UTC + 2.
+  # Orari in UTC. Ora italiana invernale (fino a fine marzo) = UTC + 1; con l'ora legale = UTC + 2.
   # Minuti 07 e 37 (non 00 e 30): a inizio ora GitHub e' piu' carico e ritarda di piu'.
   schedule:
-    - cron: "7,37 17-23 * * 5,6,0"   # venerdi-domenica, ogni mezz'ora: 18:07 - 00:37 ora italiana (14 controlli)
-    - cron: "7,37 0 * * 6,0,1"       # sabato-lunedi: 01:07 e 01:37 ora italiana (2 controlli, fine serata)
-    - cron: "7 5 * * *"              # ogni giorno alle 06:07 ora italiana: regionali finiti e nuovi
-    # Per coprire anche il GIORNO (regionali europei dal vivo) togli il # alla riga qui sotto:
-    # - cron: "7,37 7-16 * * 5,6,0"  # 08:07 - 17:37 ora italiana
+    # LIVE sabato-lunedi: un controllo ogni 45 minuti (00:07, 00:52, 01:37, 02:22, 03:07... ogni 3 ore si ripete).
+    # Se c'e' un regionale in corso resta attivo con controlli a intervalli casuali di 8-16 minuti; se non c'e', si ferma subito.
+    - cron: "7 0-23/3 * * 6,0,1"
+    - cron: "52 0-23/3 * * 6,0,1"
+    - cron: "37 1-23/3 * * 6,0,1"
+    - cron: "22 2-23/3 * * 6,0,1"
+    # Recupero squadre (solo se mancano) - ora italiana invernale:
+    - cron: "7,37 17-23 * * *"      # sera 18:07 - 00:37
+    - cron: "7,37 0 * * *"          # 01:07 e 01:37
+    - cron: "7 5 * * *"             # 06:07 (anche regionali finiti e nuovi)
+    - cron: "7 9,11,13 * * *"       # 10:07, 12:07 e 14:07
 permissions:
   contents: write
 concurrency:
@@ -40,9 +47,9 @@ concurrency:
 jobs:
   raccolta:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 355
     env:
-      MODO: ${{ inputs.modo || 'auto' }}
+      MODO: ${{ inputs.modo || (endsWith(github.event.schedule, ' 6,0,1') && 'live' || 'auto') }}
       TORNEO: ${{ inputs.id }}
       SALVA: ${{ github.event_name == 'schedule' && 'si' || inputs.salva }}
     steps:
@@ -54,6 +61,7 @@ jobs:
           case "$MODO" in
             elenco) python3 -u vgc_stats.py --list $W ;;
             evento) python3 -u vgc_stats.py --id "$TORNEO" $W ;;
+            live)   if [ "$SALVA" = "si" ]; then python3 -u vgc_stats.py --live --write --commit; else python3 -u vgc_stats.py --live --max-cycles 1; fi ;;
             *)      python3 -u vgc_stats.py --auto $W ;;
           esac
       - name: Salva i file nella repo
