@@ -290,7 +290,7 @@ label{display:grid;gap:4px;font-size:.88rem;font-weight:600}
 textarea{min-height:140px}
 .note{margin-top:26px;font-size:.88rem;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
 .devby{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--mute);text-align:left}.devby a{color:inherit;font-weight:700;text-decoration:underline}</style>
-<link rel="stylesheet" href="vgcstats.css">
+<link rel="stylesheet" href="vgcstats.css?v=20261029b">
 </head>
 <body>
 <main><p class="devby">Developed by: X: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a> · IG: <a href="https://www.instagram.com/AndreaK_92/" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
@@ -349,7 +349,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261029b</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -498,7 +498,7 @@ render()});
 $("f-view").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;BK=false;CAL.on=b.dataset.vw==="cal";if(CAL.on&&!CAL.day)calInit();this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});render()});
 $("bk").addEventListener("click",function(){BK=!BK;if(BK)annSeen();render()});
 $("f-big").addEventListener("click",function(){st.big=!st.big;this.setAttribute("aria-pressed",st.big);render()});
-function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}var sc=document.createElement("script");sc.src="vgcstats.js";sc.onload=function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)};sc.onerror=function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'};document.head.appendChild(sc)}
+function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}var sc=document.createElement("script");sc.src="vgcstats.js?v=20261029b";sc.onload=function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)};sc.onerror=function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'};document.head.appendChild(sc)}
 function render(){ var nw=st.mode==="news";
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("q").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
@@ -581,7 +581,7 @@ var REM=[];try{REM=JSON.parse(localStorage.getItem("vgc-rem")||"[]")}catch(e){}
 window.OneSignalDeferred=window.OneSignalDeferred||[];
 window.OSREADY=new Promise(function(r){window.OSRES=r});
 function osdo(fn){if(ONESIGNAL_APP_ID==="demo")fn({User:{addTag:function(){},removeTag:function(){},addTags:function(){}},Notifications:{permission:true,requestPermission:function(){return Promise.resolve()}}});else OneSignalDeferred.push(fn)}
-if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");function osLoad(then){var o=document.createElement("script");o.src=(typeof PUSH!=="undefined"&&PUSH==="fcm")?"fcm-adapter.js":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";o.async=true;o.onload=function(){window.OSFAIL=0;if(then)then()};o.onerror=function(){window.OSFAIL=1;try{o.remove()}catch(e){}if(then)then()};document.head.appendChild(o)}window.osLoad=osLoad;osLoad(function(){if(window.OSFAIL)setTimeout(function(){osLoad()},5000)});OneSignalDeferred.push(function(OS){return Promise.resolve(OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B.replace(/^\//,"")+"sw.js",serviceWorkerParam:{scope:B},serviceWorkerOverrideForTypical:true})).then(function(){return Promise.resolve().then(function(){return OS.Notifications.setDefaultUrl(location.origin+B)}).catch(function(){})}).catch(function(e){window.OSINITERR=(e&&e.message)||String(e)}).then(function(){try{OS.User.PushSubscription.addEventListener("change",function(){osSync()})}catch(e){}try{OS.Notifications.addEventListener("permissionChange",function(){osSync()})}catch(e){}window.OSRES()})})}
+if(ONESIGNAL_APP_ID&&ONESIGNAL_APP_ID!=="demo"){var B=location.pathname.replace(/[^\/]*$/,"");function osLoad(then){var o=document.createElement("script");o.src=(typeof PUSH!=="undefined"&&PUSH==="fcm")?"fcm-adapter.js?v=20261029b":"https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";o.async=true;o.onload=function(){window.OSFAIL=0;if(then)then()};o.onerror=function(){window.OSFAIL=1;try{o.remove()}catch(e){}if(then)then()};document.head.appendChild(o)}window.osLoad=osLoad;osLoad(function(){if(window.OSFAIL)setTimeout(function(){osLoad()},5000)});OneSignalDeferred.push(function(OS){return Promise.resolve(OS.init({appId:ONESIGNAL_APP_ID,serviceWorkerPath:B.replace(/^\//,"")+"sw.js",serviceWorkerParam:{scope:B},serviceWorkerOverrideForTypical:true})).then(function(){return Promise.resolve().then(function(){return OS.Notifications.setDefaultUrl(location.origin+B)}).catch(function(){})}).catch(function(e){window.OSINITERR=(e&&e.message)||String(e)}).then(function(){try{OS.User.PushSubscription.addEventListener("change",function(){osSync()})}catch(e){}try{OS.Notifications.addEventListener("permissionChange",function(){osSync()})}catch(e){}window.OSRES()})})}
 function osTags(){var t={};NCAT.forEach(function(c){var k=c[0];t["c_"+k]=npOn(k)?(k==="money"?(NP.money==="33"?"33":"all"):"1"):"0";t["h_"+k]=(NP.h&&NP.h[k])?"1":"0"});return t}
 function osTagTxt(){return window.OSTAGOK===true?(SUBS_URL?"Preferenze di notifica salvate \u2713":"Tag di notifica sincronizzati \u2713"):window.OSTAGOK===false?(SUBS_URL?"Salvataggio delle preferenze in corso\u2026":"Sincronizzazione dei tag in corso\u2026"):""}
 function osTagMsg(){var m=$("os-tags");if(m)m.textContent=osTagTxt()}
@@ -866,8 +866,8 @@ d.textContent=/^it/i.test(String(LANG))?"Premi ancora indietro per uscire":"Pres
 function goUp(){var p=$("np");if(p&&!p.hidden){p.hidden=true;return}
 if(BK){var b=document.querySelector("[data-bk]");if(b)b.click();return}
 if(st.mode==="vgcs"&&window.VGCS&&VGCS.back&&VGCS.back())return;
-if(st.mode==="news"&&NV!=="all"){var n=document.querySelector('[data-nv="all"]');if(n)n.click();else{NV="all";render()}return}
-if(st.mode!=="news"&&st.mode!=="vgcs"&&CAL.on){var l=document.querySelector('#f-view [data-vw="list"]');if(l){l.click();return}}
+if(st.mode==="news"&&NV!=="all"){var n=document.querySelector('[data-nv="all"]');if(n)n.click();else{NV="all";render()}try{window.scrollTo(0,0)}catch(e){}return}
+if(st.mode!=="news"&&st.mode!=="vgcs"&&CAL.on){var l=document.querySelector('#f-view [data-vw="list"]');if(l){l.click();try{window.scrollTo(0,0)}catch(e){}return}}
 var a=document.querySelector('#f-mode [data-v="all"]');if(a)a.click();
 try{window.scrollTo(0,0)}catch(e){}}
 function push(){try{history.pushState({vgcG:1},"")}catch(e){}}
@@ -882,6 +882,7 @@ ub.addEventListener("click",function(){goUp();setTimeout(sync,80)});
 ["click","touchend"].forEach(function(t){addEventListener(t,function(){setTimeout(sync,80)},true)});
 addEventListener("hashchange",function(){setTimeout(sync,80)});setInterval(sync,500);sync();return}
 if(!sa||!window.history||!history.pushState)return;
+try{history.scrollRestoration="manual"}catch(e){}
 EV.forEach(function(t){addEventListener(t,init,true)});
 addEventListener("popstate",function(ev){var s=ev.state;if(!on||!s||!(s.vgcB||s.vgcG))return;
 var n0=Date.now();burst=burst.filter(function(x){return n0-x<3000});burst.push(n0);if(burst.length>5){on=false;return}

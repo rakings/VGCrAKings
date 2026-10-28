@@ -8,7 +8,8 @@ var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
 function vkey(){return S.sec==="arc"?"arc":S.sec+"|"+S.ev+"|"+(S.mon||"")}
 function savePos(){POS[vkey()]=window.scrollY}
-function applyPos(){if(PEND!=null){var y=PEND;PEND=null;window.scrollTo(0,y)}}
+function toY(y){try{window.scrollTo(0,y);if(window.requestAnimationFrame)window.requestAnimationFrame(function(){try{window.scrollTo(0,y)}catch(e){}})}catch(e){}}
+function applyPos(){if(PEND!=null){var y=PEND;PEND=null;toY(y)}}
 function closeMon(){var k=S.sec+"|"+S.ev+"|";PEND=POS[k]!=null?POS[k]:null;S.mon=null;drawRes()}
 var host=null,IDX=null,WIN={},C={},D={},TOT={};
 function E(x){return window.esc?window.esc(x):String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -151,6 +152,6 @@ if(S.ready||S.fail){draw();return}draw();init().then(draw)},
 back:function(){if(!host||!S.ready||S.fail)return false;
 if(S.sec==="swi"){for(var i=OQ.length-1;i>=0;i--){var id=OQ[i],el=document.getElementById("vgp-"+id);if(S.open[id]&&el&&host.contains(el)){setOpen(id,false);drawRes();setTimeout(function(){var e2=document.getElementById("vgp-"+id);if(e2){var r=e2.getBoundingClientRect();if(r.top<0||r.top>window.innerHeight)e2.scrollIntoView({block:"nearest"})}},60);return true}}}
 if(S.mon){closeMon();return true}
-if(S.sec!=="arc"){savePos();S.sec="arc";S.mon=null;draw();var y=POS.arc;window.scrollTo(0,y!=null?y:0);return true}
+if(S.sec!=="arc"){savePos();S.sec="arc";S.mon=null;draw();var y=POS.arc;toY(y!=null?y:0);return true}
 return false}};
 })();
