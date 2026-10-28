@@ -4,6 +4,12 @@
 "use strict";
 var BASE="vgcstats/";
 var S={sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
+var OQ=[],POS={},PEND=null;
+function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
+function vkey(){return S.sec==="arc"?"arc":S.sec+"|"+S.ev+"|"+(S.mon||"")}
+function savePos(){POS[vkey()]=window.scrollY}
+function applyPos(){if(PEND!=null){var y=PEND;PEND=null;window.scrollTo(0,y)}}
+function closeMon(){var k=S.sec+"|"+S.ev+"|";PEND=POS[k]!=null?POS[k]:null;S.mon=null;drawRes()}
 var host=null,IDX=null,WIN={},C={},D={},TOT={};
 function E(x){return window.esc?window.esc(x):String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function J(p,fresh){var k=p+(fresh?"#"+Date.now():"");if(!fresh&&C[p])return C[p];var q=fetch(BASE+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});if(!fresh){C[p]=q;q.catch(function(){delete C[p]})}return q}
@@ -108,14 +114,14 @@ function seg(){return'<div class="vg-seg">'+[["arc","Archivio"],["pok","Pokémon
 function ctl(){return S.sec==="arc"?ctlArc():S.sec==="pok"?ctlPok():ctlSwi()}
 function drawRes(){var el=host.querySelector("#vg-res");if(!el)return;
 if(S.sec==="arc"){el.innerHTML=resArc();return}
-el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
-cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el))return;el.innerHTML=sec==="pok"?resPok(d):resSwi(d)}).catch(function(){el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
+el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
+cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 host.innerHTML='<h2 class="vg-title">VGC Stats</h2><p class="vg-sub">Statistiche dei regionali VGC: Pokémon, strumenti, nature, mosse e swiss di ogni giocatore.</p>'+seg()+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
 function drawKeep(){var y=window.scrollY;draw();window.scrollTo(0,y)}
 
 /* ---------- eventi ---------- */
-function act(t){var a=t.dataset.vg,v=t.dataset.v,id=t.dataset.id;
+function act(t){var a=t.dataset.vg,v=t.dataset.v,id=t.dataset.id;savePos();PEND=null;
 if(a==="sec"){S.sec=v;S.mon=null;if(v==="swi"&&S.ev==="tot")S.ev=firstEv();draw()}
 else if(a==="reg"){S.reg=v;S.msg="";draw()}
 else if(a==="ev"){var e=evOf(id);if(e&&e.collected){S.ev=id;S.mon=null;S.sec="pok";draw();window.scrollTo(0,0)}else{S.msg="“"+E(e?e.city:"")+"” non è ancora stato raccolto: comparirà qui appena i dati saranno pronti.";drawKeep()}}
@@ -123,11 +129,11 @@ else if(a==="tot"){S.treg=v;S.ev="tot";S.mon=null;S.sec="pok";draw();window.scro
 else if(a==="fp"){S.fp=!S.fp;drawKeep()}
 else if(a==="g"){S.g=v;drawKeep()}else if(a==="s"){S.s=v;drawKeep()}
 else if(a==="mon"){S.mon=id;drawRes();window.scrollTo(0,host.offsetTop)}
-else if(a==="bkm"){S.mon=null;drawRes()}
+else if(a==="bkm"){closeMon()}
 else if(a==="it"){S.onlyIt=!S.onlyIt;S.shown=80;drawKeep()}
 else if(a==="more"){S.shown+=80;drawRes()}
-else if(a==="tp"){S.open[id]=!S.open[id];drawRes()}
-else if(a==="opp"||a==="gosw"){S.sq="";S.onlyIt=false;S.open[id]=true;if(a==="gosw"){S.sec="swi";S.mon=null}
+else if(a==="tp"){setOpen(id,!S.open[id]);drawRes()}
+else if(a==="opp"||a==="gosw"){S.sq="";S.onlyIt=false;setOpen(id,true);if(a==="gosw"){S.sec="swi";S.mon=null}
 var d=D[S.ev],i=d?d.pl.findIndex(function(r){return String(r[0])===String(id)}):0;if(i>=S.shown)S.shown=i+1;draw();
 setTimeout(function(){var el=document.getElementById("vgp-"+id);if(el){el.scrollIntoView({block:"start"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},1600)}},120)}
 else if(a==="refresh"){var x=S.ev;delete D[x];Object.keys(C).forEach(function(k){if(k.indexOf(x+"/")===0)delete C[k]});loadEv(x,true).then(function(d){D[x]=d;drawRes()}).catch(drawRes)}}
@@ -142,5 +148,9 @@ function init(){return J("index.json").then(function(x){IDX=x;S.treg=x.current;r
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},
-back:function(){if(!host||!S.ready||S.fail)return false;if(S.mon){S.mon=null;drawRes();return true}if(S.sec!=="arc"){S.sec="arc";S.mon=null;draw();window.scrollTo(0,0);return true}return false}};
+back:function(){if(!host||!S.ready||S.fail)return false;
+if(S.sec==="swi"){for(var i=OQ.length-1;i>=0;i--){var id=OQ[i],el=document.getElementById("vgp-"+id);if(S.open[id]&&el&&host.contains(el)){setOpen(id,false);drawRes();setTimeout(function(){var e2=document.getElementById("vgp-"+id);if(e2){var r=e2.getBoundingClientRect();if(r.top<0||r.top>window.innerHeight)e2.scrollIntoView({block:"nearest"})}},60);return true}}}
+if(S.mon){closeMon();return true}
+if(S.sec!=="arc"){savePos();S.sec="arc";S.mon=null;draw();var y=POS.arc;window.scrollTo(0,y!=null?y:0);return true}
+return false}};
 })();
