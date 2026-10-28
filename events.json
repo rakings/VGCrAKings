@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T16:23:59+00:00",
+ "updated": "2026-10-28T17:20:35+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,36 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad313aa115c12b73a5a5e74/details"
   },
   {
-   "name": "Battle Cruise VGC",
-   "org": "Spaddy02",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-26",
-   "time": "08:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8ee598a8383117e3f0bb4/details"
-  },
-  {
-   "name": "Battle Cruise VGC Side",
-   "org": "Spaddy02",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "08:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8fcc5115c12b73a5a90ed/details"
-  },
-  {
    "name": "Shaymin Fight Club for GC",
    "org": "",
    "mode": "online",
@@ -257,6 +227,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae1ddff80a8f79408d1ffde/details"
   },
   {
+   "name": "Mid-Week Smoke #12 1/2",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "12:00",
+   "players": 37,
+   "url": "https://play.limitlesstcg.com/tournament/6add569291617679e84a04c8/details"
+  },
+  {
    "name": "ValkrixVGC Rising Champions League #02",
    "org": "",
    "mode": "online",
@@ -270,21 +255,6 @@
    "time": "11:00",
    "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6adfe9c922fd412b92a4dce8/details"
-  },
-  {
-   "name": "Mid-Week Smoke #12 1/2",
-   "org": "Play N' Connect",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-28",
-   "time": "12:00",
-   "players": 35,
-   "url": "https://play.limitlesstcg.com/tournament/6add569291617679e84a04c8/details"
   },
   {
    "name": "GLORY OF CHAMPIONS #2 - REGULATION M-C",
@@ -313,7 +283,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "19:00",
-   "players": 69,
+   "players": 81,
    "url": "https://play.limitlesstcg.com/tournament/6abaa2a5880ed327106dea23/details"
   },
   {
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 45,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "17:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
@@ -358,7 +328,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac0fee785920e4d25362ce6/details"
   },
   {
@@ -373,7 +343,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "00:30",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6adfac4180a8f79408d1ed95/details"
   },
   {
@@ -433,7 +403,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 54,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -448,23 +418,8 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "00:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "VGCJer Indigo Open",
@@ -480,6 +435,21 @@
    "time": "00:00",
    "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "00:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "[Reg M-C Bo3] THURSDAY NIGHT THROWDOWN #5",
@@ -616,7 +586,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "00:15",
-   "players": 2,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6adfbd7122fd412b92a4d932/details"
   },
   {
@@ -631,7 +601,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "00:15",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
@@ -1180,7 +1150,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "13:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae18caa22fd412b92a4e854/details"
   },
   {
