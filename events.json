@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T01:33:21+00:00",
+ "updated": "2026-10-28T03:43:38+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -227,36 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8ee598a8383117e3f0bb4/details"
   },
   {
-   "name": "Beaniest Battle of the Beans #1 M-C Shiny Prizing",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "19:00",
-   "players": 18,
-   "url": "https://play.limitlesstcg.com/tournament/6ad92d9f115c12b73a5a9476/details"
-  },
-  {
-   "name": "TARTAN'S ROAD TO GDANSK #43 - [REG M-C]",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-27",
-   "time": "19:00",
-   "players": 48,
-   "url": "https://play.limitlesstcg.com/tournament/6ad54b56115c12b73a5a74c6/details"
-  },
-  {
    "name": "VGC UmbreNews 27.10.2026 #37 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -288,7 +258,7 @@
   },
   {
    "name": "HeroicTitan’s VGC Battle Arena",
-   "org": "The PokeKitchen Battle Series",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -298,23 +268,8 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "01:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6adeae4497e21d82e5c6f40a/details"
-  },
-  {
-   "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
-   "org": "The #1 Fanatics",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-28",
-   "time": "00:30",
-   "players": 181,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
   },
   {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
@@ -332,6 +287,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae1134f22fd412b92a4e42d/details"
   },
   {
+   "name": "Tuesday Throwdowns #2 ($50 for the Winner!)",
+   "org": "The #1 Fanatics",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-28",
+   "time": "00:30",
+   "players": 181,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8e3398a8383117e3f0b5b/details"
+  },
+  {
    "name": "ValkrixVGC Rising Champions League #02",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "11:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adfe9c922fd412b92a4dce8/details"
   },
   {
@@ -358,7 +328,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "12:00",
-   "players": 22,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6add569291617679e84a04c8/details"
   },
   {
@@ -373,7 +343,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "18:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad923ae115c12b73a5a941c/details"
   },
   {
@@ -403,7 +373,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "23:00",
-   "players": 32,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
@@ -418,7 +388,7 @@
    "bo": null,
    "date": "2026-10-28",
    "time": "17:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
@@ -463,7 +433,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "01:00",
-   "players": 45,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
   },
   {
@@ -493,7 +463,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "19:30",
-   "players": 12,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aa9616f38886b36383c0cf2/details"
   },
   {
@@ -508,7 +478,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 39,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -527,21 +497,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "00:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
-  },
-  {
    "name": "VGCJer Indigo Open",
    "org": "VGCJeremy",
    "mode": "online",
@@ -553,8 +508,23 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "00:00",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "00:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "[Reg M-C Bo3] THURSDAY NIGHT THROWDOWN #5",
@@ -721,7 +691,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 44,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -781,7 +751,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
@@ -985,7 +955,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -1019,6 +989,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
+   "name": "ValkrixVGC Rising Champions League #03",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-03",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
+  },
+  {
    "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -1047,6 +1032,21 @@
    "time": "19:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
+  },
+  {
+   "name": "ValkrixVGC Rising Champions League #04",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-04",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
    "name": "Alpensee Tour (Reg M-C) #82",
@@ -1154,6 +1154,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #09",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
+  },
+  {
    "name": "Underground Champions [$100 Tournament]",
    "org": "The Underground",
    "mode": "online",
@@ -1165,7 +1180,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
