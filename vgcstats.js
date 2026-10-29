@@ -3,6 +3,15 @@
 (function(){
 "use strict";
 var BASE="vgcstats/";
+/* Sorgenti dei dati: se in index.html e' impostato window.VGCS_CF (indirizzo Cloudflare) si prova prima quello, poi i file sul sito (GitHub).
+   Se la prima non risponde si passa alla seconda da sola, e fra 10 minuti si riprova la prima. Senza VGCS_CF: solo il sito, come sempre. */
+var BASES=[],DOWN=0;
+(function(){var u=String(window.VGCS_CF||"").replace(/\s+/g,"");if(u){if(u.slice(-1)!=="/")u+="/";BASES.push(u)}BASES.push(BASE)})();
+function dget(p,fresh){
+var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
+function go(k){var i=(start+k)%n;
+return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
+return go(0)}
 var S={sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
@@ -13,7 +22,7 @@ function applyPos(){if(PEND!=null){var y=PEND;PEND=null;toY(y)}}
 function closeMon(){var k=S.sec+"|"+S.ev+"|";PEND=POS[k]!=null?POS[k]:null;S.mon=null;drawRes()}
 var host=null,IDX=null,WIN={},C={},D={},TOT={};
 function E(x){return window.esc?window.esc(x):String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function J(p,fresh){var k=p+(fresh?"#"+Date.now():"");if(!fresh&&C[p])return C[p];var q=fetch(BASE+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});if(!fresh){C[p]=q;q.catch(function(){delete C[p]})}return q}
+function J(p,fresh){if(!fresh&&C[p])return C[p];var q=dget(p,fresh);if(!fresh){C[p]=q;q.catch(function(){delete C[p]})}return q}
 function pc(n,t){return t?Math.round(n/t*100):0}
 function wr(w,l){return w+l?(100*w/(w+l)).toFixed(1).replace(".",",")+"%":"–"}
 function dot(n){return window.phHtml?window.phHtml(n):""}
@@ -50,7 +59,7 @@ if(tot)h+='<option value="tot"'+(S.ev==="tot"?" selected":"")+'>Tutti i regional
 ord.forEach(function(g){h+='<optgroup label="'+E(regLabel(g)+(g===IDX.current?" (attuale)":""))+'">'+og[g].map(function(e){return'<option value="'+e.id+'"'+(S.ev===e.id?" selected":"")+(e.collected?"":" disabled")+'>'+E(e.city)+(e.collected?"":" · da raccogliere")+'</option>'}).join("")+"</optgroup>"});
 return h+"</select>"}
 function foot(){return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · classifica non ufficiale</p>'}
-function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <button class="btn sm" type="button" data-vg="refresh">Aggiorna</button></div>'}
+function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <span class="vg-mute vg-chk">'+(LIVE_CHK&&LIVE_CHK.ev===S.ev?LIVE_CHK.txt:"· si aggiorna da solo")+'</span> <button class="btn sm" type="button" data-vg="refresh">Aggiorna</button></div>'}
 function paste(id,pid){var t=D[id]&&D[id].tm[pid];if(!t)return"";return t.map(function(m){var ex=m[6]||{};return m[1]+(m[2]?" @ "+m[2]:"")+"\n"+(m[3]?"Ability: "+m[3]+"\n":"")+(ex["Tera Type"]?"Tera Type: "+ex["Tera Type"]+"\n":"")+(m[4]?m[4]+" Nature\n":"")+(m[5]||[]).map(function(x){return"- "+x}).join("\n")}).join("\n\n")}
 function copyBtn(id,pid){var t=paste(id,pid);return t?'<button class="btn sm" type="button" data-copy="'+E(t)+'">Copia la squadra</button>':'<span class="vg-mute">Squadra non pubblicata</span>'}
 
@@ -145,7 +154,55 @@ function onChange(ev){var t=ev.target;if(t.id==="vg-ev"){S.ev=t.value==="tot"?"t
 else if(t.id==="vg-pr"){S.reg=t.value||"all";S.msg="";draw()}}
 
 /* ---------- avvio ---------- */
-function init(){return J("index.json").then(function(x){IDX=x;S.treg=x.current;return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+/* All'avvio, se ci sono due sorgenti, si leggono entrambi gli indici (piccoli) e si usa quello piu' recente: se Cloudflare e' rimasto indietro
+   (limite raggiunto, codice scaduto...) l'app passa ai file del sito per un'ora. */
+function firstIndex(){
+if(BASES.length<2)return J("index.json");
+if(C["index.json"])return C["index.json"];
+function g(i){return fetch(BASES[i]+"index.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).catch(function(){return null})}
+var q=Promise.all([g(0),g(1)]).then(function(a){var p=a[0],r=a[1];
+if(!p&&!r)throw new Error("nessuna sorgente");
+if(!p){DOWN=Date.now()+600000;return r}
+if(r&&String(r.updated)>String(p.updated)){DOWN=Date.now()+3600000;return r}
+return p});
+C["index.json"]=q;q.catch(function(){delete C["index.json"]});return q}
+function init(){return firstIndex().then(function(x){IDX=x;S.treg=x.current;return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+/* ---------- aggiornamento automatico (solo regionale in corso) ----------
+   Pensato per tanta gente insieme: ogni controllo e' UNA richiesta a un file minuscolo (meta.json), senza numeri casuali
+   nell'indirizzo (cosi' risponde la copia gia' pronta di GitHub e non il server), con tempi un po' sfalsati per ogni telefono.
+   Il resto si scarica solo quando la data in meta.json cambia, e solo i file che sono davvero cambiati pesano.
+   Se il server risponde male, i controlli si diradano da soli (fino a 8 volte piu' lenti). */
+var LIVE_EVERY=window.VGCS_LIVE_MS||120000,LIVE_LOCK=false,LIVE_AT=0,LIVE_NEXT=0,LIVE_FAIL=0,LIVE_CHK=null,LIVE_X=0;
+function liveGet(p){return dget(p,false)}
+function setChk(){var t=new Date();LIVE_CHK={ev:S.ev,txt:"· controllato alle "+("0"+t.getHours()).slice(-2)+":"+("0"+t.getMinutes()).slice(-2)};var el=host&&host.querySelector(".vg-chk");if(el)el.textContent=LIVE_CHK.txt}
+function liveWait(){return LIVE_EVERY*(0.8+Math.random()*0.4)*Math.pow(2,LIVE_FAIL)}
+function liveTick(force){
+if(LIVE_LOCK||!host||!S.ready||S.fail||document.visibilityState!=="visible"||!document.body.contains(host)||!host.getClientRects().length)return;
+var x=S.ev,d=x&&x!=="tot"&&D[x];
+if(!d||!d.m||d.m.complete||S.sec==="arc")return;
+var now=Date.now();
+if(force?now-LIVE_AT<15000:now<LIVE_NEXT)return;
+LIVE_LOCK=true;LIVE_AT=now;
+liveGet(x+"/meta.json").then(function(m){
+if(S.ev!==x)return null;
+LIVE_FAIL=0;setChk();
+function piuNuovo(z){return z&&(z.updated>d.m.updated||(z.complete&&!d.m.complete))}
+if(piuNuovo(m))return m;
+/* niente di nuovo dalla sorgente in uso: ogni 10 minuti guardo anche l'altra; se e' piu' nuova, la prima e' rimasta indietro */
+if(!LIVE_X)LIVE_X=Date.now();
+if(BASES.length>1&&Date.now()>=DOWN&&Date.now()-LIVE_X>600000){LIVE_X=Date.now();
+return fetch(BASES[1]+x+"/meta.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(m2){if(piuNuovo(m2)){DOWN=Date.now()+3600000;return m2}return null}).catch(function(){return null})}
+return null
+}).then(function(m){
+if(!m||S.ev!==x)return;
+return Promise.all(["players","pokemon","teams","swiss"].map(function(f){return liveGet(x+"/"+f+".json")})).then(function(a){
+var nd={m:m,pl:a[0],pk:a[1],tm:a[2],sw:a[3],by:{}};a[0].forEach(function(p){nd.by[p[0]]=p});
+Object.keys(C).forEach(function(k){if(k.indexOf(x+"/")===0)delete C[k]});
+D[x]=nd;if(S.ev===x&&host&&document.body.contains(host)){drawRes();setChk()}})
+}).catch(function(){LIVE_FAIL=Math.min(LIVE_FAIL+1,3)}).then(function(){LIVE_LOCK=false;LIVE_NEXT=Date.now()+liveWait()})}
+setInterval(function(){liveTick(false)},15000);
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")liveTick(true)});
+
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},

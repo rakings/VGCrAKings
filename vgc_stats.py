@@ -9,13 +9,27 @@ Uso:
   python3 vgc_stats.py --id 1000076              PROVA su un regionale: non salva nulla
   python3 vgc_stats.py --id 1000076 --write      salva in vgcstats/1000076/
   python3 vgc_stats.py --auto --write            raccoglie i regionali IN CORSO e quelli finiti non ancora raccolti
+  python3 vgc_stats.py --live --write --commit   controlli ripetuti finche' un regionale e' in corso (vedi sotto)
+  python3 vgc_stats.py --live --max-cycles 1     PROVA: un solo controllo, non salva nulla
+  python3 vgc_stats.py --cf-test                 PROVA di Cloudflare: carica i dati gia' presenti e dice se ha funzionato
+Modo live: controlla ogni 3-5 minuti (a caso). Se trova dati nuovi li salva (e con --commit li pubblica),
+poi NON controlla per 12 minuti e al ritorno controlla subito. (Pubblicazioni: al massimo una ogni 12 minuti,
+cioe' al massimo 5 all'ora: GitHub Pages ne accetta in modo morbido 10 all'ora per tutta la repo.) Quando il regionale finisce salva e si chiude;
+se non c'e' nessun regionale in corso si ferma subito. Si ferma da solo dopo 345 minuti (il flusso ne concede 355).
+Cloudflare (facoltativo): se sono impostati CF_PAGES_PROJECT, CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID, a ogni salvataggio con
+dati nuovi i file vengono caricati anche su Cloudflare Pages (banda illimitata: regge anche tanta gente). Su GitHub allora si salva
+al massimo ogni 30 minuti (e alla fine), come copia di riserva. Se Cloudflare non riesce, si salva subito su GitHub e l'app usa quello.
 Senza --write e' sempre una prova: stampa un riepilogo e non salva niente.
 """
 import argparse
 import json
 import os
+import random
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -48,6 +62,10 @@ class Budget(Exception):
 
 used = 0
 budget = 3
+last_status = {}       # id regionale -> stato letto nell'ultimo controllo (running / finished)
+unpushed = False       # True se un salvataggio e' stato fatto ma non ancora pubblicato
+any_changed = False   # True se un giro normale (elenco / auto / singolo regionale) ha salvato qualcosa: poi si aggiorna anche Cloudflare
+last_git = None        # momento dell'ultima pubblicazione su GitHub (con Cloudflare attivo si salva su GitHub piu' di rado)
 
 
 def fetch_text(url):
@@ -258,6 +276,14 @@ def dump(path, obj):
     return True
 
 
+def dump_stamped(path, obj):
+    """Come dump, ma se cambia solo la data "updated" non riscrive il file: cosi' non nasce un salvataggio (e una pubblicazione) inutile."""
+    old = load(path, None)
+    if isinstance(old, dict) and {k: v for k, v in old.items() if k != "updated"} == {k: v for k, v in obj.items() if k != "updated"}:
+        return False
+    return dump(path, obj)
+
+
 def load(path, default):
     try:
         with open(path, encoding="utf-8") as f:
@@ -302,8 +328,8 @@ def save_winners(events):
         top = load(os.path.join(OUT, e["id"], "italiani.json"), [])
         out.append({"id": e["id"], "city": e["city"], "kind": e["kind"], "start": e["start"], "reg": e["reg"],
                     "players": e["players"], "winners": w, "italian_winners": it, "italians_top": top})
-    return dump(os.path.join(OUT, "vincitori.json"), {"source": "Pokedata", "source_url": "https://www.pokedata.ovh",
-                                                      "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime()), "events": out})
+    return dump_stamped(os.path.join(OUT, "vincitori.json"), {"source": "Pokedata", "source_url": "https://www.pokedata.ovh",
+                                                              "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime()), "events": out})
 
 
 def save_index(events):
@@ -311,8 +337,8 @@ def save_index(events):
     done = {e["id"] for e in events if load(os.path.join(OUT, e["id"], "meta.json"), {}).get("players")}
     for e in events:
         e["collected"] = e["id"] in done
-    a = dump(os.path.join(OUT, "index.json"), {"current": current_reg(events), "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime()),
-                                                 "source": "Pokedata", "events": [{k: v for k, v in e.items() if k not in ("winners", "players_div")} for e in events]})
+    a = dump_stamped(os.path.join(OUT, "index.json"), {"current": current_reg(events), "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime()),
+                                                         "source": "Pokedata", "events": [{k: v for k, v in e.items() if k not in ("winners", "players_div")} for e in events]})
     return save_winners(events) or a
 
 
@@ -326,6 +352,7 @@ def collect(ev, write):
             names.setdefault(s, s.replace("-", " ").title())
     stats = compute(players, teams, names)
     status = info.get("tournamentStatus")
+    last_status[tid] = status
     cut = sum(p["topcut"] for p in players)
     day2 = sum(p["day2"] for p in players)
     print("\n%s - %s - %s - %d giocatori, %d round" % (ev["name"], info.get("date", {}).get("start"), status, len(players), swiss_total))
@@ -348,18 +375,197 @@ def collect(ev, write):
             "players_fields": ["id", "name", "country", "placement", "wins", "losses", "day2", "cut", "team"],
             "swiss": "per giocatore, una voce per round: id avversario + esito (W vinta, L persa, T pari, B bye; -1 = avversario non risolto)",
             "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime())}
-    if {k: v for k, v in old.items() if k != "updated"} == {k: v for k, v in meta.items() if k != "updated"}:
-        meta["updated"] = old.get("updated", meta["updated"])
     pl = [[p["tp_id"], p["name"], p["country"], p["placement"], p["wins"], p["losses"], p["day2"], p["topcut"], p["team"]]
           for p in sorted(players, key=lambda x: x["placement"])]
     tm = {k: [[m["slug"], m["name"], m["item"], m["ability"], m["nature"], m["moves"], m["extra"]] for m in v] for k, v in teams.items()}
     ita = [[p["placement"], p["name"], p["wins"], p["losses"]] for p in sorted(players, key=lambda x: x["placement"])
            if p["country"] == "IT" and p["placement"] <= 32]
-    ch = [dump(os.path.join(folder, "italiani.json"), ita), dump(os.path.join(folder, "meta.json"), meta), dump(os.path.join(folder, "players.json"), pl),
+    ch = [dump(os.path.join(folder, "italiani.json"), ita), dump(os.path.join(folder, "players.json"), pl),
           dump(os.path.join(folder, "pokemon.json"), stats), dump(os.path.join(folder, "teams.json"), tm),
           dump(os.path.join(folder, "swiss.json"), {"rounds": swiss_total, "p": {str(k): v for k, v in swiss.items()}})]
+    # "updated" cambia SOLO se e' cambiato qualcosa in qualsiasi file di questo regionale: l'app controlla solo meta.json
+    # (un file minuscolo) e ricarica il resto soltanto quando questa data cambia. Cosi' con tanta gente il carico resta basso.
+    if not any(ch) and {k: v for k, v in old.items() if k != "updated"} == {k: v for k, v in meta.items() if k != "updated"}:
+        meta["updated"] = old.get("updated", meta["updated"])
+    ch.append(dump(os.path.join(folder, "meta.json"), meta))
     print("File salvati in %s/ (%s)" % (folder, "cambiati" if any(ch) else "nessuna modifica"))
     return any(ch)
+
+# ---------- modo live ----------
+
+LIVE_MIN = 3 * 60          # secondi: controlli a intervalli casuali tra 3 e 5 minuti
+LIVE_MAX = 5 * 60
+LIVE_PAUSA = 12 * 60       # dopo un salvataggio con dati nuovi: nessun controllo per 12 minuti, poi uno subito
+                           # (e' il numero che decide quanto e' "live" il sito: piu' basso = piu' veloce ma piu' pubblicazioni all'ora)
+LIVE_MAX_RUN = 345 * 60    # si ferma da solo prima del limite di 355 minuti del flusso
+LIVE_GIT_EVERY = 30 * 60   # con Cloudflare attivo: su GitHub si salva al massimo ogni 30 minuti (e alla fine)
+
+
+def mark(x):
+    global any_changed
+    any_changed = any_changed or bool(x)
+    return x
+
+
+def cf_enabled():
+    return bool(os.environ.get("CF_PAGES_PROJECT", "").strip() and os.environ.get("CLOUDFLARE_API_TOKEN") and os.environ.get("CLOUDFLARE_ACCOUNT_ID"))
+
+
+def cf_deploy():
+    """Carica la cartella vgcstats/ su Cloudflare Pages con wrangler. True se riuscito; altrimenti si usa GitHub."""
+    project = os.environ.get("CF_PAGES_PROJECT", "").strip()
+    stage = tempfile.mkdtemp(prefix="vgcs_cf_")
+    try:
+        if os.path.isdir(OUT):
+            shutil.copytree(OUT, stage, dirs_exist_ok=True)
+        with open(os.path.join(stage, "_headers"), "w", encoding="utf-8") as f:   # permette all'app di leggere i file da un altro indirizzo
+            f.write("/*\n  Access-Control-Allow-Origin: *\n  Cache-Control: public, max-age=0, must-revalidate\n")
+        r = subprocess.run(["wrangler", "pages", "deploy", stage, "--project-name", project, "--branch", "main", "--commit-dirty=true"],
+                           capture_output=True, text=True, timeout=240)
+        if r.returncode == 0:
+            print("Dati pubblicati su Cloudflare (%s)." % project)
+            return True
+        print("Cloudflare non riuscito: %s" % (r.stderr or r.stdout).strip()[-300:])
+        return False
+    except (OSError, subprocess.SubprocessError) as e:
+        print("Cloudflare non riuscito: %s" % str(e)[:200])
+        return False
+    finally:
+        shutil.rmtree(stage, ignore_errors=True)
+
+
+def cf_test():
+    if not cf_enabled():
+        print("Cloudflare non e' configurato: servono la variabile CF_PAGES_PROJECT e i segreti CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID.")
+        return 1
+    ok = cf_deploy()
+    if ok:
+        print("Prova riuscita. Apri https://%s.pages.dev/index.json per vedere i dati." % os.environ.get("CF_PAGES_PROJECT", "").strip())
+    return 0 if ok else 1
+
+
+def publish(changed, commit, final, now=time.time):
+    """Pubblica i dati: Cloudflare a ogni salvataggio nuovo (se attivo), GitHub subito o ogni 30 minuti se Cloudflare ha funzionato."""
+    global last_git
+    cf_ok = bool(changed and cf_enabled() and cf_deploy())
+    if not commit:
+        return
+    if cf_ok and not final and not unpushed and last_git is not None and now() - last_git < LIVE_GIT_EVERY:
+        print("Dati gia' online su Cloudflare: il salvataggio su GitHub puo' attendere.")
+        return
+    git_publish()
+    last_git = now()
+
+
+def git_publish(message="VGC Stats: aggiornamento dati (live)"):
+    """Salva e pubblica la cartella vgcstats/ con git. Se la pubblicazione non riesce, riprova al giro dopo."""
+    global unpushed
+
+    def run(*cmd):
+        return subprocess.run(cmd, capture_output=True, text=True)
+    run("git", "config", "user.name", "bot")
+    run("git", "config", "user.email", "bot@users.noreply.github.com")
+    run("git", "add", "-A", OUT)
+    if run("git", "diff", "--staged", "--quiet").returncode != 0:
+        c = run("git", "commit", "-m", message)
+        if c.returncode != 0:
+            print("Salvataggio git non riuscito: %s" % (c.stderr or c.stdout).strip()[:200])
+            return False
+        unpushed = True
+    if not unpushed:
+        return True
+    for _ in range(3):
+        if run("git", "pull", "--rebase").returncode == 0 and run("git", "push").returncode == 0:
+            unpushed = False
+            print("Dati pubblicati.")
+            return True
+        run("git", "rebase", "--abort")
+        time.sleep(5)
+    print("Pubblicazione non riuscita: riprovo al prossimo controllo.")
+    return False
+
+
+def recent_unfinished(events, days=3, limit=2):
+    """Regionali finiti da poco e non ancora raccolti per intero: servono per l'ultimo salvataggio."""
+    lim = time.strftime("%Y-%m-%d", time.gmtime(time.time() - days * 86400))
+    out = [e for e in events if e["status"] == "finished" and e["players"] and (e["end"] or e["start"]) >= lim
+           and not load(os.path.join(OUT, e["id"], "meta.json"), {}).get("complete")]
+    return out[:limit]
+
+
+def live_cycle(write):
+    """Un controllo. Ritorna (dati_cambiati, ancora_in_corso)."""
+    global used
+    used = 0                                   # il limite di richieste vale per ogni controllo
+    events = list_events()
+    running = [e for e in events if e["status"] == "running"]
+    todo = running + [e for e in recent_unfinished(events) if e not in running]
+    if not todo:
+        print("Nessun regionale in corso e niente da completare.")
+        return False, False
+    changed = False
+    ended = False
+    try:
+        for e in todo:
+            if collect(e, write):
+                changed = True
+            st = last_status.get(e["id"])
+            if st and st != e["status"]:
+                ended = ended or st == "finished"
+                e["status"] = st
+        if ended:                              # appena finito: elenco aggiornato (vincitori) per l'ultimo salvataggio
+            events = list_events()
+    except Budget:
+        print("Raggiunto il massimo di richieste di questo controllo: il resto al prossimo.")
+    if write and save_index(events):
+        changed = True
+    return changed, any(e["status"] == "running" for e in events)
+
+
+def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep=time.sleep, rnd=random.uniform):
+    t0 = now()
+    n = 0
+    guasti = 0                                 # controlli di fila falliti per un problema di rete
+    while True:
+        n += 1
+        stop = None
+        try:
+            changed, going = live_cycle(write)
+            guasti = 0
+        except Stop as e:
+            stop, changed, going = e, False, False
+        except (OSError, ValueError) as e:       # rete, tempo scaduto, risposta illeggibile: si riprova al giro dopo
+            guasti += 1
+            print("Controllo %d non riuscito (%s). Tentativo %d di 4." % (n, str(e)[:120], guasti))
+            if guasti >= 4:
+                print("Troppi errori di fila: mi fermo, riparte il prossimo giro programmato.")
+                return 1
+            if max_cycles and n >= max_cycles:
+                return 1
+            wait = rnd(LIVE_MIN, LIVE_MAX)
+            if now() - t0 + wait > max_run:
+                return 0
+            sleep(wait)
+            continue
+        final = bool(stop) or not going or bool(max_cycles and n >= max_cycles)
+        if write and (changed or unpushed or stop):
+            publish(changed, commit, final, now)
+        if stop:
+            print("STOP: %s - mi fermo qui" % stop)
+            return 1
+        if not going:
+            print("Nessun regionale in corso: mi fermo.")
+            return 0
+        if max_cycles and n >= max_cycles:
+            return 0
+        wait = LIVE_PAUSA if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
+        if now() - t0 + wait > max_run:
+            print("Limite di tempo quasi raggiunto: mi fermo, riparte il prossimo giro programmato.")
+            if write and commit and cf_enabled():
+                git_publish()
+            return 0
+        print("Controllo %d fatto%s. Prossimo tra %.0f minuti." % (n, " (dati nuovi salvati)" if (write and changed) else "", wait / 60.0))
+        sleep(wait)
 
 
 def main():
@@ -369,12 +575,20 @@ def main():
     g.add_argument("--list", action="store_true", help="elenco di tutti i regionali")
     g.add_argument("--id", help="id Pokedata del regionale, es. 1000076")
     g.add_argument("--auto", action="store_true", help="regionali in corso + finiti non ancora raccolti")
+    g.add_argument("--live", action="store_true", help="controlli ripetuti finche' un regionale e' in corso")
+    g.add_argument("--cf-test", action="store_true", help="prova di Cloudflare: carica i dati gia' presenti")
     ap.add_argument("--write", action="store_true", help="salva i file in vgcstats/ (senza: prova senza salvare nulla)")
+    ap.add_argument("--commit", action="store_true", help="con --live --write: pubblica i dati con git dopo ogni salvataggio")
+    ap.add_argument("--max-cycles", type=int, default=0, help="con --live: massimo numero di controlli (0 = senza limite)")
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
+        if a.cf_test:
+            return cf_test()
+        if a.live:
+            return live(a.write, a.commit, a.max_cycles)
         if a.list or a.auto:
             events = list_events()
             print("Regionali trovati: %d - regolamento attuale: %s" % (len(events), current_reg(events)))
@@ -384,25 +598,25 @@ def main():
                       m["name"] if m else "-", " [ITALIA]" if m and m["cc"] == "IT" else ""))
             if a.list:
                 if a.write:
-                    print("Elenco salvato." if save_index(events) else "Elenco invariato.")
+                    print("Elenco salvato." if mark(save_index(events)) else "Elenco invariato.")
                 return 0
             todo = [e for e in events if e["status"] == "running"]
             todo += [e for e in events if e["status"] == "finished" and e["players"]
                      and not load(os.path.join(OUT, e["id"], "meta.json"), {}).get("complete")][:a.max_events]
             print("Da raccogliere ora: %s" % (", ".join(e["city"] for e in todo) or "niente"))
             for e in todo:
-                collect(e, a.write)
+                mark(collect(e, a.write))
             if a.write:
-                save_index(events)
+                mark(save_index(events))
             return 0
         events = list_events()
         ev = next((e for e in events if e["id"] == a.id), None)
         if not ev:
             print("Regionale %s non trovato nell'elenco di Pokedata." % a.id)
             return 1
-        collect(ev, a.write)
+        mark(collect(ev, a.write))
         if a.write:
-            save_index(events)
+            mark(save_index(events))
         if not a.write:
             print("\nPROVA finita: non e' stato salvato nulla.")
         return 0
@@ -412,6 +626,9 @@ def main():
     except Stop as e:
         print("STOP: %s - mi fermo qui" % e)
         return 1
+    finally:
+        if a.write and any_changed and cf_enabled():     # giro normale che ha salvato: Cloudflare non deve restare indietro
+            cf_deploy()
 
 
 if __name__ == "__main__":
