@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T07:53:57+00:00",
+ "updated": "2026-10-29T09:27:51+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -212,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
-   "name": "Off Meta Fight Club #8 ($40 USD prize pool)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$4",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-29",
-   "time": "01:00",
-   "players": 54,
-   "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
-  },
-  {
    "name": "VGC: Torneo Express - Temática Halloween",
    "org": "MI.Team",
    "mode": "online",
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 26,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -541,7 +526,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 45,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -631,7 +616,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "19:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
   },
   {
@@ -805,7 +790,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
