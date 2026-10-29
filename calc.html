@@ -82,6 +82,10 @@ button{cursor:pointer;border:0;background:none;padding:0}
 .tgrid .chip{max-width:none;width:100%;justify-content:center;text-align:center;min-height:42px;padding:4px 3px;border-radius:14px;font-size:11.5px;line-height:1.15;letter-spacing:-.1px}
 .tgrid .chip span{white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:break-word;word-break:normal;text-overflow:clip}
 .tgrid .chip.add{grid-column:1/-1;min-height:40px;font-size:13px}
+.tgrid .trow{grid-column:1/-1;display:flex;gap:6px}
+.tgrid .trow .chip.add{grid-column:auto;flex:1;min-width:0;padding:0 4px;font-size:11.5px;letter-spacing:-.1px}
+.tgrid .chip.era{flex:none;width:44px;min-height:40px;padding:0;border-radius:14px;justify-content:center;color:var(--mute)}
+.tgrid .trow .chip.add.danger{background:#7a1226;border:1px solid #ff4a63;color:#fff;font-size:12px}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:3px;gap:3px}
 .seg button{min-height:46px;border-radius:11px;font-weight:700;font-size:14px;color:var(--mute);padding:3px 6px;line-height:1.15}
 .seg button small{display:block;font-size:11px;font-weight:600;opacity:.85}
@@ -250,7 +254,8 @@ function readSide(n){
   let base=set.indexOf(' (')>0?set.slice(0,set.indexOf(' (')):set;
   const fm=g('.forme');const fmOk=fm.length&&fm.is(':visible')&&fm.find('option').length>1;if(fmOk&&fm.val())base=fm.val();
   const m=set.match(/\((.*)\)$/);let setName=m?m[1]:'';
-  if(/Sidebar Slot (\d+)/.test(setName))setName='Squadra #'+setName.match(/Sidebar Slot (\d+)/)[1];else if(setName==='Blank Set')setName='Set libero';
+  const sl=setName.match(/Sidebar Slot (\d+)/);
+  if(sl){setName=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[n-1]&&W.CURRENT_SIDEBARS[n-1][+sl[1]-1])?'Squadra #'+sl[1]:'Set personalizzato'}else if(setName==='Blank Set')setName='Set libero';
   const o={n,p,set,name:base,setName,t1:g('.type1').val(),t2:g('.type2').val(),nat:g('.nature').val(),ab:g('select.ability').val(),item:g('select.item').val(),status:g('.status').val(),
     hpTot:+g('.hp .total').text()||0,hpCur:+g('.current-hp').val()||0,hpPct:g('.percent-hp').val(),sps:{},tot:{},bo:{},moves:[],
     forme:fmOk?[...fm.find('option')].map(x=>x.value):[],formeVal:fm.val(),
@@ -305,11 +310,16 @@ function sideCard(o,k){
     '<div class="nm">'+esc(o.name)+'</div><div class="sub">'+esc(o.setName)+'</div><div class="types">'+tyChip(o.t1)+tyChip(o.t2)+'</div>'+
     '<div class="sub">'+esc(sub.join(' · '))+'</div><div class="hpb"><i style="width:'+pct+'%"></i></div><div class="hpt">PS '+o.hpCur+'/'+o.hpTot+' ('+pct+'%)'+(o.status&&o.status!=='Healthy'?' · '+esc(STATUS_IT[o.status]||o.status):'')+'</div></button>';
 }
+const ERASER='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>';
+const XICON='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+function teamRow(n){const arm=S.clrArm&&S.clrArm.n===n&&S.clrArm.until>Date.now();
+  if(arm)return '<div class="trow"><button type="button" class="chip add danger" data-a="eraseteam" data-n="'+n+'" aria-label="Conferma: svuota la squadra">Svuota squadra?</button><button type="button" class="chip era" data-a="erasecancel" data-n="'+n+'" aria-label="Annulla" title="Annulla">'+XICON+'</button></div>';
+  return '<div class="trow"><button class="chip add" data-a="paste" data-n="'+n+'">+ Incolla squadra</button><button type="button" class="chip era" data-a="eraseteam" data-n="'+n+'" aria-label="Svuota la squadra" title="Svuota la squadra">'+ERASER+'</button></div>'}
 function teamStrip(n){
   const t=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[n-1])||[];const cur=(J(P(n)+' input.set-selector').val()||'');
   const c=n===1?'var(--red)':'var(--violet)';
   return '<div class="tgrid" style="--c:'+c+'">'+t.map((nm,i)=>{const on=cur.indexOf((n===1?'Left':'Right')+' Sidebar Slot '+(i+1)+')')>=0;return '<button class="chip'+(on?' on':'')+'" data-a="slot" data-n="'+n+'" data-i="'+(i+1)+'"><span>'+esc(nm)+'</span></button>'}).join('')+
-    '<button class="chip add" data-a="paste" data-n="'+n+'">+ Incolla squadra</button></div>';
+    (t.length?teamRow(n):'<button class="chip add" data-a="paste" data-n="'+n+'">+ Incolla squadra</button>')+'</div>';
 }
 function moveCard(x,atk,def,i){
   if(!x)return '';
@@ -433,6 +443,7 @@ function settingsBody(){
 document.addEventListener('click',e=>{
   const t=e.target.closest('[data-a]');if(!t||!W&&t.dataset.a!=='closeSheet')return;
   const d=t.dataset,a=d.a;
+  if(S.clrArm&&a!=='eraseteam'&&a!=='erasecancel')S.clrArm=null;
   if(a==='dir'){S.dir=+d.d;refresh()}
   else if(a==='selmove'){S.sel[S.dir]=+d.i;refresh()}
   else if(a==='edit'){S.edit=+d.n;renderEditor(false)}
@@ -450,6 +461,10 @@ document.addEventListener('click',e=>{
   else if(a==='mvedit'){const n=S.dir+1,i=+d.i+1;const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});
     picker('Mossa '+i+' di '+S.cache[S.dir?'b':'a'].name,items,id=>mvSet(P(n),i,id))}
   else if(a==='critc'){const n=S.dir+1,el=J(P(n)+' .move'+(+d.i+1)+' .move-crit');after(()=>el.prop('checked',!el.prop('checked')).change())}
+  else if(a==='eraseteam'){const n=+d.n;
+    if(S.clrArm&&S.clrArm.n===n&&S.clrArm.until>Date.now()){S.clrArm=null;clearTimeout(S.clrT);try{W.removeSidebarTeam(n)}catch(x){try{W.clearSidebar(n)}catch(y){}}toast('Squadra '+(n===1?'sinistra':'destra')+' svuotata');setTimeout(refresh,60)}
+    else{S.clrArm={n,until:Date.now()+3000};refresh();clearTimeout(S.clrT);S.clrT=setTimeout(()=>{S.clrArm=null;refresh()},3000)}}
+  else if(a==='erasecancel'){S.clrArm=null;clearTimeout(S.clrT);refresh()}
   else if(a==='pickmove'){const n=S.edit,i=+d.i;const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});
     picker('Mossa '+i,items,id=>mvSet(P(n),i,id))}
   else if(a==='pickitem'){const n=S.edit;const items=[{id:'',l:'Nessuno strumento',s:''}].concat([...W.items].sort().filter(x=>x).map(x=>({id:x,l:x,s:''})));picker('Strumento',items,id=>J(P(n)+' select.item').val(id).change())}
