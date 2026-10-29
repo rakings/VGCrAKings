@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T06:02:38+00:00",
+ "updated": "2026-10-29T07:53:57+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,6 +197,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac965538a8383117e3e813d/details"
   },
   {
+   "name": "TAYO'S MONOTYPE TOUR #6- BO3 CTS - $30/15",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$3",
+   "reg": null,
+   "bo": "Bo3",
+   "date": "2026-10-29",
+   "time": "02:30",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
+  },
+  {
    "name": "Off Meta Fight Club #8 ($40 USD prize pool)",
    "org": "",
    "mode": "online",
@@ -210,36 +225,6 @@
    "time": "01:00",
    "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6ada821a97e21d82e5c6cc67/details"
-  },
-  {
-   "name": "Hatterene Series Weekly #9 2027 - 7PM EDT - M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-29",
-   "time": "00:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ac0fee785920e4d25362ce6/details"
-  },
-  {
-   "name": "TAYO",
-   "org": "WST GAMES",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-29",
-   "time": "02:30",
-   "players": 22,
-   "url": "https://play.limitlesstcg.com/tournament/6adaa64491617679e849ea02/details"
   },
   {
    "name": "VGC: Torneo Express - Temática Halloween",
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:00",
-   "players": 75,
+   "players": 78,
    "url": "https://play.limitlesstcg.com/tournament/6adf6f5f80a8f79408d1e986/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
   },
   {
@@ -433,7 +418,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 44,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -635,6 +620,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adec64997e21d82e5c6f556/details"
   },
   {
+   "name": "Cursed Classic Cup (Halloween Special)",
+   "org": "The #1 Fanatics",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "19:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
+  },
+  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -775,23 +775,8 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "🎃Astral",
@@ -809,8 +794,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
-   "name": "VGC Trainer School; champions M/C #5",
-   "org": "VGC Trainers School",
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -819,9 +804,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-01",
-   "time": "17:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
+   "time": "15:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "FINISTERRAE SERIES VGC #5",
@@ -837,6 +822,21 @@
    "time": "17:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
+  },
+  {
+   "name": "VGC Trainer School; champions M/C #5",
+   "org": "VGC Trainers School",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "17:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
@@ -1075,7 +1075,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "13:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ae18caa22fd412b92a4e854/details"
   },
   {
