@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T12:07:43+00:00",
+ "updated": "2026-10-29T13:45:43+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "17:00",
-   "players": 32,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6adc804297e21d82e5c6dffc/details"
   },
   {
@@ -253,23 +253,8 @@
    "bo": null,
    "date": "2026-10-29",
    "time": "23:30",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "00:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "VGCJer Indigo Open",
@@ -285,6 +270,21 @@
    "time": "00:00",
    "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6adf9c4d80a8f79408d1ebe0/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "00:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
    "name": "[Reg M-C Bo3] THURSDAY NIGHT THROWDOWN #5",
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 49,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -410,21 +410,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae0b79c22fd412b92a4e15a/details"
   },
   {
-   "name": "BPL SPOOKY CUP",
-   "org": "Goblin Lair Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "00:15",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
-  },
-  {
    "name": "X1 Remote Battle League 13ª Edição - Reg M-C",
    "org": "X1 Battle League",
    "mode": "online",
@@ -438,6 +423,21 @@
    "time": "00:15",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6adfbd7122fd412b92a4d932/details"
+  },
+  {
+   "name": "BPL SPOOKY CUP",
+   "org": "Goblin Lair Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "00:15",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
    "name": "Corner Clash",
@@ -481,7 +481,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "01:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae1f08e22fd412b92a4e96d/details"
   },
   {
@@ -496,7 +496,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 46,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -571,7 +571,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "17:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adec64997e21d82e5c6f556/details"
   },
   {
@@ -586,7 +586,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "19:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
   },
   {
@@ -730,7 +730,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
   },
   {
@@ -835,7 +835,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -895,7 +895,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -925,7 +925,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -1165,7 +1165,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -1271,7 +1271,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -1407,7 +1407,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
   },
   {
@@ -1608,6 +1608,21 @@
    "time": "18:45",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac969038a8383117e3e8160/details"
+  },
+  {
+   "name": "🎂Prof. Kai’s 4 Year Anniversary 🎂",
+   "org": "ProfessorKai’s Tournaments",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-14",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae3326080a8f79408d20bc2/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
