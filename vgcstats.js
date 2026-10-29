@@ -5,12 +5,12 @@
 var BASE="vgcstats/";
 /* Sorgenti dei dati: se in index.html e' impostato window.VGCS_CF (indirizzo Cloudflare) si prova prima quello, poi i file sul sito (GitHub).
    Se la prima non risponde si passa alla seconda da sola, e fra 10 minuti si riprova la prima. Senza VGCS_CF: solo il sito, come sempre. */
-var BASES=[],DOWN=0;
+var BASES=[],DOWN=0,LASTSRC=-1;
 (function(){var u=String(window.VGCS_CF||"").replace(/\s+/g,"");if(u){if(u.slice(-1)!=="/")u+="/";BASES.push(u)}BASES.push(BASE)})();
 function dget(p,fresh){
 var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
 function go(k){var i=(start+k)%n;
-return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
+return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;LASTSRC=i;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
 return go(0)}
 var S={sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
@@ -58,7 +58,7 @@ var h='<select id="vg-ev" aria-label="Regionale">';
 if(tot)h+='<option value="tot"'+(S.ev==="tot"?" selected":"")+'>Tutti i regionali ('+E(regLabel(S.treg||IDX.current))+')</option>';
 ord.forEach(function(g){h+='<optgroup label="'+E(regLabel(g)+(g===IDX.current?" (attuale)":""))+'">'+og[g].map(function(e){return'<option value="'+e.id+'"'+(S.ev===e.id?" selected":"")+(e.collected?"":" disabled")+'>'+E(e.city)+(e.collected?"":" · da raccogliere")+'</option>'}).join("")+"</optgroup>"});
 return h+"</select>"}
-function foot(){return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · classifica non ufficiale</p>'}
+function foot(){var sr=(BASES.length>1&&LASTSRC>=0)?" · dati serviti da "+(LASTSRC===0?"Cloudflare":"GitHub (riserva)"):"";return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · classifica non ufficiale'+sr+'</p>'}
 function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <span class="vg-mute vg-chk">'+(LIVE_CHK&&LIVE_CHK.ev===S.ev?LIVE_CHK.txt:"· si aggiorna da solo")+'</span> <button class="btn sm" type="button" data-vg="refresh">Aggiorna</button></div>'}
 function paste(id,pid){var t=D[id]&&D[id].tm[pid];if(!t)return"";return t.map(function(m){var ex=m[6]||{};return m[1]+(m[2]?" @ "+m[2]:"")+"\n"+(m[3]?"Ability: "+m[3]+"\n":"")+(ex["Tera Type"]?"Tera Type: "+ex["Tera Type"]+"\n":"")+(m[4]?m[4]+" Nature\n":"")+(m[5]||[]).map(function(x){return"- "+x}).join("\n")}).join("\n\n")}
 function copyBtn(id,pid){var t=paste(id,pid);return t?'<button class="btn sm" type="button" data-copy="'+E(t)+'">Copia la squadra</button>':'<span class="vg-mute">Squadra non pubblicata</span>'}
