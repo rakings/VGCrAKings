@@ -203,6 +203,10 @@ D[x]=nd;if(S.ev===x&&host&&document.body.contains(host)){drawRes();setChk()}})
 setInterval(function(){liveTick(false)},15000);
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")liveTick(true)});
 
+/* Tabella dei Pokemon: le colonne dei numeri non vanno a capo ("16,7" e "%" restavano separati); i nomi lunghi possono andare su due righe. */
+(function(){try{if(document.getElementById("vgcs-fix-tab"))return;var st=document.createElement("style");st.id="vgcs-fix-tab";
+st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}";
+(document.head||document.documentElement).appendChild(st)}catch(e){}})();
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},
