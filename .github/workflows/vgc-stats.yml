@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "elenco = elenco dei regionali - evento = un solo regionale - auto = in corso e finiti da raccogliere - live = controlli ripetuti finche' un regionale e' in corso"
+        description: "elenco = elenco dei regionali - evento = un solo regionale - auto = in corso e finiti da raccogliere - live = controlli ripetuti finche' un regionale e' in corso - cloudflare = prova del caricamento su Cloudflare"
         required: true
         default: "elenco"
         type: choice
@@ -12,6 +12,7 @@ on:
           - "evento"
           - "auto"
           - "live"
+          - "cloudflare"
       id:
         description: "Solo per modo evento: id Pokedata del regionale (Nizza: 1000076)"
         required: false
@@ -28,12 +29,12 @@ on:
   # Orari in UTC. Ora italiana invernale (fino a fine marzo) = UTC + 1; con l'ora legale = UTC + 2.
   # Minuti 07 e 37 (non 00 e 30): a inizio ora GitHub e' piu' carico e ritarda di piu'.
   schedule:
-    # LIVE sabato-lunedi: un controllo ogni 45 minuti (00:07, 00:52, 01:37, 02:22, 03:07... ogni 3 ore si ripete).
-    # Se c'e' un regionale in corso resta attivo con controlli a intervalli casuali di 8-16 minuti; se non c'e', si ferma subito.
-    - cron: "7 0-23/3 * * 6,0,1"
-    - cron: "52 0-23/3 * * 6,0,1"
-    - cron: "37 1-23/3 * * 6,0,1"
-    - cron: "22 2-23/3 * * 6,0,1"
+    # LIVE: un risveglio ogni 15 minuti (minuti 07, 22, 37, 52: a inizio ora GitHub e' piu' carico) il giovedi sera
+    # (da 20:07 UTC = 21:07 in Italia con l'ora solare) e da venerdi a lunedi. Orari in UTC.
+    # Se c'e' un regionale in corso il lavoro resta attivo con controlli ogni 3-5 minuti; se non c'e', si ferma subito.
+    # Dopo un salvataggio con dati nuovi non controlla per 12 minuti, poi controlla subito.
+    - cron: "7,22,37,52 * * * 5,6,0,1"
+    - cron: "7,22,37,52 20-23 * * 4"
     # Recupero squadre (solo se mancano) - ora italiana invernale:
     - cron: "7,37 17-23 * * *"      # sera 18:07 - 00:37
     - cron: "7,37 0 * * *"          # 01:07 e 01:37
@@ -49,16 +50,32 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 355
     env:
-      MODO: ${{ inputs.modo || (endsWith(github.event.schedule, ' 6,0,1') && 'live' || 'auto') }}
+      MODO: ${{ inputs.modo || 'programmato' }}
       TORNEO: ${{ inputs.id }}
       SALVA: ${{ github.event_name == 'schedule' && 'si' || inputs.salva }}
+      # Cloudflare (facoltativo): se queste tre cose non sono impostate, tutto funziona come prima, solo con GitHub.
+      CF_PAGES_PROJECT: ${{ vars.CF_PAGES_PROJECT }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v4
+      - name: Prepara Cloudflare (solo se e' configurato)
+        if: ${{ env.CF_PAGES_PROJECT != '' && env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
+        run: npm install -g wrangler@4
       - name: Raccolta
         run: |
           W=""
           [ "$SALVA" = "si" ] && W="--write"
+          # Esecuzioni programmate: da giovedi 20:00 UTC a lunedi 23:59 UTC ogni orario fa il controllo live (anche i giri di
+          # recupero delle sere); negli altri giorni il giro normale. Cosi' quando un lavoro live finisce il suo turno
+          # (dopo ~6 ore) quello in coda e' sempre un live e non resta nessun buco.
+          if [ "$MODO" = "programmato" ]; then
+            g=$(date -u +%u); o=$(date -u +%-H)
+            if [ "$g" = 5 ] || [ "$g" = 6 ] || [ "$g" = 7 ] || [ "$g" = 1 ] || { [ "$g" = 4 ] && [ "$o" -ge 20 ]; }; then MODO=live; else MODO=auto; fi
+            echo "Esecuzione programmata: giorno $g della settimana, ore $o UTC -> modo $MODO"
+          fi
           case "$MODO" in
+            cloudflare) python3 -u vgc_stats.py --cf-test ;;
             elenco) python3 -u vgc_stats.py --list $W ;;
             evento) python3 -u vgc_stats.py --id "$TORNEO" $W ;;
             live)   if [ "$SALVA" = "si" ]; then python3 -u vgc_stats.py --live --write --commit; else python3 -u vgc_stats.py --live --max-cycles 1; fi ;;
