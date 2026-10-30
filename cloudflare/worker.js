@@ -4,14 +4,17 @@
 //   GET /list              -> solo iscrizioni OneSignal (come prima: il bot attuale non cambia)
 //   GET /list?kind=fcm     -> solo token Firebase
 //   GET /list?kind=all     -> tutte
+//   Lettura A PAGINE (consigliata): aggiungere &limit=1000 (massimo 1000). Ogni risposta ha {n, subs} e, se ce ne sono altre,
+//   anche {cursor}: si richiama lo stesso indirizzo aggiungendo &cursor=<valore> finche' non c'e' piu' il cursor.
+//   Senza limit e senza cursor la risposta e' una sola, completa, come prima (i bot vecchi continuano a funzionare).
 //   POST /remove           -> {"ids":[...]} toglie dall'archivio (serve ADMIN_TOKEN), per i token morti
 // Collegamenti da creare nel pannello Cloudflare: KV namespace con nome variabile SUBS,
 // segreto ADMIN_TOKEN, (facoltativa) variabile ALLOW_ORIGIN con l'indirizzo del sito.
 const CATS = ["money", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin"];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const FCM_TOKEN = /^[A-Za-z0-9_:\-]{100,400}$/;   // i token Firebase distinguono maiuscole e minuscole: non vanno mai modificati
-const REFRESH_MS = 5 * 24 * 3600 * 1000;   // si riscrive solo se qualcosa cambia o dopo 5 giorni (limite di scritture KV)
-const TTL_S = 150 * 24 * 3600;             // chi non apre il sito per 150 giorni esce dall'archivio
+const REFRESH_MS = 120 * 24 * 3600 * 1000; // si riscrive solo se qualcosa cambia o dopo 120 giorni (limite di scritture KV; erano 5 giorni)
+const TTL_S = 365 * 24 * 3600;             // chi non apre il sito per un anno esce dall'archivio (i token morti li toglie comunque il bot)
 
 function keyOf(id) {
   if (typeof id !== "string") return null;
@@ -31,6 +34,28 @@ async function listKind(env, prefix, kind) {
   return subs;
 }
 
+// Una pagina = UNA sola lettura di KV, cosi' il tempo di calcolo per chiamata resta basso anche con tanti iscritti.
+// Il cursor e' "<prefisso>:<cursor di KV>" (con kind=all prima si leggono le iscrizioni OneSignal "s", poi quelle Firebase "f").
+async function listPage(env, want, cursorIn, limit) {
+  const order = want === "all" ? ["s", "f"] : want === "fcm" ? ["f"] : want === "os" ? ["s"] : [];
+  let pi = 0, kvc;
+  if (cursorIn) {
+    const i = cursorIn.indexOf(":");
+    pi = i < 0 ? -1 : order.indexOf(cursorIn.slice(0, i));
+    if (pi < 0) throw new Error("cursor");
+    kvc = cursorIn.slice(i + 1) || undefined;
+  }
+  if (pi >= order.length) return { subs: [] };
+  const p = order[pi];
+  const r = await env.SUBS.list({ prefix: p + ":", cursor: kvc, limit });
+  const subs = [];
+  for (const k of r.keys) if (k.metadata) subs.push({ id: k.name.slice(2), k: p === "s" ? "os" : "fcm", ...k.metadata });
+  let cursor;
+  if (!r.list_complete) cursor = p + ":" + r.cursor;
+  else if (pi + 1 < order.length) cursor = order[pi + 1] + ":";
+  return { subs, cursor };
+}
+
 export default {
   async fetch(req, env) {
     const cors = {
@@ -47,6 +72,16 @@ export default {
     if (req.method === "GET" && url.pathname === "/list") {
       if (!admin()) return out({ error: "non autorizzato" }, 401);
       const want = url.searchParams.get("kind") || "os";
+      const lim = url.searchParams.get("limit"), cur = url.searchParams.get("cursor");
+      if (lim !== null || cur) {   // lettura a pagine
+        const limit = Math.min(1000, Math.max(1, parseInt(lim, 10) || 1000));
+        try {
+          const r = await listPage(env, want, cur, limit);
+          return out(r.cursor ? { n: r.subs.length, subs: r.subs, cursor: r.cursor } : { n: r.subs.length, subs: r.subs });
+        } catch (e) {
+          return out({ error: "cursor non valido" }, 400);
+        }
+      }
       let subs = [];
       if (want === "os" || want === "all") subs = subs.concat(await listKind(env, "s:", "os"));
       if (want === "fcm" || want === "all") subs = subs.concat(await listKind(env, "f:", "fcm"));
