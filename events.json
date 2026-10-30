@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T17:18:09+00:00",
+ "updated": "2026-10-30T17:56:41+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -197,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "00:00",
-   "players": 37,
-   "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
-  },
-  {
    "name": "Spooky Cup | VGC-Tournament | Vol. 2 (NO REG MC)",
    "org": "RobinVGC",
    "mode": "online",
@@ -223,7 +208,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "19:00",
-   "players": 47,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ac28b89245696afb351631d/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 100,
+   "players": 108,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -421,7 +406,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -451,7 +436,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 26,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
