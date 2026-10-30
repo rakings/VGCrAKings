@@ -580,6 +580,8 @@ def fcm_access_token():
     _FCM["tok"], _FCM["exp"] = r["access_token"], now + int(r.get("expires_in", 3600))
     return _FCM["tok"]
 
+DEAD_BRAKE_MIN = 10      # freno di sicurezza: se in un invio ALMENO 10 dispositivi risultano morti...
+DEAD_BRAKE_SHARE = 0.30  # ...e sono PIU' del 30% di quelli raggiunti, non se ne toglie nessuno (puo' essere un problema di configurazione, non una moria vera)
 FCM_PARALLEL = 40   # invii contemporanei verso Firebase (erano 10): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
 
 def send_fcm(ids, title, body, click):
@@ -603,7 +605,9 @@ def send_fcm(ids, title, body, click):
                 return "ok", ""
             except urllib.error.HTTPError as ex:
                 msg = ex.read().decode("utf-8", "replace")
-                if ex.code == 404 or "UNREGISTERED" in msg or "not a valid FCM registration token" in msg:
+                # morto SOLO se Firebase lo dice chiaramente. Un 404 "nudo" (senza UNREGISTERED) puo' essere un problema di configurazione:
+                # lo contiamo come errore e NON si toglie nessuno dall'archivio.
+                if "UNREGISTERED" in msg or "not a valid FCM registration token" in msg:
                     return "dead", ""
                 if ex.code in (429, 500, 502, 503, 504) and attempt < 3:
                     time.sleep(2 * (attempt + 1))
@@ -623,6 +627,10 @@ def send_fcm(ids, title, body, click):
     print("Firebase: inviate %d, token morti %d, errori %d." % (ok, len(dead), len(errs)))
     for t, m in errs[:3]:
         print("  errore ...%s: %s" % (t[-6:], m))
+    brake = bool(dead) and len(dead) >= DEAD_BRAKE_MIN and len(dead) / float(len(ids)) > DEAD_BRAKE_SHARE
+    if brake:
+        print("FRENO DI SICUREZZA: %d dispositivi su %d risultano morti insieme. Non ne tolgo nessuno dall'archivio: controlla la configurazione di Firebase." % (len(dead), len(ids)))
+        dead = []
     if dead and subs_on():
         for k in range(0, len(dead), 200):
             req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + "/remove", data=json.dumps({"ids": dead[k:k + 200]}).encode("utf-8"), method="POST",
@@ -634,6 +642,8 @@ def send_fcm(ids, title, body, click):
         gone = set(dead)
         if _SUBS:
             _SUBS = [x for x in _SUBS if x.get("id") not in gone]
+    if ids and ok == 0 and brake:
+        raise RuntimeError("Firebase: tutti i dispositivi risultano morti: controlla la configurazione (nessuno e' stato tolto dall'archivio)")
     if ids and ok == 0 and errs:
         raise RuntimeError("Firebase: nessuna notifica inviata (%s)" % errs[0][1])
     return {"id": "fcm", "recipients": ok}
