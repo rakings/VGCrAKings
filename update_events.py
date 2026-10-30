@@ -580,6 +580,8 @@ def fcm_access_token():
     _FCM["tok"], _FCM["exp"] = r["access_token"], now + int(r.get("expires_in", 3600))
     return _FCM["tok"]
 
+FCM_PARALLEL = 40   # invii contemporanei verso Firebase (erano 10): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
+
 def send_fcm(ids, title, body, click):
     """Manda l'avviso a un elenco di token Firebase (a gruppi in parallelo). I token morti si tolgono dall'archivio iscritti."""
     global _SUBS
@@ -613,7 +615,7 @@ def send_fcm(ids, title, body, click):
                     continue
                 return "err", str(ex)[:150]
 
-    with ThreadPoolExecutor(max_workers=10) as pool:
+    with ThreadPoolExecutor(max_workers=max(1, min(FCM_PARALLEL, len(ids)))) as pool:
         res = list(pool.map(one, ids))
     ok = sum(1 for r in res if r[0] == "ok")
     dead = [t for t, r in zip(ids, res) if r[0] == "dead"]
@@ -642,16 +644,43 @@ _SUBS = None
 def subs_on():
     return bool(os.environ.get("SUBS_URL") and os.environ.get("SUBS_TOKEN"))
 
+SUBS_PAGE = 1000    # iscrizioni per pagina (il Worker non ne da' piu' di 1000 per volta)
+
 def subs_list():
+    """Legge l'archivio iscritti a pagine da 1000. Il Worker nuovo risponde a pagine; uno vecchio ignora la richiesta e risponde
+    con tutto in una volta (nessun cursor): va bene lo stesso."""
     global _SUBS
     if _SUBS is None:
-        req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + ("/list?kind=fcm" if fcm_on() else "/list"), headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "User-Agent": UA})
-        try:
-            _SUBS = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8")).get("subs") or []
-        except urllib.error.HTTPError as ex:
-            raise RuntimeError("Archivio iscritti: HTTP %s" % ex.code)
-        print("Archivio iscritti: %d iscrizioni" % len(_SUBS))
+        base = os.environ["SUBS_URL"].rstrip("/") + "/list"
+        hdr = {"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "User-Agent": UA}
+        subs, cursor, pages = [], None, 0
+        while True:
+            q = [("kind", "fcm")] if fcm_on() else []
+            q.append(("limit", str(SUBS_PAGE)))
+            if cursor:
+                q.append(("cursor", cursor))
+            req = urllib.request.Request(base + "?" + urllib.parse.urlencode(q), headers=hdr)
+            try:
+                data = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8"))
+            except urllib.error.HTTPError as ex:
+                raise RuntimeError("Archivio iscritti: HTTP %s" % ex.code)
+            subs += data.get("subs") or []
+            cursor = data.get("cursor")
+            pages += 1
+            if not cursor:
+                break
+            if pages >= 1000:
+                raise RuntimeError("Archivio iscritti: troppe pagine")
+        _SUBS = subs
+        print("Archivio iscritti: %d iscrizioni (%d %s)" % (len(_SUBS), pages, "pagina" if pages == 1 else "pagine"))
     return _SUBS
+
+def subs_check_due():
+    """Il numero di iscrizioni si scrive nel log solo ogni 8 esecuzioni (circa 2 volte al giorno): ogni lettura costa operazioni sul Worker."""
+    try:
+        return int(os.environ.get("GITHUB_RUN_NUMBER") or 0) % 8 == 0
+    except ValueError:
+        return True
 
 def subs_for(topic):
     """ID delle iscrizioni che hanno scelto questo canale (stessa logica dei vecchi filtri sui tag)."""
@@ -845,7 +874,7 @@ def main():
     except Exception:
         old = None
     notify_all(events)
-    if subs_on():  # controllo: quante iscrizioni ci sono nell'archivio (compare nel log, anche senza avvisi)
+    if subs_on() and subs_check_due():  # controllo: quante iscrizioni ci sono nell'archivio (compare nel log, ogni 8 esecuzioni)
         try:
             subs_list()
         except Exception as ex:
