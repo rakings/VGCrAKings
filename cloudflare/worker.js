@@ -8,13 +8,15 @@
 //   anche {cursor}: si richiama lo stesso indirizzo aggiungendo &cursor=<valore> finche' non c'e' piu' il cursor.
 //   Senza limit e senza cursor la risposta e' una sola, completa, come prima (i bot vecchi continuano a funzionare).
 //   POST /remove           -> {"ids":[...]} toglie dall'archivio (serve ADMIN_TOKEN), per i token morti
+//   GET /stats?limit=1000[&cursor=..]  -> CONTEGGI di una pagina di iscritti (serve ADMIN_TOKEN), per la pagina admin.html.
+//                                         Non manda mai i token al browser: solo numeri. La pagina somma le risposte.
 // Collegamenti da creare nel pannello Cloudflare: KV namespace con nome variabile SUBS,
 // segreto ADMIN_TOKEN, (facoltativa) variabile ALLOW_ORIGIN con l'indirizzo del sito.
 const CATS = ["money", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin"];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const FCM_TOKEN = /^[A-Za-z0-9_:\-]{100,400}$/;   // i token Firebase distinguono maiuscole e minuscole: non vanno mai modificati
 const REFRESH_MS = 120 * 24 * 3600 * 1000; // si riscrive solo se qualcosa cambia o dopo 120 giorni (limite di scritture KV; erano 5 giorni)
-const TTL_S = 365 * 24 * 3600;             // chi non apre il sito per un anno esce dall'archivio (i token morti li toglie comunque il bot)
+const TTL_S = 730 * 24 * 3600;             // chi non apre il sito per 2 anni esce dall'archivio (i token morti li toglie comunque il bot)
 
 function keyOf(id) {
   if (typeof id !== "string") return null;
@@ -36,7 +38,7 @@ async function listKind(env, prefix, kind) {
 
 // Una pagina = UNA sola lettura di KV, cosi' il tempo di calcolo per chiamata resta basso anche con tanti iscritti.
 // Il cursor e' "<prefisso>:<cursor di KV>" (con kind=all prima si leggono le iscrizioni OneSignal "s", poi quelle Firebase "f").
-async function listPage(env, want, cursorIn, limit) {
+async function rawPage(env, want, cursorIn, limit) {
   const order = want === "all" ? ["s", "f"] : want === "fcm" ? ["f"] : want === "os" ? ["s"] : [];
   let pi = 0, kvc;
   if (cursorIn) {
@@ -45,15 +47,38 @@ async function listPage(env, want, cursorIn, limit) {
     if (pi < 0) throw new Error("cursor");
     kvc = cursorIn.slice(i + 1) || undefined;
   }
-  if (pi >= order.length) return { subs: [] };
+  if (pi >= order.length) return { p: null, keys: [], cursor: undefined };
   const p = order[pi];
   const r = await env.SUBS.list({ prefix: p + ":", cursor: kvc, limit });
-  const subs = [];
-  for (const k of r.keys) if (k.metadata) subs.push({ id: k.name.slice(2), k: p === "s" ? "os" : "fcm", ...k.metadata });
   let cursor;
   if (!r.list_complete) cursor = p + ":" + r.cursor;
   else if (pi + 1 < order.length) cursor = order[pi + 1] + ":";
-  return { subs, cursor };
+  return { p, keys: r.keys, cursor };
+}
+
+async function listPage(env, want, cursorIn, limit) {
+  const g = await rawPage(env, want, cursorIn, limit);
+  const subs = [];
+  for (const k of g.keys) if (k.metadata) subs.push({ id: k.name.slice(2), k: g.p === "s" ? "os" : "fcm", ...k.metadata });
+  return { subs, cursor: g.cursor };
+}
+
+// Conta una pagina di iscritti senza mai mostrare i token: solo numeri.
+async function statPage(env, want, cursorIn, limit) {
+  const g = await rawPage(env, want, cursorIn, limit);
+  const st = { n: 0, fcm: 0, os: 0, c: {}, h: {}, l: {}, seguono: 0, tornei: 0, t1: 0, t7: 0, t30: 0 };
+  const now = Date.now(), add = (o, k) => { o[k] = (o[k] || 0) + 1; };
+  for (const k of g.keys) {
+    const m = k.metadata; if (!m) continue;
+    st.n++; if (g.p === "s") st.os++; else st.fcm++;
+    for (const x of m.c || []) add(st.c, x);
+    for (const x of m.h || []) add(st.h, x);
+    add(st.l, m.l || "it");
+    const nf = (m.f || []).length; if (nf) { st.seguono++; st.tornei += nf; }
+    const eta = now - (m.t || 0); if (eta < 864e5) st.t1++; if (eta < 7 * 864e5) st.t7++; if (eta < 30 * 864e5) st.t30++;
+  }
+  if (g.cursor) st.cursor = g.cursor;
+  return st;
 }
 
 export default {
@@ -86,6 +111,17 @@ export default {
       if (want === "os" || want === "all") subs = subs.concat(await listKind(env, "s:", "os"));
       if (want === "fcm" || want === "all") subs = subs.concat(await listKind(env, "f:", "fcm"));
       return out({ n: subs.length, subs });
+    }
+
+    if (req.method === "GET" && url.pathname === "/stats") {
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      const want = url.searchParams.get("kind") || "all";
+      const limit = Math.min(1000, Math.max(1, parseInt(url.searchParams.get("limit"), 10) || 1000));
+      try {
+        return out(await statPage(env, want, url.searchParams.get("cursor"), limit));
+      } catch (e) {
+        return out({ error: "cursor non valido" }, 400);
+      }
     }
 
     if (req.method === "POST" && url.pathname === "/remove") {
