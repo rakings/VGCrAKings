@@ -137,6 +137,70 @@ def say(topic, title, body, click):
     req = urllib.request.Request("https://ntfy.sh/" + topic, data=body.encode("utf-8"), headers=head, method="POST")
     urllib.request.urlopen(req, timeout=30).read()
 
+ORA_AVVISO_GC = 9  # ora italiana dell'avviso "si gioca da oggi" nel primo giorno di una Global Challenge
+
+ORA_AVVISO_SERA = 23  # ora italiana dell'avviso "domani parte la Global Challenge", la sera prima del primo giorno
+
+def avviso_sera(ev, sent, now):
+    """Global Challenge: la sera prima (dalle 23, ora italiana) un avviso a chi ha la spunta Global Challenge
+    e a chi segue il torneo col +. Solo entro quella sera: dopo mezzanotte "domani" non sarebbe piu' vero."""
+    if now.hour < ORA_AVVISO_SERA:
+        return
+    domani = (now + timedelta(days=1)).strftime("%Y-%m-%d")
+    for e in ev:
+        if e.get("type") != "Global Challenge" or e.get("date") != domani:
+            continue
+        key = "%s|sera" % e.get("url")
+        if key in sent:
+            continue
+        nome = (e.get("name") or "Global Challenge").strip()
+        righe = [nome]
+        if e.get("time"):
+            righe.append("Inizia alle %s (ora italiana)" % e["time"])
+        if e.get("end"):
+            try:
+                righe.append("Si gioca fino al %s" % datetime.strptime(e["end"], "%Y-%m-%d").strftime("%d/%m"))
+            except Exception:
+                pass
+        righe.append("Tocca per aprire il torneo")
+        try:
+            deliver_union(["gc", "t-" + eh(e.get("url") or "")], "Domani parte la Global Challenge", "\n".join(righe),
+                          e.get("signup") or e.get("url") or sito_url("gc"))
+            sent[key] = now.replace(hour=ORA_AVVISO_SERA, minute=0, second=0, microsecond=0).isoformat()
+            print("Avviso della sera:", nome)
+        except Exception as ex:
+            print("Avviso della sera non inviato:", ex)
+
+def avviso_giorno(ev, sent, now):
+    """Global Challenge: la mattina del primo giorno (dalle 9, ora italiana) un avviso a chi ha la spunta Global Challenge
+    e a chi segue il torneo col +. Se il bot gira in ritardo parte appena puo', ma solo entro quel giorno."""
+    if now.hour < ORA_AVVISO_GC:
+        return
+    oggi = now.strftime("%Y-%m-%d")
+    for e in ev:
+        if e.get("type") != "Global Challenge" or e.get("date") != oggi:
+            continue
+        key = "%s|giorno" % e.get("url")
+        if key in sent:
+            continue
+        nome = (e.get("name") or "Global Challenge").strip()
+        righe = []
+        if e.get("time"):
+            righe.append("Iniziata oggi alle %s (ora italiana)" % e["time"])
+        if e.get("end"):
+            try:
+                righe.append("Si gioca fino al %s" % datetime.strptime(e["end"], "%Y-%m-%d").strftime("%d/%m"))
+            except Exception:
+                pass
+        righe.append("Tocca per aprire il torneo")
+        try:
+            deliver_union(["gc", "t-" + eh(e.get("url") or "")], "Si gioca da oggi: %s" % nome, "\n".join(righe),
+                          e.get("signup") or e.get("url") or sito_url("gc"))
+            sent[key] = now.replace(hour=ORA_AVVISO_GC, minute=0, second=0, microsecond=0).isoformat()
+            print("Avviso del giorno:", nome)
+        except Exception as ex:
+            print("Avviso del giorno non inviato:", ex)
+
 def main():
     if not (os.environ.get("NTFY_PREFIX") or os_on()):
         print("Né OneSignal né NTFY_PREFIX impostati"); return
@@ -145,6 +209,8 @@ def main():
     ev = load("events.json", {}).get("events", [])
     for e in ev:
         if not (e.get("date") and e.get("time")):
+            continue
+        if e.get("type") == "Global Challenge":  # per le Global Challenge niente "1 ora prima": c'e' l'avviso della sera prima
             continue
         try:
             start = datetime.fromisoformat(e["date"] + "T" + e["time"]).replace(tzinfo=ROME)
@@ -155,7 +221,7 @@ def main():
         # categorie del torneo + canale del singolo torneo (chi lo segue con il +): UN solo invio all'unione degli iscritti
         topics = [c + "-1h" for c in cats(e)] + ["t-" + eh(e.get("url") or "")]
         key = "%s|1h" % e.get("url")
-        if any(k.startswith("%s|" % e.get("url")) for k in sent):  # compresi i vecchi segni "url|categoria"
+        if any(k.startswith("%s|" % e.get("url")) and not k.endswith(("|giorno", "|sera")) for k in sent):  # compresi i vecchi segni "url|categoria"
             continue
         try:
             titolo, testo = messaggio(e, start, now)
@@ -164,6 +230,8 @@ def main():
             print("Promemoria:", e["name"], topics)
         except Exception as ex:
             print("Promemoria non inviato:", ex)
+    avviso_sera(ev, sent, now)
+    avviso_giorno(ev, sent, now)
     sent = {k: v for k, v in sent.items() if datetime.fromisoformat(v) > now - timedelta(days=2)}
     json.dump(sent, open(STATE, "w", encoding="utf-8"))
 

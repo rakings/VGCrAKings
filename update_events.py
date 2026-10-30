@@ -37,6 +37,7 @@ PREV = {}        # eventi salvati al giro precedente (url -> evento)
 PARTIAL = set()  # fonti lette solo in parte in questo giro
 KEEP = set()     # pagine non lette per un errore temporaneo: si tiene la copia precedente
 LIVE = set()     # tornei che Limitless dà "in corso" adesso: restano finché non finiscono
+GC_ORA_UTC = 2   # ora di inizio delle Global Challenge (UTC): serve per il promemoria di un'ora prima
 GRACE_H = 8      # ore dopo l'inizio in cui un torneo con orario resta in elenco (poi si considera finito)
 
 # ---------- Limitless ----------
@@ -286,6 +287,9 @@ def vr_parse(slug, page):
     reg = re.search(r"Regulation Set (M-[A-Z])", text)
     prize = bool(re.search(r"prize ?pool", text, re.I))
     gc = "global-challenge" in slug
+    if gc and not hhmm:  # Global Challenge: si parte alle 02:00 UTC del primo giorno (in Italia 03:00 d'inverno, 04:00 d'estate)
+        dt = datetime.fromisoformat(date + "T%02d:00:00+00:00" % GC_ORA_UTC).astimezone(ROME)
+        date, hhmm = dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
     return {
         "name": name, "org": "" if gc else "Victory Road", "mode": "online", "type": "Global Challenge" if gc else "Torneo",
         "fee": fee, "cur": "$" if fee else None, "feeNote": "+ tassa Battlefy" if fee and "Battlefy tax" in text else None,
