@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30T09:29:11+00:00",
+ "updated": "2026-10-30T10:58:41+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adf5fe822fd412b92a4d34b/details"
   },
   {
-   "name": "[Reg M-C Bo3] THURSDAY NIGHT THROWDOWN #5",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": "Bo3",
-   "date": "2026-10-30",
-   "time": "03:30",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ae0273a80a8f79408d1f5d0/details"
-  },
-  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -212,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aab475ff1243e65f98033cb/details"
   },
   {
-   "name": "Outlanders Halloween Special: Ominous Wind",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "14:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
-  },
-  {
    "name": "VGC Indigo League #5 (Prize: Shiny Metagross)",
    "org": "Champions International",
    "mode": "online",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "14:00",
-   "players": 50,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6abbd7e5783097f8dcb73682/details"
   },
   {
@@ -283,8 +253,23 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 81,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
+  },
+  {
+   "name": "Outlanders Halloween Special: Ominous Wind",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-30",
+   "time": "14:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
   },
   {
    "name": "2027 Global Challenge II",
@@ -320,21 +305,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae0b79c22fd412b92a4e15a/details"
   },
   {
-   "name": "BPL SPOOKY CUP",
-   "org": "Goblin Lair Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "00:15",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
-  },
-  {
    "name": "X1 Remote Battle League 13ª Edição - Reg M-C",
    "org": "X1 Battle League",
    "mode": "online",
@@ -348,6 +318,21 @@
    "time": "00:15",
    "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adfbd7122fd412b92a4d932/details"
+  },
+  {
+   "name": "BPL SPOOKY CUP",
+   "org": "Goblin Lair Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "00:15",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
    "name": "Corner Clash",
@@ -406,7 +391,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 52,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -425,21 +410,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
   },
   {
-   "name": "Outlanders Championship League S1",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "14:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
-  },
-  {
    "name": "Øutcasts",
    "org": "Øutcasts Dominion Intl.",
    "mode": "online",
@@ -455,6 +425,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
+   "name": "Outlanders Championship League S1",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "14:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
+  },
+  {
    "name": "Regulation M-C: Open League #4",
    "org": "Baba Banjo",
    "mode": "online",
@@ -466,7 +451,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
@@ -659,21 +644,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
   },
   {
-   "name": "🎃Astral",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
-  },
-  {
    "name": "ValkrixVGC Pokemon Champions League #08",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -687,6 +657,21 @@
    "time": "15:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+  },
+  {
+   "name": "🎃Astral",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
    "name": "VGC Trainer School; champions M/C #5",
@@ -1347,7 +1332,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
