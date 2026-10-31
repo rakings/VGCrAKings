@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T07:45:57+00:00",
+ "updated": "2026-10-31T09:20:20+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -271,7 +271,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 21,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -286,7 +286,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
@@ -301,7 +301,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:00",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
   },
   {
@@ -346,8 +346,23 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "18:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
+  },
+  {
+   "name": "Pokemon Polska - mini turniej o pluszaka #1",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "18:50",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae5a0b80d00101b48bf31e4/details"
   },
   {
    "name": "Cursed Classic Cup (Halloween Special)",
@@ -539,21 +554,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
   },
   {
-   "name": "🎃Astral",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
-  },
-  {
    "name": "ValkrixVGC Pokemon Champions League #08",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -567,6 +567,21 @@
    "time": "15:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+  },
+  {
+   "name": "🎃Astral",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
    "name": "FINISTERRAE SERIES VGC #5",
@@ -895,7 +910,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
