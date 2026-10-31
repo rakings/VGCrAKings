@@ -12,7 +12,7 @@ var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
 function go(k){var i=(start+k)%n;
 return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;LASTSRC=i;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
 return go(0)}
-var S={sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
+var S={br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
 function vkey(){return S.sec==="arc"?"arc":S.sec+"|"+S.ev+"|"+(S.mon||"")}
@@ -83,7 +83,52 @@ var GR={all:"Tutti",top:"Top 256",ph2:"Fase 2",cut:"Top cut"},SO={cnt:"Più usat
 function ctlPok(){return evSel(true)+'<div class="vg-row"><input class="vg-in" id="vg-pq" type="search" value="'+E(S.pq)+'" placeholder="Cerca un Pokémon, per esempio Primarina" aria-label="Cerca un Pokémon"><button class="btn vg-f" type="button" data-vg="fp" aria-pressed="'+S.fp+'">Filtra</button></div>'+(S.fp?'<div class="vg-box"><b class="vg-lab">Giocatori considerati</b><div class="vg-chips">'+Object.keys(GR).map(function(k){return'<button type="button" class="btn sm" data-vg="g" data-v="'+k+'" aria-pressed="'+(S.g===k)+'">'+GR[k]+"</button>"}).join("")+'</div><b class="vg-lab">Ordina per</b><div class="vg-chips">'+Object.keys(SO).map(function(k){return'<button type="button" class="btn sm" data-vg="s" data-v="'+k+'" aria-pressed="'+(S.s===k)+'">'+SO[k]+"</button>"}).join("")+"</div></div>":"")}
 function val(p){return S.g==="all"?p.count:S.g==="top"?p.top256:S.g==="ph2"?p.day2:p.cut}
 function szOf(d){if(d.sz)return d.sz;var m=d.m;return{all:m.players,top:Math.min(m.top||256,m.players),ph2:m.day2_players||0,cut:m.cut_players||0}}
-function bars(t,a,tot){if(!a||!a.length)return"";var mx=a[0][1],h='<div class="vg-box"><h3>'+E(t)+"</h3>";a.forEach(function(x){h+='<div class="vg-bar"><span>'+E(x[0])+'</span><i style="width:'+Math.max(3,Math.round(x[1]/mx*100))+'%"></i><span>'+x[1]+" · "+pc(x[1],tot)+"%</span></div>"});return h+"</div>"}
+/* ---------- strumenti con la loro icona (come su Pokedata) ----------
+   window.VGCS_ICONS = indirizzo delle icone con {id} al posto del nome (per esempio .../life-orb.png). Vuoto = nessuna icona.
+   Se un'icona non esiste, sparisce da sola e resta il nome scritto. */
+function itSlug(n){return String(n||"").toLowerCase().replace(/['\u2019.]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
+function itIcon(n){var T=window.VGCS_ICONS,k=itSlug(n);if(!T||!k)return"";return'<img class="vg-it" alt="" loading="lazy" decoding="async" width="20" height="20" src="'+E(String(T).replace("{id}",k))+'" onerror="this.style.display=\'none\'">'}
+/* ---------- tabellone Top 8 ----------
+   Si ricostruisce dai turni dopo la swiss: nei turni a eliminazione restano in gara 8 giocatori (quarti), poi 4 (semifinali), poi 2 (finale).
+   Se i dati non tornano (coppie non reciproche, numeri diversi) il tabellone non si mostra. Funziona anche durante il torneo. */
+function bracketOf(d){
+var sw=d&&d.sw&&d.sw.p;if(!sw||!d.by)return null;
+var ids=Object.keys(sw),R=(d.sw.rounds||0)|0;if(R<3||ids.length<16)return null;
+function cnt(r){var n=0;for(var i=0;i<ids.length;i++)if(sw[ids[i]].length>=r)n++;return n}
+var q=0,r,n;for(r=R;r>=1;r--){n=cnt(r);if(n===8){q=r;break}if(n>8)break}
+if(!q)return null;
+function place(k){var p=d.by[k];return p?p[3]:999}
+function round(rd,expect){
+var seen={},out=[],P=ids.filter(function(k){return sw[k].length>=rd});
+if(!P.length)return[];if(P.length!==expect)return null;
+P.sort(function(a,b){return place(a)-place(b)});
+for(var i=0;i<P.length;i++){var a=P[i];if(seen[a])continue;var e=parse(sw[a][rd-1]);if(!e||e.o<0)return null;
+var b=String(e.o);if(!sw[b]||sw[b].length<rd)return null;var f=parse(sw[b][rd-1]);if(!f||String(f.o)!==a)return null;
+seen[a]=seen[b]=1;out.push({a:a,b:b,r:e.r})}
+return out.length===expect/2?out:null}
+var qf=round(q,8);if(!qf)return null;
+var sf=q+1<=R?round(q+1,4):[];if(!sf)sf=[];
+var fi=(q+2<=R&&sf.length===2)?round(q+2,2):[];if(!fi)fi=[];
+/* ordine da tabellone: le due partite che alimentano la stessa semifinale una sotto l'altra */
+try{
+function has(m,k){return m.a===k||m.b===k}
+if(fi.length===1&&sf.length===2){var F=fi[0],s1=sf.filter(function(m){return has(m,F.a)})[0],s2=sf.filter(function(m){return has(m,F.b)})[0];if(s1&&s2&&s1!==s2)sf=[s1,s2]}
+if(sf.length===2){var o=[];sf.forEach(function(m){[m.a,m.b].forEach(function(k){var x=qf.filter(function(y){return has(y,k)})[0];if(x&&o.indexOf(x)<0)o.push(x)})});if(o.length===4)qf=o}
+}catch(e){}
+return{qf:qf,sf:sf,f:fi}}
+function winOf(m){return m.r==="W"?m.a:m.r==="L"?m.b:null}
+function matchHtml(d,m){var w=winOf(m);
+function row(k){var p=d.by[k]||[0,"?","",0];return'<button type="button" class="vg-bp'+(w?(w===k?" w":" l"):"")+'" data-vg="gosw" data-id="'+E(k)+'" title="'+E(p[1])+'">'+p[3]+"° "+E(p[1])+"</button>"}
+return'<div class="vg-bm">'+row(m.a)+row(m.b)+"</div>"}
+function bracketHtml(d){var b=bracketOf(d);if(!b)return"";var o=!!S.br;
+var h='<div class="vg-box vg-br"><button type="button" class="vg-brt" data-vg="br" aria-expanded="'+o+'">➡️ TOP 8 ⬅️</button>';
+if(o){h+='<div class="vg-brg">';
+[["Quarti",b.qf],["Semifinali",b.sf],["Finale",b.f]].forEach(function(c){h+='<div class="vg-brc"><div class="vg-brh">'+c[0]+'</div><div class="vg-brm">';
+if(c[1].length)c[1].forEach(function(m){h+=matchHtml(d,m)});else h+='<div class="vg-brw vg-mute">in attesa</div>';h+="</div></div>"});
+h+="</div>"}
+return h+"</div>"}
+
+function bars(t,a,tot){if(!a||!a.length)return"";var mx=a[0][1],h='<div class="vg-box"><h3>'+E(t)+"</h3>";a.forEach(function(x){h+='<div class="vg-bar"><span>'+(t==="Strumento"?itIcon(x[0]):"")+E(x[0])+'</span><i style="width:'+Math.max(3,Math.round(x[1]/mx*100))+'%"></i><span>'+x[1]+" · "+pc(x[1],tot)+"%</span></div>"});return h+"</div>"}
 function resPok(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';
 if(S.mon)return detail(d);var sz=szOf(d),tot=sz[S.g]||0,f=S.pq.toLowerCase();
 var a=d.pk.filter(function(p){return!f||p.name.toLowerCase().indexOf(f)>=0});
@@ -110,11 +155,11 @@ function panel(d,id){var p=d.by[id],rows=(d.sw.p[id]||[]),h='<div class="vg-pan"
 rows.forEach(function(x,i){var e=parse(x);if(!e){h+='<tr><td>R'+(i+1)+'</td><td colspan="3" class="vg-mute">–</td></tr>';return}
 var o=e.o>0?d.by[e.o]:null;h+='<tr><td>R'+(i+1)+"</td><td>"+(e.r==="B"?'<span class="vg-mute">Bye</span>':o?'<button class="vg-lnk" type="button" data-vg="opp" data-id="'+o[0]+'">'+E(o[1])+'</button> <small class="vg-mute">'+E(o[2])+"</small>":'<span class="vg-mute">Avversario non identificato</span>')+'</td><td class="vg-mute">'+(o?o[4]+"-"+o[5]:"")+'</td><td class="'+(e.r==="L"?"L":e.r==="W"||e.r==="B"?"W":"")+'">'+RES[e.r]+"</td></tr>"});
 h+="</tbody></table>";
-var t=d.tm[id];if(t){h+='<div class="vg-team"><div class="vg-trow"><b>Squadra</b>'+copyBtn(S.ev,id)+"</div>"+t.map(function(m){return'<div class="vg-mon">'+dot(m[1])+" <b>"+E(m[1])+'</b> <small class="vg-mute">'+E([m[2],m[3],m[4]].filter(Boolean).join(" · "))+"</small></div>"}).join("")+"</div>"}
+var t=d.tm[id];if(t){h+='<div class="vg-team"><div class="vg-trow"><b>Squadra</b>'+copyBtn(S.ev,id)+"</div>"+t.map(function(m){return'<div class="vg-mon">'+dot(m[1])+" <b>"+E(m[1])+'</b> <small class="vg-mute">'+itIcon(m[2])+E([m[2],m[3],m[4]].filter(Boolean).join(" · "))+"</small></div>"}).join("")+"</div>"}
 else if(p&&p[8])h+='<div class="vg-team"><b>Squadra</b><div class="vg-mute">'+E(p[8].split(",").map(function(s){return nameOf(d,s)}).join(" · "))+"</div></div>";
 return h+"</div>"}
 function resSwi(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';var f=S.sq.toLowerCase(),a=d.pl.filter(function(r){return(!f||r[1].toLowerCase().indexOf(f)>=0||r[2].toLowerCase()===f)&&(!S.onlyIt||r[2]==="IT")});
-var h=liveBox(d.m)+'<p class="vg-sum">'+a.length+" giocatori · tocca un giocatore per aprire o chiudere la sua swiss</p>";
+var h=liveBox(d.m)+(S.sq?"":bracketHtml(d))+'<p class="vg-sum">'+a.length+" giocatori · tocca un giocatore per aprire o chiudere la sua swiss</p>";
 a.slice(0,S.shown).forEach(function(r){var id=r[0],o=!!S.open[id];h+='<div class="vg-p" id="vgp-'+id+'"><button type="button" class="vg-pr" data-vg="tp" data-id="'+id+'" aria-expanded="'+o+'"><b>'+r[3]+"°</b><span>"+E(r[1])+' <small class="vg-mute">'+E(r[2])+" · "+r[4]+"-"+r[5]+"</small>"+italia(r[2])+'</span><small class="vg-mute">'+(r[7]?"Top cut":r[6]?"Fase 2":"")+"</small></button>"+(o?panel(d,id):"")+"</div>"});
 if(a.length>S.shown)h+='<button type="button" class="btn" data-vg="more">Mostra altri '+Math.min(80,a.length-S.shown)+"</button>";
 return h+foot()}
@@ -143,6 +188,7 @@ else if(a==="bkm"){closeMon()}
 else if(a==="it"){S.onlyIt=!S.onlyIt;S.shown=80;drawKeep()}
 else if(a==="more"){S.shown+=80;drawRes()}
 else if(a==="tp"){setOpen(id,!S.open[id]);drawRes()}
+else if(a==="br"){S.br=!S.br;drawRes()}
 else if(a==="opp"||a==="gosw"){S.sq="";S.onlyIt=false;setOpen(id,true);if(a==="gosw"){S.sec="swi";S.mon=null}
 var d=D[S.ev],i=d?d.pl.findIndex(function(r){return String(r[0])===String(id)}):0;if(i>=S.shown)S.shown=i+1;draw();
 setTimeout(function(){var el=document.getElementById("vgp-"+id);if(el){el.scrollIntoView({block:"start"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},1600)}},120)}
@@ -205,7 +251,7 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 
 /* Tabella dei Pokemon: le colonne dei numeri non vanno a capo ("16,7" e "%" restavano separati); i nomi lunghi possono andare su due righe. */
 (function(){try{if(document.getElementById("vgcs-fix-tab"))return;var st=document.createElement("style");st.id="vgcs-fix-tab";
-st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}";
+st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
