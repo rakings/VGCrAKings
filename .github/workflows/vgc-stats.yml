@@ -32,7 +32,7 @@ on:
     # LIVE: un risveglio ogni 15 minuti (minuti 07, 22, 37, 52: a inizio ora GitHub e' piu' carico) il giovedi sera
     # (da 20:07 UTC = 21:07 in Italia con l'ora solare) e da venerdi a lunedi. Orari in UTC.
     # Se c'e' un regionale in corso il lavoro resta attivo con controlli ogni 3-5 minuti; se non c'e', si ferma subito.
-    # Dopo un salvataggio con dati nuovi non controlla per 12 minuti, poi controlla subito.
+    # Dopo un salvataggio con dati nuovi non controlla per 10 minuti (12 dal 4° torneo del mese, 5 durante la Top 8), poi controlla subito.
     - cron: "7,22,37,52 * * * 5,6,0,1"
     - cron: "7,22,37,52 20-23 * * 4"
     # Recupero squadre (solo se mancano) - ora italiana invernale:
@@ -87,4 +87,19 @@ jobs:
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           [ -d vgcstats ] && git add -A vgcstats
-          git diff --staged --quiet || (git commit -m "VGC Stats: aggiornamento dati" && git pull --rebase && git push)
+          if ! git diff --staged --quiet; then
+            git commit -m "VGC Stats: aggiornamento dati"
+            B=$(git rev-parse --abbrev-ref HEAD)
+            ok=0
+            for i in 1 2 3; do
+              if git pull --rebase --autostash -X theirs && git push; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              # ultima risorsa: si riparte dalla versione attuale del repo e si rimettono sopra solo i dati
+              rm -rf /tmp/dati && cp -a vgcstats /tmp/dati
+              if git fetch origin "$B" && git reset --hard FETCH_HEAD && cp -a /tmp/dati/. vgcstats/ && git add -A vgcstats; then
+                if git diff --staged --quiet || (git commit -m "VGC Stats: aggiornamento dati" && git push); then ok=1; break; fi
+              fi
+              sleep 5
+            done
+            [ "$ok" = 1 ] || { echo "Salvataggio su GitHub non riuscito."; exit 1; }
+          fi
