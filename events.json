@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T17:05:05+00:00",
+ "updated": "2026-10-31T17:48:22+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -215,6 +215,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
+   "name": "Stallcelth",
+   "org": "TiPl_VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "18:00",
+   "players": 34,
+   "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
+  },
+  {
    "name": "⛩️Chadweezy95 VGC Champions👻Halloween Cup!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -305,21 +320,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "Stallcelth",
-   "org": "TiPl_VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "18:00",
-   "players": 34,
-   "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
-  },
-  {
    "name": "Cursed Classic Cup (Halloween Special)",
    "org": "The #1 Fanatics",
    "mode": "online",
@@ -331,7 +331,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "19:00",
-   "players": 20,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
   },
   {
@@ -400,7 +400,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "00:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6adfd18d22fd412b92a4daab/details"
   },
   {
@@ -445,7 +445,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
@@ -475,23 +475,8 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "🎃Astral",
@@ -509,6 +494,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+  },
+  {
    "name": "VGC Trainer School; champions M/C #5",
    "org": "VGC Trainers School",
    "mode": "online",
@@ -520,7 +520,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
@@ -760,7 +760,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 124,
+   "players": 125,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -1049,6 +1049,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
+   "name": "Hatterene Series Weekly #11 2027 - 7PM EST - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 21!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1153,6 +1168,21 @@
    "time": "19:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
+  },
+  {
+   "name": "Hatterene Series Weekly #12 2027 - 7PM UTC - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "20:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
   },
   {
    "name": "London Corviknights VGC Weekly Tour 22!",
@@ -1274,6 +1304,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
+  },
+  {
+   "name": "Hatterene Series Weekly #13 2027 - 7PM EST - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-25",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae6241eae67092a4073ffab/details"
   },
   {
    "name": "Alpensee Tour (Reg M-C) #85",
