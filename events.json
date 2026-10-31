@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T19:03:05+00:00",
+ "updated": "2026-10-31T20:16:18+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -170,6 +170,21 @@
    "signup": null
   },
   {
+   "name": "⛩️Chadweezy95 VGC Champions🎃Halloween Cup!⛩️",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "17:30",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6ae4113e80a8f79408d21623/details"
+  },
+  {
    "name": "Øutcasts' Saturday Night #3 [1st: Shiny Gengar]",
    "org": "",
    "mode": "online",
@@ -200,6 +215,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
+   "name": "Thavorian Skies Halloween Hullabaloo",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-10-31",
+   "time": "21:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ade640591617679e84a0e20/details"
+  },
+  {
    "name": "Cursed Classic Cup (Halloween Special)",
    "org": "The #1 Fanatics",
    "mode": "online",
@@ -228,21 +258,6 @@
    "time": "18:00",
    "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
-  },
-  {
-   "name": "⛩️Chadweezy95 VGC Champions👻Halloween Cup!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "16:30",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6ae4113e80a8f79408d21623/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Gengar",
@@ -318,21 +333,6 @@
    "time": "00:15",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
-  },
-  {
-   "name": "Thavorian Skies Halloween Hullabaloo",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "21:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ade640591617679e84a0e20/details"
   },
   {
    "name": "Gdańsk Regional Championships",
@@ -445,8 +445,23 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 32,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
+  },
+  {
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "🎃Astral",
@@ -462,21 +477,6 @@
    "time": "15:00",
    "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "VGC Trainer School; champions M/C #5",
@@ -565,7 +565,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -580,7 +580,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
@@ -595,7 +595,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "12:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
@@ -655,7 +655,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -730,7 +730,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 125,
+   "players": 127,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -835,7 +835,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -880,7 +880,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 60,
+   "players": 62,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1075,7 +1075,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -1090,7 +1090,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 3,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
