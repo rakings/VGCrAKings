@@ -62,6 +62,9 @@ class Budget(Exception):
 
 used = 0
 budget = 3
+cut_state = {}         # id regionale -> True se nell'ultimo controllo era in corso la Top 8
+mese_pieno = False      # True se nel mese in corso sono gia' iniziati almeno EVENTI_MESE_PIENO tornei
+cut_active = False     # True se almeno un regionale in corso e' nella fase a eliminazione diretta
 last_status = {}       # id regionale -> stato letto nell'ultimo controllo (running / finished)
 unpushed = False       # True se un salvataggio e' stato fatto ma non ancora pubblicato
 any_changed = False   # True se un giro normale (elenco / auto / singolo regionale) ha salvato qualcosa: poi si aggiorna anche Cloudflare
@@ -342,6 +345,27 @@ def save_index(events):
     return save_winners(events) or a
 
 
+def cut_phase(swiss):
+    """Top 8 in corso? Nei turni a eliminazione diretta restano in gara 8 giocatori (quarti), poi 4 (semifinali), poi 2 (finale):
+    si riconosce contando quanti giocatori hanno almeno N turni. Durante la swiss i numeri sono molto piu' alti."""
+    if not swiss:
+        return False
+    R = max((len(v) for v in swiss.values()), default=0)
+    if R < 3:
+        return False
+
+    def cnt(r):
+        return sum(1 for v in swiss.values() if len(v) >= r)
+    n = cnt(R)
+    if n == 8:
+        return True
+    if n == 4:
+        return cnt(R - 1) == 8
+    if n == 2:
+        return cnt(R - 1) == 4 and cnt(R - 2) == 8
+    return False
+
+
 def collect(ev, write):
     tid = ev["id"]
     data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
@@ -353,6 +377,7 @@ def collect(ev, write):
     stats = compute(players, teams, names)
     status = info.get("tournamentStatus")
     last_status[tid] = status
+    cut_state[tid] = cut_phase(swiss)
     cut = sum(p["topcut"] for p in players)
     day2 = sum(p["day2"] for p in players)
     print("\n%s - %s - %s - %d giocatori, %d round" % (ev["name"], info.get("date", {}).get("start"), status, len(players), swiss_total))
@@ -395,10 +420,15 @@ def collect(ev, write):
 
 LIVE_MIN = 3 * 60          # secondi: controlli a intervalli casuali tra 3 e 5 minuti
 LIVE_MAX = 5 * 60
-LIVE_PAUSA = 12 * 60       # dopo un salvataggio con dati nuovi: nessun controllo per 12 minuti, poi uno subito
+LIVE_PAUSA = 10 * 60       # dopo un salvataggio con dati nuovi: nessun controllo per 10 minuti, poi uno subito (misurato al Day 1 di Danzica: ~4 pubblicazioni/ora con 12 minuti)
+LIVE_PAUSA_PIENO = 12 * 60  # dal 4° torneo del mese in poi la pausa sale a 12 minuti (per non avvicinarsi al limite di pubblicazioni di Cloudflare)
+EVENTI_MESE_PIENO = 4
+LIVE_PAUSA_CUT = 5 * 60    # durante la Top 8 (quarti, semifinali, finale): la pausa dopo un salvataggio con dati nuovi e' di 5 minuti
                            # (e' il numero che decide quanto e' "live" il sito: piu' basso = piu' veloce ma piu' pubblicazioni all'ora)
 LIVE_MAX_RUN = 345 * 60    # si ferma da solo prima del limite di 355 minuti del flusso
-LIVE_GIT_EVERY = 30 * 60   # con Cloudflare attivo: su GitHub si salva al massimo ogni 30 minuti (e alla fine)
+LIVE_GIT_EVERY = 2 * 60 * 60   # con Cloudflare attivo: su GitHub si salva al massimo ogni 2 ore (e alla fine)
+GIT_RETRY_AFTER = 15 * 60       # se il salvataggio su GitHub fallisce: nuovo tentativo dopo 15 minuti (non a ogni controllo)
+git_block = 0                   # fino a che ora non riprovare dopo un errore
 
 
 def mark(x):
@@ -445,20 +475,58 @@ def cf_test():
 
 
 def publish(changed, commit, final, now=time.time):
-    """Pubblica i dati: Cloudflare a ogni salvataggio nuovo (se attivo), GitHub subito o ogni 30 minuti se Cloudflare ha funzionato."""
-    global last_git
+    """Pubblica i dati: Cloudflare a ogni salvataggio nuovo (se attivo), GitHub subito o ogni 2 ore se Cloudflare ha funzionato."""
+    global last_git, git_block
     cf_ok = bool(changed and cf_enabled() and cf_deploy())
     if not commit:
         return
     if cf_ok and not final and not unpushed and last_git is not None and now() - last_git < LIVE_GIT_EVERY:
         print("Dati gia' online su Cloudflare: il salvataggio su GitHub puo' attendere.")
         return
-    git_publish()
+    if unpushed and not final and now() < git_block:
+        print("Salvataggio su GitHub in pausa dopo l'errore: riprovo piu' tardi (i dati sono comunque online).")
+        return
+    ok = git_publish()
     last_git = now()
+    git_block = now() + GIT_RETRY_AFTER if ok is False else 0
+
+
+def _gitout(r):
+    return ((r.stderr or "") + " " + (r.stdout or "")).strip().replace("\n", " | ")[:260]
+
+
+def git_reapply(run, message):
+    """Ultima risorsa: si scarica la versione attuale del repo e si rimettono sopra i file dei dati
+    (il bot e' l'unico che li scrive; gli altri file del repo restano come li hai caricati tu). Ritorna True o il motivo dell'errore."""
+    tmp = tempfile.mkdtemp()
+    try:
+        b = run("git", "symbolic-ref", "--short", "HEAD")
+        br = b.stdout.strip()
+        if b.returncode != 0 or not br:
+            return "ramo non trovato"
+        shutil.copytree(OUT, os.path.join(tmp, "d"))
+        f = run("git", "fetch", "origin", br)
+        if f.returncode != 0:
+            return "fetch: " + _gitout(f)
+        run("git", "rebase", "--abort")
+        r = run("git", "reset", "--hard", "FETCH_HEAD")
+        if r.returncode != 0:
+            return "reset: " + _gitout(r)
+        shutil.copytree(os.path.join(tmp, "d"), OUT, dirs_exist_ok=True)
+        run("git", "add", "-A", OUT)
+        if run("git", "diff", "--staged", "--quiet").returncode != 0:
+            c = run("git", "commit", "-m", message)
+            if c.returncode != 0:
+                return "commit: " + _gitout(c)
+        q = run("git", "push")
+        return True if q.returncode == 0 else "push: " + _gitout(q)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def git_publish(message="VGC Stats: aggiornamento dati (live)"):
-    """Salva e pubblica la cartella vgcstats/ con git. Se la pubblicazione non riesce, riprova al giro dopo."""
+    """Salva e pubblica la cartella vgcstats/ con git. Se il repo e' cambiato nel frattempo (per esempio hai caricato dei file),
+    si riallinea da solo; se non riesce, stampa il motivo e riprova piu' tardi."""
     global unpushed
 
     def run(*cmd):
@@ -469,19 +537,32 @@ def git_publish(message="VGC Stats: aggiornamento dati (live)"):
     if run("git", "diff", "--staged", "--quiet").returncode != 0:
         c = run("git", "commit", "-m", message)
         if c.returncode != 0:
-            print("Salvataggio git non riuscito: %s" % (c.stderr or c.stdout).strip()[:200])
+            print("Salvataggio git non riuscito: %s" % _gitout(c)[:200])
             return False
         unpushed = True
     if not unpushed:
         return True
+    last = ""
     for _ in range(3):
-        if run("git", "pull", "--rebase").returncode == 0 and run("git", "push").returncode == 0:
+        p = run("git", "pull", "--rebase", "--autostash", "-X", "theirs")
+        if p.returncode == 0:
+            q = run("git", "push")
+            if q.returncode == 0:
+                unpushed = False
+                print("Dati pubblicati.")
+                return True
+            last = "push: " + _gitout(q)
+        else:
+            last = "pull: " + _gitout(p)
+            run("git", "rebase", "--abort")
+        r = git_reapply(run, message)
+        if r is True:
             unpushed = False
-            print("Dati pubblicati.")
+            print("Dati pubblicati (dopo aver riallineato il repo).")
             return True
-        run("git", "rebase", "--abort")
+        last += " || riallineamento: " + str(r)
         time.sleep(5)
-    print("Pubblicazione non riuscita: riprovo al prossimo controllo.")
+    print("Pubblicazione non riuscita (%s)." % last[:420])
     return False
 
 
@@ -493,11 +574,30 @@ def recent_unfinished(events, days=3, limit=2):
     return out[:limit]
 
 
+def eventi_del_mese(events, t=None):
+    """Quanti tornei sono iniziati nel mese in corso (UTC), compreso quello in corso (che puo' non avere ancora la data)."""
+    g = time.gmtime(t if t is not None else time.time())
+    mese, oggi = "%04d-%02d" % (g.tm_year, g.tm_mon), time.strftime("%Y-%m-%d", g)
+    n = 0
+    for e in events:
+        st = (e.get("start") or "")[:10]
+        if st and st[:7] == mese and st <= oggi:
+            n += 1
+        elif not st and e.get("status") == "running":
+            n += 1
+    return n
+
+
 def live_cycle(write):
     """Un controllo. Ritorna (dati_cambiati, ancora_in_corso)."""
-    global used
+    global used, cut_active, mese_pieno
     used = 0                                   # il limite di richieste vale per ogni controllo
     events = list_events()
+    pieno = eventi_del_mese(events) >= EVENTI_MESE_PIENO
+    if pieno != mese_pieno:
+        mese_pieno = pieno
+        if pieno:
+            print("Tornei di questo mese: %d. La pausa sale a %d minuti per non avvicinarsi al limite di Cloudflare." % (eventi_del_mese(events), LIVE_PAUSA_PIENO // 60))
     running = [e for e in events if e["status"] == "running"]
     todo = running + [e for e in recent_unfinished(events) if e not in running]
     if not todo:
@@ -519,6 +619,7 @@ def live_cycle(write):
         print("Raggiunto il massimo di richieste di questo controllo: il resto al prossimo.")
     if write and save_index(events):
         changed = True
+    cut_active = any(e["status"] == "running" and cut_state.get(e["id"]) for e in events)
     return changed, any(e["status"] == "running" for e in events)
 
 
@@ -558,13 +659,14 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
             return 0
         if max_cycles and n >= max_cycles:
             return 0
-        wait = LIVE_PAUSA if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
+        pausa = LIVE_PAUSA_PIENO if mese_pieno else LIVE_PAUSA
+        wait = (LIVE_PAUSA_CUT if cut_active else pausa) if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
         if now() - t0 + wait > max_run:
             print("Limite di tempo quasi raggiunto: mi fermo, riparte il prossimo giro programmato.")
             if write and commit and cf_enabled():
                 git_publish()
             return 0
-        print("Controllo %d fatto%s. Prossimo tra %.0f minuti." % (n, " (dati nuovi salvati)" if (write and changed) else "", wait / 60.0))
+        print("Controllo %d fatto%s. Prossimo tra %.0f minuti." % (n, (" (dati nuovi salvati)" if (write and changed) else "") + (" - Top 8 in corso" if cut_active else ""), wait / 60.0))
         sleep(wait)
 
 
@@ -583,6 +685,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
+    print("Versione del collettore: 2026-10-31 (salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
