@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T03:43:58+00:00",
+ "updated": "2026-10-31T05:58:22+00:00",
  "events": [
   {
    "name": "The Treasure Hunt #18",
@@ -167,23 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8ed86115c12b73a59fa3b/details"
   },
   {
-   "name": "OTS Pokemon VGC Arena Poke_Nurd Birthday Special",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-30",
-   "time": "22:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ab1957bf127b1b52c27ef88/details"
-  },
-  {
    "name": "Friday Fight Night 79! $50 Prize & Team Report",
-   "org": "Team Rainbow Gaming",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -193,7 +178,7 @@
    "bo": null,
    "date": "2026-10-30",
    "time": "23:00",
-   "players": 125,
+   "players": 96,
    "url": "https://play.limitlesstcg.com/tournament/6adc561191617679e849fa45/details"
   },
   {
@@ -301,7 +286,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "07:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6acf1e8a8a8383117e3eb877/details"
   },
   {
@@ -331,7 +316,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad770ef115c12b73a5a84ab/details"
   },
   {
@@ -346,7 +331,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "14:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad633a8115c12b73a5a79cc/details"
   },
   {
@@ -376,7 +361,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "16:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae4113e80a8f79408d21623/details"
   },
   {
@@ -406,7 +391,7 @@
    "bo": null,
    "date": "2026-10-31",
    "time": "18:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
   },
   {
@@ -505,7 +490,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "00:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6adfd18d22fd412b92a4daab/details"
   },
   {
@@ -550,7 +535,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
@@ -580,7 +565,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
   },
   {
@@ -775,7 +760,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -929,6 +914,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
+   "name": "Friday Fight Night 80! $50 Prize & Team Report",
+   "org": "Team Rainbow Gaming",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "00:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
+  },
+  {
    "name": "ValkrixVGC Pokemon Champions League #09",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -1000,7 +1000,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "02:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adf703080a8f79408d1e98c/details"
   },
   {
