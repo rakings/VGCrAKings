@@ -12,7 +12,7 @@ var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
 function go(k){var i=(start+k)%n;
 return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;LASTSRC=i;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
 return go(0)}
-var S={br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
+var S={rf:"",br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
 function vkey(){return S.sec==="arc"?"arc":S.sec+"|"+S.ev+"|"+(S.mon||"")}
@@ -56,10 +56,11 @@ function evSel(tot){var og={},ord=[];(IDX.events||[]).forEach(function(e){var g=
 ord.sort(function(a,b){return a===IDX.current?-1:b===IDX.current?1:0});
 var h='<select id="vg-ev" aria-label="Regionale">';
 if(tot)h+='<option value="tot"'+(S.ev==="tot"?" selected":"")+'>Tutti i regionali ('+E(regLabel(S.treg||IDX.current))+')</option>';
-ord.forEach(function(g){h+='<optgroup label="'+E(regLabel(g)+(g===IDX.current?" (attuale)":""))+'">'+og[g].map(function(e){return'<option value="'+e.id+'"'+(S.ev===e.id?" selected":"")+(e.collected?"":" disabled")+'>'+E(e.city)+(e.collected?"":" · da raccogliere")+'</option>'}).join("")+"</optgroup>"});
+ord.forEach(function(g){h+='<optgroup label="'+E(regLabel(g)+(g===IDX.current?" (attuale)":""))+'">'+og[g].map(function(e){return'<option value="'+e.id+'"'+(S.ev===e.id?" selected":"")+(e.collected?"":" disabled")+'>'+E(e.city)+(e.status==="running"?" · in corso":"")+(e.collected?"":" · da raccogliere")+'</option>'}).join("")+"</optgroup>"});
 return h+"</select>"}
 function foot(){var sr=(BASES.length>1&&LASTSRC>=0)?" · dati serviti da "+(LASTSRC===0?"Cloudflare":"GitHub (riserva)"):"";return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · classifica non ufficiale'+sr+'</p>'}
-function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <span class="vg-mute vg-chk">'+(LIVE_CHK&&LIVE_CHK.ev===S.ev?LIVE_CHK.txt:"· si aggiorna da solo")+'</span> <button class="btn sm" type="button" data-vg="refresh">Aggiorna</button></div>'}
+function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <span class="vg-mute vg-chk">'+(LIVE_CHK&&LIVE_CHK.ev===S.ev?LIVE_CHK.txt:"· si aggiorna da solo")+'</span> <button class="btn sm" type="button" data-vg="refresh">'+rfTxt()+'</button></div>'}
+function rfTxt(){return S.rf==="new"?"Aggiornato ✓":S.rf==="same"?"Già aggiornato ✓":S.rf==="err"?"Non riuscito · riprova":"↻ Aggiorna"}
 function paste(id,pid){var t=D[id]&&D[id].tm[pid];if(!t)return"";return t.map(function(m){var ex=m[6]||{};return m[1]+(m[2]?" @ "+m[2]:"")+"\n"+(m[3]?"Ability: "+m[3]+"\n":"")+(ex["Tera Type"]?"Tera Type: "+ex["Tera Type"]+"\n":"")+(m[4]?m[4]+" Nature\n":"")+(m[5]||[]).map(function(x){return"- "+x}).join("\n")}).join("\n\n")}
 function copyBtn(id,pid){var t=paste(id,pid);return t?'<button class="btn sm" type="button" data-copy="'+E(t)+'">Copia la squadra</button>':'<span class="vg-mute">Squadra non pubblicata</span>'}
 
@@ -88,6 +89,21 @@ function szOf(d){if(d.sz)return d.sz;var m=d.m;return{all:m.players,top:Math.min
    Se un'icona non esiste, sparisce da sola e resta il nome scritto. */
 function itSlug(n){return String(n||"").toLowerCase().replace(/['\u2019.]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
 function itIcon(n){var T=window.VGCS_ICONS,k=itSlug(n);if(!T||!k)return"";return'<img class="vg-it" alt="" loading="lazy" decoding="async" width="20" height="20" src="'+E(String(T).replace("{id}",k))+'" onerror="this.style.display=\'none\'">'}
+/* ---------- tipi dei Pokemon e categoria delle mosse (bollini) ----------
+   I dati stanno in vgcstats/ref.json: tipi di ogni Pokemon e categoria di ogni mossa (fisica, speciale, stato), presi dal database del calcolatore (Smogon).
+   Se un Pokemon o una mossa non e' nell'elenco, il bollino semplicemente non compare. */
+var REF={t:{},m:{}};
+var TY={Normal:["NOR","Normale","#A8A77A"],Fire:["FUO","Fuoco","#EE8130"],Water:["ACQ","Acqua","#6390F0"],Electric:["ELE","Elettro","#F7D02C"],Grass:["ERB","Erba","#7AC74C"],Ice:["GHI","Ghiaccio","#96D9D6"],Fighting:["LOT","Lotta","#C22E28"],Poison:["VEL","Veleno","#A33EA1"],Ground:["TER","Terra","#E2BF65"],Flying:["VOL","Volante","#A98FF3"],Psychic:["PSI","Psico","#F95587"],Bug:["COL","Coleottero","#A6B91A"],Rock:["ROC","Roccia","#B6A136"],Ghost:["SPE","Spettro","#735797"],Dragon:["DRA","Drago","#6F35FC"],Dark:["BUI","Buio","#705746"],Steel:["ACC","Acciaio","#B7B7CE"],Fairy:["FOL","Folletto","#D685AD"]};
+function tcol(h){var r=parseInt(h.substr(1,2),16),g=parseInt(h.substr(3,2),16),b=parseInt(h.substr(5,2),16);return(0.299*r+0.587*g+0.114*b)>150?"#1d1d1f":"#fff"}
+function tyHtml(slug){var t=REF.t&&REF.t[slug];if(!t)return"";var h="";t.split("/").forEach(function(x){var o=TY[x];if(o)h+='<i class="vg-ty" style="background:'+o[2]+";color:"+tcol(o[2])+'" title="'+o[1]+'">'+o[0]+"</i>"});return h?'<span class="vg-tys">'+h+"</span>":""}
+var CTN={P:"Fisica",S:"Speciale",T:"Stato"};
+var CTS={P:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#D6492B"/><polygon points="8.0,1.3 9.2,5.1 12.7,3.3 10.9,6.8 14.7,8.0 10.9,9.2 12.7,12.7 9.2,10.9 8.0,14.7 6.8,10.9 3.3,12.7 5.1,9.2 1.3,8.0 5.1,6.8 3.3,3.3 6.8,5.1" fill="#fff"/></svg>',
+S:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#2F6FD1"/><circle cx="8" cy="8" r="4.7" fill="none" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="8" r="1.7" fill="#fff"/></svg>',
+T:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#7D8591"/><ellipse cx="8" cy="8" rx="5.4" ry="2.6" fill="none" stroke="#fff" stroke-width="1.5"/><circle cx="8" cy="8" r="1.2" fill="#fff"/></svg>'};
+function ctIcon(c){return'<span class="vg-ct" role="img" aria-label="'+CTN[c]+'" title="'+CTN[c]+'">'+CTS[c]+"</span>"}
+function catIcon(n){var m=REF.m,c=m&&(m[n]||m[String(n).replace(/\u2019/g,"'")]);return c&&CTS[c]?ctIcon(c):""}
+function mvHtml(a){if(!a||!a.length)return"";return'<div class="vg-mv">'+a.map(function(x){return"<span>"+catIcon(x)+E(x)+"</span>"}).join("")+"</div>"}
+function catLegend(){return REF.m&&Object.keys(REF.m).length?'<p class="vg-leg">'+ctIcon("P")+" Fisica &nbsp;"+ctIcon("S")+" Speciale &nbsp;"+ctIcon("T")+" Stato</p>":""}
 /* ---------- tabellone Top 8 ----------
    Si ricostruisce dai turni dopo la swiss: nei turni a eliminazione restano in gara 8 giocatori (quarti), poi 4 (semifinali), poi 2 (finale).
    Se i dati non tornano (coppie non reciproche, numeri diversi) il tabellone non si mostra. Funziona anche durante il torneo. */
@@ -128,7 +144,7 @@ if(c[1].length)c[1].forEach(function(m){h+=matchHtml(d,m)});else h+='<div class=
 h+="</div>"}
 return h+"</div>"}
 
-function bars(t,a,tot){if(!a||!a.length)return"";var mx=a[0][1],h='<div class="vg-box"><h3>'+E(t)+"</h3>";a.forEach(function(x){h+='<div class="vg-bar"><span>'+(t==="Strumento"?itIcon(x[0]):"")+E(x[0])+'</span><i style="width:'+Math.max(3,Math.round(x[1]/mx*100))+'%"></i><span>'+x[1]+" · "+pc(x[1],tot)+"%</span></div>"});return h+"</div>"}
+function bars(t,a,tot){if(!a||!a.length)return"";var mx=a[0][1],h='<div class="vg-box"><h3>'+E(t)+"</h3>"+(t==="Mosse"?catLegend():"");a.forEach(function(x){h+='<div class="vg-bar"><span>'+(t==="Strumento"?itIcon(x[0]):t==="Mosse"?catIcon(x[0]):"")+E(x[0])+(t==="Compagni di squadra"?tyHtml(x[2]):"")+'</span><i style="width:'+Math.max(3,Math.round(x[1]/mx*100))+'%"></i><span>'+x[1]+" · "+pc(x[1],tot)+"%</span></div>"});return h+"</div>"}
 function resPok(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';
 if(S.mon)return detail(d);var sz=szOf(d),tot=sz[S.g]||0,f=S.pq.toLowerCase();
 var a=d.pk.filter(function(p){return!f||p.name.toLowerCase().indexOf(f)>=0});
@@ -136,13 +152,13 @@ var key={cnt:val,wr:function(p){return p.wins+p.losses?p.wins/(p.wins+p.losses):
 a=a.slice().sort(function(x,y){return key(y)-key(x)});
 var h=(d.tot?'<div class="vg-box"><span class="vg-mute">Somma di '+d.n+' regionali con dati. Strumenti e mosse sono sulla Top 256 di ciascuno.</span></div>':liveBox(d.m))+'<p class="vg-sum">'+sz.all+" giocatori"+(sz.ph2?" · "+sz.ph2+" in fase 2":"")+" · strumenti, mosse e nature sulla Top 256</p>";
 h+='<div class="vg-tw"><table class="vg-t"><thead><tr><th>Pokémon</th><th>'+(S.g==="all"?"Usati":"Usati ("+GR[S.g]+")")+"</th><th>Vitt.</th><th>Top 256</th><th>Fase 2</th></tr></thead><tbody>";
-h+=a.map(function(p){return'<tr class="vg-r" data-vg="mon" data-id="'+E(p.slug)+'"><td>'+dot(p.name)+" "+E(p.name)+"</td><td>"+val(p)+(tot?" · "+pc(val(p),tot)+"%":"")+"</td><td>"+wr(p.wins,p.losses)+"</td><td>"+p.top256+"</td><td>"+p.day2+"</td></tr>"}).join("")||'<tr><td colspan="5">Nessun Pokémon trovato. Controlla il nome.</td></tr>';
+h+=a.map(function(p){return'<tr class="vg-r" data-vg="mon" data-id="'+E(p.slug)+'"><td>'+dot(p.name)+" "+E(p.name)+tyHtml(p.slug)+"</td><td>"+val(p)+(tot?" · "+pc(val(p),tot)+"%":"")+"</td><td>"+wr(p.wins,p.losses)+"</td><td>"+p.top256+"</td><td>"+p.day2+"</td></tr>"}).join("")||'<tr><td colspan="5">Nessun Pokémon trovato. Controlla il nome.</td></tr>';
 return h+"</tbody></table></div>"+foot()}
-function detail(d){var p=d.pk.filter(function(x){return x.slug===S.mon})[0];if(!p)return"";var sz=szOf(d),h='<button class="vg-back" type="button" data-vg="bkm">← Torna all’elenco</button><h2 class="vg-h">'+dot(p.name)+" "+E(p.name)+"</h2>";
+function detail(d){var p=d.pk.filter(function(x){return x.slug===S.mon})[0];if(!p)return"";var sz=szOf(d),h='<button class="vg-back" type="button" data-vg="bkm">← Torna all’elenco</button><h2 class="vg-h">'+dot(p.name)+" "+E(p.name)+tyHtml(p.slug)+"</h2>";
 h+='<div class="vg-grid"><div><b>'+p.count+"</b><small>Usati ("+pc(p.count,sz.all)+"%)</small></div><div><b>"+wr(p.wins,p.losses)+"</b><small>Vittorie</small></div><div><b>"+p.top256+"</b><small>Top 256</small></div><div><b>"+p.day2+"</b><small>Fase 2</small></div><div><b>"+p.cut+"</b><small>Top cut</small></div><div><b>"+pc(p.day2,p.count)+"%</b><small>Arrivo in fase 2</small></div></div>";
 if(p.sample){h+='<p class="vg-mute">Nella Top 256: '+p.sample+" giocatori con "+E(p.name)+". Ogni voce con il suo numero.</p>"+bars("Natura",p.nature,p.sample)+bars("Strumento",p.item,p.sample)+bars("Abilità",p.ability,p.sample)+bars("Mosse",p.moves,p.sample);Object.keys(p.extra||{}).forEach(function(k){h+=bars(k,p.extra[k],p.sample)})}
 else h+='<div class="vg-box vg-mute">Per questo Pokémon non ci sono squadre pubblicate nella Top 256.</div>';
-if(p.partners&&p.partners.length)h+=bars("Compagni di squadra",p.partners.map(function(x){return[nameOf(d,x[0]),x[1]]}),p.count);
+if(p.partners&&p.partners.length)h+=bars("Compagni di squadra",p.partners.map(function(x){return[nameOf(d,x[0]),x[1],x[0]]}),p.count);
 if(!d.tot&&p.players&&p.players.length){h+='<div class="vg-box"><h3>Giocatori che lo hanno usato</h3>'+p.players.map(function(id){return d.by[id]}).filter(Boolean).sort(function(a,b){return a[3]-b[3]}).map(function(r){return'<div class="vg-pl"><span><b>'+r[3]+"°</b> "+E(r[1])+' <small class="vg-mute">'+E(r[2])+" · "+r[4]+"-"+r[5]+"</small>"+italia(r[2])+'</span><span class="vg-btns"><button class="btn sm" type="button" data-vg="gosw" data-id="'+r[0]+'">Swiss</button>'+copyBtn(S.ev,r[0])+"</span></div>"}).join("")+"</div>"}
 return h+foot()}
 function nameOf(d,slug){var f=d.pk.filter(function(x){return x.slug===slug})[0];return f?f.name:slug.replace(/-/g," ").replace(/\b\w/g,function(c){return c.toUpperCase()})}
@@ -155,7 +171,7 @@ function panel(d,id){var p=d.by[id],rows=(d.sw.p[id]||[]),h='<div class="vg-pan"
 rows.forEach(function(x,i){var e=parse(x);if(!e){h+='<tr><td>R'+(i+1)+'</td><td colspan="3" class="vg-mute">–</td></tr>';return}
 var o=e.o>0?d.by[e.o]:null;h+='<tr><td>R'+(i+1)+"</td><td>"+(e.r==="B"?'<span class="vg-mute">Bye</span>':o?'<button class="vg-lnk" type="button" data-vg="opp" data-id="'+o[0]+'">'+E(o[1])+'</button> <small class="vg-mute">'+E(o[2])+"</small>":'<span class="vg-mute">Avversario non identificato</span>')+'</td><td class="vg-mute">'+(o?o[4]+"-"+o[5]:"")+'</td><td class="'+(e.r==="L"?"L":e.r==="W"||e.r==="B"?"W":"")+'">'+RES[e.r]+"</td></tr>"});
 h+="</tbody></table>";
-var t=d.tm[id];if(t){h+='<div class="vg-team"><div class="vg-trow"><b>Squadra</b>'+copyBtn(S.ev,id)+"</div>"+t.map(function(m){return'<div class="vg-mon">'+dot(m[1])+" <b>"+E(m[1])+'</b> <small class="vg-mute">'+itIcon(m[2])+E([m[2],m[3],m[4]].filter(Boolean).join(" · "))+"</small></div>"}).join("")+"</div>"}
+var t=d.tm[id];if(t){h+='<div class="vg-team"><div class="vg-trow"><b>Squadra</b>'+copyBtn(S.ev,id)+"</div>"+t.map(function(m){return'<div class="vg-mon">'+dot(m[1])+" <b>"+E(m[1])+"</b>"+tyHtml(m[0])+' <small class="vg-mute">'+itIcon(m[2])+E([m[2],m[3],m[4]].filter(Boolean).join(" · "))+"</small>"+mvHtml(m[5])+"</div>"}).join("")+"</div>"}
 else if(p&&p[8])h+='<div class="vg-team"><b>Squadra</b><div class="vg-mute">'+E(p[8].split(",").map(function(s){return nameOf(d,s)}).join(" · "))+"</div></div>";
 return h+"</div>"}
 function resSwi(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';var f=S.sq.toLowerCase(),a=d.pl.filter(function(r){return(!f||r[1].toLowerCase().indexOf(f)>=0||r[2].toLowerCase()===f)&&(!S.onlyIt||r[2]==="IT")});
@@ -171,7 +187,7 @@ function drawRes(){var el=host.querySelector("#vg-res");if(!el)return;
 if(S.sec==="arc"){el.innerHTML=resArc();return}
 el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
 cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
-function draw(){if(!host)return;if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
+function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 host.innerHTML='<h2 class="vg-title">VGC Stats</h2><p class="vg-sub">Statistiche dei regionali VGC: Pokémon, strumenti, nature, mosse e swiss di ogni giocatore.</p>'+seg()+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
 function drawKeep(){var y=window.scrollY;draw();window.scrollTo(0,y)}
 
@@ -192,7 +208,11 @@ else if(a==="br"){S.br=!S.br;drawRes()}
 else if(a==="opp"||a==="gosw"){S.sq="";S.onlyIt=false;setOpen(id,true);if(a==="gosw"){S.sec="swi";S.mon=null}
 var d=D[S.ev],i=d?d.pl.findIndex(function(r){return String(r[0])===String(id)}):0;if(i>=S.shown)S.shown=i+1;draw();
 setTimeout(function(){var el=document.getElementById("vgp-"+id);if(el){el.scrollIntoView({block:"start"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},1600)}},120)}
-else if(a==="refresh"){var x=S.ev;delete D[x];Object.keys(C).forEach(function(k){if(k.indexOf(x+"/")===0)delete C[k]});loadEv(x,true).then(function(d){D[x]=d;drawRes()}).catch(drawRes)}}
+else if(a==="refresh"){var x=S.ev;if(!x||x==="tot"||t.disabled)return;var keep=D[x],old=keep&&keep.m&&keep.m.updated,t0=Date.now();t.disabled=true;t.textContent="Aggiorno…";
+delete D[x];Object.keys(C).forEach(function(k){if(k.indexOf(x+"/")===0)delete C[k]});
+loadEv(x,true).then(function(d){return{ok:1,nuovo:!!(old&&d&&d.m&&d.m.updated!==old)}},function(){D[x]=keep;return{ok:0}}).then(function(r){
+setTimeout(function(){if(S.ev!==x)return;if(r.ok)setChk();S.rf=!r.ok?"err":r.nuovo?"new":"same";drawRes();
+setTimeout(function(){S.rf="";var b=host&&host.querySelector('[data-vg="refresh"]');if(b){b.textContent="↻ Aggiorna";b.disabled=false}},2500)},Math.max(0,700-(Date.now()-t0)))})}}
 function firstEv(){var e=IDX.events.filter(function(x){return x.collected&&x.reg===IDX.current})[0]||IDX.events.filter(function(x){return x.collected})[0];return e?e.id:null}
 function onClick(ev){var t=ev.target.closest("[data-vg]");if(!t||!host||!host.contains(t))return;act(t)}
 function onInput(ev){var t=ev.target,id=t.id;if(id==="vg-q"){S.q=t.value.trim();drawRes()}else if(id==="vg-pq"){S.pq=t.value.trim();drawRes()}else if(id==="vg-sq"){S.sq=t.value.trim();S.shown=80;drawRes()}}
@@ -212,7 +232,13 @@ if(!p){DOWN=Date.now()+600000;return r}
 if(r&&String(r.updated)>String(p.updated)){DOWN=Date.now()+3600000;return r}
 return p});
 C["index.json"]=q;q.catch(function(){delete C["index.json"]});return q}
-function init(){return firstIndex().then(function(x){IDX=x;S.treg=x.current;return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+/* dopo un aggiornamento della pagina si resta dove eri: sezione e torneo si ricordano (solo in questa scheda del browser) */
+function isReload(){try{var n=performance.getEntriesByType("navigation")[0];return n?n.type==="reload":!!(performance.navigation&&performance.navigation.type===1)}catch(e){return false}}
+function navSave(){try{sessionStorage.setItem("vgcs-nav",JSON.stringify({s:S.sec,e:S.ev&&S.ev!=="tot"?S.ev:""}))}catch(e){}}
+function navRestore(){if(!isReload())return;try{var n=JSON.parse(sessionStorage.getItem("vgcs-nav")||"null");if(!n)return;if(n.s==="arc"||n.s==="pok"||n.s==="swi")S.sec=n.s;if(n.e&&IDX.events.some(function(e){return e.id===n.e&&e.collected}))S.ev=n.e}catch(e){}}
+/* il regionale in corso sta sempre in cima, anche se Pokedata non gli da una data */
+function inCorsoPrima(a){var r=[],o=[];(a||[]).forEach(function(e){(e.status==="running"?r:o).push(e)});return r.concat(o)}
+function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
 /* ---------- aggiornamento automatico (solo regionale in corso) ----------
    Pensato per tanta gente insieme: ogni controllo e' UNA richiesta a un file minuscolo (meta.json), senza numeri casuali
    nell'indirizzo (cosi' risponde la copia gia' pronta di GitHub e non il server), con tempi un po' sfalsati per ogni telefono.
@@ -251,7 +277,7 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 
 /* Tabella dei Pokemon: le colonne dei numeri non vanno a capo ("16,7" e "%" restavano separati); i nomi lunghi possono andare su due righe. */
 (function(){try{if(document.getElementById("vgcs-fix-tab"))return;var st=document.createElement("style");st.id="vgcs-fix-tab";
-st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}";
+st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}.vgcs-host .vg-live .btn{min-height:34px;padding:5px 12px;font-weight:700;margin-left:4px}.vgcs-host .vg-tys{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle;flex-wrap:nowrap}.vgcs-host .vg-ty{font-style:normal;font-weight:700;font-size:.55rem;line-height:1;padding:2px 4px;border-radius:7px;min-width:25px;text-align:center;letter-spacing:.02em;font-family:inherit}.vgcs-host .vg-t td .vg-tys{display:flex;margin:3px 0 0 18px}.vgcs-host .vg-h .vg-tys{margin-left:8px}.vgcs-host .vg-ct{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:4px;flex:none}.vgcs-host .vg-ct svg{display:block;width:15px;height:15px}.vgcs-host .vg-mv{display:flex;flex-wrap:wrap;gap:0 6px;flex:0 0 calc(100% - 18px);margin:-4px 0 3px 18px;font-size:.65rem;line-height:1.35;color:var(--mute)}.vgcs-host .vg-mv>span{white-space:nowrap}.vgcs-host .vg-mv .vg-ct{width:10px;height:10px;margin-right:1px;vertical-align:-1px}.vgcs-host .vg-mv .vg-ct svg{width:10px;height:10px}.vgcs-host .vg-leg{margin:-2px 0 8px;font-size:.72rem;color:var(--mute)}.vgcs-host .vg-leg .vg-ct{width:13px;height:13px;margin-right:3px;vertical-align:-2px}.vgcs-host .vg-leg .vg-ct svg{width:13px;height:13px}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
 window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
