@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T01:44:49+00:00",
+ "updated": "2026-11-01T03:49:35+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -170,23 +170,8 @@
    "signup": null
   },
   {
-   "name": "Cursed Classic Cup (Halloween Special)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "19:15",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
-  },
-  {
    "name": "Thavorian Skies Halloween Hullabaloo",
-   "org": "Thavorian Skies",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -314,21 +299,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "Caramelo Raro- De pago",
-   "org": "Papuno - Caramelo Raro",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "02:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6accf67d8a8383117e3ea309/details"
-  },
-  {
    "name": "Same First Letter",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -340,7 +310,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "09:30",
-   "players": 33,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
@@ -355,8 +325,23 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
+  },
+  {
+   "name": "Raichu Rivalry | Sunday Night VGC",
+   "org": "Raichu Rivalry VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "14:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ae6a921ae67092a407406fd/details"
   },
   {
    "name": "Sunday Showdown #4",
@@ -370,8 +355,23 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 37,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
+  },
+  {
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 17,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "🎃Astral",
@@ -389,8 +389,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
-   "name": "ValkrixVGC Pokemon Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "FINISTERRAE SERIES VGC #5",
+   "org": "FINISTERRAE SERIES",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -399,9 +399,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-01",
-   "time": "15:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+   "time": "17:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
   },
   {
    "name": "VGC Trainer School; champions M/C #5",
@@ -417,21 +417,6 @@
    "time": "17:00",
    "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
-  },
-  {
-   "name": "FINISTERRAE SERIES VGC #5",
-   "org": "FINISTERRAE SERIES",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "17:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
   },
   {
    "name": "Chaos League Sunday Slam #119",
@@ -475,7 +460,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -779,21 +764,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
-   "name": "Intimidators Challenge Ultimate - Road to LAIC",
-   "org": "INTIMIDATORS VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
-  },
-  {
    "name": "Underground Champions [$100 Tournament]",
    "org": "The Underground",
    "mode": "online",
@@ -807,6 +777,21 @@
    "time": "17:00",
    "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
+  },
+  {
+   "name": "Intimidators Challenge Ultimate - Road to LAIC",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "17:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
   },
   {
    "name": "🇧🇷 Hit Flash #3 | Pokémon Champions",
@@ -942,6 +927,21 @@
    "time": "19:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#82",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "00:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
    "name": "Hatterene Series Weekly #11 2027 - 7PM EST - M-C",
