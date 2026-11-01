@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T06:02:32+00:00",
+ "updated": "2026-11-01T07:53:20+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -239,36 +239,6 @@
    "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
-   "name": "MEGA  CHAMPIONSHIPS SERIES #1 EDITION",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "00:30",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ae66e79ae67092a407403fd/details"
-  },
-  {
-   "name": "VGC UU Regulation M-C \"Houston Regional 2027\"",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "00:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6adfd18d22fd412b92a4daab/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #8 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -325,7 +295,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae6a921ae67092a407406fd/details"
   },
   {
@@ -355,7 +325,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
@@ -370,7 +340,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
@@ -400,7 +370,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
@@ -580,7 +550,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
