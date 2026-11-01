@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T14:55:59+00:00",
+ "updated": "2026-11-01T16:02:26+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -170,21 +170,6 @@
    "signup": null
   },
   {
-   "name": "Halloween Cup 🎃 | Champions M-C series",
-   "org": "Battle Chateau",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "13:00",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6ada2a74115c12b73a5a9a20/details"
-  },
-  {
    "name": "Corner Clash",
    "org": "Raichu Rivalry VGC",
    "mode": "online",
@@ -239,6 +224,36 @@
    "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
+   "name": "Sunday Showdown #4",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "14:30",
+   "players": 32,
+   "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
+  },
+  {
+   "name": "Outlanders Halloween Special: Ominous Wind",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "14:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
+  },
+  {
    "name": "Same First Letter",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -284,51 +299,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
-   "name": "Sunday Showdown #4",
-   "org": "BoTS PTCG Pocket",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "14:30",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
-  },
-  {
-   "name": "Outlanders Halloween Special: Ominous Wind",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "14:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
-  },
-  {
-   "name": "Raichu Rivalry | Sunday Night VGC",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "14:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ae6a921ae67092a407406fd/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #8 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -355,7 +325,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
   },
   {
@@ -370,7 +340,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 20,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
@@ -400,7 +370,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -415,7 +385,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -520,7 +490,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -685,7 +655,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -700,7 +670,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -730,7 +700,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -775,7 +745,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 68,
+   "players": 71,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
