@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T07:53:20+00:00",
+ "updated": "2026-11-01T09:24:45+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -254,21 +254,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "Same First Letter",
-   "org": "Mahir PokéVgc",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "09:30",
-   "players": 39,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
-  },
-  {
    "name": "Outlanders Halloween Special: Ominous Wind",
    "org": "Outlanders Trainers' Camp",
    "mode": "online",
@@ -280,7 +265,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae1d35922fd412b92a4e8c9/details"
   },
   {
@@ -295,7 +280,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae6a921ae67092a407406fd/details"
   },
   {
@@ -325,7 +310,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
@@ -340,8 +325,23 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "15:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
+  },
+  {
+   "name": "Same First Letter",
+   "org": "Mahir PokéVgc",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "09:30",
+   "players": 41,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8b6648a8383117e3f0a35/details"
   },
   {
    "name": "FINISTERRAE SERIES VGC #5",
@@ -355,7 +355,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
   },
   {
@@ -370,7 +370,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
@@ -400,7 +400,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -520,7 +520,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -719,21 +719,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
-   "name": "Underground Champions [$100 Tournament]",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$1",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "17:00",
-   "players": 65,
-   "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
-  },
-  {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -747,6 +732,21 @@
    "time": "17:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
+  },
+  {
+   "name": "Underground Champions [$100 Tournament]",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$1",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "17:00",
+   "players": 66,
+   "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
    "name": "🇧🇷 Hit Flash #3 | Pokémon Champions",
