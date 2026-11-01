@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T17:50:37+00:00",
+ "updated": "2026-11-01T19:03:49+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -224,6 +224,21 @@
    "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
+   "name": "FINISTERRAE SERIES VGC #5",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "17:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
+  },
+  {
    "name": "🎃Astral's Event | Phantom Dive 👻 | Shiny Prizes✨",
    "org": "",
    "mode": "online",
@@ -284,21 +299,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
-   "name": "FINISTERRAE SERIES VGC #5",
-   "org": "FINISTERRAE SERIES",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "17:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
-  },
-  {
    "name": "Same First Letter",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -355,7 +355,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "23:00",
-   "players": 6,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae38d4680a8f79408d20fa1/details"
   },
   {
@@ -370,7 +370,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -385,7 +385,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 15,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -490,7 +490,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -520,7 +520,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -565,7 +565,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 135,
+   "players": 136,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -749,21 +749,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
   },
   {
-   "name": "Underground Champions [$100 Tournament]",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$1",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "17:00",
-   "players": 73,
-   "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
-  },
-  {
    "name": "🇧🇷 Hit Flash #3 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -837,6 +822,21 @@
    "time": "13:00",
    "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ae10c7780a8f79408d1fa89/details"
+  },
+  {
+   "name": "Women",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "21:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ada936497e21d82e5c6cd37/details"
   },
   {
    "name": "Women",
