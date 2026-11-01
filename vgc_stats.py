@@ -65,6 +65,7 @@ used = 0
 budget = 3
 cut_state = {}         # id regionale -> True se nell'ultimo controllo era in corso la Top 8
 mese_pieno = False      # True se nel mese in corso sono gia' iniziati almeno EVENTI_MESE_PIENO tornei
+turno_nuovo = False       # True se in questo giro e' comparso un round nuovo (pairings appena pubblicati)
 fine_avvisati = set()     # regionali per cui e' gia' comparso l'avviso «finale finita da piu' di un'ora»
 avvisati = set()         # regionali per cui e' gia' comparso l'avviso «finito ma ancora vivo»
 cut_active = False     # True se almeno un regionale in corso e' nella fase a eliminazione diretta
@@ -413,6 +414,9 @@ def collect(ev, write):
     folder = os.path.join(OUT, tid)
     old = load(os.path.join(folder, "meta.json"), {})
     finale_alle = (old.get("finale_alle") or int(time.time())) if finale_decisa(swiss) else None
+    global turno_nuovo
+    if old.get("rounds") and swiss_total > old["rounds"]:
+        turno_nuovo = True
     meta = {"id": tid, "name": ev["name"], "city": ev["city"], "date": ev["start"], "end": ev["end"], "reg": ev["reg"],
             "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished", "finale_alle": finale_alle,
             "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "Pokedata (apiv3), dati RK9",
@@ -442,6 +446,7 @@ LIVE_MAX = 5 * 60
 LIVE_PAUSA = 10 * 60       # dopo un salvataggio con dati nuovi: nessun controllo per 10 minuti, poi uno subito (misurato al Day 1 di Danzica: ~4 pubblicazioni/ora con 12 minuti)
 LIVE_PAUSA_PIENO = 12 * 60  # dal 4° torneo del mese in poi la pausa sale a 12 minuti (per non avvicinarsi al limite di pubblicazioni di Cloudflare)
 EVENTI_MESE_PIENO = 4
+LIVE_RILANCIO_DA = 292 * 60  # dopo 4 ore e 52 di lavoro: il cambio turno avviene al primo round nuovo (pairings appena usciti); la finestra fino al limite dura 53 minuti, quanto un round
 FINALE_ORE = 1             # dopo la finale della Top 8 (risultato scritto) si continua per 1 ora, poi ultimo salvataggio e stop
 FINITO_PRESTO_ORE = 3      # Pokedata puo' segnare "finito" un regionale in due fasi mentre il giorno 2 e' ancora da giocare: se lo avevamo visto in corso e i suoi dati sono stati aggiornati da meno di 3 ore, si continua a seguirlo
 LIVE_PAUSA_CUT = 5 * 60    # durante la Top 8 (quarti, semifinali, finale): la pausa dopo un salvataggio con dati nuovi e' di 5 minuti
@@ -604,16 +609,36 @@ def parse_utc(txt):
 
 
 def ancora_vivo(e, t=None):
-    """Pokedata dice 'finito', ma lo avevamo visto in corso, non e' stato completato e i dati sono stati aggiornati da poco:
-    di solito e' la pausa tra i due giorni o l'inizio della fase 2. Si continua a seguirlo."""
-    if e.get("status") != "finished" or not e.get("updated"):
+    """Pokedata dice 'finito', ma lo avevamo visto in corso, non e' stato completato e i dati si muovono ancora: di solito e' la
+    pausa tra i due giorni o la fase 2. Conta l'ultimo cambiamento dei NOSTRI dati (meta.updated) oppure l'orario di Pokedata
+    (che pero' viene scritto una volta sola, quando segna 'finito', quindi da solo non basta). Si continua a seguirlo."""
+    if e.get("status") != "finished":
         return False
     meta = load(os.path.join(OUT, e["id"], "meta.json"), {})
     if meta.get("status") != "running" or meta.get("complete"):
         return False
-    ts = parse_utc(e["updated"])
     t = time.time() if t is None else t
-    return ts is not None and -600 <= t - ts < FINITO_PRESTO_ORE * 3600
+    for txt in (e.get("updated") or "", (meta.get("updated") or "")[:16] + ":00" if meta.get("updated") else ""):
+        ts = parse_utc(txt)
+        if ts is not None and -600 <= t - ts < FINITO_PRESTO_ORE * 3600:
+            return True
+    return False
+
+
+def eventi_forzati(t=None):
+    """Id dei regionali da considerare 'in corso' a mano: file forza_live.txt nella radice del repo, una riga per torneo:
+    id [ultimo giorno AAAA-MM-GG in UTC]   (le righe con # o gia' scadute sono ignorate)."""
+    oggi = time.strftime("%Y-%m-%d", time.gmtime(t if t is not None else time.time()))
+    out = set()
+    try:
+        with open(os.environ.get("VGC_FORZA_FILE") or "forza_live.txt") as f:
+            for riga in f:
+                parti = riga.split("#")[0].split()
+                if parti and not (len(parti) > 1 and parti[1] < oggi):
+                    out.add(parti[0])
+    except OSError:
+        pass
+    return out
 
 
 def eventi_del_mese(events, t=None):
@@ -632,7 +657,8 @@ def eventi_del_mese(events, t=None):
 
 def live_cycle(write):
     """Un controllo. Ritorna (dati_cambiati, ancora_in_corso)."""
-    global used, cut_active, mese_pieno
+    global used, cut_active, mese_pieno, turno_nuovo
+    turno_nuovo = False
     used = 0                                   # il limite di richieste vale per ogni controllo
     events = list_events()
     pieno = eventi_del_mese(events) >= EVENTI_MESE_PIENO
@@ -640,6 +666,7 @@ def live_cycle(write):
         mese_pieno = pieno
         if pieno:
             print("Tornei di questo mese: %d. La pausa sale a %d minuti per non avvicinarsi al limite di Cloudflare." % (eventi_del_mese(events), LIVE_PAUSA_PIENO // 60))
+    forzati = eventi_forzati()
     for e in events:
         fa = load(os.path.join(OUT, e["id"], "meta.json"), {}).get("finale_alle")
         if fa and time.time() - fa >= FINALE_ORE * 3600:
@@ -648,6 +675,12 @@ def live_cycle(write):
             if e["id"] not in fine_avvisati:
                 fine_avvisati.add(e["id"])
                 print("La finale della Top 8 di %s e' finita da piu' di %d ora: ultimo salvataggio e poi mi fermo." % (e["name"], FINALE_ORE))
+        elif e["id"] in forzati:
+            e["status"] = "running"
+            e["forzato"] = True
+            if e["id"] not in avvisati:
+                avvisati.add(e["id"])
+                print("%s tenuto in corso a mano (file forza_live.txt): lo seguo fino alla finale della Top 8 o alla data scritta nel file." % e["name"])
         elif ancora_vivo(e):
             e["status"] = "running"
             e["forzato"] = True
@@ -679,6 +712,18 @@ def live_cycle(write):
     return changed, any(e["status"] == "running" for e in events)
 
 
+def segnala_rilancio():
+    """Il tempo del lavoro sta per finire ma il torneo continua: lascia un segno e il flusso lancia subito il turno dopo,
+    senza aspettare il programma di GitHub (che puo' ritardare anche di mezz'ora o saltare un giro)."""
+    nome = os.environ.get("VGC_RILANCIA_FILE") or (".vgc_rilancia" if os.environ.get("GITHUB_ACTIONS") == "true" else "")
+    if nome:
+        try:
+            with open(nome, "w") as f:
+                f.write("1")
+        except OSError:
+            pass
+
+
 def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep=time.sleep, rnd=random.uniform):
     t0 = now()
     n = 0
@@ -701,6 +746,8 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
                 return 1
             wait = rnd(LIVE_MIN, LIVE_MAX)
             if now() - t0 + wait > max_run:
+                print("Limite di tempo quasi raggiunto: mi fermo e lancio subito il turno successivo.")
+                segnala_rilancio()
                 return 0
             sleep(wait)
             continue
@@ -715,12 +762,19 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
             return 0
         if max_cycles and n >= max_cycles:
             return 0
+        if write and turno_nuovo and now() - t0 >= LIVE_RILANCIO_DA:
+            print("Round nuovo appena iniziato dopo %d minuti di lavoro: cambio turno adesso, i primi risultati arrivano tra almeno 20 minuti." % ((now() - t0) // 60))
+            if commit and cf_enabled():
+                git_publish()
+            segnala_rilancio()
+            return 0
         pausa = LIVE_PAUSA_PIENO if mese_pieno else LIVE_PAUSA
         wait = (LIVE_PAUSA_CUT if cut_active else pausa) if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
         if now() - t0 + wait > max_run:
-            print("Limite di tempo quasi raggiunto: mi fermo, riparte il prossimo giro programmato.")
+            print("Limite di tempo quasi raggiunto: mi fermo e lancio subito il turno successivo.")
             if write and commit and cf_enabled():
                 git_publish()
+            segnala_rilancio()
             return 0
         print("Controllo %d fatto%s. Prossimo tra %.0f minuti." % (n, (" (dati nuovi salvati)" if (write and changed) else "") + (" - Top 8 in corso" if cut_active else ""), wait / 60.0))
         sleep(wait)
@@ -741,7 +795,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-01 (segue il regionale anche se Pokedata lo segna «finito» troppo presto e si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-01d (rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
