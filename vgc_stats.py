@@ -668,11 +668,12 @@ def live_cycle(write):
             print("Tornei di questo mese: %d. La pausa sale a %d minuti per non avvicinarsi al limite di Cloudflare." % (eventi_del_mese(events), LIVE_PAUSA_PIENO // 60))
     forzati = eventi_forzati()
     for e in events:
-        fa = load(os.path.join(OUT, e["id"], "meta.json"), {}).get("finale_alle")
+        meta_e = load(os.path.join(OUT, e["id"], "meta.json"), {})
+        fa = meta_e.get("finale_alle")
         if fa and time.time() - fa >= FINALE_ORE * 3600:
             e["status"] = "finished"
             e["fine_forzata"] = True
-            if e["id"] not in fine_avvisati:
+            if not meta_e.get("complete") and e["id"] not in fine_avvisati:
                 fine_avvisati.add(e["id"])
                 print("La finale della Top 8 di %s e' finita da piu' di %d ora: ultimo salvataggio e poi mi fermo." % (e["name"], FINALE_ORE))
         elif e["id"] in forzati:
@@ -795,7 +796,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-01d (rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-01e (rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
