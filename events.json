@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31T22:42:34+00:00",
+ "updated": "2026-11-01T01:44:49+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -170,7 +170,7 @@
    "signup": null
   },
   {
-   "name": "⛩️Chadweezy95 VGC Champions🎃Halloween Cup!⛩️",
+   "name": "Cursed Classic Cup (Halloween Special)",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -180,39 +180,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-10-31",
-   "time": "17:30",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ae4113e80a8f79408d21623/details"
-  },
-  {
-   "name": "RookideeVGC Qualifier| Prize Shiny Gengar",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "17:00",
-   "players": 18,
-   "url": "https://play.limitlesstcg.com/tournament/6adec64997e21d82e5c6f556/details"
-  },
-  {
-   "name": "Regulation M-C: Open League #4",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "16:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6ab96778880ed327106de094/details"
+   "time": "19:15",
+   "players": 30,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
   },
   {
    "name": "Thavorian Skies Halloween Hullabaloo",
@@ -228,36 +198,6 @@
    "time": "21:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ade640591617679e84a0e20/details"
-  },
-  {
-   "name": "Cursed Classic Cup (Halloween Special)",
-   "org": "The #1 Fanatics",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "19:00",
-   "players": 28,
-   "url": "https://play.limitlesstcg.com/tournament/6ae2eada80a8f79408d20ac0/details"
-  },
-  {
-   "name": "Stallcelth",
-   "org": "TiPl_VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "18:00",
-   "players": 34,
-   "url": "https://play.limitlesstcg.com/tournament/6ae5194bae67092a4073f564/details"
   },
   {
    "name": "Halloween Cup 🎃 | Champions M-C series",
@@ -329,8 +269,23 @@
    "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
+   "name": "MEGA  CHAMPIONSHIPS SERIES #1 EDITION",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "00:30",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ae66e79ae67092a407403fd/details"
+  },
+  {
    "name": "VGC UU Regulation M-C \"Houston Regional 2027\"",
-   "org": "VGC UU Circuit",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -415,23 +370,8 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "14:30",
-   "players": 34,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6adf52b622fd412b92a4d2e6/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 14,
-   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
    "name": "🎃Astral",
@@ -449,6 +389,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
   },
   {
+   "name": "ValkrixVGC Pokemon Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
+  },
+  {
    "name": "VGC Trainer School; champions M/C #5",
    "org": "VGC Trainers School",
    "mode": "online",
@@ -460,7 +415,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "17:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
@@ -490,7 +445,7 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "23:00",
-   "players": 1,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae38d4680a8f79408d20fa1/details"
   },
   {
@@ -505,7 +460,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 7,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -520,7 +475,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -550,7 +505,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
@@ -625,7 +580,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 13,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -655,7 +610,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -700,7 +655,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 128,
+   "players": 130,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -805,7 +760,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -835,7 +790,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
   },
   {
@@ -850,7 +805,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 62,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6acc348e115c12b73a5a1c13/details"
   },
   {
@@ -1807,7 +1762,15 @@
    "end": "2027-01-31",
    "time": null,
    "where": "Birmingham, Regno Unito",
-   "url": "https://serebii.net/playpokemon/2027/birminghamregionalchampionships.shtml"
+   "url": "https://serebii.net/playpokemon/2027/birminghamregionalchampionships.shtml",
+   "signup": "https://rk9.gg/tournament/BH02mBOy0UgfISzHnNdU",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "price": "Junior £40, Senior £40, Master £70",
+   "startAt": "2026-01-24T08:30:00Z",
+   "tz": "Europe/London",
+   "juniorAt": "2026-01-24T09:00:00Z",
+   "seniorAt": "2026-01-24T09:00:00Z"
   },
   {
    "name": "Auckland Special Event",
