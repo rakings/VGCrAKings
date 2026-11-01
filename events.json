@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T17:06:50+00:00",
+ "updated": "2026-11-01T17:50:37+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -224,6 +224,21 @@
    "seniorAt": "2025-11-01T08:00:00Z"
   },
   {
+   "name": "🎃Astral's Event | Phantom Dive 👻 | Shiny Prizes✨",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-01",
+   "time": "15:00",
+   "players": 20,
+   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
+  },
+  {
    "name": "Sunday Showdown #4",
    "org": "",
    "mode": "online",
@@ -314,21 +329,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab54258f127b1b52c2811f1/details"
   },
   {
-   "name": "🎃Astral",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "15:00",
-   "players": 22,
-   "url": "https://play.limitlesstcg.com/tournament/6add05c991617679e84a0193/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #8 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -370,7 +370,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -385,7 +385,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -520,7 +520,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -582,6 +582,21 @@
    "time": "02:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
+  },
+  {
+   "name": "Tenki",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-05",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
    "name": "London Corviknights VGC Weekly Tour 20!",
@@ -970,7 +985,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
