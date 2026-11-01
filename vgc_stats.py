@@ -22,6 +22,7 @@ al massimo ogni 30 minuti (e alla fine), come copia di riserva. Se Cloudflare no
 Senza --write e' sempre una prova: stampa un riepilogo e non salva niente.
 """
 import argparse
+import calendar
 import json
 import os
 import random
@@ -64,6 +65,8 @@ used = 0
 budget = 3
 cut_state = {}         # id regionale -> True se nell'ultimo controllo era in corso la Top 8
 mese_pieno = False      # True se nel mese in corso sono gia' iniziati almeno EVENTI_MESE_PIENO tornei
+fine_avvisati = set()     # regionali per cui e' gia' comparso l'avviso «finale finita da piu' di un'ora»
+avvisati = set()         # regionali per cui e' gia' comparso l'avviso «finito ma ancora vivo»
 cut_active = False     # True se almeno un regionale in corso e' nella fase a eliminazione diretta
 last_status = {}       # id regionale -> stato letto nell'ultimo controllo (running / finished)
 unpushed = False       # True se un salvataggio e' stato fatto ma non ancora pubblicato
@@ -305,7 +308,7 @@ def list_events():
                     "end": (t.get("date") or {}).get("end") or "", "status": t.get("tournamentStatus"),
                     "players": (t.get("players") or {}).get("masters", 0), "decklists": t.get("decklists", 0),
                     "rounds": (t.get("roundNumbers") or {}).get("masters", 0), "reg": reg_of(start),
-                    "winner": (t.get("winners") or {}).get("masters"), "rk9": t.get("rk9link"),
+                    "winner": (t.get("winners") or {}).get("masters"), "rk9": t.get("rk9link"), "updated": t.get("lastUpdated") or "",
                     "winners": {d: person((t.get("winners") or {}).get(d)) for d in ("masters", "seniors", "juniors")},
                     "players_div": t.get("players") or {}})
     out.sort(key=lambda e: e["start"], reverse=True)
@@ -341,7 +344,7 @@ def save_index(events):
     for e in events:
         e["collected"] = e["id"] in done
     a = dump_stamped(os.path.join(OUT, "index.json"), {"current": current_reg(events), "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime()),
-                                                         "source": "Pokedata", "events": [{k: v for k, v in e.items() if k not in ("winners", "players_div")} for e in events]})
+                                                         "source": "Pokedata", "events": [{k: v for k, v in e.items() if k not in ("winners", "players_div", "updated", "forzato", "fine_forzata")} for e in events]})
     return save_winners(events) or a
 
 
@@ -366,6 +369,17 @@ def cut_phase(swiss):
     return False
 
 
+def finale_decisa(swiss):
+    """True se la Top 8 e' arrivata alla finale (2 giocatori in gara) e il risultato e' scritto: uno W e uno L."""
+    if not swiss or not cut_phase(swiss):
+        return False
+    R = max((len(v) for v in swiss.values()), default=0)
+    fin = [v[-1] for v in swiss.values() if len(v) >= R]
+    if len(fin) != 2 or any(not x for x in fin):
+        return False
+    return sorted(x[-1] for x in fin) == ["L", "W"]
+
+
 def collect(ev, write):
     tid = ev["id"]
     data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
@@ -376,6 +390,10 @@ def collect(ev, write):
             names.setdefault(s, s.replace("-", " ").title())
     stats = compute(players, teams, names)
     status = info.get("tournamentStatus")
+    if ev.get("fine_forzata"):
+        status = "finished"
+    elif ev.get("forzato") and status == "finished":
+        status = "running"
     last_status[tid] = status
     cut_state[tid] = cut_phase(swiss)
     cut = sum(p["topcut"] for p in players)
@@ -394,8 +412,9 @@ def collect(ev, write):
         return False
     folder = os.path.join(OUT, tid)
     old = load(os.path.join(folder, "meta.json"), {})
+    finale_alle = (old.get("finale_alle") or int(time.time())) if finale_decisa(swiss) else None
     meta = {"id": tid, "name": ev["name"], "city": ev["city"], "date": ev["start"], "end": ev["end"], "reg": ev["reg"],
-            "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished",
+            "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished", "finale_alle": finale_alle,
             "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "Pokedata (apiv3), dati RK9",
             "players_fields": ["id", "name", "country", "placement", "wins", "losses", "day2", "cut", "team"],
             "swiss": "per giocatore, una voce per round: id avversario + esito (W vinta, L persa, T pari, B bye; -1 = avversario non risolto)",
@@ -423,6 +442,8 @@ LIVE_MAX = 5 * 60
 LIVE_PAUSA = 10 * 60       # dopo un salvataggio con dati nuovi: nessun controllo per 10 minuti, poi uno subito (misurato al Day 1 di Danzica: ~4 pubblicazioni/ora con 12 minuti)
 LIVE_PAUSA_PIENO = 12 * 60  # dal 4° torneo del mese in poi la pausa sale a 12 minuti (per non avvicinarsi al limite di pubblicazioni di Cloudflare)
 EVENTI_MESE_PIENO = 4
+FINALE_ORE = 1             # dopo la finale della Top 8 (risultato scritto) si continua per 1 ora, poi ultimo salvataggio e stop
+FINITO_PRESTO_ORE = 3      # Pokedata puo' segnare "finito" un regionale in due fasi mentre il giorno 2 e' ancora da giocare: se lo avevamo visto in corso e i suoi dati sono stati aggiornati da meno di 3 ore, si continua a seguirlo
 LIVE_PAUSA_CUT = 5 * 60    # durante la Top 8 (quarti, semifinali, finale): la pausa dopo un salvataggio con dati nuovi e' di 5 minuti
                            # (e' il numero che decide quanto e' "live" il sito: piu' basso = piu' veloce ma piu' pubblicazioni all'ora)
 LIVE_MAX_RUN = 345 * 60    # si ferma da solo prima del limite di 355 minuti del flusso
@@ -569,9 +590,30 @@ def git_publish(message="VGC Stats: aggiornamento dati (live)"):
 def recent_unfinished(events, days=3, limit=2):
     """Regionali finiti da poco e non ancora raccolti per intero: servono per l'ultimo salvataggio."""
     lim = time.strftime("%Y-%m-%d", time.gmtime(time.time() - days * 86400))
-    out = [e for e in events if e["status"] == "finished" and e["players"] and (e["end"] or e["start"]) >= lim
+    out = [e for e in events if e["status"] == "finished" and e["players"] and (e["end"] or e["start"] or "9999-12-31") >= lim
            and not load(os.path.join(OUT, e["id"], "meta.json"), {}).get("complete")]
     return out[:limit]
+
+
+def parse_utc(txt):
+    """'2026-11-01 08:36:44' (ora UTC, come la scrive Pokedata) -> secondi, oppure None."""
+    try:
+        return calendar.timegm(time.strptime(txt[:19], "%Y-%m-%d %H:%M:%S"))
+    except (ValueError, TypeError):
+        return None
+
+
+def ancora_vivo(e, t=None):
+    """Pokedata dice 'finito', ma lo avevamo visto in corso, non e' stato completato e i dati sono stati aggiornati da poco:
+    di solito e' la pausa tra i due giorni o l'inizio della fase 2. Si continua a seguirlo."""
+    if e.get("status") != "finished" or not e.get("updated"):
+        return False
+    meta = load(os.path.join(OUT, e["id"], "meta.json"), {})
+    if meta.get("status") != "running" or meta.get("complete"):
+        return False
+    ts = parse_utc(e["updated"])
+    t = time.time() if t is None else t
+    return ts is not None and -600 <= t - ts < FINITO_PRESTO_ORE * 3600
 
 
 def eventi_del_mese(events, t=None):
@@ -598,6 +640,20 @@ def live_cycle(write):
         mese_pieno = pieno
         if pieno:
             print("Tornei di questo mese: %d. La pausa sale a %d minuti per non avvicinarsi al limite di Cloudflare." % (eventi_del_mese(events), LIVE_PAUSA_PIENO // 60))
+    for e in events:
+        fa = load(os.path.join(OUT, e["id"], "meta.json"), {}).get("finale_alle")
+        if fa and time.time() - fa >= FINALE_ORE * 3600:
+            e["status"] = "finished"
+            e["fine_forzata"] = True
+            if e["id"] not in fine_avvisati:
+                fine_avvisati.add(e["id"])
+                print("La finale della Top 8 di %s e' finita da piu' di %d ora: ultimo salvataggio e poi mi fermo." % (e["name"], FINALE_ORE))
+        elif ancora_vivo(e):
+            e["status"] = "running"
+            e["forzato"] = True
+            if e["id"] not in avvisati:
+                avvisati.add(e["id"])
+                print("Pokedata segna «finito» %s, ma i dati sono stati aggiornati da meno di %d ore: continuo a seguirlo." % (e["name"], FINITO_PRESTO_ORE))
     running = [e for e in events if e["status"] == "running"]
     todo = running + [e for e in recent_unfinished(events) if e not in running]
     if not todo:
@@ -685,7 +741,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-10-31 (salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-01 (segue il regionale anche se Pokedata lo segna «finito» troppo presto e si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
