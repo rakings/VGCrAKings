@@ -8,6 +8,8 @@ var BASE="vgcstats/";
 var BASES=[],DOWN=0,LASTSRC=-1;
 (function(){var u=String(window.VGCS_CF||"").replace(/\s+/g,"");if(u){if(u.slice(-1)!=="/")u+="/";BASES.push(u)}BASES.push(BASE)})();
 function dget(p,fresh){
+var vm=/^([^\/]+)\//.exec(p);
+if(VRB&&vm&&VRID[vm[1]])return fetch(VRB+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});
 var am=/^(\d{7})\//.exec(p);
 if(ARCH&&am&&ARCHID[am[1]])return fetch(ARCH+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});
 var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
@@ -17,7 +19,9 @@ return go(0)}
 /* Archivio storico (seconda repo, tornei fino a settembre 2025): se window.VGCS_ARCH e' impostato, i suoi tornei si aggiungono all'elenco.
    Se non risponde, il sito funziona esattamente come prima. */
 var ARCH=(function(){var u=String(window.VGCS_ARCH||"").replace(/\s+/g,"");if(u&&u.slice(-1)!=="/")u+="/";return u})(),ARCHID={};
-var S={rf:"",br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
+/* Tornei VR (VR Circuit di Victory Road): stessa struttura dei regionali, in una cartella a parte della seconda repo. Se non risponde, la sezione VR resta vuota. */
+var VRB=(function(){var u=String(window.VGCS_VR||"").replace(/\s+/g,"");if(u&&u.slice(-1)!=="/")u+="/";return u})(),VRID={};
+var S={sx:"reg",rf:"",br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
 function vkey(){return S.sec==="arc"?"arc":S.sec+"|"+S.ev+"|"+(S.mon||"")}
@@ -25,7 +29,7 @@ function savePos(){POS[vkey()]=window.scrollY}
 function toY(y){try{window.scrollTo(0,y);if(window.requestAnimationFrame)window.requestAnimationFrame(function(){try{window.scrollTo(0,y)}catch(e){}})}catch(e){}}
 function applyPos(){if(PEND!=null){var y=PEND;PEND=null;toY(y)}}
 function closeMon(){var k=S.sec+"|"+S.ev+"|";PEND=POS[k]!=null?POS[k]:null;S.mon=null;drawRes()}
-var host=null,IDX=null,WIN={},C={},D={},TOT={};
+var host=null,IDX=null,IDXR=null,IDXV=null,WIN={},C={},D={},TOT={};
 function E(x){return window.esc?window.esc(x):String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function J(p,fresh){if(!fresh&&C[p])return C[p];var q=dget(p,fresh);if(!fresh){C[p]=q;q.catch(function(){delete C[p]})}return q}
 function pc(n,t){return t?Math.round(n/t*100):0}
@@ -40,7 +44,7 @@ function italia(cc){return cc==="IT"?' <span class="tag t-it">Italia</span>':""}
 /* ---------- dati ---------- */
 function loadEv(id,fresh){if(D[id]&&!fresh)return Promise.resolve(D[id]);
 return Promise.all(["meta","players","pokemon","teams","swiss"].map(function(f){return J(id+"/"+f+".json",fresh)})).then(function(a){var d={m:a[0],pl:a[1],pk:a[2],tm:a[3],sw:a[4],by:{}};a[1].forEach(function(p){d.by[p[0]]=p});D[id]=d;return d})}
-function loadTot(reg){if(TOT[reg])return Promise.resolve(TOT[reg]);
+function loadTot(reg){var tk=(S.sx==="vr"?"vr:":"")+reg;if(TOT[tk])return Promise.resolve(TOT[tk]);
 var ids=(IDX.events||[]).filter(function(e){return e.reg===reg&&e.collected}).map(function(e){return e.id});
 return Promise.all(ids.map(function(i){return Promise.all([J(i+"/meta.json"),J(i+"/pokemon.json")])})).then(function(a){
 var m={},sz={all:0,top:0,ph2:0,cut:0};
@@ -52,7 +56,7 @@ add(t.partners,p.partners);add(t.nature,p.nature);add(t.item,p.item);add(t.abili
 Object.keys(p.extra||{}).forEach(function(k){t.extra[k]=t.extra[k]||{};add(t.extra[k],p.extra[k])})})});
 function arr(o,n){return Object.keys(o).map(function(k){return[k,o[k]]}).sort(function(x,y){return y[1]-x[1]}).slice(0,n||999)}
 var list=Object.keys(m).map(function(k){var t=m[k];t.partners=arr(t.partners,15);t.nature=arr(t.nature);t.item=arr(t.item);t.ability=arr(t.ability);t.moves=arr(t.moves);Object.keys(t.extra).forEach(function(x){t.extra[x]=arr(t.extra[x])});return t}).sort(function(x,y){return y.count-x.count});
-return TOT[reg]={n:ids.length,sz:sz,pk:list}})}
+return TOT[tk]={n:ids.length,sz:sz,pk:list}})}
 function cur(){if(S.ev==="tot")return loadTot(S.treg).then(function(t){return{tot:true,m:{players:t.sz.all,day2_players:t.sz.ph2,cut_players:t.sz.cut,top:256},sz:t.sz,pk:t.pk,n:t.n}});
 if(!S.ev)return Promise.resolve(null);return loadEv(S.ev)}
 
@@ -70,7 +74,7 @@ function paste(id,pid){var t=D[id]&&D[id].tm[pid];if(!t)return"";return t.map(fu
 function copyBtn(id,pid){var t=paste(id,pid);return t?'<button class="btn sm" type="button" data-copy="'+E(t)+'">Copia la squadra</button>':'<span class="vg-mute">Squadra non pubblicata</span>'}
 
 /* ---------- Archivio ---------- */
-function ctlArc(){var pr=pastRegs();return'<input class="vg-in" id="vg-q" type="search" value="'+E(S.q)+'" placeholder="Cerca un regionale, per esempio Frankfurt" aria-label="Cerca un regionale"><div class="vg-chips"><button type="button" class="btn sm" data-vg="reg" data-v="all" aria-pressed="'+(S.reg==="all")+'">Tutti</button><button type="button" class="btn sm" data-vg="reg" data-v="'+E(IDX.current)+'" aria-pressed="'+(S.reg===IDX.current)+'">'+E(regLabel(IDX.current))+' (attuale)</button>'+(pr.length?'<select id="vg-pr" aria-label="Regolamenti passati"'+(S.reg!=="all"&&S.reg!==IDX.current?' class="on"':"")+'><option value="">Regolamenti passati</option>'+pr.map(function(r){return'<option value="'+E(r)+'"'+(S.reg===r?" selected":"")+">"+E(regLabel(r))+"</option>"}).join("")+"</select>":"")+"</div>"}
+function ctlArc(){var pr=pastRegs();return'<input class="vg-in" id="vg-q" type="search" value="'+E(S.q)+'" placeholder="'+(S.sx==="vr"?"Cerca un torneo VR":"Cerca un regionale, per esempio Frankfurt")+'" aria-label="Cerca un regionale"><div class="vg-chips"><button type="button" class="btn sm" data-vg="reg" data-v="all" aria-pressed="'+(S.reg==="all")+'">Tutti</button><button type="button" class="btn sm" data-vg="reg" data-v="'+E(IDX.current)+'" aria-pressed="'+(S.reg===IDX.current)+'">'+E(regLabel(IDX.current))+' (attuale)</button>'+(pr.length?'<select id="vg-pr" aria-label="Regolamenti passati"'+(S.reg!=="all"&&S.reg!==IDX.current?' class="on"':"")+'><option value="">Regolamenti passati</option>'+pr.map(function(r){return'<option value="'+E(r)+'"'+(S.reg===r?" selected":"")+">"+E(regLabel(r))+"</option>"}).join("")+"</select>":"")+"</div>"}
 function resArc(){var f=S.q.toLowerCase(),h="";
 if(S.msg)h+='<div class="vg-box">'+S.msg+"</div>";
 if(S.reg!=="all"&&S.reg!=="arch"){var all=IDX.events.filter(function(e){return e.reg===S.reg}),n=all.filter(function(e){return e.collected}).length;
@@ -194,12 +198,14 @@ if(S.sec==="arc"){el.innerHTML=resArc();return}
 el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
 cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
-host.innerHTML='<h2 class="vg-title">VGC Stats</h2><p class="vg-sub">Statistiche dei regionali VGC: Pokémon, strumenti, nature, mosse e swiss di ogni giocatore.</p>'+seg()+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
+var vuoto=S.sx==="vr"&&!(IDX.events||[]).length;
+host.innerHTML='<h2 class="vg-title">VGC Stats</h2><p class="vg-sub">'+(S.sx==="vr"?"Statistiche dei tornei VR Circuit di Victory Road: Pokémon, strumenti e swiss di ogni giocatore.":"Statistiche dei regionali VGC: Pokémon, strumenti, nature, mosse e swiss di ogni giocatore.")+'</p>'+sxHtml()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
 function drawKeep(){var y=window.scrollY;draw();window.scrollTo(0,y)}
 
 /* ---------- eventi ---------- */
 function act(t){var a=t.dataset.vg,v=t.dataset.v,id=t.dataset.id;savePos();PEND=null;
-if(a==="sec"){S.sec=v;S.mon=null;if(v==="swi"&&S.ev==="tot")S.ev=firstEv();draw()}
+if(a==="sx"){setSx(v)}
+else if(a==="sec"){S.sec=v;S.mon=null;if(v==="swi"&&S.ev==="tot")S.ev=firstEv();draw()}
 else if(a==="reg"){S.reg=v;S.msg="";draw()}
 else if(a==="ev"){var e=evOf(id);if(e&&e.collected){S.ev=id;S.mon=null;S.sec="pok";draw();window.scrollTo(0,0)}else{S.msg="“"+E(e?e.city:"")+"” non è ancora stato raccolto: comparirà qui appena i dati saranno pronti.";drawKeep()}}
 else if(a==="tot"){S.treg=v;S.ev="tot";S.mon=null;S.sec="pok";draw();window.scrollTo(0,0)}
@@ -255,7 +261,16 @@ return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var i
 var have={};x.events.forEach(function(e){have[e.id]=1});
 ix.events.forEach(function(e){if(!e.collected||have[e.id])return;ARCHID[e.id]=1;e.reg=fmtReg(e);e.arch=true;x.events.push(e)});
 if(w&&w.events)w.events.forEach(function(e){if(ARCHID[e.id])WIN[e.id]=e})})}
-function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+function vrCarica(){if(!VRB)return Promise.resolve();
+function g(f){return fetch(VRB+f,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var ix=a[0],w=a[1];
+if(!ix||!Array.isArray(ix.events))ix={events:[],current:(IDXR&&IDXR.current)||"M-C"};
+ix.events.forEach(function(e){VRID[e.id]=1;e.vr=true});ix.events=inCorsoPrima(ix.events);IDXV=ix;
+if(w&&w.events)w.events.forEach(function(e){if(VRID[e.id])WIN[e.id]=e})})}
+function setSx(x){x=x==="vr"?"vr":"reg";if(S.sx===x)return;S.sx=x;IDX=x==="vr"?(IDXV||{events:[],current:(IDXR&&IDXR.current)||"M-C"}):IDXR;
+S.reg="all";S.treg=IDX.current;S.q="";S.msg="";S.sec="arc";S.mon=null;S.ev=firstEv();draw();window.scrollTo(0,0)}
+function sxHtml(){return'<div class="vg-sx" role="group" aria-label="Regionali o VR"><button type="button" data-vg="sx" data-v="reg" aria-pressed="'+(S.sx!=="vr")+'">Regionali</button><button type="button" data-vg="sx" data-v="vr" aria-pressed="'+(S.sx==="vr")+'">VR</button></div>'}
+function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){IDXR=x;return vrCarica()}).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
 /* ---------- aggiornamento automatico (solo regionale in corso) ----------
    Pensato per tanta gente insieme: ogni controllo e' UNA richiesta a un file minuscolo (meta.json), senza numeri casuali
    nell'indirizzo (cosi' risponde la copia gia' pronta di GitHub e non il server), con tempi un po' sfalsati per ogni telefono.
@@ -279,7 +294,7 @@ function piuNuovo(z){return z&&(z.updated>d.m.updated||(z.complete&&!d.m.complet
 if(piuNuovo(m))return m;
 /* niente di nuovo dalla sorgente in uso: ogni 10 minuti guardo anche l'altra; se e' piu' nuova, la prima e' rimasta indietro */
 if(!LIVE_X)LIVE_X=Date.now();
-if(BASES.length>1&&Date.now()>=DOWN&&Date.now()-LIVE_X>600000){LIVE_X=Date.now();
+if(BASES.length>1&&!ARCHID[x]&&!VRID[x]&&Date.now()>=DOWN&&Date.now()-LIVE_X>600000){LIVE_X=Date.now();
 return fetch(BASES[1]+x+"/meta.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(m2){if(piuNuovo(m2)){DOWN=Date.now()+3600000;return m2}return null}).catch(function(){return null})}
 return null
 }).then(function(m){
@@ -292,11 +307,51 @@ D[x]=nd;if(S.ev===x&&host&&document.body.contains(host)){drawRes();setChk()}})
 setInterval(function(){liveTick(false)},15000);
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")liveTick(true)});
 
+(function(){try{if(document.getElementById("vgcs-sx"))return;var st=document.createElement("style");st.id="vgcs-sx";
+st.textContent=".vg-sx{display:flex;gap:0;margin:2px 0 12px;border:2px solid var(--line,#444);border-radius:999px;overflow:hidden;max-width:320px}.vg-sx button{flex:1;padding:9px 14px;font:inherit;font-weight:800;letter-spacing:.02em;border:0;background:transparent;color:inherit;cursor:pointer}.vg-sx button[aria-pressed=true][data-v=reg]{background:var(--coin,#ffd21f);color:var(--coin-ink,#4a3600)}.vg-sx button[aria-pressed=true][data-v=vr]{background:var(--vr,#86d8f0);color:#0b3a44}";
+(document.head||document.documentElement).appendChild(st)}catch(e){}})();
 /* Tabella dei Pokemon: le colonne dei numeri non vanno a capo ("16,7" e "%" restavano separati); i nomi lunghi possono andare su due righe. */
 (function(){try{if(document.getElementById("vgcs-fix-tab"))return;var st=document.createElement("style");st.id="vgcs-fix-tab";
 st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}.vgcs-host .vg-live .btn{min-height:34px;padding:5px 12px;font-weight:700;margin-left:4px}.vgcs-host .vg-tys{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle;flex-wrap:nowrap}.vgcs-host .vg-ty{font-style:normal;font-weight:700;font-size:.55rem;line-height:1;padding:2px 4px;border-radius:7px;min-width:25px;text-align:center;letter-spacing:.02em;font-family:inherit}.vgcs-host .vg-t td .vg-tys{display:flex;margin:3px 0 0 18px}.vgcs-host .vg-h .vg-tys{margin-left:8px}.vgcs-host .vg-ct{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:4px;flex:none}.vgcs-host .vg-ct svg{display:block;width:15px;height:15px}.vgcs-host .vg-mv{display:flex;flex-wrap:wrap;gap:0 6px;flex:0 0 calc(100% - 18px);margin:-4px 0 3px 18px;font-size:.65rem;line-height:1.35;color:var(--mute)}.vgcs-host .vg-mv>span{white-space:nowrap}.vgcs-host .vg-mv .vg-ct{width:10px;height:10px;margin-right:1px;vertical-align:-1px}.vgcs-host .vg-mv .vg-ct svg{width:10px;height:10px}.vgcs-host .vg-leg{margin:-2px 0 8px;font-size:.72rem;color:var(--mute)}.vgcs-host .vg-leg .vg-ct{width:13px;height:13px;margin-right:3px;vertical-align:-2px}.vgcs-host .vg-leg .vg-ct svg{width:13px;height:13px}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
-window.VGCS={mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
+/* ---------- Ricerca giocatore (barra della home, in tutte le schede): torneo in corso (LIVE) + storico ---------- */
+var INIT_P=null,PHIST=null;
+function pn(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
+/* etichetta del tipo di torneo: usa le classi di colore che il sito ha gia' (Regionale oro, Special Event giallo, Internazionale verde, Mondiale nero, VR azzurro) */
+function pTag(e){var k=String(e.kind||"");
+if(e.org==="Victory Road"||e.vr||/^vr/i.test(String(e.id))||/^vr/i.test(k))return["VR","t-vr"];
+if(/world/i.test(k))return["Mondiale","t-ww"];if(/international/i.test(k))return["Internazionale","t-int"];if(/special/i.test(k))return["Special Event","t-reg"];return["Regionale","t-rg"]}
+function pReady(){if(S.ready)return Promise.resolve();if(S.fail)return Promise.resolve();return INIT_P||(INIT_P=init())}
+function tuttiEv(){return((IDXR&&IDXR.events)||[]).concat((IDXV&&IDXV.events)||[])}
+function pLive(qn){var ev=tuttiEv().filter(function(e){return e.status==="running"});
+return Promise.all(ev.map(function(e){return J(e.id+"/players.json",true).then(function(rows){return{e:e,rows:rows}}).catch(function(){return null})})).then(function(a){var out=[];
+a.forEach(function(x){if(!x||!Array.isArray(x.rows))return;x.rows.forEach(function(r){if(pn(r[1]).indexOf(qn)>-1)out.push({name:r[1],cc:r[2],e:x.e,live:true,pl:r[3],w:r[4],l:r[5]})})});return out})}
+function pHist(){if(PHIST)return PHIST;
+function g(u){return fetch(u,{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
+PHIST=Promise.all([g(BASE+"giocatori.json"),ARCH?g(ARCH+"giocatori.json"):Promise.resolve(null),VRB?g(VRB+"giocatori.json"):Promise.resolve(null)]).then(function(a){var L={};
+a.forEach(function(x){if(!x||!x.p||!x.ids)return;x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
+p[2].forEach(function(t){o.r.push({id:x.ids[t[0]],pl:t[1],w:t[2],l:t[3]})})})});return Object.keys(L).map(function(k){return L[k]})});return PHIST}
+function pDate(d){if(!d)return"";try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?"":x.toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return""}}
+function cercaGiocatori(q){var qn=pn(q);if(qn.length<3)return Promise.resolve("");
+var toks=qn.split(" ");
+return pReady().then(function(){if(S.fail||!IDXR)return[[],[]];return Promise.all([pLive(qn),pHist()])}).then(function(a){var live=a[0],hist=a[1],EV={},P={};
+tuttiEv().forEach(function(e){EV[e.id]=e});
+function porta(name,cc){var k=pn(name)+"|"+cc;return P[k]||(P[k]={name:name,cc:cc,rows:[],ids:{}})}
+function aggiungi(p,e,x){if(p.ids[e.id])return;p.ids[e.id]=1;var t=pTag(e);
+p.rows.push({id:e.id,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.end||e.start),d:String(e.end||e.start||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
+live.forEach(function(x){aggiungi(porta(x.name,x.cc),x.e,x)});
+hist.forEach(function(h){if(!toks.every(function(t){return h.pn.indexOf(t)>-1}))return;var p=null;
+h.r.forEach(function(x){var e=EV[x.id];if(!e)return;if(!p)p=porta(h.name,h.cc);aggiungi(p,e,x)})});
+var list=Object.keys(P).map(function(k){return P[k]});
+list.forEach(function(p){p.rows.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.d<b.d?1:a.d>b.d?-1:0)});p.live=p.rows.some(function(r){return r.live})});
+list.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.rows[0].d<b.rows[0].d?1:-1)});list=list.slice(0,8);
+if(!list.length)return'<div class="pr-box"><p class="pr-none">Nessun giocatore trovato per «'+E(q)+'».</p></div>';
+return'<div class="pr-box">'+list.map(function(p){return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span></div>'+
+p.rows.slice(0,5).map(function(r){return'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(p.name)+'">'+(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span></button>"}).join("")+
+(p.rows.length>5?'<div class="pr-more">+ '+(p.rows.length-5)+" altri tornei</div>":"")+"</div>"}).join("")+"</div>"})}
+function apriGiocatore(id,name){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
+S.ev=id;S.sec="swi";S.pq=String(name||"");S.sq="";S.shown=80;if(host&&S.ready)draw()}
+window.VGCS={cerca:cercaGiocatori,apri:apriGiocatore,mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},
 back:function(){if(!host||!S.ready||S.fail)return false;

@@ -213,7 +213,7 @@ li.nw.frm .btn.main{border:2px solid #fff}
 .brand #cta-loc{margin-top:8px;width:100%;padding:8px 10px;font-size:.78rem;line-height:1.2;border-radius:12px}
 @media (min-width:700px){.src .short{display:none}.src .long{display:block}.brand .src span{font-size:.68rem}.brand #cta-loc{font-size:.95rem;padding:10px 12px}}
 @media (max-width:380px){.brand .src span{font-size:.58rem}.brand .src b{font-size:.86rem}}
-.brand #q{margin-top:8px;width:100%;padding:8px 10px;font-size:.8rem;border-radius:12px}
+#q{display:block;margin:0 0 12px;width:100%;padding:12px 16px;font-size:1rem;border-radius:14px;border:2px solid #e0b100;box-shadow:0 0 0 3px rgba(224,177,0,.22)}#q:focus{outline:0;border-color:#ffd21f;box-shadow:0 0 0 4px rgba(255,210,31,.35)}#pres{margin:-4px 0 12px}
 .brand .src span{overflow:hidden;text-overflow:ellipsis}
 .brand .logo{width:calc(min(44vw,180px) + 12px);margin-left:-12px}
 @media (min-width:700px){.brand .logo{--ex:min(56px,max(0px,(100vw - 720px)/2 + 10px));width:calc(232px + var(--ex));margin-left:calc(-1 * var(--ex));margin-bottom:calc(286px - (232px + var(--ex)) * 1.2315)}}
@@ -286,6 +286,13 @@ li.online{border-left-color:var(--online)}
 li.live{border-left-color:var(--live)}
 li h2{font-size:1.1rem;margin:0 0 2px}
 .meta{color:var(--mute);font-size:.92rem;margin:0 0 8px}
+.pres{margin:8px 0 0;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:6px 8px;max-height:60vh;overflow:auto}
+.pr-p{padding:6px 2px;border-bottom:1px solid var(--line)}.pr-p:last-child{border-bottom:0}
+.pr-h{display:flex;gap:8px;align-items:baseline;margin-bottom:2px}.pr-cc{font-size:.72rem;color:var(--mute);font-weight:700}
+.pr-r{display:flex;flex-wrap:wrap;align-items:center;gap:6px;width:100%;text-align:left;background:transparent;border:0;padding:6px 2px;font:inherit;color:inherit;cursor:pointer}
+.pr-n{flex:1 1 130px;font-size:.84rem}.pr-s{font-size:.8rem;font-weight:700;color:var(--mute)}
+.pr-r .t-live{background:#e11d2e;color:#fff;letter-spacing:.05em}
+.pr-more,.pr-none{font-size:.78rem;color:var(--mute);padding:2px 4px;margin:0}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:.82rem;font-weight:700;padding:3px 10px;border-radius:999px}
 .t-online{background:color-mix(in srgb,var(--online) 26%,transparent);color:var(--online)}
@@ -310,7 +317,8 @@ textarea{min-height:140px}
 <header class="brand"><img class="logo" src="logo-egg.webp" alt="Logo rAKings VGC" width="190" height="234"><div class="txt"><h1>rAKings VGC</h1><p class="head">Tornei ufficiali VGC e Tornei online</p><p class="lead">Solo videogioco Pokémon. Ogni torneo ha il tipo, il costo, il regolamento e un marcatore dorato se mette in palio denaro.</p><a class="src" href="https://shairaba.github.io/pokemon-events-italia/index.html" target="_blank" rel="noopener">
 <b>Eventi ufficiali VGC in Italia</b>
 <span class="short">Elenco e calendario dal vivo</span><span class="long">Calendario eventi dal vivo · dal sito Pokémon Event Locator but better</span>
-</a><button class="btn main" id="cta-loc" type="button">Organizzi un locale? Carica la top 8</button><input id="q" type="search" placeholder="Cerca un torneo" aria-label="Cerca"><div class="pwa" id="pwa-bar" hidden><span class="pwa-ic" aria-hidden="true">📲</span><div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div><button class="btn main" id="pwa-btn" type="button">Installa</button><button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button></div></div></header>
+</a><button class="btn main" id="cta-loc" type="button">Organizzi un locale? Carica la top 8</button><div class="pwa" id="pwa-bar" hidden><span class="pwa-ic" aria-hidden="true">📲</span><div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div><button class="btn main" id="pwa-btn" type="button">Installa</button><button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button></div></div></header>
+<input id="q" type="search" placeholder="Cerca qui &quot;live&quot; e tornei" aria-label="Cerca giocatori in gara e tornei"><div class="pres" id="pres" hidden></div>
 
 
 
@@ -362,7 +370,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102n</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102p</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -528,14 +536,23 @@ $("f-big").addEventListener("click",function(){st.big=!st.big;this.setAttribute(
 /* Dati di VGC Stats su Cloudflare: dopo la configurazione qui compare l'indirizzo (per esempio https://rakings-dati.pages.dev). Vuoto = solo GitHub. */
 window.VGCS_CF=window.VGCS_CF||"https://rakings-dati.pages.dev";
 window.VGCS_ARCH=window.VGCS_ARCH||"https://rakings.github.io/VGCdatiAK/vgcstats/";
+window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
-function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102n";sc.onload=function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)};sc.onerror=function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'};document.head.appendChild(sc)}
+var VGP=null;
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102p";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
+/* ricerca giocatore: parte da 3 lettere, in tutte le schede */
+var PT=0,PQ="";
+function pSearch(v){clearTimeout(PT);var q=String(v||"").trim();PQ=q;var box=$("pres");if(q.length<3){box.hidden=true;box.innerHTML="";return}
+PT=setTimeout(function(){vgcsLoad().then(function(){return VGCS.cerca(q)}).then(function(html){if(PQ!==q)return;box.innerHTML=html;box.hidden=!html}).catch(function(){})},280)}
+$("pres").addEventListener("click",function(ev){var b=ev.target.closest(".pr-r");if(!b)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
+if(st.mode==="vgcs"){render();return}var t=document.querySelector('button[data-v="vgcs"]');if(t)t.click();else{st.mode="vgcs";render()}});
 function render(){ var nw=st.mode==="news";
-if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("q").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
+if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali e dei VR";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
-if(BK){document.querySelector(".filters").style.display="none";$("q").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
-document.querySelector(".filters").style.display=nw?"none":"";$("q").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
+if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
+document.querySelector(".filters").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
 var ev=EVENTS.filter(function(e){
 return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.mode))&&(st.prize==="all"||(st.prize==="cash"?e.cash===true:e.cash!==true))
 &&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||e.bo===st.bo)
@@ -573,7 +590,7 @@ return '<div class="act"><a class="btn" href="'+esc(g)+'" target="_blank" rel="n
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-ics]");if(!b)return;var e=EVENTS[b.dataset.ics],r=span(e),x=function(t){return String(t).replace(/[\\;,]/g,"\\$&").replace(/\n/g,"\\n")};
 var ln=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Tornei VGC//IT","BEGIN:VEVENT","UID:"+Date.now()+"-"+b.dataset.ics+"@tornei-vgc","DTSTAMP:"+new Date().toISOString().replace(/[-:]|\.\d+/g,""),e.time?"DTSTART:"+r[0]:"DTSTART;VALUE=DATE:"+r[0],e.time?"DTEND:"+r[1]:"DTEND;VALUE=DATE:"+r[1],"SUMMARY:"+x(e.name),"LOCATION:"+x(e.where||"Online"),"DESCRIPTION:"+x(trStr("Dettagli")+": "+(e.url||"")),"BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+trStr("Torneo in arrivo"),"TRIGGER:"+(e.time?"-PT1H":"-PT15H"),"END:VALARM","BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:"+trStr("Torneo in arrivo"),"TRIGGER:"+(e.time?"-PT10M":"-PT3H"),"END:VALARM","END:VEVENT","END:VCALENDAR"];
 var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([ln.join("\r\n")],{type:"text/calendar"}));a.download="torneo.ics";document.body.appendChild(a);a.click();a.remove()});
-$("q").addEventListener("input",function(){st.q=this.value.trim().toLowerCase();render()});
+$("q").addEventListener("input",function(){st.q=this.value.trim().toLowerCase();if(st.mode!=="vgcs"&&st.mode!=="news"&&!BK)render();pSearch(this.value)});
 var FOLL=[];try{FOLL=JSON.parse(localStorage.getItem("vgc-seguiti")||"[]")}catch(e){}
 function fol(e){var on=FOLL.indexOf(e.url)>-1;return '<span class="hb"><button class="follow" type="button" data-f="'+EVENTS.indexOf(e)+'" aria-pressed="'+on+'" aria-label="'+(on?"Non seguire più ":"Segui ")+esc(e.name)+'">'+(on?"✓ Notifiche":"+ Notifiche")+'</button><button class="shr" type="button" data-sh="'+EVENTS.indexOf(e)+'" aria-label="Condividi '+esc(e.name)+'"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4M8.6 13.4l6.8 4"/></svg></button></span>'}
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-f]");if(!b)return;var u=EVENTS[b.dataset.f].url,i=FOLL.indexOf(u);if(i<0)FOLL.push(u);else FOLL.splice(i,1);try{localStorage.setItem("vgc-seguiti",JSON.stringify(FOLL))}catch(e){}render()});
