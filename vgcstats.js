@@ -31,7 +31,7 @@ function J(p,fresh){if(!fresh&&C[p])return C[p];var q=dget(p,fresh);if(!fresh){C
 function pc(n,t){return t?Math.round(n/t*100):0}
 function wr(w,l){return w+l?(100*w/(w+l)).toFixed(1).replace(".",",")+"%":"–"}
 function dot(n){return window.phHtml?window.phHtml(n):""}
-function regLabel(r){return r==="arch"?"Archivio storico (fino a settembre 2025)":r==="old"?"Regolamenti precedenti":"Regolamento "+r}
+function regLabel(r){return String(r).indexOf("fmt-")===0?(FMTN[String(r).slice(4)]||"Regulation Set "+String(r).slice(4)):r==="arch"?"Archivio storico":r==="old"?"Regolamenti precedenti":"Regolamento "+r}
 function dfmt(d){try{return new Date(d+"T12:00:00").toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d||""}}
 function evOf(id){return (IDX.events||[]).filter(function(e){return e.id===id})[0]}
 function pastRegs(){var o=[];(IDX.events||[]).forEach(function(e){if(e.reg!==IDX.current&&o.indexOf(e.reg)<0)o.push(e.reg)});return o}
@@ -244,11 +244,16 @@ function navSave(){try{sessionStorage.setItem("vgcs-nav",JSON.stringify({s:S.sec
 function navRestore(){if(!isReload())return;try{var n=JSON.parse(sessionStorage.getItem("vgcs-nav")||"null");if(!n)return;if(n.s==="arc"||n.s==="pok"||n.s==="swi")S.sec=n.s;if(n.e&&IDX.events.some(function(e){return e.id===n.e&&e.collected}))S.ev=n.e}catch(e){}}
 /* il regionale in corso sta sempre in cima, anche se Pokedata non gli da una data */
 function inCorsoPrima(a){var r=[],o=[];(a||[]).forEach(function(e){(e.status==="running"?r:o).push(e)});return r.concat(o)}
+/* Formati dei vecchi tornei: [dal, al (incluso), chiave]. Si usa la data di FINE del torneo (il Masters si gioca sabato e domenica,
+   anche quando il torneo inizia il venerdi' a cavallo di un cambio di formato). Regulation G e' tornato nel 2025: stesso gruppo. */
+var FMT=[["2025-05-01","2025-08-31","I"],["2025-01-06","2025-04-30","G"],["2024-09-01","2025-01-05","H"],["2024-05-01","2024-08-31","G"],["2024-01-04","2024-04-30","F"],["2023-10-01","2024-01-03","E"],["2023-07-01","2023-09-30","D"],["2023-04-01","2023-06-30","C"],["2023-02-01","2023-03-31","B"],["2023-01-02","2023-01-31","A"],["2022-02-01","2022-08-31","S12"],["2020-03-01","2020-04-30","S3"],["2020-01-04","2020-02-29","S2"],["2019-04-02","2020-01-03","ULTRA"],["2019-01-08","2019-04-01","MOON"],["2018-09-04","2019-01-07","SUN"],["2017-09-01","2018-09-03","V18"]];
+var FMTN={ULTRA:"Ultra Series (2019)",MOON:"Moon Series (2019)",SUN:"Sun Series (2018-19)",V18:"VGC 2018",S12:"Series 12",S3:"Series 3",S2:"Series 2"};
+function fmtReg(e){var d=String(e.end||e.start||"");for(var i=0;i<FMT.length;i++)if(d>=FMT[i][0]&&d<=FMT[i][1])return"fmt-"+FMT[i][2];return"arch"}
 function archCarica(x){if(!ARCH)return Promise.resolve();
 function g(f){return fetch(ARCH+f,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).catch(function(){return null})}
 return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var ix=a[0],w=a[1];if(!ix||!ix.events)return;
 var have={};x.events.forEach(function(e){have[e.id]=1});
-ix.events.forEach(function(e){if(!e.collected||have[e.id])return;ARCHID[e.id]=1;e.reg="arch";e.arch=true;x.events.push(e)});
+ix.events.forEach(function(e){if(!e.collected||have[e.id])return;ARCHID[e.id]=1;e.reg=fmtReg(e);e.arch=true;x.events.push(e)});
 if(w&&w.events)w.events.forEach(function(e){if(ARCHID[e.id])WIN[e.id]=e})})}
 function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
 /* ---------- aggiornamento automatico (solo regionale in corso) ----------
