@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T03:53:26+00:00",
+ "updated": "2026-11-02T06:20:54+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -107,36 +107,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aadd7aaf127b1b52c27c6f9/details"
   },
   {
-   "name": "PokeInstinct VGC Live Tour #4 (SHINY TEAM PRIZE)",
-   "org": "PokeInstinct",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-10",
-   "time": "19:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6ac451ec245696afb35174a1/details"
-  },
-  {
-   "name": "4fun dominguito",
-   "org": "Liga guatemalteca HIT",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-19",
-   "time": "04:10",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6ad56e048a8383117e3eef11/details"
-  },
-  {
    "name": "4to Torneo Bimestral - Copa Santa Fe 2026",
    "org": "Santa Fe VGC",
    "mode": "online",
@@ -200,36 +170,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "Chaos League Sunday Slam #119",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "23:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6ae38d4680a8f79408d20fa1/details"
-  },
-  {
-   "name": "BPL Practice 11/1 Rumble",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "22:40",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ae7b06f0d00101b48bf425a/details"
-  },
-  {
    "name": "Same First Letter",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -286,7 +226,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 26,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -301,7 +241,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -406,7 +346,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -481,7 +421,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 139,
+   "players": 140,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -586,7 +526,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -631,7 +571,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -646,7 +586,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
@@ -781,7 +721,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
@@ -826,7 +766,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -903,6 +843,21 @@
    "time": "19:00",
    "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
+  },
+  {
+   "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
+   "org": "PokeInstinct",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "5 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
    "name": "Buenos Aires Special Event",
