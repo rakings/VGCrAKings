@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T22:42:54+00:00",
+ "updated": "2026-11-02T01:42:29+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -200,47 +200,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "Gdańsk Regional Championships",
-   "org": "",
-   "mode": "regional",
-   "type": "Regionale",
-   "fee": null,
-   "cash": true,
-   "prize": "in base alle presenze",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "end": "2026-11-01",
-   "time": null,
-   "where": "Danzica, Polonia",
-   "url": "https://victoryroad.pro/2027-gdansk/",
-   "signup": "https://rk9.gg/tournament/GD02yFCaTDuKwnIR9IKd",
-   "signupLabel": "Iscriviti su RK9",
-   "signupAuto": true,
-   "price": "Junior €40, Senior €40, Master €70",
-   "startAt": "2025-11-01T07:30:00Z",
-   "tz": "Europe/Warsaw",
-   "juniorAt": "2025-11-01T08:00:00Z",
-   "seniorAt": "2025-11-01T08:00:00Z"
-  },
-  {
-   "name": "FINISTERRAE SERIES VGC #5",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "17:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6acbfe68115c12b73a5a19a9/details"
-  },
-  {
    "name": "Chaos League Sunday Slam #119",
-   "org": "Chaos League",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -250,12 +211,12 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "23:00",
-   "players": 15,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ae38d4680a8f79408d20fa1/details"
   },
   {
    "name": "BPL Practice 11/1 Rumble",
-   "org": "Goblin Lair Events",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -265,23 +226,8 @@
    "bo": null,
    "date": "2026-11-01",
    "time": "22:40",
-   "players": null,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae7b06f0d00101b48bf425a/details"
-  },
-  {
-   "name": "VGC Trainer School; champions M/C #5",
-   "org": "VGC Trainers School",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "17:00",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6ae0a00022fd412b92a4e0f1/details"
   },
   {
    "name": "Same First Letter",
@@ -325,7 +271,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "03:00",
-   "players": 24,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6adef5e191617679e84a118f/details"
   },
   {
@@ -340,7 +286,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 20,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -385,7 +331,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "12:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
@@ -400,7 +346,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "17:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
@@ -445,7 +391,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -520,7 +466,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 137,
+   "players": 138,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -535,7 +481,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -670,7 +616,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -940,7 +886,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
