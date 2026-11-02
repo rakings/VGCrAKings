@@ -3,7 +3,7 @@
 (top 16 di un grande torneo) manda una notifica sul canale "player".
 Manda anche l'avviso "Vincitore di un Regionale" (canale "winner"): primo posto, di qualsiasi nazionalità.
 Manda anche "Vincitore Victory Road" (canale "vrwin"): legge il banner "X is the VR ... Champion!" della home di victoryroad.pro.
-Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (OneSignal o ntfy).
+Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (Firebase o ntfy).
 Il primo giro non manda nulla: memorizza solo lo stato. Poi avvisa soltanto per i tornei
 più recenti di quelli già noti, così il caricamento a ritroso dello storico non genera avvisi."""
 import html, json, os, re, signal, sys, time, urllib.request
@@ -305,7 +305,7 @@ def log(*a):
 def main():
     if hasattr(signal, "SIGALRM"):
         signal.alarm(150)  # rete di sicurezza: dopo 150 secondi il sistema chiude lo script, qualunque cosa lo blocchi
-    if not (os.environ.get("NTFY_PREFIX") or ue.os_on()):
+    if not (os.environ.get("NTFY_PREFIX") or ue.push_on()):
         return
     log("notify_players: avvio")
     try:

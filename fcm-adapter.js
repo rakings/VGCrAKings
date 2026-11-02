@@ -1,5 +1,5 @@
-/* Adattatore Firebase per il sito: offre gli stessi comandi di OneSignal (OS.User.PushSubscription,
-   OS.Notifications, ...) cosi' il resto del sito (spunte, salvataggio automatico, banner) non cambia.
+/* Adattatore Firebase per il sito: offre al resto del sito (spunte, salvataggio automatico, banner) i comandi OS.User.PushSubscription,
+   OS.Notifications, ... e li collega a Firebase Cloud Messaging.
    La configurazione e la chiave pubblica non sono segreti. */
 (function () {
   if (window.__fcmAdapter) return;
@@ -100,7 +100,7 @@
     }
   };
 
-  var q = Array.isArray(window.OneSignalDeferred) ? window.OneSignalDeferred : [];
-  window.OneSignalDeferred = { push: function (fn) { try { return fn(OS); } catch (e) {} } };
+  var q = Array.isArray(window.PushDeferred) ? window.PushDeferred : [];
+  window.PushDeferred = { push: function (fn) { try { return fn(OS); } catch (e) {} } };
   q.forEach(function (fn) { try { fn(OS); } catch (e) {} });
 })();

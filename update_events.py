@@ -37,7 +37,6 @@ PREV = {}        # eventi salvati al giro precedente (url -> evento)
 PARTIAL = set()  # fonti lette solo in parte in questo giro
 KEEP = set()     # pagine non lette per un errore temporaneo: si tiene la copia precedente
 LIVE = set()     # tornei che Limitless dà "in corso" adesso: restano finché non finiscono
-GC_ORA_UTC = 2   # ora di inizio delle Global Challenge (UTC): serve per il promemoria di un'ora prima
 GRACE_H = 8      # ore dopo l'inizio in cui un torneo con orario resta in elenco (poi si considera finito)
 
 # ---------- Limitless ----------
@@ -287,9 +286,6 @@ def vr_parse(slug, page):
     reg = re.search(r"Regulation Set (M-[A-Z])", text)
     prize = bool(re.search(r"prize ?pool", text, re.I))
     gc = "global-challenge" in slug
-    if gc and not hhmm:  # Global Challenge: si parte alle 02:00 UTC del primo giorno (in Italia 03:00 d'inverno, 04:00 d'estate)
-        dt = datetime.fromisoformat(date + "T%02d:00:00+00:00" % GC_ORA_UTC).astimezone(ROME)
-        date, hhmm = dt.strftime("%Y-%m-%d"), dt.strftime("%H:%M")
     return {
         "name": name, "org": "" if gc else "Victory Road", "mode": "online", "type": "Global Challenge" if gc else "Torneo",
         "fee": fee, "cur": "$" if fee else None, "feeNote": "+ tassa Battlefy" if fee and "Battlefy tax" in text else None,
@@ -496,53 +492,20 @@ def say(topic, title, body, click):
     urllib.request.urlopen(req, timeout=30).read()
 
 def fcm_on():
-    """Se c'e' il segreto FCM_SERVICE_ACCOUNT gli avvisi partono con Firebase (e non piu' con OneSignal)."""
+    """Se c'e' il segreto FCM_SERVICE_ACCOUNT gli avvisi partono con Firebase."""
     return bool(os.environ.get("FCM_SERVICE_ACCOUNT"))
 
-def os_on():
-    return fcm_on() or bool(os.environ.get("ONESIGNAL_APP_ID") and os.environ.get("ONESIGNAL_API_KEY"))
+def push_on():
+    """Notifiche nell'app attive: servono il segreto FCM_SERVICE_ACCOUNT (Firebase) e l'archivio iscritti."""
+    return fcm_on()
 
-def os_filters(topic):
-    """Filtri OneSignal: le scelte dell'utente (tag) impostate dall'ingranaggio del sito."""
-    if topic.startswith("t-"):
-        return [{"field": "tag", "key": "t_" + topic[2:], "relation": "=", "value": "1"}]
-    cat, one = (topic[:-3], True) if topic.endswith("-1h") else (topic, False)
-    val = "all" if cat == "money" else "33" if cat == "money33" else "1"
-    key = "c_money" if cat in ("money", "money33") else "c_" + cat
-    f = [{"field": "tag", "key": key, "relation": "=", "value": val}]
-    if one:
-        f.append({"field": "tag", "key": "h_" + ("money" if cat in ("money", "money33") else cat), "relation": "=", "value": "1"})
-    return f
+def send_push(ids, title, body, click):
+    """Invia con Firebase a un elenco di token dell'archivio iscritti."""
+    if ids is None:
+        raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
+    return send_fcm(ids, title, body, click)
 
-def send_os(filters, title, body, click, ids=None):
-    """Invia con OneSignal: ai filtri sui tag (vecchio sistema) oppure a un elenco di iscrizioni (archivio iscritti)."""
-    if fcm_on():  # con Firebase si manda sempre a un elenco di token dell'archivio iscritti
-        if ids is None:
-            raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-        return send_fcm(ids, title, body, click)
-    base = {"app_id": os.environ["ONESIGNAL_APP_ID"], "target_channel": "push",
-            "headings": {"en": title, "it": title}, "contents": {"en": body, "it": body}}
-    if click.startswith("http"):
-        base["url"] = click
-    site = os.environ.get("SITE_URL", "").rstrip("/")
-    if site.startswith("http"):  # logo accanto alla notifica
-        base["chrome_web_icon"] = site + "/icon-192.png"
-        base["chrome_web_badge"] = site + "/badge-96.png"
-    batches = [dict(base, included_segments=["Subscribed Users"]) if filters == "TUTTI" else dict(base, filters=filters)] if ids is None else [dict(base, include_subscription_ids=ids[k:k + 2000]) for k in range(0, len(ids), 2000)]
-    r = {}
-    for data in batches:
-        req = urllib.request.Request("https://api.onesignal.com/notifications", data=json.dumps(data).encode("utf-8"), method="POST",
-                                     headers={"Content-Type": "application/json", "Authorization": "Key " + os.environ["ONESIGNAL_API_KEY"]})
-        try:
-            r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
-        except urllib.error.HTTPError as ex:
-            raise RuntimeError("OneSignal HTTP %s: %s" % (ex.code, ex.read().decode("utf-8", "ignore")[:300]))
-        print("OneSignal:", json.dumps(r)[:300])
-        if r.get("errors") and not r.get("id"):
-            print("ATTENZIONE: nessun destinatario:", r.get("errors"))
-    return r
-
-# ---------- Firebase (FCM): sostituisce OneSignal ----------
+# ---------- Firebase (FCM) ----------
 _FCM = {}
 
 def fcm_access_token():
@@ -652,7 +615,7 @@ def send_fcm(ids, title, body, click):
         raise RuntimeError("Firebase: nessuna notifica inviata (%s)" % errs[0][1])
     return {"id": "fcm", "recipients": ok}
 
-# ---------- archivio iscritti (Cloudflare Worker): sostituisce i tag di OneSignal, limitati a 6 sul piano gratuito ----------
+# ---------- archivio iscritti (Cloudflare Worker): le scelte di ogni dispositivo ----------
 _SUBS = None
 
 def subs_on():
@@ -729,35 +692,33 @@ def log_notif(topic, title, body, click, fname, topics=None):
         print("Cronologia non salvata:", ex)
 
 def deliver(topic, title, body, click):
-    """Con OneSignal arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
-    if os_on():
-        if subs_on():
-            ids = subs_for(topic)
-            if ids:
-                send_os(None, title, body, click, ids=ids)
-            else:
-                print("Nessun iscritto per il canale", topic)
+    """Con Firebase arriva dentro l'app; altrimenti, se c'è NTFY_PREFIX, passa da ntfy."""
+    if push_on():
+        if not subs_on():
+            raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
+        ids = subs_for(topic)
+        if ids:
+            send_push(ids, title, body, click)
         else:
-            send_os(os_filters(topic), title, body, click)
+            print("Nessun iscritto per il canale", topic)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_avvisi.json")
 
 def deliver_multi(topics, title, body, click):
     """Un solo avviso a chi ha attivo almeno uno dei canali (nessuno lo riceve due volte), con una sola riga in cronologia."""
-    if os_on() and subs_on():
+    if push_on():
+        if not subs_on():
+            raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
         ids = []
         for t in topics:
             for i in subs_for(t):
                 if i not in ids:
                     ids.append(i)
         if ids:
-            send_os(None, title, body, click, ids=ids)
+            send_push(ids, title, body, click)
         else:
             print("Nessun iscritto per i canali", topics)
-    elif os_on():  # vecchio sistema a tag: i filtri non si possono unire, un invio per canale
-        for t in topics:
-            send_os(os_filters(t), title, body, click)
     else:
         for t in topics:
             say(os.environ.get("NTFY_PREFIX", "") + "-" + t, title, body, click)
@@ -765,21 +726,20 @@ def deliver_multi(topics, title, body, click):
 
 def deliver_tutti(title, body, click):
     """Avviso OBBLIGATORIO (annunci del sito): arriva a tutti gli iscritti, qualunque spunta abbiano scelto."""
-    if os_on():
-        if subs_on():
-            ids = [s["id"] for s in subs_list() if s.get("id")]
-            if ids:
-                send_os(None, title, body, click, ids=ids)
-            else:
-                print("Nessun iscritto a cui mandare l'annuncio")
+    if push_on():
+        if not subs_on():
+            raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
+        ids = [s["id"] for s in subs_list() if s.get("id")]
+        if ids:
+            send_push(ids, title, body, click)
         else:
-            send_os("TUTTI", title, body, click)
+            print("Nessun iscritto a cui mandare l'annuncio")
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-annunci", title, body, click)
     log_notif("annunci", title, body, click, "notifiche_avvisi.json")
 
 def notify_all(events):
-    if not (os.environ.get("NTFY_PREFIX") or os_on()) or not events:
+    if not (os.environ.get("NTFY_PREFIX") or push_on()) or not events:
         return
     first = not os.path.exists(STATE)
     sent = set(load(STATE, []))

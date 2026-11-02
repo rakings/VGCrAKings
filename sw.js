@@ -1,11 +1,11 @@
 // Tocco sulla notifica: se non ha un link suo (o punta alla radice rakings.github.io, che non ha nessun sito)
-// si apre il sito. Questo gestore deve stare PRIMA di OneSignal, per poterlo fermare solo in questo caso.
+// si apre il sito. Questo gestore sta per primo, per fermare gli altri solo in questo caso.
 self.addEventListener("notificationclick",e=>{
   const d=e.notification.data||{};
-  const u=d.launchURL||(d.custom&&d.custom.u)||d.url||(d.onesignal_data&&d.onesignal_data.launchURL)||"";
+  const u=d.launchURL||(d.custom&&d.custom.u)||d.url||"";
   let radice=!u;
   try{if(u){const x=new URL(u,location.origin);radice=x.origin===location.origin&&(x.pathname==="/"||x.pathname==="")}}catch(_){}
-  if(!radice)return; // le notifiche con un loro link le gestisce OneSignal come prima
+  if(!radice)return; // le notifiche con un loro link le gestisce il service worker di Firebase
   e.stopImmediatePropagation();
   e.notification.close();
   const dest=self.registration.scope;
@@ -35,7 +35,7 @@ async function histSave(items){
 function histGrab(){
   return self.registration.getNotifications().then(ns=>histSave(ns.map(n=>{
     const d=n.data||{};
-    const u=d.launchURL||(d.custom&&d.custom.u)||d.url||(d.onesignal_data&&d.onesignal_data.launchURL)||"";
+    const u=d.launchURL||(d.custom&&d.custom.u)||d.url||"";
     return{id:(n.tag||"")+"|"+(n.title||"")+"|"+(n.body||"")+"|"+(n.timestamp||0),t:n.timestamp||Date.now(),title:n.title||"",body:n.body||"",url:/^https?:/.test(u)?u:""};
   })));
 }

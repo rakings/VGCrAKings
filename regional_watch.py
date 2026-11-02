@@ -95,8 +95,8 @@ def save(st, path=STATE):
 def ready():
     if hasattr(signal, "SIGALRM"):
         signal.alarm(28 * 60)  # rete di sicurezza: il lavoro dura al massimo 30 minuti
-    if not (os.environ.get("NTFY_PREFIX") or ue.os_on()):
-        log("regional_watch: né OneSignal né NTFY_PREFIX impostati")
+    if not (os.environ.get("NTFY_PREFIX") or ue.push_on()):
+        log("regional_watch: né Firebase né NTFY_PREFIX impostati")
         return False
     return True
 

@@ -19,7 +19,7 @@ def main():
     if not nuovi and not ann:
         log("Nessuna novità da notificare.")
         return 0
-    import update_events as ue  # stesso invio delle altre notifiche (OneSignal o ntfy)
+    import update_events as ue  # stesso invio delle altre notifiche (Firebase o ntfy)
     sito = ue.sito_url().rstrip("/")
     for v in sorted(nuovi, key=lambda x: x["pub"]):
         ue.deliver("locali8", "Nuova top 8: %s" % v["s"], "%s · %s · %s" % (v["t"], v["c"], v["d"]), sito + "/#locali")
