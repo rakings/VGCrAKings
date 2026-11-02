@@ -303,7 +303,7 @@ label{display:grid;gap:4px;font-size:.88rem;font-weight:600}
 textarea{min-height:140px}
 .note{margin-top:26px;font-size:.88rem;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
 .devby{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--mute);text-align:left}.devby a{color:inherit;font-weight:700;text-decoration:underline}</style>
-<link rel="stylesheet" href="vgcstats.css?v=20261031j">
+<link rel="stylesheet" href="vgcstats.css?v=20261102k">
 </head>
 <body>
 <main><p class="devby">Developed by: X: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a> · IG: <a href="https://www.instagram.com/AndreaK_92/" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
@@ -362,7 +362,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261031j</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102k</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -390,16 +390,27 @@ var MTN=null,MTNL=-1,TCK="vgc-tipi",TCA={},TFAIL={},TQ={};
 try{TCA=JSON.parse(localStorage.getItem(TCK)||"{}")||{}}catch(e){TCA={}}
 /* nome "canonico": Iron (Treads), Iron Treads e iron-treads diventano la stessa chiave */
 function canon(n){return String(n||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"")}
-function tipiDi(m){var ks=Object.keys(MT);if(!MTN||MTNL!==ks.length){MTN={};ks.forEach(function(k){MTN[canon(k)]=MT[k]});MTNL=ks.length}var k=canon(m);return MTN[k]||TCA[k]||[]}
+function tipiDi(m){var ks=Object.keys(MT);if(!MTN||MTNL!==ks.length){MTN={};ks.forEach(function(k){MTN[canon(k)]=MT[k]});MTNL=ks.length}var k=canon(m);return MTN[k]||TCA[k]||tipiRef(m)}
 function phBg(t){var c=t.map(function(x){return TC[x]});return c.length>1?"linear-gradient(90deg,"+c[0]+" 50%,"+c[1]+" 50%)":c.length?c[0]:"var(--none)"}
 function slugApi(n){var s=String(n||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s*\(([^)]*)\)\s*/g,"-$1").replace(/[.'\u2019:%]/g,"").replace(/[\s_]+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");return TALIAS[s]||s}
 /* Pokémon non presenti nella tabella: si chiede il tipo a PokéAPI una volta sola e lo si ricorda su questo dispositivo */
+/* Tipi dei Pokémon: prima dalla tabella del sito (vgcstats/ref.json, tutte le specie e le forme del calcolatore), poi da PokéAPI solo se manca */
+var REFS=null,REFP=null;
+function refCarica(){if(REFS)return Promise.resolve(REFS);if(REFP)return REFP;
+REFP=fetch("vgcstats/ref.json").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){REFS=j.t||{};return REFS}).catch(function(){REFS={};return REFS});return REFP}
+/* cerca il tipo: nome esatto, poi una forma che inizia cosi' (urshifu-rapid -> urshifu-rapid-strike), poi la specie base (ogerpon-teal -> ogerpon) */
+function tipiRef(n){var T=REFS||{},s=String(n||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,""),r=T[s]||null;
+if(!r&&s){var ks=Object.keys(T);for(var i=0;i<ks.length&&!r;i++)if(ks[i].indexOf(s+"-")===0)r=T[ks[i]];var p=s;while(!r&&p.indexOf("-")>0){p=p.replace(/-[^-]*$/,"");if(T[p])r=T[p]}}
+return r?r.split("/").map(function(x){return TAPI[x.toLowerCase()]}).filter(Boolean):[]}
+function tipiApplica(k,t){TCA[k]=t;try{localStorage.setItem(TCK,JSON.stringify(TCA))}catch(e){}
+document.querySelectorAll('.ph[data-pk="'+k+'"]').forEach(function(e){e.style.background=phBg(t);e.setAttribute("aria-label","Tipo "+t.join(" e "));e.title=t.join(" / ");e.removeAttribute("data-pk")})}
 function tipiCerca(nome){var k=canon(nome);if(!k||TCA[k]||TFAIL[k]||TQ[k]||typeof fetch!=="function")return;TQ[k]=1;
+refCarica().then(function(){var t=tipiRef(nome);if(t.length){delete TQ[k];tipiApplica(k,t)}else tipiApi(nome,k)})}
+function tipiApi(nome,k){
 var A="https://pokeapi.co/api/v2/",slug=slugApi(nome),j=function(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json()})};
 j(A+"pokemon/"+slug).catch(function(){return j(A+"pokemon-species/"+slug).then(function(sp){var v=(sp.varieties||[]).filter(function(x){return x.is_default})[0]||(sp.varieties||[])[0];if(!v)throw 0;return j(v.pokemon.url)})}).then(function(d){
 var t=(d.types||[]).slice().sort(function(a,b){return a.slot-b.slot}).map(function(x){return TAPI[x.type.name]}).filter(Boolean);if(!t.length)throw 0;
-TCA[k]=t;delete TQ[k];try{localStorage.setItem(TCK,JSON.stringify(TCA))}catch(e){}
-document.querySelectorAll('.ph[data-pk="'+k+'"]').forEach(function(e){e.style.background=phBg(t);e.setAttribute("aria-label","Tipo "+t.join(" e "));e.title=t.join(" / ");e.removeAttribute("data-pk")})}).catch(function(){TFAIL[k]=1;delete TQ[k]})}
+delete TQ[k];tipiApplica(k,t)}).catch(function(){TFAIL[k]=1;delete TQ[k]})}
 function phHtml(m){var t=tipiDi(m),k=canon(m);if(!t.length&&k)tipiCerca(m);return '<span class="ph" role="img" aria-label="Tipo '+esc(t.join(" e ")||"sconosciuto")+'" title="'+esc(t.join(" / "))+'" style="background:'+phBg(t)+'"'+(t.length||!k?'':' data-pk="'+esc(k)+'"')+'></span>'}
 var IT={"Rillaboom":"Assault Vest","Sneasler":"Focus Sash","Incineroar":"Sitrus Berry","Salamence":"Salamencite","Indeedee-F":"Psychic Seed","Garchomp":"Choice Scarf","Kingambit":"Black Glasses","Gholdengo":"Leftovers","Basculegion":"Mystic Water","Golisopod":"Rocky Helmet","Archaludon":"Assault Vest","Pelipper":"Focus Sash","Raichu":"Light Ball","Milotic":"Leftovers"};
 var AB={"Rillaboom":"Grassy Surge","Sneasler":"Unburden","Incineroar":"Intimidate","Salamence":"Intimidate","Indeedee-F":"Psychic Surge","Garchomp":"Rough Skin","Kingambit":"Defiant","Gholdengo":"Good as Gold","Basculegion":"Swift Swim","Golisopod":"Emergency Exit","Archaludon":"Stamina","Pelipper":"Drizzle","Raichu":"Lightning Rod","Milotic":"Competitive"};
@@ -518,7 +529,7 @@ $("f-big").addEventListener("click",function(){st.big=!st.big;this.setAttribute(
 window.VGCS_CF=window.VGCS_CF||"https://rakings-dati.pages.dev";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
-function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}var sc=document.createElement("script");sc.src="vgcstats.js?v=20261031j";sc.onload=function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)};sc.onerror=function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'};document.head.appendChild(sc)}
+function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102k";sc.onload=function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)};sc.onerror=function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'};document.head.appendChild(sc)}
 function render(){ var nw=st.mode==="news";
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("q").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
