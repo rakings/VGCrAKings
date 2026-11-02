@@ -19,8 +19,6 @@ jobs:
       - run: python3 -u regional_watch.py timer
         env:
           NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
-          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
-          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
           FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
           SUBS_URL: ${{ vars.SUBS_URL }}
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}

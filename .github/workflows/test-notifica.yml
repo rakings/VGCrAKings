@@ -13,8 +13,6 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 test_notifica.py
         env:
-          ONESIGNAL_APP_ID: ${{ vars.ONESIGNAL_APP_ID }}
-          ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
           FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
           SUBS_URL: ${{ vars.SUBS_URL }}
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
