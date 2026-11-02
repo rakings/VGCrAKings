@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T18:08:22+00:00",
+ "updated": "2026-11-02T19:17:05+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -185,21 +185,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "Pernambuco challange de novembro",
-   "org": "Thiago Okaime",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-02",
-   "time": "19:15",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ae8c264e94eae0f94745828/details"
-  },
-  {
    "name": "Amyverse VGC Champions Arena #17 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -215,6 +200,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
+   "name": "Pernambuco challange de novembro",
+   "org": "Thiago Okaime",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-02",
+   "time": "19:15",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ae8c264e94eae0f94745828/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -226,7 +226,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 33,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -241,7 +241,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae89ebd0d00101b48bf4955/details"
   },
   {
@@ -256,7 +256,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 7,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
@@ -286,7 +286,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "12:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
@@ -316,7 +316,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -376,7 +376,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 10,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -421,7 +421,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 142,
+   "players": 143,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -436,7 +436,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -481,7 +481,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
   },
   {
@@ -556,7 +556,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 22,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -648,6 +648,24 @@
    "time": "15:00",
    "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
+  },
+  {
+   "name": "VR November Challenge #1",
+   "org": "Victory Road",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": 11.5,
+   "cur": "$",
+   "feeNote": "+ tassa Battlefy",
+   "cash": true,
+   "prize": "montepremi",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-07",
+   "end": "2026-11-08",
+   "time": null,
+   "url": "https://victoryroad.pro/vr-nov26/",
+   "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-1/6ae8d0b7e6c678001939ed17/info?infoTab=details"
   },
   {
    "name": "Cusca Champions Weekly M-C ⚡ #18 (PCVGC)",
@@ -796,7 +814,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -871,7 +889,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
@@ -1068,7 +1086,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
