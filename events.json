@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T01:42:29+00:00",
+ "updated": "2026-11-02T03:53:26+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -286,7 +286,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 23,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -301,7 +301,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -316,8 +316,23 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
+  },
+  {
+   "name": "HOTG Online Series - Champions - S103",
+   "org": "Competitive Corner RD",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-03",
+   "time": "01:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae7eebd0d00101b48bf44b3/details"
   },
   {
    "name": "ValkrixVGC Rising Champions League #03",
@@ -331,7 +346,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "12:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
@@ -391,7 +406,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 28,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -406,7 +421,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "12:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
@@ -421,7 +436,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 11,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -466,7 +481,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 138,
+   "players": 139,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -586,7 +601,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 14,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
