@@ -299,6 +299,37 @@ def load(path, default):
         return default
 
 
+DATE_MANUALI = "date_manuali.json"  # facoltativo, nella cartella principale: {"id": {"start": "AAAA-MM-GG", "end": "AAAA-MM-GG"}}
+
+
+def completa_date(events, oggi=None):
+    """Se Pokedata non da' la data di un regionale, la si prende (in ordine): dal file date_manuali.json, dai dati gia' salvati,
+    oppure, se il regionale e' in corso, dal giorno di oggi (il giorno in cui lo vediamo partire; la fine si aggiorna ogni giorno).
+    Senza data il regolamento risulterebbe 'old' e il regionale uscirebbe dai totali del regolamento attuale.
+    Se Pokedata la da', non cambia niente."""
+    oggi = oggi or time.strftime("%Y-%m-%d", time.gmtime())
+    man = load(DATE_MANUALI, {})
+    if not isinstance(man, dict):
+        man = {}
+    for e in events:
+        if e["start"]:
+            continue
+        m = man.get(str(e["id"])) or {}
+        if not isinstance(m, dict):
+            m = {}
+        prec = load(os.path.join(OUT, str(e["id"]), "meta.json"), {})
+        start = m.get("start") or prec.get("date") or ""
+        if not start and e["status"] == "running":
+            start = oggi
+        if not start:
+            continue
+        in_corso = e["status"] == "running" and not m.get("end")
+        e["start"] = start
+        e["end"] = e["end"] or (oggi if in_corso else (m.get("end") or prec.get("end") or start))
+        e["reg"] = reg_of(start)
+    return events
+
+
 def list_events():
     data = get_json(API + "/vg/tournaments/")
     out = []
@@ -312,6 +343,7 @@ def list_events():
                     "winner": (t.get("winners") or {}).get("masters"), "rk9": t.get("rk9link"), "updated": t.get("lastUpdated") or "",
                     "winners": {d: person((t.get("winners") or {}).get(d)) for d in ("masters", "seniors", "juniors")},
                     "players_div": t.get("players") or {}})
+    completa_date(out)
     out.sort(key=lambda e: e["start"], reverse=True)
     return out
 
@@ -796,7 +828,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-01e (rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-02a (mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
