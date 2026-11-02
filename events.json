@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T19:17:05+00:00",
+ "updated": "2026-11-02T20:32:34+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -185,6 +185,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "Pernambuco challange de novembro",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-02",
+   "time": "19:15",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6ae8c264e94eae0f94745828/details"
+  },
+  {
    "name": "Amyverse VGC Champions Arena #17 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -200,21 +215,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
-   "name": "Pernambuco challange de novembro",
-   "org": "Thiago Okaime",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-02",
-   "time": "19:15",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ae8c264e94eae0f94745828/details"
-  },
-  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -226,7 +226,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 40,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -241,7 +241,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 8,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae89ebd0d00101b48bf4955/details"
   },
   {
@@ -256,7 +256,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
@@ -376,7 +376,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 13,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -406,7 +406,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 42,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -421,7 +421,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 143,
+   "players": 145,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -556,7 +556,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -773,6 +773,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "20:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -889,7 +904,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
