@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T11:11:35+00:00",
+ "updated": "2026-11-02T12:19:19+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -135,7 +135,7 @@
    "bo": null,
    "date": "2026-10-30",
    "end": "2026-11-02",
-   "time": "03:00",
+   "time": null,
    "url": "https://victoryroad.pro/2027-global-challenge-ii/",
    "signup": null
   },
@@ -211,7 +211,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 33,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -226,7 +226,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -241,7 +241,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:30",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
@@ -286,7 +286,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "17:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
@@ -301,7 +301,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -331,7 +331,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "01:30",
-   "players": 35,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -361,7 +361,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -451,7 +451,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "19:30",
-   "players": 2,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
   },
   {
@@ -511,7 +511,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -526,7 +526,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "16:05",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae7a4730d00101b48bf41c6/details"
   },
   {
@@ -575,21 +575,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
-   "name": "ValkrixVGC Pokemon Champions League #09",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "15:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
-  },
-  {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -633,6 +618,21 @@
    "time": "20:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6adb86f791617679e849ef7c/details"
+  },
+  {
+   "name": "ValkrixVGC Pokemon Champions League #09",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "15:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
    "name": "Cusca Champions Weekly M-C ⚡ #18 (PCVGC)",
