@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T16:33:29+00:00",
+ "updated": "2026-11-02T17:29:02+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -185,6 +185,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "Pernambuco challange de novembro",
+   "org": "Thiago Okaime",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-02",
+   "time": "19:15",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae8c264e94eae0f94745828/details"
+  },
+  {
    "name": "Amyverse VGC Champions Arena #17 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -196,7 +211,7 @@
    "bo": null,
    "date": "2026-11-02",
    "time": "20:00",
-   "players": 55,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6adff5e180a8f79408d1f34d/details"
   },
   {
@@ -211,7 +226,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 31,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ce785920e4d2536340f/details"
   },
   {
@@ -226,7 +241,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "00:00",
-   "players": 1,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae89ebd0d00101b48bf4955/details"
   },
   {
@@ -301,7 +316,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -318,21 +333,6 @@
    "time": "00:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
-  },
-  {
-   "name": "Tuesday Throwdowns #3 (Top Cut, $50 for 1st)",
-   "org": "The #1 Fanatics",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-04",
-   "time": "01:30",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
    "name": "ValkrixVGC Rising Champions League #04",
@@ -393,6 +393,21 @@
    "time": "20:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ade0e1e97e21d82e5c6ed13/details"
+  },
+  {
+   "name": "Tuesday Throwdowns #3 (Top Cut, $50 for 1st)",
+   "org": "The #1 Fanatics",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-04",
+   "time": "01:30",
+   "players": 42,
+   "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#81",
@@ -736,7 +751,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
