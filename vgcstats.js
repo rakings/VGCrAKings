@@ -8,10 +8,15 @@ var BASE="vgcstats/";
 var BASES=[],DOWN=0,LASTSRC=-1;
 (function(){var u=String(window.VGCS_CF||"").replace(/\s+/g,"");if(u){if(u.slice(-1)!=="/")u+="/";BASES.push(u)}BASES.push(BASE)})();
 function dget(p,fresh){
+var am=/^(\d{7})\//.exec(p);
+if(ARCH&&am&&ARCHID[am[1]])return fetch(ARCH+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});
 var n=BASES.length,start=(n>1&&Date.now()<DOWN)?1:0;
 function go(k){var i=(start+k)%n;
 return fetch(BASES[i]+p+(fresh?"?t="+Date.now():""),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(i===0)DOWN=0;LASTSRC=i;return j}).catch(function(e){if(i===0&&n>1)DOWN=Date.now()+600000;if(k+1<n)return go(k+1);throw e})}
 return go(0)}
+/* Archivio storico (seconda repo, tornei fino a settembre 2025): se window.VGCS_ARCH e' impostato, i suoi tornei si aggiungono all'elenco.
+   Se non risponde, il sito funziona esattamente come prima. */
+var ARCH=(function(){var u=String(window.VGCS_ARCH||"").replace(/\s+/g,"");if(u&&u.slice(-1)!=="/")u+="/";return u})(),ARCHID={};
 var S={rf:"",br:false,sec:"arc",ev:null,treg:null,reg:"all",q:"",pq:"",sq:"",g:"all",s:"cnt",fp:false,mon:null,open:{},shown:80,onlyIt:false,msg:"",ready:false,fail:false};
 var OQ=[],POS={},PEND=null;
 function setOpen(id,on){S.open[id]=!!on;var i=OQ.indexOf(id);if(i>=0)OQ.splice(i,1);if(on)OQ.push(id)}
@@ -26,7 +31,7 @@ function J(p,fresh){if(!fresh&&C[p])return C[p];var q=dget(p,fresh);if(!fresh){C
 function pc(n,t){return t?Math.round(n/t*100):0}
 function wr(w,l){return w+l?(100*w/(w+l)).toFixed(1).replace(".",",")+"%":"–"}
 function dot(n){return window.phHtml?window.phHtml(n):""}
-function regLabel(r){return r==="old"?"Regolamenti precedenti":"Regolamento "+r}
+function regLabel(r){return r==="arch"?"Archivio storico (fino a settembre 2025)":r==="old"?"Regolamenti precedenti":"Regolamento "+r}
 function dfmt(d){try{return new Date(d+"T12:00:00").toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d||""}}
 function evOf(id){return (IDX.events||[]).filter(function(e){return e.id===id})[0]}
 function pastRegs(){var o=[];(IDX.events||[]).forEach(function(e){if(e.reg!==IDX.current&&o.indexOf(e.reg)<0)o.push(e.reg)});return o}
@@ -68,7 +73,7 @@ function copyBtn(id,pid){var t=paste(id,pid);return t?'<button class="btn sm" ty
 function ctlArc(){var pr=pastRegs();return'<input class="vg-in" id="vg-q" type="search" value="'+E(S.q)+'" placeholder="Cerca un regionale, per esempio Frankfurt" aria-label="Cerca un regionale"><div class="vg-chips"><button type="button" class="btn sm" data-vg="reg" data-v="all" aria-pressed="'+(S.reg==="all")+'">Tutti</button><button type="button" class="btn sm" data-vg="reg" data-v="'+E(IDX.current)+'" aria-pressed="'+(S.reg===IDX.current)+'">'+E(regLabel(IDX.current))+' (attuale)</button>'+(pr.length?'<select id="vg-pr" aria-label="Regolamenti passati"'+(S.reg!=="all"&&S.reg!==IDX.current?' class="on"':"")+'><option value="">Regolamenti passati</option>'+pr.map(function(r){return'<option value="'+E(r)+'"'+(S.reg===r?" selected":"")+">"+E(regLabel(r))+"</option>"}).join("")+"</select>":"")+"</div>"}
 function resArc(){var f=S.q.toLowerCase(),h="";
 if(S.msg)h+='<div class="vg-box">'+S.msg+"</div>";
-if(S.reg!=="all"){var all=IDX.events.filter(function(e){return e.reg===S.reg}),n=all.filter(function(e){return e.collected}).length;
+if(S.reg!=="all"&&S.reg!=="arch"){var all=IDX.events.filter(function(e){return e.reg===S.reg}),n=all.filter(function(e){return e.collected}).length;
 h+='<button type="button" class="vg-ev" data-vg="tot" data-v="'+E(S.reg)+'"><span><b>Totali '+E(regLabel(S.reg))+'</b><small>'+all.length+' regionali · '+n+' con dati</small></span><span class="vg-bd'+(n?" ok":"")+'">'+(n?"Apri":"Nessun dato")+"</span></button>"}
 var k=0;IDX.events.forEach(function(e){if(f&&(e.city+" "+e.kind).toLowerCase().indexOf(f)<0)return;if(S.reg!=="all"&&e.reg!==S.reg)return;k++;
 var w=(WIN[e.id]||{}).winners||e.winners||{},m=w.masters,line="";
@@ -239,7 +244,13 @@ function navSave(){try{sessionStorage.setItem("vgcs-nav",JSON.stringify({s:S.sec
 function navRestore(){if(!isReload())return;try{var n=JSON.parse(sessionStorage.getItem("vgcs-nav")||"null");if(!n)return;if(n.s==="arc"||n.s==="pok"||n.s==="swi")S.sec=n.s;if(n.e&&IDX.events.some(function(e){return e.id===n.e&&e.collected}))S.ev=n.e}catch(e){}}
 /* il regionale in corso sta sempre in cima, anche se Pokedata non gli da una data */
 function inCorsoPrima(a){var r=[],o=[];(a||[]).forEach(function(e){(e.status==="running"?r:o).push(e)});return r.concat(o)}
-function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+function archCarica(x){if(!ARCH)return Promise.resolve();
+function g(f){return fetch(ARCH+f,{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).catch(function(){return null})}
+return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var ix=a[0],w=a[1];if(!ix||!ix.events)return;
+var have={};x.events.forEach(function(e){have[e.id]=1});
+ix.events.forEach(function(e){if(!e.collected||have[e.id])return;ARCHID[e.id]=1;e.reg="arch";e.arch=true;x.events.push(e)});
+if(w&&w.events)w.events.forEach(function(e){if(ARCHID[e.id])WIN[e.id]=e})})}
+function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
 /* ---------- aggiornamento automatico (solo regionale in corso) ----------
    Pensato per tanta gente insieme: ogni controllo e' UNA richiesta a un file minuscolo (meta.json), senza numeri casuali
    nell'indirizzo (cosi' risponde la copia gia' pronta di GitHub e non il server), con tempi un po' sfalsati per ogni telefono.
