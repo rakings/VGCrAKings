@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T12:11:03+00:00",
+ "updated": "2026-11-03T13:59:08+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "17:30",
-   "players": 17,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 17,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "00:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "12:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 24,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 159,
+   "players": 164,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -373,8 +373,23 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "19:30",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
+  },
+  {
+   "name": "MetaVGC Arena #4 | MonoRegion | $10 Prize",
+   "org": "Oak Stadium",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$1",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-05",
+   "time": "23:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
   },
   {
    "name": "VGC Gemeinde Showdown #13",
@@ -392,6 +407,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
   },
   {
+   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟱",
+   "org": "IRGamers",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-06",
+   "time": "00:15",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6ae9d7f40c463890f304a4e4/details"
+  },
+  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -403,7 +433,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "01:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
@@ -463,7 +493,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "16:05",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae7a4730d00101b48bf41c6/details"
   },
   {
@@ -478,7 +508,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 36,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -736,7 +766,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
@@ -766,7 +796,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
