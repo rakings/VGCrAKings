@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T06:10:23+00:00",
+ "updated": "2026-11-03T08:06:56+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -182,36 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae930eee94eae0f94746061/details"
   },
   {
-   "name": "HOTG Online Series - Champions - S103",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "01:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ae7eebd0d00101b48bf44b3/details"
-  },
-  {
-   "name": "Intimidators Champions Challenge #53 REG M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "00:00",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6ae89ebd0d00101b48bf4955/details"
-  },
-  {
    "name": "The Drywalls Series #25",
    "org": "The Drywalls Series",
    "mode": "online",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "12:00",
-   "players": 19,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -388,7 +358,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -418,7 +388,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "19:30",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
   },
   {
@@ -478,7 +448,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -508,7 +478,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -525,6 +495,21 @@
    "time": "14:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
+  },
+  {
+   "name": "Outlanders Silver&Gold: Gen 2 Showdown",
+   "org": "Outlanders Trainers' Camp",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "14:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
   },
   {
    "name": "Raichu Rivalry | Champions Open",
