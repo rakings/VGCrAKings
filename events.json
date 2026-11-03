@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T09:29:23+00:00",
+ "updated": "2026-11-03T11:07:30+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,8 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "MEGA CHAMPIONSHIPS SERIES #2 EDITION",
-   "org": "",
+   "name": "ValkrixVGC Rising Champions League #03",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -177,9 +177,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-03",
-   "time": "02:40",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ae930eee94eae0f94746061/details"
+   "time": "12:00",
+   "players": 26,
+   "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
   },
   {
    "name": "The Drywalls Series #25",
@@ -197,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #03",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "12:00",
-   "players": 26,
-   "url": "https://play.limitlesstcg.com/tournament/6ae150b080a8f79408d1fd81/details"
-  },
-  {
    "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -223,7 +208,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "17:30",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 15,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "12:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "20:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ade0e1e97e21d82e5c6ed13/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "17:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
@@ -433,7 +418,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "13:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ae18caa22fd412b92a4e854/details"
   },
   {
@@ -478,7 +463,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
