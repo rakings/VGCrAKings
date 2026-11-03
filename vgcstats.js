@@ -315,12 +315,12 @@ st.textContent=".vg-sx{display:flex;gap:0;margin:2px 0 12px;border:2px solid var
 st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}.vgcs-host .vg-live .btn{min-height:34px;padding:5px 12px;font-weight:700;margin-left:4px}.vgcs-host .vg-tys{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle;flex-wrap:nowrap}.vgcs-host .vg-ty{font-style:normal;font-weight:700;font-size:.55rem;line-height:1;padding:2px 4px;border-radius:7px;min-width:25px;text-align:center;letter-spacing:.02em;font-family:inherit}.vgcs-host .vg-t td .vg-tys{display:flex;margin:3px 0 0 18px}.vgcs-host .vg-h .vg-tys{margin-left:8px}.vgcs-host .vg-ct{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:4px;flex:none}.vgcs-host .vg-ct svg{display:block;width:15px;height:15px}.vgcs-host .vg-mv{display:flex;flex-wrap:wrap;gap:0 6px;flex:0 0 calc(100% - 18px);margin:-4px 0 3px 18px;font-size:.65rem;line-height:1.35;color:var(--mute)}.vgcs-host .vg-mv>span{white-space:nowrap}.vgcs-host .vg-mv .vg-ct{width:10px;height:10px;margin-right:1px;vertical-align:-1px}.vgcs-host .vg-mv .vg-ct svg{width:10px;height:10px}.vgcs-host .vg-leg{margin:-2px 0 8px;font-size:.72rem;color:var(--mute)}.vgcs-host .vg-leg .vg-ct{width:13px;height:13px;margin-right:3px;vertical-align:-2px}.vgcs-host .vg-leg .vg-ct svg{width:13px;height:13px}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
 /* ---------- Ricerca giocatore (barra della home, in tutte le schede): torneo in corso (LIVE) + storico ---------- */
-var INIT_P=null,PHIST=null;
+var INIT_P=null,PHIST=null,LIMON=false;
 function pn(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
 /* etichetta del tipo di torneo: usa le classi di colore che il sito ha gia' (Regionale oro, Special Event giallo, Internazionale verde, Mondiale nero, VR azzurro) */
 function pTag(e){var k=String(e.kind||"");
 if(e.org==="Victory Road"||e.vr||/^vr/i.test(String(e.id))||/^vr/i.test(k))return["VR","t-vr"];
-if(/world/i.test(k))return["Mondiale","t-ww"];if(/international/i.test(k))return["Internazionale","t-int"];if(/special/i.test(k))return["Special Event","t-reg"];return["Regionale","t-rg"]}
+if(/world/i.test(k))return["Mondiale","t-ww"];if(/international/i.test(k))return["Internazionale","t-int"];if(/special/i.test(k))return["Special Event","t-reg"];if(/national/i.test(k))return["Nazionale","t-gc"];if(/players cup/i.test(k))return["Players Cup","t-none"];if(/master ball/i.test(k))return["Master Ball","t-none"];if(/other/i.test(k))return["Torneo","t-none"];return["Regionale","t-rg"]}
 function pReady(){if(S.ready)return Promise.resolve();if(S.fail)return Promise.resolve();return INIT_P||(INIT_P=init())}
 function tuttiEv(){return((IDXR&&IDXR.events)||[]).concat((IDXV&&IDXV.events)||[])}
 function pLive(qn){var ev=tuttiEv().filter(function(e){return e.status==="running"});
@@ -328,27 +328,43 @@ return Promise.all(ev.map(function(e){return J(e.id+"/players.json",true).then(f
 a.forEach(function(x){if(!x||!Array.isArray(x.rows))return;x.rows.forEach(function(r){if(pn(r[1]).indexOf(qn)>-1)out.push({name:r[1],cc:r[2],e:x.e,live:true,pl:r[3],w:r[4],l:r[5]})})});return out})}
 function pHist(){if(PHIST)return PHIST;
 function g(u){return fetch(u,{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).catch(function(){return null})}
-PHIST=Promise.all([g(BASE+"giocatori.json"),ARCH?g(ARCH+"giocatori.json"):Promise.resolve(null),VRB?g(VRB+"giocatori.json"):Promise.resolve(null)]).then(function(a){var L={};
-a.forEach(function(x){if(!x||!x.p||!x.ids)return;x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
-p[2].forEach(function(t){o.r.push({id:x.ids[t[0]],pl:t[1],w:t[2],l:t[3]})})})});return Object.keys(L).map(function(k){return L[k]})});return PHIST}
+PHIST=Promise.all([g(BASE+"giocatori.json"),ARCH?g(ARCH+"giocatori.json"):Promise.resolve(null),VRB?g(VRB+"giocatori.json"):Promise.resolve(null),ARCH?g(ARCH+"limitless.json"):Promise.resolve(null)]).then(function(a){var L={};
+a.forEach(function(x){if(!x)return;
+if(x.t&&x.p&&!x.ids){LIMON=true;x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
+p[2].forEach(function(r){var t=x.t[r[0]];if(t)o.r.push({lim:{id:t[0],n:t[1],d:t[2],k:t[4]},pl:r[1]})})});return}
+if(x.p&&x.ids)x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
+p[2].forEach(function(t){o.r.push({id:x.ids[t[0]],pl:t[1],w:t[2],l:t[3]})})});
+(x.x||[]).forEach(function(m){var k=pn(m.n)+"|"+m.cc,o=L[k]||(L[k]={name:m.n,cc:m.cc,pn:pn(m.n),r:[]});o.r.push({man:m})})});return Object.keys(L).map(function(k){return L[k]})});return PHIST}
 function pDate(d){if(!d)return"";try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?"":x.toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return""}}
-function cercaGiocatori(q){var qn=pn(q);if(qn.length<3)return Promise.resolve("");
+function pRiga(r,nome){var d=(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span>";
+return r.man?'<div class="pr-r pr-x">'+d+"</div>":r.lim?'<button type="button" class="pr-r" data-href="'+E(r.url)+'">'+d+"</button>":'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(nome)+'">'+d+"</button>"}
+function cercaGiocatori(q,espandi){var qn=pn(q);if(qn.length<3)return Promise.resolve("");
 var toks=qn.split(" ");
 return pReady().then(function(){if(S.fail||!IDXR)return[[],[]];return Promise.all([pLive(qn),pHist()])}).then(function(a){var live=a[0],hist=a[1],EV={},P={};
 tuttiEv().forEach(function(e){EV[e.id]=e});
 function porta(name,cc){var k=pn(name)+"|"+cc;return P[k]||(P[k]={name:name,cc:cc,rows:[],ids:{}})}
 function aggiungi(p,e,x){if(p.ids[e.id])return;p.ids[e.id]=1;var t=pTag(e);
 p.rows.push({id:e.id,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.end||e.start),d:String(e.end||e.start||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
+function vicino(p,d){var t=Date.parse(d+"T12:00:00");if(isNaN(t))return false;return p.rows.some(function(r){if(!r.d||r.approx)return false;var u=Date.parse(r.d+"T12:00:00");return!isNaN(u)&&Math.abs(u-t)<=3*86400000})}
+var STOP={championships:1,championship:1,regional:1,regionals:1,special:1,event:1,national:1,nationals:1,international:1,showdown:1,pokemon:1,series:1,season:1,premier:1,challenge:1,midseason:1,world:1,worlds:1,open:1};
+function parole(s){return pn(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>=4&&!STOP[w]})}
+/* un risultato scritto a mano con il solo anno vale per lo stesso torneo di Limitless se e' nello stesso anno e il nome ha una parola in comune (es. «roma») */
+function stessoMan(p,l){var pa=parole(l.n);return p.rows.some(function(r){return r.man&&r.approx&&String(l.d).slice(0,4)===String(r.d).slice(0,4)&&parole(r.nome).some(function(w){return pa.indexOf(w)>-1})})}
+function aggiungiLim(p,x){var l=x.lim,key="l:"+l.id;if(p.ids[key]||vicino(p,l.d)||stessoMan(p,l))return;p.ids[key]=1;
+p.rows.push({id:"",lim:true,url:"https://limitlessvgc.com/tournaments/"+l.id,live:false,tag:pTag({kind:l.k}),nome:l.n,data:pDate(l.d),d:l.d||"",res:x.pl?x.pl+"°":""})}
+function aggiungiMan(p,m){var key="m:"+m.t+"|"+(m.d||m.a);if(p.ids[key])return;p.ids[key]=1;var t=pTag({kind:m.k});
+p.rows.push({id:"",man:true,approx:!m.d,live:false,tag:[m.e||t[0],m.c||t[1]],nome:m.t,data:m.d?pDate(m.d):(m.a?String(m.a):""),d:m.d||(m.a?m.a+"-07-01":""),res:m.r||(m.pl?m.pl+"°":"")})}
 live.forEach(function(x){aggiungi(porta(x.name,x.cc),x.e,x)});
 hist.forEach(function(h){if(!toks.every(function(t){return h.pn.indexOf(t)>-1}))return;var p=null;
-h.r.forEach(function(x){var e=EV[x.id];if(!e)return;if(!p)p=porta(h.name,h.cc);aggiungi(p,e,x)})});
+var lims=[];h.r.forEach(function(x){if(x.man){if(!p)p=porta(h.name,h.cc);aggiungiMan(p,x.man);return}if(x.lim){lims.push(x);return}var e=EV[x.id];if(!e)return;if(!p)p=porta(h.name,h.cc);aggiungi(p,e,x)});
+if(lims.length){if(!p)p=porta(h.name,h.cc);lims.forEach(function(x){aggiungiLim(p,x)})}});
 var list=Object.keys(P).map(function(k){return P[k]});
 list.forEach(function(p){p.rows.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.d<b.d?1:a.d>b.d?-1:0)});p.live=p.rows.some(function(r){return r.live})});
 list.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.rows[0].d<b.rows[0].d?1:-1)});list=list.slice(0,8);
 if(!list.length)return'<div class="pr-box"><p class="pr-none">Nessun giocatore trovato per «'+E(q)+'».</p></div>';
 return'<div class="pr-box">'+list.map(function(p){return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span></div>'+
-p.rows.slice(0,5).map(function(r){return'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(p.name)+'">'+(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span></button>"}).join("")+
-(p.rows.length>5?'<div class="pr-more">+ '+(p.rows.length-5)+" altri tornei</div>":"")+"</div>"}).join("")+"</div>"})}
+(espandi&&espandi===pn(p.name)+"|"+p.cc?p.rows:p.rows.slice(0,5)).map(function(r){return pRiga(r,p.name)}).join("")+
+(p.rows.length>5&&!(espandi&&espandi===pn(p.name)+"|"+p.cc)?'<button type="button" class="pr-more" data-k="'+E(pn(p.name)+"|"+p.cc)+'">+ '+(p.rows.length-5)+" altri tornei</button>":"")+"</div>"}).join("")+(LIMON?'<p class="pr-fonte">Storico dei giocatori: Pokédata e <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a></p>':"")+"</div>"})}
 function apriGiocatore(id,name){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
 S.ev=id;S.sec="swi";S.pq=String(name||"");S.sq="";S.shown=80;if(host&&S.ready)draw()}
 window.VGCS={cerca:cercaGiocatori,apri:apriGiocatore,mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}

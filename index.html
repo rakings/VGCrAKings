@@ -291,8 +291,11 @@ li h2{font-size:1.1rem;margin:0 0 2px}
 .pr-h{display:flex;gap:8px;align-items:baseline;margin-bottom:2px}.pr-cc{font-size:.72rem;color:var(--mute);font-weight:700}
 .pr-r{display:flex;flex-wrap:wrap;align-items:center;gap:6px;width:100%;text-align:left;background:transparent;border:0;padding:6px 2px;font:inherit;color:inherit;cursor:pointer}
 .pr-n{flex:1 1 130px;font-size:.84rem}.pr-s{font-size:.8rem;font-weight:700;color:var(--mute)}
+.pr-x{cursor:default}
 .pr-r .t-live{background:#e11d2e;color:#fff;letter-spacing:.05em}
 .pr-more,.pr-none{font-size:.78rem;color:var(--mute);padding:2px 4px;margin:0}
+button.pr-more{background:transparent;border:0;font:inherit;font-size:.78rem;text-decoration:underline;cursor:pointer;text-align:left;padding:6px 2px}
+.pr-fonte{font-size:.72rem;color:var(--mute);margin:6px 4px 2px}.pr-fonte a{color:inherit;text-decoration:underline}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:.82rem;font-weight:700;padding:3px 10px;border-radius:999px}
 .t-online{background:color-mix(in srgb,var(--online) 26%,transparent);color:var(--online)}
@@ -370,7 +373,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102p</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102r</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -540,13 +543,15 @@ window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
 var VGP=null;
-function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102p";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102r";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
 function pSearch(v){clearTimeout(PT);var q=String(v||"").trim();PQ=q;var box=$("pres");if(q.length<3){box.hidden=true;box.innerHTML="";return}
 PT=setTimeout(function(){vgcsLoad().then(function(){return VGCS.cerca(q)}).then(function(html){if(PQ!==q)return;box.innerHTML=html;box.hidden=!html}).catch(function(){})},280)}
-$("pres").addEventListener("click",function(ev){var b=ev.target.closest(".pr-r");if(!b)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
+$("pres").addEventListener("click",function(ev){var mo=ev.target.closest(".pr-more");
+if(mo){var q0=PQ;vgcsLoad().then(function(){return VGCS.cerca(q0,mo.dataset.k)}).then(function(html){if(PQ===q0)$("pres").innerHTML=html}).catch(function(){});return}
+var b=ev.target.closest(".pr-r");if(!b)return;if(b.dataset.href){window.open(b.dataset.href,"_blank","noopener");return}if(!b.dataset.pid)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
 if(st.mode==="vgcs"){render();return}var t=document.querySelector('button[data-v="vgcs"]');if(t)t.click();else{st.mode="vgcs";render()}});
 function render(){ var nw=st.mode==="news";
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali e dei VR";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
