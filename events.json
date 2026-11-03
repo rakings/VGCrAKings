@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T16:25:01+00:00",
+ "updated": "2026-11-03T17:28:20+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,6 +167,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-03",
+   "time": "17:30",
+   "players": 43,
+   "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
+  },
+  {
    "name": "ValkrixVGC Rising Champions League #03",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -197,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
-   "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
-   "org": "UmbreNews",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "17:30",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
-  },
-  {
    "name": "Beaniest Battle of the Beans #2 M-C Shiny Prizing",
    "org": "Bean Battles",
    "mode": "online",
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 28,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 167,
+   "players": 168,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "17:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "13:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ae18caa22fd412b92a4e854/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -538,7 +538,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
   },
   {
@@ -632,6 +632,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
   },
   {
+   "name": "Thavorian Trials - 13",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "22:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
+  },
+  {
    "name": "ValkrixVGC Pokemon Champions League #09",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -663,6 +678,21 @@
    "time": null,
    "url": "https://victoryroad.pro/vr-nov26/",
    "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-1/6ae8d0b7e6c678001939ed17/info?infoTab=details"
+  },
+  {
+   "name": "Caramelo Raro - Weekly #5 Mega Evolution Battles",
+   "org": "Papuno - Caramelo Raro",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "00:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2048680a8f79408d20125/details"
   },
   {
    "name": "Cusca Champions Weekly M-C ⚡ #18 (PCVGC)",
@@ -1492,7 +1522,7 @@
    "bo": null,
    "date": "2026-12-26",
    "time": "18:00",
-   "players": 142,
+   "players": 143,
    "url": "https://play.limitlesstcg.com/tournament/6a7d22852b308b6067b52844/details"
   },
   {
