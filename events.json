@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T13:59:08+00:00",
+ "updated": "2026-11-03T15:08:42+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "17:30",
-   "players": 27,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ae107c180a8f79408d1fa7a/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-03",
    "time": "19:00",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "12:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 164,
+   "players": 166,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "17:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "23:00",
-   "players": 6,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "01:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
@@ -497,6 +497,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae7a4730d00101b48bf41c6/details"
   },
   {
+   "name": "Unova Champions League #15",
+   "org": "Vivid Arise eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-06",
+   "time": "20:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6ae9e9920c463890f304a574/details"
+  },
+  {
    "name": "Friday Fight Night 80! $50 Prize & Team Report",
    "org": "Team Rainbow Gaming",
    "mode": "online",
@@ -508,7 +523,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -553,7 +568,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 13,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -676,7 +691,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "10:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
@@ -766,7 +781,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 8,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
