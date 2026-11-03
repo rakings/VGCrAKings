@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03T17:28:20+00:00",
+ "updated": "2026-11-03T18:01:52+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,6 +167,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "Beaniest Battle of the Beans #2 M-C Shiny Prizing",
+   "org": "Bean Battles",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-03",
+   "time": "19:00",
+   "players": 36,
+   "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
+  },
+  {
    "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -212,21 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae398f380a8f79408d21048/details"
   },
   {
-   "name": "Beaniest Battle of the Beans #2 M-C Shiny Prizing",
-   "org": "Bean Battles",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "19:00",
-   "players": 36,
-   "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
-  },
-  {
    "name": "🇧🇷 Hit Nexus #2 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "00:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "01:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -617,21 +617,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb86f791617679e849ef7c/details"
   },
   {
-   "name": "MEGA CHAMPIONSHIPS SERIES #3",
-   "org": "Pokegiohorganization",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
-  },
-  {
    "name": "Thavorian Trials - 13",
    "org": "Thavorian Skies",
    "mode": "online",
@@ -645,6 +630,21 @@
    "time": "22:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
+  },
+  {
+   "name": "MEGA CHAMPIONSHIPS SERIES #3",
+   "org": "Pokegiohorganization",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "22:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
   },
   {
    "name": "ValkrixVGC Pokemon Champions League #09",
@@ -811,7 +811,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
