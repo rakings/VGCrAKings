@@ -334,7 +334,9 @@ if(x.t&&x.p&&!x.ids){LIMON=true;x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],
 p[2].forEach(function(r){var t=x.t[r[0]];if(t)o.r.push({lim:{id:t[0],n:t[1],d:t[2],k:t[4]},pl:r[1]})})});return}
 if(x.p&&x.ids)x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
 p[2].forEach(function(t){o.r.push({id:x.ids[t[0]],pl:t[1],w:t[2],l:t[3]})})});
-(x.x||[]).forEach(function(m){var k=pn(m.n)+"|"+m.cc,o=L[k]||(L[k]={name:m.n,cc:m.cc,pn:pn(m.n),r:[]});o.r.push({man:m})})});return Object.keys(L).map(function(k){return L[k]})});return PHIST}
+(x.x||[]).forEach(function(m){var k=pn(m.n)+"|"+m.cc,o=L[k]||(L[k]={name:m.n,cc:m.cc,pn:pn(m.n),r:[]});o.r.push({man:m})})});var perNome={};Object.keys(L).forEach(function(k){if(L[k].cc)(perNome[L[k].pn]=perNome[L[k].pn]||[]).push(k)});
+Object.keys(L).forEach(function(k){var o=L[k];if(o.cc||!perNome[o.pn]||perNome[o.pn].length!==1)return;var d=L[perNome[o.pn][0]];d.r=d.r.concat(o.r);delete L[k]});
+return Object.keys(L).map(function(k){return L[k]})});return PHIST}
 function pDate(d){if(!d)return"";try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?"":x.toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return""}}
 function pRiga(r,nome){var d=(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span>";
 return r.man?'<div class="pr-r pr-x">'+d+"</div>":r.lim?'<button type="button" class="pr-r" data-href="'+E(r.url)+'">'+d+"</button>":'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(nome)+'">'+d+"</button>"}
@@ -349,11 +351,11 @@ function vicino(p,d){var t=Date.parse(d+"T12:00:00");if(isNaN(t))return false;re
 var STOP={championships:1,championship:1,regional:1,regionals:1,special:1,event:1,national:1,nationals:1,international:1,showdown:1,pokemon:1,series:1,season:1,premier:1,challenge:1,midseason:1,world:1,worlds:1,open:1};
 function parole(s){return pn(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>=4&&!STOP[w]})}
 /* un risultato scritto a mano con il solo anno vale per lo stesso torneo di Limitless se e' nello stesso anno e il nome ha una parola in comune (es. «roma») */
-function stessoMan(p,l){var pa=parole(l.n);return p.rows.some(function(r){return r.man&&r.approx&&String(l.d).slice(0,4)===String(r.d).slice(0,4)&&parole(r.nome).some(function(w){return pa.indexOf(w)>-1})})}
+function stessoMan(p,l){var pa=parole(l.n);return p.rows.some(function(r){if(!(r.man&&r.approx&&String(l.d).slice(0,4)===String(r.d).slice(0,4)))return false;return(r.k&&r.k===l.k&&/^national/i.test(l.k))||parole(r.nome).some(function(w){return pa.indexOf(w)>-1})})}
 function aggiungiLim(p,x){var l=x.lim,key="l:"+l.id;if(p.ids[key]||vicino(p,l.d)||stessoMan(p,l))return;p.ids[key]=1;
 p.rows.push({id:"",lim:true,url:"https://limitlessvgc.com/tournaments/"+l.id,live:false,tag:pTag({kind:l.k}),nome:l.n,data:pDate(l.d),d:l.d||"",res:x.pl?x.pl+"°":""})}
 function aggiungiMan(p,m){var key="m:"+m.t+"|"+(m.d||m.a);if(p.ids[key])return;p.ids[key]=1;var t=pTag({kind:m.k});
-p.rows.push({id:"",man:true,approx:!m.d,live:false,tag:[m.e||t[0],m.c||t[1]],nome:m.t,data:m.d?pDate(m.d):(m.a?String(m.a):""),d:m.d||(m.a?m.a+"-07-01":""),res:m.r||(m.pl?m.pl+"°":"")})}
+p.rows.push({id:"",man:true,k:m.k,approx:!m.d,live:false,tag:[m.e||t[0],m.c||t[1]],nome:m.t,data:m.d?pDate(m.d):(m.a?String(m.a):""),d:m.d||(m.a?m.a+"-07-01":""),res:m.r||(m.pl?m.pl+"°":"")})}
 live.forEach(function(x){aggiungi(porta(x.name,x.cc),x.e,x)});
 hist.forEach(function(h){if(!toks.every(function(t){return h.pn.indexOf(t)>-1}))return;var p=null;
 var lims=[];h.r.forEach(function(x){if(x.man){if(!p)p=porta(h.name,h.cc);aggiungiMan(p,x.man);return}if(x.lim){lims.push(x);return}var e=EV[x.id];if(!e)return;if(!p)p=porta(h.name,h.cc);aggiungi(p,e,x)});
