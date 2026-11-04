@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T12:12:19+00:00",
+ "updated": "2026-11-04T13:58:11+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 22,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 43,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 195,
+   "players": 199,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 29,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "17:00",
-   "players": 5,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "23:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:30",
-   "players": 16,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ae9c340e94eae0f947464b0/details"
   },
   {
@@ -437,8 +437,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae9e9920c463890f304a574/details"
   },
   {
-   "name": "Floette Champions Cheese",
-   "org": "Thalera",
+   "name": "Meeklosh",
+   "org": "meeklosh",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -446,10 +446,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-11-07",
-   "time": "00:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
+   "date": "2026-11-06",
+   "time": "21:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb3848e94eae0f947470f6/details"
   },
   {
    "name": "Friday Fight Night 80! $50 Prize & Team Report",
@@ -463,8 +463,23 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 54,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
+  },
+  {
+   "name": "Floette Champions Cheese",
+   "org": "Thalera",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "00:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
   },
   {
    "name": "Øutcasts",
@@ -508,7 +523,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
   },
   {
@@ -572,6 +587,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adb86f791617679e849ef7c/details"
   },
   {
+   "name": "Thavorian Trials - 13",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "22:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
+  },
+  {
    "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -583,7 +613,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
@@ -600,21 +630,6 @@
    "time": "22:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
-  },
-  {
-   "name": "Thavorian Trials - 13",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
   },
   {
    "name": "ValkrixVGC Pokemon Champions League #09",
@@ -841,7 +856,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
