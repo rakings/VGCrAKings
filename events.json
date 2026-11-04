@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T01:39:55+00:00",
+ "updated": "2026-11-04T03:52:35+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "Beaniest Battle of the Beans #2 M-C Shiny Prizing",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-03",
-   "time": "19:00",
-   "players": 41,
-   "url": "https://play.limitlesstcg.com/tournament/6ae0e17280a8f79408d1f92e/details"
-  },
-  {
    "name": "VGC UmbreNews 03.11.2026 #38 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -212,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adec15597e21d82e5c6f51b/details"
   },
   {
-   "name": "Caramelo Raro - last minute cup",
-   "org": "Papuno - Caramelo Raro",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-04",
-   "time": "02:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aea6eb0e94eae0f94746b05/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
    "org": "Pomelo",
    "mode": "online",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "07:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aea7b53e94eae0f94746c47/details"
   },
   {
@@ -253,7 +223,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "12:00",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ae150bb22fd412b92a4e6e8/details"
   },
   {
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 185,
+   "players": 188,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "02:00",
-   "players": 24,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ae3dd6680a8f79408d21452/details"
   },
   {
@@ -388,7 +358,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "23:00",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
   },
   {
@@ -433,7 +403,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "01:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
@@ -448,7 +418,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "13:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ae18caa22fd412b92a4e854/details"
   },
   {
@@ -523,7 +493,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 50,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -538,7 +508,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
   },
   {
@@ -1008,6 +978,21 @@
    "time": "18:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
+  },
+  {
+   "name": "Scrafty Cup #2",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "22:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
    "name": "Buenos Aires Special Event",
