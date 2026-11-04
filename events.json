@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-04T13:58:11+00:00",
+ "updated": "2026-11-04T15:12:48+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "18:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ae60fc50d00101b48bf3534/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-04",
    "time": "19:00",
-   "players": 47,
+   "players": 58,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f05b115c12b73a5a9075/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "00:00",
-   "players": 199,
+   "players": 203,
    "url": "https://play.limitlesstcg.com/tournament/6ac02d2b85920e4d2536238f/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "17:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:30",
-   "players": 22,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6ae9c340e94eae0f947464b0/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "21:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aeb3848e94eae0f947470f6/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "00:00",
-   "players": 55,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
@@ -523,7 +523,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
@@ -961,7 +961,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -1436,6 +1436,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16df185920e4d25363417/details"
   },
   {
+   "name": "London Corviknights VGC Weekly Tour 25! (Reg M-D)",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-10",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb39360c463890f304b1c9/details"
+  },
+  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -1494,6 +1509,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16ebf85920e4d25363472/details"
+  },
+  {
+   "name": "London Corviknights VGC Weekly Tour 26! (Reg M-D)",
+   "org": "London Corviknights VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-17",
+   "time": "19:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb39a8e94eae0f947470ff/details"
   },
   {
    "name": "Talon",
