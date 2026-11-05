@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T17:36:16+00:00",
+ "updated": "2026-11-05T18:02:17+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,21 +122,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac8ed86115c12b73a59fa3b/details"
   },
   {
-   "name": "Corner Clash #2 (Prize: Shiny Hydreigon)",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "00:30",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6ade638297e21d82e5c6f0ca/details"
-  },
-  {
    "name": "BPL SPOOKY CUP",
    "org": "Goblin Lair Events",
    "mode": "online",
@@ -182,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-05",
-   "time": "05:00",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6aebba050c463890f304b70e/details"
-  },
-  {
    "name": "Off Meta Fight Club #9",
    "org": "DevinTLegend",
    "mode": "online",
@@ -223,7 +193,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "19:30",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
   },
   {
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-05",
    "time": "23:00",
-   "players": 51,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
   },
   {
@@ -377,21 +347,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aeb3848e94eae0f947470f6/details"
   },
   {
-   "name": "Friday Fight Night 80! $50 Prize & Team Report",
-   "org": "Team Rainbow Gaming",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "00:00",
-   "players": 81,
-   "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
-  },
-  {
    "name": "Floette Champions Cheese",
    "org": "Thalera",
    "mode": "online",
@@ -405,6 +360,21 @@
    "time": "00:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
+  },
+  {
+   "name": "Friday Fight Night 80! $50 Prize & Team Report",
+   "org": "Team Rainbow Gaming",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "00:00",
+   "players": 81,
+   "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
    "name": "Chacho Cup #4",
