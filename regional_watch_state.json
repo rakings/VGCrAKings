@@ -209,6 +209,16 @@
    "name": "Frankfurt Regional Championships",
    "link": "https://rk9.gg/event/pokemon-frankfurt-2026",
    "opens": null
+  },
+  "2027-atlanta-pokemon-regional-championships": {
+   "name": "Atlanta Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-atlanta-2027",
+   "opens": "2026-11-12T00:00:00+00:00"
+  },
+  "2027-sydney-pokemon-regional-championships": {
+   "name": "Sydney Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-sydney-2026",
+   "opens": "2026-11-11T08:00:00+00:00"
   }
  }
 }
