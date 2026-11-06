@@ -72,7 +72,12 @@ def fcm_access_token():
 
 
 def corto(txt, n=230):
-    return " ".join(str(txt).split())[:n]
+    """Una riga sola, SENZA token: le risposte di errore di Google ripetono l'indirizzo con il token dentro, e i registri di questo repo sono pubblici."""
+    import re
+    t = " ".join(str(txt).split())
+    t = re.sub(r"(registrations/)[^\s'\"/]+", r"\1<token>", t)
+    t = re.sub(r"[A-Za-z0-9_-]{8,}:APA91[A-Za-z0-9_-]*", "<token>", t)
+    return t[:n]
 
 
 def chiama(metodo, url, access, corpo=None, timeout=30):
@@ -171,10 +176,13 @@ def main():
         minuti = 20
     molte = (os.environ.get("TEST_MOLTE") or "no").lower() == "si"
     link = (os.environ.get("SITE_URL") or "").strip()
-    progetto = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])["project_id"]
+    chiave = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])
+    progetto = chiave["project_id"]
+    account = chiave.get("client_email", "?")
 
     print("PROVA ARGOMENTI FIREBASE - non cambia niente del sistema attuale (argomenti di prova «prova-...», tolti alla fine)")
-    print("Progetto Firebase: %s | dispositivi: al massimo %d, toccati negli ultimi %d minuti | molte iscrizioni di fila: %s\n" % (progetto, ultimi, minuti, "SI" if molte else "no"))
+    print("Progetto Firebase: %s | dispositivi: al massimo %d, toccati negli ultimi %d minuti | molte iscrizioni di fila: %s" % (progetto, ultimi, minuti, "SI" if molte else "no"))
+    print("Account di servizio usato: %s\n" % account)
 
     subs = elenco_iscrizioni()
     vivi = [s for s in subs if (s.get("c") or s.get("h") or s.get("f"))]
@@ -205,7 +213,7 @@ def main():
 
     problemi = []
     print("\n--- 1) ISCRIZIONE all'argomento «%s» ---" % TOPIC)
-    iscritti, tempi = [], []
+    iscritti, tempi, rifiuti = [], [], []
     for i, s in enumerate(scelti, 1):
         c, t, ms = p.iscrivi(s["id"], TOPIC)
         tempi.append(ms)
@@ -214,8 +222,16 @@ def main():
         print("  dispositivo %d: HTTP %s %s%s in %d ms%s" % (i, c, stato, extra, ms, "" if ok_iscr(c) else " -> " + corto(t)))
         if ok_iscr(c):
             iscritti.append(s)
+        else:
+            rifiuti.append(c)
     if not iscritti:
+        permessi = [c for c in rifiuti if c == 403]
         print("\nRISULTATO: Google NON ha accettato nessuna iscrizione (vedi l'errore sopra). Non si cambia niente e ci fermiamo qui.")
+        if permessi:
+            print("\nE' UN PROBLEMA DI PERMESSI, non dei token: all'account di servizio «%s» manca il permesso di gestire le iscrizioni agli argomenti" % account)
+            print("(cloudmessaging.topicSubscriptions.*). Il ruolo con cui oggi manda gli avvisi ha solo «cloudmessaging.messages.create».")
+            print("Serve un ruolo con i 5 permessi cloudmessaging.topicSubscriptions (create, delete, get, list, update): vedi le istruzioni nel file LEGGIMI_permessi.txt.")
+            print("Dopo averlo aggiunto aspetta 2-3 minuti e rilancia la prova.")
         return 1
     c, nomi, _ = p.elenco(iscritti[0]["id"])
     print("  elenco degli argomenti del dispositivo 1 (GET): HTTP %s -> %s" % (c, ", ".join(nomi) if nomi else "(vuoto o non leggibile)"))
