@@ -24,6 +24,7 @@ import urllib.request
 UA = "rAKings-VGC-prova-argomenti"
 TOPIC = "prova-fattibilita"
 N_MOLTI = 55            # per provare «tante iscrizioni di fila» (un utente puo' avere fino a 50 tornei + canali)
+N_PARALLELE = 6         # il Worker puo' tenere 6 chiamate aperte insieme
 MAX_DISPOSITIVI = 10    # tetto di sicurezza: la prova non deve disturbare nessuno
 
 _FCM = {}
@@ -175,6 +176,7 @@ def main():
     except ValueError:
         minuti = 20
     molte = (os.environ.get("TEST_MOLTE") or "no").lower() == "si"
+    parallele = (os.environ.get("TEST_PARALLELE") or "no").lower() == "si"
     link = (os.environ.get("SITE_URL") or "").strip()
     chiave = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])
     progetto = chiave["project_id"]
@@ -267,6 +269,30 @@ def main():
         print("  il dispositivo 1 risulta iscritto a %d argomenti di prova (GET: HTTP %s)" % (len([n for n in nomi if n.startswith("prova-")]), c))
         if stati.get(429):
             problemi.append("%d iscrizioni su %d rifiutate con 429 (troppe richieste)" % (stati[429], N_MOLTI))
+
+    if parallele:
+        from concurrent.futures import ThreadPoolExecutor
+        print("\n--- 3b) ISCRIZIONI IN PARALLELO (%d argomenti, %d alla volta, come farebbe il Worker) ---" % (N_MOLTI, N_PARALLELE))
+        nomi_par = ["prova-par-%02d" % k for k in range(1, N_MOLTI + 1)]
+        t1 = time.time()
+        with ThreadPoolExecutor(max_workers=N_PARALLELE) as ex:
+            risultati = list(ex.map(lambda nome: (nome, p.iscrivi(iscritti[0]["id"], nome)), nomi_par))
+        durata = time.time() - t1
+        stati = {}
+        for nome, (c, t, ms) in risultati:
+            stati[c] = stati.get(c, 0) + 1
+            if ok_iscr(c):
+                molti.append(nome)
+        lenti = max((ms for _, (c, t, ms) in risultati), default=0)
+        print("  esito: %s | tempo totale %.1f s (%.0f ms a iscrizione in media, la piu' lenta %d ms)" % (
+            ", ".join("HTTP %s: %d" % (a, b) for a, b in sorted(stati.items())), durata, 1000 * durata / N_MOLTI, lenti))
+        if stati.get(429):
+            problemi.append("in parallelo %d iscrizioni su %d rifiutate con 429 (troppe richieste)" % (stati[429], N_MOLTI))
+        altri = {c: n for c, n in stati.items() if c not in (200, 409, 429)}
+        if altri:
+            problemi.append("in parallelo, risposte inattese: %s" % ", ".join("HTTP %s x%d" % (c, n) for c, n in sorted(altri.items())))
+        c, nomi, _ = p.elenco(iscritti[0]["id"])
+        print("  il dispositivo 1 risulta iscritto a %d argomenti di prova in totale (GET: HTTP %s)" % (len([n for n in nomi if n.startswith("prova-")]), c))
 
     print("\n--- 4) PULIZIA (si tolgono tutte le iscrizioni di prova) ---")
     tolte = falliti = 0
