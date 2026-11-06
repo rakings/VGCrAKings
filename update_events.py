@@ -499,11 +499,134 @@ def push_on():
     """Notifiche nell'app attive: servono il segreto FCM_SERVICE_ACCOUNT (Firebase) e l'archivio iscritti."""
     return fcm_on()
 
-def send_push(ids, title, body, click):
+def send_push(ids, title, body, click, tag=None):
     """Invia con Firebase a un elenco di token dell'archivio iscritti."""
     if ids is None:
         raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-    return send_fcm(ids, title, body, click)
+    return send_fcm(ids, title, body, click, tag)
+
+
+# ---------- Argomenti Firebase (FCM topics): un solo invio per canale ----------
+# Il MODO si sceglie per canale nel file argomenti_modo.json (si modifica anche da GitHub):
+#   "old"  = avviso mandato a ogni dispositivo, come sempre (e' il modo di partenza)
+#   "both" = prova in parallelo: lo STESSO avviso parte nei due modi con lo stesso «tag», cosi' ogni dispositivo ne mostra UNO solo
+#            (la cronologia del sito ne elenca due se sono arrivati tutti e due)
+#   "new"  = solo argomenti; se l'invio all'argomento non riesce, l'avviso parte comunque ai dispositivi come prima (FALLBACK)
+# I promemoria «1 ora prima» (send_reminders.py) restano sempre sull'invio ai singoli dispositivi.
+MODO_FILE = "argomenti_modo.json"
+MODI = ("old", "both", "new")
+_CFG = {}
+
+def argomenti_config():
+    """Legge argomenti_modo.json una volta sola. Se manca o non e' valido, tutto resta «old»."""
+    if "v" not in _CFG:
+        cfg = {"default": "old", "canali": {}}
+        try:
+            with open(MODO_FILE, encoding="utf-8") as f:
+                j = json.load(f)
+            d = j.get("default", "old")
+            cfg["default"] = d if d in MODI else "old"
+            if d not in MODI:
+                print("argomenti_modo.json: modo predefinito non valido (%r): resta «old»" % d)
+            for k, v in (j.get("canali") or {}).items():
+                if v in MODI:
+                    cfg["canali"][k] = v
+                else:
+                    print("argomenti_modo.json: modo non valido per «%s» (%r): resta «old»" % (k, v))
+                    cfg["canali"][k] = "old"
+        except FileNotFoundError:
+            pass
+        except Exception as ex:
+            print("argomenti_modo.json non leggibile (%s): tutto resta «old»" % str(ex)[:80])
+        _CFG["v"] = cfg
+    return _CFG["v"]
+
+def modo_canale(canale):
+    cfg = argomenti_config()
+    return cfg["canali"].get(canale, cfg["default"])
+
+def argomento_di(topic):
+    """Argomento Firebase di un canale (stessa regola di subs_for, ma senza leggere l'archivio). None = non supportato: resta l'invio ai dispositivi."""
+    if topic == "tutti":
+        return "tutti"
+    if topic.endswith("-1h") or topic.startswith("t-"):
+        return None   # promemoria e tornei seguiti: invio ai singoli dispositivi
+    n = {"money": "money_all", "money33": "money_33"}.get(topic, topic)
+    nome = "c_" + n
+    return nome if re.fullmatch(r"c_[a-z0-9_]+", nome) else None
+
+def tag_avviso(title, body, click):
+    import hashlib
+    return "vgc-" + hashlib.sha1(("%s|%s|%s" % (title, body, click or "")).encode("utf-8")).hexdigest()[:12]
+
+def send_topic(target, title, body, click, tag=None):
+    """Un solo invio a un argomento (target = {"topic": nome}) o a una condizione (target = {"condition": "..."}). Ritorna True se Google lo accetta."""
+    try:
+        access = fcm_access_token()
+        project = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])["project_id"]
+    except Exception as ex:
+        print("Argomenti: accesso a Firebase non riuscito (%s)" % str(ex)[:100])
+        return False
+    data = {"title": title, "body": body}
+    if click:
+        data["link"] = click
+    if tag:
+        data["tag"] = tag
+    msg = {"notification": {"title": title, "body": body}, "data": data, "webpush": {"headers": {"Urgency": "high", "TTL": "86400"}}}
+    msg.update(target)
+    payload = json.dumps({"message": msg}).encode("utf-8")
+    url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % project
+    hdr = {"Authorization": "Bearer " + access, "Content-Type": "application/json; charset=UTF-8", "User-Agent": UA}
+    dove = target.get("topic") or target.get("condition")
+    for attempt in range(4):
+        try:
+            r = json.loads(urllib.request.urlopen(urllib.request.Request(url, data=payload, headers=hdr, method="POST"), timeout=30).read().decode("utf-8") or "{}")
+            print("Argomenti: avviso inviato a %s (%s)" % (dove, str(r.get("name", ""))[-12:]))
+            return True
+        except urllib.error.HTTPError as ex:
+            txt = ex.read().decode("utf-8", "replace")
+            if ex.code in (429, 500, 502, 503, 504) and attempt < 3:
+                time.sleep(2 * (attempt + 1))
+                continue
+            print("Argomenti: invio a %s non riuscito: HTTP %s %s" % (dove, ex.code, " ".join(txt.split())[:140]))
+            return False
+        except Exception as ex:
+            if attempt < 3:
+                time.sleep(2 * (attempt + 1))
+                continue
+            print("Argomenti: invio a %s non riuscito: %s" % (dove, str(ex)[:100]))
+            return False
+    return False
+
+def _via_archivio(topics, title, body, click, tag=None):
+    """L'invio di sempre: gli ID dei dispositivi si leggono dall'archivio iscritti e l'avviso va a ciascuno."""
+    ids = []
+    for t in topics:
+        for i in subs_for(t):
+            if i not in ids:
+                ids.append(i)
+    if ids:
+        send_push(ids, title, body, click, tag)
+    else:
+        print("Nessun iscritto per", "il canale" if len(topics) == 1 else "i canali", topics[0] if len(topics) == 1 else topics)
+
+def _invia(topics, title, body, click):
+    """Sceglie il modo (old / both / new) per questi canali e manda l'avviso."""
+    nomi = [argomento_di(t) for t in topics]
+    if all(nomi) and len(nomi) <= 5:   # una condizione di Firebase ammette al massimo 5 argomenti
+        modi = [modo_canale(t) for t in topics]
+        modo = modi[0] if len(set(modi)) == 1 else "both"
+    else:
+        modo = "old"
+    tag = tag_avviso(title, body, click) if modo == "both" else None
+    if modo in ("old", "both"):
+        _via_archivio(topics, title, body, click, tag)
+    if modo in ("both", "new"):
+        target = {"topic": nomi[0]} if len(nomi) == 1 else {"condition": " || ".join("'%s' in topics" % n for n in nomi)}
+        ok = send_topic(target, title, body, click, tag)
+        if modo == "new" and not ok:
+            print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'avviso ai dispositivi come prima")
+            _via_archivio(topics, title, body, click)
 
 # ---------- Firebase (FCM) ----------
 _FCM = {}
@@ -551,7 +674,7 @@ DEAD_BRAKE_MIN = 10      # freno di sicurezza: se in un invio ALMENO 10 disposit
 DEAD_BRAKE_SHARE = 0.30  # ...e sono PIU' del 30% di quelli raggiunti, non se ne toglie nessuno (puo' essere un problema di configurazione, non una moria vera)
 FCM_PARALLEL = 40   # invii contemporanei verso Firebase (erano 10): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
 
-def send_fcm(ids, title, body, click):
+def send_fcm(ids, title, body, click, tag=None):
     """Manda l'avviso a un elenco di token Firebase (a gruppi in parallelo). I token morti si tolgono dall'archivio iscritti."""
     global _SUBS
     from concurrent.futures import ThreadPoolExecutor
@@ -561,6 +684,8 @@ def send_fcm(ids, title, body, click):
     data = {"title": title, "body": body}
     if click:
         data["link"] = click
+    if tag:
+        data["tag"] = tag
     hdr = {"Authorization": "Bearer " + access, "Content-Type": "application/json; charset=UTF-8", "User-Agent": UA}
 
     def one(tok):
@@ -696,11 +821,7 @@ def deliver(topic, title, body, click):
     if push_on():
         if not subs_on():
             raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-        ids = subs_for(topic)
-        if ids:
-            send_push(ids, title, body, click)
-        else:
-            print("Nessun iscritto per il canale", topic)
+        _invia([topic], title, body, click)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-" + topic, title, body, click)
     log_notif(topic, title, body, click, "notifiche_avvisi.json")
@@ -710,15 +831,7 @@ def deliver_multi(topics, title, body, click):
     if push_on():
         if not subs_on():
             raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-        ids = []
-        for t in topics:
-            for i in subs_for(t):
-                if i not in ids:
-                    ids.append(i)
-        if ids:
-            send_push(ids, title, body, click)
-        else:
-            print("Nessun iscritto per i canali", topics)
+        _invia(topics, title, body, click)
     else:
         for t in topics:
             say(os.environ.get("NTFY_PREFIX", "") + "-" + t, title, body, click)
@@ -729,11 +842,20 @@ def deliver_tutti(title, body, click):
     if push_on():
         if not subs_on():
             raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-        ids = [s["id"] for s in subs_list() if s.get("id")]
-        if ids:
-            send_push(ids, title, body, click)
-        else:
-            print("Nessun iscritto a cui mandare l'annuncio")
+        modo = modo_canale("tutti")
+        tag = tag_avviso(title, body, click) if modo == "both" else None
+        if modo in ("old", "both"):
+            ids = [s["id"] for s in subs_list() if s.get("id")]
+            if ids:
+                send_push(ids, title, body, click, tag)
+            else:
+                print("Nessun iscritto a cui mandare l'annuncio")
+        if modo in ("both", "new"):
+            if not send_topic({"topic": "tutti"}, title, body, click, tag) and modo == "new":
+                print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'annuncio ai dispositivi come prima")
+                ids = [s["id"] for s in subs_list() if s.get("id")]
+                if ids:
+                    send_push(ids, title, body, click)
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-annunci", title, body, click)
     log_notif("annunci", title, body, click, "notifiche_avvisi.json")
