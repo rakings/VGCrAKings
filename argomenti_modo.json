@@ -1,4 +1,1 @@
-{
-  "default": "old",
-  "canali": {}
-}
+{ "default": "old", "canali": { "locali8": "both" } }
