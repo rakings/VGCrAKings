@@ -36,6 +36,10 @@ on:
         options:
           - "no"
           - "si"
+      attesa:
+        description: "Minuti di attesa PRIMA di mandare gli avvisi (0 = subito). Serve a provare un telefono fermo a schermo spento, per esempio 30 o 120"
+        required: true
+        default: "0"
 permissions:
   contents: read
 concurrency:
@@ -44,7 +48,7 @@ concurrency:
 jobs:
   prova:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
       - run: python3 topics_prova.py
@@ -58,3 +62,4 @@ jobs:
           TEST_MOLTE: ${{ inputs.molte }}
           TEST_PARALLELE: ${{ inputs.parallele }}
           TEST_CONFRONTO: ${{ inputs.confronto }}
+          TEST_ATTESA: ${{ inputs.attesa }}
