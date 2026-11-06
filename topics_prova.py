@@ -252,6 +252,29 @@ def main():
     print("\nAccesso a Google ottenuto in %d ms (da GitHub: nessun problema; questo tempo conta solo se si facesse nel Worker)." % int((time.time() - t0) * 1000))
     p = Prova(access, progetto)
 
+    # PULIZIA INIZIALE: gli argomenti di prova («prova-...») rimasti da prove vecchie su QUALUNQUE dispositivo dell'archivio si tolgono PRIMA di cominciare,
+    # cosi' gli avvisi di prova arrivano solo ai dispositivi scelti adesso. Non si toccano mai gli argomenti veri (tutti, c_, h_, t_).
+    print("\n--- 0) PULIZIA INIZIALE degli argomenti di prova rimasti sugli altri dispositivi ---")
+    from concurrent.futures import ThreadPoolExecutor
+
+    def pulisci_uno(sub):
+        c, nomi, _ = p.elenco(sub["id"])
+        if c != 200:
+            return (sub, None, [])
+        resto = [n for n in nomi if n.startswith("prova-")]
+        for n in resto:
+            p.togli(sub["id"], n)
+        return (sub, True, resto)
+
+    with ThreadPoolExecutor(max_workers=6) as ex:
+        esiti_p = list(ex.map(pulisci_uno, subs))
+    trovati = [(sub, resto) for sub, ok, resto in esiti_p if ok and resto]
+    illeggibili = sum(1 for _, ok, _ in esiti_p if ok is None)
+    if trovati:
+        for sub, resto in trovati:
+            print("  ...%s aveva ancora: %s -> tolto" % (sub["id"][-6:], ", ".join(resto)))
+    print("  controllati %d dispositivi: %d avevano argomenti di prova rimasti (tolti), %d non leggibili (non validi o in errore)." % (len(esiti_p), len(trovati), illeggibili))
+
     problemi = []
     print("\n--- 1) ISCRIZIONE all'argomento «%s» ---" % TOPIC)
     iscritti, tempi, rifiuti = [], [], []
