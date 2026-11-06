@@ -28,6 +28,14 @@ on:
         options:
           - "no"
           - "si"
+      confronto:
+        description: "Mandare anche 2 avvisi DIRETTI al dispositivo (D1, D2) tra gli avvisi via argomento (A, B), per capire se un avviso perso e' colpa del telefono o degli argomenti"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
 permissions:
   contents: read
 concurrency:
@@ -49,3 +57,4 @@ jobs:
           TEST_MINUTI: ${{ inputs.minuti }}
           TEST_MOLTE: ${{ inputs.molte }}
           TEST_PARALLELE: ${{ inputs.parallele }}
+          TEST_CONFRONTO: ${{ inputs.confronto }}

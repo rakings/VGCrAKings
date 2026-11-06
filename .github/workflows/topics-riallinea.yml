@@ -1,0 +1,36 @@
+name: Argomenti - riallineamento
+# Manuale. «controlla» non scrive niente su Google. «esegui» aggiunge/toglie solo gli argomenti NOSTRI (tutti, c_, h_, t_) per portarli a quello che
+# ogni dispositivo ha scelto. Non scrive mai nell'archivio iscritti. Si puo' rilanciare quando si vuole.
+on:
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "controlla = non scrive niente su Google - esegui = sistema gli argomenti"
+        required: true
+        default: "controlla"
+        type: choice
+        options:
+          - "controlla"
+          - "esegui"
+      massimo:
+        description: "Quanti dispositivi al massimo (i piu' recenti)"
+        required: true
+        default: "1000"
+permissions:
+  contents: read
+concurrency:
+  group: topics-riallinea
+  cancel-in-progress: false
+jobs:
+  riallinea:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 topics_riallinea.py
+        env:
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          RIALL_MODO: ${{ inputs.modo }}
+          RIALL_MAX: ${{ inputs.massimo }}
