@@ -20,6 +20,14 @@ on:
         options:
           - "no"
           - "si"
+      parallele:
+        description: "Provare 55 iscrizioni IN PARALLELO, 6 alla volta, come farebbe il Worker (indipendente da «molte»)"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
 permissions:
   contents: read
 concurrency:
@@ -40,3 +48,4 @@ jobs:
           TEST_ULTIMI: ${{ inputs.ultimi }}
           TEST_MINUTI: ${{ inputs.minuti }}
           TEST_MOLTE: ${{ inputs.molte }}
+          TEST_PARALLELE: ${{ inputs.parallele }}
