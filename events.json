@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-05T22:55:24+00:00",
+ "updated": "2026-11-06T01:48:44+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,6 +137,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "MetaVGC Arena #4 | MonoRegion | $10 Prize",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$1",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-05",
+   "time": "23:00",
+   "players": 39,
+   "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 20!",
    "org": "",
    "mode": "online",
@@ -152,38 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aa962a438886b36383c0cfb/details"
   },
   {
-   "name": "Tenki's Cart Weekly #125 - Reg M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-05",
-   "time": "17:00",
-   "players": 45,
-   "url": "https://play.limitlesstcg.com/tournament/6ae771e40d00101b48bf4016/details"
-  },
-  {
-   "name": "MetaVGC Arena #4 | MonoRegion | $10 Prize",
-   "org": "Oak Stadium",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$1",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-05",
-   "time": "23:00",
-   "players": 59,
-   "url": "https://play.limitlesstcg.com/tournament/6ae9cf53e94eae0f94746526/details"
-  },
-  {
-   "name": "VGC Gemeinde Showdown #13",
-   "org": "VGC Gemeinde",
+   "name": "Talon",
+   "org": "TalonMasterJ",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -192,9 +177,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-06",
-   "time": "19:00",
-   "players": 28,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
+   "time": "01:00",
+   "players": 50,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
   },
   {
    "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟱",
@@ -212,8 +197,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae9d7f40c463890f304a4e4/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
+   "name": "VGC Gemeinde Showdown #13",
+   "org": "VGC Gemeinde",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -222,9 +207,24 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-06",
-   "time": "01:00",
-   "players": 50,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eacb115c12b73a5a9034/details"
+   "time": "19:00",
+   "players": 28,
+   "url": "https://play.limitlesstcg.com/tournament/6ab2b485e905c1db68747d65/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Tour",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-06",
+   "time": "05:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6aed22c3e94eae0f94748622/details"
   },
   {
    "name": "Malaysia Poke Ball League #13",
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "14:00",
-   "players": 51,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6ac9e84b115c12b73a5a05a9/details"
   },
   {
@@ -313,8 +313,23 @@
    "bo": null,
    "date": "2026-11-06",
    "time": "21:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aeb3848e94eae0f947470f6/details"
+  },
+  {
+   "name": "Friday Fight Night 80! $50 Prize & Team Report",
+   "org": "Team Rainbow Gaming",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "00:00",
+   "players": 99,
+   "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
    "name": "Floette Champions Cheese",
@@ -332,19 +347,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
   },
   {
-   "name": "Friday Fight Night 80! $50 Prize & Team Report",
-   "org": "Team Rainbow Gaming",
+   "name": "Pokexiaotian",
+   "org": "HaoQi cup",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
-   "cash": true,
-   "prize": "$5",
+   "cash": null,
+   "prize": "",
    "reg": null,
    "bo": null,
    "date": "2026-11-07",
-   "time": "00:00",
-   "players": 91,
-   "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
+   "time": "07:04",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6aed18c4e94eae0f94748584/details"
   },
   {
    "name": "Chacho Cup #4",
@@ -358,38 +373,8 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "12:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aec56ac0c463890f304bbf5/details"
-  },
-  {
-   "name": "Øutcasts",
-   "org": "Øutcasts Dominion Intl.",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
-  },
-  {
-   "name": "⚔️Torre Lotta Cup #3⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 29,
-   "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
   },
   {
    "name": "Outlanders Silver&Gold: Gen 2 Showdown",
@@ -405,6 +390,36 @@
    "time": "14:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #3⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "14:00",
+   "players": 30,
+   "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
+  },
+  {
+   "name": "Øutcasts",
+   "org": "Øutcasts Dominion Intl.",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "14:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
   },
   {
    "name": "Raichu Rivalry | Champions Open",
@@ -433,7 +448,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
   },
   {
@@ -508,7 +523,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 14,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
@@ -616,7 +631,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "14:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aeb70f30c463890f304b2c6/details"
   },
   {
@@ -736,7 +751,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -826,7 +841,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -916,7 +931,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
