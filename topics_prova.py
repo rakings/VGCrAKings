@@ -166,13 +166,15 @@ class Prova:
                            "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
         return chiama("POST", url, self.access, msg)
 
-    def invia(self, argomento, titolo, corpo, link):
+    def invia(self, argomento, titolo, corpo, link, android_alta=False):
         url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % self.progetto
         dati = {"title": titolo, "body": corpo}
         if link:
             dati["link"] = link
         msg = {"message": {"topic": argomento, "notification": {"title": titolo, "body": corpo}, "data": dati,
                            "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
+        if android_alta:   # prova: priorita' ALTA di Android sul messaggio all'argomento
+            msg["message"]["android"] = {"priority": "HIGH"}
         return chiama("POST", url, self.access, msg)
 
 
@@ -209,6 +211,7 @@ def main():
     molte = (os.environ.get("TEST_MOLTE") or "no").lower() == "si"
     parallele = (os.environ.get("TEST_PARALLELE") or "no").lower() == "si"
     confronto = (os.environ.get("TEST_CONFRONTO") or "no").lower() == "si"
+    priorita = (os.environ.get("TEST_PRIORITA") or "no").lower() == "si"
     try:
         attesa_min = max(0, min(int(os.environ.get("TEST_ATTESA") or 0), 180))
     except ValueError:
@@ -290,28 +293,47 @@ def main():
             if c != 200:
                 problemi.append("avviso " + etichetta)
 
-    if confronto:
-        print("  CONFRONTO: stessi avvisi mandati in due modi, uno via argomento (A, B) e uno diretto (D1, D2), a distanza di 30 secondi.")
-        manda_diretti("D1", "subito")
-    quando, breve = ora_ora()
-    c, t, ms = p.invia(TOPIC, titolo + " - A", "Avviso A (via argomento): inviato alle " + breve + " (subito dopo l'iscrizione). Controlla anche la cronologia (campanella).", link)
-    print("  avviso A (via argomento, subito dopo l'iscrizione): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
-    if c != 200:
-        problemi.append("avviso A")
-    if confronto:
-        print("  aspetto 30 secondi...")
-        time.sleep(30)
-        manda_diretti("D2", "30 secondi dopo")
-        print("  aspetto 30 secondi...")
-        time.sleep(30)
-    else:
+    if priorita:
+        print("  PRIORITA': 3 avvisi a distanza di 60 secondi, SENZA un avviso diretto prima che sveglia il telefono:")
+        print("     P1 = via argomento, come ora   |   P2 = via argomento con priorita' ALTA di Android   |   D3 = diretto (controllo)")
+        quando, breve = ora_ora()
+        c, t, ms = p.invia(TOPIC, titolo + " - P1", "Avviso P1 (argomento, come ora): inviato alle " + breve + ".", link)
+        print("  avviso P1 (argomento, come ora): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+        if c != 200:
+            problemi.append("avviso P1")
         print("  aspetto 60 secondi...")
         time.sleep(60)
-    quando, breve = ora_ora()
-    c, t, ms = p.invia(TOPIC, titolo + " - B", "Avviso B (via argomento): inviato alle " + breve + " (60 secondi dopo). Controlla anche la cronologia (campanella).", link)
-    print("  avviso B (via argomento, 60 secondi dopo): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
-    if c != 200:
-        problemi.append("avviso B")
+        quando, breve = ora_ora()
+        c, t, ms = p.invia(TOPIC, titolo + " - P2", "Avviso P2 (argomento, priorita' ALTA): inviato alle " + breve + ".", link, android_alta=True)
+        print("  avviso P2 (argomento, priorita' ALTA di Android): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+        if c != 200:
+            problemi.append("avviso P2")
+        print("  aspetto 60 secondi...")
+        time.sleep(60)
+        manda_diretti("D3", "controllo")
+    elif confronto:
+        print("  CONFRONTO: stessi avvisi mandati in due modi, uno via argomento (A, B) e uno diretto (D1, D2), a distanza di 30 secondi.")
+        manda_diretti("D1", "subito")
+    if not priorita:
+        quando, breve = ora_ora()
+        c, t, ms = p.invia(TOPIC, titolo + " - A", "Avviso A (via argomento): inviato alle " + breve + " (subito dopo l'iscrizione). Controlla anche la cronologia (campanella).", link)
+        print("  avviso A (via argomento, subito dopo l'iscrizione): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+        if c != 200:
+            problemi.append("avviso A")
+        if confronto:
+            print("  aspetto 30 secondi...")
+            time.sleep(30)
+            manda_diretti("D2", "30 secondi dopo")
+            print("  aspetto 30 secondi...")
+            time.sleep(30)
+        else:
+            print("  aspetto 60 secondi...")
+            time.sleep(60)
+        quando, breve = ora_ora()
+        c, t, ms = p.invia(TOPIC, titolo + " - B", "Avviso B (via argomento): inviato alle " + breve + " (60 secondi dopo). Controlla anche la cronologia (campanella).", link)
+        print("  avviso B (via argomento, 60 secondi dopo): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+        if c != 200:
+            problemi.append("avviso B")
 
     molti = []
     if molte:
@@ -387,7 +409,10 @@ def main():
     print("Problemi: %s." % ("; ".join(problemi) if problemi else "nessuno"))
     print("\nORA CONTROLLA TU sui tuoi dispositivi (PC, Android, iPhone se ce l'hai):")
     print("  - Ti e' arrivato l'avviso A «Prova tecnica argomenti (ignora) - A»?  E il B (dopo 60 secondi)?")
-    if confronto:
+    if priorita:
+        print("  PRIORITA': per il telefono scrivimi a che ora e' COMPARSO ognuno di questi 3 (confrontando con l'ora di invio nel testo): P1 (argomento come ora), P2 (argomento priorita' alta), D3 (diretto).")
+        print("  Se P2 compare subito e P1 no, la priorita' alta risolve il ritardo degli argomenti. Se P1 e P2 compaiono tardi e D3 subito, non cambia niente.")
+    elif confronto:
         print("  CONFRONTO: scrivimi per ogni dispositivo (PC e telefono) quali di questi 4 sono arrivati e a che ora: D1 (diretto), A (argomento), D2 (diretto), B (argomento).")
         print("  Se il telefono perde anche i DIRETTI, e' il telefono (non gli argomenti). Se perde solo A e B, sono gli argomenti.")
     else:
