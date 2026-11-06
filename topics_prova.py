@@ -148,6 +148,16 @@ class Prova:
     def togli(self, token, argomento):
         return chiama("DELETE", self.url_reg(token, "/" + urllib.parse.quote(argomento, safe="")), self.access)
 
+    def invia_token(self, token, titolo, corpo, link):
+        """Avviso mandato DIRETTAMENTE al dispositivo (come fa oggi l'invio vero), per confrontarlo con quello via argomento."""
+        url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % self.progetto
+        dati = {"title": titolo, "body": corpo}
+        if link:
+            dati["link"] = link
+        msg = {"message": {"token": token, "notification": {"title": titolo, "body": corpo}, "data": dati,
+                           "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
+        return chiama("POST", url, self.access, msg)
+
     def invia(self, argomento, titolo, corpo, link):
         url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % self.progetto
         dati = {"title": titolo, "body": corpo}
@@ -156,6 +166,19 @@ class Prova:
         msg = {"message": {"topic": argomento, "notification": {"title": titolo, "body": corpo}, "data": dati,
                            "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
         return chiama("POST", url, self.access, msg)
+
+
+def ora_ora():
+    """L'ora di adesso, in UTC e in ora italiana, per confrontarla con l'ora a cui l'avviso compare sul dispositivo."""
+    adesso = time.time()
+    utc = time.strftime("%H:%M:%S", time.gmtime(adesso))
+    try:
+        from zoneinfo import ZoneInfo
+        import datetime
+        it = datetime.datetime.fromtimestamp(adesso, ZoneInfo("Europe/Rome")).strftime("%H:%M:%S")
+        return utc + " UTC (" + it + " ora italiana)", it
+    except Exception:
+        return utc + " UTC", utc
 
 
 def ok_iscr(c):
@@ -177,6 +200,7 @@ def main():
         minuti = 20
     molte = (os.environ.get("TEST_MOLTE") or "no").lower() == "si"
     parallele = (os.environ.get("TEST_PARALLELE") or "no").lower() == "si"
+    confronto = (os.environ.get("TEST_CONFRONTO") or "no").lower() == "si"
     link = (os.environ.get("SITE_URL") or "").strip()
     chiave = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])
     progetto = chiave["project_id"]
@@ -240,14 +264,35 @@ def main():
 
     print("\n--- 2) AVVISO all'argomento ---")
     titolo = "Prova tecnica argomenti (ignora)"
-    c, t, ms = p.invia(TOPIC, titolo + " - A", "Avviso A: mandato subito dopo l'iscrizione. Se lo vedi, scrivilo ad Andrea.", link)
-    print("  avviso A (subito dopo l'iscrizione): HTTP %s in %d ms%s" % (c, ms, "" if c == 200 else " -> " + corto(t)))
+
+    def manda_diretti(etichetta, quando_dopo):
+        for i, d in enumerate(iscritti, 1):
+            quando, breve = ora_ora()
+            c, t, ms = p.invia_token(d["id"], titolo + " - " + etichetta, "Avviso " + etichetta + " DIRETTO al dispositivo: inviato alle " + breve + ". Controlla anche la cronologia (campanella).", link)
+            print("  avviso %s DIRETTO al dispositivo %d (%s): HTTP %s in %d ms, inviato alle %s%s" % (etichetta, i, quando_dopo, c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+            if c != 200:
+                problemi.append("avviso " + etichetta)
+
+    if confronto:
+        print("  CONFRONTO: stessi avvisi mandati in due modi, uno via argomento (A, B) e uno diretto (D1, D2), a distanza di 30 secondi.")
+        manda_diretti("D1", "subito")
+    quando, breve = ora_ora()
+    c, t, ms = p.invia(TOPIC, titolo + " - A", "Avviso A (via argomento): inviato alle " + breve + " (subito dopo l'iscrizione). Controlla anche la cronologia (campanella).", link)
+    print("  avviso A (via argomento, subito dopo l'iscrizione): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
     if c != 200:
         problemi.append("avviso A")
-    print("  aspetto 60 secondi...")
-    time.sleep(60)
-    c, t, ms = p.invia(TOPIC, titolo + " - B", "Avviso B: mandato 60 secondi dopo l'iscrizione. Se lo vedi, scrivilo ad Andrea.", link)
-    print("  avviso B (60 secondi dopo): HTTP %s in %d ms%s" % (c, ms, "" if c == 200 else " -> " + corto(t)))
+    if confronto:
+        print("  aspetto 30 secondi...")
+        time.sleep(30)
+        manda_diretti("D2", "30 secondi dopo")
+        print("  aspetto 30 secondi...")
+        time.sleep(30)
+    else:
+        print("  aspetto 60 secondi...")
+        time.sleep(60)
+    quando, breve = ora_ora()
+    c, t, ms = p.invia(TOPIC, titolo + " - B", "Avviso B (via argomento): inviato alle " + breve + " (60 secondi dopo). Controlla anche la cronologia (campanella).", link)
+    print("  avviso B (via argomento, 60 secondi dopo): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
     if c != 200:
         problemi.append("avviso B")
 
@@ -307,6 +352,14 @@ def main():
                 print("  non tolta «%s» dal dispositivo ...%s: HTTP %s %s" % (nome, s["id"][-6:], c, corto(t, 120)))
     c, nomi, _ = p.elenco(iscritti[0]["id"])
     resto = [n for n in nomi if n.startswith("prova-")]
+    attesa = 0
+    while resto and attesa < 12:   # l'elenco di Google puo' mostrare ancora per qualche secondo un argomento appena tolto: si riguarda ogni secondo
+        time.sleep(1)
+        attesa += 1
+        c, nomi, _ = p.elenco(iscritti[0]["id"])
+        resto = [n for n in nomi if n.startswith("prova-")]
+    if attesa and not resto:
+        print("  nota: l'elenco di Google ha impiegato circa %d secondi ad aggiornarsi dopo la cancellazione (le cancellazioni erano gia' riuscite)" % attesa)
     print("  iscrizioni tolte: %d, non riuscite: %d | argomenti di prova rimasti sul dispositivo 1: %d" % (tolte, falliti, len(resto)))
     if falliti or resto:
         problemi.append("pulizia incompleta (relancia la prova per riprovare a toglierle)")
@@ -317,7 +370,12 @@ def main():
     print("Problemi: %s." % ("; ".join(problemi) if problemi else "nessuno"))
     print("\nORA CONTROLLA TU sui tuoi dispositivi (PC, Android, iPhone se ce l'hai):")
     print("  - Ti e' arrivato l'avviso A «Prova tecnica argomenti (ignora) - A»?  E il B (dopo 60 secondi)?")
-    print("  - Scrivimi per ogni dispositivo: A si/no, B si/no, e dopo quanti secondi circa.")
+    if confronto:
+        print("  CONFRONTO: scrivimi per ogni dispositivo (PC e telefono) quali di questi 4 sono arrivati e a che ora: D1 (diretto), A (argomento), D2 (diretto), B (argomento).")
+        print("  Se il telefono perde anche i DIRETTI, e' il telefono (non gli argomenti). Se perde solo A e B, sono gli argomenti.")
+    else:
+        print("  - Scrivimi per ogni dispositivo: A si/no, B si/no, e a che ora sono comparse (confrontale con l'ora di invio scritta sopra).")
+    print("  - Se ti sembra di aver perso un avviso, controlla la cronologia nel sito (campanella): li elenca anche se non li hai visti comparire.")
     print("  (Arriva solo ai dispositivi elencati sopra, cioe' a quelli che hai toccato tu.)")
     return 1 if ("avviso A" in problemi or "avviso B" in problemi) else 0
 
