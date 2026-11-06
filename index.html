@@ -373,7 +373,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261102s</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261106v</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -543,7 +543,7 @@ window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
 var VGP=null;
-function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261102s";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261106v";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
@@ -553,8 +553,8 @@ $("pres").addEventListener("click",function(ev){var mo=ev.target.closest(".pr-mo
 if(mo){var q0=PQ;vgcsLoad().then(function(){return VGCS.cerca(q0,mo.dataset.k)}).then(function(html){if(PQ===q0)$("pres").innerHTML=html}).catch(function(){});return}
 var b=ev.target.closest(".pr-r");if(!b)return;if(b.dataset.href){window.open(b.dataset.href,"_blank","noopener");return}if(!b.dataset.pid)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
 if(st.mode==="vgcs"){render();return}var t=document.querySelector('button[data-v="vgcs"]');if(t)t.click();else{st.mode="vgcs";render()}});
-function render(){ var nw=st.mode==="news";
-if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="VGC Stats: statistiche dei regionali e dei VR";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
+function render(){ var nw=st.mode==="news";$("upd").style.display=(st.mode==="all"&&!BK)?"":"none";$("count").style.display="";
+if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="";$("count").style.display="none";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
 if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
 document.querySelector(".filters").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
@@ -799,7 +799,7 @@ var ci=Object.keys(CITY).sort(function(a,b){return b.length-a.length}).map(esc2)
 try{DN=new Intl.DisplayNames([LCL],{type:"region"})}catch(e){DN=null}}
 function rebuildCal(){MN=[];WD=[];WDL=[];for(var m=0;m<12;m++)MN.push(cap1(new Date(2023,m,1).toLocaleDateString(LCL,{month:"long"})));for(var d=1;d<=7;d++){var dt=new Date(2023,0,d);WD.push(dt.toLocaleDateString(LCL,{weekday:"short"}));WDL.push(cap1(dt.toLocaleDateString(LCL,{weekday:"long"})))}}
 function ordl(n){switch(LANG){case"en":var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);case"es":case"pt":return n+".º";case"fr":return n===1?"1er":n+"e";case"de":return n+".";case"ja":return n+"位";case"ko":return n+"위";default:return n+"°"}}
-function trStr(s){if(LANG==="it")return s;var c=s.replace(/\s+/g," ");if(EXM[c]!==undefined)return EXM[c];
+function trStr(s){if(LANG==="it"||EXK.length===0)return s;var c=s.replace(/\s+/g," ");if(EXM[c]!==undefined)return EXM[c];
 var I=langIdx(),T=function(id){return TPL[id][I]},r=s;
 r=r.replace(/^Non seguire più (.+)$/,function(m,x){return T("nonsegui").replace("{x}",x)});
 r=r.replace(/^Segui (.+)$/,function(m,x){return T("segui").replace("{x}",x)});

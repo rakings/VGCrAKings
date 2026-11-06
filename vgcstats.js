@@ -67,7 +67,7 @@ var h='<select id="vg-ev" aria-label="Regionale">';
 if(tot)h+='<option value="tot"'+(S.ev==="tot"?" selected":"")+'>Tutti i regionali ('+E(regLabel(S.treg||IDX.current))+')</option>';
 ord.forEach(function(g){h+='<optgroup label="'+E(regLabel(g)+(g===IDX.current?" (attuale)":""))+'">'+og[g].map(function(e){return'<option value="'+e.id+'"'+(S.ev===e.id?" selected":"")+(e.collected?"":" disabled")+'>'+E(e.city)+(e.status==="running"?" · in corso":"")+(e.collected?"":" · da raccogliere")+'</option>'}).join("")+"</optgroup>"});
 return h+"</select>"}
-function foot(){var sr=(BASES.length>1&&LASTSRC>=0)?" · dati serviti da "+(LASTSRC===0?"Cloudflare":"GitHub (riserva)"):"";return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · classifica non ufficiale'+sr+'</p>'}
+function foot(){if(S.sx==="vr")return'<p class="vg-foot">Fonte: <a href="https://circuit.victoryroad.pro" target="_blank" rel="noopener">Victory Road Circuit</a> · classifica non ufficiale</p>';var sr=(BASES.length>1&&LASTSRC>=0)?" · dati serviti da "+(LASTSRC===0?"Cloudflare":"GitHub (riserva)"):"";return'<p class="vg-foot">Fonte: <a href="https://www.pokedata.ovh" target="_blank" rel="noopener">Pokedata</a> (dati RK9) · <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a> · classifica non ufficiale'+sr+'</p>'}
 function liveBox(m){if(!m||m.complete)return"";return'<div class="vg-box vg-live"><b>In corso</b> · aggiornato alle '+E((m.updated||"").slice(11))+' UTC <span class="vg-mute vg-chk">'+(LIVE_CHK&&LIVE_CHK.ev===S.ev?LIVE_CHK.txt:"· si aggiorna da solo")+'</span> <button class="btn sm" type="button" data-vg="refresh">'+rfTxt()+'</button></div>'}
 function rfTxt(){return S.rf==="new"?"Aggiornato ✓":S.rf==="same"?"Già aggiornato ✓":S.rf==="err"?"Non riuscito · riprova":"↻ Aggiorna"}
 function paste(id,pid){var t=D[id]&&D[id].tm[pid];if(!t)return"";return t.map(function(m){var ex=m[6]||{};return m[1]+(m[2]?" @ "+m[2]:"")+"\n"+(m[3]?"Ability: "+m[3]+"\n":"")+(ex["Tera Type"]?"Tera Type: "+ex["Tera Type"]+"\n":"")+(m[4]?m[4]+" Nature\n":"")+(m[5]||[]).map(function(x){return"- "+x}).join("\n")}).join("\n\n")}
@@ -84,9 +84,9 @@ var w=(WIN[e.id]||{}).winners||e.winners||{},m=w.masters,line="";
 if(m&&m.name)line='Vincitore: <b>'+E(m.name)+"</b>"+(m.cc?" ("+E(m.cc)+")":"")+italia(m.cc);else if(e.winner)line="Vincitore: <b>"+E(e.winner)+"</b>";
 ["seniors","juniors"].forEach(function(d){var p=w[d];if(p&&p.cc==="IT")line+=' · '+(d==="seniors"?"Seniors":"Juniors")+": <b>"+E(p.name)+"</b>"+italia("IT")});
 var st=e.status==="running"?'<span class="vg-bd live">In corso</span>':e.collected?'<span class="vg-bd ok">Dati pronti</span>':'<span class="vg-bd">Da raccogliere</span>';
-h+='<button type="button" class="vg-ev" data-vg="ev" data-id="'+e.id+'"><span><b>'+E(e.city)+'</b><small>'+E(dfmt(e.start))+' · '+e.players+' giocatori · '+E(regLabel(e.reg))+"</small>"+(line?"<small>"+line+"</small>":"")+"</span>"+st+"</button>"});
-if(!k)h+='<p class="vg-mute">Nessun regionale trovato.</p>';
-return h+'<p class="vg-foot">Ogni regionale finito compare qui da solo e si apre con un tocco.</p>'+foot()}
+h+='<button type="button" class="vg-ev" data-vg="ev" data-id="'+e.id+'"><span><b>'+E(e.city)+'</b><small>'+E(dfmt(e.start))+' · '+(e.players?e.players+' giocatori · ':e.status==="not started"?'in arrivo · ':'')+E(regLabel(e.reg))+"</small>"+(line?"<small>"+line+"</small>":"")+"</span>"+st+"</button>"});
+if(!k)h+='<p class="vg-mute">'+(S.sx==="vr"?"Nessun torneo VR trovato.":"Nessun regionale trovato.")+'</p>';
+return h+'<p class="vg-foot">'+(S.sx==="vr"?"Ogni torneo VR finito":"Ogni regionale finito")+' compare qui da solo e si apre con un tocco.</p>'+foot()}
 
 /* ---------- Pokémon ---------- */
 var GR={all:"Tutti",top:"Top 256",ph2:"Fase 2",cut:"Top cut"},SO={cnt:"Più usati",wr:"Win rate",top:"Top 256",ph2:"Fase 2"};
@@ -199,7 +199,7 @@ el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricam
 cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 var vuoto=S.sx==="vr"&&!(IDX.events||[]).length;
-host.innerHTML='<h2 class="vg-title">VGC Stats</h2><p class="vg-sub">'+(S.sx==="vr"?"Statistiche dei tornei VR Circuit di Victory Road: Pokémon, strumenti e swiss di ogni giocatore.":"Statistiche dei regionali VGC: Pokémon, strumenti, nature, mosse e swiss di ogni giocatore.")+'</p>'+sxHtml()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
+host.innerHTML='<h2 class="vg-title">VGC Stats</h2>'+sxHtml()+vrBanner()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
 function drawKeep(){var y=window.scrollY;draw();window.scrollTo(0,y)}
 
 /* ---------- eventi ---------- */
@@ -261,12 +261,18 @@ return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var i
 var have={};x.events.forEach(function(e){have[e.id]=1});
 ix.events.forEach(function(e){if(!e.collected||have[e.id])return;ARCHID[e.id]=1;e.reg=fmtReg(e);e.arch=true;x.events.push(e)});
 if(w&&w.events)w.events.forEach(function(e){if(ARCHID[e.id])WIN[e.id]=e})})}
+var VRINFO=null,VRTM=0;
 function vrCarica(){if(!VRB)return Promise.resolve();
 function g(f){return fetch(VRB+f,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
-return Promise.all([g("index.json"),g("vincitori.json")]).then(function(a){var ix=a[0],w=a[1];
+return Promise.all([g("index.json"),g("vincitori.json"),g("info.json")]).then(function(a){var ix=a[0],w=a[1];VRINFO=(a[2]&&typeof a[2]==="object")?a[2]:null;
 if(!ix||!Array.isArray(ix.events))ix={events:[],current:(IDXR&&IDXR.current)||"M-C"};
 ix.events.forEach(function(e){VRID[e.id]=1;e.vr=true});ix.events=inCorsoPrima(ix.events);IDXV=ix;
 if(w&&w.events)w.events.forEach(function(e){if(VRID[e.id])WIN[e.id]=e})})}
+function vrDur(ms){var m=Math.floor(ms/60000),d=Math.floor(m/1440),h=Math.floor(m%1440/60),n=m%60;return"tra "+(d?d+"g "+h+"h":h?h+"h "+n+"m":n+"m")}
+function vrBanner(){if(S.sx!=="vr"||!VRINFO)return"";var p=VRINFO.prossimo||{},t=Date.parse(p.inizio||"");if(isNaN(t)||t<=Date.now())return"";
+var q=new Date(t).toLocaleString("it",{weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});setTimeout(vrTick,0);
+return'<div class="vg-vrb" id="vg-vrb"><span class="vg-vrb-x"><b>'+E(p.nome||"Prossimo VR")+"</b> · "+E(q)+' · <span id="vg-vrc" data-t="'+t+'">'+vrDur(t-Date.now())+'</span></span><span class="vg-vrb-a">'+(p.iscrizioni?'<a href="'+E(p.iscrizioni)+'" target="_blank" rel="noopener">Iscriviti</a>':"")+(p.info?'<a href="'+E(p.info)+'" target="_blank" rel="noopener" title="Fonte: Victory Road">Info</a>':"")+"</span></div>"}
+function vrTick(){clearInterval(VRTM);if(!document.getElementById("vg-vrc"))return;VRTM=setInterval(function(){var el=document.getElementById("vg-vrc");if(!el){clearInterval(VRTM);return}var ms=Number(el.getAttribute("data-t"))-Date.now();el.textContent=ms>0?vrDur(ms):"sta per iniziare"},30000)}
 function setSx(x){x=x==="vr"?"vr":"reg";if(S.sx===x)return;S.sx=x;IDX=x==="vr"?(IDXV||{events:[],current:(IDXR&&IDXR.current)||"M-C"}):IDXR;
 S.reg="all";S.treg=IDX.current;S.q="";S.msg="";S.sec="arc";S.mon=null;S.ev=firstEv();draw();window.scrollTo(0,0)}
 function sxHtml(){return'<div class="vg-sx" role="group" aria-label="Regionali o VR"><button type="button" data-vg="sx" data-v="reg" aria-pressed="'+(S.sx!=="vr")+'">Regionali</button><button type="button" data-vg="sx" data-v="vr" aria-pressed="'+(S.sx==="vr")+'">VR</button></div>'}
@@ -308,14 +314,14 @@ setInterval(function(){liveTick(false)},15000);
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")liveTick(true)});
 
 (function(){try{if(document.getElementById("vgcs-sx"))return;var st=document.createElement("style");st.id="vgcs-sx";
-st.textContent=".vg-sx{display:flex;gap:0;margin:2px 0 12px;border:2px solid var(--line,#444);border-radius:999px;overflow:hidden;max-width:320px}.vg-sx button{flex:1;padding:9px 14px;font:inherit;font-weight:800;letter-spacing:.02em;border:0;background:transparent;color:inherit;cursor:pointer}.vg-sx button[aria-pressed=true][data-v=reg]{background:var(--coin,#ffd21f);color:var(--coin-ink,#4a3600)}.vg-sx button[aria-pressed=true][data-v=vr]{background:var(--vr,#86d8f0);color:#0b3a44}";
+st.textContent=".vg-sx{display:flex;gap:0;margin:2px 0 12px;border:2px solid var(--line,#444);border-radius:999px;overflow:hidden;max-width:320px}.vg-sx button{flex:1;padding:9px 14px;font:inherit;font-weight:800;letter-spacing:.02em;border:0;background:transparent;color:inherit;cursor:pointer}.vg-sx button[aria-pressed=true][data-v=reg]{background:var(--coin,#ffd21f);color:var(--coin-ink,#4a3600)}.vg-sx button[aria-pressed=true][data-v=vr]{background:var(--vr,#86d8f0);color:#0b3a44}.vg-title{margin:0 0 6px;font-size:1.2rem}.vg-sx{margin:0 0 8px}.vg-vrb{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 10px;border:2px solid var(--vr,#86d8f0);border-radius:12px;padding:6px 10px;margin:0 0 8px;font-size:.82rem}.vg-vrb-x{flex:1 1 190px;line-height:1.3}.vg-vrb-a{display:flex;gap:6px}.vg-vrb-a a{padding:3px 12px;border-radius:999px;font-size:.78rem;font-weight:800;text-decoration:none;background:var(--vr,#86d8f0);color:#0b3a44}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
 /* Tabella dei Pokemon: le colonne dei numeri non vanno a capo ("16,7" e "%" restavano separati); i nomi lunghi possono andare su due righe. */
 (function(){try{if(document.getElementById("vgcs-fix-tab"))return;var st=document.createElement("style");st.id="vgcs-fix-tab";
 st.textContent=".vgcs-host .vg-tw .vg-t td:not(:first-child){white-space:nowrap;padding-left:3px;padding-right:3px;font-size:.8rem}.vgcs-host .vg-tw .vg-t th:not(:first-child){padding-left:3px;padding-right:3px}.vgcs-host .vg-tw .vg-t th:first-child,.vgcs-host .vg-tw .vg-t td:first-child{white-space:normal;padding-left:7px}.vgcs-host .vg-tw .vg-t td .ph{margin-right:3px}.vgcs-host .vg-it{width:20px;height:20px;vertical-align:middle;margin-right:3px;flex:none}.vgcs-host .vg-bar .vg-it{width:18px;height:18px}.vgcs-host .vg-br{padding:3px 6px}.vgcs-host .vg-brt{display:block;width:100%;background:none;border:0;color:inherit;font:inherit;font-weight:700;font-size:.9rem;line-height:1.2;padding:5px 0;text-align:center;cursor:pointer}.vgcs-host .vg-brg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;align-items:stretch;padding:0 0 5px}.vgcs-host .vg-brc{display:flex;flex-direction:column;min-width:0}.vgcs-host .vg-brm{flex:1;display:flex;flex-direction:column;justify-content:space-around;gap:3px}.vgcs-host .vg-brh{font-size:.64rem;font-weight:700;text-align:center;color:var(--mute);margin-bottom:3px;text-transform:uppercase;letter-spacing:.03em}.vgcs-host .vg-bm{border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:.66rem;line-height:1.15;background:var(--card)}.vgcs-host .vg-bp{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;padding:1px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}.vgcs-host .vg-bp+.vg-bp{border-top:1px solid var(--line)}.vgcs-host .vg-bp.w{font-weight:700;box-shadow:inset 3px 0 0 var(--fill)}.vgcs-host .vg-bp.l{opacity:.6}.vgcs-host .vg-brw{text-align:center;font-size:.66rem;padding:5px 0}.vgcs-host .vg-live .btn{min-height:34px;padding:5px 12px;font-weight:700;margin-left:4px}.vgcs-host .vg-tys{display:inline-flex;gap:3px;margin-left:6px;vertical-align:middle;flex-wrap:nowrap}.vgcs-host .vg-ty{font-style:normal;font-weight:700;font-size:.55rem;line-height:1;padding:2px 4px;border-radius:7px;min-width:25px;text-align:center;letter-spacing:.02em;font-family:inherit}.vgcs-host .vg-t td .vg-tys{display:flex;margin:3px 0 0 18px}.vgcs-host .vg-h .vg-tys{margin-left:8px}.vgcs-host .vg-ct{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:4px;flex:none}.vgcs-host .vg-ct svg{display:block;width:15px;height:15px}.vgcs-host .vg-mv{display:flex;flex-wrap:wrap;gap:0 6px;flex:0 0 calc(100% - 18px);margin:-4px 0 3px 18px;font-size:.65rem;line-height:1.35;color:var(--mute)}.vgcs-host .vg-mv>span{white-space:nowrap}.vgcs-host .vg-mv .vg-ct{width:10px;height:10px;margin-right:1px;vertical-align:-1px}.vgcs-host .vg-mv .vg-ct svg{width:10px;height:10px}.vgcs-host .vg-leg{margin:-2px 0 8px;font-size:.72rem;color:var(--mute)}.vgcs-host .vg-leg .vg-ct{width:13px;height:13px;margin-right:3px;vertical-align:-2px}.vgcs-host .vg-leg .vg-ct svg{width:13px;height:13px}";
 (document.head||document.documentElement).appendChild(st)}catch(e){}})();
 /* ---------- Ricerca giocatore (barra della home, in tutte le schede): torneo in corso (LIVE) + storico ---------- */
-var INIT_P=null,PHIST=null,LIMON=false;
+var INIT_P=null,PHIST=null,LIMON=false,MAPCC={};
 function pn(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
 /* etichetta del tipo di torneo: usa le classi di colore che il sito ha gia' (Regionale oro, Special Event giallo, Internazionale verde, Mondiale nero, VR azzurro) */
 function pTag(e){var k=String(e.kind||"");
@@ -334,10 +340,17 @@ if(x.t&&x.p&&!x.ids){LIMON=true;x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],
 p[2].forEach(function(r){var t=x.t[r[0]];if(t)o.r.push({lim:{id:t[0],n:t[1],d:t[2],k:t[4]},pl:r[1]})})});return}
 if(x.p&&x.ids)x.p.forEach(function(p){var k=pn(p[0])+"|"+p[1],o=L[k]||(L[k]={name:p[0],cc:p[1],pn:pn(p[0]),r:[]});
 p[2].forEach(function(t){o.r.push({id:x.ids[t[0]],pl:t[1],w:t[2],l:t[3]})})});
-(x.x||[]).forEach(function(m){var k=pn(m.n)+"|"+m.cc,o=L[k]||(L[k]={name:m.n,cc:m.cc,pn:pn(m.n),r:[]});o.r.push({man:m})})});var perNome={};Object.keys(L).forEach(function(k){if(L[k].cc)(perNome[L[k].pn]=perNome[L[k].pn]||[]).push(k)});
+(x.x||[]).forEach(function(m){var k=pn(m.n)+"|"+m.cc,o=L[k]||(L[k]={name:m.n,cc:m.cc,pn:pn(m.n),r:[]});o.r.push({man:m})})});/* UK e GB sono lo stesso paese (Pokedata scrive UK, gli altri GB) */
+Object.keys(L).forEach(function(k){var o=L[k];if(o.cc!=="UK")return;var nk=o.pn+"|GB";if(L[nk]){L[nk].r=L[nk].r.concat(o.r)}else{o.cc="GB";L[nk]=o}delete L[k]});
+/* lo stesso nome con paesi diversi (chi cambia paese di iscrizione) e' la stessa persona se non ha mai giocato lo stesso torneo: si uniscono; se hanno un torneo in comune sono due persone */
+var gr={};Object.keys(L).forEach(function(k){if(L[k].cc)(gr[L[k].pn]=gr[L[k].pn]||[]).push(k)});
+Object.keys(gr).forEach(function(n){var ks=gr[n];if(ks.length<2)return;ks.sort(function(a,b){return L[b].r.length-L[a].r.length});var main=L[ks[0]],ids={};main.r.forEach(function(x){if(x.id)ids[x.id]=1});
+ks.slice(1).forEach(function(k){var o=L[k],cf=o.r.some(function(x){return x.id&&ids[x.id]});if(cf)return;o.r.forEach(function(x){if(x.id)ids[x.id]=1});main.r=main.r.concat(o.r);MAPCC[o.pn+"|"+o.cc]=main.cc;delete L[k]})});
+var perNome={};Object.keys(L).forEach(function(k){if(L[k].cc)(perNome[L[k].pn]=perNome[L[k].pn]||[]).push(k)});
 Object.keys(L).forEach(function(k){var o=L[k];if(o.cc||!perNome[o.pn]||perNome[o.pn].length!==1)return;var d=L[perNome[o.pn][0]];d.r=d.r.concat(o.r);delete L[k]});
 return Object.keys(L).map(function(k){return L[k]})});return PHIST}
 function pDate(d){if(!d)return"";try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?"":x.toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return""}}
+function ccCanon(name,cc){cc=cc==="UK"?"GB":(cc||"");return MAPCC[pn(name)+"|"+cc]||cc}
 function pRiga(r,nome){var d=(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span>";
 return r.man?'<div class="pr-r pr-x">'+d+"</div>":r.lim?'<button type="button" class="pr-r" data-href="'+E(r.url)+'">'+d+"</button>":'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(nome)+'">'+d+"</button>"}
 function cercaGiocatori(q,espandi){var qn=pn(q);if(qn.length<3)return Promise.resolve("");
@@ -346,7 +359,7 @@ return pReady().then(function(){if(S.fail||!IDXR)return[[],[]];return Promise.al
 tuttiEv().forEach(function(e){EV[e.id]=e});
 function porta(name,cc){var k=pn(name)+"|"+cc;return P[k]||(P[k]={name:name,cc:cc,rows:[],ids:{}})}
 function aggiungi(p,e,x){if(p.ids[e.id])return;p.ids[e.id]=1;var t=pTag(e);
-p.rows.push({id:e.id,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.end||e.start),d:String(e.end||e.start||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
+p.rows.push({id:e.id,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.vr?e.start:(e.end||e.start)),d:String((e.vr?e.start:(e.end||e.start))||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
 function vicino(p,d){var t=Date.parse(d+"T12:00:00");if(isNaN(t))return false;return p.rows.some(function(r){if(!r.d||r.approx)return false;var u=Date.parse(r.d+"T12:00:00");return!isNaN(u)&&Math.abs(u-t)<=3*86400000})}
 var STOP={championships:1,championship:1,regional:1,regionals:1,special:1,event:1,national:1,nationals:1,international:1,showdown:1,pokemon:1,series:1,season:1,premier:1,challenge:1,midseason:1,world:1,worlds:1,open:1};
 function parole(s){return pn(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>=4&&!STOP[w]})}
@@ -356,7 +369,7 @@ function aggiungiLim(p,x){var l=x.lim,key="l:"+l.id;if(p.ids[key]||vicino(p,l.d)
 p.rows.push({id:"",lim:true,url:"https://limitlessvgc.com/tournaments/"+l.id,live:false,tag:pTag({kind:l.k}),nome:l.n,data:pDate(l.d),d:l.d||"",res:x.pl?x.pl+"°":""})}
 function aggiungiMan(p,m){var key="m:"+m.t+"|"+(m.d||m.a);if(p.ids[key])return;p.ids[key]=1;var t=pTag({kind:m.k});
 p.rows.push({id:"",man:true,k:m.k,approx:!m.d,live:false,tag:[m.e||t[0],m.c||t[1]],nome:m.t,data:m.d?pDate(m.d):(m.a?String(m.a):""),d:m.d||(m.a?m.a+"-07-01":""),res:m.r||(m.pl?m.pl+"°":"")})}
-live.forEach(function(x){aggiungi(porta(x.name,x.cc),x.e,x)});
+live.forEach(function(x){aggiungi(porta(x.name,ccCanon(x.name,x.cc)),x.e,x)});
 hist.forEach(function(h){if(!toks.every(function(t){return h.pn.indexOf(t)>-1}))return;var p=null;
 var lims=[];h.r.forEach(function(x){if(x.man){if(!p)p=porta(h.name,h.cc);aggiungiMan(p,x.man);return}if(x.lim){lims.push(x);return}var e=EV[x.id];if(!e)return;if(!p)p=porta(h.name,h.cc);aggiungi(p,e,x)});
 if(lims.length){if(!p)p=porta(h.name,h.cc);lims.forEach(function(x){aggiungiLim(p,x)})}});
