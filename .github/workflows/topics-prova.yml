@@ -1,0 +1,42 @@
+name: Argomenti - prova di fattibilita
+# Prova MANUALE: non cambia niente del sistema attuale. Iscrive i dispositivi che hai appena toccato tu a un argomento di prova, manda due avvisi di prova
+# e toglie tutto. Serve a sapere se Google accetta i token del sito e come si comporta.
+on:
+  workflow_dispatch:
+    inputs:
+      ultimi:
+        description: "Quanti dispositivi al massimo (quelli che hai toccato tu, massimo 10)"
+        required: true
+        default: "2"
+      minuti:
+        description: "Si usano solo i dispositivi toccati negli ultimi N minuti (spegni e riaccendi un canale sul tuo dispositivo, poi lancia)"
+        required: true
+        default: "20"
+      molte:
+        description: "Provare anche 55 iscrizioni di fila su un dispositivo (per i limiti del Worker)"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
+permissions:
+  contents: read
+concurrency:
+  group: topics-prova
+  cancel-in-progress: false
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 topics_prova.py
+        env:
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          TEST_ULTIMI: ${{ inputs.ultimi }}
+          TEST_MINUTI: ${{ inputs.minuti }}
+          TEST_MOLTE: ${{ inputs.molte }}
