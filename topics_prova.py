@@ -116,8 +116,16 @@ def elenco_iscrizioni():
 
 class Prova:
     def __init__(self, access, progetto):
-        self.access, self.progetto = access, progetto
+        self._access0, self.progetto = access, progetto
         self.codifica_iscr = False   # se Google non accetta i «:» del token nell'indirizzo, si passa alla versione codificata
+
+    @property
+    def access(self):
+        """La chiave di accesso a Google dura 1 ora: si rinnova da sola (serve se si aspetta a lungo prima di mandare gli avvisi)."""
+        try:
+            return fcm_access_token()
+        except Exception:
+            return self._access0
 
     def url_reg(self, token, coda=""):
         t = urllib.parse.quote(token, safe="") if self.codifica_iscr else urllib.parse.quote(token, safe=":")
@@ -201,6 +209,10 @@ def main():
     molte = (os.environ.get("TEST_MOLTE") or "no").lower() == "si"
     parallele = (os.environ.get("TEST_PARALLELE") or "no").lower() == "si"
     confronto = (os.environ.get("TEST_CONFRONTO") or "no").lower() == "si"
+    try:
+        attesa_min = max(0, min(int(os.environ.get("TEST_ATTESA") or 0), 180))
+    except ValueError:
+        attesa_min = 0
     link = (os.environ.get("SITE_URL") or "").strip()
     chiave = json.loads(os.environ["FCM_SERVICE_ACCOUNT"])
     progetto = chiave["project_id"]
@@ -264,6 +276,11 @@ def main():
 
     print("\n--- 2) AVVISO all'argomento ---")
     titolo = "Prova tecnica argomenti (ignora)"
+    if attesa_min:
+        quando, _ = ora_ora()
+        print("\n--- ATTESA di %d minuti prima di mandare gli avvisi (adesso: %s) ---" % (attesa_min, quando))
+        print("  Lascia il telefono FERMO, a schermo spento. Gli avvisi partiranno da soli: guarda l'ora a cui compaiono, e l'ora di invio scritta nel testo.")
+        time.sleep(attesa_min * 60)
 
     def manda_diretti(etichetta, quando_dopo):
         for i, d in enumerate(iscritti, 1):
