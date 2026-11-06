@@ -177,6 +177,7 @@ def allinea(g, sub, esegui):
         return r
     da_agg, da_tol = sorted(voluti - attuali), sorted(attuali - voluti)
     r["agg"], r["tol"] = len(da_agg), len(da_tol)
+    r["nomi_agg"], r["nomi_tol"] = da_agg, da_tol
     if not esegui or not (da_agg or da_tol):
         return r
     for cosa, nome in [("add", n) for n in da_agg] + [("del", n) for n in da_tol]:
@@ -196,6 +197,11 @@ def allinea(g, sub, esegui):
             return r
     r["verificato"] = False
     return r
+
+
+def nomi_brevi(nomi, n=6):
+    """I nomi degli argomenti (canali e codici dei tornei, niente di riservato), al massimo n."""
+    return ", ".join(nomi[:n]) + (" +%d altri" % (len(nomi) - n) if len(nomi) > n else "")
 
 
 def main():
@@ -229,7 +235,8 @@ def main():
     errori = [e for e in esiti if e["stato"] == "errore"]
     non_verificati = [e for e in diff if esegui and e.get("verificato") is False]
     for e in (diff + errori)[:25]:
-        riga = "  dispositivo ...%s | voluti %d | da aggiungere %d, da togliere %d" % (e["id"][-6:], e["voluti"], e["agg"], e["tol"])
+        riga = "  dispositivo ...%s | voluti %d | da aggiungere %d%s, da togliere %d%s" % (
+            e["id"][-6:], e["voluti"], e["agg"], " (%s)" % nomi_brevi(e["nomi_agg"]) if e.get("nomi_agg") else "", e["tol"], " (%s)" % nomi_brevi(e["nomi_tol"]) if e.get("nomi_tol") else "")
         if esegui:
             riga += " | %s" % ("allineato e verificato" if e.get("verificato") else "NON verificato" if e.get("verificato") is False else "")
         if e["stato"] == "errore":
