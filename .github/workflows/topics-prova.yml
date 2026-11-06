@@ -40,6 +40,14 @@ on:
         description: "Minuti di attesa PRIMA di mandare gli avvisi (0 = subito). Serve a provare un telefono fermo a schermo spento, per esempio 30 o 120"
         required: true
         default: "0"
+      priorita:
+        description: "Prova la priorita' ALTA di Android sugli avvisi via argomento: P1 (come ora), P2 (priorita' alta), D3 (diretto), a 60 secondi l'uno dall'altro"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
 permissions:
   contents: read
 concurrency:
@@ -63,3 +71,4 @@ jobs:
           TEST_PARALLELE: ${{ inputs.parallele }}
           TEST_CONFRONTO: ${{ inputs.confronto }}
           TEST_ATTESA: ${{ inputs.attesa }}
+          TEST_PRIORITA: ${{ inputs.priorita }}
