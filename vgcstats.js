@@ -184,7 +184,13 @@ h+="</tbody></table>";
 var t=d.tm[id];if(t){h+='<div class="vg-team"><div class="vg-trow"><b>Squadra</b>'+copyBtn(S.ev,id)+"</div>"+t.map(function(m){return'<div class="vg-mon">'+dot(m[1])+" <b>"+E(m[1])+"</b>"+tyHtml(m[0])+' <small class="vg-mute">'+itIcon(m[2])+E([m[2],m[3],m[4]].filter(Boolean).join(" · "))+"</small>"+mvHtml(m[5])+"</div>"}).join("")+"</div>"}
 else if(p&&p[8])h+='<div class="vg-team"><b>Squadra</b><div class="vg-mute">'+E(p[8].split(",").map(function(s){return nameOf(d,s)}).join(" · "))+"</div></div>";
 return h+"</div>"}
-function resSwi(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';var f=S.sq.toLowerCase(),a=d.pl.filter(function(r){return(!f||r[1].toLowerCase().indexOf(f)>=0||r[2].toLowerCase()===f)&&(!S.onlyIt||r[2]==="IT")});
+/* Dalla ricerca dei giocatori: apre la scheda (swiss) del giocatore scelto e si ferma li'. Si fa una volta sola, dopo che i dati del torneo sono pronti. */
+function apriFn(d){var x=S.fn;if(!x||x.ev!==S.ev||!d||!d.pl)return;S.fn=null;var cand=[];
+d.pl.forEach(function(r,i){if(pn(r[1])===x.n)cand.push({i:i,r:r})});
+var best=cand.filter(function(c){return x.cc&&c.r[2]===x.cc&&x.pl&&Number(c.r[3])===x.pl})[0]||cand.filter(function(c){return x.pl&&Number(c.r[3])===x.pl})[0]||cand.filter(function(c){return x.cc&&c.r[2]===x.cc})[0]||cand[0];
+if(!best)return;S.sq="";S.onlyIt=false;setOpen(best.r[0],true);if(best.i>=S.shown)S.shown=best.i+1;S.focus=best.r[0]}
+function vaiAlFocus(){if(S.focus==null)return;var id=S.focus;S.focus=null;setTimeout(function(){var el=document.getElementById("vgp-"+id);if(el){el.scrollIntoView({block:"start"});el.classList.add("hl");setTimeout(function(){el.classList.remove("hl")},1600)}},120)}
+function resSwi(d){if(!d)return'<p class="vg-mute">Scegli un regionale dal menu.</p>';apriFn(d);var f=S.sq.toLowerCase(),a=d.pl.filter(function(r){return(!f||r[1].toLowerCase().indexOf(f)>=0||r[2].toLowerCase()===f)&&(!S.onlyIt||r[2]==="IT")});
 var h=liveBox(d.m)+(S.sq?"":bracketHtml(d))+'<p class="vg-sum">'+a.length+" giocatori · tocca un giocatore per aprire o chiudere la sua swiss</p>";
 a.slice(0,S.shown).forEach(function(r){var id=r[0],o=!!S.open[id];h+='<div class="vg-p" id="vgp-'+id+'"><button type="button" class="vg-pr" data-vg="tp" data-id="'+id+'" aria-expanded="'+o+'"><b>'+r[3]+"°</b><span>"+E(r[1])+' <small class="vg-mute">'+E(r[2])+" · "+r[4]+"-"+r[5]+"</small>"+italia(r[2])+'</span><small class="vg-mute">'+(r[7]?"Top cut":r[6]?"Fase 2":"")+"</small></button>"+(o?panel(d,id):"")+"</div>"});
 if(a.length>S.shown)h+='<button type="button" class="btn" data-vg="more">Mostra altri '+Math.min(80,a.length-S.shown)+"</button>";
@@ -196,7 +202,7 @@ function ctl(){return S.sec==="arc"?ctlArc():S.sec==="pok"?ctlPok():ctlSwi()}
 function drawRes(){var el=host.querySelector("#vg-res");if(!el)return;
 if(S.sec==="arc"){el.innerHTML=resArc();return}
 el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
-cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
+cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos();vaiAlFocus()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 var vuoto=S.sx==="vr"&&!(IDX.events||[]).length;
 host.innerHTML='<h2 class="vg-title">VGC Stats &amp; Live</h2>'+sxHtml()+vrBanner()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
@@ -351,15 +357,15 @@ Object.keys(L).forEach(function(k){var o=L[k];if(o.cc||!perNome[o.pn]||perNome[o
 return Object.keys(L).map(function(k){return L[k]})});return PHIST}
 function pDate(d){if(!d)return"";try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?"":x.toLocaleDateString("it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return""}}
 function ccCanon(name,cc){cc=cc==="UK"?"GB":(cc||"");return MAPCC[pn(name)+"|"+cc]||cc}
-function pRiga(r,nome){var d=(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span>";
-return r.man?'<div class="pr-r pr-x">'+d+"</div>":r.lim?'<button type="button" class="pr-r" data-href="'+E(r.url)+'">'+d+"</button>":'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(nome)+'">'+d+"</button>"}
+function pRiga(r,nome,cc){var d=(r.live?'<span class="tag t-live">LIVE</span>':"")+'<span class="tag '+r.tag[1]+'">'+E(r.tag[0])+'</span><span class="pr-n">'+E(r.nome)+(r.data?" · "+E(r.data):"")+'</span><span class="pr-s">'+E(r.res)+"</span>";
+return r.man?'<div class="pr-r pr-x">'+d+"</div>":r.lim?'<button type="button" class="pr-r" data-href="'+E(r.url)+'">'+d+"</button>":'<button type="button" class="pr-r" data-pid="'+E(r.id)+'" data-pn="'+E(nome)+'" data-cc="'+E(cc||"")+'" data-pl="'+E(r.pl||"")+'">'+d+"</button>"}
 function cercaGiocatori(q,espandi){var qn=pn(q);if(qn.length<3)return Promise.resolve("");
 var toks=qn.split(" ");
 return pReady().then(function(){if(S.fail||!IDXR)return[[],[]];return Promise.all([pLive(qn),pHist()])}).then(function(a){var live=a[0],hist=a[1],EV={},P={};
 tuttiEv().forEach(function(e){EV[e.id]=e});
 function porta(name,cc){var k=pn(name)+"|"+cc;return P[k]||(P[k]={name:name,cc:cc,rows:[],ids:{}})}
 function aggiungi(p,e,x){if(p.ids[e.id])return;p.ids[e.id]=1;var t=pTag(e);
-p.rows.push({id:e.id,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.vr?e.start:(e.end||e.start)),d:String((e.vr?e.start:(e.end||e.start))||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
+p.rows.push({id:e.id,pl:x.pl,live:!!x.live,tag:t,nome:e.city||e.name,data:pDate(e.vr?e.start:(e.end||e.start)),d:String((e.vr?e.start:(e.end||e.start))||""),res:(x.pl?x.pl+"° · ":"")+(x.w!=null?x.w+"-"+x.l:"")})}
 function vicino(p,d){var t=Date.parse(d+"T12:00:00");if(isNaN(t))return false;return p.rows.some(function(r){if(!r.d||r.approx)return false;var u=Date.parse(r.d+"T12:00:00");return!isNaN(u)&&Math.abs(u-t)<=3*86400000})}
 var STOP={championships:1,championship:1,regional:1,regionals:1,special:1,event:1,national:1,nationals:1,international:1,showdown:1,pokemon:1,series:1,season:1,premier:1,challenge:1,midseason:1,world:1,worlds:1,open:1};
 function parole(s){return pn(s).split(/[^a-z0-9]+/).filter(function(w){return w.length>=4&&!STOP[w]})}
@@ -378,10 +384,10 @@ list.forEach(function(p){p.rows.sort(function(a,b){return(b.live?1:0)-(a.live?1:
 list.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.rows[0].d<b.rows[0].d?1:-1)});list=list.slice(0,8);
 if(!list.length)return'<div class="pr-box"><p class="pr-none">Nessun giocatore trovato per «'+E(q)+'».</p></div>';
 return'<div class="pr-box">'+list.map(function(p){return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span></div>'+
-(espandi&&espandi===pn(p.name)+"|"+p.cc?p.rows:p.rows.slice(0,5)).map(function(r){return pRiga(r,p.name)}).join("")+
+(espandi&&espandi===pn(p.name)+"|"+p.cc?p.rows:p.rows.slice(0,5)).map(function(r){return pRiga(r,p.name,p.cc)}).join("")+
 (p.rows.length>5&&!(espandi&&espandi===pn(p.name)+"|"+p.cc)?'<button type="button" class="pr-more" data-k="'+E(pn(p.name)+"|"+p.cc)+'">+ '+(p.rows.length-5)+" altri tornei</button>":"")+"</div>"}).join("")+(LIMON?'<p class="pr-fonte">Storico dei giocatori: Pokédata e <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a></p>':"")+"</div>"})}
-function apriGiocatore(id,name){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
-S.ev=id;S.sec="swi";S.pq=String(name||"");S.sq="";S.shown=80;if(host&&S.ready)draw()}
+function apriGiocatore(id,name,cc,pl){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
+S.ev=id;S.sec="swi";S.sq="";S.onlyIt=false;S.mon=null;S.shown=80;S.fn={ev:id,n:pn(name),cc:String(cc||""),pl:pl?Number(pl):null};PEND=null;if(host&&S.ready)draw()}
 window.VGCS={cerca:cercaGiocatori,apri:apriGiocatore,mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},
