@@ -237,6 +237,22 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .sumhead{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:10px;min-height:44px;padding:0 14px;border-radius:14px;background:var(--card);border:2px solid #ffd21f;font-weight:700;font-size:14.5px;color:var(--ink);text-align:left}
 .sumhead.has{background:var(--card2)}.sumhead i{font-style:normal;color:#ffd21f;flex:none}.sumhead b{font-weight:900}
 .sumbox{margin-top:8px;padding:10px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+
+/* barra «chi attacca» compatta, sotto il danno */
+.seg.dirb{margin-top:8px;padding:2px;gap:2px;border-radius:12px}
+.dirb button{min-height:34px;padding:2px 6px;font-size:13px;display:flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;line-height:1.1}
+.dirb button .dn{display:block;min-width:0;max-width:62%;overflow:hidden;text-overflow:ellipsis}
+.dirb button small{display:inline;font-size:12px;opacity:.9}
+/* voce «danno combinato» dentro la scheda grande del danno */
+.hsum{margin-top:12px;padding:10px 11px 11px;border-radius:12px;background:var(--bg2);border:2px solid #ffd21f}
+.hst{font-size:11.5px;font-weight:800;color:#ffd21f;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.hsl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid var(--line);font-size:14px}
+.hsl span{min-width:0}.hsl small{display:block;font-size:11.5px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hsl b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.hsl.add b{color:#ffd21f}
+.hsl.tot{border-bottom:0;padding:8px 0 0;font-weight:800}.hsl.tot b{font-size:22px;font-weight:900}
+.hsv{font-size:15px;font-weight:800;margin-top:2px}.hsv.k1{color:#ff6b78}.hsv.k2{color:var(--warn)}
+.det.hero .hsum .dbar{height:8px;margin:6px 0 0}
 </style>
 </head>
 <body>
@@ -340,17 +356,17 @@ function readResults(d){
 function refresh(){
   if(!W)return;
   const a=readSide(1),b=readSide(2),res=[readResults(0),readResults(1)];
-  S.cache={a,b,res};
+  S.cache={a,b,res};S.sm.q=null;
   const mcStale=!!(S.mc.res&&!S.mc.busy&&S.mc.sig&&S.mc.sig!==mcSig());
   const sides=[a,b],atk=sides[S.dir],def=sides[1-S.dir],R=res[S.dir];
   if(S.sel[S.dir]<0||!R[S.sel[S.dir]]||(R[S.sel[S.dir]]&&R[S.sel[S.dir]].max===0&&R.some(x=>x&&x.max>0))){let bi=-1,bm=-1;R.forEach((x,i)=>{if(x&&x.max>bm){bm=x.max;bi=i}});S.sel[S.dir]=bi<0?0:bi}
   const cA=S.dir?'var(--violet)':'var(--red)';
   $q('#main').innerHTML=
-   '<div class="seg dirb" style="--c:'+cA+'"><button data-a="dir" data-d="0" class="'+(S.dir===0?'on':'')+'" style="--c:var(--red)"><span class="dn">'+esc(short(a.name))+'</span><small>attacca</small></button><button data-a="dir" data-d="1" class="'+(S.dir===1?'on':'')+'" style="--c:var(--violet)"><span class="dn">'+esc(short(b.name))+'</span><small>attacca</small></button></div>'+
-   detail(R[S.sel[S.dir]],atk,def,cA)+smHtml(atk,def,cA)+
-   '<div class="mu">'+sideCard(a,'a')+sideCard(b,'b')+'</div>'+
+   detail(R[S.sel[S.dir]],atk,def,cA,smHero(atk,def))+
+  '<div class="seg dirb" style="--c:'+cA+'"><button data-a="dir" data-d="0" class="'+(S.dir===0?'on':'')+'" style="--c:var(--red)"><span class="dn">'+esc(short(a.name))+'</span><small>attacca</small></button><button data-a="dir" data-d="1" class="'+(S.dir===1?'on':'')+'" style="--c:var(--violet)"><span class="dn">'+esc(short(b.name))+'</span><small>attacca</small></button></div>'+
+    '<div class="mu">'+sideCard(a,'a')+sideCard(b,'b')+'</div>'+
    '<div class="mu" style="margin-top:0">'+teamStrip(1)+teamStrip(2)+'</div>'+
-   '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+mcHtml(atk,def,cA,mcStale)+
+   '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+smHtml(atk,def,cA)+mcHtml(atk,def,cA,mcStale)+
    '<p class="foot">Calcoli del <b>Nimbasa City Post Damage Calculator</b> (licenza MIT) di Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interfaccia per telefono di rAKings VGC. Strumento non ufficiale.</p>';
   if(S.sheet==='edit')renderEditor(true);
   if(S.sheet==='field')renderField(true);
@@ -493,8 +509,9 @@ function smFinishEdit(){
   try{if(M.mainSnap)mcRestore(M.mainSnap)}catch(x){}
   M.mainSnap=null;
 }
-function smHtml(atk,def,cA){
-  const M=S.sm,atkN=S.dir+1,team=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[atkN-1])||[],ms=mcMainSlot();
+function smCalc(atk,def){
+  const M=S.sm;if(M.q)return M.q;
+  const atkN=S.dir+1,team=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[atkN-1])||[],ms=mcMainSlot();
   if(M.an!==atkN){M.an=atkN;M.ents=M.ents.filter(e=>e.src!=='slot'||e.snap);M.rows={};M.pick={};M.exp={}}
   const others=team.map((nm,i)=>({nm,i:i+1})).filter(o=>o.i!==ms);
   const R0=S.cache.res[S.dir],mainX=R0&&R0[S.sel[S.dir]],on=M.mainOn!==false;
@@ -507,6 +524,20 @@ function smHtml(atk,def,cA){
   const c=(rowsOut.some(r=>!r.na)&&!pending)?mcCombo(items.map(i=>i.x),hpC,hpT):null;
   const verd=c?(c.mn>=hpC?['KO garantito','k1']:c.mx>=hpC?['KO al '+(Math.round(c.ko*1000)/10)+'%',c.ko>=.5?'k2':'']:['Non basta: al massimo '+c.pmax+'%','']):null;
   const pr=c?(c.pmin===c.pmax?c.pmax+'%':c.pmin+'\u2013'+c.pmax+'%'):'';
+  return M.q={atkN,team,others,mainX,on,items,rowsOut,hpC,hpT,pending,c,verd,pr};
+}
+/* Voce dentro la scheda grande del danno: danno di prima + danni aggiunti = totale (si vede solo quando c'e' almeno un Pokemon aggiunto). */
+function smHero(atk,def){
+  const Q=smCalc(atk,def),M=S.sm;if(!Q.c||!M.ents.length)return '';
+  const L=[];
+  if(Q.mainX&&Q.on)L.push('<div class="hsl"><span>Danno di prima<small>'+esc(atk.name)+' \u00b7 '+esc(Q.mainX.name)+'</small></span><b>'+mcFmt(Q.mainX)+'</b></div>');
+  Q.rowsOut.forEach(r=>{if(r.na)return;L.push('<div class="hsl add"><span>+ Danno aggiunto<small>'+esc(r.name)+' \u00b7 '+esc(r.x.name)+'</small></span><b>'+mcFmt(r.x)+'</b></div>')});
+  const c=Q.c,cap=Math.min(100,c.pmax),lo=Math.min(100,c.pmin);
+  return '<div class="hsum"><div class="hst">Danno combinato su '+esc(def.name)+'</div>'+L.join('')+'<div class="hsl tot"><span>= Totale insieme</span><b>'+Q.pr+'</b></div><div class="hsv '+Q.verd[1]+'">'+Q.verd[0]+'</div>'+
+    '<div class="dbar"><i class="rest" style="width:'+Math.max(0,100-cap).toFixed(1)+'%"></i><i class="dm" style="left:'+Math.max(0,100-cap).toFixed(1)+'%;width:'+Math.max(0.8,cap-lo).toFixed(1)+'%"></i></div></div>';
+}
+function smHtml(atk,def,cA){
+  const Q=smCalc(atk,def),M=S.sm,{atkN,team,others,mainX,on,rowsOut,hpC,hpT,pending,c,verd,pr}=Q;
   const arrow='<i>'+(M.open?'\u25b4':'\u25be')+'</i>';
   const head=(c&&M.ents.length)?'<button type="button" class="sumhead has" data-a="smtog"><span>Insieme: <b>'+pr+'</b> \u00b7 '+verd[0]+'</span>'+arrow+'</button>':'<button type="button" class="sumhead" data-a="smtog"><span>+ Aggiungi il danno di un altro Pok\u00e9mon</span>'+arrow+'</button>';
   if(!M.open)return head;
@@ -566,13 +597,13 @@ function moveCard(x,atk,def,i){
   return '<div class="mv'+(on?' on':'')+(none?' zero':'')+'" role="button" tabindex="0" data-a="selmove" data-i="'+i+'"><div class="r1"><span class="mn">'+esc(x.name)+'</span><span class="pc">'+(none?'—':esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–')))+'</span></div>'+
    '<div class="ko">'+(none?'Nessun danno diretto':'<b>'+esc(koIt(x.ko||'—'))+'</b>')+(x.recoil?' · '+esc(x.recoil):'')+'</div>'+barFix+'<div class="mm">'+meta.join('')+'</div><button type="button" class="mvedit" data-a="mvedit" data-i="'+i+'" aria-label="Cambia la mossa '+esc(x.name)+'" title="Cambia mossa"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></div>';
 }
-function detail(x,atk,def,cA){
-  if(!x||x.max===0)return '<div class="det"><p>Questa mossa non fa danno diretto. Cambia mossa o i dati del Pokémon per vedere un calcolo.</p></div>';
+function detail(x,atk,def,cA,extra){
+  if(!x||x.max===0)return '<div class="det"><p>Questa mossa non fa danno diretto. Cambia mossa o i dati del Pokémon per vedere un calcolo.</p>'+(extra||'')+'</div>';
   const rolls=Array.isArray(x.rolls)?(Array.isArray(x.rolls[0])?x.rolls.map(r=>r.join(', ')).join(' | '):x.rolls.join(', ')):'';
   const mvd=atk.moves[x.i]||{};
   const ctr='<div class="row"><button class="btn sm" data-a="copy">Copia risultato</button><button class="btn sm'+(mvd.crit?' pri':'')+'" data-a="critc" data-i="'+x.i+'" aria-pressed="'+(mvd.crit?'true':'false')+'">Brutto colpo</button>'+(mvd.hitsOn?'<select class="sel" style="width:auto;min-height:38px;padding:0 30px 0 12px;font-size:13px" data-c="hitsc" data-i="'+x.i+'" aria-label="Numero di colpi">'+mvd.hitsOpts.map(h=>'<option'+(h===mvd.hits?' selected':'')+'>'+esc(h)+'</option>').join('')+'</select>':'')+'</div>';
   const lo=Math.max(0,100-Math.min(100,x.max)).toFixed(1),wd=Math.max(0.8,Math.min(100,x.max)-Math.min(100,x.min)).toFixed(1);
-  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div><p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+'</p><p class="rolls">Valori possibili: '+esc(rolls)+'</p>'+ctr+'</div>';
+  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div>'+(extra||'')+'<p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+'</p><p class="rolls">Valori possibili: '+esc(rolls)+'</p>'+ctr+'</div>';
 }
 
 /* ---------- fogli ---------- */
