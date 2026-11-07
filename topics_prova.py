@@ -166,7 +166,7 @@ class Prova:
                            "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
         return chiama("POST", url, self.access, msg)
 
-    def invia(self, argomento, titolo, corpo, link, android_alta=False):
+    def invia(self, argomento, titolo, corpo, link, android_alta=False, solo_dati=False):
         url = "https://fcm.googleapis.com/v1/projects/%s/messages:send" % self.progetto
         dati = {"title": titolo, "body": corpo}
         if link:
@@ -175,6 +175,8 @@ class Prova:
                            "webpush": {"headers": {"Urgency": "high", "TTL": "3600"}}}}
         if android_alta:   # prova: priorita' ALTA di Android sul messaggio all'argomento
             msg["message"]["android"] = {"priority": "HIGH"}
+        if solo_dati:      # prova: SOLO DATI, senza il campo «notification» (per Google i messaggi con «notification» sono sempre collassabili)
+            del msg["message"]["notification"]
         return chiama("POST", url, self.access, msg)
 
 
@@ -212,6 +214,7 @@ def main():
     parallele = (os.environ.get("TEST_PARALLELE") or "no").lower() == "si"
     confronto = (os.environ.get("TEST_CONFRONTO") or "no").lower() == "si"
     priorita = (os.environ.get("TEST_PRIORITA") or "no").lower() == "si"
+    collasso = (os.environ.get("TEST_COLLASSO") or "no").lower() == "si"
     try:
         attesa_min = max(0, min(int(os.environ.get("TEST_ATTESA") or 0), 180))
     except ValueError:
@@ -316,7 +319,23 @@ def main():
             if c != 200:
                 problemi.append("avviso " + etichetta)
 
-    if priorita:
+    if collasso:
+        print("  COLLASSO: 3 coppie di avvisi via argomento, a 20 secondi una dall'altra. In ogni coppia partono INSIEME:")
+        print("     N = con il testo di notifica (come ora)   |   S = SOLO DATI (senza testo di notifica: non si possono sostituire a vicenda)")
+        for k in (1, 2, 3):
+            quando, breve = ora_ora()
+            c, t, ms = p.invia(TOPIC, titolo + " - N%d" % k, "Avviso N%d (argomento, CON testo di notifica): inviato alle %s." % (k, breve), link)
+            print("  avviso N%d (con testo di notifica): HTTP %s in %d ms, inviato alle %s%s" % (k, c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+            if c != 200:
+                problemi.append("avviso N%d" % k)
+            c, t, ms = p.invia(TOPIC, titolo + " - S%d" % k, "Avviso S%d (argomento, SOLO DATI): inviato alle %s." % (k, breve), link, solo_dati=True)
+            print("  avviso S%d (solo dati): HTTP %s in %d ms, inviato alle %s%s" % (k, c, ms, quando, "" if c == 200 else " -> " + corto(t)))
+            if c != 200:
+                problemi.append("avviso S%d" % k)
+            print("  aspetto 20 secondi...")
+            time.sleep(20)
+        manda_diretti("D", "controllo")
+    elif priorita:
         print("  PRIORITA': 3 avvisi a distanza di 60 secondi, SENZA un avviso diretto prima che sveglia il telefono:")
         print("     P1 = via argomento, come ora   |   P2 = via argomento con priorita' ALTA di Android   |   D3 = diretto (controllo)")
         quando, breve = ora_ora()
@@ -337,7 +356,7 @@ def main():
     elif confronto:
         print("  CONFRONTO: stessi avvisi mandati in due modi, uno via argomento (A, B) e uno diretto (D1, D2), a distanza di 30 secondi.")
         manda_diretti("D1", "subito")
-    if not priorita:
+    if not (priorita or collasso):
         quando, breve = ora_ora()
         c, t, ms = p.invia(TOPIC, titolo + " - A", "Avviso A (via argomento): inviato alle " + breve + " (subito dopo l'iscrizione). Controlla anche la cronologia (campanella).", link)
         print("  avviso A (via argomento, subito dopo l'iscrizione): HTTP %s in %d ms, inviato alle %s%s" % (c, ms, quando, "" if c == 200 else " -> " + corto(t)))
@@ -432,7 +451,11 @@ def main():
     print("Problemi: %s." % ("; ".join(problemi) if problemi else "nessuno"))
     print("\nORA CONTROLLA TU sui tuoi dispositivi (PC, Android, iPhone se ce l'hai):")
     print("  - Ti e' arrivato l'avviso A «Prova tecnica argomenti (ignora) - A»?  E il B (dopo 60 secondi)?")
-    if priorita:
+    if collasso:
+        print("  COLLASSO: per il telefono scrivimi quali di questi 7 sono arrivati e a che ora (guarda anche la campanella): N1 N2 N3 (con testo di notifica), S1 S2 S3 (solo dati), D (diretto).")
+        print("  Se arrivano TUTTI gli S ma mancano alcuni N (di solito N1 e N2), i messaggi si sostituivano a vicenda: il rimedio e' mandarli «solo dati».")
+        print("  Se arrivano tutti, o mancano anche gli S, la sostituzione non e' la causa.")
+    elif priorita:
         print("  PRIORITA': per il telefono scrivimi a che ora e' COMPARSO ognuno di questi 3 (confrontando con l'ora di invio nel testo): P1 (argomento come ora), P2 (argomento priorita' alta), D3 (diretto).")
         print("  Se P2 compare subito e P1 no, la priorita' alta risolve il ritardo degli argomenti. Se P1 e P2 compaiono tardi e D3 subito, non cambia niente.")
     elif confronto:
