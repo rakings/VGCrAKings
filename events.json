@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T03:52:00+00:00",
+ "updated": "2026-11-07T06:03:08+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,21 +137,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
-   "name": "Meeklosh's Fight Night Friday | REG M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-06",
-   "time": "21:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb3848e94eae0f947470f6/details"
-  },
-  {
    "name": "3V3 ARENA (BY BV)",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -197,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
   },
   {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "05:00",
+   "players": 17,
+   "url": "https://play.limitlesstcg.com/tournament/6aee48a2c931f53978d950e1/details"
+  },
+  {
    "name": "Pokemon Dominicana - Champions League #18",
    "org": "Smilegazer League",
    "mode": "online",
@@ -227,21 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae575670d00101b48bf316a/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "05:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6aee48a2c931f53978d950e1/details"
-  },
-  {
    "name": "[Shiny TTar to 1st] The Grim Challenge #12 M-C",
    "org": "The Grim Team",
    "mode": "online",
@@ -253,23 +238,8 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "10:00",
-   "players": 16,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6aed9d3fe99f3235a75e1f84/details"
-  },
-  {
-   "name": "Pokexiaotian",
-   "org": "HaoQi cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "07:04",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6aed18c4e94eae0f94748584/details"
   },
   {
    "name": "Chacho Cup #4",
@@ -287,8 +257,38 @@
    "url": "https://play.limitlesstcg.com/tournament/6aec56ac0c463890f304bbf5/details"
   },
   {
-   "name": "Outlanders Silver&Gold: Gen 2 Showdown",
-   "org": "Outlanders Trainers' Camp",
+   "name": "Pokexiaotian",
+   "org": "HaoQi cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "07:04",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6aed18c4e94eae0f94748584/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #3⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "14:00",
+   "players": 76,
+   "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
+  },
+  {
+   "name": "Øutcasts",
+   "org": "Øutcasts Dominion Intl.",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -298,8 +298,8 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
+   "players": 12,
+   "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
   },
   {
    "name": "VGC UU Regulation M-C Bi-Weekly #1",
@@ -317,23 +317,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aedfef9e99f3235a75e23ac/details"
   },
   {
-   "name": "⚔️Torre Lotta Cup #3⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 70,
-   "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
-  },
-  {
-   "name": "Øutcasts",
-   "org": "Øutcasts Dominion Intl.",
+   "name": "Outlanders Silver&Gold: Gen 2 Showdown",
+   "org": "Outlanders Trainers' Camp",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -343,8 +328,8 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
   },
   {
    "name": "Raichu Rivalry | Champions Open",
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 29,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "17:00",
-   "players": 34,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
   },
   {
@@ -392,6 +377,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6acfab6d8a8383117e3ebb38/details"
   },
   {
+   "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
+   "org": "Metal VGC Weeklies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "22:00",
+   "players": 33,
+   "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
+  },
+  {
    "name": "Thavorian Trials - 13",
    "org": "Thavorian Skies",
    "mode": "online",
@@ -405,21 +405,6 @@
    "time": "22:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
-  },
-  {
-   "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
    "name": "MEGA CHAMPIONSHIPS SERIES #3",
@@ -511,7 +496,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "10:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
@@ -526,7 +511,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "13:00",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ae10c7780a8f79408d1fa89/details"
   },
   {
@@ -556,7 +541,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
   },
   {
@@ -601,7 +586,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "22:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
   },
   {
@@ -1158,7 +1143,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
