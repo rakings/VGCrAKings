@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T20:19:15+00:00",
+ "updated": "2026-11-07T22:43:29+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,23 +122,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "🇧🇷 Hit Break #8 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-01",
-   "time": "01:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
-  },
-  {
-   "name": "Raichu Rivalry | Champions Open",
-   "org": "",
+   "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
+   "org": "Metal VGC Weeklies",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -147,13 +132,13 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-07",
-   "time": "15:00",
-   "players": 47,
-   "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
+   "time": "22:00",
+   "players": 64,
+   "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
-   "name": "Øutcasts' Saturday Night #4 [1st: Shiny Charizard]",
-   "org": "",
+   "name": "MEGA CHAMPIONSHIPS SERIES #3",
+   "org": "Pokegiohorganization",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -162,39 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-07",
-   "time": "14:05",
-   "players": 21,
-   "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
-  },
-  {
-   "name": "Outlanders Silver&Gold: Gen 2 Showdown",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
-  },
-  {
-   "name": "VGC UU Regulation M-C Bi-Weekly #1",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6aedfef9e99f3235a75e23ac/details"
+   "time": "22:00",
+   "players": 20,
+   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
   },
   {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
@@ -257,66 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aed331ae94eae0f94748755/details"
   },
   {
-   "name": "Thavorian Trials - 13",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
-  },
-  {
-   "name": "MEGA CHAMPIONSHIPS SERIES #3",
-   "org": "Pokegiohorganization",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
-  },
-  {
-   "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 64,
-   "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
-  },
-  {
-   "name": "ValkrixVGC Pokemon Champions League #09",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "15:00",
-   "players": 28,
-   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
-  },
-  {
    "name": "Champion",
    "org": "Hindsightvgc",
    "mode": "online",
@@ -361,7 +256,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ae2048680a8f79408d20125/details"
   },
   {
@@ -406,7 +301,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "13:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ae10c7780a8f79408d1fa89/details"
   },
   {
@@ -421,7 +316,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "14:30",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aeb70f30c463890f304b2c6/details"
   },
   {
@@ -436,7 +331,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "15:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aef0ec7c931f53978d956ad/details"
   },
   {
@@ -451,7 +346,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
   },
   {
@@ -571,7 +466,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
@@ -616,7 +511,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
@@ -661,7 +556,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 59,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -691,7 +586,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -781,7 +676,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -826,7 +721,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -856,7 +751,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -871,7 +766,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -917,7 +812,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 2,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -1098,7 +993,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 1,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
