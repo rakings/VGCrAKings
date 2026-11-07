@@ -199,7 +199,7 @@ el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricam
 cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 var vuoto=S.sx==="vr"&&!(IDX.events||[]).length;
-host.innerHTML='<h2 class="vg-title">VGC Stats</h2>'+sxHtml()+vrBanner()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
+host.innerHTML='<h2 class="vg-title">VGC Stats &amp; Live</h2>'+sxHtml()+vrBanner()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
 function drawKeep(){var y=window.scrollY;draw();window.scrollTo(0,y)}
 
 /* ---------- eventi ---------- */
