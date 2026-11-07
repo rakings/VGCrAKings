@@ -4,7 +4,14 @@ self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim(
 
 
 // Cronologia sul dispositivo: la campanella del sito la legge dalla stessa cache che usava sw.js.
+// Gli avvisi che arrivano nello stesso istante si salvano uno dopo l'altro: prima leggevano tutti lo stesso elenco e l'ultimo a scrivere cancellava gli altri.
+var histQ = Promise.resolve();
 function histSave(title, body, link) {
+  var job = histQ.then(function () { return histSaveOne(title, body, link); });
+  histQ = job.catch(function () {});
+  return job;
+}
+function histSaveOne(title, body, link) {
   var t = Date.now();
   var item = { id: "|" + title + "|" + body + "|" + t, t: t, title: title, body: body, url: /^https?:/.test(link || "") ? link : "" };
   return caches.open("vgc-hist").then(function (c) {
@@ -25,7 +32,12 @@ self.addEventListener("push", function (e) {
   var raw = "", j = {};
   try { raw = e.data ? e.data.text() : ""; } catch (x) {}
   var logP = caches.open("fcm-log").then(function (c) {
-    return c.put("/fcm-log/" + Date.now(), new Response(JSON.stringify({ t: new Date().toISOString(), raw: raw.slice(0, 200) })));
+    return c.put("/fcm-log/" + Date.now() + "-" + Math.floor(Math.random() * 1000), new Response(JSON.stringify({ t: new Date().toISOString(), raw: raw.slice(0, 300) }))).then(function () {
+      return c.keys();
+    }).then(function (ks) {
+      var extra = ks.length - 200;
+      return extra > 0 ? Promise.all(ks.slice(0, extra).map(function (k) { return c.delete(k); })) : null;
+    });
   }).catch(function () {});
   try { j = raw ? JSON.parse(raw) : {}; } catch (x) { j = {}; }
   var n = j.notification || {}, d = j.data || {};
