@@ -48,6 +48,14 @@ on:
         options:
           - "no"
           - "si"
+      collasso:
+        description: "Prova la sostituzione dei messaggi: 3 coppie via argomento (N = con testo di notifica, S = solo dati) a 20 secondi l'una dall'altra, poi un diretto di controllo"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
 permissions:
   contents: read
 concurrency:
@@ -72,3 +80,4 @@ jobs:
           TEST_CONFRONTO: ${{ inputs.confronto }}
           TEST_ATTESA: ${{ inputs.attesa }}
           TEST_PRIORITA: ${{ inputs.priorita }}
+          TEST_COLLASSO: ${{ inputs.collasso }}
