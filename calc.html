@@ -185,6 +185,53 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 #eng{position:absolute;left:-12000px;top:0;width:1200px;height:900px;border:0;visibility:hidden;pointer-events:none}
 :focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* calcolo multiplo */
+.mchead{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:18px;min-height:46px;padding:0 14px;border-radius:14px;background:var(--card);border:2px solid #ffd21f;font-weight:800;font-size:15px;color:var(--ink);text-align:left}
+.mchead.on{background:var(--card2)}
+.mchead b{color:#ffd21f;font-size:15px}
+.mcbox{margin-top:8px;padding:10px;border-radius:14px;background:var(--card);border:1px solid var(--line)}
+.tgrid.mcg{grid-template-columns:repeat(3,1fr)}
+.tgrid.mcg .chip.add{grid-column:1/-1}
+.mrow{display:grid;grid-template-columns:1fr auto;gap:1px 10px;width:100%;text-align:left;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin-top:6px}
+.mrow.on{border-color:#ffd21f}
+.mrow .who{font-weight:800;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .bp{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.mrow .bm{color:var(--mute);font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mrow .bk{font-size:13px;color:var(--mute);text-align:right;white-space:nowrap}
+.mrow.k1 .bk{color:#ff6b78;font-weight:700}.mrow.k2 .bk{color:var(--warn);font-weight:700}
+.mrow.na{opacity:.6;grid-template-columns:1fr}
+.mxs{margin:2px 0 4px;padding:2px 10px;border-radius:0 0 12px 12px;background:var(--bg2);border:1px solid var(--line);border-top:0}
+.mx{display:grid;grid-template-columns:1fr auto;gap:0 10px;padding:6px 2px;font-size:13px;border-bottom:1px solid var(--line)}
+.mx:last-child{border-bottom:0}.mx em{grid-column:1/-1;font-style:normal;color:var(--mute);font-size:12px}.mx.z{opacity:.5}
+.mx b{font-variant-numeric:tabular-nums;text-align:right}
+.mstale{opacity:.5}
+.btn[disabled]{opacity:.5;pointer-events:none}
+
+/* mosse: schede piu' piccole, 2 per riga (stesse informazioni di prima: nome, percentuale, KO, barra del danno, tipo/categoria/potenza, tasto per cambiare la mossa) */
+.res{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mv{padding:8px 9px 7px;border-radius:12px;min-width:0}
+.mv .r1{display:block}
+.mv .mn{display:block;font-size:13.5px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mv .pc{display:block;font-size:15px;line-height:1.2;margin-top:1px;overflow:hidden;text-overflow:ellipsis}
+.mv .ko{font-size:11.5px;line-height:1.2;margin-top:2px}
+.mv .dbar{height:6px;margin-top:6px}
+.mv .mm{min-height:26px;font-size:10.5px;gap:3px 5px;padding-right:30px}
+.mv .mm .ty{font-size:10px;padding:1px 6px}
+.mv .mvedit{width:26px;height:26px;right:6px;bottom:5px;border-radius:9px}
+.mv .mvedit svg{width:14px;height:14px}
+
+/* danno combinato */
+.seg3 button{padding:3px 3px}.seg3 .dn{font-size:13.5px}.seg3 small{font-size:10.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tgrid .chip.dis{opacity:.45;pointer-events:none;flex-direction:column;gap:0}.tgrid .chip.dis small{font-size:9.5px;color:var(--mute)}
+.mrow.main{border-color:#ffd21f}.mrow.main.off{opacity:.5}.mrow .who i{font-style:normal;font-weight:600;font-size:11px;color:var(--mute)}
+.mx.pk{width:100%;text-align:left;background:none;color:inherit;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:7px 2px}
+.mx.pk.sel{color:#ffd21f}.mx.pk.sel span::before{content:"\2713 ";}
+.mtot{margin-top:10px;padding:12px;border-radius:14px;background:var(--card2);border:2px solid #ffd21f}
+.mtl{font-size:12.5px;color:var(--mute);font-weight:700}.mtl small{font-weight:500}
+.mtp{font-size:28px;font-weight:900;line-height:1.1;margin-top:4px;font-variant-numeric:tabular-nums}
+.mtk{font-size:16px;font-weight:800;margin-top:4px}.mtk.k1{color:#ff6b78}.mtk.k2{color:var(--warn)}.mtk small{font-weight:500;color:var(--mute)}
+.mtot .dbar{height:9px;margin-top:8px}
 </style>
 </head>
 <body>
@@ -211,7 +258,7 @@ const ENGINE="﻿\u003c!doctype HTML>\n\u003chtml lang=\"us\" xmlns=\"http://www
 var W=null,J=null;
 const $q=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const S={dir:0,sel:[-1,-1],sheet:null,edit:1,pickCb:null};
+const S={dir:0,sel:[-1,-1],sheet:null,edit:1,pickCb:null,mc:{open:false,mode:0,sel:{},res:null,busy:false,sig:'',exp:{},pick:{},mainOn:true,vn:0,prog:0,tot:0,fixed:''}};
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const TC={Normal:'#8a8a6a',Fire:'#e2652b',Water:'#4a7fe0',Electric:'#d6a900',Grass:'#4aa44a',Ice:'#4fb7b7',Fighting:'#b53a2f',Poison:'#9a3fa0',Ground:'#b99a45',Flying:'#8a7ae0',Psychic:'#e04a7a',Bug:'#8aa31f',Rock:'#9a8530',Ghost:'#6a4a8f',Dragon:'#5a2fe0',Dark:'#5a4a3f',Steel:'#8a8aa5',Fairy:'#d97fb0',Typeless:'#777',Stellar:'#3a9a8a'};
 const ST=[['hp','PS'],['at','Att'],['df','Dif'],['sa','AtSp'],['sd','DfSp'],['sp','Vel']];
@@ -289,6 +336,7 @@ function refresh(){
   if(!W)return;
   const a=readSide(1),b=readSide(2),res=[readResults(0),readResults(1)];
   S.cache={a,b,res};
+  const mcStale=!!(S.mc.res&&!S.mc.busy&&S.mc.sig&&S.mc.sig!==mcSig());
   const sides=[a,b],atk=sides[S.dir],def=sides[1-S.dir],R=res[S.dir];
   if(S.sel[S.dir]<0||!R[S.sel[S.dir]]||(R[S.sel[S.dir]]&&R[S.sel[S.dir]].max===0&&R.some(x=>x&&x.max>0))){let bi=-1,bm=-1;R.forEach((x,i)=>{if(x&&x.max>bm){bm=x.max;bi=i}});S.sel[S.dir]=bi<0?0:bi}
   const cA=S.dir?'var(--violet)':'var(--red)';
@@ -297,12 +345,111 @@ function refresh(){
    detail(R[S.sel[S.dir]],atk,def,cA)+
    '<div class="mu">'+sideCard(a,'a')+sideCard(b,'b')+'</div>'+
    '<div class="mu" style="margin-top:0">'+teamStrip(1)+teamStrip(2)+'</div>'+
-   '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+
+   '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+mcHtml(atk,def,cA,mcStale)+
    '<p class="foot">Calcoli del <b>Nimbasa City Post Damage Calculator</b> (licenza MIT) di Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interfaccia per telefono di rAKings VGC. Strumento non ufficiale.</p>';
   if(S.sheet==='edit')renderEditor(true);
   if(S.sheet==='field')renderField(true);
 }
 const short=n=>n.length>16?n.slice(0,15)+'…':n;
+/* ---------- calcolo multiplo ---------- */
+const tick=()=>new Promise(r=>setTimeout(r,0));
+/* Campi che l'utente puo' aver cambiato a mano su un lato: dopo il calcolo si ricarica il set e si rimettono SOLO quelli che erano diversi. */
+const MC_FIELDS=n=>{const q=s=>J(P(n)+' '+s);return [
+  {id:'forme',get:o=>o.formeVal,set:v=>q('.forme').val(v).change(),only:o=>!!o.formeVal},
+  ...ST.map(([k])=>({id:'sps.'+k,get:o=>o.sps[k],set:v=>q('.'+k+' .sps').val(v).trigger('input').trigger('change')})),
+  ...ST.filter(([k])=>k!=='hp').map(([k])=>({id:'bo.'+k,get:o=>o.bo[k],set:v=>q('.'+k+' .boost').val(v).change()})),
+  {id:'nat',get:o=>o.nat,set:v=>q('.nature').val(v).change()},{id:'item',get:o=>o.item,set:v=>q('select.item').val(v).change()},{id:'ab',get:o=>o.ab,set:v=>q('select.ability').val(v).change()},
+  {id:'status',get:o=>o.status,set:v=>q('.status').val(v).change()},{id:'hpPct',get:o=>o.hpPct,set:v=>q('.percent-hp').val(v).trigger('input').trigger('change')},
+  {id:'teraOn',get:o=>o.teraOn,set:v=>q('.tera').prop('checked',!!v).change()},{id:'teraType',get:o=>o.teraType,set:v=>q('.tera-type').val(v).change()},
+  {id:'abOn',get:o=>o.abOn,set:v=>q('.abilityToggle').prop('checked',!!v).change()},
+  ...[0,1,2,3].map(i=>({id:'mv'+i,get:o=>o.moves[i].name,set:v=>q('.move'+(i+1)+' select.move-selector').val(v).change()})),
+  ...[0,1,2,3].map(i=>({id:'crit'+i,get:o=>o.moves[i].crit,set:v=>q('.move'+(i+1)+' .move-crit').prop('checked',!!v).change()}))]};
+const mcSave=n=>({n,set:J(P(n)+' input.set-selector').val(),o:readSide(n)});
+function mcRestore(s){W.loadPreset(P(s.n),s.set);const base=readSide(s.n);for(const c of MC_FIELDS(s.n)){const a=c.get(s.o),b=c.get(base);if(JSON.stringify(a)!==JSON.stringify(b)&&(!c.only||c.only(s.o)))c.set(a)}}
+const mcSig=()=>JSON.stringify([S.dir,S.mc.mode,S.cache&&[S.cache.a,S.cache.b],S.cache&&S.cache.res.map(r=>r.map(x=>x&&x.txt))]);
+async function mcRun(){
+  const M=S.mc;if(M.busy||!W||!S.cache)return;
+  const atkN=S.dir+1,defN=2-S.dir,vn=M.mode===0?defN:atkN,team=(W.CURRENT_SIDEBARS[vn-1]||[]);
+  const ms=M.mode===2?mcMainSlot():0;
+  const idx=Object.keys(M.sel).filter(k=>M.sel[k]).map(Number).filter(i=>team[i-1]&&i!==ms).sort((a,b)=>a-b);
+  if(!idx.length){toast('Scegli almeno un Pok\u00e9mon');return}
+  M.busy=true;M.prog=0;M.tot=idx.length;M.exp={};M.pick={};
+  M.fixed=([S.cache.a,S.cache.b][M.mode===0?S.dir:1-S.dir]).name;
+  refresh();await tick();
+  const snap=mcSave(vn),rows=[];
+  try{
+    for(const i of idx){
+      const sp=team[i-1];
+      if(!(sp in W.pokedex)){rows.push({i,name:sp,na:true});M.prog++;continue}
+      W.loadSidebarSlot(vn,i);await tick();
+      const R=readResults(S.dir),sd=readSide(vn);rows.push({i,name:sd.name,res:R});M.prog++;
+      const b=$q('#mcrun');if(b)b.textContent='Calcolo '+M.prog+'/'+M.tot+'\u2026';
+    }
+  }catch(e){toast('Calcolo interrotto')}
+  finally{try{mcRestore(snap)}catch(e){}await tick();M.busy=false}
+  M.res=rows;M.atMode=M.mode;
+  refresh();M.sig=mcSig();refresh();
+}
+/* ---- danno combinato: i tiri veri (16 per colpo) di piu' mosse sommati sullo stesso bersaglio ---- */
+function mcRolls(x){const r=x&&x.rolls;if(r==null)return [];const a=Array.isArray(r)?r:[r];if(a.length&&Array.isArray(a[0]))return a.map(h=>h.map(Number));return [a.map(Number)]}
+function mcDist(hits){let d=new Map([[0,1]]);for(const h of hits){if(!h.length)continue;const nd=new Map(),p=1/h.length;for(const [s,c] of d)for(const v of h){const k=s+v;nd.set(k,(nd.get(k)||0)+c*p)}d=nd}return d}
+function mcCombo(list,hpCur,hpTot){
+  const hits=[].concat(...list.map(mcRolls)),d=mcDist(hits);let mn=0,mx=0;for(const h of hits){if(!h.length)continue;mn+=Math.min(...h);mx+=Math.max(...h)}
+  let ko=0;for(const [s,p] of d)if(s>=hpCur)ko+=p;
+  return{mn,mx,ko,pmin:hpTot?Math.floor(mn*1000/hpTot)/10:0,pmax:hpTot?Math.floor(mx*1000/hpTot)/10:0}}
+const mcMainSlot=()=>{const n=S.dir+1,m=(J(P(n)+' input.set-selector').val()||'').match(/\((Left|Right) Sidebar Slot (\d+)\)$/);return m&&((m[1]==='Left')===(n===1))?+m[2]:0};
+const mcFmt=x=>x.min===x.max?x.max+'%':x.min+'\u2013'+x.max+'%';
+function mcComb(atk,def,stale){
+  const M=S.mc,R0=S.cache&&S.cache.res[S.dir],mainX=R0&&R0[S.sel[S.dir]],rows=M.res||[],items=[];
+  const on=M.mainOn!==false;
+  if(mainX&&on)items.push({name:atk.name,x:mainX});
+  rows.forEach((r,k)=>{if(r.na)return;const best=r.res.reduce((b,x,j)=>x&&(b<0||x.max>r.res[b].max)?j:b,-1),j=M.pick[k]!=null?M.pick[k]:best,x=r.res[j];if(x)items.push({k,j,name:r.name,x})});
+  const hpC=def.hpCur,hpT=def.hpTot,c=mcCombo(items.map(i=>i.x),hpC,hpT);
+  const verdetto=c.mn>=hpC?['KO garantito','k1']:c.mx>=hpC?['KO al '+(Math.round(c.ko*1000)/10)+'%',c.ko>=.5?'k2':'']:['Non basta: al massimo '+c.pmax+'%',''];
+  const cap=Math.min(100,c.pmax),lo=Math.min(100,c.pmin),bar='<div class="dbar"><i class="rest" style="width:'+Math.max(0,100-cap).toFixed(1)+'%"></i><i class="dm" style="left:'+Math.max(0,100-cap).toFixed(1)+'%;width:'+Math.max(0.8,cap-lo).toFixed(1)+'%"></i></div>';
+  let h='<h2 style="margin-top:14px">Danno insieme su '+esc(def.name)+'</h2><div class="'+(stale?'mstale':'')+'">';
+  if(mainX)h+='<button type="button" class="mrow main'+(on?'':' off')+'" data-a="mcmain"><span class="who">'+esc(atk.name)+'</span><span class="bp">'+mcFmt(mainX)+'</span><span class="bm">'+esc(mainX.name)+' \u00b7 principale</span><span class="bk">'+(on?'incluso: tocca per escluderlo':'escluso: tocca per includerlo')+'</span></button>';
+  rows.forEach((r,k)=>{
+    if(r.na){h+='<div class="mrow na"><b class="who">'+esc(r.name)+'</b><span class="bm">non disponibile in questa modalit\u00e0</span></div>';return}
+    const it=items.find(i=>i.k===k);if(!it)return;const open=M.exp[k],kot=koIt(it.x.ko||'');
+    h+='<button type="button" class="mrow'+(open?' on':'')+'" data-a="mcrow" data-k="'+k+'"><span class="who">'+esc(r.name)+'</span><span class="bp">'+mcFmt(it.x)+'</span><span class="bm">'+esc(it.x.name)+'</span><span class="bk">'+esc(kot)+'</span></button>'+
+    (open?'<div class="mxs"><div class="hint" style="margin:2px 0 4px">Tocca la mossa da sommare:</div>'+r.res.map((x,j)=>x?'<button type="button" class="mx pk'+(j===it.j?' sel':'')+(x.max===0?' z':'')+'" data-a="mcpick" data-k="'+k+'" data-j="'+j+'"><span>'+esc(x.name)+'</span><b>'+mcFmt(x)+'</b></button>':'').join('')+'</div>':'');
+  });
+  h+='</div><div class="mtot"><div class="mtl">Totale su '+esc(def.name)+' <small>PS '+hpC+'/'+hpT+'</small></div><div class="mtp">'+(c.pmin===c.pmax?c.pmax+'%':c.pmin+'\u2013'+c.pmax+'%')+'</div><div class="mtk '+verdetto[1]+'">'+verdetto[0]+(items.length<2?' <small>(aggiungi altri Pok\u00e9mon)</small>':'')+'</div>'+bar+'<p class="hint" style="margin:8px 0 0">I colpi sono sommati come se arrivassero insieme nello stesso turno. Effetti che dipendono dai PS (Focus Sash, Multiscale, bacche) non sono considerati.</p></div>';
+  return h}
+function mcHtml(atk,def,cA,stale){
+  const M=S.mc,atkN=S.dir+1,defN=2-S.dir,vn=M.mode===0?defN:atkN,team=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[vn-1])||[];
+  if(M.vn!==vn){M.vn=vn;M.sel={};M.res=null;M.exp={};M.pick={}}
+  const head='<button type="button" class="mchead'+(M.open?' on':'')+'" data-a="mctog"><span>Calcolo multiplo</span><b>'+(M.open?'\u25b4':'\u25be')+'</b></button>';
+  if(!M.open)return head;
+  const seg='<div class="seg seg3" style="--c:'+cA+';margin-top:8px"><button data-a="mcmode" data-m="0" class="'+(M.mode===0?'on':'')+'"><span class="dn">Attacca</span><small>'+esc(short(atk.name))+'</small></button><button data-a="mcmode" data-m="1" class="'+(M.mode===1?'on':'')+'"><span class="dn">Subisce</span><small>'+esc(short(def.name))+'</small></button><button data-a="mcmode" data-m="2" class="'+(M.mode===2?'on':'')+'"><span class="dn">Insieme</span><small>danno sommato</small></button></div>';
+  const lato=vn===1?'sinistra':'destra',ms=M.mode===2?mcMainSlot():0;
+  const spiega=M.mode===0?esc(atk.name)+' contro pi\u00f9 Pok\u00e9mon di '+lato+', uno per uno.':M.mode===1?'Pi\u00f9 Pok\u00e9mon di '+lato+' contro '+esc(def.name)+', ognuno per conto suo.':'Il danno di '+esc(atk.name)+' (mossa scelta in alto) pi\u00f9 quello dei Pok\u00e9mon che aggiungi, sommato su '+esc(def.name)+'.';
+  let body;
+  if(!team.length)body='<p class="hint">Incolla la squadra di '+lato+' per usare il calcolo multiplo.</p>';
+  else{
+    const n=Object.keys(M.sel).filter(k=>M.sel[k]&&team[k-1]&&(+k)!==ms).length;
+    const tuttiOn=team.every((x,i)=>M.sel[i+1]||(i+1)===ms);
+    body='<p class="hint" style="margin:10px 2px 2px">'+spiega+'</p><p class="hint" style="margin:6px 2px 6px">'+(M.mode===0?'Scegli contro quali calcolare:':M.mode===1?'Scegli quali attaccano:':'Scegli quali aggiungere:')+'</p>'+
+    '<div class="tgrid mcg" style="--c:'+(vn===1?'var(--red)':'var(--violet)')+'">'+team.map((nm,i)=>(i+1)===ms?'<button type="button" class="chip dis" disabled><span>'+esc(nm)+'</span><small>principale</small></button>':'<button type="button" class="chip'+(M.sel[i+1]?' on':'')+'" data-a="mcsel" data-i="'+(i+1)+'"><span>'+esc(nm)+'</span></button>').join('')+'<button type="button" class="chip add" data-a="mcall">'+(tuttiOn?'Nessuno':'Tutti')+'</button></div>'+
+    '<div class="row" style="margin-top:10px"><button type="button" id="mcrun" class="btn pri" data-a="mcrun"'+(M.busy||!n?' disabled':'')+'>'+(M.busy?'Calcolo '+M.prog+'/'+M.tot+'\u2026':(M.res&&stale?'Ricalcola':'Calcola'))+'</button>'+(M.res&&stale&&!M.busy?'<span class="hint" style="margin:0">Qualcosa \u00e8 cambiato: i risultati non sono pi\u00f9 aggiornati.</span>':'')+'</div>';
+  }
+  let out='';
+  if(M.res&&M.res.length){
+    if(M.atMode===2)out=mcComb(atk,def,stale);
+    else{
+    const titolo=M.atMode===0?'Mosse di '+esc(M.fixed)+' contro:':'Contro '+esc(M.fixed)+':';
+    out='<h2 style="margin-top:14px">'+titolo+'</h2><div class="'+(stale?'mstale':'')+'">'+M.res.map((r,k)=>{
+      if(r.na)return '<div class="mrow na"><b class="who">'+esc(r.name)+'</b><span class="bm">non disponibile in questa modalit\u00e0</span></div>';
+      const R=r.res.filter(Boolean),best=R.slice().sort((x,y)=>y.max-x.max)[0],open=M.exp[k];
+      const kot=best?koIt(best.ko):'',cl=/OHKO/i.test(kot)?' k1':/2HKO/i.test(kot)?' k2':'';
+      return '<button type="button" class="mrow'+cl+(open?' on':'')+'" data-a="mcrow" data-k="'+k+'"><span class="who">'+esc(r.name)+'</span><span class="bp">'+(best?mcFmt(best):'-')+'</span><span class="bm">'+esc(best?best.name:'')+'</span><span class="bk">'+esc(kot)+'</span></button>'+
+      (open?'<div class="mxs">'+r.res.map(x=>x?'<div class="mx'+(x.max===0?' z':'')+'"><span>'+esc(x.name)+'</span><b>'+mcFmt(x)+'</b><em>'+(x.max===0?'Nessun danno':esc(koIt(x.ko)))+'</em></div>':'').join('')+'</div>':'');
+    }).join('')+'</div>';}
+  }
+  return head+'<div class="mcbox">'+seg+body+out+'</div>';
+}
+
 function sideCard(o,k){
   const pct=o.hpTot?Math.max(0,Math.min(100,Math.round(o.hpCur*100/o.hpTot))):100;
   const sub=[o.item&&o.item!==''?o.item:'Nessuno strumento',o.ab||''].filter(Boolean);
@@ -421,13 +568,26 @@ function pasteBody(n){
    '<div class="row"><button class="btn pri" style="flex:1" data-a="imp" data-n="1">Importa a sinistra</button><button class="btn pri" style="flex:1;background:linear-gradient(135deg,var(--violet),#5a2fe0)" data-a="imp" data-n="2">Importa a destra</button></div>'+
    '<div class="row" style="margin-top:10px"><button class="btn sm" data-a="clr" data-n="1">Svuota squadra sinistra</button><button class="btn sm" data-a="clr" data-n="2">Svuota squadra destra</button></div>';
 }
-function importTeam(txt,n){
-  if(/pokepast\.es\//i.test(txt)&&txt.trim().split(/\s+/).length<3){toast('Apri il link, copia il testo della squadra e incollalo qui');return}
-  if(!txt.trim()){toast('Incolla prima il testo della squadra');return}
-  J('#customMon').val(txt);W.saveCustomSidebar(n);
-  setTimeout(()=>{const t=(W.CURRENT_SIDEBARS[n-1]||[]);if(!t.length){toast('Non ho trovato Pokémon in questo testo');return}
+function importTeam(txt,n,fail){
+  if(/pokepast\.es\//i.test(txt)&&txt.trim().split(/\s+/).length<3){toast('Apri il link, copia il testo della squadra e incollalo qui');if(fail)fail();return}
+  if(!txt.trim()){toast('Incolla prima il testo della squadra');if(fail)fail();return}
+  const had=(W.CURRENT_SIDEBARS[n-1]||[]).length;
+  if(had&&!confirm('Sostituisco la squadra '+(n===1?'sinistra':'destra')+' con quella incollata?'))return;
+  J('#customMon').val(txt);
+  const oc=W.confirm;W.confirm=()=>true;try{W.saveCustomSidebar(n)}finally{W.confirm=oc}
+  setTimeout(()=>{const t=(W.CURRENT_SIDEBARS[n-1]||[]);if(!t.length){toast('Non ho trovato Pok\u00e9mon in questo testo');if(fail)fail();return}
     try{W.loadSidebarSlot(n,1)}catch(e){}
-    toast(t.length+' Pokémon importati '+(n===1?'a sinistra':'a destra'));closeSheet()},120);
+    S.mc.sel={};S.mc.res=null;
+    toast(t.length+' Pok\u00e9mon importati '+(n===1?'a sinistra':'a destra'));closeSheet()},120);
+}
+function openPasteSheet(n,pre){openSheet('paste','Incolla squadra',true);$q('#shB').innerHTML=pasteBody(n);setTimeout(()=>{try{const t=$q('#ptxt');if(pre)t.value=pre;t.focus()}catch(x){}},80)}
+/* Tocco su "Incolla squadra": legge direttamente gli appunti e importa. Se il telefono non lo permette, o non c'e' una squadra, si apre il riquadro come prima. */
+function pasteDirect(n){
+  const cb=navigator.clipboard;
+  if(!cb||!cb.readText){openPasteSheet(n);return}
+  cb.readText().then(t=>{t=String(t||'');
+    if(!t.trim()){toast('Gli appunti sono vuoti: copia prima la squadra');openPasteSheet(n);return}
+    importTeam(t,n,()=>openPasteSheet(n,t))}).catch(()=>openPasteSheet(n));
 }
 
 /* ---------- impostazioni ---------- */
@@ -448,8 +608,8 @@ document.addEventListener('click',e=>{
   else if(a==='selmove'){S.sel[S.dir]=+d.i;refresh()}
   else if(a==='edit'){S.edit=+d.n;renderEditor(false)}
   else if(a==='slot'){after(()=>W.loadSidebarSlot(+d.n,+d.i))}
-  else if(a==='paste'){openSheet('paste','Incolla squadra',true);$q('#shB').innerHTML=pasteBody(+d.n||0);setTimeout(()=>{try{$q('#ptxt').focus()}catch(x){}},80)}
-  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)}
+  else if(a==='paste'){pasteDirect(+d.n||0)}
+  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)} else if(a==='mctog'){S.mc.open=!S.mc.open;refresh()} else if(a==='mcmode'){S.mc.mode=+d.m;S.mc.sel={};S.mc.res=null;S.mc.exp={};S.mc.pick={};refresh()} else if(a==='mcsel'){S.mc.sel[+d.i]=!S.mc.sel[+d.i];refresh()} else if(a==='mcall'){const tm=(W.CURRENT_SIDEBARS[(S.mc.mode===0?2-S.dir:S.dir+1)-1]||[]);const all=tm.every((x,i)=>S.mc.sel[i+1]);S.mc.sel={};if(!all)tm.forEach((x,i)=>S.mc.sel[i+1]=true);refresh()} else if(a==='mcrun'){mcRun()} else if(a==='mcrow'){S.mc.exp[+d.k]=!S.mc.exp[+d.k];refresh()} else if(a==='mcpick'){S.mc.pick[+d.k]=+d.j;refresh()} else if(a==='mcmain'){S.mc.mainOn=S.mc.mainOn===false;refresh()}
   else if(a==='clr'){try{W.clearSidebar(+d.n)}catch(x){W.CURRENT_SIDEBARS[+d.n-1]=[];try{W.reloadSidebar(+d.n)}catch(y){}}toast('Squadra svuotata');setTimeout(refresh,60)}
   else if(a==='field'){S.cache&&renderField(false)}
   else if(a==='settings'){openSheet('settings','Impostazioni',false);$q('#shB').innerHTML=settingsBody()}
