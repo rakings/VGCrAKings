@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T06:03:08+00:00",
+ "updated": "2026-11-07T07:54:10+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee620dc931f53978d951e6/details"
   },
   {
-   "name": "Floette Champions Cheese",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "00:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6aea618de94eae0f94746a38/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "10:00",
-   "players": 22,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6aed9d3fe99f3235a75e1f84/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "07:04",
-   "players": 24,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6aed18c4e94eae0f94748584/details"
   },
   {
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 76,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6aea24ef0c463890f304a725/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "14:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
@@ -616,7 +601,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
@@ -721,7 +706,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -736,7 +721,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 53,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -888,6 +873,21 @@
    "time": "14:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
+  },
+  {
+   "name": "Raichu Rivalry | Champions Open — 15 November",
+   "org": "Raichu Rivalry VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
    "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
@@ -1143,7 +1143,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
