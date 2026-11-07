@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T19:04:11+00:00",
+ "updated": "2026-11-07T20:19:15+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,6 +137,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6adecaf097e21d82e5c6f587/details"
   },
   {
+   "name": "Raichu Rivalry | Champions Open",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "15:00",
+   "players": 47,
+   "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
+  },
+  {
    "name": "Øutcasts' Saturday Night #4 [1st: Shiny Charizard]",
    "org": "",
    "mode": "online",
@@ -150,21 +165,6 @@
    "time": "14:05",
    "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ae706bd0d00101b48bf3d0d/details"
-  },
-  {
-   "name": "VGC UU Regulation M-C Bi-Weekly #1",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "14:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6aedfef9e99f3235a75e23ac/details"
   },
   {
    "name": "Outlanders Silver&Gold: Gen 2 Showdown",
@@ -182,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae98d9be94eae0f9474642f/details"
   },
   {
+   "name": "VGC UU Regulation M-C Bi-Weekly #1",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "14:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6aedfef9e99f3235a75e23ac/details"
+  },
+  {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -195,21 +210,6 @@
    "time": "17:00",
    "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6ae50a3bae67092a4073f4ee/details"
-  },
-  {
-   "name": "Raichu Rivalry | Champions Open",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "15:00",
-   "players": 55,
-   "url": "https://play.limitlesstcg.com/tournament/6ae72cb90d00101b48bf3dbc/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #3⚔️ 🏆50€ Amazon Gift Cards🏆",
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 7,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aea15290c463890f304a67b/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 17,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "22:00",
-   "players": 54,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-07",
    "time": "15:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
@@ -391,7 +391,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "10:00",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
@@ -451,7 +451,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
   },
   {
@@ -556,7 +556,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -661,7 +661,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 58,
+   "players": 59,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -740,21 +740,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -770,6 +755,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
+  },
+  {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
    "org": "Kampfstube",
    "mode": "online",
@@ -781,7 +781,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -856,7 +856,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -871,7 +871,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 9,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -904,6 +904,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6adf724122fd412b92a4d3c6/details"
+  },
+  {
+   "name": "Team Philippines @ VRWC 2026: Tryouts #1 🇵🇭 ONLY",
+   "org": "Pokémon Philippines Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "04:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
    "name": "Champions League VGC November",
@@ -1070,6 +1085,21 @@
    "time": null,
    "where": "San Paolo, Brasile",
    "url": "https://serebii.net/playpokemon/2027/latinamericainternationalchampionships.shtml"
+  },
+  {
+   "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
+   "org": "Pokémon Philippines Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "04:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
    "name": "Risen Epsorts Thanksgiving Challenge",
