@@ -1,6 +1,103 @@
 {
  "locali": [
   {
+   "id": 9,
+   "real": true,
+   "pub": "2026-11-08T16:30:24Z",
+   "t": "Coppa di Lega",
+   "s": "PlayTime Merate",
+   "c": "Merate",
+   "d": "8 novembre 2026",
+   "iso": "2026-11-08",
+   "n": 19,
+   "top": [
+    "Giovanni Panarello",
+    "Matteo Ferrari",
+    "Alessandro Mandirola",
+    "Nagoya Takasago",
+    "Davide Aondio",
+    "Luca Lussignoli",
+    "Davide Diprossimo",
+    "Matteo Bombini"
+   ],
+   "tm": {
+    "0": [
+     {
+      "n": "Barbaracle-Mega",
+      "i": "Barbaracite",
+      "a": "Tough Claws",
+      "nt": "Adamant",
+      "m": [
+       "Close Combat",
+       "Rock Slide",
+       "Shell Smash",
+       "Protect"
+      ]
+     },
+     {
+      "n": "Farigiraf",
+      "i": "Sitrus Berry",
+      "a": "Armor Tail",
+      "nt": "Relaxed",
+      "m": [
+       "Thunderbolt",
+       "Psychic",
+       "Helping Hand",
+       "Trick Room"
+      ]
+     },
+     {
+      "n": "Torkoal",
+      "i": "Charcoal",
+      "a": "Drought",
+      "nt": "Modest",
+      "m": [
+       "Eruption",
+       "Weather Ball",
+       "Heat Wave",
+       "Protect"
+      ]
+     },
+     {
+      "n": "Venusaur",
+      "i": "Life Orb",
+      "a": "Chlorophyll",
+      "nt": "Modest",
+      "m": [
+       "Sludge Bomb",
+       "Leaf Storm",
+       "Weather Ball",
+       "Protect"
+      ]
+     },
+     {
+      "n": "Vivillon-Pokeball",
+      "i": "Focus Sash",
+      "a": "Compound Eyes",
+      "nt": "Timid",
+      "m": [
+       "Hurricane",
+       "Rage Powder",
+       "Sleep Powder",
+       "Protect"
+      ]
+     },
+     {
+      "n": "Kangaskhan-Mega",
+      "i": "Kangaskhanite",
+      "a": "Scrappy",
+      "nt": "Adamant",
+      "m": [
+       "Double-Edge",
+       "Hammer Arm",
+       "Fake Out",
+       "Ice Punch"
+      ]
+     }
+    ]
+   }
+  },
+  {
    "id": 1,
    "real": true,
    "pub": "2026-11-08T16:27:34Z",
