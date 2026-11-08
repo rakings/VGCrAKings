@@ -16,6 +16,14 @@ on:
         description: "Quanti dispositivi al massimo (i piu' recenti)"
         required: true
         default: "1000"
+      togli_non_validi:
+        description: "Con esegui: toglie dall'archivio i dispositivi che Google non riconosce piu' (con controlla dice solo quanti)"
+        required: true
+        default: "no"
+        type: choice
+        options:
+          - "no"
+          - "si"
 permissions:
   contents: read
 concurrency:
@@ -34,3 +42,4 @@ jobs:
           SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
           RIALL_MODO: ${{ inputs.modo }}
           RIALL_MAX: ${{ inputs.massimo }}
+          RIALL_RIMUOVI_MORTI: ${{ inputs.togli_non_validi }}

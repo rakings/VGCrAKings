@@ -1,0 +1,26 @@
+name: Argomenti - controllo settimanale
+# Ogni lunedi' (e a mano quando vuoi): riporta gli argomenti di ogni dispositivo a quello che ha scelto e toglie dall'archivio i dispositivi che
+# Google non riconosce piu' (con il freno di sicurezza). Se qualcosa non va il lavoro risulta rosso e GitHub ti scrive.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * 1"
+permissions:
+  contents: read
+concurrency:
+  group: topics-riallinea
+  cancel-in-progress: false
+jobs:
+  settimanale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 topics_riallinea.py
+        env:
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          RIALL_MODO: esegui
+          RIALL_MAX: "20000"
+          RIALL_RIMUOVI_MORTI: "si"
