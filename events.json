@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T01:44:46+00:00",
+ "updated": "2026-11-08T03:51:39+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
+   "name": "MEGA CHAMPIONSHIPS SERIES #3",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-07",
+   "time": "22:00",
+   "players": 27,
+   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
+  },
+  {
    "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -135,21 +150,6 @@
    "time": "22:00",
    "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
-  },
-  {
-   "name": "MEGA CHAMPIONSHIPS SERIES #3",
-   "org": "Pokegiohorganization",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
   },
   {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
@@ -246,7 +246,7 @@
   },
   {
    "name": "Caramelo Raro - Weekly #5 Mega Evolution Battles",
-   "org": "Papuno - Caramelo Raro",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -256,7 +256,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "00:00",
-   "players": 8,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae2048680a8f79408d20125/details"
   },
   {
@@ -271,7 +271,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "10:00",
-   "players": 26,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
@@ -556,7 +556,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 61,
+   "players": 63,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -601,7 +601,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -650,21 +650,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
-   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
-  },
-  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -678,6 +663,21 @@
    "time": "01:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
+  },
+  {
+   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -751,7 +751,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
@@ -827,7 +827,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 26,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -1008,7 +1008,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 17,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
