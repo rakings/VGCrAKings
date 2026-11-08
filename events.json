@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T12:00:39+00:00",
+ "updated": "2026-11-08T13:38:49+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -215,8 +215,8 @@
    "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-1/6ae8d0b7e6c678001939ed17/info?infoTab=details"
   },
   {
-   "name": "Trinity Championship 18 (Double Format)",
-   "org": "Trinity Portal",
+   "name": "Sunday Showdown #5",
+   "org": "BoTS PTCG Pocket",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -225,9 +225,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-08",
-   "time": "10:00",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
+   "time": "14:30",
+   "players": 27,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb70f30c463890f304b2c6/details"
   },
   {
    "name": "Single Type Cup Championships #1",
@@ -245,8 +245,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae10c7780a8f79408d1fa89/details"
   },
   {
-   "name": "Sunday Showdown #5",
-   "org": "BoTS PTCG Pocket",
+   "name": "Trinity Championship 18 (Double Format)",
+   "org": "Trinity Portal",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -255,24 +255,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-08",
-   "time": "14:30",
-   "players": 27,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb70f30c463890f304b2c6/details"
-  },
-  {
-   "name": "Astral",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "15:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aef0ec7c931f53978d956ad/details"
+   "time": "10:00",
+   "players": 42,
+   "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
    "name": "ValkrixVGC Champions League #09 |Shiny Golisopod |",
@@ -286,7 +271,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "15:00",
-   "players": 55,
+   "players": 65,
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
@@ -301,8 +286,23 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
+  },
+  {
+   "name": "VG  Academy - LAIC Edition",
+   "org": "Pokegiohorganization",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "18:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6af0787cc931f53978d965e9/details"
   },
   {
    "name": "Semanal VGC Pokémon Alfenas #1",
@@ -316,7 +316,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "18:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6a4e704165724db9ded40411/details"
   },
   {
@@ -331,7 +331,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "21:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ada936497e21d82e5c6cd37/details"
   },
   {
@@ -376,7 +376,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
@@ -391,7 +391,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
@@ -406,7 +406,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -421,7 +421,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
@@ -453,6 +453,21 @@
    "time": "17:30",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
+  },
+  {
+   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
@@ -605,21 +620,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -633,6 +633,21 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
    "name": "Showdown Friday #1 (Prize: Ursaluna)",
@@ -661,7 +676,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -797,7 +812,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 44,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -978,7 +993,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
@@ -993,7 +1008,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -1053,7 +1068,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
