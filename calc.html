@@ -253,6 +253,32 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .hsl.tot{border-bottom:0;padding:8px 0 0;font-weight:800}.hsl.tot b{font-size:22px;font-weight:900}
 .hsv{font-size:15px;font-weight:800;margin-top:2px}.hsv.k1{color:#ff6b78}.hsv.k2{color:var(--warn)}
 .det.hero .hsum .dbar{height:8px;margin:6px 0 0}
+
+/* X rossa per togliere il danno aggiunto */
+.hst{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hx{flex:none;width:28px;height:28px;border-radius:50%;background:#7a1226;border:1px solid #ff4a63;color:#fff;font-size:18px;font-weight:700;line-height:1;display:grid;place-items:center;padding:0;position:relative;text-transform:none}
+.hx::after{content:"";position:absolute;inset:-9px}
+.hx:active{filter:brightness(1.3)}
+.hx.sm{width:24px;height:24px;font-size:16px;align-self:center}
+.hsl.add{align-items:center}
+
+/* mosse di un Pokemon aggiunto: riga selezionabile con la matita a destra */
+.mx.pk{display:grid;grid-template-columns:1fr auto 34px;align-items:center;gap:0 8px;width:100%;text-align:left;background:none;color:inherit;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:5px 0 5px 2px;cursor:pointer}
+.mx.pk.z{cursor:default}
+.mx.pk.sel{color:#ffd21f}.mx.pk.sel span::before{content:"\2713 "}
+.mxe{width:30px;height:30px;border-radius:9px;background:var(--card);border:1px solid var(--line);color:var(--ink);display:grid;place-items:center;padding:0;position:relative}
+.mxe::after{content:"";position:absolute;inset:-6px}
+.mrow.main{cursor:default}
+
+/* tasto copia accanto alla X */
+.hbt{display:flex;align-items:center;gap:8px;flex:none}
+.hc{height:28px;padding:0 12px;border-radius:14px;background:var(--card);border:1px solid #ffd21f;color:#ffd21f;font-size:12.5px;font-weight:800;letter-spacing:0;text-transform:none;line-height:1;position:relative}
+.hc::after{content:"";position:absolute;inset:-8px -4px}
+.hc:active{filter:brightness(1.3)}
+
+/* le mosse vuote o senza danno sono attenuate, ma la matita resta piena (serve per riempirle) */
+.mx.pk.z{opacity:1}
+.mx.pk.z span,.mx.pk.z b{opacity:.5}
 </style>
 </head>
 <body>
@@ -411,6 +437,7 @@ async function mcRun(){
   M.res=rows;M.atMode=M.mode;
   refresh();M.sig=mcSig();refresh();
 }
+const mvN=n=>n==='(No Move)'?'Nessuna mossa':n;
 const mcFmt=x=>x.min===x.max?x.max+'%':x.min+'\u2013'+x.max+'%';
 function mcHtml(atk,def,cA,stale){
   const M=S.mc,atkN=S.dir+1,defN=2-S.dir,vn=M.mode===0?defN:atkN,team=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[vn-1])||[];
@@ -457,16 +484,23 @@ const smFieldSig=()=>smOut().map(e=>e.type==='checkbox'||e.type==='radio'?(e.che
 const smSig=()=>{const atkN=S.dir+1;return JSON.stringify([S.dir,S.cache&&[S.cache.a,S.cache.b][1-S.dir],(W.CURRENT_SIDEBARS||[])[atkN-1],smFieldSig()])};
 const smFieldSave=()=>smOut().map(e=>({e,c:e.checked,v:e.value}));
 const smFieldRestore=a=>a.forEach(s=>{if(s.e.type==='checkbox'||s.e.type==='radio'){if(s.e.checked!==s.c)s.e.checked=s.c}else if(s.e.value!==s.v)s.e.value=s.v});
+const PENCIL='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>';
 const smEnt=k=>S.sm.ents.find(e=>e.k===k);
+/* Set pronti del motore per una specie (esclusi quello vuoto); se non ce ne sono, si parte dal set libero. */
+const smSetsAll=sp=>Object.keys((W.setdex&&W.setdex[sp])||{}).filter(x=>x!=='Blank Set');
+const smSets=sp=>smSetsAll(sp).filter(x=>!/Sidebar Slot/.test(x)&&x!=='My Custom Set');
+const smSetName=e=>{const A=smSetsAll(e.species),L=smSets(e.species);return e.setName&&(e.setName==='Blank Set'||A.indexOf(e.setName)>=0)?e.setName:(L[0]||'Blank Set')};
+const smSetLabel=n=>n==='Blank Set'?'libero (vuoto)':n.replace(/^Left Sidebar Slot (\d+)$/,'squadra sinistra #$1').replace(/^Right Sidebar Slot (\d+)$/,'squadra destra #$1');
+const smPreset=e=>e.species+' ('+smSetName(e)+')';
 /* Fotografia di un Pokemon sul pannello, indipendente dalla squadra: se il set e' uno slot della squadra si parte dal set libero e si rimettono i campi che differiscono. */
 const mcSnapBase=n=>{const s=mcSave(n);s.set=String(s.set||'').replace(/ \((Left|Right) Sidebar Slot \d+\)$/,' (Blank Set)');return s};
 /* Carica nel pannello n un Pokemon aggiunto: dalla squadra, libero (scelto a mano) o modificato con l'editor. */
 async function smRun(n,e){
   if(e.snap)mcRestore({n,set:e.snap.set,o:e.snap.o});
   else if(e.src==='slot'){const sp=((W.CURRENT_SIDEBARS||[])[n-1]||[])[e.i-1];if(!sp||!(sp in W.pokedex))return{na:true,name:sp||'?'};W.loadSidebarSlot(n,e.i)}
-  else{if(!(e.species in W.pokedex))return{na:true,name:e.species};W.loadPreset(P(n),e.species+' (Blank Set)')}
+  else{if(!(e.species in W.pokedex))return{na:true,name:e.species};W.loadPreset(P(n),smPreset(e))}
   await tick();
-  if(e.mv){mvSet(P(n),1,e.mv);await tick()}
+  if(e.mvs){for(const k of Object.keys(e.mvs))mvSet(P(n),+k,e.mvs[k]);await tick()}
   return{name:readSide(n).name,res:readResults(S.dir)};
 }
 function smKick(){
@@ -488,7 +522,7 @@ async function smCompute(need){
       M.prog++;
     }
   }finally{try{smFieldRestore(fs)}catch(e){}try{mcRestore(snap)}catch(e){}await tick();M.busy=false}
-  refresh();M.sig=smSig();refresh();
+  M.sig=smSig();refresh();
 }
 /* Modifica con l'editor completo (strumento, natura, punti, abilita', mosse qualsiasi...) un Pokemon aggiunto: lo si carica nel pannello, si apre l'editor e alla chiusura si memorizza com'e' e si rimette il principale. */
 function smEdit(k){
@@ -497,15 +531,15 @@ function smEdit(k){
   try{
     if(e.snap)mcRestore({n,set:e.snap.set,o:e.snap.o});
     else if(e.src==='slot')W.loadSidebarSlot(n,e.i);
-    else W.loadPreset(P(n),e.species+' (Blank Set)');
-    if(e.mv)mvSet(P(n),1,e.mv);
+    else W.loadPreset(P(n),smPreset(e));
+    if(e.mvs)for(const k of Object.keys(e.mvs))mvSet(P(n),+k,e.mvs[k]);
   }catch(x){}
   S.edit=n;refresh();renderEditor(false);
 }
 function smFinishEdit(){
   const M=S.sm;if(!M.editing)return;
   const k=M.editing,e=smEnt(k),n=S.dir+1;M.editing=null;
-  try{if(e){const s=mcSnapBase(n);e.snap={set:s.set,o:s.o};if(e.mv){M.pick[k]=0;e.mv=null}delete M.rows[k]}}catch(x){}
+  try{if(e){const s=mcSnapBase(n);e.snap={set:s.set,o:s.o};e.mvs=null;delete M.rows[k]}}catch(x){}
   try{if(M.mainSnap)mcRestore(M.mainSnap)}catch(x){}
   M.mainSnap=null;
 }
@@ -514,11 +548,11 @@ function smCalc(atk,def){
   const atkN=S.dir+1,team=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[atkN-1])||[],ms=mcMainSlot();
   if(M.an!==atkN){M.an=atkN;M.ents=M.ents.filter(e=>e.src!=='slot'||e.snap);M.rows={};M.pick={};M.exp={}}
   const others=team.map((nm,i)=>({nm,i:i+1})).filter(o=>o.i!==ms);
-  const R0=S.cache.res[S.dir],mainX=R0&&R0[S.sel[S.dir]],on=M.mainOn!==false;
+  const R0=S.cache.res[S.dir],mainX=R0&&R0[S.sel[S.dir]],on=true;
   const items=[],rowsOut=[];
   if(mainX&&on)items.push({x:mainX});
   M.ents.forEach(e=>{const r=M.rows[e.k];if(!r)return;if(r.na){rowsOut.push({e,na:1,name:r.name||e.species||'?'});return}
-    const best=r.res.reduce((b,x,j)=>x&&(b<0||x.max>r.res[b].max)?j:b,-1),j=e.mv?0:(M.pick[e.k]!=null?M.pick[e.k]:best),x=r.res[j];
+    const best=r.res.reduce((b,x,j)=>x&&(b<0||x.max>r.res[b].max)?j:b,-1),j=M.pick[e.k]!=null?M.pick[e.k]:best,x=r.res[j];
     if(x){items.push({x});rowsOut.push({e,name:r.name,x,j,r})}});
   const hpC=def.hpCur,hpT=def.hpTot,pending=M.ents.filter(e=>!M.rows[e.k]).length;
   const c=(rowsOut.some(r=>!r.na)&&!pending)?mcCombo(items.map(i=>i.x),hpC,hpT):null;
@@ -531,10 +565,21 @@ function smHero(atk,def){
   const Q=smCalc(atk,def),M=S.sm;if(!Q.c||!M.ents.length)return '';
   const L=[];
   if(Q.mainX&&Q.on)L.push('<div class="hsl"><span>Danno di prima<small>'+esc(atk.name)+' \u00b7 '+esc(Q.mainX.name)+'</small></span><b>'+mcFmt(Q.mainX)+'</b></div>');
-  Q.rowsOut.forEach(r=>{if(r.na)return;L.push('<div class="hsl add"><span>+ Danno aggiunto<small>'+esc(r.name)+' \u00b7 '+esc(r.x.name)+'</small></span><b>'+mcFmt(r.x)+'</b></div>')});
+  Q.rowsOut.forEach(r=>{if(r.na)return;L.push('<div class="hsl add"><span>+ Danno aggiunto<small>'+esc(r.name)+' \u00b7 '+esc(mvN(r.x.name))+'</small></span><b>'+mcFmt(r.x)+'</b>'+(Q.rowsOut.filter(z=>!z.na).length>1?'<button type="button" class="hx sm" data-a="smdel" data-k="'+r.e.k+'" aria-label="Togli '+esc(r.name)+'" title="Togli '+esc(r.name)+'">\u00d7</button>':'')+'</div>')});
   const c=Q.c,cap=Math.min(100,c.pmax),lo=Math.min(100,c.pmin);
-  return '<div class="hsum"><div class="hst">Danno combinato su '+esc(def.name)+'</div>'+L.join('')+'<div class="hsl tot"><span>= Totale insieme</span><b>'+Q.pr+'</b></div><div class="hsv '+Q.verd[1]+'">'+Q.verd[0]+'</div>'+
+  return '<div class="hsum"><div class="hst"><span>Danno combinato su '+esc(def.name)+'</span><span class="hbt"><button type="button" class="hc" data-a="smcopy" aria-label="Copia il danno combinato" title="Copia il danno combinato">Copia</button><button type="button" class="hx" data-a="smclear" aria-label="Togli il danno aggiunto" title="Togli il danno aggiunto">\u00d7</button></span></div>'+L.join('')+'<div class="hsl tot"><span>= Totale insieme</span><b>'+Q.pr+'</b></div><div class="hsv '+Q.verd[1]+'">'+Q.verd[0]+'</div>'+
     '<div class="dbar"><i class="rest" style="width:'+Math.max(0,100-cap).toFixed(1)+'%"></i><i class="dm" style="left:'+Math.max(0,100-cap).toFixed(1)+'%;width:'+Math.max(0.8,cap-lo).toFixed(1)+'%"></i></div></div>';
+}
+/* Testo del danno combinato, da copiare: danno di prima, danni aggiunti, totale e verdetto. */
+function smText(){
+  if(!S.cache)return '';
+  const sd=[S.cache.a,S.cache.b],atk=sd[S.dir],def=sd[1-S.dir],Q=smCalc(atk,def);
+  if(!Q.c)return '';
+  const L=['Danno combinato su '+def.name+' (PS '+Q.hpC+'/'+Q.hpT+')'];
+  if(Q.mainX)L.push(atk.name+' \u00b7 '+Q.mainX.name+': '+mcFmt(Q.mainX));
+  Q.rowsOut.forEach(r=>{if(!r.na)L.push('+ '+r.name+' \u00b7 '+mvN(r.x.name)+': '+mcFmt(r.x))});
+  L.push('= Totale: '+Q.pr+' \u00b7 '+Q.verd[0]);
+  return L.join('\n');
 }
 function smHtml(atk,def,cA){
   const Q=smCalc(atk,def),M=S.sm,{atkN,team,others,mainX,on,rowsOut,hpC,hpT,pending,c,verd,pr}=Q;
@@ -546,16 +591,18 @@ function smHtml(atk,def,cA){
     '<div class="tgrid mcg" style="--c:'+(atkN===1?'var(--red)':'var(--violet)')+'">'+others.map(o=>'<button type="button" class="chip'+(slotOn(o.i)?' on':'')+'" data-a="smsel" data-i="'+o.i+'"><span>'+esc(o.nm)+'</span></button>').join('')+'<button type="button" class="chip add" data-a="smaddman">+ Altro Pok\u00e9mon (a scelta)</button></div>';
   if(M.ents.length){
     h+='<div style="margin-top:8px">';
-    if(mainX)h+='<button type="button" class="mrow main'+(on?'':' off')+'" data-a="smmain"><span class="who">'+esc(atk.name)+'</span><span class="bp">'+mcFmt(mainX)+'</span><span class="bm">'+esc(mainX.name)+'</span><span class="bk">'+(on?'principale \u00b7 tocca per escludere':'escluso \u00b7 tocca per includere')+'</span></button>';
+    if(mainX)h+='<div class="mrow main"><span class="who">'+esc(atk.name)+'</span><span class="bp">'+mcFmt(mainX)+'</span><span class="bm">'+esc(mainX.name)+'</span><span class="bk">principale \u00b7 sempre incluso</span></div>';
     M.ents.forEach(e=>{
       const ro=rowsOut.find(r=>r.e===e),open=M.exp[e.k];
       if(!M.rows[e.k]){h+='<div class="mrow na"><b class="who">'+esc(e.species||((team[e.i-1])||'Pok\u00e9mon'))+'</b><span class="bm">calcolo\u2026</span></div>';return}
       if(ro&&ro.na){h+='<div class="mrow na"><b class="who">'+esc(ro.name)+'</b><span class="bm">non disponibile in questa modalit\u00e0</span><button type="button" class="btn sm" data-a="smdel" data-k="'+e.k+'">Rimuovi</button></div>';return}
       const none=ro.x.max===0;
-      h+='<button type="button" class="mrow'+(open?' on':'')+'" data-a="smrow" data-k="'+e.k+'"><span class="who">'+esc(ro.name)+(e.src==='man'?' <i>(a scelta)</i>':'')+(e.snap?' <i>(modificato)</i>':'')+'</span><span class="bp">'+(none?'\u2014':mcFmt(ro.x))+'</span><span class="bm">'+esc(none?'Nessuna mossa che fa danno':ro.x.name)+'</span><span class="bk">'+(none?'tocca per scegliere la mossa':esc(koIt(ro.x.ko||'')))+'</span></button>';
-      if(open)h+='<div class="mxs"><div class="hint" style="margin:2px 0 4px">Mossa da sommare:</div>'+ro.r.res.map((x,j)=>x?'<button type="button" class="mx pk'+((!e.mv&&j===ro.j)?' sel':'')+(x.max===0?' z':'')+'" data-a="smpick" data-k="'+e.k+'" data-j="'+j+'"><span>'+esc(x.name)+'</span><b>'+mcFmt(x)+'</b></button>':'').join('')+
-        (e.mv?'<div class="mx pk sel" style="cursor:default"><span>'+esc(e.mv)+' (scelta a mano)</span><b>'+mcFmt(ro.r.res[0]||{min:0,max:0})+'</b></div>':'')+
-        '<div class="row" style="margin:8px 0 4px"><button type="button" class="btn sm" data-a="smmv" data-k="'+e.k+'">Altra mossa\u2026</button><button type="button" class="btn sm" data-a="smedit" data-k="'+e.k+'">Modifica Pok\u00e9mon</button><button type="button" class="btn sm" data-a="smdel" data-k="'+e.k+'">Rimuovi</button></div></div>';
+      h+='<button type="button" class="mrow'+(open?' on':'')+'" data-a="smrow" data-k="'+e.k+'"><span class="who">'+esc(ro.name)+(e.src==='man'?' <i>(a scelta)</i>':'')+(e.snap?' <i>(modificato)</i>':'')+'</span><span class="bp">'+(none?'\u2014':mcFmt(ro.x))+'</span><span class="bm">'+esc(none?'Nessuna mossa che fa danno':ro.x.name)+'</span><span class="bk">'+(none?'apri e scegli le mosse con la matita':esc(koIt(ro.x.ko||'')))+'</span></button>';
+      if(open)h+='<div class="mxs">'+(e.src==='man'&&!e.snap?'<div class="hint" style="margin:2px 0 4px">Set: <b>'+esc(smSetLabel(smSetName(e)))+'</b></div>':'')+
+        '<div class="hint" style="margin:2px 0 6px">Tocca una mossa per sommarla \u00b7 la matita la cambia</div>'+
+        ro.r.res.map((x,j)=>{const sel=j===ro.j,ok=!!(x&&x.max>0);
+          return '<div class="mx pk'+(sel?' sel':'')+(ok?'':' z')+'"'+(ok?' data-a="smpick" data-k="'+e.k+'" data-j="'+j+'"':'')+'><span>'+esc(x?mvN(x.name):'Nessuna mossa')+'</span><b>'+(x?mcFmt(x):'0%')+'</b><button type="button" class="mxe" data-a="smmv" data-k="'+e.k+'" data-j="'+j+'" aria-label="Cambia la mossa" title="Cambia mossa">'+PENCIL+'</button></div>'}).join('')+
+        '<div class="row" style="margin:8px 0 4px">'+(e.src==='man'&&!e.snap&&smSetsAll(e.species).length?'<button type="button" class="btn sm" data-a="smset" data-k="'+e.k+'">Cambia set\u2026</button>':'')+'<button type="button" class="btn sm" data-a="smedit" data-k="'+e.k+'">Modifica Pok\u00e9mon</button><button type="button" class="btn sm" data-a="smdel" data-k="'+e.k+'">Rimuovi</button></div></div>';
     });
     if(M.busy||pending)h+='<p class="hint" style="margin:8px 2px 0">Calcolo\u2026</p>';
     if(c){
@@ -728,7 +775,7 @@ document.addEventListener('click',e=>{
   else if(a==='edit'){S.edit=+d.n;renderEditor(false)}
   else if(a==='slot'){after(()=>W.loadSidebarSlot(+d.n,+d.i))}
   else if(a==='paste'){pasteDirect(+d.n||0)}
-  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)} else if(a==='mctog'){S.mc.open=!S.mc.open;refresh()} else if(a==='mcmode'){S.mc.mode=+d.m;S.mc.sel={};S.mc.res=null;S.mc.exp={};refresh()} else if(a==='mcsel'){S.mc.sel[+d.i]=!S.mc.sel[+d.i];refresh()} else if(a==='mcall'){const tm=(W.CURRENT_SIDEBARS[(S.mc.mode===0?2-S.dir:S.dir+1)-1]||[]);const all=tm.every((x,i)=>S.mc.sel[i+1]);S.mc.sel={};if(!all)tm.forEach((x,i)=>S.mc.sel[i+1]=true);refresh()} else if(a==='mcrun'){mcRun()} else if(a==='mcrow'){S.mc.exp[+d.k]=!S.mc.exp[+d.k];refresh()} else if(a==='smtog'){S.sm.open=!S.sm.open;refresh()} else if(a==='smsel'){const i=+d.i,M=S.sm,x=M.ents.findIndex(e=>e.src==='slot'&&e.i===i);if(x>=0){const k=M.ents[x].k;M.ents.splice(x,1);delete M.rows[k];delete M.pick[k];delete M.exp[k]}else M.ents.push({k:'s'+i,src:'slot',i});refresh()} else if(a==='smaddman'){const M=S.sm;let items=pokemonItems();picker('Scegli il Pokémon da aggiungere',items,id=>{const k='m'+(++M.uid);M.ents.push({k,src:'man',species:id});M.exp[k]=true;M.open=true})} else if(a==='smmain'){S.sm.mainOn=S.sm.mainOn===false;refresh()} else if(a==='smrow'){S.sm.exp[d.k]=!S.sm.exp[d.k];refresh()} else if(a==='smpick'){const M=S.sm,e=smEnt(d.k);if(e&&e.mv){e.mv=null;delete M.rows[e.k]}M.pick[d.k]=+d.j;refresh()} else if(a==='smmv'){const M=S.sm,e=smEnt(d.k);if(e){const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});picker('Mossa da sommare',items,id=>{e.mv=id;delete M.rows[e.k]})}} else if(a==='smedit'){smEdit(d.k)} else if(a==='smdel'){const M=S.sm,x=M.ents.findIndex(e=>e.k===d.k);if(x>=0){M.ents.splice(x,1);delete M.rows[d.k];delete M.pick[d.k];delete M.exp[d.k]}refresh()}
+  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)} else if(a==='mctog'){S.mc.open=!S.mc.open;refresh()} else if(a==='mcmode'){S.mc.mode=+d.m;S.mc.sel={};S.mc.res=null;S.mc.exp={};refresh()} else if(a==='mcsel'){S.mc.sel[+d.i]=!S.mc.sel[+d.i];refresh()} else if(a==='mcall'){const tm=(W.CURRENT_SIDEBARS[(S.mc.mode===0?2-S.dir:S.dir+1)-1]||[]);const all=tm.every((x,i)=>S.mc.sel[i+1]);S.mc.sel={};if(!all)tm.forEach((x,i)=>S.mc.sel[i+1]=true);refresh()} else if(a==='mcrun'){mcRun()} else if(a==='mcrow'){S.mc.exp[+d.k]=!S.mc.exp[+d.k];refresh()} else if(a==='smtog'){S.sm.open=!S.sm.open;refresh()} else if(a==='smsel'){const i=+d.i,M=S.sm,x=M.ents.findIndex(e=>e.src==='slot'&&e.i===i);if(x>=0){const k=M.ents[x].k;M.ents.splice(x,1);delete M.rows[k];delete M.pick[k];delete M.exp[k]}else M.ents.push({k:'s'+i,src:'slot',i});refresh()} else if(a==='smaddman'){const M=S.sm;let items=pokemonItems();picker('Scegli il Pokémon da aggiungere',items,id=>{const k='m'+(++M.uid);M.ents.push({k,src:'man',species:id});M.exp[k]=true;M.open=true})} else if(a==='smrow'){S.sm.exp[d.k]=!S.sm.exp[d.k];refresh()} else if(a==='smpick'){S.sm.pick[d.k]=+d.j;refresh()} else if(a==='smmv'){const M=S.sm,e=smEnt(d.k);if(e){const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});picker('Mossa '+(+d.j+1)+' di '+(e.species||'questo Pok\u00e9mon'),items,id=>{e.mvs=e.mvs||{};e.mvs[+d.j+1]=id;M.pick[e.k]=+d.j;delete M.rows[e.k]})}} else if(a==='smedit'){smEdit(d.k)} else if(a==='smcopy'){const txt=smText();if(txt){try{navigator.clipboard.writeText(txt).then(()=>toast('Danno combinato copiato'),()=>fallbackCopy(txt))}catch(x){fallbackCopy(txt)}}} else if(a==='smclear'){const M=S.sm;M.ents=[];M.rows={};M.pick={};M.exp={};refresh()} else if(a==='smset'){const M=S.sm,e=smEnt(d.k);if(e){const L=smSetsAll(e.species);const items=[{id:'Blank Set',l:'Set libero (vuoto)',s:'nessuna mossa, punti a zero'}].concat(L.map(n=>{const x=(W.setdex[e.species]||{})[n]||{};return {id:n,l:smSetLabel(n),s:[x.item,x.nature,(x.moves||[]).join(', ')].filter(Boolean).join(' · ')}}));picker('Set di '+e.species,items,id=>{e.setName=id;e.mvs=null;delete M.rows[e.k];delete M.pick[e.k]})}} else if(a==='smdel'){const M=S.sm,x=M.ents.findIndex(e=>e.k===d.k);if(x>=0){M.ents.splice(x,1);delete M.rows[d.k];delete M.pick[d.k];delete M.exp[d.k]}refresh()}
   else if(a==='clr'){try{W.clearSidebar(+d.n)}catch(x){W.CURRENT_SIDEBARS[+d.n-1]=[];try{W.reloadSidebar(+d.n)}catch(y){}}toast('Squadra svuotata');setTimeout(refresh,60)}
   else if(a==='field'){S.cache&&renderField(false)}
   else if(a==='settings'){openSheet('settings','Impostazioni',false);$q('#shB').innerHTML=settingsBody()}
