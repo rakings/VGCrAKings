@@ -71,6 +71,8 @@ avvisati = set()         # regionali per cui e' gia' comparso l'avviso «finito 
 cut_active = False     # True se almeno un regionale in corso e' nella fase a eliminazione diretta
 last_status = {}       # id regionale -> stato letto nell'ultimo controllo (running / finished)
 unpushed = False       # True se un salvataggio e' stato fatto ma non ancora pubblicato
+LIVE_ATTIVO = False    # True solo nel modo live che salva: serve a non mandare avvisi durante le prove o le raccolte normali
+AVVISO_WORKFLOW = "avviso-vincitore-live.yml"
 any_changed = False   # True se un giro normale (elenco / auto / singolo regionale) ha salvato qualcosa: poi si aggiorna anche Cloudflare
 last_git = None        # momento dell'ultima pubblicazione su GitHub (con Cloudflare attivo si salva su GitHub piu' di rado)
 
@@ -413,6 +415,53 @@ def finale_decisa(swiss):
     return sorted(x[-1] for x in fin) == ["L", "W"]
 
 
+def esito_finale(players, swiss):
+    """Dal tabellone della Top 8 (finale decisa): vincitore, finalista e i due perdenti in semifinale, ognuno come {'name', 'cc'}.
+    Ritorna None se il tabellone non e' chiaro (meglio nessun avviso che un avviso sbagliato)."""
+    if not swiss or not finale_decisa(swiss):
+        return None
+    byid = {str(p["tp_id"]): p for p in players}
+    R = max(len(v) for v in swiss.values())
+
+    def ultimi(n, esito):
+        return [str(k) for k, v in swiss.items() if len(v) == n and v and v[-1] and v[-1][-1] == esito]
+
+    def persona(k):
+        p = byid.get(k)
+        return {"name": str(p["name"]).strip(), "cc": (p.get("country") or "").strip()} if p and str(p.get("name") or "").strip() else None
+    w, f, s = ultimi(R, "W"), ultimi(R, "L"), ultimi(R - 1, "L")
+    if len(w) != 1 or len(f) != 1 or len(s) != 2:
+        return None
+    v, fi, se = persona(w[0]), persona(f[0]), [persona(k) for k in s]
+    if not v or not fi or not all(se):
+        return None
+    return {"v": v, "f": fi, "s": se}
+
+
+def avvisa_finale(ev, players, swiss):
+    """Appena la finale della Top 8 e' decisa: lancia il lavoro che manda l'avviso «Vincitore Regionale» (canale winner).
+    Non deve MAI bloccare o rompere la diretta: ogni problema si scrive e basta (l'avviso di Limitless resta il piano B)."""
+    try:
+        r = esito_finale(players, swiss)
+        if not r:
+            print("Finale decisa, ma il tabellone non e' chiaro: nessun avviso immediato (resta quello da Limitless).")
+            return False
+
+        def nc(x):
+            return "%s|%s" % (x["name"].replace("|", " ").replace(";", " "), x["cc"].replace("|", " ").replace(";", " "))
+        args = ["gh", "workflow", "run", AVVISO_WORKFLOW, "-f", "id=%s" % ev["id"], "-f", "citta=%s" % (ev.get("city") or ""),
+                "-f", "fine=%s" % (ev.get("end") or ev.get("start") or ""), "-f", "vincitore=%s" % nc(r["v"]),
+                "-f", "finalista=%s" % nc(r["f"]), "-f", "semifinali=%s" % ";".join(nc(x) for x in r["s"])]
+        p = subprocess.run(args, capture_output=True, text=True, timeout=90)
+        if p.returncode == 0:
+            print("Finale decisa: avviso del vincitore (%s) lanciato." % r["v"]["name"])
+            return True
+        print("Finale decisa, ma l'avviso immediato non e' partito (%s): resta quello da Limitless." % ((p.stderr or p.stdout or "").strip()[:160]))
+    except Exception as ex:
+        print("Finale decisa, ma l'avviso immediato non e' partito (%s): resta quello da Limitless." % str(ex)[:160])
+    return False
+
+
 def collect(ev, write):
     tid = ev["id"]
     data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
@@ -469,6 +518,8 @@ def collect(ev, write):
         meta["updated"] = old.get("updated", meta["updated"])
     ch.append(dump(os.path.join(folder, "meta.json"), meta))
     print("File salvati in %s/ (%s)" % (folder, "cambiati" if any(ch) else "nessuna modifica"))
+    if LIVE_ATTIVO and finale_alle and not old.get("finale_alle"):   # la finale e' appena stata decisa: una sola volta
+        avvisa_finale(ev, players, swiss)
     return any(ch)
 
 # ---------- modo live ----------
@@ -758,6 +809,8 @@ def segnala_rilancio():
 
 
 def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep=time.sleep, rnd=random.uniform):
+    global LIVE_ATTIVO
+    LIVE_ATTIVO = bool(write)
     t0 = now()
     n = 0
     guasti = 0                                 # controlli di fila falliti per un problema di rete

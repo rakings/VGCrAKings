@@ -7,7 +7,7 @@ Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (Firebase o ntf
 Il primo giro non manda nulla: memorizza solo lo stato. Poi avvisa soltanto per i tornei
 più recenti di quelli già noti, così il caricamento a ritroso dello storico non genera avvisi."""
 import html, json, os, re, signal, sys, time, urllib.request
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import update_events as ue
 
 STATE = "notify_players_state.json"
@@ -159,6 +159,38 @@ def vr_finished(home, known):
     except Exception as ex:
         print("Controllo pagine VR non riuscito:", ex)
     return out
+
+LIVE_STATE = "notify_live_state.json"   # vincitori dei Regionali gia' avvisati dalla diretta (notify_live.py)
+LIVE_GIORNI = 10                          # per riconoscere lo stesso torneo si guardano gli avvisi della diretta degli ultimi 10 giorni
+
+
+def _nz(s):
+    import unicodedata
+    t = unicodedata.normalize("NFKD", str(s or ""))
+    return re.sub(r"[^a-z0-9]", "", "".join(c for c in t if not unicodedata.combining(c)).lower())
+
+
+def live_vincitori():
+    """Vincitori gia' avvisati dalla diretta: [(vincitore, citta, momento)]. Se il file non c'e' o non si legge: nessuno."""
+    out = []
+    try:
+        for x in (json.load(open(LIVE_STATE, encoding="utf-8")).get("sent") or []):
+            out.append((_nz(x.get("winner")), _nz(x.get("city")), datetime.strptime(str(x.get("t"))[:19], "%Y-%m-%dT%H:%M:%S")))
+    except Exception:
+        pass
+    return out
+
+
+def gia_avvisato_live(r, live, ora=None):
+    """True se il vincitore di questo Regionale (riga 'bp' di news.json: [giocatore, paese, torneo, id, posizione]) e' gia' stato avvisato
+    dalla diretta: stesso vincitore o stessa citta', negli ultimi 10 giorni."""
+    ora = ora or datetime.now(timezone.utc).replace(tzinfo=None)
+    w, c = _nz(r[0]), _nz(r[2]) if len(r) > 2 else ""
+    for lw, lc, t in live:
+        if ora - t <= timedelta(days=LIVE_GIORNI) and ((w and w == lw) or (c and c == lc)):
+            return True
+    return False
+
 
 def reg_top8(news, tid):
     """Top 8 di un Regionale dai dati di news.json: righe '1. Nome (PAESE)'."""
@@ -345,11 +377,15 @@ def main():
             sent.add("R|%s" % nome)
             ann.append((nome, link, ev))
     wins = []  # vincitori dei Regionali (bp: [giocatore, paese, torneo, id, posizione])
+    live_gia = live_vincitori()   # quelli gia' avvisati subito dalla diretta: non si rimandano quando arriva Limitless
     for r in news.get("bp") or []:
         if len(r) > 4 and r[4] == 1 and ("W|%s" % r[3]) not in sent:
             sent.add("W|%s" % r[3])
             if int(r[3]) > min_id:
-                wins.append(r)
+                if gia_avvisato_live(r, live_gia):
+                    log("notify_players: vincitore %s (%s) gia' avvisato dalla diretta: non lo rimando" % (r[0], r[2]))
+                else:
+                    wins.append(r)
     new = []
     for x in ita:
         key = "%s|%s" % (x["pl"], x["id"])
