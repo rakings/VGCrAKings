@@ -1,0 +1,71 @@
+name: Avviso vincitore Regionale (diretta)
+# Lo lancia DA SOLO il lavoro della diretta («VGC Stats - raccolta dati») appena la finale della Top 8 e' decisa.
+# NON serve lanciarlo a mano. Manda l'avviso «Vincitore Regionale» (canale winner) e ricorda di averlo mandato,
+# cosi' quando Limitless pubblica il risultato giorni dopo non parte un secondo avviso.
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Id Pokedata del regionale"
+        required: true
+        type: string
+      citta:
+        description: "Citta'"
+        required: true
+        type: string
+      fine:
+        description: "Data di fine (AAAA-MM-GG)"
+        required: false
+        type: string
+      vincitore:
+        description: "Vincitore: Nome|PAESE"
+        required: true
+        type: string
+      finalista:
+        description: "Finalista: Nome|PAESE"
+        required: false
+        type: string
+      semifinali:
+        description: "Perdenti in semifinale: Nome|PAESE;Nome|PAESE"
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: avviso-vincitore-live
+  cancel-in-progress: false
+jobs:
+  avviso:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u notify_live.py
+        env:
+          AV_ID: ${{ inputs.id }}
+          AV_CITTA: ${{ inputs.citta }}
+          AV_FINE: ${{ inputs.fine }}
+          AV_VINCITORE: ${{ inputs.vincitore }}
+          AV_FINALISTA: ${{ inputs.finalista }}
+          AV_SEMIFINALI: ${{ inputs.semifinali }}
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Salva lo stato (per non mandare due volte lo stesso avviso)
+        if: ${{ always() }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f notify_live_state.json ] && git add notify_live_state.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Avviso vincitore Regionale (diretta)"
+            ok=0
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+            [ "$ok" = 1 ] || { echo "Salvataggio dello stato non riuscito."; exit 1; }
+          fi
