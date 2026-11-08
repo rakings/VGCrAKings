@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T03:51:39+00:00",
+ "updated": "2026-11-08T06:02:22+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,36 +122,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "MEGA CHAMPIONSHIPS SERIES #3",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 27,
-   "url": "https://play.limitlesstcg.com/tournament/6ae956280c463890f304a2d8/details"
-  },
-  {
-   "name": "EXTRA LIFE - CHILDRENS HOSPITAL CHARITY TOURNAMENT",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "22:00",
-   "players": 64,
-   "url": "https://play.limitlesstcg.com/tournament/6aeabf35e94eae0f94746e72/details"
-  },
-  {
    "name": "Intimidators Challenge Ultimate - Road to LAIC",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -271,7 +241,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "10:00",
-   "players": 29,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
@@ -316,7 +286,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "15:00",
-   "players": 33,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
   },
   {
@@ -346,7 +316,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 4,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
   },
   {
@@ -481,7 +451,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
@@ -541,7 +511,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -661,7 +631,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
@@ -736,7 +706,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -827,7 +797,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 28,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
