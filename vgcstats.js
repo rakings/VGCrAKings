@@ -202,7 +202,7 @@ function ctl(){return S.sec==="arc"?ctlArc():S.sec==="pok"?ctlPok():ctlSwi()}
 function drawRes(){var el=host.querySelector("#vg-res");if(!el)return;
 if(S.sec==="arc"){el.innerHTML=resArc();return}
 el.style.minHeight=el.offsetHeight+"px";el.innerHTML='<p class="vg-mute">Caricamento…</p>';var sec=S.sec,ev=S.ev;
-cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos();vaiAlFocus()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
+cur().then(function(d){if(S.sec!==sec||S.ev!==ev||!host||!host.contains(el)){el.style.minHeight="";return}el.innerHTML=sec==="pok"?resPok(d):resSwi(d);el.style.minHeight="";applyPos();vaiAlFocus();vaiAlBr()}).catch(function(){el.style.minHeight="";el.innerHTML='<p class="vg-mute">Non riesco a leggere i dati di questo regionale. Riprova tra poco.</p>'})}
 function draw(){if(!host)return;if(S.ready)navSave();if(!S.ready){host.innerHTML='<p class="vg-mute">'+(S.fail?"I dati di VGC Stats non sono ancora disponibili. Torna a trovarci presto.":"Caricamento…")+"</p>";return}
 var vuoto=S.sx==="vr"&&!(IDX.events||[]).length;
 host.innerHTML='<h2 class="vg-title">VGC Stats &amp; Live</h2>'+sxHtml()+vrBanner()+(vuoto?'<div class="vg-box">I tornei VR compariranno qui quando inizia il prossimo torneo del VR Circuit.</div>':seg())+'<div id="vg-ctl">'+ctl()+'</div><div id="vg-res"></div>';drawRes()}
@@ -282,7 +282,7 @@ function vrTick(){clearInterval(VRTM);if(!document.getElementById("vg-vrc"))retu
 function setSx(x){x=x==="vr"?"vr":"reg";if(S.sx===x)return;S.sx=x;IDX=x==="vr"?(IDXV||{events:[],current:(IDXR&&IDXR.current)||"M-C"}):IDXR;
 S.reg="all";S.treg=IDX.current;S.q="";S.msg="";S.sec="arc";S.mon=null;S.ev=firstEv();draw();window.scrollTo(0,0)}
 function sxHtml(){return'<div class="vg-sx" role="group" aria-label="Regionali o VR"><button type="button" data-vg="sx" data-v="reg" aria-pressed="'+(S.sx!=="vr")+'">Regionali</button><button type="button" data-vg="sx" data-v="vr" aria-pressed="'+(S.sx==="vr")+'">VR</button></div>'}
-function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){IDXR=x;return vrCarica()}).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true}).catch(function(){S.fail=true})}
+function init(){return firstIndex().then(function(x){x.events=inCorsoPrima(x.events);IDX=x;S.treg=x.current;return archCarica(x).then(function(){IDXR=x;return vrCarica()}).then(function(){navRestore();return J("vincitori.json").then(function(w){(w.events||[]).forEach(function(e){WIN[e.id]=e})}).catch(function(){})})}).then(function(){return J("ref.json").then(function(r){if(r&&r.t&&r.m)REF=r}).catch(function(){})}).then(function(){if(!S.ev)S.ev=firstEv();S.ready=true;goApply()}).catch(function(){S.fail=true})}
 /* ---------- aggiornamento automatico (solo regionale in corso) ----------
    Pensato per tanta gente insieme: ogni controllo e' UNA richiesta a un file minuscolo (meta.json), senza numeri casuali
    nell'indirizzo (cosi' risponde la copia gia' pronta di GitHub e non il server), con tempi un po' sfalsati per ogni telefono.
@@ -388,7 +388,17 @@ return'<div class="pr-box">'+list.map(function(p){return'<div class="pr-p"><div 
 (p.rows.length>5&&!(espandi&&espandi===pn(p.name)+"|"+p.cc)?'<button type="button" class="pr-more" data-k="'+E(pn(p.name)+"|"+p.cc)+'">+ '+(p.rows.length-5)+" altri tornei</button>":"")+"</div>"}).join("")+(LIMON?'<p class="pr-fonte">Storico dei giocatori: Pokédata e <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a></p>':"")+"</div>"})}
 function apriGiocatore(id,name,cc,pl){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
 S.ev=id;S.sec="swi";S.sq="";S.onlyIt=false;S.mon=null;S.shown=80;S.fn={ev:id,n:pn(name),cc:String(cc||""),pl:pl?Number(pl):null};PEND=null;if(host&&S.ready)draw()}
-window.VGCS={cerca:cercaGiocatori,apri:apriGiocatore,mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
+/* Da una notifica: apre la Swiss del torneo (VR o Regionale) con il tabellone TOP 8 aperto e portato in vista. */
+function slugNome(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
+function goApply(){var g=S.go;if(!g)return;var vr=g.sx==="vr",L=vr?IDXV:IDXR;if(!L||!L.events)return;S.go=null;
+var k=String(g.key||""),sl=slugNome(k),ev=null;
+if(vr)ev=L.events.filter(function(e){return String(e.id)===k||slugNome(e.name)===sl||slugNome(e.id)===sl})[0]||L.events[0];
+else ev=L.events.filter(function(e){return String(e.id)===k})[0];
+if(!ev)return;
+if(vr){S.sx="vr";IDX=IDXV}else{S.sx="reg";IDX=IDXR}
+S.reg="all";S.treg=ev.reg||IDX.current;S.ev=ev.id;S.sec="swi";S.sq="";S.onlyIt=false;S.mon=null;S.shown=80;S.br=true;S.brGo=true;S.fn=null;PEND=null}
+function vaiAlBr(){if(!S.brGo)return;S.brGo=false;setTimeout(function(){var el=host&&host.querySelector(".vg-br");if(el)el.scrollIntoView({block:"start"})},150)}
+window.VGCS={cerca:cercaGiocatori,apri:apriGiocatore,vai:function(sx,key){S.go={sx:sx,key:key};if(host&&S.ready){goApply();draw()}},mount:function(h){if(host&&host!==h){host.removeEventListener("click",onClick);host.removeEventListener("input",onInput);host.removeEventListener("change",onChange)}
 host=h;h.addEventListener("click",onClick);h.addEventListener("input",onInput);h.addEventListener("change",onChange);
 if(S.ready||S.fail){draw();return}draw();init().then(draw)},
 back:function(){if(!host||!S.ready||S.fail)return false;

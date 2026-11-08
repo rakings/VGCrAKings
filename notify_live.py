@@ -69,7 +69,7 @@ def main(env=None, ora=None):
         print("Avviso vincitore: per il torneo %s e' gia' stato mandato: non lo rimando." % eid)
         return 0
     titolo, corpo = testo(citta, vincitore, finalista, semi)
-    click = ue.sito_url("winner")
+    click = ue.sito_url("winner").split("#")[0] + "#stats-reg-" + eid   # il tocco apre VGC Stats sul tabellone TOP 8 di questo Regionale
     print("Avviso vincitore: %s | %s" % (titolo, corpo.replace("\n", " / ")))
     try:
         ue.deliver("winner", titolo, corpo, click)

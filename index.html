@@ -312,7 +312,21 @@ form{display:grid;gap:10px;margin-top:12px}
 label{display:grid;gap:4px;font-size:.88rem;font-weight:600}
 textarea{min-height:140px}
 .note{margin-top:26px;font-size:.88rem;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
-.devby{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--mute);text-align:left}.devby a{color:inherit;font-weight:700;text-decoration:underline}</style>
+.devby{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--mute);text-align:left}.devby a{color:inherit;font-weight:700;text-decoration:underline}
+/* Altopiano Blu: schede dei locali compatte, con il pulsante condividi */
+li.nw.loc:not(.intro){padding:9px 12px}
+li.nw.loc summary{padding-right:64px;min-height:34px}
+li.nw.loc summary::after{top:5px}
+li.nw.loc .lh{display:block;line-height:1.35}
+li.nw.loc .lh .tag{font-size:.72rem;padding:1px 8px;vertical-align:1px}
+li.nw.loc .lh b{font-size:.95rem}
+li.nw.loc .lm{display:block;margin:1px 0 0!important;font-size:.8rem;line-height:1.3}
+li.nw.loc .lsh{position:absolute;right:24px;top:-1px;width:30px;height:30px}
+li.nw.loc details[open]>summary{margin-bottom:6px}
+/* la regola generale dei menu a tendina (margine 28px, riquadro interno) lasciava troppo spazio vuoto */
+li.nw.loc>details{margin:0;padding:0;border:0;background:none;border-radius:0}
+li.nw.frm>details{margin-top:0}
+</style>
 <link rel="stylesheet" href="vgcstats.css?v=20261102n">
 </head>
 <body>
@@ -373,7 +387,7 @@ textarea{min-height:140px}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261107m</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261108a</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -453,13 +467,13 @@ $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-c
 function ok(){b.textContent="Copiata!";setTimeout(function(){b.textContent="Copia la squadra"},1800)}
 function fb(){var a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();var g=false;try{g=document.execCommand("copy")}catch(e){}a.remove();if(g)ok();else b.textContent="Copia non riuscita"}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()});
-var NV="all";
+var NV="loc",LOCGO=null,LOCDONE=false,FORMOPEN=false,STG=null;
 var BK=false,BKI='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 3h6l-1 6 3 3v2H7v-2l3-3-1-6z"/></svg>';
 function bkNew(){try{return annNuovi()}catch(e){return false}}
 function bkSync(nw){$("vrow").style.display=nw?"none":"";$("f-view").querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",String(!BK&&((x.dataset.vw==="cal")===!!CAL.on)))});$("bk").setAttribute("aria-pressed",String(BK));$("bk-dot").hidden=BK||!bkNew()}
 var LOC=[{"t": "Coppa di Lega", "s": "Negozio di esempio", "c": "Città di esempio", "d": "4 ottobre 2026", "n": 24, "top": ["Mario Rossi", "L.B.", "Giulia Bianchi", "S.F.", "Andrea Conti", "P.D.", "Federica Marini", "E.V."]}, {"t": "Sfida di Lega", "s": "Altro negozio di esempio", "c": "Altra città di esempio", "d": "27 settembre 2026", "n": 12, "top": ["D.S.", "R.G.", "N.L.", "T.P.", "C.B.", "I.Z.", "V.M.", "O.A."]}];
 LOC[0].tm={0:TEAMS[0].map(slot),1:TEAMS[1].map(slot)};LOC[0].rt={0:"A1B2C3"};LOC[1].tm={1:["Gholdengo","Incineroar","Rillaboom","Sneasler","Garchomp","Floette (Eternal)"].map(function(n){return {n:n,i:"",a:"",nt:"",m:[],x:1}})};LOC[1].rt={1:"Z9Y8X7"};LOC[1].top[3]="";
-function segHtml(){function b(v,t){return '<button data-nv="'+v+'" aria-pressed="'+(NV===v&&!BK)+'">'+t+'</button>'}return '<li class="seg"><div class="grp">'+b("all","Tutto")+b("big","Grandi tornei")+b("best","Best Player")+b("loc","Locali")+b("it","Italiani")+'<button class="bkseg" data-bk="1" aria-pressed="'+BK+'" aria-label="Bacheca" title="Bacheca">'+BKI+(!BK&&bkNew()?'<i class="dot"></i>':"")+'</button>'+'</div></li>'}
+function segHtml(){function b(v,t){return '<button data-nv="'+v+'" aria-pressed="'+(NV===v&&!BK)+'">'+t+'</button>'}return '<li class="seg"><div class="grp">'+b("big","Grandi tornei")+b("best","Best Player")+b("loc","Locali")+b("it","Italiani")+'<button class="bkseg" data-bk="1" aria-pressed="'+BK+'" aria-label="Bacheca" title="Bacheca">'+BKI+(!BK&&bkNew()?'<i class="dot"></i>':"")+'</button>'+'</div></li>'}
 function fld(id,l,t){return '<label>'+l+'<input id="'+id+'"'+(t?' type="'+t+'"':'')+'></label>'}
 var FORMW=/^(Alola|Alolan|Galar|Galarian|Hisui|Hisuian|Paldea|Paldean|Eternal|Therian|Incarnate|Wash|Heat|Frost|Fan|Mow|Origin|Altered|Sky|Land|Rapid[ -]Strike|Single[ -]Strike|Dusk|Dawn|Midday|Midnight|Ice|Shadow|Hearthflame|Wellspring|Cornerstone|Teal|Terastal|Stellar|Bloodmoon|Zero|Hero|Blade|Shield|Crowned|Hangry|Full Belly|Male|Female|Combat|Blaze|Aqua|Low Key|Amped|Complete|Black|White|Resolute|Ordinary|Primal|Mega|Mega X|Mega Y)$/i;
 function parseTeam(x){var tx=x.replace(/\r/g,"").trim();if(!tx)return [];if(!/(^|\n)\s*(Ability:|-\s)|\s@\s|\bNature\b/i.test(tx))return tx.split(/[\n,;]+/).map(function(n){return n.trim()}).filter(Boolean).slice(0,6).map(function(n){return {n:n,i:"",a:"",nt:"",m:[],x:1}});return tx.split(/\n\s*\n/).map(function(b){var L=b.split("\n").map(function(l){return l.trim()}).filter(Boolean);if(!L.length)return null;
@@ -471,7 +485,7 @@ function slotsHtml(t){return t.map(function(s){return '<div class="slot"><b>'+ph
 function previewHtml(x){var t=parseTeam(x);if(!t.length)return "";var names=t.every(function(s){return s.x});return '<p class="hint">'+t.length+(t.length===1?" Pokémon riconosciuto":" Pokémon riconosciuti")+(t.length!==6?" (ne servono 6)":"")+'</p>'+(names?'<div class="team">'+t.map(monHtml).join("")+'</div>':'<div class="sheet">'+slotsHtml(t)+'</div>')}
 function posHtml(i){return '<details class="pos"><summary><b>'+i+'° posto</b></summary><label>Giocatore (facoltativo)<input id="l-p'+i+'"></label><label class="chk"><input type="checkbox" id="l-a'+i+'"> Preferisce restare anonimo</label><label>Squadra (facoltativa)<textarea id="l-t'+i+'" placeholder="Open Team Sheet completo, oppure solo i 6 Pokémon (uno per riga)"></textarea></label><label>Rental team (codice, facoltativo)<input id="l-r'+i+'" maxlength="24" autocomplete="off"></label><div id="l-v'+i+'"></div></details>'}
 $("list").addEventListener("input",function(ev){var id=ev.target.id||"";if(/^l-t[1-8]$/.test(id))$("l-v"+id.slice(3)).innerHTML=previewHtml(ev.target.value)});
-function formHtml(){return '<li class="nw frm"><details open><summary><b>Carica la top 8 del tuo locale</b><span class="meta" style="display:block;margin:2px 0 0">Per gli organizzatori di Sfide e Coppe di Lega: top 8 e, se vuoi, le squadre</span></summary><form class="lf" onsubmit="return false">'
+function formHtml(){return '<li class="nw frm"><details'+(FORMOPEN?' open':'')+'><summary><b>Carica la top 8 del tuo locale</b><span class="meta" style="display:block;margin:2px 0 0">Per gli organizzatori di Sfide e Coppe di Lega: top 8 e, se vuoi, le squadre</span></summary><form class="lf" onsubmit="return false">'
 +fld("l-shop","Negozio o organizzatore")+fld("l-city","Città e provincia")+fld("l-date","Data","date")
 +'<label>Tipo<select id="l-type"><option>Sfida di Lega</option><option>Coppa di Lega</option><option>Altro</option></select></label>'
 +fld("l-n","Numero di giocatori","number")
@@ -480,8 +494,12 @@ function formHtml(){return '<li class="nw frm"><details open><summary><b>Carica 
 +fld("l-url","Link (Limitless, foto della classifica)","url")+fld("l-mail","Email per eventuali verifiche (non viene pubblicata)","email")
 +'<p class="hint">La conferma serve solo se indichi dei nomi.</p><label class="chk"><input type="checkbox" id="l-ok"> Ho informato i giocatori maggiorenni citati che i risultati sono pubblici sul sito. Per i minorenni indico solo il soprannome o le iniziali.</label>'
 +'<button class="btn main" type="button" id="l-go">Prepara la scheda</button><label>Scheda da inviare<textarea id="l-out" readonly></textarea></label><button class="btn" type="button" id="l-copy">Copia il testo</button><a class="btn main" id="l-send" hidden>Invia per email</a><p class="hint" id="l-msg" aria-live="polite"></p></form></details></li>'}
-function locCards(){return '<li class="nw loc intro"><p class="meta" style="margin:0">Risultati dei tornei locali (Sfide e Coppe di Lega) inviati dagli organizzatori. Non sono risultati ufficiali: i punti campionato si riportano solo a Pokémon. Per i maggiorenni si possono indicare nome e cognome; per i minorenni solo iniziali o soprannomi. Chi non vuole comparire può chiedere di essere rimosso.</p></li>'
-+LOC.map(function(l){return '<li class="nw loc"><details><summary>'+(l.real?'':'<span class="tag t-reg">Esempio</span> ')+'<span class="tag t-none">'+esc(l.t)+'</span><br><b>'+esc(l.s)+' · '+esc(l.c)+'</b><span class="meta" style="display:block;margin:2px 0 0">'+esc(l.d)+' · '+l.n+' giocatori · Vincitore: '+esc(l.top[0])+'</span></summary>'+l.top.map(function(n,i){var tm=l.tm&&l.tm[i],rt=l.rt&&l.rt[i],full=tm&&tm.some(function(s){return !s.x});return '<div class="row"><b>'+(i+1)+'° · '+(n?esc(n):'<i>Giocatore anonimo</i>')+'</b>'+(tm?'<div class="team">'+tm.map(monHtml).join("")+'</div>'+(full?'<details class="ots"><summary>Open Team Sheet</summary>'+sheetHtml(tm)+'</details>':''):'')+(rt?'<div class="rt">Rental team: <b>'+esc(rt)+'</b> <button class="btn" type="button" data-cpl="'+esc(rt)+'" data-lab="Copia codice">Copia codice</button></div>':'')+'</div>'}).join("")+'<p class="meta">Risultato inviato dall\'organizzatore</p></details></li>'}).join("")}
+function lid(l){return eh([l.t,l.s,l.c,l.d].join("|"))}
+var LOCINFO='<li class="nw loc intro"><p class="meta" style="margin:0">Risultati dei tornei locali (Sfide e Coppe di Lega) inviati dagli organizzatori. Non sono risultati ufficiali: i punti campionato si riportano solo a Pok\u00e9mon. Per i maggiorenni si possono indicare nome e cognome; per i minorenni solo iniziali o soprannomi. Chi non vuole comparire pu\u00f2 chiedere di essere rimosso.</p></li>';
+function locCards(){return (LOC.length?LOC.map(function(l){var id=lid(l);return '<li class="nw loc" data-lid="'+id+'"><details'+(id===LOCGO?' open':'')+'><summary><span class="lh">'+(l.real?'':'<span class="tag t-reg">Esempio</span> ')+'<span class="tag t-none">'+esc(l.t)+'</span> <b>'+esc(l.s)+' \u00b7 '+esc(l.c)+'</b></span><span class="meta lm">'+esc(l.d)+' \u00b7 '+l.n+' giocatori \u00b7 Vincitore: '+esc(l.top[0])+'</span><button class="shr lsh" type="button" data-shl="'+id+'" aria-label="Condividi questo locale" title="Condividi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4M8.6 13.4l6.8 4"/></svg></button></summary>'+l.top.map(function(n,i){var tm=l.tm&&l.tm[i],rt=l.rt&&l.rt[i],full=tm&&tm.some(function(s){return !s.x});return '<div class="row"><b>'+(i+1)+'\u00b0 \u00b7 '+(n?esc(n):'<i>Giocatore anonimo</i>')+'</b>'+(tm?'<div class="team">'+tm.map(monHtml).join("")+'</div>'+(full?'<details class="ots"><summary>Open Team Sheet</summary>'+sheetHtml(tm)+'</details>':''):'')+(rt?'<div class="rt">Rental team: <b>'+esc(rt)+'</b> <button class="btn" type="button" data-cpl="'+esc(rt)+'" data-lab="Copia codice">Copia codice</button></div>':'')+'</div>'}).join("")+'<p class="meta">Risultato inviato dall\'organizzatore</p></details></li>'}).join(""):'<li class="nw loc"><p class="meta" style="margin:0">Ancora nessun risultato inviato.</p></li>')+LOCINFO}
+function locApri(){if(!LOCGO||LOCDONE)return;var el=document.querySelector('[data-lid="'+LOCGO+'"]');if(el){LOCDONE=true;var d=el.querySelector("details");if(d)d.open=true;el.scrollIntoView({block:"start"})}}
+function siteBase(){return (SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/")}
+function shareLoc(l){shareGen(l.t+" \u00b7 "+l.s,l.t+" \u00b7 "+l.s+" \u00b7 "+l.c+" \u00b7 "+l.d+(l.top&&l.top[0]?" \u00b7 Vincitore: "+l.top[0]:"")+"\nTop 8 e squadre su rAKings VGC",siteBase()+"#locali-"+lid(l),"Condividi il locale")}
 function localiHtml(){return formHtml()+locCards()}
 function cpy(t,b,lab){function ok(){b.textContent="Copiato!";setTimeout(function(){b.textContent=lab},1800)}
 function fb(){var a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();var g=false;try{g=document.execCommand("copy")}catch(e){}a.remove();if(g)ok();else b.textContent="Copia non riuscita"}
@@ -511,7 +529,7 @@ var l=BN?a.filter(function(p){return p.c===BN}):a;
 return '<li class="nw best"><p class="meta" style="margin:0 0 8px">Giocatori con almeno una top 16 a un Regionale nella stagione 2026, in ordine di risultati. Elenco parziale: per il Regional Recife c\'è la top 16 completa, per gli altri 16 Regionali solo i vincitori. Con il bot sarà completo. Fonte: Limitless VGC.</p><label>Nazionalità<select id="b-nat"><option value="">Tutte le nazioni ('+a.length+')</option>'+o+'</select></label></li>'+l.map(bestRow).join("")}
 function bestTeaser(){return '<li class="nw best"><b>Best Player</b><span class="meta" style="display:block;margin:2px 0 8px">I primi 5 per numero di top 16 a un Regionale</span>'+bestList().slice(0,5).map(function(p){return '<div class="row"><b>'+esc(p.n)+'</b> <span class="meta" style="margin:0">('+esc(CN[p.c]||p.c)+') · '+p.f.length+(p.f.length===1?' Regionale':' Regionali')+' in top 16</span></div>'}).join("")+'<button class="btn" type="button" data-nv="best" style="margin-top:8px">Vedi tutti i Best Player</button></li>'}
 function ctaLoc(){return '<li class="nw frm"><b>Organizzi un torneo locale?</b><span class="meta" style="display:block;margin:2px 0 8px">Carica la top 8 con le squadre: nome, item, natura, abilità e mosse.</span><button class="btn main" type="button" data-nv="loc">Carica la top 8 del tuo locale</button></li>'}
-function newsView(){switch(NV){case"big":return newsHtml();case"best":return bestHtml();case"loc":return localiHtml();case"it":return italiHtml();default:return ctaLoc()+italiHtml()+newsHtml()+locCards()+bestTeaser()}}
+function newsView(){switch(NV){case"big":return newsHtml();case"best":return bestHtml();case"loc":return localiHtml();case"it":return italiHtml();default:return localiHtml()}}
 $("list").addEventListener("change",function(ev){if(ev.target.id==="b-nat"){BN=ev.target.value;render()}});
 var CAL={on:false,y:0,m:0,day:"",view:"days"};
 var MN=[],WD=[],WDL=[];
@@ -543,7 +561,7 @@ window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
 var VGP=null;
-function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261107e";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261108a";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
@@ -751,7 +769,7 @@ function nbShow(){if(!nbDue())return;var b=$("nb");if(!b){b=document.createEleme
 document.addEventListener("click",function(ev){var x=ev.target&&ev.target.closest?ev.target.closest("[data-nb]"):null;if(!x)return;nbHide();nbMark();if(x.dataset.nb==="on"){var o=$("np");o.innerHTML=npHtml();o.hidden=false;var a=$("os-ask");if(a)a.click()}});
 if(NOTIF_ON&&NOTIF_ON!=="demo")osdo(function(OS){window.OSREADY.then(function(){try{window.OSOPT=OS.User.PushSubscription.optedIn;window.OSID=OS.User.PushSubscription.id||"";OS.User.PushSubscription.addEventListener("change",function(){try{window.OSOPT=OS.User.PushSubscription.optedIn;window.OSID=OS.User.PushSubscription.id||""}catch(e){}npStato();if(npOnDev())nbHide()})}catch(e){}npStato();setTimeout(nbShow,6000)})});
 document.addEventListener("keydown",function(ev){if(ev.key==="Escape")$("np").hidden=true});
-$("cta-loc").addEventListener("click",function(){NV="loc";document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
+$("cta-loc").addEventListener("click",function(){NV="loc";FORMOPEN=true;document.querySelector('#f-mode button[data-v="news"]').click();window.scrollTo(0,0)});
 var SITE_URL="https://rakings.github.io/VGCrAKings";
 var CONTACT_EMAIL="rakingsvgc@gmail.com";
 var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();DEFER=e;pwaRefresh();if(!$("sbar").hidden)goHash()});
@@ -776,10 +794,12 @@ try{window.matchMedia("(display-mode: standalone)").addEventListener("change",pw
 pwaRefresh();
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
 function shareText(e){return e.name+(e.date?" · "+fmt(e.date)+(e.time?" ore "+e.time:""):"")}
-function shareEv(e){var u=shareUrl(e),t=shareText(e);
-if(navigator.share){navigator.share({title:e.name,text:t,url:u}).catch(function(){});return}
-$("np").innerHTML='<div class="sheet2"><div class="calbar"><b id="np-t">Condividi il torneo</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div><p class="meta" style="margin:0 0 8px">'+esc(t)+'</p><div class="sub-row"><a class="btn main" href="https://wa.me/?text='+encodeURIComponent(t+"\n"+u)+'" target="_blank" rel="noopener">WhatsApp</a><a class="btn main" href="https://t.me/share/url?url='+encodeURIComponent(u)+'&text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">Telegram</a><button class="btn" type="button" data-cpl="'+esc(u)+'">Copia link</button></div><p class="hint" style="word-break:break-all">'+esc(u)+'</p>'+(SITE_URL.indexOf("tuosito")>-1?'<p class="meta">Anteprima: l\'indirizzo è di esempio.</p>':'')+'</div>';$("np").hidden=false}
+function shareEv(e){shareGen(e.name,shareText(e),shareUrl(e),"Condividi il torneo")}
+function shareGen(title,t,u,head){if(navigator.share){navigator.share({title:title,text:t,url:u}).catch(function(){});return}
+$("np").innerHTML='<div class="sheet2"><div class="calbar"><b id="np-t">'+esc(head)+'</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div><p class="meta" style="margin:0 0 8px">'+esc(t)+'</p><div class="sub-row"><a class="btn main" href="https://wa.me/?text='+encodeURIComponent(t+"\n"+u)+'" target="_blank" rel="noopener">WhatsApp</a><a class="btn main" href="https://t.me/share/url?url='+encodeURIComponent(u)+'&text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">Telegram</a><button class="btn" type="button" data-cpl="'+esc(u)+'">Copia link</button></div><p class="hint" style="word-break:break-all">'+esc(u)+'</p>'+(SITE_URL.indexOf("tuosito")>-1?'<p class="meta">Anteprima: l\'indirizzo è di esempio.</p>':'')+'</div>';$("np").hidden=false}
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-sh]");if(b)shareEv(EVENTS[b.dataset.sh])});
+$("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-shl]");if(!b)return;ev.preventDefault();ev.stopPropagation();var l=LOC.filter(function(x){return lid(x)===b.dataset.shl})[0];if(l)shareLoc(l)});
+document.addEventListener("toggle",function(ev){var d=ev.target;if(d&&d.tagName==="DETAILS"&&d.closest&&d.closest(".frm"))FORMOPEN=d.open},true);
 $("np").addEventListener("click",function(ev){var b=ev.target.closest("[data-cpl]");if(b)cpy(b.dataset.cpl,b,"Copia link")});
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-cpl]");if(b)cpy(b.dataset.cpl,b,b.dataset.lab||"Copia link")});
 $("sbar").addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(b.dataset.inst&&DEFER){DEFER.prompt();return}if(b.dataset.sall){$("q").value="";st.q="";$("sbar").hidden=true;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}render()}});
@@ -886,7 +906,7 @@ fetch("news.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r
 if(d.types)Object.keys(d.types).forEach(function(k){MT[k]=d.types[k]});
 if(d.news&&d.news.length)NEWS=d.news;if(d.bp&&d.bp.length)BP=d.bp;if(d.ita)ITA=d.ita;render()}).catch(function(){});
 fetch("news_vr.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():[]}).then(function(d){if(Array.isArray(d)&&d.length){VRN=d;render();vrApri()}}).catch(function(){});
-fetch("locali.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d&&Array.isArray(d.locali)){LOC=d.locali;render()}}).catch(function(){});
+fetch("locali.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d&&Array.isArray(d.locali)){LOC=d.locali;render();locApri()}}).catch(function(){});
 /* Annunci (annunci.json): archivio nella sezione Info, in menu a tendina; quelli "fissati" stanno in cima; non scadono */
 var ANN=[],ANNS="vgc-ann-seen",ANNALL=false,ANNMAX=12,ANNOPEN=null;
 function annAttivi(){return ANN.filter(function(a){return a&&a.t}).sort(function(x,y){return (y.pin?1:0)-(x.pin?1:0)||String(y.pub||"").localeCompare(String(x.pub||""))})}
@@ -900,14 +920,17 @@ fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;retur
 /* Link dalle notifiche: #annuncio-ID apre Info con quella tendina aperta; #locali apre la sezione Locali */
 var ANNGO=null;
 var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["all"],tutti:["all"],online:["online"],regionali:["regional"]};
-function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),mode="news",wantBK=false;
-if(v){VRGO=v[1];VRDONE=false;NV="big"}
+function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),mode="news",wantBK=false;
+if(lo){LOCGO=lo[1];LOCDONE=false;VRGO=null;NV="loc"}
+else if(sg){VRGO=null;mode="vgcs";STG={sx:sg[1],key:sg[2]||""}}
+else if(v){VRGO=v[1];VRDONE=false;NV="big"}
 else if(m){ANNGO=ANNOPEN=+m[1];annSeen();mode="all";wantBK=true}
 else if(d&&DLINK[d[1]]){VRGO=null;var x=DLINK[d[1]];mode=x[0];if(x[1])NV=x[1];if(d[1]==="info")wantBK=true;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}}
 else return;
 var bt=document.querySelector('#f-mode button[data-v="'+mode+'"]');if(bt)bt.click();else{st.mode=mode;render()}
 if(wantBK){BK=true;render()}
-window.scrollTo(0,0);annApri();vrApri()}
+window.scrollTo(0,0);annApri();vrApri();locApri();statsGo()}
+function statsGo(){if(!STG)return;var g=STG;STG=null;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}vgcsLoad().then(function(){VGCS.vai(g.sx,g.key)}).catch(function(){})}
 function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
 if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
 if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}
@@ -958,7 +981,7 @@ if(CALC.open){if(CALC.sheet){try{$("calcfr").contentWindow.postMessage({calcBack
 var p=$("np");if(p&&!p.hidden){p.hidden=true;return}
 if(BK){var b=document.querySelector("[data-bk]");if(b)b.click();return}
 if(st.mode==="vgcs"&&window.VGCS&&VGCS.back&&VGCS.back())return;
-if(st.mode==="news"&&NV!=="all"){var n=document.querySelector('[data-nv="all"]');if(n)n.click();else{NV="all";render()}try{window.scrollTo(0,0)}catch(e){}return}
+if(st.mode==="news"&&NV!=="loc"){var n=document.querySelector('[data-nv="loc"]');if(n)n.click();else{NV="loc";render()}try{window.scrollTo(0,0)}catch(e){}return}
 if(st.mode!=="news"&&st.mode!=="vgcs"&&CAL.on){var l=document.querySelector('#f-view [data-vw="list"]');if(l){l.click();try{window.scrollTo(0,0)}catch(e){}return}}
 var a=document.querySelector('#f-mode [data-v="all"]');if(a)a.click();
 try{window.scrollTo(0,0)}catch(e){}}

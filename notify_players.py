@@ -6,7 +6,7 @@ Manda anche "Vincitore Victory Road" (canale "vrwin"): legge il banner "X is the
 Si lancia DOPO update_news.py. Riusa l'invio di update_events.py (Firebase o ntfy).
 Il primo giro non manda nulla: memorizza solo lo stato. Poi avvisa soltanto per i tornei
 più recenti di quelli già noti, così il caricamento a ritroso dello storico non genera avvisi."""
-import html, json, os, re, signal, sys, time, urllib.request
+import html, json, os, re, signal, sys, time, unicodedata, urllib.request
 from datetime import datetime, timedelta, timezone
 import update_events as ue
 
@@ -190,6 +190,25 @@ def gia_avvisato_live(r, live, ora=None):
         if ora - t <= timedelta(days=LIVE_GIORNI) and ((w and w == lw) or (c and c == lc)):
             return True
     return False
+
+
+def slug_nome(s):
+    """'VR November Challenge #1' -> 'vr-november-challenge-1' (stessa regola della pagina: serve a trovare il torneo nel sito)."""
+    t = unicodedata.normalize("NFD", str(s or "").lower())
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+def click_vr(ev):
+    """Tocco sull'avviso del vincitore VR: il sito apre VGC Stats, sezione VR, sul tabellone TOP 8 di quel torneo."""
+    base = ue.sito_url("vrwin").split("#")[0]
+    sl = slug_nome(ev)
+    return base + "#stats-vr" + ("-" + sl if sl else "")
+
+
+def click_reg(tid):
+    """Tocco sull'avviso del vincitore di un Regionale: il sito apre VGC Stats sul tabellone TOP 8 di quel Regionale."""
+    return ue.sito_url("winner").split("#")[0] + "#stats-reg-%s" % tid
 
 
 def reg_top8(news, tid):
@@ -408,14 +427,14 @@ def main():
         for pl, ev, link in vr_new:
             data = vr_page(link)
             art = vr_article(ev, link, data)
-            click = link  # senza articolo si apre la pagina di Victory Road
-            if art and vr_salva(art):  # con l'articolo: il sito si apre su quel torneo, già aperto (poi l'articolo rimanda a Victory Road)
-                click = ue.sito_url("vrwin").split("#")[0] + "#vr-" + re.sub(r"^vr-", "", link.rstrip("/").split("/")[-1])
+            if art:
+                vr_salva(art)  # l'articolo resta nella sezione Grandi tornei del sito
+            click = click_vr(ev)  # il tocco apre VGC Stats > VR sul tabellone TOP 8 di quel torneo (non porta fuori dal sito)
             ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link, data)), click)
         for r in wins:
             ue.deliver("winner", "Vincitore Regionale: %s" % r[0],
                        "\n".join(["Regional %s%s" % (r[2], (" (%s)" % r[1]) if r[1] else "")] + reg_top8(news, r[3])),
-                       "https://limitlessvgc.com/tournaments/%s" % r[3])
+                       click_reg(r[3]))
         print("Avvisi inviati: %d player, %d vincitori, %d VR, %d iscrizioni VR" % (len(new), len(wins), len(vr_new), len(ann)))
     except Exception as ex:
         print("Avviso player non inviato:", ex)

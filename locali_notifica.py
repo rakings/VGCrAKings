@@ -3,10 +3,23 @@
   - report dei locali approvati nelle ultime 24 ore: notifica al canale "locali8" (solo a chi ha la spunta)
   - annunci approvati nelle ultime 24 ore: notifica OBBLIGATORIA a tutti gli iscritti
 Se nel frattempo hai tolto il report/annuncio con "rimosso", non c'è più nei file e non parte nulla."""
-import os, sys
+import os, struct, sys
 from datetime import datetime, timedelta, timezone
 
 from locali_comune import carica_annunci, carica_locali, carica_stato, log, salva_stato
+
+
+def loc_id(v):
+    """Identificativo del locale nel sito: stessa funzione eh() della pagina (djb2 sulle unita' UTF-16) applicata a tipo|negozio|citta|data."""
+    b = "|".join(str(v.get(k) or "") for k in ("t", "s", "c", "d")).encode("utf-16-le")
+    h = 5381
+    for u in struct.unpack("<%dH" % (len(b) // 2), b):
+        h = (h * 33 + u) & 0xFFFFFFFF
+    cifre, out = "0123456789abcdefghijklmnopqrstuvwxyz", ""
+    while h:
+        h, r = divmod(h, 36)
+        out = cifre[r] + out
+    return out or "0"
 
 
 def main():
@@ -22,7 +35,7 @@ def main():
     import update_events as ue  # stesso invio delle altre notifiche (Firebase o ntfy)
     sito = ue.sito_url().rstrip("/")
     for v in sorted(nuovi, key=lambda x: x["pub"]):
-        ue.deliver("locali8", "Nuova top 8: %s" % v["s"], "%s · %s · %s" % (v["t"], v["c"], v["d"]), sito + "/#locali")
+        ue.deliver("locali8", "Nuova top 8: %s" % v["s"], "%s · %s · %s" % (v["t"], v["c"], v["d"]), sito + "/#locali-" + loc_id(v))   # il tocco apre quel locale con la tendina aperta
         stato["notificati"].append(v["id"])
         salva_stato(stato)
         log("Notifica inviata per il report %s." % v["id"])
