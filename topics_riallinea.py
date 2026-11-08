@@ -3,11 +3,16 @@
 
 Porta gli argomenti di OGNI dispositivo dell'archivio iscritti a quello che quel dispositivo ha scelto (canali, promemoria, tornei seguiti).
 Serve per: la MIGRAZIONE dei dispositivi che c'erano gia', e poi come controllo periodico (e' sicuro rilanciarlo quando vuoi).
-Non scrive MAI nell'archivio iscritti e non cancella nessuna iscrizione dell'archivio. Su Google tocca solo gli argomenti nostri
+Non scrive nell'archivio iscritti, salvo UNA cosa, solo se la chiedi (RIALL_RIMUOVI_MORTI = si, e solo in modo esegui): toglie dall'archivio i dispositivi che
+Google dichiara NON PIU' VALIDI (UNREGISTERED: app disinstallata, dati cancellati, token scaduto): non possono ricevere niente. Se un giorno la persona riapre
+il sito, il dispositivo si registra di nuovo da solo. C'e' un freno di sicurezza: se piu' della meta' dei dispositivi (almeno 5) risulta non valida tutta
+insieme, non si toglie niente (e' piu' probabile un problema di configurazione che di dispositivi morti).
+Su Google tocca solo gli argomenti nostri
 (tutti, c_..., h_..., t_...): qualunque altro argomento (per esempio «prova-...») non si tocca mai.
 
   modo = controlla  ->  NON scrive niente su Google: dice solo quali dispositivi sono gia' a posto e quali no
   modo = esegui     ->  aggiunge gli argomenti che mancano e toglie quelli che non servono piu', poi ricontrolla
+  RIALL_RIMUOVI_MORTI = si  ->  (solo con esegui) toglie dall'archivio i dispositivi non piu' validi; in modo controlla dice solo quanti ne toglierebbe.
 
 Non stampa mai un token intero (solo le ultime 6 lettere).
 """
@@ -204,12 +209,29 @@ def nomi_brevi(nomi, n=6):
     return ", ".join(nomi[:n]) + (" +%d altri" % (len(nomi) - n) if len(nomi) > n else "")
 
 
+def rimuovi_dall_archivio(ids):
+    """Toglie dall'archivio iscritti questi token (a gruppi da 200, come fa l'invio dei token morti). Ritorna (tolti, errori)."""
+    tolti, errori = 0, 0
+    for k in range(0, len(ids), 200):
+        blocco = ids[k:k + 200]
+        req = urllib.request.Request(os.environ["SUBS_URL"].rstrip("/") + "/remove", data=json.dumps({"ids": blocco}).encode("utf-8"), method="POST",
+                                     headers={"Authorization": "Bearer " + os.environ["SUBS_TOKEN"], "Content-Type": "text/plain", "User-Agent": UA})
+        try:
+            r = json.loads(urllib.request.urlopen(req, timeout=30).read().decode("utf-8") or "{}")
+            tolti += int(r.get("removed", len(blocco)))
+        except Exception as ex:
+            errori += 1
+            print("  pulizia dell'archivio non riuscita per un gruppo di %d: %s" % (len(blocco), corto(ex, 100)))
+    return tolti, errori
+
+
 def main():
     for k in ("FCM_SERVICE_ACCOUNT", "SUBS_URL", "SUBS_TOKEN"):
         if not os.environ.get(k):
             print("Manca %s (segreto o variabile del repo)." % k)
             return 1
     esegui = (os.environ.get("RIALL_MODO") or "controlla").lower() == "esegui"
+    rimuovi = (os.environ.get("RIALL_RIMUOVI_MORTI") or "no").lower() == "si"
     try:
         massimo = max(1, min(int(os.environ.get("RIALL_MAX") or 1000), 20000))
     except ValueError:
@@ -251,11 +273,24 @@ def main():
         print("  da sistemare: %d (mancano %d iscrizioni, ne sono di troppo %d)" % (len(diff), sum(e["agg"] for e in diff), sum(e["tol"] for e in diff)))
     print("  non piu' validi (Google non li riconosce, nessuna modifica): %d" % len(morti))
     print("  con errori: %d" % len(errori))
+    pulizia_fallita = False
+    if morti and rimuovi:
+        freno = len(morti) >= 5 and len(morti) / float(len(esiti)) > 0.5
+        if freno:
+            print("  FRENO DI SICUREZZA: %d dispositivi su %d risultano non validi tutti insieme. Non ne tolgo nessuno dall'archivio: controlla la configurazione di Firebase." % (len(morti), len(esiti)))
+        elif not esegui:
+            print("  in modo controlla non tolgo niente: con esegui verrebbero tolti dall'archivio %d dispositivi non piu' validi." % len(morti))
+        else:
+            tolti, err = rimuovi_dall_archivio([e["id"] for e in morti])
+            print("  tolti dall'archivio iscritti: %d dispositivi non piu' validi (Google non li riconosce)" % tolti)
+            pulizia_fallita = err > 0
+    elif morti:
+        print("  (i non piu' validi restano nell'archivio: per toglierli rilancia con esegui e «togli non validi» = si)")
     if non_verificati:
         print("  ATTENZIONE: %d non risultano ancora allineati al ricontrollo: rilancia tra qualche minuto." % len(non_verificati))
     if not esegui and diff:
         print("\nPer sistemarli rilancia con modo = esegui.")
-    return 1 if (errori or non_verificati) else 0
+    return 1 if (errori or non_verificati or pulizia_fallita) else 0
 
 
 if __name__ == "__main__":
