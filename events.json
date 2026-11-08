@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T17:09:22+00:00",
+ "updated": "2026-11-08T17:51:00+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -215,6 +215,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aeb70f30c463890f304b2c6/details"
   },
   {
+   "name": "Semanal VGC Pokémon Alfenas #1",
+   "org": "SongFuê",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "18:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6a4e704165724db9ded40411/details"
+  },
+  {
    "name": "VGC Trainer School; champions M/C #7",
    "org": "VGC Trainers School",
    "mode": "online",
@@ -275,21 +290,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
-   "name": "Semanal VGC Pokémon Alfenas #1",
-   "org": "SongFuê",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "18:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6a4e704165724db9ded40411/details"
-  },
-  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -316,7 +316,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "22:00",
-   "players": 6,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
   },
   {
@@ -346,7 +346,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
@@ -361,7 +361,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
@@ -376,7 +376,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -421,23 +421,8 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
-  },
-  {
-   "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
-   "org": "Bean Battles",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
    "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
@@ -453,6 +438,21 @@
    "time": "19:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
+  },
+  {
+   "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
+   "org": "Bean Battles",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -661,7 +661,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -932,7 +932,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -995,6 +995,21 @@
    "time": "04:00",
    "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "14:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
    "name": "Roria Conquest VGC Series C Tournament",
