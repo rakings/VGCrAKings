@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T13:38:49+00:00",
+ "updated": "2026-11-08T14:57:34+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -215,6 +215,21 @@
    "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-1/6ae8d0b7e6c678001939ed17/info?infoTab=details"
   },
   {
+   "name": "ValkrixVGC Champions League #09 |Shiny Golisopod |",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-08",
+   "time": "15:00",
+   "players": 65,
+   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
+  },
+  {
    "name": "Sunday Showdown #5",
    "org": "BoTS PTCG Pocket",
    "mode": "online",
@@ -260,21 +275,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
   },
   {
-   "name": "ValkrixVGC Champions League #09 |Shiny Golisopod |",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "15:00",
-   "players": 65,
-   "url": "https://play.limitlesstcg.com/tournament/6ae1525c22fd412b92a4e70c/details"
-  },
-  {
    "name": "VGC Trainer School; champions M/C #7",
    "org": "VGC Trainers School",
    "mode": "online",
@@ -286,23 +286,8 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "17:00",
-   "players": 12,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
-  },
-  {
-   "name": "VG  Academy - LAIC Edition",
-   "org": "Pokegiohorganization",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "18:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af0787cc931f53978d965e9/details"
   },
   {
    "name": "Semanal VGC Pokémon Alfenas #1",
@@ -316,7 +301,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "18:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6a4e704165724db9ded40411/details"
   },
   {
@@ -346,7 +331,7 @@
    "bo": null,
    "date": "2026-11-08",
    "time": "22:00",
-   "players": 3,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
   },
   {
@@ -391,7 +376,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 34,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
@@ -406,7 +391,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -451,7 +436,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
@@ -466,7 +451,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
@@ -526,7 +511,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 67,
+   "players": 71,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -620,21 +605,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
-   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
-  },
-  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -648,6 +618,21 @@
    "time": "01:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
+  },
+  {
+   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
    "name": "Showdown Friday #1 (Prize: Ursaluna)",
@@ -706,7 +691,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -721,7 +706,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -751,7 +736,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -1447,7 +1432,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "16:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aec7b2b0c463890f304bd09/details"
   },
   {
