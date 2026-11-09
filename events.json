@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T19:18:14+00:00",
+ "updated": "2026-11-09T20:38:58+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 30,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 16,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "15:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af1d296c931f53978d9721c/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 29,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 105,
+   "players": 106,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "15:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -600,6 +600,21 @@
    "time": "00:00",
    "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
+  },
+  {
+   "name": "X1 Remote Battle League 14ª Edição - Reg M-C",
+   "org": "X1 Battle League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "00:15",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af22a50c931f53978d97764/details"
   },
   {
    "name": "VGC Indigo League #7 (Prize: Shiny Heatran)",
@@ -722,7 +737,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 51,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -767,7 +782,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
@@ -1008,7 +1023,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
