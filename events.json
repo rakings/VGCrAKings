@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T20:38:58+00:00",
+ "updated": "2026-11-09T22:49:57+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -152,6 +152,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
+   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "17:40",
+   "players": 39,
+   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
+  },
+  {
    "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -165,21 +180,6 @@
    "time": "20:00",
    "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
-  },
-  {
-   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
-   "org": "LEPE Tours",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "17:30",
-   "players": 47,
-   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
   },
   {
    "name": "Synergy Saga - S3",
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 22,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 14,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "01:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae7eec2ae67092a40741012/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 31,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 106,
+   "players": 109,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 24,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:15",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af22a50c931f53978d97764/details"
   },
   {
@@ -673,7 +673,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -737,7 +737,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 52,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -782,7 +782,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
