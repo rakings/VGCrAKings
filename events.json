@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T16:32:20+00:00",
+ "updated": "2026-11-09T17:34:15+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -178,7 +178,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 44,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 19,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 8,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
   },
   {
@@ -287,21 +287,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
-   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
-  },
-  {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
    "org": "Bean Battles",
    "mode": "online",
@@ -315,6 +300,21 @@
    "time": "19:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
+  },
+  {
+   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 97,
+   "players": 103,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "15:00",
-   "players": 0,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -553,7 +553,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "14:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af04cf6e99f3235a75e3fea/details"
   },
   {
@@ -662,6 +662,24 @@
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
+   "name": "VR November Challenge #2",
+   "org": "Victory Road",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": 11.5,
+   "cur": "$",
+   "feeNote": "+ tassa Battlefy",
+   "cash": true,
+   "prize": "montepremi",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-14",
+   "end": "2026-11-15",
+   "time": null,
+   "url": "https://victoryroad.pro/vr-nov26-2/",
+   "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-2/6af1e89febb90c001a19c08f/info?infoTab=details"
+  },
+  {
    "name": "Buenos Aires Special Event",
    "org": "",
    "mode": "regional",
@@ -704,7 +722,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 50,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -933,21 +951,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
-   "name": "VGC Gemeinde Showdown #14",
-   "org": "VGC Gemeinde",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "19:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
-  },
-  {
    "name": "🌟 Movember Cup 🌟",
    "org": "Grombrooklyn Gaming",
    "mode": "online",
@@ -961,6 +964,21 @@
    "time": "19:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
+  },
+  {
+   "name": "VGC Gemeinde Showdown #14",
+   "org": "VGC Gemeinde",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "19:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
    "name": "Latin America International Championships",
@@ -992,6 +1010,21 @@
    "time": "04:00",
    "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
+  },
+  {
+   "name": "Ukraine tryouts",
+   "org": "Champions Ukraine",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
