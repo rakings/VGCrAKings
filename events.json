@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T22:43:53+00:00",
+ "updated": "2026-11-09T01:47:00+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,22 +167,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
-   "name": "VR November Challenge #1",
-   "org": "Victory Road",
+   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR #4",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
-   "fee": 11.5,
-   "cur": "$",
-   "feeNote": "+ tassa Battlefy",
-   "cash": true,
-   "prize": "montepremi",
+   "fee": null,
+   "cash": null,
+   "prize": "",
    "reg": "M-C",
    "bo": null,
-   "date": "2026-11-07",
-   "end": "2026-11-08",
-   "time": null,
-   "url": "https://victoryroad.pro/vr-nov26/",
-   "signup": "https://battlefy.com/victoryroad/victory-road-november-challenge-1/6ae8d0b7e6c678001939ed17/info?infoTab=details"
+   "date": "2026-11-08",
+   "time": "22:00",
+   "players": 29,
+   "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
   },
   {
    "name": "Women's League VGC #19 [T2 Shiny Houndoom/Porygon]",
@@ -198,51 +195,6 @@
    "time": "21:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ada936497e21d82e5c6cd37/details"
-  },
-  {
-   "name": "Semanal VGC Roaring - Premiação no Pix!",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "18:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6a4e704165724db9ded40411/details"
-  },
-  {
-   "name": "VGC Trainer School; champions M/C #7",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "17:00",
-   "players": 31,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb64c80c463890f304b288/details"
-  },
-  {
-   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR #4",
-   "org": "biffpipp's Battle Frontier",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "22:00",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
   },
   {
    "name": "Trinity Championship 18 (Double Format)",
@@ -286,7 +238,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 29,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
   },
   {
@@ -301,8 +253,23 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 41,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
+  },
+  {
+   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
+   "org": "LEPE Tours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "17:30",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
@@ -316,7 +283,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -331,7 +298,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
@@ -346,7 +313,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
@@ -361,23 +328,8 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
-  },
-  {
-   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
    "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
+   "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
@@ -391,8 +343,23 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
+  },
+  {
+   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -421,7 +388,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -436,7 +403,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 79,
+   "players": 81,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -466,7 +433,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -481,7 +448,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -526,7 +493,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -631,7 +598,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -646,7 +613,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -661,7 +628,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
@@ -676,7 +643,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -722,7 +689,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "02:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6adf724122fd412b92a4d3c6/details"
   },
   {
@@ -752,7 +719,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "13:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -887,7 +854,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -1117,6 +1084,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details"
   },
   {
+   "name": "Mamoswine Online 11-27-26",
+   "org": "MinnDak VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "01:45",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af0fb6ec931f53978d96c16/details"
+  },
+  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -1342,7 +1324,7 @@
    "bo": null,
    "date": "2026-12-14",
    "time": "18:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae3326080a8f79408d20bc2/details"
   },
   {
