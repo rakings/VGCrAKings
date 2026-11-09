@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T06:27:19+00:00",
+ "updated": "2026-11-09T08:19:48+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -153,7 +153,7 @@
   },
   {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
-   "org": "Sketch Academy",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -163,8 +163,38 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "03:00",
-   "players": 52,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6adef61b91617679e84a1190/details"
+  },
+  {
+   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
+   "org": "LEPE Tours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "17:30",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
+  },
+  {
+   "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-09",
+   "time": "20:00",
+   "players": 26,
+   "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
    "name": "Synergy Saga - S3",
@@ -180,36 +210,6 @@
    "time": "07:30",
    "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
-  },
-  {
-   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
-   "org": "LEPE Tours",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "17:30",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
-  },
-  {
-   "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
-   "org": "The Amyverse",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "Cash",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "20:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -257,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
-   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
-  },
-  {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
    "org": "Bean Battles",
    "mode": "online",
@@ -285,6 +270,21 @@
    "time": "19:00",
    "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
+  },
+  {
+   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 83,
+   "players": 86,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -523,7 +523,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -538,7 +538,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 22,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -629,7 +629,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 49,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -659,8 +659,23 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+  },
+  {
+   "name": "Women",
+   "org": "The Underground",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "21:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
    "name": "VGC Santa Fe - Torneo de Halloween",
@@ -676,6 +691,21 @@
    "time": "18:10",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
+  },
+  {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "Sketch Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-16",
+   "time": "03:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -915,7 +945,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
@@ -962,6 +992,21 @@
    "time": "21:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae78c97ae67092a40740d47/details"
+  },
+  {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "Sketch Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-23",
+   "time": "03:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
@@ -1091,6 +1136,21 @@
    "time": "18:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
+  },
+  {
+   "name": "Sketch Academy Sunday Regulation M-C Tournament",
+   "org": "Sketch Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-30",
+   "time": "03:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af17730c931f53978d9707c/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
