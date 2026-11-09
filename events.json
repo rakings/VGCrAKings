@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T03:54:38+00:00",
+ "updated": "2026-11-09T06:27:19+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,21 +122,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "05:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6aee48a2c931f53978d950e1/details"
-  },
-  {
    "name": "Pokemon Dominicana - Champions League #18",
    "org": "Smilegazer League",
    "mode": "online",
@@ -167,66 +152,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
-   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR #4",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "22:00",
-   "players": 29,
-   "url": "https://play.limitlesstcg.com/tournament/6ac3788b245696afb35169be/details"
-  },
-  {
-   "name": "Women's League VGC #19 [T2 Shiny Houndoom/Porygon]",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "21:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6ada936497e21d82e5c6cd37/details"
-  },
-  {
-   "name": "Trinity Championship 18 (Double Format)",
-   "org": "Trinity Portal",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "10:00",
-   "players": 42,
-   "url": "https://play.limitlesstcg.com/tournament/6ae35ea122fd412b92a4f526/details"
-  },
-  {
-   "name": "Women",
-   "org": "The Underground",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-08",
-   "time": "21:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
-  },
-  {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
    "org": "Sketch Academy",
    "mode": "online",
@@ -253,7 +178,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "07:30",
-   "players": 43,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
@@ -268,7 +193,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "17:30",
-   "players": 4,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
   },
   {
@@ -283,7 +208,7 @@
    "bo": null,
    "date": "2026-11-09",
    "time": "20:00",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
   },
   {
@@ -313,7 +238,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
@@ -403,7 +328,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 82,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -448,7 +373,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 17,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -508,7 +433,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -568,7 +493,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -598,7 +523,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -658,7 +583,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -704,7 +629,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -721,6 +646,21 @@
    "time": "13:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
+  },
+  {
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "VGC Santa Fe - Torneo de Halloween",
@@ -945,7 +885,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
