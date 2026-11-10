@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T01:39:59+00:00",
+ "updated": "2026-11-10T03:48:16+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -107,19 +107,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
-   "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
-   "org": "The Amyverse",
+   "name": "RookideeVGC Qualifier| Prize Shiny Raichu",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
-   "cash": true,
-   "prize": "Cash",
+   "cash": null,
+   "prize": "",
    "reg": null,
    "bo": null,
    "date": "2026-11-09",
-   "time": "20:00",
-   "players": 56,
-   "url": "https://play.limitlesstcg.com/tournament/6ae8e279e94eae0f94745a97/details"
+   "time": "23:00",
+   "players": 38,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
   },
   {
    "name": "Synergy Saga - S3",
@@ -138,7 +138,7 @@
   },
   {
    "name": "HOTG Online Series - Champions - S104",
-   "org": "Competitive Corner RD",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -148,7 +148,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "01:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ae7eec2ae67092a40741012/details"
   },
   {
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
-   "org": "RookideeVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "00:00",
-   "players": 35,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -208,7 +193,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "05:00",
-   "players": 12,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6af24fc1e99f3235a75e53e7/details"
   },
   {
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 13,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 113,
+   "players": 118,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -388,7 +373,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 26,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -433,7 +418,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 1,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
@@ -478,7 +463,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -658,7 +643,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -741,21 +726,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
-   "name": "✨👑 King",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
-  },
-  {
    "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -769,6 +739,21 @@
    "time": "15:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+  },
+  {
+   "name": "✨👑 King",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
    "name": "Women",
@@ -814,6 +799,21 @@
    "time": "03:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
+  },
+  {
+   "name": "Amyverse VGC Champions Arena #19 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-16",
+   "time": "20:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
