@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T22:49:57+00:00",
+ "updated": "2026-11-10T01:39:59+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -92,51 +92,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab32696f127b1b52c2801da/details"
   },
   {
-   "name": "Shuckle Smack Down! #3",
-   "org": "MolluskVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-04",
-   "time": "19:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6aadd7aaf127b1b52c27c6f9/details"
-  },
-  {
-   "name": "BPL SPOOKY CUP",
-   "org": "Goblin Lair Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-10-31",
-   "time": "00:20",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6ae210b380a8f79408d20159/details"
-  },
-  {
-   "name": "Pokemon Dominicana - Champions League #18",
-   "org": "Smilegazer League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-07",
-   "time": "01:30",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6aed331ae94eae0f94748755/details"
-  },
-  {
    "name": "Champion",
    "org": "Hindsightvgc",
    "mode": "online",
@@ -150,21 +105,6 @@
    "time": "17:00",
    "players": null,
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
-  },
-  {
-   "name": "Champions Tour LEPE #10 (Shiny Incineroar for 1st)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "17:40",
-   "players": 39,
-   "url": "https://play.limitlesstcg.com/tournament/6af10d4ac931f53978d96c99/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #18 ❤️ Cash Prize!",
@@ -197,8 +137,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
-   "org": "RookideeVGC",
+   "name": "HOTG Online Series - Champions - S104",
+   "org": "Competitive Corner RD",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -207,24 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-10",
-   "time": "00:00",
-   "players": 35,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
-  },
-  {
-   "name": "Intimidators Champions Challenge #54 REG M-C",
-   "org": "INTIMIDATORS VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "00:00",
-   "players": 48,
-   "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
+   "time": "01:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6ae7eec2ae67092a40741012/details"
   },
   {
    "name": "The Drywalls Series #26",
@@ -242,8 +167,23 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
   },
   {
-   "name": "HOTG Online Series - Champions - S104",
-   "org": "Competitive Corner RD",
+   "name": "Intimidators Champions Challenge #54 REG M-C",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "00:00",
+   "players": 48,
+   "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "org": "RookideeVGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -252,9 +192,24 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-10",
-   "time": "01:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ae7eec2ae67092a40741012/details"
+   "time": "00:00",
+   "players": 35,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "05:00",
+   "players": 12,
+   "url": "https://play.limitlesstcg.com/tournament/6af24fc1e99f3235a75e53e7/details"
   },
   {
    "name": "Shaymin Fight Club (PCIL S3 Practice)",
@@ -287,21 +242,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
   },
   {
-   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
-  },
-  {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
    "org": "Bean Battles",
    "mode": "online",
@@ -313,8 +253,23 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "19:00",
-   "players": 11,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
+  },
+  {
+   "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
+   "org": "Scotland VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -343,7 +298,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 35,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -358,8 +313,23 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 109,
+   "players": 113,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
+  },
+  {
+   "name": "HeroicTitan’s VGC Battle Arena",
+   "org": "The PokeKitchen Battle Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-11",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af25f07c931f53978d97b8e/details"
   },
   {
    "name": "ValkrixVGC Rising Champions League #05",
@@ -373,7 +343,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "13:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af16acee99f3235a75e497b/details"
   },
   {
@@ -433,7 +403,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aed3a65e94eae0f947487ac/details"
   },
   {
@@ -450,6 +420,21 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
+  },
+  {
+   "name": "Off Meta Fight Club #10",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "02:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
    "name": "Tenki",
@@ -538,7 +523,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "13:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af16ae2e99f3235a75e497c/details"
   },
   {
@@ -598,7 +583,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -643,7 +628,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
@@ -658,7 +643,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -756,21 +741,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
-   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
-  },
-  {
    "name": "✨👑 King",
    "org": "Astral Community",
    "mode": "online",
@@ -784,6 +754,21 @@
    "time": "15:00",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
+  },
+  {
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "Women",
@@ -1567,7 +1552,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "16:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aec7b2b0c463890f304bd09/details"
   },
   {
@@ -1735,7 +1720,18 @@
    "time": null,
    "where": "Atlanta, Stati Uniti",
    "url": "https://serebii.net/playpokemon/2027/atlantaregionalchampionships.shtml",
-   "opensAt": "2026-11-12T00:00:00Z"
+   "opensAt": "2026-11-12T00:00:00Z",
+   "signup": "https://rk9.gg/tournament/AT002-mu2HGLWrnjfnBF",
+   "signupLabel": "Iscriviti su RK9",
+   "signupAuto": true,
+   "regClose": "2027-01-13",
+   "price": "Junior $40, Senior $40, Master $80",
+   "regCloseAt": "2027-01-14T04:59:00Z",
+   "tz": "America/New_York",
+   "listAt": "2027-01-16T12:30:00Z",
+   "startAt": "2027-01-16T13:30:00Z",
+   "juniorAt": "2027-01-16T14:00:00Z",
+   "seniorAt": "2027-01-16T14:00:00Z"
   },
   {
    "name": "Sydney Regional Championships",
