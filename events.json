@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T03:48:16+00:00",
+ "updated": "2026-11-10T06:10:38+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -107,21 +107,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny Raichu",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "23:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d2a245696afb35158ff/details"
-  },
-  {
    "name": "Synergy Saga - S3",
    "org": "BoTS PTCG Pocket",
    "mode": "online",
@@ -153,7 +138,7 @@
   },
   {
    "name": "The Drywalls Series #26",
-   "org": "The Drywalls Series",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -163,23 +148,8 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "00:30",
-   "players": 21,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6aef2fafe99f3235a75e2ee9/details"
-  },
-  {
-   "name": "Intimidators Champions Challenge #54 REG M-C",
-   "org": "INTIMIDATORS VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "00:00",
-   "players": 48,
-   "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
   },
   {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
@@ -197,6 +167,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af24fc1e99f3235a75e53e7/details"
   },
   {
+   "name": "Intimidators Champions Challenge #54 REG M-C",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "00:00",
+   "players": 48,
+   "url": "https://play.limitlesstcg.com/tournament/6af1ae4fc931f53978d97150/details"
+  },
+  {
    "name": "Shaymin Fight Club (PCIL S3 Practice)",
    "org": "Mahir PokéVgc",
    "mode": "online",
@@ -208,7 +193,7 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "15:30",
-   "players": 20,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6af1d296c931f53978d9721c/details"
   },
   {
@@ -223,23 +208,8 @@
    "bo": null,
    "date": "2026-11-10",
    "time": "17:30",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
-  },
-  {
-   "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
-   "org": "Bean Battles",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "19:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
    "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
@@ -255,6 +225,21 @@
    "time": "19:00",
    "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
+  },
+  {
+   "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
+   "org": "Bean Battles",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "19:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:30",
-   "players": 36,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6aee2dd4e99f3235a75e25d1/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 118,
+   "players": 121,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "13:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af16acee99f3235a75e497b/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "15:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -418,8 +403,23 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
+  },
+  {
+   "name": "TAYO",
+   "org": "WST GAMES",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "03:30",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af2965ec931f53978d97fc8/details"
   },
   {
    "name": "Tenki",
@@ -538,7 +538,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -568,7 +568,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
