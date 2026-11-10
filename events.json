@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10T18:02:46+00:00",
+ "updated": "2026-11-10T19:17:28+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "Shaymin Fight Club (PCIL S3 Practice)",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "15:30",
+   "players": 30,
+   "url": "https://play.limitlesstcg.com/tournament/6af1d296c931f53978d9721c/details"
+  },
+  {
    "name": "Tartan Takedown #45 - [CHAMPIONS REG M-C!]",
    "org": "Scotland VGC",
    "mode": "online",
@@ -135,36 +150,6 @@
    "time": "19:00",
    "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6af0761ae99f3235a75e40f0/details"
-  },
-  {
-   "name": "VGC UmbreNews 10.11.2026 #39 - Champion",
-   "org": "UmbreNews",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "17:30",
-   "players": 40,
-   "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
-  },
-  {
-   "name": "Shaymin Fight Club (PCIL S3 Practice)",
-   "org": "Mahir PokéVgc",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-10",
-   "time": "15:30",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6af1d296c931f53978d9721c/details"
   },
   {
    "name": "Beaniest Battle of the Beans#3 M-C VGC Shiny Prize",
@@ -182,6 +167,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aea07fe0c463890f304a626/details"
   },
   {
+   "name": "VGC UmbreNews 10.11.2026 #39 - Champion",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-10",
+   "time": "17:30",
+   "players": 40,
+   "url": "https://play.limitlesstcg.com/tournament/6aead9f60c463890f304afdd/details"
+  },
+  {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "00:00",
-   "players": 0,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aee3554e99f3235a75e268c/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "01:30",
-   "players": 147,
+   "players": 153,
    "url": "https://play.limitlesstcg.com/tournament/6ae18daf80a8f79408d1ff13/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "02:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af25f07c931f53978d97b8e/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "15:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 39,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -343,7 +343,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -405,6 +405,21 @@
    "time": "23:00",
    "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
+  },
+  {
+   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟔",
+   "org": "IRGamers",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "00:15",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
   },
   {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
@@ -463,7 +478,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "13:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af16ae2e99f3235a75e497c/details"
   },
   {
@@ -553,7 +568,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af3406200d53a11f5b90445/details"
   },
   {
