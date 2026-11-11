@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T15:10:44+00:00",
+ "updated": "2026-11-11T16:27:04+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -178,7 +178,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 77,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 63,
+   "players": 68,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 33,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -332,6 +332,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
   },
   {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
+  },
+  {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -345,21 +360,6 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
    "name": "🏰FORT TOURNAMENTS OFF META 🏰 $20+ SHINY",
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 14,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af27619c931f53978d97e00/details"
   },
   {
@@ -493,7 +493,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:30",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af3406200d53a11f5b90445/details"
   },
   {
@@ -510,6 +510,21 @@
    "time": "02:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6af34ba4dcbca32da6c4d6aa/details"
+  },
+  {
+   "name": "5 $ to 1st｜Pokexiaotian",
+   "org": "HaoQi cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "5 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "03:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af49131dcbca32da6c4e596/details"
   },
   {
    "name": "[Shiny Salamence to 1st] The Grim Challenge #13",
@@ -538,7 +553,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 37,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -583,7 +598,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
@@ -662,7 +677,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 64,
+   "players": 63,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -724,6 +739,21 @@
    "time": "15:00",
    "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
+  },
+  {
+   "name": "Semanal VGC Roaring - Premiação no Pix!",
+   "org": "SongFuê",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -966,21 +996,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
-   "name": "VGC Gemeinde Showdown #14",
-   "org": "VGC Gemeinde",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "19:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
-  },
-  {
    "name": "🌟 Movember Cup 🌟",
    "org": "Grombrooklyn Gaming",
    "mode": "online",
@@ -994,6 +1009,21 @@
    "time": "19:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
+  },
+  {
+   "name": "VGC Gemeinde Showdown #14",
+   "org": "VGC Gemeinde",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "19:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
    "name": "Latin America International Championships",
@@ -1627,7 +1657,7 @@
    "bo": null,
    "date": "2026-12-26",
    "time": "18:00",
-   "players": 144,
+   "players": 143,
    "url": "https://play.limitlesstcg.com/tournament/6a7d22852b308b6067b52844/details"
   },
   {
