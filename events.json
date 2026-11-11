@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T11:13:54+00:00",
+ "updated": "2026-11-11T12:21:02+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,8 +122,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "",
+   "name": "ValkrixVGC Rising Champions League #05",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -132,9 +132,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-11",
-   "time": "05:00",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6af38f66dcbca32da6c4db61/details"
+   "time": "13:00",
+   "players": 33,
+   "url": "https://play.limitlesstcg.com/tournament/6af16acee99f3235a75e497b/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
@@ -152,21 +152,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee3554e99f3235a75e268c/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #05",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-11",
-   "time": "13:00",
-   "players": 33,
-   "url": "https://play.limitlesstcg.com/tournament/6af16acee99f3235a75e497b/details"
-  },
-  {
    "name": "Pado",
    "org": "PadoVGC",
    "mode": "online",
@@ -178,7 +163,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "15:00",
-   "players": 19,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
   },
   {
@@ -208,7 +193,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 53,
+   "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -223,7 +208,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:30",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aed3a65e94eae0f947487ac/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "03:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af2965ec931f53978d97fc8/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -557,21 +542,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
-   "name": "M-C CHAMPIONS Showdown #2",
-   "org": "Tropical Hour Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "18:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
-  },
-  {
    "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
    "org": "PokeInstinct",
    "mode": "online",
@@ -585,6 +555,21 @@
    "time": "18:00",
    "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
+  },
+  {
+   "name": "M-C CHAMPIONS Showdown #2",
+   "org": "Tropical Hour Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
    "name": "Scrafty Cup #2",
@@ -692,7 +677,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "14:30",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
