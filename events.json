@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T14:01:56+00:00",
+ "updated": "2026-11-11T15:10:44+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "Pado",
+   "org": "PadoVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-11",
+   "time": "15:00",
+   "players": 37,
+   "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
+  },
+  {
    "name": "ValkrixVGC Rising Champions League #05",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -152,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee3554e99f3235a75e268c/details"
   },
   {
-   "name": "Pado",
-   "org": "PadoVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-11",
-   "time": "15:00",
-   "players": 37,
-   "url": "https://play.limitlesstcg.com/tournament/6aefb1e6e99f3235a75e3a90/details"
-  },
-  {
    "name": "Alpensee Tour (Reg M-C) #83",
    "org": "Alpensee eSports e.V.",
    "mode": "online",
@@ -178,7 +178,7 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 66,
+   "players": 77,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 60,
+   "players": 63,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "01:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "02:00",
-   "players": 22,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
@@ -253,8 +253,23 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "03:30",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af2965ec931f53978d97fc8/details"
+  },
+  {
+   "name": "Hidden Power Hour #1 – Weather Wars",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "11:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af47c32dcbca32da6c4e3cf/details"
   },
   {
    "name": "Tenki",
@@ -298,7 +313,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 34,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
@@ -358,7 +373,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -433,7 +448,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -523,7 +538,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -583,7 +598,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 16,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -662,7 +677,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "13:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
