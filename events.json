@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T18:10:57+00:00",
+ "updated": "2026-11-11T19:21:37+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "00:00",
-   "players": 79,
+   "players": 81,
    "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "03:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af2965ec931f53978d97fc8/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "05:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af4a97adcbca32da6c4e679/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 33,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -388,7 +388,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -598,7 +598,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
@@ -692,7 +692,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 63,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -842,7 +842,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "03:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
   },
   {
@@ -872,7 +872,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
@@ -934,6 +934,21 @@
    "time": "13:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
+  },
+  {
+   "name": "GLORY OF CHAMPIONS #3 - REGULATION M-C",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
    "name": "Alpensee Tour (Reg M-C) #84",
@@ -1158,7 +1173,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
