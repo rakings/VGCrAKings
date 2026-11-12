@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T22:48:11+00:00",
+ "updated": "2026-11-12T23:46:39+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "London Corviknights VGC Weekly Tour 21!",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "19:30",
+   "players": 36,
+   "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
+  },
+  {
    "name": "MetaVGC Arena #5 | Reg M-C | $10 Prize + Shinies",
    "org": "Oak Stadium",
    "mode": "online",
@@ -135,21 +150,6 @@
    "time": "23:00",
    "players": 96,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
-  },
-  {
-   "name": "London Corviknights VGC Weekly Tour 21!",
-   "org": "London Corviknights VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "19:30",
-   "players": 29,
-   "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
    "name": "Tenki",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 38,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 13,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "05:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6af63915dcbca32da6c4fc98/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 35,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "21:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
   },
   {
@@ -328,7 +328,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "21:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af4f02500d53a11f5b918c8/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 51,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -448,7 +448,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 42,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -478,7 +478,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -636,21 +636,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
-   "name": "🆓 Domino Arena VGC #1 [BETA]",
-   "org": "Domino Store",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
-  },
-  {
    "name": "✨👑 King",
    "org": "Astral Community",
    "mode": "online",
@@ -666,8 +651,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
-   "name": "Semanal VGC Roaring - Premiação no Pix!",
-   "org": "SongFuê",
+   "name": "🆓 Domino Arena VGC #1 [BETA]",
+   "org": "Domino Store",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -676,9 +661,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-15",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -694,6 +679,21 @@
    "time": "17:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
+  },
+  {
+   "name": "Semanal VGC Roaring - Premiação no Pix!",
+   "org": "SongFuê",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
   },
   {
    "name": "Women",
@@ -842,7 +842,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -906,21 +906,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
   },
   {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#83",
-   "org": "HM4coach & The Boys",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "00:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
-  },
-  {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
    "org": "HM4coach & The Boys",
    "mode": "online",
@@ -934,6 +919,21 @@
    "time": "00:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#83",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "00:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
    "name": "London Corviknights VGC Weekly Tour 22!",
