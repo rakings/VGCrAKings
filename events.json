@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T11:19:37+00:00",
+ "updated": "2026-11-12T12:18:26+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,21 +122,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "05:00",
-   "players": 19,
-   "url": "https://play.limitlesstcg.com/tournament/6af4a97adcbca32da6c4e679/details"
-  },
-  {
    "name": "Hidden Power Hour #1 – Weather Wars",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -178,7 +163,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 19,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -193,7 +178,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 30,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -208,7 +193,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -313,7 +298,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -478,7 +463,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -1642,7 +1627,7 @@
    "bo": null,
    "date": "2026-12-26",
    "time": "18:00",
-   "players": 146,
+   "players": 147,
    "url": "https://play.limitlesstcg.com/tournament/6a7d22852b308b6067b52844/details"
   },
   {
