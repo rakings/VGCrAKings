@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T06:21:00+00:00",
+ "updated": "2026-11-12T08:15:39+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,36 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
-   "name": "Hatterene Series Weekly #11 2027 - 7PM EST - M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "01:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
-  },
-  {
-   "name": "Copa Ranciarda III",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "00:30",
-   "players": 14,
-   "url": "https://play.limitlesstcg.com/tournament/6aed3a65e94eae0f947487ac/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "11:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af47c32dcbca32da6c4e3cf/details"
   },
   {
@@ -253,7 +223,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 15,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -493,7 +463,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:30",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af3406200d53a11f5b90445/details"
   },
   {
@@ -677,7 +647,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 64,
+   "players": 65,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -752,7 +722,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
@@ -962,7 +932,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -1173,7 +1143,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
