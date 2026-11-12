@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T21:56:43+00:00",
+ "updated": "2026-11-12T22:26:17+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "MetaVGC Arena #5 | Reg M-C | $10 Prize + Shinies",
+   "org": "Oak Stadium",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$1",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "23:00",
+   "players": 96,
+   "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 21!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -152,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
-   "name": "MetaVGC Arena #5 | Reg M-C | $10 Prize + Shinies",
-   "org": "Oak Stadium",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$1",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "23:00",
-   "players": 96,
-   "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
-  },
-  {
    "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟔",
    "org": "IRGamers",
    "mode": "online",
@@ -178,23 +178,8 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "00:15",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
-  },
-  {
-   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
    "name": "Talon",
@@ -208,8 +193,38 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 33,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
+  },
+  {
+   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "01:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "05:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6af63915dcbca32da6c4fc98/details"
   },
   {
    "name": "🏰FORT TOURNAMENTS OFF META 🏰 $20+ SHINY",
@@ -268,7 +283,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -287,6 +302,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
+   "name": "Meeklosh",
+   "org": "meeklosh",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "21:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
+  },
+  {
    "name": "FrikioTorneo de Pokémon VGC #1",
    "org": "Frikioteca",
    "mode": "online",
@@ -302,21 +332,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af4f02500d53a11f5b918c8/details"
   },
   {
-   "name": "Meeklosh",
-   "org": "meeklosh",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "21:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
-  },
-  {
    "name": "Floette Champions Cheese #02",
    "org": "Floette Supremacy",
    "mode": "online",
@@ -328,7 +343,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6af27619c931f53978d97e00/details"
   },
   {
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 49,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -463,7 +478,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -606,6 +621,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+  },
+  {
    "name": "🆓 Domino Arena VGC #1 [BETA]",
    "org": "Domino Store",
    "mode": "online",
@@ -634,21 +664,6 @@
    "time": "15:00",
    "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
-  },
-  {
-   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "Semanal VGC Roaring - Premiação no Pix!",
@@ -816,6 +831,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af0fa25e99f3235a75e45c7/details"
   },
   {
+   "name": "Mid-Week Smoke #13",
+   "org": "Play N' Connect",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
+  },
+  {
    "name": "ValkrixVGC Rising Champions League #07",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -876,21 +906,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
   },
   {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
-   "org": "HM4coach & The Boys",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "00:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
-  },
-  {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#83",
    "org": "HM4coach & The Boys",
    "mode": "online",
@@ -904,6 +919,21 @@
    "time": "00:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "00:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
   },
   {
    "name": "London Corviknights VGC Weekly Tour 22!",
