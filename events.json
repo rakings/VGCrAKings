@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T22:55:33+00:00",
+ "updated": "2026-11-12T01:50:07+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -123,7 +123,7 @@
   },
   {
    "name": "Alpensee Tour (Reg M-C) #83",
-   "org": "Alpensee eSports e.V.",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -133,42 +133,12 @@
    "bo": null,
    "date": "2026-11-11",
    "time": "19:00",
-   "players": 108,
+   "players": 109,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f0ae8a8383117e3f0c23/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #05",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-11",
-   "time": "13:00",
-   "players": 33,
-   "url": "https://play.limitlesstcg.com/tournament/6af16acee99f3235a75e497b/details"
-  },
-  {
-   "name": "🇧🇷 Hit Nexus #3 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-11",
-   "time": "00:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6aee3554e99f3235a75e268c/details"
-  },
-  {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#82",
-   "org": "HM4coach & The Boys",
+   "name": "Decode Store weekly #1 Edition",
+   "org": "Pokegiohorganization",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -177,39 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-12",
-   "time": "00:00",
-   "players": 124,
-   "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
-  },
-  {
-   "name": "Copa Ranciarda III",
-   "org": "MI.Team",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "00:30",
-   "players": 15,
-   "url": "https://play.limitlesstcg.com/tournament/6aed3a65e94eae0f947487ac/details"
-  },
-  {
-   "name": "Hatterene Series Weekly #11 2027 - 7PM EST - M-C",
-   "org": "Hatterene Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-12",
-   "time": "01:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
+   "time": "02:00",
+   "players": null,
+   "url": "https://play.limitlesstcg.com/tournament/6af50cd400d53a11f5b91a22/details"
   },
   {
    "name": "Off Meta Fight Club #10",
@@ -227,6 +167,51 @@
    "url": "https://play.limitlesstcg.com/tournament/6af26827e99f3235a75e55ea/details"
   },
   {
+   "name": "Hatterene Series Weekly #11 2027 - 7PM EST - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "01:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ae623950d00101b48bf36d1/details"
+  },
+  {
+   "name": "Copa Ranciarda III",
+   "org": "MI.Team",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "00:30",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6aed3a65e94eae0f947487ac/details"
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#82",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-12",
+   "time": "00:00",
+   "players": 124,
+   "url": "https://play.limitlesstcg.com/tournament/6ae69d2eae67092a40740695/details"
+  },
+  {
    "name": "TAYO",
    "org": "WST GAMES",
    "mode": "online",
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "03:30",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af2965ec931f53978d97fc8/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "05:00",
-   "players": 5,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6af4a97adcbca32da6c4e679/details"
   },
   {
@@ -268,7 +253,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "11:30",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af47c32dcbca32da6c4e3cf/details"
   },
   {
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "17:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "19:30",
-   "players": 25,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad73e36115c12b73a5a83ab/details"
   },
   {
@@ -313,7 +298,7 @@
    "bo": null,
    "date": "2026-11-12",
    "time": "23:00",
-   "players": 36,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6af1b942e99f3235a75e4b36/details"
   },
   {
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "00:15",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "01:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "11:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
@@ -418,7 +403,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 28,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -463,7 +448,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "21:00",
-   "players": 1,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6af4f02500d53a11f5b918c8/details"
   },
   {
@@ -478,7 +463,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 38,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -643,7 +628,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -752,7 +737,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
@@ -771,21 +756,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
-   "name": "VGCA PRESENTS: HORSEPLAY",
-   "org": "VGC Academy",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "17:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
-  },
-  {
    "name": "Semanal VGC Roaring - Premiação no Pix!",
    "org": "SongFuê",
    "mode": "online",
@@ -799,6 +769,21 @@
    "time": "17:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
+  },
+  {
+   "name": "VGCA PRESENTS: HORSEPLAY",
+   "org": "VGC Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
    "name": "Women",
@@ -887,7 +872,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
@@ -1056,21 +1041,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
-   "name": "🌟 Movember Cup 🌟",
-   "org": "Grombrooklyn Gaming",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "19:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
-  },
-  {
    "name": "VGC Gemeinde Showdown #14",
    "org": "VGC Gemeinde",
    "mode": "online",
@@ -1084,6 +1054,21 @@
    "time": "19:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
+  },
+  {
+   "name": "🌟 Movember Cup 🌟",
+   "org": "Grombrooklyn Gaming",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
   },
   {
    "name": "Latin America International Championships",
@@ -1407,7 +1392,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
@@ -1687,7 +1672,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af4db92dcbca32da6c4ea4c/details"
   },
   {
