@@ -1,0 +1,36 @@
+name: Rimuovi annuncio partner
+# Lo lancia SOLO il Worker quando Andrea preme «Cancella» nella sua pagina admin privata. NON serve lanciarlo a mano.
+# Toglie dalla bacheca un annuncio di Francesco Pardini (con l'immagine). I tuoi annunci non si toccano.
+on:
+  workflow_dispatch:
+    inputs:
+      id: { description: "Id dell'annuncio del partner", required: true, type: string }
+permissions:
+  contents: write
+concurrency:
+  group: avviso-partner
+  cancel-in-progress: false
+jobs:
+  rimuovi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u rimuovi_annuncio.py
+        env:
+          AR_ID: ${{ inputs.id }}
+      - name: Salva su GitHub
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A annunci.json img/annunci
+          if ! git diff --staged --quiet; then
+            git commit -m "Bacheca: tolto annuncio partner ${{ inputs.id }}"
+            ok=0
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+            [ "$ok" = 1 ] || { echo "Salvataggio non riuscito."; exit 1; }
+          fi

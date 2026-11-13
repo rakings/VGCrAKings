@@ -1,0 +1,37 @@
+name: Aggiorna like
+# Parte DA SOLO ogni ora (e al caricamento di questo file): copia i numeri dei «mi piace» della bacheca dal Worker in likes.json.
+on:
+  schedule:
+    - cron: "41 * * * *"
+  push:
+    branches: [main]
+    paths: [".github/workflows/aggiorna-like.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: aggiorna-like
+  cancel-in-progress: false
+jobs:
+  like:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u aggiorna_like.py
+        env:
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+      - name: Salva su GitHub (solo se cambiato)
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f likes.json ] && git add likes.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Bacheca: aggiornati i like"
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+          fi
