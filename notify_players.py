@@ -170,15 +170,52 @@ def _nz(s):
     return re.sub(r"[^a-z0-9]", "", "".join(c for c in t if not unicodedata.combining(c)).lower())
 
 
-def live_vincitori():
-    """Vincitori gia' avvisati dalla diretta: [(vincitore, citta, momento)]. Se il file non c'e' o non si legge: nessuno."""
-    out = []
+def _live_sent():
+    """Voci di notify_live_state.json: il file della repo e, se si legge, quello appena salvato online (un avviso partito pochi minuti fa)."""
+    voci = []
     try:
-        for x in (json.load(open(LIVE_STATE, encoding="utf-8")).get("sent") or []):
-            out.append((_nz(x.get("winner")), _nz(x.get("city")), datetime.strptime(str(x.get("t"))[:19], "%Y-%m-%dT%H:%M:%S")))
+        voci += [x for x in (json.load(open(LIVE_STATE, encoding="utf-8")).get("sent") or []) if isinstance(x, dict)]
     except Exception:
         pass
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    if repo:
+        try:
+            u = "https://raw.githubusercontent.com/%s/main/%s?t=%d" % (repo, LIVE_STATE, int(time.time()))
+            voci += [x for x in (json.loads(fetch_limited(u, total=15)).get("sent") or []) if isinstance(x, dict)]
+        except Exception:
+            pass
+    return voci
+
+
+def live_vincitori():
+    """Vincitori dei REGIONALI gia' avvisati dalla diretta: [(vincitore, citta, momento)]. Se il file non c'e' o non si legge: nessuno.
+    Le voci dei VR (tipo vr) non contano qui: un giocatore che vince un VR e poi un Regionale deve ricevere tutti e due gli avvisi."""
+    out = []
+    for x in _live_sent():
+        if x.get("tipo") == "vr":
+            continue
+        try:
+            out.append((_nz(x.get("winner")), _nz(x.get("city")), datetime.strptime(str(x.get("t"))[:19], "%Y-%m-%dT%H:%M:%S")))
+        except Exception:
+            pass
     return out
+
+
+def vr_gia_live(ev, pl, ora=None):
+    """True se il vincitore di questo VR e' gia' stato avvisato dalla diretta dei VR (notify_live.py, tipo vr) negli ultimi 10 giorni:
+    stesso torneo (stesso nome). Non si guarda il vincitore: chi vince due VR di fila deve ricevere tutti e due gli avvisi."""
+    ora = ora or datetime.now(timezone.utc).replace(tzinfo=None)
+    e = slug_nome(ev)
+    for x in _live_sent():
+        if x.get("tipo") != "vr":
+            continue
+        try:
+            t = datetime.strptime(str(x.get("t"))[:19], "%Y-%m-%dT%H:%M:%S")
+        except Exception:
+            continue
+        if ora - t <= timedelta(days=LIVE_GIORNI) and e and e == slug_nome(x.get("name")):
+            return True
+    return False
 
 
 def gia_avvisato_live(r, live, ora=None):
@@ -429,6 +466,9 @@ def main():
             art = vr_article(ev, link, data)
             if art:
                 vr_salva(art)  # l'articolo resta nella sezione Grandi tornei del sito
+            if vr_gia_live(ev, pl):   # gia' avvisato subito dalla diretta dei VR: resta solo l'articolo
+                log("notify_players: vincitore VR %s (%s) gia' avvisato dalla diretta: non lo rimando" % (pl, ev))
+                continue
             click = click_vr(ev)  # il tocco apre VGC Stats > VR sul tabellone TOP 8 di quel torneo (non porta fuori dal sito)
             ue.deliver("vrwin", "Vincitore Victory Road: %s" % pl, "\n".join([ev] + vr_top8(link, data)), click)
         for r in wins:
