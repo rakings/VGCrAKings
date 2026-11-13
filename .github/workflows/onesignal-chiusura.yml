@@ -1,0 +1,39 @@
+name: OneSignal - chiusura
+# Parte DA SOLO quando questo file viene caricato su GitHub (una volta sola). Rilanciarlo non fa danni: se non c'e' niente da togliere lo dice.
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/onesignal-chiusura.yml
+      - onesignal_chiusura.py
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: onesignal-chiusura
+  cancel-in-progress: false
+jobs:
+  chiusura:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Togli i vecchi iscritti OneSignal dall'archivio
+        run: python3 onesignal_chiusura.py
+        env:
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+      - name: Cancella le due copie vecchie di test-notifica.yml (usavano le chiavi OneSignal, non partivano mai)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          tolti=0
+          for f in test-notifica.yml .github/workflows/workflows/test-notifica.yml; do
+            if [ -f "$f" ]; then git rm -q "$f"; tolti=1; echo "cancellato: $f"; fi
+          done
+          if [ "$tolti" = 1 ]; then
+            git commit -q -m "Chiusura OneSignal: tolte le copie vecchie di test-notifica.yml"
+            for i in 1 2 3; do git pull -q --rebase && git push -q && break; sleep 5; done
+          else
+            echo "copie vecchie gia' cancellate"
+          fi
