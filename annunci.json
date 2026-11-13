@@ -1,6 +1,14 @@
 {
  "annunci": [
   {
+   "id": 1794592839,
+   "t": "ultima prova",
+   "d": "funziona",
+   "pub": "2026-11-13T18:00:49Z",
+   "partner": "pardini",
+   "img": "img/annunci/1794592839.jpg"
+  },
+  {
    "id": 1794591620,
    "t": "prova velocita tendina",
    "d": "i vocali si sentono veloci",
