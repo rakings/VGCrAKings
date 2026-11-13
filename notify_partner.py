@@ -6,6 +6,7 @@ Due fasi (vedi avviso-partner.yml):
   --bacheca : gli avvisi scritti escono anche in bacheca (annunci.json) con l'etichetta del partner, l'articolo e l'immagine
               facoltativa (scaricata dal Worker con il codice admin e salvata in img/annunci/<id>.jpg). Poi il flusso salva su GitHub.
   --invia   : la notifica, SOLO a chi ha attivo il canale del partner (facoltativa, non obbligatoria come gli annunci di Andrea).
+              Avvisi scritti: modo del canale in argomenti_modo.json (possono andare con gli argomenti); «live»: sempre invio diretto.
 Gli annunci del partner NON fanno partire la notifica obbligatoria a tutti (locali_notifica.py li salta) e sono al massimo
 PARTNER_MAX in bacheca: i piu' vecchi si tolgono da soli, con le loro immagini."""
 import base64, json, os, re, sys, urllib.request
@@ -135,7 +136,14 @@ def invia(e, attendi=online):
         print("Avviso partner: notifiche non configurate.")
         return 1
     print("Avviso partner (%s, canale %s): %s | %s | %s" % (d["partner"], d["canale"], d["titolo"], d["testo"], link))
-    ue._invia([d["canale"]], d["titolo"], d["testo"], link)
+    if d["bacheca"]:
+        # avvisi scritti: non urgenti, seguono argomenti_modo.json per il canale (old / both / new)
+        print("Avviso scritto: modo «%s» (argomenti_modo.json)" % ue.modo_canale(d["canale"]))
+        ue._invia([d["canale"]], d["titolo"], d["testo"], link)
+    else:
+        # «Sono in live»: urgente, SEMPRE invio diretto a ogni telefono, qualunque cosa dica argomenti_modo.json
+        print("Avviso live: invio diretto")
+        ue._via_archivio([d["canale"]], d["titolo"], d["testo"], link)
     print("Avviso partner inviato.")
     return 0
 
