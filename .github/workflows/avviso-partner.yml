@@ -1,27 +1,20 @@
 name: Avviso partner
 # Lo lancia SOLO il Worker vgc-subs quando il partner (Francesco Pardini) manda un avviso dalla sua pagina.
 # NON serve lanciarlo a mano. Il Worker ha gia' controllato codice, testi, link e limiti; notify_partner.py li ricontrolla.
+# Avvisi scritti: prima l'annuncio in bacheca (annunci.json + immagine), poi la notifica a chi ha il canale. «Live»: solo la notifica.
 on:
   workflow_dispatch:
     inputs:
-      partner:
-        description: "Partner (pardini)"
-        required: true
-        type: string
-      titolo:
-        description: "Titolo (max 60)"
-        required: true
-        type: string
-      testo:
-        description: "Testo (max 180)"
-        required: true
-        type: string
-      link:
-        description: "Link (solo Twitch, YouTube o sito)"
-        required: false
-        type: string
+      partner: { description: "Partner (pardini)", required: true, type: string }
+      id: { description: "Id dell'annuncio (lo da' il Worker)", required: false, type: string }
+      titolo: { description: "Titolo (max 60)", required: true, type: string }
+      testo: { description: "Testo della notifica (max 180)", required: true, type: string }
+      link: { description: "Link (solo Twitch, YouTube o sito)", required: false, type: string }
+      bacheca: { description: "1 = anche in bacheca", required: false, type: string }
+      articolo: { description: "Articolo per la bacheca (max 2000)", required: false, type: string }
+      img: { description: "1 = c'e' un'immagine nel Worker", required: false, type: string }
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: avviso-partner
   cancel-in-progress: false
@@ -29,15 +22,41 @@ jobs:
   avviso:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      AP_PARTNER: ${{ inputs.partner }}
+      AP_ID: ${{ inputs.id }}
+      AP_TITOLO: ${{ inputs.titolo }}
+      AP_TESTO: ${{ inputs.testo }}
+      AP_LINK: ${{ inputs.link }}
+      AP_BACHECA: ${{ inputs.bacheca }}
+      AP_ARTICOLO: ${{ inputs.articolo }}
+      AP_IMG: ${{ inputs.img }}
+      FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+      SUBS_URL: ${{ vars.SUBS_URL }}
+      SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+      SITE_URL: ${{ vars.SITE_URL }}
     steps:
       - uses: actions/checkout@v4
-      - run: python3 -u notify_partner.py
-        env:
-          AP_PARTNER: ${{ inputs.partner }}
-          AP_TITOLO: ${{ inputs.titolo }}
-          AP_TESTO: ${{ inputs.testo }}
-          AP_LINK: ${{ inputs.link }}
-          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
-          SUBS_URL: ${{ vars.SUBS_URL }}
-          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
-          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Annuncio in bacheca (solo avvisi scritti)
+        if: ${{ inputs.bacheca == '1' }}
+        run: python3 -u notify_partner.py --bacheca
+      - name: Salva la bacheca su GitHub
+        if: ${{ inputs.bacheca == '1' }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add annunci.json img/annunci 2>/dev/null || git add annunci.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Bacheca: annuncio di ${AP_PARTNER}"
+            ok=0
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+            [ "$ok" = 1 ] || { echo "Bacheca non salvata: la notifica parte comunque."; rm -f partner_state.json; }
+            sleep 40   # il sito (GitHub Pages) si aggiorna in meno di un minuto: cosi' il tocco sulla notifica trova gia' l'annuncio
+          fi
+      - name: Notifica a chi ha il canale del partner
+        if: ${{ always() }}
+        run: python3 -u notify_partner.py --invia
