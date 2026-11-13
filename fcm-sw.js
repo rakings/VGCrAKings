@@ -72,7 +72,12 @@ self.addEventListener("notificationclick", function (e) {
   var url = new URL(link, base).href;
   var inSite = url.indexOf(base.href) === 0;
   var go = { url: url, id: String(Date.now()) + Math.random() };
-  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+  // dove andare si scrive ANCHE in memoria (cache vgc-hist, nav.json): se il messaggio si perde (app ricaricata o «congelata»
+  // dal telefono mentre era bloccato), la pagina lo legge appena torna visibile e apre lo stesso la sezione giusta
+  var segna = inSite ? caches.open("vgc-hist").then(function (c) {
+    return c.put("nav.json", new Response(JSON.stringify({ url: url, id: go.id, t: Date.now() }), { headers: { "Content-Type": "application/json" } }));
+  }).catch(function () {}) : Promise.resolve();
+  e.waitUntil(Promise.all([segna, self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
     var c = null;
     if (inSite) for (var i = 0; i < list.length; i++) { if (list[i].url.indexOf(base.href) === 0 && "focus" in list[i]) { c = list[i]; break; } }
     if (!c) return self.clients.openWindow(url);          // sito chiuso o link esterno: si apre normalmente
@@ -83,5 +88,5 @@ self.addEventListener("notificationclick", function (e) {
     try { c.postMessage(dove); } catch (x) {}
     try { new BroadcastChannel("vgc-nav").postMessage(go); } catch (x) {}
     return c.focus().then(function (w) { try { (w || c).postMessage(dove); } catch (x) {} }, function () { try { c.postMessage(dove); } catch (x) {} });
-  }));
+  })]));
 });
