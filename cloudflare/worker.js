@@ -13,6 +13,10 @@
 //     Il Worker controlla codice, testi, link e limiti, poi avvia il flusso GitHub «Avviso partner» (segreto GH_AVVISI).
 //     Ogni avviso scritto esce anche in BACHECA (annunci.json, etichetta «Francesco Pardini», con articolo e immagine facoltativi):
 //     l'immagine passa dal KV (partner:img:<id>, scade in 2 giorni) e il flusso la copia nel sito (GET /partner/img/<id>, codice admin).
+//     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
+//   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
+//     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
+//   RICHIESTE LOCALI: GET /admin/richieste e POST /admin/richieste/etichetta (ADMIN_TOKEN), con GH_RICHIESTE e RICHIESTE_REPO.
 //     GET /partner/statistiche: gli stessi numeri della pagina admin (mai i token), aggiornabili ogni 10 minuti.
 //     Per spegnerlo: variabile PARDINI_ATTIVO = off (oppure cancella il segreto PARDINI_TOKEN).
 //   GET /stats?limit=1000[&cursor=..]  -> CONTEGGI di una pagina di iscritti (serve ADMIN_TOKEN), per la pagina admin.html.
@@ -98,7 +102,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-14b";
+const VERSIONE = "2026-11-14d";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -341,6 +345,84 @@ async function partnerRoute(req, env, url, out) {
   return out({ ok: true, quote: quote(st, ora) });
 }
 
+
+// ======================= LIKE IN BACHECA (database D1, collegamento LIKE) =======================
+// Un like per telefono (codice casuale del telefono, non il token delle notifiche). Il telefono manda i like a PACCHETTI.
+// I numeri NON si leggono da qui: un flusso GitHub li copia ogni ora in likes.json (il sito li legge da GitHub, zero carico).
+// Freno: oltre LIKE_MAX_GIORNO operazioni in un giorno si smette di contare fino al giorno dopo (il resto del Worker non risente).
+const LIKE_MAX_GIORNO = 50000, LIKE_MAX_PACCHETTO = 50;
+let LIKE_PRONTO = false;
+async function likeDb(env) {
+  if (!env.LIKE) return null;
+  if (!LIKE_PRONTO) {
+    await env.LIKE.batch([
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS l (ann INTEGER NOT NULL, dev TEXT NOT NULL, PRIMARY KEY (ann, dev))"),
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS g (d TEXT PRIMARY KEY, n INTEGER NOT NULL)"),
+    ]);
+    LIKE_PRONTO = true;
+  }
+  return env.LIKE;
+}
+async function likeRoute(req, env, url, out, admin) {
+  const db = await likeDb(env);
+  if (!db) return out({ error: "like non attivi (manca il database LIKE)" }, 503);
+  if (req.method === "GET" && url.pathname === "/like/conteggi") {
+    if (!admin()) return out({ error: "non autorizzato" }, 401);
+    const r = await db.prepare("SELECT ann, COUNT(*) AS c FROM l GROUP BY ann").all();
+    const c = {}; for (const x of r.results || []) c[String(x.ann)] = x.c;
+    return out({ ok: true, c });
+  }
+  if (req.method !== "POST" || url.pathname !== "/like") return out({ error: "richiesta non valida" }, 400);
+  const txt = await req.text();
+  if (txt.length > 5000) return out({ error: "troppo grande" }, 413);
+  let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
+  const dev = String((b && b.dev) || "");
+  if (!/^[a-z0-9]{12,40}$/.test(dev)) return out({ error: "telefono non valido" }, 400);
+  const ops = (Array.isArray(b.ops) ? b.ops : []).filter(o => Array.isArray(o) && /^\d{1,11}$/.test(String(o[0]))).slice(0, LIKE_MAX_PACCHETTO);
+  if (!ops.length) return out({ ok: true, n: 0 });
+  const oggi = new Date().toISOString().slice(0, 10);
+  const g = await db.prepare("SELECT n FROM g WHERE d = ?").bind(oggi).first();
+  if (g && g.n + ops.length > LIKE_MAX_GIORNO) return out({ ok: true, pausa: true });
+  const st = ops.map(o => o[1] ? db.prepare("INSERT OR IGNORE INTO l (ann, dev) VALUES (?, ?)").bind(Number(o[0]), dev)
+                               : db.prepare("DELETE FROM l WHERE ann = ? AND dev = ?").bind(Number(o[0]), dev));
+  st.push(db.prepare("INSERT INTO g (d, n) VALUES (?, ?) ON CONFLICT(d) DO UPDATE SET n = n + excluded.n").bind(oggi, ops.length));
+  await db.batch(st);
+  return out({ ok: true, n: ops.length });
+}
+
+// ======================= RICHIESTE DEI LOCALI (Issue della repo privata) nella pagina admin =======================
+// Segreto GH_RICHIESTE = chiave GitHub di Andrea con «Issues: lettura e scrittura» SOLO sulla repo privata; variabile RICHIESTE_REPO = "proprietario/nome".
+// La chiave e' di Andrea, quindi l'etichetta risulta messa da lui: il controllo della repo privata («solo il proprietario») la accetta.
+const ETICHETTE_OK = ["approvato", "rifiutato", "rimosso", "fissato"];
+async function ghRichieste(env, metodo, percorso, corpo) {
+  return fetch("https://api.github.com/repos/" + env.RICHIESTE_REPO + percorso, {
+    method: metodo,
+    headers: { "Authorization": "Bearer " + env.GH_RICHIESTE, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "vgc-subs-admin", "Content-Type": "application/json" },
+    body: corpo ? JSON.stringify(corpo) : undefined,
+  });
+}
+async function richiesteRoute(req, env, url, out, admin) {
+  if (!admin()) return out({ error: "non autorizzato" }, 401);
+  if (!env.GH_RICHIESTE || !/^[\w.-]+\/[\w.-]+$/.test(env.RICHIESTE_REPO || "")) return out({ error: "mancano GH_RICHIESTE o RICHIESTE_REPO su Cloudflare" }, 503);
+  if (req.method === "GET" && url.pathname === "/admin/richieste") {
+    const r = await ghRichieste(env, "GET", "/issues?state=open&per_page=60&sort=created&direction=desc");
+    if (!r.ok) return out({ error: "GitHub ha risposto " + r.status }, 502);
+    const l = (await r.json()).filter(i => !i.pull_request && i.user && i.user.login === "github-actions[bot]")
+      .map(i => ({ n: i.number, t: i.title, body: String(i.body || "").slice(0, 20000), labels: (i.labels || []).map(x => x.name), creata: i.created_at, url: i.html_url }));
+    return out({ ok: true, richieste: l });
+  }
+  if (req.method === "POST" && url.pathname === "/admin/richieste/etichetta") {
+    let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
+    const n = Number(b && b.n), lab = String((b && b.label) || ""), togli = !!(b && b.togli);
+    if (!Number.isInteger(n) || n < 1 || !ETICHETTE_OK.includes(lab) || (togli && lab !== "fissato")) return out({ error: "richiesta non valida" }, 400);
+    const r = togli ? await ghRichieste(env, "DELETE", "/issues/" + n + "/labels/" + lab)
+                    : await ghRichieste(env, "POST", "/issues/" + n + "/labels", { labels: [lab] });
+    return r.ok ? out({ ok: true }) : out({ error: "GitHub ha risposto " + r.status }, 502);
+  }
+  return out({ error: "richiesta non valida" }, 400);
+}
+
 export default {
   async fetch(req, env) {
     const cors = {
@@ -355,6 +437,27 @@ export default {
     const admin = () => env.ADMIN_TOKEN && req.headers.get("Authorization") === "Bearer " + env.ADMIN_TOKEN;
 
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
+    if (url.pathname === "/like" || url.pathname === "/like/conteggi") {
+      try { return await likeRoute(req, env, url, out, admin); } catch (e) { console.log("like:", String(e && e.message || e).slice(0, 120)); return out({ error: "like non disponibili" }, 503); }
+    }
+    if (url.pathname === "/admin/richieste" || url.pathname === "/admin/richieste/etichetta") return richiesteRoute(req, env, url, out, admin);
+    if (req.method === "POST" && url.pathname === "/admin/rimuovi-annuncio") {   // SOLO Andrea (ADMIN_TOKEN): toglie un annuncio di un partner dalla bacheca
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
+      const id = String((b && b.id) || "");
+      if (!/^\d{9,11}$/.test(id)) return out({ error: "id non valido" }, 400);
+      if (!env.GH_AVVISI) return out({ error: "manca il segreto GH_AVVISI" }, 503);
+      const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/rimuovi-annuncio-partner.yml/dispatches", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+                   "User-Agent": "vgc-subs-admin", "Content-Type": "application/json" },
+        body: JSON.stringify({ ref: "main", inputs: { id } }),
+      });
+      if (r.status !== 204) return out({ error: "GitHub ha risposto " + r.status }, 502);
+      await env.SUBS.delete("partner:ann:" + id);   // anche la copia veloce: il tocco su una vecchia notifica non lo mostra piu'
+      await env.SUBS.delete("partner:img:" + id);
+      return out({ ok: true });
+    }
     if (req.method === "GET" && /^\/partner\/annuncio\/\d{9,11}$/.test(url.pathname)) {   // PUBBLICO: un annuncio del partner appena mandato
       const id = url.pathname.split("/").pop();
       const a = await env.SUBS.get("partner:ann:" + id, "json");
