@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T20:57:52+00:00",
+ "updated": "2026-11-13T21:34:30+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -135,21 +135,6 @@
    "time": "20:00",
    "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af21a1cc931f53978d9768f/details"
-  },
-  {
-   "name": "Showdown Friday #1 (Prize: Ursaluna)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "14:00",
-   "players": 14,
-   "url": "https://play.limitlesstcg.com/tournament/6af04cf6e99f3235a75e3fea/details"
   },
   {
    "name": "⛩️Chadweezy95 $25 VGC Champions Tourny Ep 36!⛩️",
@@ -298,7 +283,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 97,
+   "players": 103,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "02:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af34ba4dcbca32da6c4d6aa/details"
   },
   {
@@ -388,7 +373,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -418,7 +403,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
   },
   {
@@ -872,7 +857,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
