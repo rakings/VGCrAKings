@@ -34,6 +34,7 @@
     return mods;
   }
 
+  var swChecked = false;
   function waitActive(r) {
     return new Promise(function (ok, ko) {
       if (r.active) return ok(r);
@@ -51,6 +52,9 @@
       app = app || x.a.initializeApp(CFG);
       msg = msg || x.m.getMessaging(app);
       return navigator.serviceWorker.register(B + "fcm-sw.js", { scope: B + "fcm-scope/" }).then(waitActive).then(function (r) {
+        // Il browser non ricontrolla da solo fcm-sw.js (nessuna pagina si apre nella sua cartella): lo chiediamo noi, una volta per apertura.
+        // Se c'e' una versione nuova si installa e prende il posto della vecchia; l'iscrizione alle notifiche resta la stessa.
+        if (!swChecked && r.update) { swChecked = true; try { r.update().catch(function () {}); } catch (e) {} }
         return x.m.getToken(msg, { vapidKey: VAPID, serviceWorkerRegistration: r });
       });
     }).then(function (t) {
