@@ -122,14 +122,13 @@ def online(base, id_, attesa=360, passo=15, ora=None, dormi=None):
         dormi(passo)
 
 
-def invia(e, attendi=online):
+def invia(e, attendi=None):
     import update_events as ue
     d = dati(e)
     link = d["link"]
     base = ue.sito_url().split("#")[0].rstrip("/")
     in_bacheca = d["bacheca"] and os.path.exists(STATO)
-    if in_bacheca and not link:
-        attendi(base, d["id"])   # il tocco apre l'annuncio: deve essere gia' pubblicato
+    # niente attesa: GitHub Pages puo' metterci minuti a pubblicare l'annuncio, ma l'app lo prende subito dal Worker (/partner/annuncio/<id>)
     if not link:
         link = base + ("/#annuncio-%s" % d["id"] if in_bacheca else "/")
     if not ue.push_on() or not ue.subs_on():
