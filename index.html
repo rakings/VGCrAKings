@@ -388,7 +388,7 @@ li.nw.frm>details{margin-top:0}
 </details>
 
 <p class="note">Tornei online da <a href="https://play.limitlesstcg.com/tournaments/?game=VGC" target="_blank" rel="noopener">Limitless</a> e <a href="https://victoryroad.pro/" target="_blank" rel="noopener">Victory Road</a>, aggiornati in automatico ogni 3 ore. Premio e regolamento sono ricavati dal titolo: se non c'è scritto, resta "non indicato". Data, ora e iscrizione sono sul link di ogni torneo. I Regionali vengono dai calendari ufficiali: controlla sempre date e iscrizioni sul link. Il banner "Eventi ufficiali" porta a Pokémon Event Locator but better, che mostra gli eventi dal vivo dal localizzatore ufficiale.</p>
-<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261114a</span></p>
+<p class="note" style="margin-top:8px;border-top:0;padding-top:0">rAKings VGC è un progetto di fan non ufficiale, non affiliato né approvato da Nintendo, Game Freak, Creatures o The Pokémon Company. Pokémon e i nomi dei Pokémon sono marchi dei rispettivi proprietari. <a href="privacy.html">Privacy</a> <span id="vgc-build" style="opacity:.55;font-size:.85em">· v20261114b</span></p>
 <p class="note" id="xrow" hidden style="text-align:center;border-top:0;margin:14px 0 0;padding:0"><a class="btn main" id="x-a" href="#" target="_blank" rel="noopener" aria-label="rAKings VGC on X" style="text-decoration:none;display:inline-block">𝕏 @rAKingsVGC</a></p>
 <div class="don" id="don" hidden><p><b>Il sito è gratuito e senza pubblicità.</b><br>Se ti è utile puoi offrire un caffè per coprire i costi. È facoltativo e non sblocca nulla.</p><a class="btn main" id="don-a" href="#" target="_blank" rel="noopener">Offri un caffè</a></div>
 </main>
@@ -942,9 +942,12 @@ window.addEventListener("hashchange",annGo);annGo();
 var VGO={id:"",t:0};
 function vgcGo(u,id,viaBc){try{var x=new URL(u,location.href);var dir=function(p){return p.replace(/[^\/]*$/,"")};
 if(x.origin!==location.origin||dir(x.pathname)!==dir(location.pathname))return;
-if(id&&VGO.id===id)return;VGO.id=id||"";VGO.t=Date.now();
-var run=function(){if(x.hash){try{history.replaceState(history.state,"",location.pathname+location.search+x.hash)}catch(e){location.hash=x.hash;return}annGo()}};
-if(viaBc){setTimeout(function(){if(document.hasFocus())run()},350)}else run()}catch(e){}}
+if(id&&VGO.id===id)return;
+/* si esegue una volta sola per avviso (id), e solo quando l'app e' davvero visibile: dalla schermata di blocco il messaggio
+   arriva prima dello sblocco, quindi si aspetta che l'app torni in primo piano (al massimo 2 minuti) */
+var run=function(){if(id&&VGO.id===id)return;VGO.id=id||"";VGO.t=Date.now();if(x.hash){try{history.replaceState(history.state,"",location.pathname+location.search+x.hash)}catch(e){location.hash=x.hash;return}annGo()}};
+var quando=function(f){if(document.visibilityState==="visible")return f();var h=function(){if(document.visibilityState==="visible"){document.removeEventListener("visibilitychange",h);f()}};document.addEventListener("visibilitychange",h);setTimeout(function(){document.removeEventListener("visibilitychange",h)},120000)};
+if(viaBc)quando(function(){setTimeout(function(){if(document.hasFocus())run()},350)});else quando(run)}catch(e){}}
 try{var VBC=new BroadcastChannel("vgc-nav");VBC.onmessage=function(ev){if(ev&&ev.data&&ev.data.url)vgcGo(ev.data.url,ev.data.id,true)}}catch(e){}
 if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",function(ev){if(ev.data&&ev.data.vgcGo)vgcGo(ev.data.vgcGo,ev.data.id,false)});
 /* Tasto indietro stile app (solo con il sito installato): prima chiude pannelli e torna alla Home, poi chiede conferma per uscire. */

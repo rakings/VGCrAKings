@@ -76,8 +76,12 @@ self.addEventListener("notificationclick", function (e) {
     var c = null;
     if (inSite) for (var i = 0; i < list.length; i++) { if (list[i].url.indexOf(base.href) === 0 && "focus" in list[i]) { c = list[i]; break; } }
     if (!c) return self.clients.openWindow(url);          // sito chiuso o link esterno: si apre normalmente
-    // sito gia' aperto: lo porto in primo piano e gli dico dove andare (niente seconda finestra)
+    // sito gia' aperto (anche in secondo piano, per esempio dalla schermata di blocco): gli dico dove andare SUBITO
+    // (il messaggio aspetta che l'app si risvegli) e poi lo porto in primo piano. Se il primo piano non riesce
+    // (schermata di blocco), il messaggio e' gia' partito: la pagina va dove deve appena torna visibile.
+    var dove = { vgcGo: url, id: go.id };
+    try { c.postMessage(dove); } catch (x) {}
     try { new BroadcastChannel("vgc-nav").postMessage(go); } catch (x) {}
-    return c.focus().then(function (w) { try { (w || c).postMessage({ vgcGo: url, id: go.id }); } catch (x) {} }, function () {});
+    return c.focus().then(function (w) { try { (w || c).postMessage(dove); } catch (x) {} }, function () { try { c.postMessage(dove); } catch (x) {} });
   }));
 });
