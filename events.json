@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T23:46:39+00:00",
+ "updated": "2026-11-13T00:44:56+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,8 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af0960cc931f53978d96717/details"
   },
   {
-   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟔",
-   "org": "IRGamers",
+   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
+   "org": "Hit Legends TCG",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -177,9 +177,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-13",
-   "time": "00:15",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
+   "time": "01:00",
+   "players": 16,
+   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
    "name": "Talon",
@@ -197,8 +197,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
   },
   {
-   "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
-   "org": "Hit Legends TCG",
+   "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟔",
+   "org": "IRGamers",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -207,9 +207,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-13",
-   "time": "01:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
+   "time": "00:15",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6af363f5dcbca32da6c4d8e0/details"
   },
   {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "05:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af63915dcbca32da6c4fc98/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "13:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af16ae2e99f3235a75e497c/details"
   },
   {
@@ -302,21 +302,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
-   "name": "Meeklosh",
-   "org": "meeklosh",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "21:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
-  },
-  {
    "name": "FrikioTorneo de Pokémon VGC #1",
    "org": "Frikioteca",
    "mode": "online",
@@ -330,6 +315,21 @@
    "time": "21:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af4f02500d53a11f5b918c8/details"
+  },
+  {
+   "name": "Meeklosh",
+   "org": "meeklosh",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "21:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
   },
   {
    "name": "Floette Champions Cheese #02",
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 52,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -636,21 +636,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
-   "name": "✨👑 King",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 18,
-   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
-  },
-  {
    "name": "🆓 Domino Arena VGC #1 [BETA]",
    "org": "Domino Store",
    "mode": "online",
@@ -664,6 +649,21 @@
    "time": "15:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
+  },
+  {
+   "name": "✨👑 King",
+   "org": "Astral Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 18,
+   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -842,7 +842,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
