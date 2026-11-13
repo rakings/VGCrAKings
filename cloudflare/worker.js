@@ -98,7 +98,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-14a";
+const VERSIONE = "2026-11-14b";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -332,6 +332,9 @@ async function partnerRoute(req, env, url, out) {
     console.log("partner: avvio flusso non riuscito", r.status);
     return out({ error: "Invio non riuscito (GitHub " + r.status + "). Riprova tra poco; se succede ancora contatta Andrea." }, 502);
   }
+  if (tipo === "testo")   // copia dell'annuncio per 2 giorni: l'app la legge da qui se GitHub Pages non l'ha ancora pubblicato (puo' metterci minuti)
+    await env.SUBS.put("partner:ann:" + ora, JSON.stringify({ id: ora, t: titolo, d: articolo || testo, pub: new Date(ora * 1000).toISOString().slice(0, 19) + "Z",
+                                                             partner: p, link: link || "", img: !!img }), { expirationTtl: 2 * 86400 });
   st[tipo] = st[tipo].filter(t => ora - t < 7 * 86400).concat([ora]);
   st.log = st.log.concat([{ t: ora, tipo, titolo, testo, link: link || "", img: !!img, bacheca: tipo === "testo" }]).slice(-30);
   await env.SUBS.put("partner:" + p, JSON.stringify(st));
@@ -352,6 +355,14 @@ export default {
     const admin = () => env.ADMIN_TOKEN && req.headers.get("Authorization") === "Bearer " + env.ADMIN_TOKEN;
 
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
+    if (req.method === "GET" && /^\/partner\/annuncio\/\d{9,11}$/.test(url.pathname)) {   // PUBBLICO: un annuncio del partner appena mandato
+      const id = url.pathname.split("/").pop();
+      const a = await env.SUBS.get("partner:ann:" + id, "json");
+      if (!a) return out({ error: "non trovato" }, 404);
+      if (a.img) { const im = await env.SUBS.get("partner:img:" + id); if (im) a.img64 = im; }
+      delete a.img;
+      return out(a);
+    }
     if (req.method === "GET" && /^\/partner\/img\/\d{9,11}$/.test(url.pathname)) {   // solo per il flusso GitHub (codice admin): l'immagine dell'annuncio
       if (!admin()) return out({ error: "non autorizzato" }, 401);
       const im = await env.SUBS.get("partner:img:" + url.pathname.split("/").pop());
