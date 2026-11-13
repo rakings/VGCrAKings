@@ -1,1 +1,1 @@
-{ "default": "old", "canali": {} }
+{ "default": "old", "canali": { "winner": "both" } }
