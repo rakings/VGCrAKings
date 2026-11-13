@@ -1,0 +1,43 @@
+name: Avviso partner
+# Lo lancia SOLO il Worker vgc-subs quando il partner (Francesco Pardini) manda un avviso dalla sua pagina.
+# NON serve lanciarlo a mano. Il Worker ha gia' controllato codice, testi, link e limiti; notify_partner.py li ricontrolla.
+on:
+  workflow_dispatch:
+    inputs:
+      partner:
+        description: "Partner (pardini)"
+        required: true
+        type: string
+      titolo:
+        description: "Titolo (max 60)"
+        required: true
+        type: string
+      testo:
+        description: "Testo (max 180)"
+        required: true
+        type: string
+      link:
+        description: "Link (solo Twitch, YouTube o sito)"
+        required: false
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: avviso-partner
+  cancel-in-progress: false
+jobs:
+  avviso:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u notify_partner.py
+        env:
+          AP_PARTNER: ${{ inputs.partner }}
+          AP_TITOLO: ${{ inputs.titolo }}
+          AP_TESTO: ${{ inputs.testo }}
+          AP_LINK: ${{ inputs.link }}
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
