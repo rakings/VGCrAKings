@@ -79,7 +79,10 @@ self.addEventListener("notificationclick", function (e) {
   }).catch(function () {}) : Promise.resolve();
   e.waitUntil(Promise.all([segna, self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
     var c = null;
-    if (inSite) for (var i = 0; i < list.length; i++) { if (list[i].url.indexOf(base.href) === 0 && "focus" in list[i]) { c = list[i]; break; } }
+    // si riusa SOLO una finestra dell'app (la pagina principale), mai altre pagine del sito aperte nel browser
+    // (pagina avvisi di Francesco, avvisi-log.html, ...): altrimenti si apre l'app
+    var app = function (u) { var p = String(u || "").split("#")[0].split("?")[0]; return p === base.href || p === base.href + "index.html"; };
+    if (inSite) for (var i = 0; i < list.length; i++) { if (app(list[i].url) && "focus" in list[i]) { c = list[i]; break; } }
     if (!c) return self.clients.openWindow(url);          // sito chiuso o link esterno: si apre normalmente
     // sito gia' aperto (anche in secondo piano, per esempio dalla schermata di blocco): gli dico dove andare SUBITO
     // (il messaggio aspetta che l'app si risvegli) e poi lo porto in primo piano. Se il primo piano non riesce
