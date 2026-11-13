@@ -774,8 +774,7 @@ def live_cycle(write):
     running = [e for e in events if e["status"] == "running"]
     todo = running + [e for e in recent_unfinished(events) if e not in running]
     if not todo:
-        print("Nessun regionale in corso e niente da completare.")
-        return False, False
+        return False, False   # il messaggio lo scrive il ciclo che chiama (una riga sola)
     changed = False
     ended = False
     try:
@@ -844,7 +843,7 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
             print("STOP: %s - mi fermo qui" % stop)
             return 1
         if not going:
-            print("Nessun regionale in corso: mi fermo.")
+            print("Nessun regionale in corso e niente da completare: mi fermo.")
             return 0
         if max_cycles and n >= max_cycles:
             return 0

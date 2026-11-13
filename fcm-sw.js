@@ -40,8 +40,11 @@ function histSaveOne(title, body, link, tag) {
 self.addEventListener("push", function (e) {
   var raw = "", j = {};
   try { raw = e.data ? e.data.text() : ""; } catch (x) {}
+  try { j = raw ? JSON.parse(raw) : {}; } catch (x) { j = {}; }
+  var n0 = j.notification || {}, d0 = j.data || {};
+  var voce = { t: new Date().toISOString(), raw: raw.slice(0, 300), title: String(n0.title || d0.title || "").slice(0, 200), body: String(n0.body || d0.body || "").slice(0, 300) };
   var logP = caches.open("fcm-log").then(function (c) {
-    return c.put("/fcm-log/" + Date.now() + "-" + Math.floor(Math.random() * 1000), new Response(JSON.stringify({ t: new Date().toISOString(), raw: raw.slice(0, 300) }))).then(function () {
+    return c.put("/fcm-log/" + Date.now() + "-" + Math.floor(Math.random() * 1000), new Response(JSON.stringify(voce))).then(function () {
       return c.keys();
     }).then(function (ks) {
       var extra = ks.length - 200;

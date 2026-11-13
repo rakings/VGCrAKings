@@ -47,8 +47,14 @@ async function leggi(){
   st.textContent=voci.length+" avvisi nel diario (mostro gli ultimi 60). Orario: quello di questo telefono.";
   var righe=[],html="";
   voci.slice(0,60).forEach(function(v){
-    var d=new Date(v.t),raw=v.raw||"",tit=campo(raw,"title")||"(senza titolo)",cor=campo(raw,"body");
-    var inH=hist.some(function(x){return x.title===tit&&[x.t||0].concat(Array.isArray(x.arr)?x.arr:[]).some(function(u){return Math.abs(u-d.getTime())<8000})});
+    var d=new Date(v.t),raw=v.raw||"";
+    var vicino=function(x){return [x.t||0].concat(Array.isArray(x.arr)?x.arr:[]).some(function(u){return Math.abs(u-d.getTime())<8000})};
+    // titolo e testo: salvati a parte dal service worker nuovo; per i vecchi si leggono dal testo grezzo (troncato a 300 lettere)
+    // e, se il titolo e' stato tagliato, si prende dalla riga della campanella arrivata nello stesso momento
+    var tit=v.title||campo(raw,"title"),cor=v.body||campo(raw,"body");
+    if(!tit){var hv=hist.filter(vicino);if(hv.length===1){tit=hv[0].title||"";cor=cor||hv[0].body||""}}
+    tit=tit||"(senza titolo)";
+    var inH=hist.some(function(x){return x.title===tit&&vicino(x)});
     righe.push(d.toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit"})+" "+hh(d)+" | "+tit+" | in campanella: "+(inH?"si":"NO"));
     html+='<div class="row"><div class="t">'+esc(hh(d))+" · "+esc(tit)+'</div><div class="b">'+esc(cor)+'</div><div class="'+(inH?"ok":"ko")+'">in campanella: '+(inH?"si":"NO")+"</div></div>";
   });
