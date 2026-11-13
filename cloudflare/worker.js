@@ -8,6 +8,11 @@
 //   anche {cursor}: si richiama lo stesso indirizzo aggiungendo &cursor=<valore> finche' non c'e' piu' il cursor.
 //   Senza limit e senza cursor la risposta e' una sola, completa, come prima (i bot vecchi continuano a funzionare).
 //   POST /remove           -> {"ids":[...]} toglie dall'archivio (serve ADMIN_TOKEN), per i token morti
+//   PARTNER (dal 2026-11-13a): GET /partner/stato e POST /partner/invia con il codice del partner (segreto PARDINI_TOKEN):
+//     la pagina partner-pardini.html del sito manda avvisi al canale «pardini» (testo libero o «e' in live»), con limiti.
+//     Il Worker controlla codice, testi, link e limiti, poi avvia il flusso GitHub «Avviso partner» (segreto GH_AVVISI).
+//     GET /partner/statistiche: gli stessi numeri della pagina admin (mai i token), aggiornabili ogni 10 minuti.
+//     Per spegnerlo: variabile PARDINI_ATTIVO = off (oppure cancella il segreto PARDINI_TOKEN).
 //   GET /stats?limit=1000[&cursor=..]  -> CONTEGGI di una pagina di iscritti (serve ADMIN_TOKEN), per la pagina admin.html.
 //                                         Non manda mai i token al browser: solo numeri. La pagina somma le risposte.
 // ARGOMENTI FIREBASE (versione 2026-11-06a): SPENTI finche' non si imposta la variabile ARGOMENTI = on. Spenti, questo Worker si comporta
@@ -18,7 +23,7 @@
 // Collegamenti da creare nel pannello Cloudflare: KV namespace con nome variabile SUBS,
 // segreto ADMIN_TOKEN, (facoltativa) variabile ALLOW_ORIGIN con l'indirizzo del sito.
 // Solo per gli argomenti: coda CODA (producer + consumer del Worker), segreto FCM_TOPICS_KEY, variabile ARGOMENTI = on.
-const CATS = ["money", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin"];
+const CATS = ["money", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin", "pardini"];
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const FCM_TOKEN = /^[A-Za-z0-9_:\-]{100,400}$/;   // i token Firebase distinguono maiuscole e minuscole: non vanno mai modificati
 const REFRESH_MS = 120 * 24 * 3600 * 1000; // si riscrive solo se qualcosa cambia o dopo 120 giorni (limite di scritture KV; erano 5 giorni)
@@ -71,7 +76,9 @@ async function listPage(env, want, cursorIn, limit) {
 
 // Conta una pagina di iscritti senza mai mostrare i token: solo numeri.
 async function statPage(env, want, cursorIn, limit) {
-  const g = await rawPage(env, want, cursorIn, limit);
+  return contaChiavi(await rawPage(env, want, cursorIn, limit));
+}
+function contaChiavi(g) {
   const st = { n: 0, fcm: 0, os: 0, c: {}, h: {}, l: {}, seguono: 0, tornei: 0, t1: 0, t7: 0, t30: 0 };
   const now = Date.now(), add = (o, k) => { o[k] = (o[k] || 0) + 1; };
   for (const k of g.keys) {
@@ -89,7 +96,7 @@ async function statPage(env, want, cursorIn, limit) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-06b";
+const VERSIONE = "2026-11-13a";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -194,6 +201,129 @@ async function sincronizza(env, body) {
   return "ok";
 }
 
+
+// ======================= PARTNER: avvisi mandati da un creator (Francesco Pardini) =======================
+const PARTNER = {
+  pardini: {
+    nome: "Francesco Pardini",
+    canale: "pardini",
+    live: { titolo: "Francesco Pardini \u00e8 in live", testo: "Tocca per guardare la diretta su Twitch.", link: "https://www.twitch.tv/francescopardinivgc" },
+  },
+};
+const LIMITI = {
+  testo: { attesa: 10 * 60, giorno: 8, settimana: 35 },   // avvisi scritti da lui
+  live:  { attesa: 30 * 60, giorno: 4, settimana: 20 },   // tasto «sono in live»: contatori separati
+};
+const HOST_OK = /^(www\.|m\.)?(twitch\.tv|youtube\.com|youtu\.be)$|^rakings\.github\.io$/i;
+const PARTNER_FLUSSO = "https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/avviso-partner.yml/dispatches";
+
+async function hashTesto(t) {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(t || "")));
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, "0")).join("");
+}
+// il codice si confronta tramite impronta: stesso tempo qualunque sia il codice scritto
+async function partnerDi(req, env) {
+  const tok = (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
+  if (!env.PARDINI_TOKEN || tok.length < 20) return null;
+  return (await hashTesto(tok)) === (await hashTesto(env.PARDINI_TOKEN)) ? "pardini" : null;
+}
+function pulisci(s, max) {
+  return String(s || "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
+}
+function linkOk(u) {
+  if (!u) return "";
+  try { const x = new URL(u); return x.protocol === "https:" && HOST_OK.test(x.hostname) ? x.href : null; } catch (e) { return null; }
+}
+function conti(lista, ora) {
+  const g = lista.filter(t => ora - t < 86400).length, s = lista.filter(t => ora - t < 7 * 86400).length;
+  const ult = lista.length ? Math.max(...lista) : 0;
+  return { g, s, ult };
+}
+function quote(st, ora) {
+  const out = {};
+  for (const tipo of ["testo", "live"]) {
+    const L = LIMITI[tipo], c = conti(st[tipo] || [], ora);
+    out[tipo] = { oggi: Math.max(0, L.giorno - c.g), settimana: Math.max(0, L.settimana - c.s), tra: Math.max(0, c.ult + L.attesa - ora),
+                  limiti: { giorno: L.giorno, settimana: L.settimana, attesa_min: L.attesa / 60 } };
+  }
+  return out;
+}
+async function statoPartner(env, p) {
+  const st = (await env.SUBS.get("partner:" + p, "json")) || {};
+  return { testo: st.testo || [], live: st.live || [], log: st.log || [] };
+}
+// Statistiche per il partner: gli stessi NUMERI della pagina admin (mai i token), a pagine come /stats.
+// In piu' conta i tornei seguiti ADESSO: la pagina manda i codici dei tornei non ancora finiti (li calcola da events.json, pubblico).
+// Si possono aggiornare al massimo ogni 10 minuti (ogni pagina e' una lettura di KV: il piano gratuito ne ha 1.000 al giorno).
+const PARTNER_STAT_OGNI = 10 * 60;
+async function statPartner(env, url, ora) {
+  const cur = url.searchParams.get("cursor");
+  if (!cur) {
+    const ultimo = Number(await env.SUBS.get("partner:statT")) || 0;
+    if (ora - ultimo < PARTNER_STAT_OGNI) return { attendi: ultimo + PARTNER_STAT_OGNI - ora };
+    await env.SUBS.put("partner:statT", String(ora));
+  }
+  const vivi = new Set((url.searchParams.get("attivi") || "").split(",").filter(x => /^[0-9a-z]{1,8}$/.test(x)).slice(0, 500));
+  const g = await rawPage(env, "all", cur, 1000);   // UNA lettura di KV per pagina, come /stats
+  const st = contaChiavi(g);
+  const att = { persone: 0, scelte: 0, conta: {} };
+  for (const k of g.keys) {
+    const f = ((k.metadata && k.metadata.f) || []).filter(c => vivi.has(c));
+    if (f.length) { att.persone++; att.scelte += f.length; }
+    for (const c of f) att.conta[c] = (att.conta[c] || 0) + 1;
+  }
+  st.attivi = att;
+  return st;
+}
+
+async function partnerRoute(req, env, url, out) {
+  const p = await partnerDi(req, env);
+  if (!p) return out({ error: "Codice non valido." }, 401);
+  if (req.method === "GET" && url.pathname === "/partner/statistiche") {
+    try {
+      const r = await statPartner(env, url, Math.floor(Date.now() / 1000));
+      return r.attendi ? out({ error: "Statistiche aggiornabili tra " + Math.ceil(r.attendi / 60) + " minuti.", attendi: r.attendi }, 429) : out(r);
+    } catch (e) { return out({ error: "cursor non valido" }, 400); }
+  }
+  const P = PARTNER[p], ora = Math.floor(Date.now() / 1000), attivo = (env.PARDINI_ATTIVO || "on") !== "off";
+  const st = await statoPartner(env, p);
+  if (req.method === "GET" && url.pathname === "/partner/stato")
+    return out({ ok: true, nome: P.nome, attivo, live: P.live, quote: quote(st, ora), log: st.log.slice(-20).reverse() });
+  if (req.method !== "POST" || url.pathname !== "/partner/invia") return out({ error: "richiesta non valida" }, 400);
+  if (!attivo) return out({ error: "Gli avvisi sono sospesi: contatta Andrea." }, 403);
+  if (!env.GH_AVVISI) return out({ error: "Invio non configurato (manca GH_AVVISI): contatta Andrea." }, 503);
+  const txt = await req.text();
+  if (txt.length > 4000) return out({ error: "troppo grande" }, 413);
+  let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
+  const tipo = b && b.tipo === "live" ? "live" : "testo";
+  let titolo, testo, link;
+  if (tipo === "live") ({ titolo, testo, link } = P.live);
+  else {
+    titolo = pulisci(b.titolo, 60); testo = pulisci(b.testo, 180); link = linkOk(pulisci(b.link, 300));
+    if (titolo.length < 3) return out({ error: "Il titolo deve avere almeno 3 caratteri." }, 400);
+    if (testo.length < 3) return out({ error: "Il testo deve avere almeno 3 caratteri." }, 400);
+    if (link === null) return out({ error: "Link non ammesso: solo Twitch, YouTube o il sito rAKings (https)." }, 400);
+  }
+  const L = LIMITI[tipo], c = conti(st[tipo], ora);
+  if (ora - c.ult < L.attesa) return out({ error: "Aspetta ancora " + Math.ceil((c.ult + L.attesa - ora) / 60) + " minuti.", quote: quote(st, ora) }, 429);
+  if (c.g >= L.giorno) return out({ error: "Limite di oggi raggiunto (" + L.giorno + " in 24 ore).", quote: quote(st, ora) }, 429);
+  if (c.s >= L.settimana) return out({ error: "Limite della settimana raggiunto (" + L.settimana + " in 7 giorni).", quote: quote(st, ora) }, 429);
+  const r = await fetch(PARTNER_FLUSSO, {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "vgc-subs-partner", "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: "main", inputs: { partner: p, titolo, testo, link: link || "" } }),
+  });
+  if (r.status !== 204) {
+    console.log("partner: avvio flusso non riuscito", r.status);
+    return out({ error: "Invio non riuscito (GitHub " + r.status + "). Riprova tra poco; se succede ancora contatta Andrea." }, 502);
+  }
+  st[tipo] = st[tipo].filter(t => ora - t < 7 * 86400).concat([ora]);
+  st.log = st.log.concat([{ t: ora, tipo, titolo, testo, link: link || "" }]).slice(-30);
+  await env.SUBS.put("partner:" + p, JSON.stringify(st));
+  return out({ ok: true, quote: quote(st, ora) });
+}
+
 export default {
   async fetch(req, env) {
     const cors = {
@@ -206,6 +336,8 @@ export default {
     if (req.method === "OPTIONS") return new Response(null, { headers: cors });
     const url = new URL(req.url);
     const admin = () => env.ADMIN_TOKEN && req.headers.get("Authorization") === "Bearer " + env.ADMIN_TOKEN;
+
+    if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
 
     if (req.method === "GET" && url.pathname === "/list") {
       if (!admin()) return out({ error: "non autorizzato" }, 401);
@@ -257,7 +389,7 @@ export default {
       try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
       const k = b ? keyOf(b.id) : null;
       if (!k) return out({ error: "id non valido" }, 400);
-      const c = (Array.isArray(b.c) ? b.c : []).filter(x => typeof x === "string" && (x === "money=all" || x === "money=33" || CATS.includes(x) && x !== "money")).slice(0, 12);
+      const c = (Array.isArray(b.c) ? b.c : []).filter(x => typeof x === "string" && (x === "money=all" || x === "money=33" || CATS.includes(x) && x !== "money")).slice(0, 16);
       const h = (Array.isArray(b.h) ? b.h : []).filter(x => CATS.includes(x)).slice(0, 12);
       const f = (Array.isArray(b.f) ? b.f : []).filter(x => typeof x === "string" && /^[0-9a-z]{1,8}$/.test(x)).slice(0, 50);
       const l = typeof b.l === "string" && /^[a-z]{2}(-[A-Za-z]{2,4})?$/.test(b.l) ? b.l : "it";
