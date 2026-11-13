@@ -12,7 +12,7 @@ if os.environ.get("FCM_SERVICE_ACCOUNT"):  # stesso invio usato dagli avvisi ver
     if topic.upper() == "CONTA":  # solo conteggi per canale: niente invii, nessun codice stampato
         tot = len(ue.subs_list())
         print("Dispositivi Firebase nell'archivio: %d" % tot)
-        for c in ["money", "money33", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin"]:
+        for c in ["money", "money33", "gc", "regionali", "vr", "vrreg", "maddos", "locali", "locali8", "player", "winner", "vrwin", "pardini"]:
             print("  canale %-9s %d dispositivi" % (c, len(ue.subs_for(c))))
         for c in ["money-1h", "money33-1h", "gc-1h", "vr-1h", "locali-1h", "maddos-1h"]:
             print("  promemoria %-11s %d dispositivi" % (c, len(ue.subs_for(c))))
