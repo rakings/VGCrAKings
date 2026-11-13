@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T15:11:26+00:00",
+ "updated": "2026-11-13T16:45:47+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -138,7 +138,7 @@
   },
   {
    "name": "ValkrixVGC Rising Champions League #06",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -148,7 +148,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "13:00",
-   "players": 18,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af16ae2e99f3235a75e497c/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": "Bo3",
    "date": "2026-11-13",
    "time": "18:45",
-   "players": 65,
+   "players": 87,
    "url": "https://play.limitlesstcg.com/tournament/6ac96979115c12b73a5a0104/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "19:00",
-   "players": 30,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ae5e1bf0d00101b48bf3315/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "20:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6af21a1cc931f53978d9768f/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-13",
    "time": "21:00",
-   "players": 25,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6af69a9600d53a11f5b92ac4/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:00",
-   "players": 72,
+   "players": 79,
    "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "02:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af34ba4dcbca32da6c4d6aa/details"
   },
   {
@@ -373,7 +373,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "03:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af49131dcbca32da6c4e596/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 46,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
@@ -433,7 +433,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 31,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -527,7 +527,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 70,
+   "players": 74,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -677,7 +677,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 7,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -921,6 +921,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
+   "name": "Tenki",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 22!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1025,6 +1040,21 @@
    "time": "04:00",
    "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
+  },
+  {
+   "name": "LEGA DEI BOLLENTI MC #2",
+   "org": "CkVerse_Twitch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "Ukraine tryouts",
