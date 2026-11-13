@@ -2,10 +2,11 @@
 """Chiusura di OneSignal (13 novembre 2026): toglie dall'archivio iscritti (Worker vgc-subs) i vecchi record OneSignal («os», ID in formato UUID).
 Non tocca MAI gli iscritti Firebase: il Worker toglie un ID UUID solo dalla parte OneSignal (chiave s:), e qui si controlla
 che gli iscritti Firebase siano gli stessi prima e dopo. Nel registro solo numeri, nessun ID."""
-import json, os, re, sys, urllib.request
+import json, os, re, sys, time, urllib.request
 
 UUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", re.I)
 MASSIMO = 100   # freno: i record OneSignal erano 14; se ne trova di piu' si ferma senza togliere niente
+PAUSA = 20   # secondi tra un controllo e l'altro (9 controlli = 3 minuti)
 UA = "rakings-vgc-bot (chiusura OneSignal)"
 
 def chiama(percorso, dati=None):
@@ -49,12 +50,22 @@ def main():
         except Exception as ex:
             print("ERRORE durante la rimozione (%s)." % str(ex)[:120])
             return 1
-    try:
-        fcm_dopo, os_dopo = elenco("fcm"), elenco("os")
-    except Exception as ex:
-        print("Tolti %d record, ma il controllo finale non e' riuscito (%s)." % (tolti, str(ex)[:120]))
-        return 1
     print("Tolti: %d record OneSignal." % tolti)
+    # L'elenco di Cloudflare (KV) si aggiorna con un ritardo fino a circa 60 secondi: si ricontrolla per qualche minuto.
+    os_dopo = None
+    for prova in range(9):
+        time.sleep(PAUSA)
+        try:
+            fcm_dopo, os_dopo = elenco("fcm"), elenco("os")
+        except Exception as ex:
+            print("Controllo finale non riuscito (%s): riprovo." % str(ex)[:120])
+            continue
+        if not os_dopo:
+            break
+        print("L'elenco di Cloudflare mostra ancora %d record OneSignal: e' normale per circa un minuto, ricontrollo." % len(os_dopo))
+    if os_dopo is None:
+        print("Il controllo finale non e' riuscito.")
+        return 1
     print("Archivio dopo: %d iscritti Firebase, %d record OneSignal." % (len(fcm_dopo), len(os_dopo)))
     if set(fcm_dopo) != set(fcm_prima):
         print("Nota: gli iscritti Firebase sono cambiati durante il lavoro (%d -> %d): normale se qualcuno si e' iscritto o ha cambiato scelte adesso." % (len(fcm_prima), len(fcm_dopo)))
