@@ -1,6 +1,14 @@
 {
  "annunci": [
   {
+   "id": 1794606963,
+   "t": "prova pc",
+   "d": "funziona tutto",
+   "pub": "2026-11-13T21:56:11Z",
+   "partner": "pardini",
+   "img": "img/annunci/1794606963.jpg"
+  },
+  {
    "id": 1794606358,
    "t": "prova",
    "d": "prova finbale",
