@@ -934,7 +934,11 @@ window.scrollTo(0,0);annApri();vrApri();locApri();statsGo()}
 function statsGo(){if(!STG)return;var g=STG;STG=null;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}vgcsLoad().then(function(){VGCS.vai(g.sx,g.key)}).catch(function(){})}
 function annApri(){if(ANNGO==null||!ANN.length)return;var q='[data-aid="'+ANNGO+'"]',el=document.querySelector(q);
 if(!el&&!ANNALL&&ANN.some(function(a){return a.id===ANNGO})){ANNALL=true;render();el=document.querySelector(q)}
-if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}else if(ANN.length){ANNGO=ANNOPEN=null}}
+if(el){var d=el.querySelector("details");if(d)d.open=true;ANNGO=null;ANNRIP=0;try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}el.scrollIntoView({block:"start"})}
+else if(ANN.length&&ANNRIP<8){/* annuncio appena pubblicato: il sito puo' non averlo ancora. Si riprova 8 volte, ogni 15 secondi */
+ANNRIP++;var g=ANNGO;setTimeout(function(){if(ANNGO!==g)return;fetch("annunci.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(d&&Array.isArray(d.annunci)){ANN=d.annunci;render();annApri()}}).catch(function(){annApri()})},15000)}
+else if(ANN.length){ANNGO=ANNOPEN=null;ANNRIP=0}}
+var ANNRIP=0;
 document.addEventListener("toggle",function(ev){var d=ev.target,li=d&&d.closest?d.closest("[data-aid]"):null;if(li&&!d.open&&+li.dataset.aid===ANNOPEN)ANNOPEN=null},true);
 /* dopo un aggiornamento della pagina (F5 o "tira per aggiornare") resti nella pagina dove eri. Si ricorda solo in questa scheda del browser. */
 (function(){try{if(location.hash)return;var n=performance.getEntriesByType("navigation")[0],rl=n?n.type==="reload":!!(performance.navigation&&performance.navigation.type===1);if(!rl)return;var v=sessionStorage.getItem("vgc-last-mode");if(!v||v==="all")return;var bt=document.querySelector('#f-mode button[data-v="'+v+'"]');if(bt)bt.click()}catch(e){}})();

@@ -100,13 +100,37 @@ def bacheca(e, radice="."):
     return 0
 
 
-def invia(e):
+def online(base, id_, attesa=360, passo=15, ora=None, dormi=None):
+    """Aspetta che l'annuncio sia davvero nel sito pubblicato (GitHub Pages ci mette da 1 a qualche minuto): cosi' chi tocca la
+    notifica trova gia' l'annuncio e la tendina si apre. Massimo 6 minuti, poi la notifica parte comunque."""
+    import time
+    ora, dormi = ora or time.time, dormi or time.sleep
+    fine = ora() + attesa
+    while True:
+        try:
+            u = "%s/annunci.json?t=%d" % (base, int(ora() * 1000))
+            d = json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "rakings-bot partner", "Cache-Control": "no-cache"}), timeout=20).read().decode("utf-8"))
+            if any(str(v.get("id")) == str(id_) for v in d.get("annunci") or []):
+                print("Annuncio %s online nel sito." % id_)
+                return True
+        except Exception as ex:
+            print("Sito non letto (%s): riprovo." % str(ex)[:80])
+        if ora() >= fine:
+            print("L'annuncio non risulta ancora online dopo %d secondi: mando la notifica lo stesso." % attesa)
+            return False
+        dormi(passo)
+
+
+def invia(e, attendi=online):
     import update_events as ue
     d = dati(e)
     link = d["link"]
+    base = ue.sito_url().split("#")[0].rstrip("/")
+    in_bacheca = d["bacheca"] and os.path.exists(STATO)
+    if in_bacheca and not link:
+        attendi(base, d["id"])   # il tocco apre l'annuncio: deve essere gia' pubblicato
     if not link:
-        base = ue.sito_url().split("#")[0].rstrip("/")
-        link = base + ("/#annuncio-%s" % d["id"] if d["bacheca"] and os.path.exists(STATO) else "/")
+        link = base + ("/#annuncio-%s" % d["id"] if in_bacheca else "/")
     if not ue.push_on() or not ue.subs_on():
         print("Avviso partner: notifiche non configurate.")
         return 1
