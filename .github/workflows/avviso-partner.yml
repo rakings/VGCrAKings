@@ -1,7 +1,8 @@
 name: Avviso partner
 # Lo lancia SOLO il Worker vgc-subs quando il partner (Francesco Pardini) manda un avviso dalla sua pagina.
 # NON serve lanciarlo a mano. Il Worker ha gia' controllato codice, testi, link e limiti; notify_partner.py li ricontrolla.
-# Avvisi scritti: prima l'annuncio in bacheca (annunci.json + immagine), poi la notifica a chi ha il canale. «Live»: solo la notifica.
+# Avvisi scritti: prima l'annuncio in bacheca (annunci.json + immagine), si aspetta che il sito lo pubblichi (max 6 minuti),
+# poi la notifica a chi ha il canale (il tocco apre l'annuncio con la tendina). «Live»: solo la notifica, subito.
 on:
   workflow_dispatch:
     inputs:
@@ -21,7 +22,7 @@ concurrency:
 jobs:
   avviso:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       AP_PARTNER: ${{ inputs.partner }}
       AP_ID: ${{ inputs.id }}
@@ -55,7 +56,6 @@ jobs:
               sleep 6
             done
             [ "$ok" = 1 ] || { echo "Bacheca non salvata: la notifica parte comunque."; rm -f partner_state.json; }
-            sleep 40   # il sito (GitHub Pages) si aggiorna in meno di un minuto: cosi' il tocco sulla notifica trova gia' l'annuncio
           fi
       - name: Notifica a chi ha il canale del partner
         if: ${{ always() }}
