@@ -48,7 +48,7 @@ async function leggi(){
   var righe=[],html="";
   voci.slice(0,60).forEach(function(v){
     var d=new Date(v.t),raw=v.raw||"",tit=campo(raw,"title")||"(senza titolo)",cor=campo(raw,"body");
-    var inH=hist.some(function(x){return x.title===tit&&Math.abs((x.t||0)-d.getTime())<8000});
+    var inH=hist.some(function(x){return x.title===tit&&[x.t||0].concat(Array.isArray(x.arr)?x.arr:[]).some(function(u){return Math.abs(u-d.getTime())<8000})});
     righe.push(d.toLocaleDateString("it-IT",{day:"2-digit",month:"2-digit"})+" "+hh(d)+" | "+tit+" | in campanella: "+(inH?"si":"NO"));
     html+='<div class="row"><div class="t">'+esc(hh(d))+" · "+esc(tit)+'</div><div class="b">'+esc(cor)+'</div><div class="'+(inH?"ok":"ko")+'">in campanella: '+(inH?"si":"NO")+"</div></div>";
   });

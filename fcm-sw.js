@@ -6,17 +6,26 @@ self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim(
 // Cronologia sul dispositivo: la campanella del sito la legge dalla stessa cache che usava sw.js.
 // Gli avvisi che arrivano nello stesso istante si salvano uno dopo l'altro: prima leggevano tutti lo stesso elenco e l'ultimo a scrivere cancellava gli altri.
 var histQ = Promise.resolve();
-function histSave(title, body, link) {
-  var job = histQ.then(function () { return histSaveOne(title, body, link); });
+function histSave(title, body, link, tag) {
+  var job = histQ.then(function () { return histSaveOne(title, body, link, tag); });
   histQ = job.catch(function () {});
   return job;
 }
-function histSaveOne(title, body, link) {
+// Modo «both»: lo stesso avviso arriva due volte (invio diretto + argomento) con lo stesso «tag»: in campanella resta UNA riga sola.
+// Il secondo arrivo si annota nella riga gia' salvata (campo arr, letto da avvisi-log.html). Vale solo per avvisi con tag, entro 6 ore.
+var TAG_FINESTRA = 6 * 3600 * 1000;
+function histSaveOne(title, body, link, tag) {
   var t = Date.now();
   var item = { id: "|" + title + "|" + body + "|" + t, t: t, title: title, body: body, url: /^https?:/.test(link || "") ? link : "" };
+  if (tag) { item.tag = tag; item.arr = [t]; }
   return caches.open("vgc-hist").then(function (c) {
     return c.match("hist.json").then(function (r) { return r ? r.json().catch(function () { return []; }) : []; }).then(function (a) {
       if (!Array.isArray(a)) a = [];
+      var gia = tag ? a.filter(function (x) { return x && x.tag === tag && Math.abs(t - (x.t || 0)) < TAG_FINESTRA; })[0] : null;
+      if (gia) {
+        gia.arr = (Array.isArray(gia.arr) ? gia.arr : [gia.t]).concat([t]).slice(-5);
+        return c.put("hist.json", new Response(JSON.stringify(a), { headers: { "Content-Type": "application/json" } }));
+      }
       a.push(item);
       a.sort(function (p, q) { return q.t - p.t; });
       return c.put("hist.json", new Response(JSON.stringify(a.slice(0, 60)), { headers: { "Content-Type": "application/json" } }));
@@ -44,7 +53,7 @@ self.addEventListener("push", function (e) {
   var title = n.title || d.title || "rAKings VGC";
   var body = n.body || d.body || (!n.title && !d.title ? raw.slice(0, 200) : "");
   var link = (j.fcmOptions && j.fcmOptions.link) || n.click_action || d.link || d.url || "./";
-  e.waitUntil(Promise.all([logP, histSave(title, body, link), self.registration.showNotification(title, {
+  e.waitUntil(Promise.all([logP, histSave(title, body, link, d.tag || ""), self.registration.showNotification(title, {
     body: body,
     icon: n.icon || d.icon || "icon-192.png",
     badge: "badge-96.png",
