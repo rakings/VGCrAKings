@@ -1,0 +1,72 @@
+name: Avviso vincitore Victory Road (diretta)
+# Lo lancia DA SOLO la diretta dei VR (repo VGCdatiAK, «VR - raccolta dati») appena la finale e' decisa, con la chiave AVVISI_TOKEN.
+# NON serve lanciarlo a mano. Manda l'avviso «Vincitore Victory Road» (canale vrwin) e ricorda di averlo mandato,
+# cosi' quando la home di victoryroad.pro mostra il campione non parte un secondo avviso (resta solo l'articolo).
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "Sigla del VR (per esempio vr-nov26-2)"
+        required: true
+        type: string
+      nome:
+        description: "Nome del torneo (per esempio VR November Challenge #2)"
+        required: true
+        type: string
+      fine:
+        description: "Data di fine (AAAA-MM-GG)"
+        required: false
+        type: string
+      vincitore:
+        description: "Vincitore: Nome|PAESE"
+        required: true
+        type: string
+      finalista:
+        description: "Finalista: Nome|PAESE"
+        required: false
+        type: string
+      semifinali:
+        description: "Perdenti in semifinale: Nome|PAESE;Nome|PAESE"
+        required: false
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: avviso-vincitore-live
+  cancel-in-progress: false
+jobs:
+  avviso:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u notify_live.py
+        env:
+          AV_ID: ${{ inputs.id }}
+          AV_NOME: ${{ inputs.nome }}
+          AV_TIPO: vr
+          AV_FINE: ${{ inputs.fine }}
+          AV_VINCITORE: ${{ inputs.vincitore }}
+          AV_FINALISTA: ${{ inputs.finalista }}
+          AV_SEMIFINALI: ${{ inputs.semifinali }}
+          NTFY_PREFIX: ${{ vars.NTFY_PREFIX }}
+          FCM_SERVICE_ACCOUNT: ${{ secrets.FCM_SERVICE_ACCOUNT }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Salva lo stato (per non mandare due volte lo stesso avviso)
+        if: ${{ always() }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -f notify_live_state.json ] && git add notify_live_state.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Avviso vincitore Victory Road (diretta)"
+            ok=0
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then ok=1; break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+            [ "$ok" = 1 ] || { echo "Salvataggio dello stato non riuscito."; exit 1; }
+          fi
