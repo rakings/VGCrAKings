@@ -11,6 +11,8 @@
 //   PARTNER (dal 2026-11-13a): GET /partner/stato e POST /partner/invia con il codice del partner (segreto PARDINI_TOKEN):
 //     la pagina partner-pardini.html del sito manda avvisi al canale «pardini» (testo libero o «e' in live»), con limiti.
 //     Il Worker controlla codice, testi, link e limiti, poi avvia il flusso GitHub «Avviso partner» (segreto GH_AVVISI).
+//     Ogni avviso scritto esce anche in BACHECA (annunci.json, etichetta «Francesco Pardini», con articolo e immagine facoltativi):
+//     l'immagine passa dal KV (partner:img:<id>, scade in 2 giorni) e il flusso la copia nel sito (GET /partner/img/<id>, codice admin).
 //     GET /partner/statistiche: gli stessi numeri della pagina admin (mai i token), aggiornabili ogni 10 minuti.
 //     Per spegnerlo: variabile PARDINI_ATTIVO = off (oppure cancella il segreto PARDINI_TOKEN).
 //   GET /stats?limit=1000[&cursor=..]  -> CONTEGGI di una pagina di iscritti (serve ADMIN_TOKEN), per la pagina admin.html.
@@ -96,7 +98,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-13a";
+const VERSIONE = "2026-11-14a";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -224,8 +226,9 @@ async function hashTesto(t) {
 // il codice si confronta tramite impronta: stesso tempo qualunque sia il codice scritto
 async function partnerDi(req, env) {
   const tok = (req.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
-  if (!env.PARDINI_TOKEN || tok.length < 20) return null;
-  return (await hashTesto(tok)) === (await hashTesto(env.PARDINI_TOKEN)) ? "pardini" : null;
+  const giusto = env.PARDINI_TOKEN;   // segreto con il codice di Francesco (gli spazi in piu' all'inizio o alla fine non contano)
+  if (!giusto || tok.length < 20) return null;
+  return (await hashTesto(tok)) === (await hashTesto(String(giusto).trim())) ? "pardini" : null;
 }
 function pulisci(s, max) {
   return String(s || "").replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
@@ -293,33 +296,44 @@ async function partnerRoute(req, env, url, out) {
   if (!attivo) return out({ error: "Gli avvisi sono sospesi: contatta Andrea." }, 403);
   if (!env.GH_AVVISI) return out({ error: "Invio non configurato (manca GH_AVVISI): contatta Andrea." }, 503);
   const txt = await req.text();
-  if (txt.length > 4000) return out({ error: "troppo grande" }, 413);
+  if (txt.length > 1100000) return out({ error: "Immagine troppo grande." }, 413);
   let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
   const tipo = b && b.tipo === "live" ? "live" : "testo";
-  let titolo, testo, link;
+  let titolo, testo, link, articolo = "", img = null;
   if (tipo === "live") ({ titolo, testo, link } = P.live);
   else {
     titolo = pulisci(b.titolo, 60); testo = pulisci(b.testo, 180); link = linkOk(pulisci(b.link, 300));
+    articolo = String(b.articolo || "").replace(/\r/g, "").replace(/[\u0000-\u0009\u000b-\u001f\u007f]+/g, " ").replace(/\n{3,}/g, "\n\n").trim().slice(0, 2000);
     if (titolo.length < 3) return out({ error: "Il titolo deve avere almeno 3 caratteri." }, 400);
     if (testo.length < 3) return out({ error: "Il testo deve avere almeno 3 caratteri." }, 400);
     if (link === null) return out({ error: "Link non ammesso: solo Twitch, YouTube o il sito rAKings (https)." }, 400);
+    if (b.img) {   // immagine dell'annuncio in bacheca: solo JPEG (la pagina la converte e la rimpicciolisce). Resta in base64:
+      // niente decodifica qui (il piano gratuito concede pochi millisecondi di calcolo); la controlla e decodifica il flusso GitHub
+      const s64 = String(b.img).replace(/^data:image\/jpeg;base64,/, "");
+      if (s64 === String(b.img) || !/^\/9j\//.test(s64) || s64.length < 200 || s64.length > 1000000 || /[^A-Za-z0-9+/=]/.test(s64.slice(0, 4000)))
+        return out({ error: "Immagine non valida: usa una foto JPG o PNG (massimo circa 700 KB dopo la riduzione)." }, 400);
+      img = s64;
+    }
   }
   const L = LIMITI[tipo], c = conti(st[tipo], ora);
+  // l'immagine si salva PRIMA di avviare il flusso (che la scarica con il codice admin); scade da sola dopo 2 giorni
   if (ora - c.ult < L.attesa) return out({ error: "Aspetta ancora " + Math.ceil((c.ult + L.attesa - ora) / 60) + " minuti.", quote: quote(st, ora) }, 429);
   if (c.g >= L.giorno) return out({ error: "Limite di oggi raggiunto (" + L.giorno + " in 24 ore).", quote: quote(st, ora) }, 429);
   if (c.s >= L.settimana) return out({ error: "Limite della settimana raggiunto (" + L.settimana + " in 7 giorni).", quote: quote(st, ora) }, 429);
+  if (img) await env.SUBS.put("partner:img:" + ora, img, { expirationTtl: 2 * 86400 });
   const r = await fetch(PARTNER_FLUSSO, {
     method: "POST",
     headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
                "User-Agent": "vgc-subs-partner", "Content-Type": "application/json" },
-    body: JSON.stringify({ ref: "main", inputs: { partner: p, titolo, testo, link: link || "" } }),
+    body: JSON.stringify({ ref: "main", inputs: { partner: p, id: String(ora), titolo, testo, link: link || "",
+                                                  bacheca: tipo === "testo" ? "1" : "", articolo, img: img ? "1" : "" } }),
   });
   if (r.status !== 204) {
     console.log("partner: avvio flusso non riuscito", r.status);
     return out({ error: "Invio non riuscito (GitHub " + r.status + "). Riprova tra poco; se succede ancora contatta Andrea." }, 502);
   }
   st[tipo] = st[tipo].filter(t => ora - t < 7 * 86400).concat([ora]);
-  st.log = st.log.concat([{ t: ora, tipo, titolo, testo, link: link || "" }]).slice(-30);
+  st.log = st.log.concat([{ t: ora, tipo, titolo, testo, link: link || "", img: !!img, bacheca: tipo === "testo" }]).slice(-30);
   await env.SUBS.put("partner:" + p, JSON.stringify(st));
   return out({ ok: true, quote: quote(st, ora) });
 }
@@ -338,6 +352,11 @@ export default {
     const admin = () => env.ADMIN_TOKEN && req.headers.get("Authorization") === "Bearer " + env.ADMIN_TOKEN;
 
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
+    if (req.method === "GET" && /^\/partner\/img\/\d{9,11}$/.test(url.pathname)) {   // solo per il flusso GitHub (codice admin): l'immagine dell'annuncio
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      const im = await env.SUBS.get("partner:img:" + url.pathname.split("/").pop());
+      return im ? new Response(im, { headers: { ...cors, "Content-Type": "text/plain" } }) : out({ error: "immagine non trovata" }, 404);   // base64 del JPEG
+    }
 
     if (req.method === "GET" && url.pathname === "/list") {
       if (!admin()) return out({ error: "non autorizzato" }, 401);
