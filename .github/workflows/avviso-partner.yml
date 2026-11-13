@@ -1,8 +1,8 @@
 name: Avviso partner
 # Lo lancia SOLO il Worker vgc-subs quando il partner (Francesco Pardini) manda un avviso dalla sua pagina.
 # NON serve lanciarlo a mano. Il Worker ha gia' controllato codice, testi, link e limiti; notify_partner.py li ricontrolla.
-# Avvisi scritti: prima l'annuncio in bacheca (annunci.json + immagine), si aspetta che il sito lo pubblichi (max 6 minuti),
-# poi la notifica a chi ha il canale (il tocco apre l'annuncio con la tendina). «Live»: solo la notifica, subito.
+# Avvisi scritti: prima l'annuncio in bacheca (annunci.json + immagine), poi SUBITO la notifica a chi ha il canale
+# (il tocco apre l'annuncio: se il sito non l'ha ancora pubblicato, l'app lo prende dal Worker). «Live»: solo la notifica.
 on:
   workflow_dispatch:
     inputs:
