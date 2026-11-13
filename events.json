@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T18:40:53+00:00",
+ "updated": "2026-11-13T20:09:35+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,6 +122,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
   },
   {
+   "name": "Unova Champions League #16",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "20:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6af21a1cc931f53978d9768f/details"
+  },
+  {
    "name": "Showdown Friday #1 (Prize: Ursaluna)",
    "org": "",
    "mode": "online",
@@ -137,8 +152,23 @@
    "url": "https://play.limitlesstcg.com/tournament/6af04cf6e99f3235a75e3fea/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #06",
-   "org": "",
+   "name": "⛩️Chadweezy95 $25 VGC Champions Tourny Ep 36!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "95 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-13",
+   "time": "21:00",
+   "players": 38,
+   "url": "https://play.limitlesstcg.com/tournament/6af69a9600d53a11f5b92ac4/details"
+  },
+  {
+   "name": "Meeklosh",
+   "org": "meeklosh",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -147,9 +177,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-13",
-   "time": "13:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6af16ae2e99f3235a75e497c/details"
+   "time": "21:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
   },
   {
    "name": "RobinVGC - Rekrutierturnier",
@@ -227,51 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
-   "name": "Unova Champions League #16",
-   "org": "Vivid Arise eSports",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "20:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af21a1cc931f53978d9768f/details"
-  },
-  {
-   "name": "Meeklosh",
-   "org": "meeklosh",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "21:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6af4e81bdcbca32da6c4eae4/details"
-  },
-  {
-   "name": "⛩️Chadweezy95 $25 VGC Champions Tourny Ep 36!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "95 $",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "21:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6af69a9600d53a11f5b92ac4/details"
-  },
-  {
    "name": "FrikioTorneo de Pokémon VGC #1",
    "org": "Frikioteca",
    "mode": "online",
@@ -285,6 +270,21 @@
    "time": "21:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af4f02500d53a11f5b918c8/details"
+  },
+  {
+   "name": "Friday Fight Night 81! $50 Prize & Team Report",
+   "org": "Team Rainbow Gaming",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "$5",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "00:00",
+   "players": 92,
+   "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
   },
   {
    "name": "Floette Champions Cheese #02",
@@ -302,21 +302,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af27619c931f53978d97e00/details"
   },
   {
-   "name": "Friday Fight Night 81! $50 Prize & Team Report",
-   "org": "Team Rainbow Gaming",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "00:00",
-   "players": 83,
-   "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
-  },
-  {
    "name": "X1 Remote Battle League 14ª Edição - Reg M-C",
    "org": "X1 Battle League",
    "mode": "online",
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:15",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af22a50c931f53978d97764/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "00:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6af3406200d53a11f5b90445/details"
   },
   {
@@ -403,7 +388,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 50,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -418,38 +403,8 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
-  },
-  {
-   "name": "M-C CHAMPIONS Showdown #2",
-   "org": "Tropical Hour Events",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "18:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
-  },
-  {
-   "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "95 $",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "18:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
   },
   {
    "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
@@ -465,6 +420,36 @@
    "time": "18:00",
    "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
+  },
+  {
+   "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "95 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
+  },
+  {
+   "name": "M-C CHAMPIONS Showdown #2",
+   "org": "Tropical Hour Events",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
    "name": "Scrafty Cup #2",
@@ -542,7 +527,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 74,
+   "players": 76,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -606,21 +591,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
-   "name": "🆓 Domino Arena VGC #1 [BETA]",
-   "org": "Domino Store",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
-  },
-  {
    "name": "✨👑 King",
    "org": "Astral Community",
    "mode": "online",
@@ -649,6 +619,21 @@
    "time": "15:00",
    "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+  },
+  {
+   "name": "🆓 Domino Arena VGC #1 [BETA]",
+   "org": "Domino Store",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -692,7 +677,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 12,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -1057,21 +1042,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
-   "name": "Ukraine tryouts",
-   "org": "Champions Ukraine",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
-  },
-  {
    "name": "LEGA DEI BOLLENTI MC #2",
    "org": "CkVerse_Twitch",
    "mode": "online",
@@ -1085,6 +1055,21 @@
    "time": "12:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
+  },
+  {
+   "name": "Ukraine tryouts",
+   "org": "Champions Ukraine",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
