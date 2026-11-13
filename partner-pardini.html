@@ -100,6 +100,12 @@ button:disabled{opacity:.5;cursor:default}
     <textarea id="te" maxlength="180" placeholder="Es. Analizzo il team che ha vinto sabato, ci vediamo stasera!"></textarea>
     <label for="li">Link (facoltativo: Twitch, YouTube o sito rAKings)</label>
     <input id="li" inputmode="url" placeholder="https://www.youtube.com/...">
+    <p class="sub" style="margin:12px 0 0">L'avviso esce anche in <b>bacheca</b> nell'app, con l'etichetta «Francesco Pardini». Lì puoi aggiungere un articolo più lungo e un'immagine (non vanno nella notifica).</p>
+    <label for="ar">Articolo per la bacheca (facoltativo) <span class="cnt" id="car">0/2000</span></label>
+    <textarea id="ar" maxlength="2000" style="min-height:110px" placeholder="Se lo lasci vuoto, in bacheca va il testo della notifica."></textarea>
+    <label for="im">Immagine per la bacheca (facoltativa)</label>
+    <input id="im" type="file" accept="image/*">
+    <div id="imbox" hidden style="margin-top:8px"><img id="imprev" alt="" style="max-width:100%;border-radius:10px;display:block"><button class="sec" id="imdel" type="button" style="margin-top:6px">Togli l'immagine</button></div>
     <p class="sub" style="margin:10px 0 0">Anteprima</p>
     <div class="prev"><img src="icon-192.png" alt=""><div><b id="pt">Titolo</b><small id="pb">Testo</small><em id="pl">apre il sito rAKings VGC</em></div></div>
     <div class="q" id="qt"></div>
@@ -114,7 +120,7 @@ button:disabled{opacity:.5;cursor:default}
 
   </div>
   <div class="foot"><span id="when"></span><span><button class="sec" id="again" type="button">Aggiorna</button> <button class="sec" id="out" type="button">Esci</button></span></div>
-  <p class="sub" style="margin-top:12px">Regole: un avviso scritto ogni 10 minuti, al massimo 8 al giorno e 35 a settimana. «Sono in live»: uno ogni 30 minuti, al massimo 4 al giorno. Link ammessi: solo Twitch, YouTube e il sito rAKings.</p>
+  <p class="sub" style="margin-top:12px">Gli avvisi scritti escono anche in bacheca (restano gli ultimi 20); «Sono in live» manda solo la notifica. Regole: un avviso scritto ogni 10 minuti, al massimo 8 al giorno e 35 a settimana. «Sono in live»: uno ogni 30 minuti, al massimo 4 al giorno. Link ammessi: solo Twitch, YouTube e il sito rAKings.</p>
 </div>
 </main>
 <script>
@@ -153,7 +159,7 @@ function check(){
 }
 function logHtml(l){
   if(!l||!l.length)return "<small>Nessuno ancora.</small>";
-  return l.map(function(x){var d=new Date(x.t*1000);return '<div><small>'+d.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+(x.tipo==="live"?" · live":"")+'</small><br><b>'+esc(x.titolo)+'</b> · '+esc(x.testo)+'</div>'}).join("")
+  return l.map(function(x){var d=new Date(x.t*1000);return '<div><small>'+d.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})+(x.tipo==="live"?" · live":" · anche in bacheca")+(x.img?" · con immagine":"")+'</small><br><b>'+esc(x.titolo)+'</b> · '+esc(x.testo)+'</div>'}).join("")
 }
 function load(t,remember){
   TOK=t;$("go").disabled=true;msg("lmsg","Controllo il codice…");
@@ -172,7 +178,7 @@ function load(t,remember){
 function invia(body,box,btn){
   btn.disabled=true;msg(box,"Invio…");
   return api("/partner/invia",body).then(function(j){
-    if(j.ok){msg(box,"Mandato ✓ Arriva agli iscritti in circa 1 minuto.","ok");if(body.tipo!=="live"){$("ti").value="";$("te").value="";$("li").value=""}}
+    if(j.ok){msg(box,"Mandato ✓ Arriva agli iscritti in circa 1 minuto.","ok");if(body.tipo!=="live"){$("ti").value="";$("te").value="";$("li").value="";$("ar").value="";$("car").textContent="0/2000";IMG="";$("im").value="";$("imbox").hidden=true}}
     else msg(box,j.error||("Errore "+j._s),"err");
     if(j._s===401){clearTok();$("app").hidden=true;$("login").hidden=false}
     return load(TOK,!!(st()&&st().getItem(KEY))).then(function(){if(j.ok)msg(box,"Mandato ✓ Arriva agli iscritti in circa 1 minuto.","ok");else msg(box,j.error||("Errore "+j._s),"err")})
@@ -238,13 +244,27 @@ Array.prototype.forEach.call(document.querySelectorAll("[data-tab]"),function(b)
   if(t==="stat"){try{mostraStat(JSON.parse(localStorage.getItem(SKEY)||"null"))}catch(e){}if(!statFatte){statFatte=true;caricaStat()}}
 })});
 $("sagg").addEventListener("click",caricaStat);
+/* immagine: si rimpicciolisce e si converte in JPEG qui nel telefono (max 1080 px, sotto i 700 KB) */
+var IMG="";
+function riduci(file){return new Promise(function(ok,ko){
+  var u=URL.createObjectURL(file),im=new Image();
+  im.onload=function(){var lato=1080,q=0.82,out="";
+    for(var k=0;k<6;k++){var sc=Math.min(1,lato/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);
+      var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);out=c.toDataURL("image/jpeg",q);
+      if(out.length<950000)break;lato=Math.round(lato*0.8);q=Math.max(0.6,q-0.06)}
+    URL.revokeObjectURL(u);out.length<950000?ok(out):ko(new Error("immagine troppo pesante"))};
+  im.onerror=function(){URL.revokeObjectURL(u);ko(new Error("file non leggibile come immagine"))};im.src=u})}
+$("im").addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;msg("smsg","Preparo l'immagine…");
+  riduci(f).then(function(d){IMG=d;$("imprev").src=d;$("imbox").hidden=false;msg("smsg","Immagine pronta ("+Math.round(d.length*0.75/1024)+" KB).")},function(e){IMG="";$("im").value="";$("imbox").hidden=true;msg("smsg","Immagine non usabile: "+e.message+".","err")})});
+$("imdel").addEventListener("click",function(){IMG="";$("im").value="";$("imbox").hidden=true});
+$("ar").addEventListener("input",function(){$("car").textContent=$("ar").value.length+"/2000"});
 ["ti","te","li"].forEach(function(i){$(i).addEventListener("input",check)});
 $("go").addEventListener("click",function(){var t=$("tk").value.trim();if(!t){msg("lmsg","Scrivi il codice.","err");return}load(t,$("rem").checked)});
 $("tk").addEventListener("keydown",function(e){if(e.key==="Enter")$("go").click()});
 $("send").addEventListener("click",function(){
   var ti=$("ti").value.trim(),te=$("te").value.trim(),li=$("li").value.trim();
-  if(!confirm("Mando questo avviso a tutti quelli che seguono il tuo canale?\n\n"+ti+"\n"+te))return;
-  invia({tipo:"testo",titolo:ti,testo:te,link:li},"smsg",$("send"))
+  if(!confirm("Mando questo avviso a chi segue il tuo canale e lo pubblico in bacheca"+(IMG?" con l'immagine":"")+"?\n\n"+ti+"\n"+te))return;
+  invia({tipo:"testo",titolo:ti,testo:te,link:li,articolo:$("ar").value,img:IMG||""},"smsg",$("send"))
 });
 $("live").addEventListener("click",function(){if(!confirm("Mando «"+$("lt").textContent+"» a chi segue il tuo canale?"))return;invia({tipo:"live"},"lvmsg",$("live"))});
 $("again").addEventListener("click",function(){var t=getTok()||TOK;if(t)load(t,!!(st()&&st().getItem(KEY)))});

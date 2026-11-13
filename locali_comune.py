@@ -111,10 +111,11 @@ def taglia_annunci(d, radice=".", massimo=ANNUNCI_MAX):
     """Tiene al massimo `massimo` annunci: si tolgono i più vecchi tra quelli NON fissati, con le loro foto.
     Dà l'elenco degli id tolti."""
     lista = d["annunci"]
-    if len(lista) <= massimo:
+    miei = [v for v in lista if not v.get("partner")]   # gli annunci dei partner hanno un limite loro (notify_partner.py): qui non contano
+    if len(miei) <= massimo:
         return []
-    candidati = sorted([v for v in lista if not v.get("pin")], key=lambda v: v.get("pub", ""))
-    tolti = candidati[:len(lista) - massimo]
+    candidati = sorted([v for v in miei if not v.get("pin")], key=lambda v: v.get("pub", ""))
+    tolti = candidati[:len(miei) - massimo]
     for v in tolti:
         if re.match(r"^img/annunci/\d+\.jpg$", v.get("img") or ""):
             try:

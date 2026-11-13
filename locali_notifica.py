@@ -27,8 +27,9 @@ def main():
     stato = carica_stato()
     nuovi = [v for v in carica_locali()["locali"]
              if v.get("real") and v.get("pub", "") >= limite and v.get("id") not in stato["notificati"]]
-    ann = [v for v in carica_annunci()["annunci"]
-           if v.get("t") and v.get("pub", "") >= limite and v.get("id") not in stato["notificati"]]
+    ann = [v for v in carica_annunci()["annunci"]   # gli annunci di un partner (Francesco Pardini) NON sono obbligatori: la loro notifica
+           if v.get("t") and not v.get("partner")     # parte solo per chi ha il suo canale (notify_partner.py), qui si saltano
+           and v.get("pub", "") >= limite and v.get("id") not in stato["notificati"]]
     if not nuovi and not ann:
         log("Nessuna novità da notificare.")
         return 0
