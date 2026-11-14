@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T23:39:44+00:00",
+ "updated": "2026-11-14T00:32:20+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -227,21 +227,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af308a1c931f53978d9815c/details"
   },
   {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-13",
-   "time": "01:00",
-   "players": 53,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eae6115c12b73a5a9040/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -328,7 +313,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "02:00",
-   "players": 14,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af34ba4dcbca32da6c4d6aa/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "03:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af49131dcbca32da6c4e596/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "10:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af43913dcbca32da6c4e1b8/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 58,
+   "players": 59,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -388,7 +373,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
@@ -418,7 +403,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 21,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
   },
   {
@@ -587,7 +572,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
