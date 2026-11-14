@@ -16,6 +16,8 @@
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
 //   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
 //     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
+//   AVVISI AUTOMATICI (2026-11-15b): live Twitch + live e video YouTube di Francesco, con le API ufficiali (vedi sotto, «AVVISI AUTOMATICI»).
+//     POST /auto/twitch, GET|POST /auto/youtube (li chiamano Twitch e YouTube, con firma), GET /admin/auto (ADMIN_TOKEN), giro ogni 5 minuti (Cron).
 //   SOCIAL (2026-11-15a): POST /admin/social {id, rete: ig|x, azione: approva|rifiuta|fatto, testo} (solo ADMIN_TOKEN, dalla pagina admin):
 //     avvia il flusso «Social - azione dall'admin» del sito (segreto GH_AVVISI). La chiave di Instagram resta SOLO su GitHub.
 //   RICHIESTE LOCALI: GET /admin/richieste e POST /admin/richieste/etichetta (ADMIN_TOKEN), con GH_RICHIESTE e RICHIESTE_REPO.
@@ -104,7 +106,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-15a";
+const VERSIONE = "2026-11-15b";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -425,6 +427,189 @@ async function richiesteRoute(req, env, url, out, admin) {
   return out({ error: "richiesta non valida" }, 400);
 }
 
+// ======================= AVVISI AUTOMATICI DI FRANCESCO (2026-11-15b) =======================
+// Twitch: avviso ufficiale «stream.online» (EventSub), Twitch chiama il Worker nell'istante in cui va in live.
+// YouTube: avviso ufficiale dei video nuovi (WebSub), poi UNA domanda all'API per capire se e' una live, una live programmata o un video.
+//   Live programmate: ricontrollate ogni 5 minuti SOLO finche' non partono. Shorts esclusi.
+// Si accende da solo quando ci sono le chiavi su Cloudflare (senza, non fa niente):
+//   TWITCH_CLIENT_ID (testo) + TWITCH_CLIENT_SECRET (segreto)      -> live Twitch
+//   YT_API_KEY (segreto) + YT_CANALE (testo, ID del canale UC...)   -> live e video YouTube
+//   + un «Cron Trigger» del Worker ogni 5 minuti (*/5 * * * *): rinnova da solo le iscrizioni a Twitch e YouTube.
+// Niente doppioni: se nelle ultime 2 ore e' gia' partito un avviso di live (anche dal pulsante di Francesco) non ne parte un altro.
+// Si spegne con PARDINI_ATTIVO = off, come il resto. Stato visibile nella pagina admin (scheda Statistiche).
+const AUTO = { twitch: "francescopardinivgc", nome: "Francesco Pardini", finestraLive: 2 * 3600, maxVisti: 60 };
+const AUTO_KEY = "auto:stato";
+const AUTO_URL = "https://vgc-subs.andrykvideo.workers.dev";
+
+function autoBase(env) { return String(env.WORKER_URL || AUTO_URL).replace(/\/+$/, ""); }
+function twOn(env) { return !!(env.TWITCH_CLIENT_ID && env.TWITCH_CLIENT_SECRET); }
+function ytOn(env) { return !!(env.YT_API_KEY && /^UC[\w-]{22}$/.test(String(env.YT_CANALE || "").trim())); }
+async function segreto(env, base) { return (await hashTesto("rakings-auto:" + base)).slice(0, 48); }   // ricavato dalle chiavi: nessun segreto in piu' da creare
+async function hmacHex(algo, chiave, testo) {
+  const k = await crypto.subtle.importKey("raw", new TextEncoder().encode(chiave), { name: "HMAC", hash: algo }, false, ["sign"]);
+  const s = await crypto.subtle.sign("HMAC", k, new TextEncoder().encode(testo));
+  return Array.from(new Uint8Array(s), b => b.toString(16).padStart(2, "0")).join("");
+}
+function uguali(a, b) { a = String(a || ""); b = String(b || ""); if (a.length !== b.length) return false; let x = 0; for (let i = 0; i < a.length; i++) x |= a.charCodeAt(i) ^ b.charCodeAt(i); return x === 0; }
+async function autoStato(env) { return (await env.SUBS.get(AUTO_KEY, "json")) || { visti: [], attesa: [], log: [] }; }
+async function autoSalva(env, s) { s.log = (s.log || []).slice(-20); s.visti = (s.visti || []).slice(-AUTO.maxVisti); await env.SUBS.put(AUTO_KEY, JSON.stringify(s)); }
+function autoLog(s, t) { (s.log = s.log || []).push({ t: Math.floor(Date.now() / 1000), m: String(t).slice(0, 160) }); }
+
+// manda l'avviso con lo STESSO flusso del pulsante di Francesco (avviso-partner.yml, invio diretto)
+async function autoAvviso(env, s, tipo, titolo, testo, link) {
+  if ((env.PARDINI_ATTIVO || "on") === "off" || !env.GH_AVVISI) { autoLog(s, "avviso non mandato (sospeso o manca GH_AVVISI): " + titolo); return false; }
+  const ora = Math.floor(Date.now() / 1000);
+  const st = await statoPartner(env, "pardini");
+  if (tipo === "live" && st.live.some(t => ora - t < AUTO.finestraLive)) { autoLog(s, "live gia' avvisata nelle ultime 2 ore: niente doppione"); return false; }
+  titolo = pulisci(titolo, 60); testo = pulisci(testo, 180); link = linkOk(link) || "";
+  const r = await fetch(PARTNER_FLUSSO, {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "vgc-subs-auto", "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: "main", inputs: { partner: "pardini", id: String(ora), titolo, testo, link, bacheca: "", articolo: "", img: "" } }),
+  });
+  if (r.status !== 204) { autoLog(s, "GitHub ha risposto " + r.status + ": avviso non partito (" + titolo + ")"); return false; }
+  if (tipo === "live") st.live = st.live.filter(t => ora - t < 7 * 86400).concat([ora]);   // conta anche per il pulsante: niente doppioni
+  st.log = st.log.concat([{ t: ora, tipo: tipo === "live" ? "live" : "testo", auto: true, titolo, testo, link, img: false, bacheca: false }]).slice(-30);
+  await env.SUBS.put("partner:pardini", JSON.stringify(st));
+  autoLog(s, "inviato: " + titolo + " · " + testo);
+  return true;
+}
+
+// ---------------- Twitch ----------------
+async function twToken(env, s) {
+  const ora = Math.floor(Date.now() / 1000);
+  if (s.twTok && s.twTokFino > ora + 3600) return s.twTok;
+  const r = await fetch("https://id.twitch.tv/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ client_id: env.TWITCH_CLIENT_ID, client_secret: env.TWITCH_CLIENT_SECRET, grant_type: "client_credentials" }) });
+  if (!r.ok) throw new Error("Twitch: chiavi non valide (" + r.status + ")");
+  const j = await r.json();
+  s.twTok = j.access_token; s.twTokFino = ora + Number(j.expires_in || 0);
+  return s.twTok;
+}
+async function twApi(env, s, metodo, percorso, corpo) {
+  const r = await fetch("https://api.twitch.tv/helix" + percorso, { method: metodo, body: corpo ? JSON.stringify(corpo) : undefined,
+    headers: { "Client-Id": env.TWITCH_CLIENT_ID, "Authorization": "Bearer " + await twToken(env, s), "Content-Type": "application/json" } });
+  if (r.status === 401) { s.twTok = ""; }
+  return r;
+}
+async function twAssicura(env, s) {   // l'iscrizione «stream.online» c'e' ed e' attiva? Se no la crea
+  if (!s.twId) {
+    const r = await twApi(env, s, "GET", "/users?login=" + AUTO.twitch);
+    const u = r.ok ? ((await r.json()).data || [])[0] : null;
+    if (!u) throw new Error("Twitch: canale " + AUTO.twitch + " non trovato (" + r.status + ")");
+    s.twId = u.id;
+  }
+  const cb = autoBase(env) + "/auto/twitch";
+  const r = await twApi(env, s, "GET", "/eventsub/subscriptions?type=stream.online");
+  if (!r.ok) throw new Error("Twitch: elenco iscrizioni non letto (" + r.status + ")");
+  const l = ((await r.json()).data || []).filter(x => x.condition && x.condition.broadcaster_user_id === s.twId && x.transport && x.transport.callback === cb);
+  if (l.some(x => x.status === "enabled" || x.status === "webhook_callback_verification_pending")) { s.twOk = true; return; }
+  for (const x of l) await twApi(env, s, "DELETE", "/eventsub/subscriptions?id=" + x.id);   // iscrizioni guaste: si rifanno
+  const c = await twApi(env, s, "POST", "/eventsub/subscriptions", { type: "stream.online", version: "1", condition: { broadcaster_user_id: s.twId },
+    transport: { method: "webhook", callback: cb, secret: await segreto(env, env.TWITCH_CLIENT_SECRET) } });
+  if (c.status !== 202 && c.status !== 409) throw new Error("Twitch: iscrizione non creata (" + c.status + ")");
+  s.twOk = true; autoLog(s, "Twitch: iscrizione alle live creata");
+}
+async function twEvento(req, env, out) {
+  if (!twOn(env)) return out({ error: "spento" }, 404);
+  const corpo = await req.text();
+  const id = req.headers.get("Twitch-Eventsub-Message-Id") || "", ts = req.headers.get("Twitch-Eventsub-Message-Timestamp") || "";
+  const firma = "sha256=" + await hmacHex("SHA-256", await segreto(env, env.TWITCH_CLIENT_SECRET), id + ts + corpo);
+  if (!uguali(firma, req.headers.get("Twitch-Eventsub-Message-Signature"))) return new Response("firma non valida", { status: 403 });
+  if (Math.abs(Date.now() - Date.parse(ts)) > 10 * 60 * 1000) return new Response("troppo vecchio", { status: 403 });
+  let b; try { b = JSON.parse(corpo); } catch (e) { return new Response("json", { status: 400 }); }
+  const tipo = req.headers.get("Twitch-Eventsub-Message-Type");
+  if (tipo === "webhook_callback_verification") return new Response(String(b.challenge || ""), { headers: { "Content-Type": "text/plain" } });
+  const s = await autoStato(env);
+  if (tipo === "revocation") { s.twOk = false; autoLog(s, "Twitch ha revocato l'iscrizione (" + ((b.subscription || {}).status || "?") + "): si rifa' al prossimo giro"); await autoSalva(env, s); return new Response(null, { status: 204 }); }
+  if (tipo !== "notification" || !b.event || (b.subscription || {}).type !== "stream.online") return new Response(null, { status: 204 });
+  if ((s.visti || []).includes("tw:" + id)) return new Response(null, { status: 204 });   // Twitch puo' rimandare lo stesso avviso
+  s.visti = (s.visti || []).concat(["tw:" + id]);
+  let titolo = "";
+  try { const r = await twApi(env, s, "GET", "/streams?user_id=" + b.event.broadcaster_user_id); if (r.ok) titolo = (((await r.json()).data || [])[0] || {}).title || ""; } catch (e) {}
+  await autoAvviso(env, s, "live", AUTO.nome + " è in live su Twitch", titolo || "Tocca per guardare la diretta.", "https://www.twitch.tv/" + AUTO.twitch);
+  await autoSalva(env, s);
+  return new Response(null, { status: 204 });
+}
+
+// ---------------- YouTube ----------------
+function ytTopic(env) { return "https://www.youtube.com/xml/feeds/videos.xml?channel_id=" + String(env.YT_CANALE).trim(); }
+async function ytRinnova(env, s) {
+  const r = await fetch("https://pubsubhubbub.appspot.com/subscribe", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ "hub.callback": autoBase(env) + "/auto/youtube", "hub.topic": ytTopic(env), "hub.mode": "subscribe", "hub.verify": "async",
+                                "hub.lease_seconds": "864000", "hub.secret": await segreto(env, env.YT_API_KEY) }) });
+  if (r.status !== 202 && r.status !== 204) throw new Error("YouTube: rinnovo non accettato (" + r.status + ")");
+  s.ytRinnovo = Math.floor(Date.now() / 1000);
+}
+async function ytVideo(env, id) {   // UNA domanda all'API (1 unita' su 10.000 gratuite al giorno)
+  const r = await fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails,contentDetails&id=" + encodeURIComponent(id) + "&key=" + encodeURIComponent(env.YT_API_KEY));
+  if (!r.ok) throw new Error("YouTube: video non letto (" + r.status + ")");
+  return ((await r.json()).items || [])[0] || null;
+}
+function secondi(d) { const m = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(d || ""); return m ? (+m[1] || 0) * 3600 + (+m[2] || 0) * 60 + (+m[3] || 0) : 0; }
+async function eShort(id, durata) {
+  if (durata > 180) return false;   // gli Shorts durano al massimo 3 minuti
+  try { const r = await fetch("https://www.youtube.com/shorts/" + id, { method: "HEAD", redirect: "manual" }); return r.status === 200; }
+  catch (e) { return true; }        // nel dubbio un video brevissimo non si avvisa
+}
+async function ytGestisci(env, s, v) {   // ritorna true se il video e' "chiuso" (avvisato o da ignorare)
+  const sn = v.snippet || {}, lb = sn.liveBroadcastContent, link = "https://www.youtube.com/watch?v=" + v.id;
+  if (lb === "live") { await autoAvviso(env, s, "live", AUTO.nome + " è in live su YouTube", sn.title || "Tocca per guardare la diretta.", link); return true; }
+  if (lb === "upcoming") return false;
+  if ((v.liveStreamingDetails || {}).actualEndTime) return true;   // replica di una live gia' finita: niente avviso
+  if (Date.now() - Date.parse(sn.publishedAt || 0) > 2 * 86400 * 1000) return true;   // video vecchio modificato: niente avviso
+  if (await eShort(v.id, secondi((v.contentDetails || {}).duration))) { autoLog(s, "Short ignorato: " + (sn.title || v.id)); return true; }
+  await autoAvviso(env, s, "video", "Nuovo video di " + AUTO.nome, sn.title || "Tocca per guardarlo.", link);
+  return true;
+}
+async function ytEvento(req, env, out, url) {
+  if (!ytOn(env)) return out({ error: "spento" }, 404);
+  if (req.method === "GET") {   // verifica dell'iscrizione da parte di YouTube
+    const ok = url.searchParams.get("hub.topic") === ytTopic(env);
+    return ok ? new Response(url.searchParams.get("hub.challenge") || "", { headers: { "Content-Type": "text/plain" } }) : new Response("no", { status: 404 });
+  }
+  const corpo = await req.text();
+  const firma = "sha1=" + await hmacHex("SHA-1", await segreto(env, env.YT_API_KEY), corpo);
+  if (!uguali(firma, req.headers.get("X-Hub-Signature"))) return new Response(null, { status: 204 });   // non e' YouTube: ignorato in silenzio
+  const ids = [...corpo.matchAll(/<yt:videoId>([\w-]{11})<\/yt:videoId>/g)].map(m => m[1]).slice(0, 3);
+  if (!ids.length) return new Response(null, { status: 204 });
+  const s = await autoStato(env);
+  for (const id of ids) {
+    if ((s.visti || []).includes("yt:" + id) || (s.attesa || []).some(a => a.id === id)) continue;
+    try {
+      const v = await ytVideo(env, id);
+      if (!v) continue;
+      if (await ytGestisci(env, s, v)) s.visti = (s.visti || []).concat(["yt:" + id]);
+      else { s.attesa = (s.attesa || []).concat([{ id, da: Math.floor(Date.now() / 1000), inizio: Date.parse((v.liveStreamingDetails || {}).scheduledStartTime || 0) / 1000 || 0 }]); autoLog(s, "live programmata in attesa: " + ((v.snippet || {}).title || id)); }
+    } catch (e) { autoLog(s, String(e.message || e)); }
+  }
+  await autoSalva(env, s);
+  return new Response(null, { status: 204 });
+}
+
+// ---------------- giro ogni 5 minuti (Cron Trigger) ----------------
+async function autoGiro(env) {
+  if (!twOn(env) && !ytOn(env)) return;
+  const s = await autoStato(env), prima = JSON.stringify(s), ora = Math.floor(Date.now() / 1000);
+  if (ytOn(env) && (s.attesa || []).length) {   // live programmate: si controllano solo da 15 minuti prima dell'orario in poi
+    const resta = [];
+    for (const a of s.attesa) {
+      if (ora - a.da > 3 * 86400 || (a.inizio && ora - a.inizio > 12 * 3600)) { autoLog(s, "live programmata scaduta: " + a.id); continue; }
+      if (a.inizio && a.inizio - ora > 15 * 60) { resta.push(a); continue; }
+      try { const v = await ytVideo(env, a.id); if (!v || await ytGestisci(env, s, v)) { s.visti = (s.visti || []).concat(["yt:" + a.id]); continue; } } catch (e) { autoLog(s, String(e.message || e)); }
+      resta.push(a);
+    }
+    s.attesa = resta;
+  }
+  if (ora - (s.giorno || 0) > 20 * 3600 || (twOn(env) && !s.twOk)) {   // una volta al giorno: le iscrizioni ci sono ancora?
+    s.giorno = ora; s.errore = "";
+    if (twOn(env)) { try { await twAssicura(env, s); } catch (e) { s.twOk = false; s.errore = String(e.message || e); autoLog(s, s.errore); } }
+    if (ytOn(env) && ora - (s.ytRinnovo || 0) > 3 * 86400) { try { await ytRinnova(env, s); autoLog(s, "YouTube: iscrizione rinnovata"); } catch (e) { s.errore = String(e.message || e); autoLog(s, s.errore); } }
+  }
+  if (JSON.stringify(s) !== prima) await autoSalva(env, s);   // si scrive solo se e' cambiato qualcosa
+}
+
 export default {
   async fetch(req, env) {
     const cors = {
@@ -441,6 +626,13 @@ export default {
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
     if (url.pathname === "/like" || url.pathname === "/like/conteggi") {
       try { return await likeRoute(req, env, url, out, admin); } catch (e) { console.log("like:", String(e && e.message || e).slice(0, 120)); return out({ error: "like non disponibili" }, 503); }
+    }
+    if (url.pathname === "/auto/twitch" && req.method === "POST") return twEvento(req, env, out);
+    if (url.pathname === "/auto/youtube" && (req.method === "GET" || req.method === "POST")) return ytEvento(req, env, out, url);
+    if (url.pathname === "/admin/auto" && req.method === "GET") {   // SOLO Andrea: stato degli avvisi automatici (scheda Statistiche)
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      const s = await autoStato(env);
+      return out({ ok: true, twitch: twOn(env), youtube: ytOn(env), twOk: !!s.twOk, ytRinnovo: s.ytRinnovo || 0, giro: s.giorno || 0, attesa: (s.attesa || []).length, errore: s.errore || "", log: (s.log || []).slice(-8).reverse() });
     }
     if (url.pathname === "/admin/richieste" || url.pathname === "/admin/richieste/etichetta") return richiesteRoute(req, env, url, out, admin);
     if (req.method === "POST" && url.pathname === "/admin/social") {   // SOLO Andrea (ADMIN_TOKEN): approva/rifiuta un post per Instagram o X
@@ -554,6 +746,11 @@ export default {
     }
 
     return out({ ok: true, servizio: "archivio iscritti rAKings VGC ", v: VERSIONE, argomenti: argomentiAcceso(env) ? (env.CODA && env.FCM_TOPICS_KEY ? "on" : "on-ma-incompleto") : "off" });
+  },
+
+  // ogni 5 minuti (Cron Trigger «*/5 * * * *» nelle impostazioni del Worker): avvisi automatici di Francesco
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(autoGiro(env).catch(e => console.log("auto:", String((e && e.message) || e).slice(0, 160))));
   },
 
   // la coda degli argomenti: un messaggio per volta (Maximum batch size = 1), un dispositivo per messaggio
