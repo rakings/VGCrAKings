@@ -49,50 +49,92 @@ button:disabled{opacity:.55;cursor:default}
 .rq{border-top:1px solid var(--line);padding:10px 0;font-size:.9rem}.rq:first-child{border-top:0}
 .rq b{display:block}.rq small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}.rq ol{margin:6px 0 0;padding-left:20px;font-size:.85rem}
 .rq .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rq .bt button{padding:8px 12px;min-height:38px;font-size:.85rem}.rq .bt button.ok{background:#1f8a4c}
-.rq .st{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mu);margin-left:6px}
 [hidden]{display:none!important}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--bg);padding:8px 0;margin:0 0 4px}
+.tabs button{padding:10px 2px;min-height:44px;font-size:.82rem;white-space:nowrap;background:var(--card);border:1px solid var(--line);color:var(--tx);position:relative}
+.tabs button[aria-selected=true]{background:var(--ac);border-color:var(--ac);color:#fff}
+.tabs i{font-style:normal;display:inline-block;min-width:19px;padding:1px 5px;margin-left:4px;border-radius:999px;background:var(--go);color:#2a1a00;font-size:.72rem;font-weight:800}
+.so{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;border-top:1px solid var(--line);padding:12px 0;font-size:.9rem}
+.so:first-child{border-top:0}
+.so img{width:96px;height:120px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#0f0709;display:block}
+.so b{display:block}.so small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}
+.so .full{grid-column:1/-1}
+.so textarea{width:100%;min-height:150px;font:inherit;font-size:15px;line-height:1.35;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f0709;color:var(--tx);resize:vertical}
+.so .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.so .bt button,.so .bt a.b{padding:8px 12px;min-height:38px;font-size:.85rem}
+.so .bt button.ok{background:#1f8a4c}
+a.b{display:inline-flex;align-items:center;font-weight:700;border-radius:10px;border:1px solid var(--line);color:var(--tx);text-decoration:none}
+.st{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mu);margin-left:6px}
+.st.ok{color:var(--ok);border-color:#2e6b47}.st.err{color:#ff8b95;border-color:#7a2a33}.st.go{color:var(--go);border-color:#6b5520}
+.err{color:#ff8b95}
+.cnt{font-size:.78rem;color:var(--mu);text-align:right;margin-top:2px}.cnt.over{color:#ff8b95;font-weight:700}
+.ban{border-radius:10px;padding:10px 12px;font-size:.88rem;border:1px solid var(--line);margin:0 0 4px}
+.ban.ok{border-color:#2e6b47}.ban.err{border-color:#7a2a33}
+details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);font-size:.88rem;padding:6px 0}
 </style>
 </head>
 <body>
 <main>
 <h1>Admin · rAKings VGC</h1>
-<p class="sub">Statistiche degli iscritti alle notifiche. Pagina privata: serve il codice di accesso del Worker.</p>
+<p class="sub">Richieste dei locali, post per Instagram e X, statistiche. Pagina privata: serve il codice di accesso del Worker.</p>
 
 <section id="login" class="card">
   <h2>Accesso</h2>
   <label for="tk">Codice di accesso (ADMIN_TOKEN)</label>
   <input id="tk" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="incolla qui il codice">
   <label class="chk"><input id="rem" type="checkbox"> Ricorda il codice su questo dispositivo</label>
-  <button id="go" type="button">Mostra statistiche</button>
+  <button id="go" type="button">Entra</button>
   <p class="msg" id="msg" role="status"></p>
 </section>
 
 <section id="res" hidden>
-  <div class="card">
-    <h2>Iscritti</h2>
-    <div class="big" id="n">–</div>
-    <div class="hint" id="split"></div>
+  <nav class="tabs" role="tablist">
+    <button type="button" role="tab" data-tab="loc" aria-selected="true">Locali<i id="bl" hidden></i></button>
+    <button type="button" role="tab" data-tab="ig" aria-selected="false">Instagram<i id="bi" hidden></i></button>
+    <button type="button" role="tab" data-tab="x" aria-selected="false">X<i id="bx" hidden></i></button>
+    <button type="button" role="tab" data-tab="st" aria-selected="false">Statistiche</button>
+  </nav>
+
+  <div id="p-loc" data-panel="loc">
+    <div class="card"><h2>Richieste dei locali e annunci da approvare</h2><div id="rq"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>Annunci di Francesco Pardini in bacheca</h2><div id="pa"><div class="hint">Carico…</div></div></div>
   </div>
-  <div class="card">
-    <h2>Iscrizioni nuove o modificate</h2>
-    <div class="grid3">
-      <div class="mini"><b id="t1">–</b><span>ultime 24 ore</span></div>
-      <div class="mini"><b id="t7">–</b><span>ultimi 7 giorni</span></div>
-      <div class="mini"><b id="t30">–</b><span>ultimi 30 giorni</span></div>
+
+  <div id="p-ig" data-panel="ig" hidden>
+    <div class="card"><h2>Post per Instagram</h2><div id="igst"></div><div id="igl"><div class="hint">Carico…</div></div></div>
+    <p class="hint">Le richieste nascono da sole quando approvi un locale e compare sul sito. «Approva e pubblica» lo pubblica subito sull'account Instagram del sito, con la didascalia scritta qui sopra (puoi cambiarla prima).</p>
+  </div>
+
+  <div id="p-x" data-panel="x" hidden>
+    <div class="card"><h2>Post per X</h2><div id="xl"><div class="hint">Carico…</div></div></div>
+    <p class="hint">X non permette di pubblicare gratis in automatico: «Condividi su X» apre l'app di X con immagine e testo pronti, tu premi solo Pubblica. Poi torna qui e premi «Fatto, pubblicato». Il testo viene anche copiato: se X non lo mette, tieni premuto nel riquadro e scegli Incolla.</p>
+  </div>
+
+  <div id="p-st" data-panel="st" hidden>
+    <div class="card">
+      <h2>Iscritti</h2>
+      <div class="big" id="n">–</div>
+      <div class="hint" id="split"></div>
     </div>
+    <div class="card">
+      <h2>Iscrizioni nuove o modificate</h2>
+      <div class="grid3">
+        <div class="mini"><b id="t1">–</b><span>ultime 24 ore</span></div>
+        <div class="mini"><b id="t7">–</b><span>ultimi 7 giorni</span></div>
+        <div class="mini"><b id="t30">–</b><span>ultimi 30 giorni</span></div>
+      </div>
+    </div>
+    <div class="card"><h2>Canali scelti</h2><div id="ch"></div></div>
+    <div class="card"><h2>Promemoria un'ora prima</h2><div id="hr"></div></div>
+    <div class="card"><h2>Tornei seguiti adesso <small style="text-transform:none;letter-spacing:0">(non ancora finiti)</small></h2><div id="ta"><div class="hint">Calcolo…</div></div></div>
+    <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
+    <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
+    <p class="hint">Le statistiche si leggono solo quando apri questa scheda (o premi Aggiorna stando qui): ogni lettura costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
   </div>
-  <div class="card"><h2>Canali scelti</h2><div id="ch"></div></div>
-  <div class="card"><h2>Promemoria un'ora prima</h2><div id="hr"></div></div>
-  <div class="card"><h2>Tornei seguiti adesso <small style="text-transform:none;letter-spacing:0">(non ancora finiti)</small></h2><div id="ta"><div class="hint">Calcolo…</div></div></div>
-  <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
-  <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
-  <div class="card"><h2>Richieste dei locali e annunci da approvare</h2><div id="rq"><div class="hint">Carico…</div></div></div>
-  <div class="card"><h2>Annunci di Francesco Pardini in bacheca</h2><div id="pa"><div class="hint">Carico…</div></div></div>
+
   <div class="foot">
     <span id="when"></span>
     <span><button class="sec" id="again" type="button">Aggiorna</button> <button class="sec" id="out" type="button">Esci</button></span>
   </div>
-  <p class="hint">Ogni aggiornamento legge l'archivio due volte (statistiche + tornei seguiti adesso): costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
 </section>
 </main>
 <script>
@@ -140,8 +182,6 @@ function show(t){
     '<div class="hint">Tornei seguiti in tutto: '+fmt(t.tornei)+(t.seguono>0?" (in media "+(t.tornei/t.seguono).toLocaleString("it-IT",{maximumFractionDigits:1})+" a testa)":"")+'</div>';
   var lg=Object.keys(t.l).sort(function(a,b){return t.l[b]-t.l[a]}).map(function(k){return [k,t.l[k]]});
   rows($("lg"),lg,t.n);
-  var d=new Date();$("when").textContent="Aggiornato alle "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);
-  $("login").hidden=true;$("res").hidden=false
 }
 
 /* ---- tornei seguiti ADESSO: incrocia i codici dei tornei seguiti (archivio iscritti) con il calendario del sito (events.json) ---- */
@@ -184,7 +224,9 @@ function attivi(token){
 function dati(body,tag){var m=String(body||"").match(new RegExp("<!-- "+tag+"\\s*(\\{[\\s\\S]*?\\})\\s*-->"));if(!m)return null;try{return JSON.parse(m[1])}catch(e){return null}}
 function richieste(token){
   var el=$("rq");el.innerHTML='<div class="hint">Carico…</div>';
-  return fetch(W+"/admin/richieste",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){return r.json().then(function(j){j._s=r.status;return j})}).then(function(j){
+  return fetch(W+"/admin/richieste",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){j._s=r.status;return j})}).then(function(j){
+    if(j._s===401)return 401;
+    try{badge("bl",(j.richieste||[]).filter(function(i){var L=i.labels||[];return L.indexOf("approvato")<0&&(L.indexOf("locali-da-approvare")>-1||L.indexOf("annuncio-da-approvare")>-1)}).length)}catch(e){}
     if(j._s===503){el.innerHTML='<div class="hint">Da configurare su Cloudflare: segreto GH_RICHIESTE e variabile RICHIESTE_REPO.</div>';return}
     if(!j.ok){el.innerHTML='<div class="hint">Richieste non lette ('+esc(j.error||j._s)+').</div>';return}
     var l=j.richieste||[];if(!l.length){el.innerHTML='<div class="hint">Nessuna richiesta aperta.</div>';return}
@@ -199,7 +241,7 @@ function richieste(token){
       if(an&&ap)bt.push(fx?['fissato','Togli dalla cima','',1]:['fissato','Fissa in cima','']);
       h+='<div class="bt">'+bt.map(function(x){return '<button type="button" class="'+(x[2]||"sec")+'" data-et="'+x[0]+'" data-n="'+i.n+'"'+(x[3]?' data-togli="1"':'')+'>'+x[1]+'</button>'}).join("")+'<a class="hint" style="align-self:center" href="'+esc(i.url)+'" target="_blank" rel="noopener">apri su GitHub</a></div>';
       return '<div class="rq">'+h+'</div>'}).join("")
-  }).catch(function(){el.innerHTML='<div class="hint">Il Worker non risponde.</div>'})
+  }).catch(function(){el.innerHTML='<div class="hint">Il Worker non risponde.</div>';return 0})
 }
 document.addEventListener("click",function(ev){
   var b=ev.target&&ev.target.closest?ev.target.closest("[data-et]"):null;if(!b)return;
@@ -238,42 +280,130 @@ document.addEventListener("click",function(ev){
     function(){b.disabled=false;b.textContent="Cancella";alert("Nessuna connessione con il Worker: non cancellato.")})
 });
 
-function load(token,remember,auto){
+/* ---- post per Instagram e X: social/richieste.json del sito (lo scrive il flusso «Social»), azioni tramite il Worker ---- */
+var SOC=null,EDIT={},BLOB={},FATTI={};
+function badge(id,n){var e=$(id);if(!e)return;e.textContent=n>99?"99+":String(n);e.hidden=!(n>0)}
+function quando(iso){var d=new Date(iso||0);return isNaN(d)?"":d.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
+function pesoX(t,link){if(link)t=t.split(link).join("xxxxxxxxxxxxxxxxxxxxxxx");var n=0;for(var c of t)n+=c.codePointAt(0)<0x1100?1:2;return n}
+var NOMI={"da approvare":["da approvare","go"],"errore":["errore","err"],"pubblicato":["pubblicato","ok"],"rifiutato":["rifiutato",""],"annullato":["annullato",""]};
+function stato(s){var x=NOMI[s.stato]||[s.stato,""];return '<span class="st '+x[1]+'">'+esc(x[0])+'</span>'}
+function aperta(s){return s.stato==="da approvare"||s.stato==="errore"}
+function social(){
+  return fetch(SITE+"social/richieste.json?t="+Date.now(),{cache:"no-store"}).then(function(r){
+    if(r.status===404)return {nuovo:true};if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){SOC=d;disegnaIg();disegnaX()})
+  .catch(function(e){$("igl").innerHTML=$("xl").innerHTML='<div class="hint">Elenco non letto ('+esc(e.message||"errore")+'). Premi Aggiorna.</div>'})
+}
+function elenco(rete,el,riga){
+  if(SOC&&SOC.nuovo){el.innerHTML='<div class="hint">Non ancora attivo: carica i file del pacchetto (flusso «Social»). Le richieste nascono dal primo locale approvato dopo.</div>';badge(rete==="ig"?"bi":"bx",0);return}
+  var l=(SOC&&SOC.richieste)||[],ap=l.filter(function(r){return aperta(r[rete])&&!FATTI[r.id+rete]}),ch=l.filter(function(r){return ap.indexOf(r)<0});
+  badge(rete==="ig"?"bi":"bx",ap.length);
+  el.innerHTML=(ap.length?ap.map(function(r){return riga(r,true)}).join(""):'<div class="hint">Nessun post da approvare.</div>')+
+    (ch.length?'<details class="old"><summary>Già fatti ('+ch.length+')</summary>'+ch.map(function(r){return riga(r,false)}).join("")+'</details>':'')
+}
+function testa(r,s){return '<img src="'+esc(SITE+r.img)+'" alt="" loading="lazy"><div><b>'+esc(r.titolo||r.id)+stato(s)+'</b><small>'+esc(r.sotto||"")+'</small><small>preparato il '+esc(quando(r.creata))+(s.quando?" · "+esc(s.stato)+" il "+esc(quando(s.quando)):"")+'</small>'+
+  (s.msg?'<small class="err">'+esc(s.msg)+'</small>':'')+'<small><a href="'+esc(r.link||SITE)+'" target="_blank" rel="noopener" style="color:var(--mu)">vedi sul sito</a></small></div>'}
+function disegnaIg(){
+  var st=(SOC&&SOC.ig_stato)||{},b=$("igst");
+  b.innerHTML=SOC&&!SOC.nuovo?(st.ok?'<div class="ban ok">Instagram collegato'+(st.account?" (@"+esc(st.account)+")":"")+' ✓ · controllato il '+esc(quando(st.quando))+'</div>':
+    st.msg==="da collegare"||!st.msg?'<div class="ban">Instagram non ancora collegato: le richieste si preparano lo stesso e le pubblichi appena metti la chiave su GitHub.</div>':
+    '<div class="ban err">Attenzione: '+esc(st.msg)+'</div>'):"";
+  elenco("ig",$("igl"),function(r,ap){var s=r.ig,k=r.id+"ig";
+    return '<div class="so">'+testa(r,s)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
+      '<div class="bt"><button type="button" class="ok" data-so="approva" data-r="ig" data-id="'+esc(r.id)+'">'+(s.stato==="errore"?"Riprova a pubblicare":"Approva e pubblica")+'</button><button type="button" class="sec" data-so="rifiuta" data-r="ig" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':
+      (s.url?'<div class="full"><a class="hint" href="'+esc(s.url)+'" target="_blank" rel="noopener">apri su Instagram</a></div>':''))+'</div>'})
+}
+function disegnaX(){
+  elenco("x",$("xl"),function(r,ap){var s=r.x,k=r.id+"x",t=EDIT[k]!=null?EDIT[k]:s.testo;
+    if(ap&&!BLOB[r.img])fetch(SITE+r.img).then(function(x){return x.blob()}).then(function(b){BLOB[r.img]=b}).catch(function(){});   /* pronta per «Condividi»: il telefono la vuole subito */
+    return '<div class="so">'+testa(r,s)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" data-link="'+esc(r.link||"")+'">'+esc(t)+'</textarea><div class="cnt" data-c="'+esc(k)+'"></div>'+
+      '<div class="bt"><button type="button" class="ok" data-xs="'+esc(r.id)+'">Condividi su X</button><button type="button" class="sec" data-xi="'+esc(r.id)+'">Apri X (solo testo)</button>'+
+      '<a class="b" href="'+esc(SITE+r.img)+'" download="'+esc(r.id)+'.jpg">Scarica immagine</a></div>'+
+      '<div class="bt"><button type="button" class="ok" data-so="fatto" data-r="x" data-id="'+esc(r.id)+'">Fatto, pubblicato</button><button type="button" class="sec" data-so="rifiuta" data-r="x" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':'')+'</div>'});
+  Array.prototype.forEach.call($("xl").querySelectorAll("textarea"),conta)
+}
+function conta(t){var c=document.querySelector('[data-c="'+t.getAttribute("data-k")+'"]');if(!c)return;var n=pesoX(t.value,t.getAttribute("data-link"));c.textContent=n+" / 280";c.className="cnt"+(n>280?" over":"")}
+document.addEventListener("input",function(ev){var t=ev.target;if(t&&t.tagName==="TEXTAREA"&&t.getAttribute("data-k")){EDIT[t.getAttribute("data-k")]=t.value;conta(t)}});
+function trova(id){return ((SOC&&SOC.richieste)||[]).filter(function(r){return r.id===id})[0]}
+function testoX(id){var t=document.querySelector('textarea[data-k="'+id+'x"]');return t?t.value:""}
+function apriX(t){window.open("https://x.com/intent/tweet?text="+encodeURIComponent(t),"_blank","noopener")}
+function copia(t){try{if(navigator.clipboard)navigator.clipboard.writeText(t).catch(function(){})}catch(e){}}
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-xs],[data-xi]"):null;if(!b)return;
+  var id=b.getAttribute("data-xs")||b.getAttribute("data-xi"),r=trova(id),t=testoX(id);if(!r)return;
+  copia(t);
+  if(b.hasAttribute("data-xi")){apriX(t);return}
+  var bl=BLOB[r.img],f=null;
+  try{if(bl)f=new File([bl],r.id+".jpg",{type:"image/jpeg"})}catch(e){}
+  if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:t}).catch(function(e){if(!e||e.name!=="AbortError")apriX(t)});return}
+  alert("Questo dispositivo non condivide immagini dal browser: apro X con il testo. Per l'immagine usa «Scarica immagine» e allegala nel post.");
+  apriX(t)
+});
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-so]"):null;if(!b)return;
+  var id=b.getAttribute("data-id"),rete=b.getAttribute("data-r"),az=b.getAttribute("data-so"),token=getTok(),r=trova(id);
+  if(!token){msg("Rientra con il codice di accesso.",true);return}
+  if(!r)return;
+  var ta=document.querySelector('textarea[data-k="'+id+rete+'"]'),testo=ta?ta.value:"";
+  var dom=az==="approva"?"Pubblico ADESSO su Instagram questo post?\n\n«"+r.titolo+"»":az==="fatto"?"L'hai pubblicato su X? Lo segno come fatto.":"Rifiuto questo post ("+(rete==="ig"?"Instagram":"X")+")?\n\n«"+r.titolo+"»";
+  if(!confirm(dom))return;
+  var box=b.parentNode;Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=true});
+  fetch(W+"/admin/social",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id,rete:rete,azione:az,testo:rete==="ig"?testo:""})})
+    .then(function(x){return x.json().catch(function(){return {}}).then(function(j){
+      if(x.ok&&j.ok){FATTI[id+rete]=1;box.innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Inviato ✓ Pubblicazione in corso: tra 1-2 minuti premi Aggiorna (se qualcosa va storto lo vedi qui, con «Riprova»).":"Fatto ✓ Tra un minuto, premendo Aggiorna, passa in «Già fatti».")+'</small>';badge(rete==="ig"?"bi":"bx",Math.max(0,(+$(rete==="ig"?"bi":"bx").textContent||1)-1))}
+      else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Non fatto: "+(j.error||("errore "+x.status)))}})},
+    function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Nessuna connessione con il Worker.")})
+});
+
+/* ---- schede ---- */
+var TAB="loc",STATS=false,TKEY="vgc-admin-tab";
+function vai(t){if(!$("p-"+t))t="loc";TAB=t;try{localStorage.setItem(TKEY,t)}catch(e){}
+  Array.prototype.forEach.call(document.querySelectorAll("[data-tab]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-tab")===t))});
+  Array.prototype.forEach.call(document.querySelectorAll("[data-panel]"),function(p){p.hidden=p.getAttribute("data-panel")!==t});
+  if(t==="st"&&!STATS&&!$("res").hidden){STATS=true;stats(getTok())}}
+document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-tab]"):null;if(b)vai(b.getAttribute("data-tab"))});
+function ora(){var d=new Date();$("when").textContent="Aggiornato alle "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2)}
+
+/* statistiche: si leggono SOLO aprendo la scheda (risparmia letture di KV) */
+function stats(token){
   var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0},cur=null,pages=0;
-  $("go").disabled=true;$("again").disabled=true;
-  function fail(text,drop){msg(text,true);$("go").disabled=false;$("again").disabled=false;$("login").hidden=false;if(drop){clearTok();$("res").hidden=true}}
+  $("n").textContent="…";
   function next(){
     var u=W+"/stats?kind=all&limit=1000"+(cur?"&cursor="+encodeURIComponent(cur):"");
     return fetch(u,{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){
-      if(r.status===401){fail("Codice non valido.",true);return null}
-      if(!r.ok){fail("Il Worker ha risposto con un errore ("+r.status+").",false);return null}
+      if(!r.ok)throw new Error("il Worker ha risposto "+r.status);
       return r.json().then(function(j){
-        if(typeof j.n!=="number"){fail("Il Worker non ha ancora la versione con le statistiche: incolla il nuovo worker.js su Cloudflare e premi Deploy.",false);return null}
+        if(typeof j.n!=="number")throw new Error("Worker senza statistiche");
         ["n","fcm","os","seguono","tornei","t1","t7","t30"].forEach(function(k){tot[k]+=j[k]||0});
         ["c","h","l"].forEach(function(g){Object.keys(j[g]||{}).forEach(function(k){tot[g][k]=(tot[g][k]||0)+j[g][k]})});
         cur=j.cursor||null;pages++;
-        if(cur&&pages<1000){msg("Leggo l'archivio… pagina "+(pages+1)+" ("+fmt(tot.n)+" iscritti finora)");return next()}
-        return tot
-      })
-    },function(){fail("Il Worker non risponde: controlla la connessione.",false);return null})
+        if(cur&&pages<1000){$("split").textContent="Leggo l'archivio… pagina "+(pages+1);return next()}
+        return tot})})
   }
-  msg("Leggo l'archivio…");
-  return next().then(function(t){
-    if(!t)return;
-    setTok(token,remember);$("tk").value="";msg("");show(t);$("go").disabled=false;$("again").disabled=false;attivi(token);annunciPartner(token);richieste(token)
-  }).catch(function(){fail("Risposta non valida dal Worker.",false)})
+  return next().then(function(t){show(t);attivi(token)}).catch(function(e){$("n").textContent="–";$("split").textContent="Statistiche non lette ("+(e.message||"errore")+"). Premi Aggiorna."})
+}
+
+function load(token,remember){
+  $("go").disabled=true;$("again").disabled=true;msg("Controllo il codice…");
+  return richieste(token).then(function(s){
+    $("go").disabled=false;$("again").disabled=false;
+    if(s===401){msg("Codice non valido.",true);clearTok();$("res").hidden=true;$("login").hidden=false;return}
+    setTok(token,remember);$("tk").value="";msg("");$("login").hidden=true;$("res").hidden=false;ora();
+    annunciPartner(token);social();
+    if(STATS||TAB==="st"){STATS=true;stats(token)}
+  })
 }
 
 $("go").addEventListener("click",function(){
   var t=$("tk").value.trim();
   if(!t){msg("Scrivi il codice di accesso.",true);return}
-  load(t,$("rem").checked,false)
+  load(t,$("rem").checked)
 });
 $("tk").addEventListener("keydown",function(e){if(e.key==="Enter")$("go").click()});
-$("again").addEventListener("click",function(){var t=getTok();if(t)load(t,!!(store()&&store().getItem(KEY)),false);else{$("res").hidden=true;$("login").hidden=false}});
+$("again").addEventListener("click",function(){var t=getTok();FATTI={};if(t){STATS=TAB==="st";load(t,!!(store()&&store().getItem(KEY)))}else{$("res").hidden=true;$("login").hidden=false}});
 $("out").addEventListener("click",function(){clearTok();$("res").hidden=true;$("login").hidden=false;$("tk").value="";msg("Uscito: il codice non e' piu' salvato su questo dispositivo.")});
+try{vai(localStorage.getItem(TKEY)||"loc")}catch(e){vai("loc")}
 var saved=getTok();
-if(saved){$("rem").checked=!!(store()&&store().getItem(KEY));load(saved,$("rem").checked,true)}
+if(saved){$("rem").checked=!!(store()&&store().getItem(KEY));load(saved,$("rem").checked)}
 })();
 </script>
 </body>
