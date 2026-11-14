@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T20:02:48+00:00",
+ "updated": "2026-11-14T20:55:50+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -152,6 +152,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
+   "name": "Raichu Rivalry | Champions Open",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "15:00",
+   "players": 30,
+   "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
+  },
+  {
    "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -182,21 +197,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
-   "name": "Raichu Rivalry | Champions Open — 15 November",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "15:00",
-   "players": 36,
-   "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
-  },
-  {
    "name": "VGC Indigo League #7 (Prize: Shiny Heatran)",
    "org": "Champions International",
    "mode": "online",
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "22:00",
-   "players": 41,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
@@ -287,7 +287,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "02:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6adf724122fd412b92a4d3c6/details"
   },
   {
@@ -302,7 +302,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 92,
+   "players": 91,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -452,7 +452,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 29,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -467,7 +467,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "21:00",
-   "players": 7,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
@@ -542,8 +542,23 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
+  },
+  {
+   "name": "The Drywall Series #27",
+   "org": "The Drywalls Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-17",
+   "time": "00:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
    "name": "VGC UmbreNews 17.11.2026 #40 - Champion",
@@ -662,7 +677,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -692,7 +707,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
@@ -737,7 +752,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
   },
   {
@@ -782,7 +797,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "19:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
