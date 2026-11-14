@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T15:21:10+00:00",
+ "updated": "2026-11-14T16:41:33+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 50,
+   "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 113,
+   "players": 142,
    "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "18:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
   },
   {
@@ -302,7 +302,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 85,
+   "players": 89,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -317,7 +317,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "10:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af5b52900d53a11f5b91f2f/details"
   },
   {
@@ -366,8 +366,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
-   "name": "✨👑 King",
-   "org": "Astral Community",
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -377,8 +377,8 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 21,
-   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
+   "players": 12,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "🆓 Domino Arena VGC #1 [BETA]",
@@ -396,8 +396,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
   },
   {
-   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "✨👑 King",
+   "org": "Astral Community",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -407,8 +407,8 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+   "players": 22,
+   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -452,7 +452,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -662,7 +662,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -828,7 +828,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -847,21 +847,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
-   "name": "LEGA DEI BOLLENTI MC #2",
-   "org": "CkVerse_Twitch",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
-  },
-  {
    "name": "Ukraine tryouts",
    "org": "Champions Ukraine",
    "mode": "online",
@@ -875,6 +860,21 @@
    "time": "12:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
+  },
+  {
+   "name": "LEGA DEI BOLLENTI MC #2",
+   "org": "CkVerse_Twitch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
@@ -1447,7 +1447,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "17:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af4db92dcbca32da6c4ea4c/details"
   },
   {
