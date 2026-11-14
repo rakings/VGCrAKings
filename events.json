@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T06:55:40+00:00",
+ "updated": "2026-11-14T10:02:27+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,23 +137,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
-   "name": "5 $ to 1st｜Pokexiaotian's Weekly Pokemon Battle#2",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "5 $",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "03:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6af49131dcbca32da6c4e596/details"
-  },
-  {
-   "name": "Texas Throwdown #1",
-   "org": "",
+   "name": "[Shiny Salamence to 1st] The Grim Challenge #13",
+   "org": "The Grim Team",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -162,39 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-14",
-   "time": "02:00",
-   "players": 17,
-   "url": "https://play.limitlesstcg.com/tournament/6af34ba4dcbca32da6c4d6aa/details"
-  },
-  {
-   "name": "Metal's Meteor Mash-Up #7 - TOP 4 IN DISCORD HOF",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "00:30",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6af3406200d53a11f5b90445/details"
-  },
-  {
-   "name": "X1 Remote Battle League 14ª Edição - Reg M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "00:15",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6af22a50c931f53978d97764/details"
+   "time": "10:00",
+   "players": 26,
+   "url": "https://play.limitlesstcg.com/tournament/6af43913dcbca32da6c4e1b8/details"
   },
   {
    "name": "Floette Champions Cheese #02",
@@ -212,36 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af27619c931f53978d97e00/details"
   },
   {
-   "name": "Friday Fight Night 81! $50 Prize & Team Report",
-   "org": "Team Rainbow Gaming",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "$5",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "00:00",
-   "players": 127,
-   "url": "https://play.limitlesstcg.com/tournament/6aef3ca2c931f53978d95882/details"
-  },
-  {
-   "name": "[Shiny Salamence to 1st] The Grim Challenge #13",
-   "org": "The Grim Team",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "10:00",
-   "players": 26,
-   "url": "https://play.limitlesstcg.com/tournament/6af43913dcbca32da6c4e1b8/details"
-  },
-  {
    "name": "VGC Indigo League #7 (Prize: Shiny Heatran)",
    "org": "Champions International",
    "mode": "online",
@@ -253,7 +178,7 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "14:00",
-   "players": 69,
+   "players": 88,
    "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
   },
   {
@@ -268,8 +193,38 @@
    "bo": null,
    "date": "2026-11-14",
    "time": "15:00",
-   "players": 24,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
+  },
+  {
+   "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
+   "org": "PokeInstinct",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "5 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 41,
+   "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
+  },
+  {
+   "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "95 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "18:00",
+   "players": 56,
+   "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
   },
   {
    "name": "M-C CHAMPIONS Showdown #2",
@@ -285,36 +240,6 @@
    "time": "18:00",
    "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af350d8dcbca32da6c4d6ea/details"
-  },
-  {
-   "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "95 $",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "18:00",
-   "players": 47,
-   "url": "https://play.limitlesstcg.com/tournament/6af743b9ee43ef7891473645/details"
-  },
-  {
-   "name": "PokeInstinct VGCLiveTour #5 $15 USD for the winner",
-   "org": "PokeInstinct",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "5 $",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "18:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
   },
   {
    "name": "Scrafty Cup #2",
@@ -392,7 +317,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "04:00",
-   "players": 79,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
@@ -407,7 +332,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "10:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af5b52900d53a11f5b91f2f/details"
   },
   {
@@ -456,21 +381,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
-   "name": "✨👑 King",
-   "org": "Astral Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
-  },
-  {
    "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -501,8 +411,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
   },
   {
-   "name": "Semanal VGC Roaring - Premiação no Pix!",
-   "org": "SongFuê",
+   "name": "✨👑 King",
+   "org": "Astral Community",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -511,9 +421,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-15",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
+   "time": "15:00",
+   "players": 20,
+   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
    "name": "VGCA PRESENTS: HORSEPLAY",
@@ -531,6 +441,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
+   "name": "Semanal VGC Roaring - Premiação no Pix!",
+   "org": "SongFuê",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
+  },
+  {
    "name": "Open Champions League #6 (20 USD to 1st)",
    "org": "Smilegazer League",
    "mode": "online",
@@ -542,7 +467,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 20,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -664,6 +589,21 @@
    "time": "19:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aea078d0c463890f304a624/details"
+  },
+  {
+   "name": "Tuesday Throwdowns #4",
+   "org": "The #1 Fanatics",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "01:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af80e81ee43ef78914743d7/details"
   },
   {
    "name": "Mamoswine Online 11-17-26",
@@ -1582,7 +1522,7 @@
    "bo": null,
    "date": "2026-12-27",
    "time": "11:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ae5c6ff0d00101b48bf3255/details"
   },
   {
