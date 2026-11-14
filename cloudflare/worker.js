@@ -16,6 +16,8 @@
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
 //   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
 //     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
+//   SOCIAL (2026-11-15a): POST /admin/social {id, rete: ig|x, azione: approva|rifiuta|fatto, testo} (solo ADMIN_TOKEN, dalla pagina admin):
+//     avvia il flusso «Social - azione dall'admin» del sito (segreto GH_AVVISI). La chiave di Instagram resta SOLO su GitHub.
 //   RICHIESTE LOCALI: GET /admin/richieste e POST /admin/richieste/etichetta (ADMIN_TOKEN), con GH_RICHIESTE e RICHIESTE_REPO.
 //     GET /partner/statistiche: gli stessi numeri della pagina admin (mai i token), aggiornabili ogni 10 minuti.
 //     Per spegnerlo: variabile PARDINI_ATTIVO = off (oppure cancella il segreto PARDINI_TOKEN).
@@ -102,7 +104,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-14d";
+const VERSIONE = "2026-11-15a";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -441,6 +443,23 @@ export default {
       try { return await likeRoute(req, env, url, out, admin); } catch (e) { console.log("like:", String(e && e.message || e).slice(0, 120)); return out({ error: "like non disponibili" }, 503); }
     }
     if (url.pathname === "/admin/richieste" || url.pathname === "/admin/richieste/etichetta") return richiesteRoute(req, env, url, out, admin);
+    if (req.method === "POST" && url.pathname === "/admin/social") {   // SOLO Andrea (ADMIN_TOKEN): approva/rifiuta un post per Instagram o X
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
+      const id = String((b && b.id) || ""), rete = String((b && b.rete) || ""), az = String((b && b.azione) || "");
+      const testo = typeof (b && b.testo) === "string" ? b.testo.slice(0, 2200) : "";
+      if (!/^[a-z]{2,8}-\d{1,10}$/.test(id) || !["ig", "x"].includes(rete) || !["approva", "rifiuta", "fatto"].includes(az)
+          || (rete === "ig" && az === "fatto") || (rete === "x" && az === "approva")) return out({ error: "richiesta non valida" }, 400);
+      if (!env.GH_AVVISI) return out({ error: "manca il segreto GH_AVVISI" }, 503);
+      const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/social-azione.yml/dispatches", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+                   "User-Agent": "vgc-subs-admin", "Content-Type": "application/json" },
+        body: JSON.stringify({ ref: "main", inputs: { id, rete, azione: az, testo } }),
+      });
+      if (r.status !== 204) return out({ error: "GitHub ha risposto " + r.status }, 502);
+      return out({ ok: true });
+    }
     if (req.method === "POST" && url.pathname === "/admin/rimuovi-annuncio") {   // SOLO Andrea (ADMIN_TOKEN): toglie un annuncio di un partner dalla bacheca
       if (!admin()) return out({ error: "non autorizzato" }, 401);
       let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
