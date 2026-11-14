@@ -1,0 +1,53 @@
+name: Social - azione dall'admin
+# Lo avvia SOLO il Worker quando premi un pulsante nelle schede Instagram o X della tua pagina admin.
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "richiesta (es. loc-123)"
+        required: true
+      rete:
+        description: "ig oppure x"
+        required: true
+      azione:
+        description: "approva, rifiuta oppure fatto"
+        required: true
+      testo:
+        description: "didascalia (vuoto = quella preparata)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: social
+  cancel-in-progress: false
+jobs:
+  azione:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -u social.py azione
+        env:
+          ID: ${{ inputs.id }}
+          RETE: ${{ inputs.rete }}
+          AZIONE: ${{ inputs.azione }}
+          TESTO: ${{ inputs.testo }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_HOST: ${{ vars.IG_HOST }}
+          IG_API_VER: ${{ vars.IG_API_VER }}
+      - name: Salva su GitHub
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A social
+          if ! git diff --staged --quiet; then
+            git commit -m "Social: azione dalla pagina admin"
+            for i in 1 2 3 4 5 6; do
+              if git pull --rebase --autostash && git push; then break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 8
+            done
+          fi
