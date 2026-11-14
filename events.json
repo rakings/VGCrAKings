@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T20:55:50+00:00",
+ "updated": "2026-11-14T21:37:23+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,6 +167,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aeeca3ec931f53978d9553c/details"
   },
   {
+   "name": "Scrafty Cup #2",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-14",
+   "time": "22:00",
+   "players": 43,
+   "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
+  },
+  {
    "name": "⛩️Chadweezy95 $60 VGC Champions Tourny Ep 37!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -195,36 +210,6 @@
    "time": "18:00",
    "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6ae81304ae67092a4074110b/details"
-  },
-  {
-   "name": "VGC Indigo League #7 (Prize: Shiny Heatran)",
-   "org": "Champions International",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "14:00",
-   "players": 108,
-   "url": "https://play.limitlesstcg.com/tournament/6aee023ee99f3235a75e23c6/details"
-  },
-  {
-   "name": "Scrafty Cup #2",
-   "org": "Thavorian Skies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-14",
-   "time": "22:00",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6aea17650c463890f304a68a/details"
   },
   {
    "name": "X1 Arena - Pokémon Champions - 14/11",
@@ -287,7 +272,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "02:00",
-   "players": 7,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6adf724122fd412b92a4d3c6/details"
   },
   {
@@ -377,7 +362,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
@@ -411,21 +396,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
-   "name": "VGCA PRESENTS: HORSEPLAY",
-   "org": "VGC Academy",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "17:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
-  },
-  {
    "name": "Semanal VGC Roaring - Premiação no Pix!",
    "org": "SongFuê",
    "mode": "online",
@@ -441,6 +411,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
   },
   {
+   "name": "VGCA PRESENTS: HORSEPLAY",
+   "org": "VGC Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
+  },
+  {
    "name": "Open Champions League #6 (20 USD to 1st)",
    "org": "Smilegazer League",
    "mode": "online",
@@ -452,7 +437,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 30,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -467,7 +452,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "21:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6acbf8918a8383117e3e9c5e/details"
   },
   {
@@ -557,7 +542,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:30",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
@@ -786,21 +771,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
-   "name": "VGC Gemeinde Showdown #14",
-   "org": "VGC Gemeinde",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "19:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
-  },
-  {
    "name": "🌟 Movember Cup 🌟",
    "org": "Grombrooklyn Gaming",
    "mode": "online",
@@ -814,6 +784,21 @@
    "time": "19:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
+  },
+  {
+   "name": "VGC Gemeinde Showdown #14",
+   "org": "VGC Gemeinde",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "19:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
    "name": "Latin America International Championships",
@@ -1182,7 +1167,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
@@ -1507,7 +1492,7 @@
    "bo": null,
    "date": "2026-12-26",
    "time": "18:00",
-   "players": 147,
+   "players": 148,
    "url": "https://play.limitlesstcg.com/tournament/6a7d22852b308b6067b52844/details"
   },
   {
