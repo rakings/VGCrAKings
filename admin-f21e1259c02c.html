@@ -1,0 +1,280 @@
+<!doctype html>
+<!-- Pagina admin di Andrea: indirizzo da non condividere. Senza il codice admin non mostra niente. -->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="dark">
+<title>Admin · rAKings VGC</title>
+<link rel="icon" href="favicon-64.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#140a0c">
+<style>
+:root{--bg:#140a0c;--card:#231216;--line:#4a1f27;--tx:#f3e9ea;--mu:#b99ea2;--ac:#ff4d5e;--go:#ffc83a;--ok:#5fd38d}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+main{max-width:720px;margin:0 auto;padding:18px 14px 60px}
+h1{font-size:1.35rem;margin:6px 0 2px}
+.sub{color:var(--mu);font-size:.85rem;margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
+.card h2{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin:0 0 10px;font-weight:700}
+label{display:block;font-size:.9rem;margin:8px 0 4px}
+input[type=password]{width:100%;font-size:16px;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0f0709;color:var(--tx)}
+.chk{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--mu);margin:10px 0}
+.chk input{width:18px;height:18px}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px 16px;background:var(--ac);color:#fff;cursor:pointer;min-height:44px}
+button.sec{background:transparent;border:1px solid var(--line);color:var(--tx)}
+button:disabled{opacity:.55;cursor:default}
+.msg{min-height:1.3em;margin:10px 0 0;font-size:.9rem;color:var(--mu)}
+.msg.err{color:#ff8b95}
+.big{font-size:3rem;font-weight:800;color:var(--go);line-height:1.05}
+.hint{color:var(--mu);font-size:.85rem;margin-top:4px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mini{background:#1a0d10;border:1px solid var(--line);border-radius:10px;padding:10px 6px;text-align:center}
+.mini b{display:block;font-size:1.5rem;color:var(--tx)}
+.mini span{font-size:.75rem;color:var(--mu)}
+.row{display:grid;grid-template-columns:minmax(80px,120px) 1fr auto;gap:8px;align-items:center;margin:7px 0;font-size:.92rem}
+.bar{height:9px;border-radius:6px;background:#0f0709;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#b3202f,var(--ac))}
+.num{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.num small{color:var(--mu)}
+.off .big{color:var(--mu)}
+.foot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-top:14px;color:var(--mu);font-size:.85rem}
+#ta .row{grid-template-columns:minmax(0,1fr) 70px auto}
+.pa{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;border-top:1px solid var(--line);padding:8px 0;font-size:.9rem}
+.pa:first-child{border-top:0}.pa small{display:block;color:var(--mu);font-size:.78rem}.pa b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.pa button{padding:8px 12px;min-height:38px;font-size:.85rem}
+.rq{border-top:1px solid var(--line);padding:10px 0;font-size:.9rem}.rq:first-child{border-top:0}
+.rq b{display:block}.rq small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}.rq ol{margin:6px 0 0;padding-left:20px;font-size:.85rem}
+.rq .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rq .bt button{padding:8px 12px;min-height:38px;font-size:.85rem}.rq .bt button.ok{background:#1f8a4c}
+.rq .st{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mu);margin-left:6px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<h1>Admin · rAKings VGC</h1>
+<p class="sub">Statistiche degli iscritti alle notifiche. Pagina privata: serve il codice di accesso del Worker.</p>
+
+<section id="login" class="card">
+  <h2>Accesso</h2>
+  <label for="tk">Codice di accesso (ADMIN_TOKEN)</label>
+  <input id="tk" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="incolla qui il codice">
+  <label class="chk"><input id="rem" type="checkbox"> Ricorda il codice su questo dispositivo</label>
+  <button id="go" type="button">Mostra statistiche</button>
+  <p class="msg" id="msg" role="status"></p>
+</section>
+
+<section id="res" hidden>
+  <div class="card">
+    <h2>Iscritti</h2>
+    <div class="big" id="n">–</div>
+    <div class="hint" id="split"></div>
+  </div>
+  <div class="card">
+    <h2>Iscrizioni nuove o modificate</h2>
+    <div class="grid3">
+      <div class="mini"><b id="t1">–</b><span>ultime 24 ore</span></div>
+      <div class="mini"><b id="t7">–</b><span>ultimi 7 giorni</span></div>
+      <div class="mini"><b id="t30">–</b><span>ultimi 30 giorni</span></div>
+    </div>
+  </div>
+  <div class="card"><h2>Canali scelti</h2><div id="ch"></div></div>
+  <div class="card"><h2>Promemoria un'ora prima</h2><div id="hr"></div></div>
+  <div class="card"><h2>Tornei seguiti adesso <small style="text-transform:none;letter-spacing:0">(non ancora finiti)</small></h2><div id="ta"><div class="hint">Calcolo…</div></div></div>
+  <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
+  <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
+  <div class="card"><h2>Richieste dei locali e annunci da approvare</h2><div id="rq"><div class="hint">Carico…</div></div></div>
+  <div class="card"><h2>Annunci di Francesco Pardini in bacheca</h2><div id="pa"><div class="hint">Carico…</div></div></div>
+  <div class="foot">
+    <span id="when"></span>
+    <span><button class="sec" id="again" type="button">Aggiorna</button> <button class="sec" id="out" type="button">Esci</button></span>
+  </div>
+  <p class="hint">Ogni aggiornamento legge l'archivio due volte (statistiche + tornei seguiti adesso): costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+var W=(window.ADMIN_WORKER||"https://vgc-subs.andrykvideo.workers.dev").replace(/\/+$/,"");
+var KEY="vgc-admin-token";
+function $(i){return document.getElementById(i)}
+function fmt(n){return Number(n||0).toLocaleString("it-IT")}
+function store(){try{return window.localStorage}catch(e){return null}}
+function sess(){try{return window.sessionStorage}catch(e){return null}}
+function getTok(){var a=store(),b=sess();return (a&&a.getItem(KEY))||(b&&b.getItem(KEY))||""}
+function setTok(t,remember){try{var a=store(),b=sess();if(a)a.removeItem(KEY);if(b)b.removeItem(KEY);var s=remember?a:b;if(s)s.setItem(KEY,t)}catch(e){}}
+function clearTok(){try{var a=store(),b=sess();if(a)a.removeItem(KEY);if(b)b.removeItem(KEY)}catch(e){}}
+function msg(t,err){var m=$("msg");m.textContent=t||"";m.className="msg"+(err?" err":"")}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+/* nomi dei canali come nel log di "Notifica di prova" */
+var ORDER=["money","money33","gc","regionali","vr","vrreg","maddos","locali","locali8","player","winner","vrwin"];
+function chName(k){return k==="money=all"?"money":k==="money=33"?"money33":k}
+
+function rows(el,pairs,tot,suffix){
+  if(!pairs.length){el.innerHTML='<div class="hint">Nessun dato.</div>';return}
+  var h="";
+  pairs.forEach(function(p){
+    var pc=tot>0?Math.round(100*p[1]/tot):0;
+    h+='<div class="row"><span>'+esc(p[0]+(suffix||""))+'</span><span class="bar"><i style="width:'+pc+'%"></i></span><span class="num">'+fmt(p[1])+' <small>'+pc+'%</small></span></div>'
+  });
+  el.innerHTML=h
+}
+function byOrder(obj,rename){
+  var m={};Object.keys(obj).forEach(function(k){m[rename?rename(k):k]=(m[rename?rename(k):k]||0)+obj[k]});
+  var names=Object.keys(m).sort(function(a,b){var ia=ORDER.indexOf(a),ib=ORDER.indexOf(b);if(ia<0)ia=99;if(ib<0)ib=99;return ia-ib||a.localeCompare(b)});
+  return names.map(function(k){return [k,m[k]]})
+}
+
+function show(t){
+  $("n").textContent=fmt(t.n);
+  $("split").textContent="Firebase "+fmt(t.fcm)+(t.os?" · OneSignal "+fmt(t.os):"");
+  $("t1").textContent=fmt(t.t1);$("t7").textContent=fmt(t.t7);$("t30").textContent=fmt(t.t30);
+  rows($("ch"),byOrder(t.c,chName),t.n);
+  rows($("hr"),byOrder(t.h),t.n,"-1h");
+  var pc=t.n>0?Math.round(100*t.seguono/t.n):0;
+  $("to").innerHTML='<div class="row"><span>Ne seguono almeno uno</span><span class="bar"><i style="width:'+pc+'%"></i></span><span class="num">'+fmt(t.seguono)+' <small>'+pc+'%</small></span></div>'+
+    '<div class="hint">Tornei seguiti in tutto: '+fmt(t.tornei)+(t.seguono>0?" (in media "+(t.tornei/t.seguono).toLocaleString("it-IT",{maximumFractionDigits:1})+" a testa)":"")+'</div>';
+  var lg=Object.keys(t.l).sort(function(a,b){return t.l[b]-t.l[a]}).map(function(k){return [k,t.l[k]]});
+  rows($("lg"),lg,t.n);
+  var d=new Date();$("when").textContent="Aggiornato alle "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);
+  $("login").hidden=true;$("res").hidden=false
+}
+
+/* ---- tornei seguiti ADESSO: incrocia i codici dei tornei seguiti (archivio iscritti) con il calendario del sito (events.json) ---- */
+var SITE="https://rakings.github.io/VGCrAKings/";
+function eh(u){var h=5381;for(var i=0;i<u.length;i++)h=(h*33+u.charCodeAt(i))>>>0;return h.toString(36)}   /* stesso codice del sito */
+function oggiRoma(){try{return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Rome",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date())}catch(e){return new Date().toISOString().slice(0,10)}}
+function dataIt(d){var p=String(d||"").split("-");return p.length===3?p[2]+"/"+p[1]:""}
+function attivi(token){
+  var el=$("ta");el.innerHTML='<div class="hint">Calcolo…</div>';
+  var cur=null,pages=0,subs=[];
+  function next(){
+    var u=W+"/list?kind=fcm&limit=1000"+(cur?"&cursor="+encodeURIComponent(cur):"");
+    return fetch(u,{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){
+      if(!r.ok)throw new Error("Worker "+r.status);
+      return r.json()}).then(function(j){
+        (j.subs||[]).forEach(function(x){subs.push(x.f||[])});   /* si tengono solo i codici dei tornei, nient'altro */
+        cur=j.cursor||null;pages++;
+        return cur&&pages<1000?next():subs})
+  }
+  return Promise.all([next(),fetch(SITE+"events.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("calendario "+r.status);return r.json()})]).then(function(a){
+    var oggi=oggiRoma(),ev={};
+    ((a[1]&&a[1].events)||[]).forEach(function(e){if(e&&e.url&&(e.end||e.date||"9999")>=oggi)ev[eh(e.url)]=e});
+    var conta={},persone=0,scelte=0;
+    a[0].forEach(function(f){var vivi=f.filter(function(c){return ev[c]});if(vivi.length){persone++;scelte+=vivi.length}vivi.forEach(function(c){conta[c]=(conta[c]||0)+1})});
+    var codici=Object.keys(conta).sort(function(x,y){return conta[y]-conta[x]||String(ev[x].date).localeCompare(String(ev[y].date))});
+    var tot=a[0].length,pc=tot>0?Math.round(100*persone/tot):0;
+    var h='<div class="row"><span>Ne seguono almeno uno</span><span class="bar"><i style="width:'+pc+'%"></i></span><span class="num">'+fmt(persone)+' <small>'+pc+'%</small></span></div>'+
+      '<div class="hint">Tornei diversi seguiti adesso: <b style="color:var(--tx)">'+fmt(codici.length)+'</b> · scelte in tutto: '+fmt(scelte)+'</div>';
+    if(codici.length){
+      var mx=conta[codici[0]];
+      h+='<div style="margin-top:8px">'+codici.slice(0,15).map(function(c){var e=ev[c],w=Math.round(100*conta[c]/mx);
+        return '<div class="row"><span title="'+esc(e.name||"")+'" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(dataIt(e.date))+' '+esc(e.name||"?")+'</span><span class="bar"><i style="width:'+w+'%"></i></span><span class="num">'+fmt(conta[c])+'</span></div>'}).join("")+'</div>'+
+        (codici.length>15?'<div class="hint">e altri '+fmt(codici.length-15)+' tornei</div>':'');
+    }
+    el.innerHTML=h
+  }).catch(function(e){el.innerHTML='<div class="hint">Non riesco a calcolarli adesso ('+esc(e.message||"errore")+'). Premi Aggiorna.</div>'})
+}
+
+/* ---- richieste dei locali (Issue della repo privata): elenco + Approva / Rifiuta / Rimuovi / Fissa, tramite il Worker ---- */
+function dati(body,tag){var m=String(body||"").match(new RegExp("<!-- "+tag+"\\s*(\\{[\\s\\S]*?\\})\\s*-->"));if(!m)return null;try{return JSON.parse(m[1])}catch(e){return null}}
+function richieste(token){
+  var el=$("rq");el.innerHTML='<div class="hint">Carico…</div>';
+  return fetch(W+"/admin/richieste",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){return r.json().then(function(j){j._s=r.status;return j})}).then(function(j){
+    if(j._s===503){el.innerHTML='<div class="hint">Da configurare su Cloudflare: segreto GH_RICHIESTE e variabile RICHIESTE_REPO.</div>';return}
+    if(!j.ok){el.innerHTML='<div class="hint">Richieste non lette ('+esc(j.error||j._s)+').</div>';return}
+    var l=j.richieste||[];if(!l.length){el.innerHTML='<div class="hint">Nessuna richiesta aperta.</div>';return}
+    el.innerHTML=l.map(function(i){
+      var L=i.labels||[],an=dati(i.body,"ANNUNCIO-DATA"),lo=an?null:dati(i.body,"LOCALI-DATA"),ap=L.indexOf("approvato")>-1,fx=L.indexOf("fissato")>-1,h='';
+      var stato=ap?"pubblicato":(L.indexOf("locali-da-approvare")>-1||L.indexOf("annuncio-da-approvare")>-1)?"da approvare":L.join(", ");
+      h+='<b>#'+i.n+' · '+esc(i.t)+'<span class="st">'+esc(stato)+(fx?" · fissato":"")+'</span></b>';
+      if(lo){h+='<small>'+esc([lo.tipo,lo.negozio,lo.citta,lo.iso].filter(Boolean).join(" · "))+'</small>';
+        var g=(lo.giocatori||[]).slice().sort(function(a,b){return a.p-b.p});if(g.length)h+='<ol>'+g.map(function(x){return '<li value="'+(+x.p||0)+'">'+esc(x.nome||"")+'</li>'}).join("")+'</ol>'}
+      else if(an){h+='<small>'+esc(an.titolo||"")+'</small>'+(an.testo?'<small style="white-space:pre-line">'+esc(String(an.testo).slice(0,400))+'</small>':'')}
+      var bt=[];if(!ap){bt.push(['approvato','Approva','ok']);bt.push(['rifiutato','Rifiuta',''])}else{bt.push(['rimosso','Rimuovi dal sito',''])}
+      if(an&&ap)bt.push(fx?['fissato','Togli dalla cima','',1]:['fissato','Fissa in cima','']);
+      h+='<div class="bt">'+bt.map(function(x){return '<button type="button" class="'+(x[2]||"sec")+'" data-et="'+x[0]+'" data-n="'+i.n+'"'+(x[3]?' data-togli="1"':'')+'>'+x[1]+'</button>'}).join("")+'<a class="hint" style="align-self:center" href="'+esc(i.url)+'" target="_blank" rel="noopener">apri su GitHub</a></div>';
+      return '<div class="rq">'+h+'</div>'}).join("")
+  }).catch(function(){el.innerHTML='<div class="hint">Il Worker non risponde.</div>'})
+}
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-et]"):null;if(!b)return;
+  var n=+b.getAttribute("data-n"),et=b.getAttribute("data-et"),togli=!!b.getAttribute("data-togli"),token=getTok();
+  if(!token){msg("Rientra con il codice di accesso.",true);return}
+  if(!confirm(b.textContent+" la richiesta #"+n+"?"))return;
+  var box=b.parentNode;Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=true});
+  fetch(W+"/admin/richieste/etichetta",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({n:n,label:et,togli:togli})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
+      if(r.ok&&j.ok){box.innerHTML='<small style="color:var(--ok)">Fatto ✓ ('+esc(b.textContent)+'). La repo privata lo applica entro un minuto; premi Aggiorna per rivedere l\'elenco.</small>'}
+      else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=false});alert("Non fatto: "+(j.error||("errore "+r.status)))}})},
+    function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=false});alert("Nessuna connessione con il Worker.")})
+});
+
+/* ---- annunci di Francesco: elenco + tasto Cancella (il Worker avvia il flusso che li toglie dalla bacheca) ---- */
+var TOLTI={};
+function annunciPartner(token){
+  var el=$("pa");el.innerHTML='<div class="hint">Carico…</div>';
+  return fetch(SITE+"annunci.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("bacheca "+r.status);return r.json()}).then(function(d){
+    var l=((d&&d.annunci)||[]).filter(function(a){return a&&a.partner&&!TOLTI[a.id]}).sort(function(x,y){return String(y.pub||"").localeCompare(String(x.pub||""))});
+    if(!l.length){el.innerHTML='<div class="hint">Nessun annuncio di Francesco in bacheca.</div>';return}
+    el.innerHTML=l.map(function(a){var dt=new Date(a.pub||0);return '<div class="pa"><span><b title="'+esc(a.t||"")+'">'+esc(a.t||"(senza titolo)")+'</b><small>'+(isNaN(dt)?"":dt.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}))+(a.img?" · con immagine":"")+'</small></span><button class="sec" type="button" data-rm="'+esc(a.id)+'">Cancella</button></div>'}).join("")+
+      '<div class="hint">Dopo «Cancella» l\'annuncio sparisce dalla bacheca entro qualche minuto (il tempo che GitHub aggiorni il sito).</div>'
+  }).catch(function(e){el.innerHTML='<div class="hint">Bacheca non letta ('+esc(e.message||"errore")+').</div>'})
+}
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-rm]"):null;if(!b)return;
+  var id=b.getAttribute("data-rm"),tit=(b.parentNode.querySelector("b")||{}).textContent||id,token=getTok();
+  if(!token){msg("Rientra con il codice di accesso.",true);return}
+  if(!confirm("Tolgo dalla bacheca l'annuncio di Francesco:\n\n«"+tit+"»?\n\nNon si puo' annullare."))return;
+  b.disabled=true;b.textContent="…";
+  fetch(W+"/admin/rimuovi-annuncio",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
+      if(r.ok&&j.ok){TOLTI[id]=1;var row=b.parentNode;row.innerHTML='<span><b>'+esc(tit)+'</b><small style="color:var(--ok)">Cancellato ✓ sparisce dalla bacheca entro qualche minuto</small></span><span></span>'}
+      else{b.disabled=false;b.textContent="Cancella";alert("Non cancellato: "+(j.error||("errore "+r.status)))}})},
+    function(){b.disabled=false;b.textContent="Cancella";alert("Nessuna connessione con il Worker: non cancellato.")})
+});
+
+function load(token,remember,auto){
+  var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0},cur=null,pages=0;
+  $("go").disabled=true;$("again").disabled=true;
+  function fail(text,drop){msg(text,true);$("go").disabled=false;$("again").disabled=false;$("login").hidden=false;if(drop){clearTok();$("res").hidden=true}}
+  function next(){
+    var u=W+"/stats?kind=all&limit=1000"+(cur?"&cursor="+encodeURIComponent(cur):"");
+    return fetch(u,{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){
+      if(r.status===401){fail("Codice non valido.",true);return null}
+      if(!r.ok){fail("Il Worker ha risposto con un errore ("+r.status+").",false);return null}
+      return r.json().then(function(j){
+        if(typeof j.n!=="number"){fail("Il Worker non ha ancora la versione con le statistiche: incolla il nuovo worker.js su Cloudflare e premi Deploy.",false);return null}
+        ["n","fcm","os","seguono","tornei","t1","t7","t30"].forEach(function(k){tot[k]+=j[k]||0});
+        ["c","h","l"].forEach(function(g){Object.keys(j[g]||{}).forEach(function(k){tot[g][k]=(tot[g][k]||0)+j[g][k]})});
+        cur=j.cursor||null;pages++;
+        if(cur&&pages<1000){msg("Leggo l'archivio… pagina "+(pages+1)+" ("+fmt(tot.n)+" iscritti finora)");return next()}
+        return tot
+      })
+    },function(){fail("Il Worker non risponde: controlla la connessione.",false);return null})
+  }
+  msg("Leggo l'archivio…");
+  return next().then(function(t){
+    if(!t)return;
+    setTok(token,remember);$("tk").value="";msg("");show(t);$("go").disabled=false;$("again").disabled=false;attivi(token);annunciPartner(token);richieste(token)
+  }).catch(function(){fail("Risposta non valida dal Worker.",false)})
+}
+
+$("go").addEventListener("click",function(){
+  var t=$("tk").value.trim();
+  if(!t){msg("Scrivi il codice di accesso.",true);return}
+  load(t,$("rem").checked,false)
+});
+$("tk").addEventListener("keydown",function(e){if(e.key==="Enter")$("go").click()});
+$("again").addEventListener("click",function(){var t=getTok();if(t)load(t,!!(store()&&store().getItem(KEY)),false);else{$("res").hidden=true;$("login").hidden=false}});
+$("out").addEventListener("click",function(){clearTok();$("res").hidden=true;$("login").hidden=false;$("tk").value="";msg("Uscito: il codice non e' piu' salvato su questo dispositivo.")});
+var saved=getTok();
+if(saved){$("rem").checked=!!(store()&&store().getItem(KEY));load(saved,$("rem").checked,true)}
+})();
+</script>
+</body>
+</html>
