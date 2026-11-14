@@ -133,6 +133,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <div class="card"><h2>Tornei seguiti adesso <small style="text-transform:none;letter-spacing:0">(non ancora finiti)</small></h2><div id="ta"><div class="hint">Calcolo…</div></div></div>
     <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
     <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
+    <div class="card"><h2>Avvisi automatici di Francesco (Twitch e YouTube)</h2><div id="au"><div class="hint">Carico…</div></div></div>
     <p class="hint">Le statistiche si leggono solo quando apri questa scheda (o premi Aggiorna stando qui): ogni lettura costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
   </div>
 
@@ -368,6 +369,18 @@ function vai(t){if(!$("p-"+t))t="loc";TAB=t;try{localStorage.setItem(TKEY,t)}cat
 document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-tab]"):null;if(b)vai(b.getAttribute("data-tab"))});
 function ora(){var d=new Date();$("when").textContent="Aggiornato alle "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2)}
 
+/* avvisi automatici di Francesco: stato delle iscrizioni a Twitch e YouTube (una sola lettura di KV) */
+function auto(token){
+  var el=$("au");el.innerHTML='<div class="hint">Carico…</div>';
+  fetch(W+"/admin/auto",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("Worker "+r.status);return r.json()}).then(function(j){
+    function riga(n,on,ok,extra){return '<div class="pa"><span><b>'+n+'</b><small>'+(!on?"spento: mancano le chiavi su Cloudflare":ok?"attivo ✓"+(extra||""):"in attesa del primo controllo (entro 5 minuti) o da sistemare")+'</small></span><span class="st '+(on&&ok?"ok":on?"err":"")+'">'+(on?ok?"ok":"!":"off")+'</span></div>'}
+    var h=riga("Live su Twitch",j.twitch,j.twOk)+riga("Live e video su YouTube",j.youtube,!!j.ytRinnovo,j.ytRinnovo?" · iscrizione rinnovata il "+quando(new Date(j.ytRinnovo*1000).toISOString()):"")+
+      (j.attesa?'<div class="hint">Live programmate in attesa: '+j.attesa+'</div>':'')+(j.errore?'<div class="hint err">Ultimo problema: '+esc(j.errore)+'</div>':'');
+    if(j.log&&j.log.length)h+='<details class="old"><summary>Ultimi eventi ('+j.log.length+')</summary>'+j.log.map(function(x){return '<div class="hint">'+esc(quando(new Date(x.t*1000).toISOString()))+' · '+esc(x.m)+'</div>'}).join("")+'</details>';
+    el.innerHTML=h
+  }).catch(function(e){el.innerHTML='<div class="hint">Non letto ('+esc(e.message||"errore")+'): serve il worker.js nuovo.</div>'})
+}
+
 /* statistiche: si leggono SOLO aprendo la scheda (risparmia letture di KV) */
 function stats(token){
   var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0},cur=null,pages=0;
@@ -384,6 +397,7 @@ function stats(token){
         if(cur&&pages<1000){$("split").textContent="Leggo l'archivio… pagina "+(pages+1);return next()}
         return tot})})
   }
+  auto(token);
   return next().then(function(t){show(t);attivi(token)}).catch(function(e){$("n").textContent="–";$("split").textContent="Statistiche non lette ("+(e.message||"errore")+"). Premi Aggiorna."})
 }
 
