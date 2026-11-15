@@ -4,7 +4,8 @@
 "use strict";
 var URLD=String(window.VGCS_CP||"https://rakings.github.io/VGCdatiAK/dati/cp/vg-europe-masters.json");
 var POKEDATA="https://www.pokedata.ovh/2027/?game=VG&region=Europe&division=Masters";
-var D=null,OV=null,ONC=null,S={q:"",f:"all",st:null},BASE=URLD.replace(/[^\/]*$/,""),IX=null,IXP=null,DC={};
+var D=null,OV=null,ONC=null,S={q:"",f:"all",st:null,lim:150},BASE=URLD.replace(/[^\/]*$/,""),IX=null,IXP=null,DC={},TC={},TP={},CUR=[];
+var PASSO=150; /* righe mostrate alla volta: 6.000 righe insieme bloccherebbero i telefoni */
 function E(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function pn(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
 function num(n){return Number(n).toLocaleString("it")}
@@ -27,7 +28,7 @@ st.textContent="#cpov{position:fixed;inset:0;z-index:40;background:var(--bg,#1d0
 ".cp-bar{grid-column:1/-1;display:block;height:5px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}.cp-bar u{display:block;height:100%;background:var(--coin,#ffd21f);border-radius:3px}.cp-sotto .cp-bar u{background:#ff6b78;opacity:.75}"+
 ".cp-cut{margin:10px 0;border-top:2px dashed #ff6b78;position:relative;height:0}.cp-cut span{position:absolute;right:0;top:-11px;background:#ff6b78;color:#fff;font-size:.72rem;font-weight:800;padding:2px 10px;border-radius:999px}"+
 ".cp-d{padding:3px 2px 7px 10px;font-size:.78rem;border-bottom:1px solid var(--line,#5a2a2e)}.cp-e{display:flex;flex-wrap:nowrap;align-items:center;gap:0 7px;padding:3px 0;white-space:nowrap;overflow:hidden}.cp-ed{flex:none;min-width:36px;color:var(--mute,#c9a0a2)}.cp-e>b{flex:none}.cp-e>i{flex:none;font-style:normal;font-weight:700;color:#4ade80}.cp-ev{display:flex;align-items:center;gap:5px;flex:1 1 0;min-width:0;overflow:hidden}.cp-ev .tag{flex:none;font-size:.6rem;padding:1px 6px}.cp-ev b{min-width:0;overflow:hidden;text-overflow:ellipsis}.cp-ev small{flex:none;color:var(--mute,#c9a0a2)}.cp-no{color:var(--mute,#c9a0a2);font-style:italic}"+
-".cp-st{display:flex;gap:6px;margin:8px 0 0}.cp-vuoto{color:var(--mute,#c9a0a2);padding:16px 4px}.cp-f{font-size:.72rem;color:var(--mute,#c9a0a2);margin:14px 4px 0}.cp-f a{color:inherit;text-decoration:underline}";
+".cp-piu{display:block;width:100%;margin:10px 0 0;padding:9px;border-radius:12px;border:1.5px solid var(--line,#5a2a2e);background:var(--card,#2c1316);color:inherit;font:inherit;font-weight:700;cursor:pointer}.cp-st{display:flex;gap:6px;margin:8px 0 0}.cp-vuoto{color:var(--mute,#c9a0a2);padding:16px 4px}.cp-f{font-size:.72rem;color:var(--mute,#c9a0a2);margin:14px 4px 0}.cp-f a{color:inherit;text-decoration:underline}";
 (document.head||document.documentElement).appendChild(st)}
 /* Archivio per stagione: indice.json elenca le stagioni (quella in corso e le chiuse). Se l'indice non c'e', si legge l'ultima classifica come prima. */
 function indice(){if(IXP)return IXP;IXP=fetch(BASE+"indice.json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!Array.isArray(j.stagioni)||!j.stagioni.length)throw 0;IX=j;return j}).catch(function(){IX=null;return null});return IXP}
@@ -63,29 +64,46 @@ if(m.length===1){var x=m[0],tg=tagDi(x.e);ev='<span class="cp-ev"><span class="t
 else if(m.length>1)ev='<span class="cp-ev"><b>'+m.map(function(x){return E(x.e.city||x.e.name)+" "+E(x.pl)+"°"}).join(" · ")+"</b></span>";
 h+='<div class="cp-e"><span class="cp-ed">'+E(dm(s.data))+"</span><b>"+num(s.cp)+" CP</b>"+(s.cp>prev?"<i>+"+num(s.cp-prev)+"</i>":"")+ev+"</div>";prev=s.cp});return h||'<div class="cp-e cp-no">Nessun dettaglio disponibile</div>'}
 function load(st){var k=st||"_";if(DC[k])return Promise.resolve(DC[k]);return fetch(file(st),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(!j||!Array.isArray(j.righe)||!j.righe.length)throw new Error("vuoto");DC[k]=j;return j})}
+/* Classifica completa (tutti i giocatori, file leggero <nome>-tutti.json): si scarica SOLO quando serve (ricerca, filtro Italia, «Mostra altri»).
+   I primi della lista restano quelli del file principale, con la storia dei punti; gli altri hanno solo posto, nome, paese e punti. */
+function kst(){return S.st||"_"}
+function tutti(){var k=kst();if(TC[k])return Promise.resolve(TC[k]);if(TP[k])return TP[k];if(!D||!D.tutti)return Promise.resolve(null);
+TP[k]=fetch(file(S.st).replace(/[^\/]*$/,"")+D.tutti,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+if(!j||!Array.isArray(j.r))throw 0;var top={};D.righe.forEach(function(r){top[r.pos]=r});
+TC[k]=j.r.map(function(x){return top[x[0]]||{pos:x[0],rank:x[1],name:x[2],country:x[3],cp:x[4],storia:null}});return TC[k]}).catch(function(){TP[k]=null;return null});return TP[k]}
+function tutte(){return TC[kst()]||D.righe}
 function head(){return'<div class="cp-h"><b>CP bar</b><span>Europa · VG Masters '+E((D&&D.stagione)||"2027")+'</span><button type="button" class="cp-x" data-cp="x" aria-label="Chiudi">×</button></div>'}
 function ov(){if(OV)return OV;OV=document.createElement("div");OV.id="cpov";OV.hidden=true;OV.setAttribute("role","dialog");OV.setAttribute("aria-modal","true");OV.setAttribute("aria-label","Classifica CP");document.body.appendChild(OV);
 OV.addEventListener("click",function(e){var t=e.target.closest("[data-cp]");if(!t)return;var a=t.getAttribute("data-cp");
-if(a==="x")close(true);else if(a==="s"){var st=t.getAttribute("data-v");if(st!==S.st){S.st=st;S.q="";load(st).then(function(x){D=x;draw()}).catch(function(){})}}else if(a==="f"){S.f=t.getAttribute("data-v");[].forEach.call(OV.querySelectorAll(".cp-chip"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-v")===S.f))});lista()}else if(a==="r")tog(t)});
-OV.addEventListener("input",function(e){if(e.target.id==="cp-q"){S.q=e.target.value;lista()}});return OV}
+if(a==="x")close(true);else if(a==="s"){var st=t.getAttribute("data-v");if(st!==S.st){S.st=st;S.q="";S.lim=PASSO;load(st).then(function(x){D=x;draw()}).catch(function(){})}}else if(a==="m"){S.lim+=PASSO;lista()}else if(a==="f"){S.f=t.getAttribute("data-v");S.lim=PASSO;[].forEach.call(OV.querySelectorAll(".cp-chip"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-v")===S.f))});lista()}else if(a==="r")tog(t)});
+OV.addEventListener("input",function(e){if(e.target.id==="cp-q"){S.q=e.target.value;S.lim=PASSO;lista()}});return OV}
 function riga(r,i,sg,max){var sotto=sg.cp!=null&&r.cp<sg.cp,dd=sg.cp==null?"":(r.cp>sg.cp?"+"+(r.cp-sg.cp):r.cp===sg.cp?"soglia":"−"+(sg.cp-r.cp)),cl=r.cp>sg.cp?"cp-su":r.cp===sg.cp?"cp-pa":"cp-gi";
 return'<button type="button" class="cp-r'+(sotto?" cp-sotto":"")+'" data-cp="r" data-i="'+i+'" aria-expanded="false"><span class="cp-pos">'+E(r.pos)+'</span><span class="cp-n"><b>'+E(r.name)+"</b><small>"+E(r.country||"")+'</small></span><span class="cp-cp"><b>'+num(r.cp)+'</b><small class="'+cl+'">'+E(dd)+'</small></span><i class="cp-bar"><u style="width:'+Math.max(2,Math.round(r.cp/max*100))+'%"></u></i></button>'}
-function lista(){var el=document.getElementById("cp-list");if(!el||!D)return;var sg=D.soglia||{},max=Math.max.apply(null,D.righe.map(function(r){return r.cp}))||1,q=pn(S.q),h="",cut=false,n=0;
-D.righe.forEach(function(r,i){if(S.f==="it"&&r.country!=="ITA")return;if(q&&pn(r.name).indexOf(q)<0)return;
-if(!cut&&sg.posizione&&r.pos>sg.posizione){h+='<div class="cp-cut"><span>Soglia stimata: '+num(sg.cp)+" CP · "+sg.posizione+"° posto</span></div>";cut=true}
-n++;h+=riga(r,i,sg,max)});
-if(!n)h='<p class="cp-vuoto">Nessun giocatore trovato tra i primi '+D.righe.length+'. La classifica completa è su <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a>.</p>';
+function lista(){var el=document.getElementById("cp-list");if(!el||!D)return;var sg=D.soglia||{},max=Math.max.apply(null,D.righe.map(function(r){return r.cp}))||1,q=pn(S.q),h="",cut=false,
+caricata=!!TC[kst()],serve=!caricata&&D.tutti&&(q||S.f==="it"||S.lim>D.righe.length);
+if(serve){tutti().then(function(x){if(x&&OV&&!OV.hidden){lista();etichette()}});}
+var L=tutte().filter(function(r){return!(S.f==="it"&&r.country!=="ITA")&&!(q&&pn(r.name).indexOf(q)<0)});CUR=L.slice(0,S.lim);
+CUR.forEach(function(r,i){if(!cut&&sg.posizione&&r.pos>sg.posizione){h+='<div class="cp-cut"><span>Soglia stimata: '+num(sg.cp)+" CP · "+sg.posizione+"° posto</span></div>";cut=true}h+=riga(r,i,sg,max)});
+var resto=L.length-CUR.length;
+if(resto>0)h+='<button type="button" class="cp-piu" data-cp="m">Mostra altri ('+num(resto)+")</button>";
+else if(!caricata&&D.tutti&&!serve)h+='<button type="button" class="cp-piu" data-cp="m">Mostra tutta la classifica</button>';
+if(serve)h+='<p class="cp-vuoto">Carico tutta la classifica…</p>';
+else if(!L.length)h='<p class="cp-vuoto">Nessun giocatore trovato'+(caricata?"":" tra i primi "+D.righe.length)+'. La classifica è anche su <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a>.</p>';
 el.innerHTML=h}
+function etichette(){var b=OV&&OV.querySelector('[data-cp="f"][data-v="it"]'),c=TC[kst()];if(b&&c)b.textContent="Italiani ("+num(c.filter(function(r){return r.country==="ITA"}).length)+")";
+var f=OV&&OV.querySelector(".cp-f b");if(f&&c)f.textContent="tutti i "+num(c.length)}
 function tog(btn){var nx=btn.nextElementSibling;if(nx&&nx.classList.contains("cp-d")){nx.remove();btn.setAttribute("aria-expanded","false");return}
-var r=D.righe[Number(btn.getAttribute("data-i"))],d=document.createElement("div");d.className="cp-d";d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">Cerco il torneo…</div>');btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");
+var r=CUR[Number(btn.getAttribute("data-i"))],d=document.createElement("div");d.className="cp-d";
+if(!r)return;if(r.storia===null){d.innerHTML='<div class="cp-e cp-no">'+num(r.cp)+" CP · posto "+E(r.pos)+". La storia dei punti c'è per i primi "+D.righe.length+'; per gli altri vedi <a href="'+POKEDATA+'&search='+encodeURIComponent(r.name)+'" target="_blank" rel="noopener">Pokédata</a>.</div>';btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");return}
+d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">Cerco il torneo…</div>');btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");
 var stag=D.stagione;dati().then(function(ok){if(!d.isConnected)return;var t=ok?trova(r,stag):{k:"nd"};d.innerHTML=linee(r,t.k==="ok"?t.righe:null)})}
-function draw(){var o=ov(),sg=D.soglia||{},nIt=D.righe.filter(function(r){return r.country==="ITA"}).length,fin=D.finale===true,
+function draw(){var o=ov(),sg=D.soglia||{},nIt=tutte().filter(function(r){return r.country==="ITA"}).length,fin=D.finale===true,
 sel=IX&&IX.stagioni.length>1?'<div class="cp-st">'+IX.stagioni.map(function(v){return'<button type="button" class="cp-chip" data-cp="s" data-v="'+E(v.stagione)+'" aria-pressed="'+(v.stagione===S.st)+'">'+E(v.stagione)+" · "+(v.stato==="in corso"?"in corso":"finale")+"</button>"}).join("")+"</div>":"";
 o.innerHTML='<div class="cp-w">'+head()+sel+
 '<div class="cp-sum"><div class="cp-big"><b>'+(sg.cp!=null?num(sg.cp)+" CP":"—")+"</b><span>soglia stimata"+(sg.posizione?" ("+sg.posizione+"° posto)":"")+'</span></div>'+
 '<div class="cp-note">Stima non ufficiale · '+(D.giocatori_totali?num(D.giocatori_totali)+" giocatori in classifica · ":"")+(fin?"Classifica finale "+E(D.stagione)+(D.chiusa?" · chiusa il "+E(dm(D.chiusa)):"")+" · ultimo aggiornamento "+E(dh(D.aggiornato)):D.controllato?"controllata il "+E(dh(D.controllato))+(D.aggiornato&&D.aggiornato!==D.controllato?" · punti cambiati il "+E(dh(D.aggiornato)):""):"aggiornata il "+E(dh(D.aggiornato)))+"</div></div>"+
-'<div class="cp-ctl"><input id="cp-q" type="search" placeholder="Cerca un giocatore" aria-label="Cerca un giocatore" value="'+E(S.q)+'"><button type="button" class="cp-chip" data-cp="f" data-v="all" aria-pressed="'+(S.f==="all")+'">Tutti</button><button type="button" class="cp-chip" data-cp="f" data-v="it" aria-pressed="'+(S.f==="it")+'">Italiani ('+nIt+")</button></div>"+
-'<div id="cp-list"></div><p class="cp-f">Dati: <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a> · classifica non ufficiale · primi '+D.righe.length+(D.giocatori_totali?" di "+num(D.giocatori_totali):"")+" giocatori. La soglia è una stima: il "+(sg.posizione||90)+"° posto dell'elenco. Torneo e piazzamento si ricavano dai nostri risultati (nome e data): mancano per gli eventi che non sono nel sito.</p></div>";lista()}
+'<div class="cp-ctl"><input id="cp-q" type="search" placeholder="Cerca un giocatore" aria-label="Cerca un giocatore" value="'+E(S.q)+'"><button type="button" class="cp-chip" data-cp="f" data-v="all" aria-pressed="'+(S.f==="all")+'">Tutti</button><button type="button" class="cp-chip" data-cp="f" data-v="it" aria-pressed="'+(S.f==="it")+'">Italiani'+(TC[kst()]||!D.tutti?" ("+nIt+")":"")+"</button></div>"+
+'<div id="cp-list"></div><p class="cp-f">Dati: <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a> · classifica non ufficiale · <b>'+(TC[kst()]?"tutti i "+num(TC[kst()].length):"primi "+D.righe.length+(D.giocatori_totali?" di "+num(D.giocatori_totali):""))+"</b> giocatori. La soglia è una stima: il "+(sg.posizione||90)+"° posto dell'elenco. Torneo e piazzamento si ricavano dai nostri risultati (nome e data): mancano per gli eventi che non sono nel sito.</p></div>";lista()}
 function open(onclose){ONC=onclose||null;css();var o=ov();o.hidden=false;o.scrollTop=0;
 o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">Caricamento…</p></div>';
 indice().then(function(){S.st=IX?IX.corrente:null;return load(S.st)}).then(function(x){D=x;if(!o.hidden)draw()}).catch(function(){if(!o.hidden)o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">La classifica non è disponibile in questo momento. Riprova tra poco.</p></div>'})}

@@ -311,7 +311,9 @@ return fetch(BASES[1]+x+"/meta.json",{cache:"no-cache"}).then(function(r){return
 return null
 }).then(function(m){
 if(!m||S.ev!==x)return;
-return Promise.all(["players","pokemon","teams","swiss"].map(function(f){return liveGet(x+"/"+f+".json")})).then(function(a){
+/* squadre: se l'impronta (tv) e' la stessa di prima non si riscaricano, si tengono quelle gia' in memoria (i giocatori hanno codici fissi) */
+var tmUguali=!!(m.tv&&d.m&&d.m.tv===m.tv&&d.tm);
+return Promise.all(["players","pokemon","teams","swiss"].map(function(f){return f==="teams"&&tmUguali?Promise.resolve(d.tm):liveGet(x+"/"+f+".json")})).then(function(a){
 var nd={m:m,pl:a[0],pk:a[1],tm:a[2],sw:a[3],by:{}};a[0].forEach(function(p){nd.by[p[0]]=p});
 Object.keys(C).forEach(function(k){if(k.indexOf(x+"/")===0)delete C[k]});
 D[x]=nd;if(S.ev===x&&host&&document.body.contains(host)){drawRes();setChk()}})
