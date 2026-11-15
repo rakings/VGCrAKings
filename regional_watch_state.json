@@ -220,5 +220,268 @@
    "link": "https://rk9.gg/event/pokemon-sydney-2026",
    "opens": "2026-11-11T08:00:00+00:00"
   }
+ },
+ "vr": {
+  "2027-stuttgart-pokemon-regional-championships": {
+   "name": "Stuttgart Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-stuttgart-2026",
+   "waves": [
+    "2026-09-30T17:00:00+00:00",
+    "2026-11-12T18:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "open"
+  },
+  "2027-las-vegas-pokemon-regional-championships": {
+   "name": "Las Vegas Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-las-vegas-2026",
+   "waves": [
+    "2026-10-08T02:00:00+00:00",
+    "2026-10-23T02:00:00+00:00",
+    "2026-11-13T03:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "open"
+  },
+  "2027-sydney-pokemon-regional-championships": {
+   "name": "Sydney Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-sydney-2026",
+   "waves": [
+    "2026-11-11T08:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "open"
+  },
+  "2027-atlanta-pokemon-regional-championships": {
+   "name": "Atlanta Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-atlanta-2027",
+   "waves": [
+    "2026-11-12T00:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "open"
+  },
+  "2027-gdansk-pokemon-regional-championships": {
+   "name": "Gdansk Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-gdansk-2026",
+   "waves": [
+    "2026-08-19T17:00:00+00:00"
+   ],
+   "sorpresa": 2,
+   "stato": "closed"
+  },
+  "2027-puebla-pokemon-regional-championships": {
+   "name": "Puebla Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-puebla-2027",
+   "waves": [
+    "2026-08-20T01:00:00+00:00",
+    "2026-09-11T01:00:00+00:00",
+    "2026-10-09T01:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2027-nice-pokemon-regional-championships": {
+   "name": "Nice Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-nice-2027",
+   "waves": [
+    "2026-08-19T17:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2027-louisville-pokemon-regional-championships": {
+   "name": "Louisville Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-louisville-2027",
+   "waves": [
+    "2026-08-12T23:00:00+00:00",
+    "2026-08-27T23:00:00+00:00",
+    "2026-09-24T23:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2027-recife-pokemon-regional-championships": {
+   "name": "Recife Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-recife-2027",
+   "waves": [
+    "2026-08-05T22:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2027-frankfurt-pokemon-regional-championships": {
+   "name": "Frankfurt Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-frankfurt-2026",
+   "waves": [
+    "2026-08-05T17:00:00+00:00",
+    "2026-08-20T17:00:00+00:00"
+   ],
+   "sorpresa": 1,
+   "stato": "closed"
+  },
+  "2027-brisbane-pokemon-regional-championships": {
+   "name": "Brisbane Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-brisbane-2026",
+   "waves": [
+    "2026-08-05T09:00:00+00:00",
+    "2026-09-10T09:00:00+00:00",
+    "2026-09-11T09:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2027-baltimore-pokemon-regional-championships": {
+   "name": "Baltimore Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-baltimore-2027",
+   "waves": [
+    "2026-08-05T23:00:00+00:00",
+    "2026-08-20T23:00:00+00:00",
+    "2026-09-03T23:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-indianapolis-pokemon-regional-championships": {
+   "name": "Indianapolis Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-indianapolis-2026",
+   "waves": [
+    "2027-04-01T23:00:00+00:00",
+    "2027-04-16T23:00:00+00:00",
+    "2027-05-14T23:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-melbourne-pokemon-regional-championships": {
+   "name": "Melbourne Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-melbourne-2026",
+   "waves": [
+    "2027-03-25T08:00:00+00:00",
+    "2027-04-09T09:00:00+00:00",
+    "2027-05-07T09:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-campinas-pokemon-regional-championships": {
+   "name": "Campinas Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-campinas-2026",
+   "waves": [
+    "2027-03-18T22:00:00+00:00",
+    "2027-04-09T22:00:00+00:00",
+    "2027-04-30T22:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-utrecht-pokemon-regional-championships": {
+   "name": "Utrecht Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-utrecht-2026",
+   "waves": [
+    "2027-03-18T18:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-los-angeles-pokemon-regional-championships": {
+   "name": "Los Angeles Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-los-angeles-2026",
+   "waves": [
+    "2027-03-12T02:00:00+00:00",
+    "2027-03-24T02:00:00+00:00",
+    "2027-03-27T02:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-prague-pokemon-regional-championships": {
+   "name": "Prague Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-prague-2026",
+   "waves": [
+    "2027-02-25T18:00:00+00:00",
+    "2027-04-09T17:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-queretaro-pokemon-regional-championships": {
+   "name": "Querétaro Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-queretaro-2026",
+   "waves": [
+    "2027-02-05T01:00:00+00:00",
+    "2027-02-20T01:00:00+00:00",
+    "2027-03-20T01:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-orlando-pokemon-regional-championships": {
+   "name": "Orlando Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-orlando-2026",
+   "waves": [
+    "2027-02-05T00:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-houston-pokemon-regional-championships": {
+   "name": "Houston Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-houston-2026",
+   "waves": [
+    "2027-01-22T01:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-curitiba-pokemon-regional-championships": {
+   "name": "Curitiba Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-curitiba-2026",
+   "waves": [
+    "2027-01-14T22:00:00+00:00",
+    "2027-01-29T22:00:00+00:00",
+    "2027-02-26T22:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  },
+  "2026-seattle-pokemon-regional-championships": {
+   "name": "Seattle Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-seattle-2026",
+   "waves": [
+    "2026-12-18T03:00:00+00:00",
+    "2027-01-16T03:00:00+00:00",
+    "2027-02-06T03:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-santiago-pokemon-regional-championships": {
+   "name": "Santiago Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-santiago-2026",
+   "waves": [
+    "2026-12-10T22:00:00+00:00",
+    "2027-01-08T22:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": ""
+  },
+  "2026-sydney-pokemon-regional-championships": {
+   "name": "Sydney Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-sydney-2026",
+   "waves": [
+    "2026-12-10T08:00:00+00:00"
+   ],
+   "sorpresa": 0,
+   "stato": "closed"
+  }
+ },
+ "vr_controllo": {
+  "ok": true,
+  "quando": "2026-11-15T08:16+00:00",
+  "pagine": 25,
+  "senza_pagina": 0,
+  "errori": 0,
+  "problemi": []
  }
 }
