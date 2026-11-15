@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T10:41:00+00:00",
+ "updated": "2026-11-15T12:52:20+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -216,21 +216,6 @@
    "url": "https://serebii.net/playpokemon/2027/buenosairesspecialevent.shtml"
   },
   {
-   "name": "Team Philippines @ VRWC 2026: Tryouts #1 🇵🇭 ONLY",
-   "org": "Pokémon Philippines Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "04:00",
-   "players": 99,
-   "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
-  },
-  {
    "name": "E-Zone Neko Social Club",
    "org": "Fiery Sparks",
    "mode": "online",
@@ -257,7 +242,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "14:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af71890b2fccaf0272d0e3c/details"
   },
   {
@@ -272,12 +257,12 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "14:30",
-   "players": 19,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
-   "name": "✨👑 King",
-   "org": "Astral Community",
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -287,8 +272,8 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 35,
-   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
+   "players": 28,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "🆓 Domino Arena VGC #1 [BETA]",
@@ -306,8 +291,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af523e400d53a11f5b91c11/details"
   },
   {
-   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "✨👑 King",
+   "org": "Astral Community",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -317,8 +302,8 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 23,
-   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
+   "players": 41,
+   "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
    "name": "CardShow CBA Noviembre 2026",
@@ -332,23 +317,8 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "16:00",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af91307ee43ef7891474f9c/details"
-  },
-  {
-   "name": "VGCA PRESENTS: HORSEPLAY",
-   "org": "VGC Academy",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "17:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
    "name": "Semanal VGC Roaring - Premiação no Pix!",
@@ -362,8 +332,23 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
+  },
+  {
+   "name": "VGCA PRESENTS: HORSEPLAY",
+   "org": "VGC Academy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "17:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
    "name": "Open Champions League #6 (20 USD to 1st)",
@@ -377,7 +362,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 62,
+   "players": 69,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -407,7 +392,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "23:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af8de97b2fccaf0272d2840/details"
   },
   {
@@ -452,7 +437,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "02:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af4981fdcbca32da6c4e5bc/details"
   },
   {
@@ -467,8 +452,23 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "03:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
+  },
+  {
+   "name": "Back In The 2022,Sword/Shield VGC 2022 Series 12",
+   "org": "HaoQi cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-16",
+   "time": "12:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af98f67b2fccaf0272d30a6/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #19 ❤️ Cash Prize!",
@@ -497,7 +497,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
@@ -587,7 +587,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -828,7 +828,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 35,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
