@@ -134,6 +134,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
     <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
     <div class="card"><h2>Avvisi automatici di Francesco (Twitch e YouTube)</h2><div id="au"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>Controlli automatici</h2><div id="ca"><div class="hint">Carico…</div></div></div>
     <p class="hint">Le statistiche si leggono solo quando apri questa scheda (o premi Aggiorna stando qui): ogni lettura costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
   </div>
 
@@ -381,6 +382,21 @@ function auto(token){
   }).catch(function(e){el.innerHTML='<div class="hint">Non letto ('+esc(e.message||"errore")+'): serve il worker.js nuovo.</div>'})
 }
 
+/* controlli automatici: wave di iscrizione dei Regionali lette da Victory Road (file pubblico del sito, zero letture su Cloudflare) */
+function controlli(){
+  var el=$("ca");el.innerHTML='<div class="hint">Carico…</div>';
+  fetch(SITE+"regional_watch_state.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){
+    var c=d&&d.vr_controllo;
+    if(!c){el.innerHTML='<div class="hint">Wave dei Regionali: non ancora attivo (carica regional_watch.py; il primo controllo arriva entro qualche ora).</div>';return}
+    var h='<div class="pa"><span><b>Wave iscrizioni Regionali</b><small>'+(c.ok?"funziona ✓":"formato forse cambiato: controlla")+' · ultimo controllo '+esc(quando(c.quando))+' · '+(c.pagine||0)+' pagine lette'+(c.senza_pagina?", "+c.senza_pagina+" Regionali senza pagina (normale per quelli lontani)":"")+'</small>'+(c.nota?'<small>'+esc(c.nota)+'</small>':'')+'</span><span class="st '+(c.ok?"ok":"err")+'">'+(c.ok?"ok":"!")+'</span></div>';
+    (c.problemi||[]).forEach(function(p){h+='<div class="hint err">'+esc(p.nome)+': «'+esc(p.frase)+'»</div>'});
+    if(!c.ok)h+='<div class="hint">Intanto gli avvisi di RK9 continuano. Mandami la frase qui sopra e sistemo il riconoscimento.</div>';
+    var w=[];Object.keys(d.vr||{}).forEach(function(k){var v=d.vr[k];(v.waves||[]).forEach(function(x){if(new Date(x)>new Date())w.push([x,v.name])})});
+    w.sort();if(w.length)h+='<div class="hint">Prossime aperture: '+w.slice(0,4).map(function(x){return esc(x[1].replace(" Regional Championships",""))+" "+esc(quando(x[0]))}).join(" · ")+'</div>';
+    el.innerHTML=h
+  }).catch(function(e){el.innerHTML='<div class="hint">Non letto ('+esc(e.message||"errore")+').</div>'})
+}
+
 /* statistiche: si leggono SOLO aprendo la scheda (risparmia letture di KV) */
 function stats(token){
   var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0},cur=null,pages=0;
@@ -397,7 +413,7 @@ function stats(token){
         if(cur&&pages<1000){$("split").textContent="Leggo l'archivio… pagina "+(pages+1);return next()}
         return tot})})
   }
-  auto(token);
+  auto(token);controlli();
   return next().then(function(t){show(t);attivi(token)}).catch(function(e){$("n").textContent="–";$("split").textContent="Statistiche non lette ("+(e.message||"errore")+"). Premi Aggiorna."})
 }
 
