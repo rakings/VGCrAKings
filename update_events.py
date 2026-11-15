@@ -672,7 +672,7 @@ def fcm_access_token():
 
 DEAD_BRAKE_MIN = 10      # freno di sicurezza: se in un invio ALMENO 10 dispositivi risultano morti...
 DEAD_BRAKE_SHARE = 0.30  # ...e sono PIU' del 30% di quelli raggiunti, non se ne toglie nessuno (puo' essere un problema di configurazione, non una moria vera)
-FCM_PARALLEL = 40   # invii contemporanei verso Firebase (erano 10): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
+FCM_PARALLEL = 68   # invii contemporanei verso Firebase (erano 10, poi 40): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
 
 def send_fcm(ids, title, body, click, tag=None):
     """Manda l'avviso a un elenco di token Firebase (a gruppi in parallelo). I token morti si tolgono dall'archivio iscritti."""
