@@ -16,7 +16,7 @@
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
 //   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
 //     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
-//   PROTEZIONE (2026-11-15d): limite per indirizzo IP sulle scritture (iscrizioni e like), tenuto in memoria (niente KV);
+//   PROTEZIONE (2026-11-15d, limiti allargati in 2026-11-15e): limite per indirizzo IP sulle scritture (iscrizioni 150 e like 400 ogni 10 minuti), in memoria (niente KV);
 //     un'iscrizione NUOVA viene prima verificata con Google: i telefoni inventati non vengono scritti (con ARGOMENTI acceso);
 //     la coda degli argomenti cancella dall'archivio i telefoni che Google dice non esistere piu'.
 //   AVVISI AUTOMATICI (2026-11-15b): live Twitch + live e video YouTube di Francesco, con le API ufficiali (vedi sotto, «AVVISI AUTOMATICI»).
@@ -53,8 +53,10 @@ function troppe(req, tipo, max, finestraS) {
   if (LIM.size > 5000) { for (const [kk, vv] of LIM) if (ora - vv[0] > 3600 * 1000) LIM.delete(kk); if (LIM.size > 5000) LIM.clear(); }
   return v[1] > max;
 }
-const LIM_ISCRIZIONI = 30;   // scritture di iscrizioni per indirizzo IP ogni 10 minuti (un telefono vero ne fa poche; largo per il wifi di un torneo)
-const LIM_LIKE = 80;         // pacchetti di like per indirizzo IP ogni 10 minuti
+// Limiti LARGHI apposta (2026-11-15e): molti telefoni possono uscire dallo stesso indirizzo (wifi di un torneo, operatori mobili
+// che condividono gli indirizzi). Gli iscritti inventati li ferma gia' il controllo con Google; qui si fermano solo le raffiche.
+const LIM_ISCRIZIONI = 150;  // scritture di iscrizioni per indirizzo IP ogni 10 minuti (oltre: l'app riprova da sola)
+const LIM_LIKE = 400;        // pacchetti di like per indirizzo IP ogni 10 minuti (oltre: il like resta sul telefono e parte piu' tardi)
 
 function keyOf(id) {
   if (typeof id !== "string") return null;
@@ -123,7 +125,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-15d";
+const VERSIONE = "2026-11-15e";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -394,7 +396,7 @@ async function likeRoute(req, env, url, out, admin) {
     return out({ ok: true, c });
   }
   if (req.method !== "POST" || url.pathname !== "/like") return out({ error: "richiesta non valida" }, 400);
-  if (troppe(req, "like", LIM_LIKE, 600)) return out({ ok: true, pausa: true });   // raffica dallo stesso indirizzo: ignorata in silenzio
+  if (troppe(req, "like", LIM_LIKE, 600)) return out({ error: "troppe richieste, riprova piu' tardi" }, 429);   // il sito tiene il like e lo rimanda piu' tardi
   const txt = await req.text();
   if (txt.length > 5000) return out({ error: "troppo grande" }, 413);
   let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
