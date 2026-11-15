@@ -16,6 +16,9 @@
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
 //   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
 //     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
+//   PROTEZIONE (2026-11-15d): limite per indirizzo IP sulle scritture (iscrizioni e like), tenuto in memoria (niente KV);
+//     un'iscrizione NUOVA viene prima verificata con Google: i telefoni inventati non vengono scritti (con ARGOMENTI acceso);
+//     la coda degli argomenti cancella dall'archivio i telefoni che Google dice non esistere piu'.
 //   AVVISI AUTOMATICI (2026-11-15b): live Twitch + live e video YouTube di Francesco, con le API ufficiali (vedi sotto, «AVVISI AUTOMATICI»).
 //     POST /auto/twitch, GET|POST /auto/youtube (li chiamano Twitch e YouTube, con firma), GET /admin/auto (ADMIN_TOKEN), giro ogni 5 minuti (Cron).
 //   SOCIAL (2026-11-15a): POST /admin/social {id, rete: ig|x, azione: approva|rifiuta|fatto, testo} (solo ADMIN_TOKEN, dalla pagina admin):
@@ -38,6 +41,20 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const FCM_TOKEN = /^[A-Za-z0-9_:\-]{100,400}$/;   // i token Firebase distinguono maiuscole e minuscole: non vanno mai modificati
 const REFRESH_MS = 120 * 24 * 3600 * 1000; // si riscrive solo se qualcosa cambia o dopo 120 giorni (limite di scritture KV; erano 5 giorni)
 const TTL_S = 730 * 24 * 3600;             // chi non apre il sito per 2 anni esce dall'archivio (i token morti li toglie comunque il bot)
+
+// ---- limite per indirizzo IP, in memoria (gratis, nessuna scrittura su KV). Vale per ogni server Cloudflare separatamente:
+// non e' perfetto, ma ferma chi manda raffiche da un solo indirizzo, che e' il caso piu' probabile.
+const LIM = new Map();
+function troppe(req, tipo, max, finestraS) {
+  const ip = req.headers.get("CF-Connecting-IP") || "?", k = tipo + "|" + ip, ora = Date.now();
+  let v = LIM.get(k);
+  if (!v || ora - v[0] > finestraS * 1000) v = [ora, 0];
+  v[1]++; LIM.set(k, v);
+  if (LIM.size > 5000) { for (const [kk, vv] of LIM) if (ora - vv[0] > 3600 * 1000) LIM.delete(kk); if (LIM.size > 5000) LIM.clear(); }
+  return v[1] > max;
+}
+const LIM_ISCRIZIONI = 30;   // scritture di iscrizioni per indirizzo IP ogni 10 minuti (un telefono vero ne fa poche; largo per il wifi di un torneo)
+const LIM_LIKE = 80;         // pacchetti di like per indirizzo IP ogni 10 minuti
 
 function keyOf(id) {
   if (typeof id !== "string") return null;
@@ -106,7 +123,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-15c";
+const VERSIONE = "2026-11-15d";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -177,7 +194,7 @@ async function sincronizza(env, body) {
 
   // cosa ha oggi Google per questo dispositivo (e' la verita': niente stato salvato che possa sfasarsi)
   const gg = await gcall(g, "GET", "", body.k);
-  if (morto(gg)) { console.log("argomenti: dispositivo non piu' valido", ultimi6(body.k)); return "ok"; }
+  if (morto(gg)) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); return "ok"; }
   if (gg.st !== 200) return { retry: ritardo(body.attempts), perche: "elenco HTTP " + gg.st };
   let attuali = new Set();
   try { const j = JSON.parse(gg.txt); for (const x of j.topic_subscriptions || j.topicSubscriptions || []) { const n = x.topic_name || x.topicName; if (n && NS.test(n)) attuali.add(n); } } catch (e) {}
@@ -194,7 +211,7 @@ async function sincronizza(env, body) {
     }
   }
   await Promise.all(Array.from({ length: Math.min(PARALLELE, adesso.length) }, lavora));
-  if (mortoQui) { console.log("argomenti: dispositivo non piu' valido", ultimi6(body.k)); return "ok"; }
+  if (mortoQui) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); return "ok"; }
   if (errore) { console.log("argomenti: errore", errore, ultimi6(body.k)); return { retry: ritardo(body.attempts), perche: errore }; }
 
   if (lavori.length > adesso.length) {   // altre iscrizioni da fare: un nuovo messaggio (con un budget di chiamate tutto suo)
@@ -377,6 +394,7 @@ async function likeRoute(req, env, url, out, admin) {
     return out({ ok: true, c });
   }
   if (req.method !== "POST" || url.pathname !== "/like") return out({ error: "richiesta non valida" }, 400);
+  if (troppe(req, "like", LIM_LIKE, 600)) return out({ ok: true, pausa: true });   // raffica dallo stesso indirizzo: ignorata in silenzio
   const txt = await req.text();
   if (txt.length > 5000) return out({ error: "troppo grande" }, 413);
   let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
@@ -749,7 +767,15 @@ export default {
       const same = o => o && JSON.stringify([o.c, o.h, o.f, o.l]) === JSON.stringify([c, h, f, l]) && Date.now() - (o.t || 0) < REFRESH_MS;
       const cur = await env.SUBS.getWithMetadata(k.key);
       let scritto = false;
-      if (!same(cur.metadata)) { await env.SUBS.put(k.key, "1", { metadata: { c, h, f, l, t: Date.now() }, expirationTtl: TTL_S }); scritto = true; }
+      if (!same(cur.metadata)) {
+        if (troppe(req, "iscr", LIM_ISCRIZIONI, 600)) return out({ error: "troppe richieste, riprova tra qualche minuto" }, 429);
+        if (!cur.metadata && k.kind === "fcm" && argomentiAcceso(env) && env.FCM_TOPICS_KEY) {
+          // iscrizione NUOVA: Google conosce davvero questo telefono? Se dice di no, non si scrive niente (niente iscritti inventati).
+          // Se Google non risponde, si scrive lo stesso: un utente vero non deve mai restare fuori per colpa del controllo.
+          try { const g = await accessGoogle(env); const r = await gcall(g, "GET", "", b.id); if (r.st === 400 || morto(r)) return out({ error: "dispositivo non valido" }, 400); } catch (e) {}
+        }
+        await env.SUBS.put(k.key, "1", { metadata: { c, h, f, l, t: Date.now() }, expirationTtl: TTL_S }); scritto = true;
+      }
       if (scritto && k.kind === "fcm") await accoda(env, b.id, 0);   // con ARGOMENTI spento non fa niente
       return out({ ok: true, tipo: k.kind });
     }
