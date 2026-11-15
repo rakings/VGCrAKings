@@ -106,7 +106,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-15b";
+const VERSIONE = "2026-11-15c";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -542,6 +542,14 @@ async function ytRinnova(env, s) {
   if (r.status !== 202 && r.status !== 204) throw new Error("YouTube: rinnovo non accettato (" + r.status + ")");
   s.ytRinnovo = Math.floor(Date.now() / 1000);
 }
+async function ytProva(env, s) {   // controllo giornaliero: chiave e ID del canale funzionano? (1 unita' su 10.000)
+  const r = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&id=" + encodeURIComponent(String(env.YT_CANALE).trim()) + "&key=" + encodeURIComponent(env.YT_API_KEY));
+  if (r.status === 400 || r.status === 403) throw new Error("YouTube: chiave non valida o API non abilitata (" + r.status + ")");
+  if (!r.ok) throw new Error("YouTube: controllo non riuscito (" + r.status + ")");
+  const c = ((await r.json()).items || [])[0];
+  if (!c) throw new Error("YouTube: canale non trovato, controlla YT_CANALE");
+  s.ytNome = String((c.snippet || {}).title || "").slice(0, 80); s.ytChiave = Math.floor(Date.now() / 1000);
+}
 async function ytVideo(env, id) {   // UNA domanda all'API (1 unita' su 10.000 gratuite al giorno)
   const r = await fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails,contentDetails&id=" + encodeURIComponent(id) + "&key=" + encodeURIComponent(env.YT_API_KEY));
   if (!r.ok) throw new Error("YouTube: video non letto (" + r.status + ")");
@@ -605,6 +613,7 @@ async function autoGiro(env) {
   if (ora - (s.giorno || 0) > 20 * 3600 || (twOn(env) && !s.twOk)) {   // una volta al giorno: le iscrizioni ci sono ancora?
     s.giorno = ora; s.errore = "";
     if (twOn(env)) { try { await twAssicura(env, s); } catch (e) { s.twOk = false; s.errore = String(e.message || e); autoLog(s, s.errore); } }
+    if (ytOn(env)) { try { await ytProva(env, s); } catch (e) { s.ytChiave = 0; s.errore = String(e.message || e); autoLog(s, s.errore); } }
     if (ytOn(env) && ora - (s.ytRinnovo || 0) > 3 * 86400) { try { await ytRinnova(env, s); autoLog(s, "YouTube: iscrizione rinnovata"); } catch (e) { s.errore = String(e.message || e); autoLog(s, s.errore); } }
   }
   if (JSON.stringify(s) !== prima) await autoSalva(env, s);   // si scrive solo se e' cambiato qualcosa
@@ -632,7 +641,7 @@ export default {
     if (url.pathname === "/admin/auto" && req.method === "GET") {   // SOLO Andrea: stato degli avvisi automatici (scheda Statistiche)
       if (!admin()) return out({ error: "non autorizzato" }, 401);
       const s = await autoStato(env);
-      return out({ ok: true, twitch: twOn(env), youtube: ytOn(env), twOk: !!s.twOk, ytRinnovo: s.ytRinnovo || 0, giro: s.giorno || 0, attesa: (s.attesa || []).length, errore: s.errore || "", log: (s.log || []).slice(-8).reverse() });
+      return out({ ok: true, twitch: twOn(env), youtube: ytOn(env), twOk: !!s.twOk, ytRinnovo: s.ytRinnovo || 0, ytChiave: s.ytChiave || 0, ytNome: s.ytNome || "", giro: s.giorno || 0, attesa: (s.attesa || []).length, errore: s.errore || "", log: (s.log || []).slice(-8).reverse() });
     }
     if (url.pathname === "/admin/richieste" || url.pathname === "/admin/richieste/etichetta") return richiesteRoute(req, env, url, out, admin);
     if (req.method === "POST" && url.pathname === "/admin/social") {   // SOLO Andrea (ADMIN_TOKEN): approva/rifiuta un post per Instagram o X
