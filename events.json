@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T07:01:47+00:00",
+ "updated": "2026-11-15T10:41:00+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -231,8 +231,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef2c0cc931f53978d957f8/details"
   },
   {
-   "name": "Champions League VGC November",
-   "org": "Battle Chateau",
+   "name": "E-Zone Neko Social Club",
+   "org": "Fiery Sparks",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -241,9 +241,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-15",
-   "time": "13:00",
-   "players": 36,
-   "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
+   "time": "11:30",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
    "name": "giải ộ tộc tháng 11",
@@ -272,7 +272,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "14:30",
-   "players": 13,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
@@ -287,7 +287,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 28,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
   },
   {
@@ -317,7 +317,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "15:00",
-   "players": 18,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
@@ -377,7 +377,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 54,
+   "players": 62,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -407,8 +407,23 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "23:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af8de97b2fccaf0272d2840/details"
+  },
+  {
+   "name": "Champions League VGC November",
+   "org": "Battle Chateau",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "13:00",
+   "players": 37,
+   "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
    "name": "VGC Santa Fe - Torneo de Halloween",
@@ -452,7 +467,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "03:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
   },
   {
@@ -467,7 +482,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "20:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
   },
   {
@@ -497,7 +512,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
@@ -662,7 +677,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "17:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
   },
   {
@@ -756,6 +771,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
+   "name": "Metal",
+   "org": "Metal VGC Weeklies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "23:30",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
+  },
+  {
    "name": "Latin America International Championships",
    "org": "",
    "mode": "regional",
@@ -783,7 +813,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -802,21 +832,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
-   "name": "Ukraine tryouts",
-   "org": "Champions Ukraine",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
-  },
-  {
    "name": "LEGA DEI BOLLENTI MC #2",
    "org": "CkVerse_Twitch",
    "mode": "online",
@@ -830,6 +845,21 @@
    "time": "12:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
+  },
+  {
+   "name": "Ukraine tryouts",
+   "org": "Champions Ukraine",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
@@ -858,7 +888,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "15:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af8d364b2fccaf0272d27e5/details"
   },
   {
