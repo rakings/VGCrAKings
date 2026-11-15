@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T17:56:26+00:00",
+ "updated": "2026-11-15T19:12:11+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -231,6 +231,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
+   "name": "Open Champions League #6 (20 USD to 1st)",
+   "org": "Smilegazer League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "20 USD",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "19:00",
+   "players": 139,
+   "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
+  },
+  {
    "name": "VGCA PRESENTS: HORSEPLAY",
    "org": "VGC Academy",
    "mode": "online",
@@ -246,21 +261,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
-   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "15:00",
-   "players": 28,
-   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
-  },
-  {
    "name": "✨👑 King",
    "org": "Astral Community",
    "mode": "online",
@@ -274,6 +274,21 @@
    "time": "15:00",
    "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
+  },
+  {
+   "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "15:00",
+   "players": 28,
+   "url": "https://play.limitlesstcg.com/tournament/6af16537e99f3235a75e4975/details"
   },
   {
    "name": "giải ộ tộc tháng 11",
@@ -306,36 +321,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "Semanal VGC Roaring - Premiação no Pix!",
-   "org": "SongFuê",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
-  },
-  {
-   "name": "Open Champions League #6 (20 USD to 1st)",
-   "org": "Smilegazer League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "20 USD",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "19:00",
-   "players": 139,
-   "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
-  },
-  {
    "name": "Women",
    "org": "The Underground",
    "mode": "online",
@@ -362,7 +347,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "23:00",
-   "players": 7,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af8de97b2fccaf0272d2840/details"
   },
   {
@@ -407,7 +392,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "00:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af9c71fee43ef789147570d/details"
   },
   {
@@ -437,7 +422,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "03:00",
-   "players": 8,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af176bdc931f53978d9707a/details"
   },
   {
@@ -527,7 +512,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "19:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aea078d0c463890f304a624/details"
   },
   {
@@ -737,7 +722,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "19:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
@@ -817,21 +802,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
-   "name": "LEGA DEI BOLLENTI MC #2",
-   "org": "CkVerse_Twitch",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
-  },
-  {
    "name": "Ukraine tryouts",
    "org": "Champions Ukraine",
    "mode": "online",
@@ -845,6 +815,21 @@
    "time": "12:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
+  },
+  {
+   "name": "LEGA DEI BOLLENTI MC #2",
+   "org": "CkVerse_Twitch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
@@ -963,7 +948,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details"
   },
   {
@@ -1344,6 +1329,21 @@
    "time": "18:45",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac969038a8383117e3e8160/details"
+  },
+  {
+   "name": "Maddo",
+   "org": "Maddo's Cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-12",
+   "time": "10:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details"
   },
   {
    "name": "🎂Prof. Kai’s 4 Year Anniversary 🎂",
