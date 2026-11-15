@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-15T14:34:13+00:00",
+ "updated": "2026-11-15T15:55:19+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -201,6 +201,36 @@
    "url": "https://serebii.net/playpokemon/2027/buenosairesspecialevent.shtml"
   },
   {
+   "name": "Sunday Showdown #6",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "14:30",
+   "players": 22,
+   "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
+  },
+  {
+   "name": "CardShow CBA Noviembre 2026",
+   "org": "MI.Team",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-15",
+   "time": "16:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6af91307ee43ef7891474f9c/details"
+  },
+  {
    "name": "ValkrixVGC Champions League #09 | Shiny Salamence",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -229,21 +259,6 @@
    "time": "15:00",
    "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6af0f47fc931f53978d96bea/details"
-  },
-  {
-   "name": "Sunday Showdown #6",
-   "org": "BoTS PTCG Pocket",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "14:30",
-   "players": 28,
-   "url": "https://play.limitlesstcg.com/tournament/6af3faa600d53a11f5b90f4c/details"
   },
   {
    "name": "giải ộ tộc tháng 11",
@@ -276,21 +291,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "CardShow CBA Noviembre 2026",
-   "org": "MI.Team",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "16:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6af91307ee43ef7891474f9c/details"
-  },
-  {
    "name": "VGCA PRESENTS: HORSEPLAY",
    "org": "VGC Academy",
    "mode": "online",
@@ -302,7 +302,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "17:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af36212dcbca32da6c4d8cc/details"
   },
   {
@@ -332,7 +332,7 @@
    "bo": null,
    "date": "2026-11-15",
    "time": "19:00",
-   "players": 81,
+   "players": 100,
    "url": "https://play.limitlesstcg.com/tournament/6af66fed00d53a11f5b9293e/details"
   },
   {
@@ -396,6 +396,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
   },
   {
+   "name": "Sunday Nightmare Invitational 08",
+   "org": "Pokémon VG do Litoral",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-16",
+   "time": "00:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6af9c71fee43ef789147570d/details"
+  },
+  {
    "name": "🍬 CARAMELO RARO — WEEKLY #6",
    "org": "Papuno - Caramelo Raro",
    "mode": "online",
@@ -452,7 +467,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "20:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
   },
   {
@@ -557,7 +572,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -647,7 +662,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "17:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
   },
   {
@@ -798,23 +813,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
-  },
-  {
-   "name": "LEGA DEI BOLLENTI MC #2",
-   "org": "CkVerse_Twitch",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "Ukraine tryouts",
@@ -830,6 +830,21 @@
    "time": "12:00",
    "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
+  },
+  {
+   "name": "LEGA DEI BOLLENTI MC #2",
+   "org": "CkVerse_Twitch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
