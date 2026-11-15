@@ -1,11 +1,15 @@
 name: Regionali - controllo iscrizioni RK9
 on:
   schedule:
-    # 4 letture al giorno (ora italiana estiva: 09:14, 12:52, 17:21, 21:43)
+    # 6 letture al giorno (RK9 + Victory Road). Ora italiana invernale (d'estate +1 ora):
+    #   08:14, 11:52, 16:21, 20:43  -> giornata europea
+    #   23:37, 02:31                -> pomeriggio/sera americani: annunci USA prima delle aperture notturne (19:00 ora USA = 03:00-04:00 da noi)
     - cron: "14 7 * * *"
     - cron: "52 10 * * *"
     - cron: "21 15 * * *"
     - cron: "43 19 * * *"
+    - cron: "37 22 * * *"
+    - cron: "31 1 * * *"
   workflow_dispatch:
 permissions:
   contents: write
