@@ -64,6 +64,7 @@ button:disabled{opacity:.55;cursor:default}
 .so img{width:96px;height:120px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#000;display:block}
 .so b{display:block}.so small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}
 .so .full{grid-column:1/-1}
+.car{grid-column:1/-1;display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px}.car a{flex:none}.car img{width:84px;height:84px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}
 .so textarea{width:100%;min-height:150px;font:inherit;font-size:15px;line-height:1.35;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit);resize:vertical}
 .so .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.so .bt button,.so .bt a.b{padding:8px 12px;min-height:38px;font-size:.85rem}
 .so .bt button.ok{background:#1f8a4c}
@@ -307,6 +308,8 @@ function elenco(rete,el,riga){
   el.innerHTML=(ap.length?ap.map(function(r){return riga(r,true)}).join(""):'<div class="hint">Nessun post da approvare.</div>')+
     (ch.length?'<details class="old"><summary>Già fatti ('+ch.length+')</summary>'+ch.map(function(r){return riga(r,false)}).join("")+'</details>':'')
 }
+function tutte(r){return (r.imgs&&r.imgs.length)?r.imgs:[r.img]}
+function striscia(r){var l=tutte(r);if(l.length<2)return "";return '<div class="car" title="Tutte le immagini del carosello (tocca per scaricarla)">'+l.map(function(x,i){return '<a href="'+esc(SITE+x)+'" download="'+esc(r.id)+'-'+(i+1)+'.jpg"><img src="'+esc(SITE+x)+'" alt="" loading="lazy"></a>'}).join("")+'</div>'}
 function testa(r,s){return '<img src="'+esc(SITE+r.img)+'" alt="" loading="lazy"><div><b>'+esc(r.titolo||r.id)+stato(s)+'</b><small>'+esc(r.sotto||"")+'</small><small>preparato il '+esc(quando(r.creata))+(s.quando?" · "+esc(s.stato)+" il "+esc(quando(s.quando)):"")+'</small>'+
   (s.msg?'<small class="err">'+esc(s.msg)+'</small>':'')+'<small><a href="'+esc(r.link||SITE)+'" target="_blank" rel="noopener" style="color:var(--mu)">vedi sul sito</a></small></div>'}
 function disegnaIg(){
@@ -315,14 +318,14 @@ function disegnaIg(){
     st.msg==="da collegare"||!st.msg?'<div class="ban">Instagram non ancora collegato: le richieste si preparano lo stesso e le pubblichi appena metti la chiave su GitHub.</div>':
     '<div class="ban err">Attenzione: '+esc(st.msg)+'</div>'):"";
   elenco("ig",$("igl"),function(r,ap){var s=r.ig,k=r.id+"ig";
-    return '<div class="so">'+testa(r,s)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
+    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
       '<div class="bt"><button type="button" class="ok" data-so="approva" data-r="ig" data-id="'+esc(r.id)+'">'+(s.stato==="errore"?"Riprova a pubblicare":"Approva e pubblica")+'</button><button type="button" class="sec" data-so="rifiuta" data-r="ig" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':
       (s.url?'<div class="full"><a class="hint" href="'+esc(s.url)+'" target="_blank" rel="noopener">apri su Instagram</a></div>':''))+'</div>'})
 }
 function disegnaX(){
   elenco("x",$("xl"),function(r,ap){var s=r.x,k=r.id+"x",t=EDIT[k]!=null?EDIT[k]:s.testo;
-    if(ap&&!BLOB[r.img])fetch(SITE+r.img).then(function(x){return x.blob()}).then(function(b){BLOB[r.img]=b}).catch(function(){});   /* pronta per «Condividi»: il telefono la vuole subito */
-    return '<div class="so">'+testa(r,s)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" data-link="'+esc(r.link||"")+'">'+esc(t)+'</textarea><div class="cnt" data-c="'+esc(k)+'"></div>'+
+    if(ap)tutte(r).slice(0,4).forEach(function(im){if(!BLOB[im])fetch(SITE+im).then(function(x){return x.blob()}).then(function(b){BLOB[im]=b}).catch(function(){})});   /* pronte per «Condividi»: il telefono le vuole subito (X: massimo 4) */
+    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" data-link="'+esc(r.link||"")+'">'+esc(t)+'</textarea><div class="cnt" data-c="'+esc(k)+'"></div>'+
       '<div class="bt"><button type="button" class="ok" data-xs="'+esc(r.id)+'">Condividi su X</button><button type="button" class="sec" data-xi="'+esc(r.id)+'">Apri X (solo testo)</button>'+
       '<a class="b" href="'+esc(SITE+r.img)+'" download="'+esc(r.id)+'.jpg">Scarica immagine</a></div>'+
       '<div class="bt"><button type="button" class="ok" data-so="fatto" data-r="x" data-id="'+esc(r.id)+'">Fatto, pubblicato</button><button type="button" class="sec" data-so="rifiuta" data-r="x" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':'')+'</div>'});
@@ -339,10 +342,10 @@ document.addEventListener("click",function(ev){
   var id=b.getAttribute("data-xs")||b.getAttribute("data-xi"),r=trova(id),t=testoX(id);if(!r)return;
   copia(t);
   if(b.hasAttribute("data-xi")){apriX(t);return}
-  var bl=BLOB[r.img],f=null;
-  try{if(bl)f=new File([bl],r.id+".jpg",{type:"image/jpeg"})}catch(e){}
-  if(f&&navigator.canShare&&navigator.canShare({files:[f]})){navigator.share({files:[f],text:t}).catch(function(e){if(!e||e.name!=="AbortError")apriX(t)});return}
-  alert("Questo dispositivo non condivide immagini dal browser: apro X con il testo. Per l'immagine usa «Scarica immagine» e allegala nel post.");
+  var fs=[];
+  try{tutte(r).slice(0,4).forEach(function(im,i){if(BLOB[im])fs.push(new File([BLOB[im]],r.id+"-"+(i+1)+".jpg",{type:"image/jpeg"}))})}catch(e){}
+  if(fs.length&&navigator.canShare&&navigator.canShare({files:fs})){navigator.share({files:fs,text:t}).catch(function(e){if(!e||e.name!=="AbortError")apriX(t)});return}
+  alert("Questo dispositivo non condivide immagini dal browser: apro X con il testo. Per le immagini usa «Scarica immagine» (o le miniature) e allegale nel post.");
   apriX(t)
 });
 document.addEventListener("click",function(ev){

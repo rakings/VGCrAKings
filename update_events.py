@@ -214,7 +214,7 @@ def limitless_all():
 def limitless_event(t):
     if True:
         name = t.get("name", "")
-        money = re.search(r"[€$£]\s?\d|\d[\d.,]*\s?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)
+        money = re.search(r"[€$£]\s?\d[\d.,]*(?:\s?k\b)?|\d[\d.,]*\s?(?:k\s?)?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)  # tutta la cifra: «$50» non «$5»
         reg = re.search(r"\bM-[A-Z]\b", name, re.I)
         bo = re.search(r"\bBo([13])\b", name, re.I)
         org = t.get("organizer") or {}

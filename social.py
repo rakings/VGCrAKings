@@ -10,13 +10,22 @@
 Regola: prima il sito, poi i social. Una richiesta nasce SOLO da un locale gia' approvato e pubblicato sul sito;
 se il locale viene tolto dal sito, le sue richieste non ancora pubblicate si annullano da sole.
 Tutto si salva in social/richieste.json (le immagini in social/img/). Solo libreria standard + Pillow per le immagini."""
-import hashlib, json, os, sys, time, urllib.error, urllib.parse, urllib.request
-from datetime import datetime, timezone
+import hashlib, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 SITO = "https://rakings.github.io/VGCrAKings/"
 FILE = "social/richieste.json"
 DIR_IMG = "social/img"
 LOCALI = "locali.json"
+EVENTI = "events.json"
+ROMA = ZoneInfo("Europe/Rome")
+MONEY_MAX = 19           # copertina + 9 slide da 2 = 10 immagini, il massimo che l'API di Instagram accetta in un carosello
+MONEY_GIORNO, MONEY_ORA = 0, 8   # lunedi', dalle 8 (ora italiana)
+CAMBIO = {"€": 1.0, "eur": 1.0, "$": 0.9, "usd": 0.9, "£": 1.15, "gbp": 1.15}   # cambio fisso, solo per mettere in ordine i premi
+GIORNI = ["lun", "mar", "mer", "gio", "ven", "sab", "dom"]
+MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
+GRANDI = ("Regionale", "Special Event", "Internazionale")
 TENERE = 30              # richieste gia' chiuse da tenere nell'elenco (le piu' recenti); quelle aperte restano sempre
 CONTROLLO_ORE = 20       # ogni quanto si controlla la chiave di Instagram
 MAX_IG = 2200            # limite di Instagram per la didascalia
@@ -158,7 +167,7 @@ def pulisci(d):
     chiuse = [r for r in d["richieste"] if r not in aperte]
     chiuse.sort(key=lambda r: r.get("creata", ""), reverse=True)
     d["richieste"] = sorted(aperte + chiuse[:TENERE], key=lambda r: r.get("creata", ""), reverse=True)
-    usate = {r.get("img") for r in d["richieste"]}
+    usate = {r.get("img") for r in d["richieste"]} | {x for r in d["richieste"] for x in (r.get("imgs") or [])}
     if os.path.isdir(DIR_IMG):
         for f in os.listdir(DIR_IMG):
             if "%s/%s" % (DIR_IMG, f) not in usate:
@@ -196,11 +205,185 @@ def crea():
                 if r[k]["stato"] in APERTE:
                     r[k]["stato"], r[k]["msg"] = "annullato", "il torneo e' stato tolto dal sito"
     d["visti"] = sorted(i for i in visti | {v["id"] for v in reali} if i in presenti)
+    try:
+        nuove += tornei(d)
+    except Exception as ex:   # un problema qui non deve fermare le top 8 dei locali
+        log("[ATTENZIONE] money tournament / Regionali / VR non preparati:", ex)
     esito = controllo_chiave(d)
     pulisci(d)
     save(FILE, d)
     log("Fatto: %d richieste nuove, %d aggiornate, %d in elenco." % (nuove, agg, len(d["richieste"])))
     return esito
+
+
+# ---------------------------------------------------------------- money tournament della settimana, Regionali, VR
+def valore_eur(t):
+    """«$50 to 1st» -> 45.0, «50€» -> 50.0, «20 USD» -> 18.0; senza cifra -> None (va in fondo)."""
+    t = str(t or "")
+    m = re.search(r"([€$£])\s?(\d[\d.,]*)\s?(k\b)?", t, re.I) or re.search(r"(\d[\d.,]*)\s?(k\b)?\s?(€|eur\b|usd\b|\$|£|gbp\b)", t, re.I)
+    if not m:
+        return None
+    if m.group(1) in "€$£":
+        val, k, cur = m.group(2), m.group(3), m.group(1)
+    else:
+        val, k, cur = m.group(1), m.group(2), m.group(3)
+    val = val.rstrip(".,")
+    val = val.replace(".", "").replace(",", ".") if re.search(r"\.\d{3}(?!\d)", val) else val.replace(",", "")
+    try:
+        n = float(val) * (1000 if k else 1)
+    except ValueError:
+        return None
+    return round(n * CAMBIO.get(cur.lower(), 1.0), 2)
+
+
+def premio_testo(e):
+    t = str(e.get("prize") or "").strip()
+    if t and re.search(r"\d", t):
+        return t
+    m = re.search(r"[€$£]\s?\d[\d.,]*(?:\s?k\b)?|\d[\d.,]*\s?(?:k\s?)?(?:[€$£]|usd\b|eur\b)", e.get("name") or "", re.I)
+    if m:
+        return m.group(0).strip()
+    return "Montepremi" if t.lower() == "montepremi" else "Cash"
+
+
+def quando_it(d_iso, hhmm=None):
+    try:
+        g = date.fromisoformat(d_iso)
+    except (TypeError, ValueError):
+        return ""
+    return "%s %d %s" % (GIORNI[g.weekday()], g.day, MESI[g.month - 1][:3]) + (" · %s" % hhmm if hhmm else "")
+
+
+def corto(t, n):
+    t = str(t or "")
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0].rstrip(" -·,") + "…"
+
+
+def numero(t):
+    return int(hashlib.sha1(t.encode("utf-8")).hexdigest()[:7], 16)
+
+
+def piattaforma(url):
+    u = str(url or "")
+    return "Limitless" if "limitless" in u else "Battlefy" if "battlefy" in u else "Start.gg" if "start.gg" in u else "Online"
+
+
+def money_settimana(d, ev, adesso):
+    lun = adesso.date() - timedelta(days=adesso.weekday())
+    sett = lun.isocalendar()
+    rid = "mon-%d%02d" % (sett[0], sett[1])
+    if adesso.weekday() != MONEY_GIORNO or adesso.hour < MONEY_ORA or rid in d.setdefault("fatti", []) or any(r["id"] == rid for r in d["richieste"]):
+        return 0
+    dom = lun + timedelta(days=6)
+    lista = [e for e in ev if e.get("type") == "Torneo" and e.get("cash") and "victoryroad.pro" not in str(e.get("url"))
+             and e.get("date") and lun.isoformat() <= e["date"] <= dom.isoformat()]
+    d["fatti"].append(rid)
+    if not lista:
+        log("Money tournament della settimana: nessun torneo con premio, niente post.")
+        return 0
+    for e in lista:
+        e["_eur"] = valore_eur(premio_testo(e)) or valore_eur(e.get("name"))
+    lista.sort(key=lambda e: (e["_eur"] is None, -(e["_eur"] or 0), e["date"], e.get("time") or ""))
+    lista = lista[:MONEY_MAX]
+    t = [{"pos": i + 1, "premio": premio_testo(e), "nome": e["name"], "quando": quando_it(e["date"], e.get("time")),
+          "dove": piattaforma(e.get("url"))} for i, e in enumerate(lista)]
+    sett_txt = "%d–%d %s" % (lun.day, dom.day, MESI[dom.month - 1]) if lun.month == dom.month else \
+               "%d %s – %d %s" % (lun.day, MESI[lun.month - 1][:3], dom.day, MESI[dom.month - 1][:3])
+    import social_img
+    social_img.assegna_caratteri(t, rid)   # carattere «simpatico» a caso per ogni torneo, mai monotono
+    os.makedirs(DIR_IMG, exist_ok=True)
+    imgs = ["%s/%s-1.jpg" % (DIR_IMG, rid)]
+    social_img.settimana_copertina(sett_txt, t[0], len(t), imgs[0])
+    for n, i in enumerate(range(1, len(t), 2), start=2):
+        imgs.append("%s/%s-%d.jpg" % (DIR_IMG, rid, n))
+        social_img.settimana_slide(n, t[i:i + 2], imgs[-1])
+    import social_img as _si
+    righe = ["%d. %s · %s (%s)" % (x["pos"], x["premio"], corto(_si.pulito(x["nome"]), 60), x["quando"]) for x in t]
+    ig = ("💰 Money tournament della settimana · %s\n\n%s\n\nOrari in ora italiana. Iscrizioni, promemoria e tutti i tornei nell'app rAKings VGC: link in bio 📲"
+          "\n\n#PokemonVGC #VGC #VGCItalia #Pokemon #MoneyTournament") % (sett_txt, "\n".join(righe))
+    link = SITO + "#online"
+    def x_con(k):
+        return "💰 Money tournament della settimana (%s)\n%s\nTutti nell'app 👇\n%s\n#PokemonVGC #VGCItalia" % (
+            sett_txt, "\n".join("%d) %s %s" % (x["pos"], x["premio"], corto(_si.pulito(x["nome"]), 40)) for x in t[:k]), link)
+    k = min(5, len(t))
+    while k > 1 and peso_x(x_con(k), link) > 275:
+        k -= 1
+    d["richieste"].append({"id": rid, "tipo": "money", "rif": 0, "creata": ora(), "titolo": "Money tournament · " + sett_txt,
+                           "sotto": "%d tornei, dal premio piu' alto" % len(t), "img": imgs[0], "imgs": imgs, "link": link,
+                           "ig": {"stato": "da approvare", "testo": ig[:MAX_IG]}, "x": {"stato": "da approvare", "testo": x_con(k)}})
+    log("Nuova richiesta: money tournament della settimana (%d tornei, %d immagini)" % (len(t), len(imgs)))
+    return 1
+
+
+def grande_evento(d, e, tipo, riga3, rid):
+    import social_img
+    os.makedirs(DIR_IMG, exist_ok=True)
+    img = "%s/%s.jpg" % (DIR_IMG, rid)
+    nome = e["name"]
+    if tipo == "vr":
+        r1 = "Online · %s" % quando_it(e["date"], e.get("time"))
+        r2 = "Montepremi" + (" · iscrizione %s €" % ("%.2f" % e["fee"]).replace(".", ",") if isinstance(e.get("fee"), (int, float)) else "")
+        link = e.get("signup") or e.get("url") or SITO
+        ig = ("🏁 Iscrizioni aperte: %s\n📅 %s\n💰 %s\n\nIscriviti dal link nella bio o dall'app rAKings VGC, con il promemoria prima dell'inizio 📲"
+              "\n\n#PokemonVGC #VictoryRoad #VGC #VGCItalia") % (nome, quando_it(e["date"], e.get("time")), r2)
+        xt = "🏁 Iscrizioni aperte: %s\n📅 %s · %s\nIscriviti 👇\n%s\n#PokemonVGC #VictoryRoad" % (nome, quando_it(e["date"], e.get("time")), r2, link)
+    else:
+        dove = e.get("where") or ""
+        r1 = (dove + " · " if dove else "") + quando_it(e["date"])
+        r2 = "Premi: " + e["prize"] if e.get("prize") else ""
+        link = SITO + "#regionali"
+        ig = ("🏆 %s · %s\n📍 %s\n📅 %s\n\nSeguilo in diretta nell'app rAKings VGC: classifica, squadre e Top 8 📲"
+              "\n\n#PokemonVGC #VGC #Regionals #VGCItalia") % (nome, riga3, dove or "da confermare", quando_it(e["date"]))
+        xt = "🏆 %s · %s\n📍 %s\nSeguilo in diretta nell'app 👇\n%s\n#PokemonVGC #VGCItalia" % (nome, riga3, dove or "", link)
+    social_img.evento("vr" if tipo == "vr" else "regionale", nome, r1, r2, riga3[:1].upper() + riga3[1:], img)
+    d["richieste"].append({"id": rid, "tipo": tipo, "rif": 0, "creata": ora(), "titolo": nome, "sotto": r1, "img": img, "link": link,
+                           "ig": {"stato": "da approvare", "testo": ig[:MAX_IG]}, "x": {"stato": "da approvare", "testo": xt}})
+    log("Nuova richiesta: %s" % nome)
+
+
+def tornei(d, adesso=None):
+    """Dai tornei del sito (events.json): money tournament della settimana (lunedi'), VR quando aprono le iscrizioni,
+    grandi tornei (Regionali, Special, Internazionali) 2 giorni prima. Al primo giro si ricorda quelli gia' in corso, senza post."""
+    adesso = adesso or datetime.now(ROMA)
+    ev = load(EVENTI, {"events": []})
+    ev = ev.get("events", []) if isinstance(ev, dict) else []
+    fatti = d.setdefault("fatti", [])
+    primo = not d.get("tornei_dal")
+    oggi = adesso.date()
+    nuove = 0
+    for e in ev:
+        if not e.get("date"):
+            continue
+        try:
+            g = date.fromisoformat(e["date"])
+        except ValueError:
+            continue
+        url = str(e.get("url") or "")
+        if "victoryroad.pro/vr-" in url:
+            rid = "vr-%d" % numero(url)
+            aperte = e.get("signup") and g >= oggi
+            if aperte and e.get("opensAt"):
+                try:
+                    aperte = datetime.fromisoformat(e["opensAt"].replace("Z", "+00:00")) <= adesso
+                except ValueError:
+                    pass
+            if aperte and rid not in fatti:
+                fatti.append(rid)
+                if not primo:
+                    grande_evento(d, e, "vr", "iscrizioni aperte", rid); nuove += 1
+        elif e.get("type") in GRANDI:
+            mancano = (g - oggi).days
+            rid = "reg-%d" % numero(e["name"] + e["date"])
+            if 0 <= mancano <= 2 and rid not in fatti:
+                fatti.append(rid)
+                if not primo:
+                    grande_evento(d, e, "regionale", "tra 2 giorni" if mancano == 2 else "domani" if mancano == 1 else "oggi", rid); nuove += 1
+    if primo:
+        d["tornei_dal"] = ora()
+        log("Money tournament / Regionali / VR: primo giro, ricordati %d tornei gia' in corso (nessun post)." % len(fatti))
+    nuove += money_settimana(d, ev, adesso)
+    d["fatti"] = fatti[-300:]
+    return nuove
 
 
 # ---------------------------------------------------------------- Instagram (API ufficiale di Meta)
@@ -239,22 +422,36 @@ def immagine_online(url):
     return False
 
 
-def pubblica_ig(r, testo):
-    user = os.environ["IG_USER_ID"]
-    url = SITO + r["img"]
-    if not immagine_online(url):
-        raise RuntimeError("l'immagine non e' ancora online sul sito, riprova tra qualche minuto")
-    c = graph("POST", "%s/media" % user, {"image_url": url, "caption": testo})
-    cid = c.get("id")
-    if not cid:
-        raise RuntimeError("Meta non ha preparato il post")
+def pronto(cid):
     for _ in range(12):
         s = graph("GET", cid, {"fields": "status_code"}).get("status_code")
         if s == "FINISHED":
-            break
+            return
         if s in ("ERROR", "EXPIRED"):
             raise RuntimeError("Meta non ha accettato l'immagine (%s)" % s)
         time.sleep(5)
+
+
+def pubblica_ig(r, testo):
+    user = os.environ["IG_USER_ID"]
+    urls = [SITO + x for x in (r.get("imgs") or [r["img"]])][:10]
+    for url in urls:
+        if not immagine_online(url):
+            raise RuntimeError("l'immagine non e' ancora online sul sito, riprova tra qualche minuto")
+    if len(urls) > 1:   # carosello: prima ogni immagine, poi il post che le contiene (massimo 10)
+        figli = []
+        for url in urls:
+            c = graph("POST", "%s/media" % user, {"image_url": url, "is_carousel_item": "true"})
+            if not c.get("id"):
+                raise RuntimeError("Meta non ha preparato un'immagine del carosello")
+            pronto(c["id"]); figli.append(c["id"])
+        c = graph("POST", "%s/media" % user, {"media_type": "CAROUSEL", "children": ",".join(figli), "caption": testo})
+    else:
+        c = graph("POST", "%s/media" % user, {"image_url": urls[0], "caption": testo})
+    cid = c.get("id")
+    if not cid:
+        raise RuntimeError("Meta non ha preparato il post")
+    pronto(cid)
     p = graph("POST", "%s/media_publish" % user, {"creation_id": cid})
     mid = p.get("id")
     if not mid:
