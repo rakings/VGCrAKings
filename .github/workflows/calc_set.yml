@@ -17,17 +17,19 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Controlla e aggiorna i set
+      - name: Controlla e aggiorna set e motore di calcolo
+        id: agg
         env:
           FORZA: ${{ github.event_name == 'schedule' && '0' || '1' }}   # avviato a mano o appena caricato: controlla subito
         run: python3 aggiorna_set.py
       - name: Pubblica su GitHub
+        if: always()   # i set aggiornati si salvano anche se il motore va adattato a mano (flusso rosso = mail)
         run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add calc.html calc_set_stato.json
           if git diff --cached --quiet; then echo "Niente da pubblicare."; else
-            git commit -m "Calcolatore: set aggiornati da nerd-of-now"
+            git commit -m "Calcolatore: set/motore aggiornati da nerd-of-now"
             for i in 1 2 3; do
               if git pull --rebase --autostash && git push; then exit 0; fi
               sleep 5
