@@ -346,15 +346,47 @@ li.nw.inf[data-aid] summary .tag{font-size:.72rem;padding:2px 8px}
 li.nw.inf[data-aid] summary b{display:block;margin-top:4px;line-height:1.25}
 li.nw.inf[data-aid] details[open]>summary{margin-bottom:6px}
 li.nw.frm>details{margin-top:0}
+
+/* Anteprima prossimi tornei (VR + Regionale) in alto */
+.nxt{display:block;margin:8px 0 0;text-decoration:none;color:#fff;border-radius:14px;overflow:hidden;border:2.5px solid #fff;box-shadow:0 2px 12px rgba(0,0,0,.18)}
+.nxt[hidden]{display:none}
+.nxt .sq{display:block;position:relative;aspect-ratio:1/1;background:#140c12;overflow:hidden}
+.nxt .sq::before{content:"";position:absolute;inset:0;background:var(--nc,#ffd21f);clip-path:polygon(100% 0,100% 100%,0 100%)}
+.nxt .sq::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom right,transparent calc(50% - 1.5px),#fff calc(50% - 1.5px),#fff calc(50% + 1.5px),transparent calc(50% + 1.5px))}
+.nxt .t{position:absolute;z-index:1;max-width:72%;line-height:1.15}
+.nxt .t1{top:10px;left:11px}
+.nxt .t2{bottom:10px;right:11px;text-align:right;color:#140c12}
+.nxt .lb{display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase}
+.nxt .t1 .lb{color:var(--c1,#86d8f0)}
+.nxt .nm{display:block;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:.84rem;margin-top:1px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.nxt .dt{display:block;font-size:.66rem;font-weight:600;opacity:.9;margin-top:2px}
+.nxt .lv{display:inline-flex;align-items:center;gap:4px;margin-top:4px;background:#e11d2e;color:#fff;font-weight:800;font-size:.58rem;letter-spacing:.06em;padding:2px 7px;border-radius:999px}
+.nxt .lv::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff;animation:nxtp 1.2s infinite}
+@keyframes nxtp{50%{opacity:.25}}
+.nxt .ft{display:block;background:var(--fill);font-size:.64rem;font-weight:700;line-height:1.25;padding:5px 8px;text-align:center}
+.nxt .ft b{white-space:nowrap}
+.nxt.solo .t1{max-width:80%}
+/* testata compatta: uovo in alto, «Organizzi un locale» sotto l'uovo, a destra titolo e anteprima */
+.brand{align-items:stretch}
+.brand .lcol{flex:none;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;width:min(44vw,180px)}
+.brand .lcol .logo{width:100%;margin-top:0}
+.brand .txt{display:flex;flex-direction:column}
+.brand .txt .nxt{margin-top:auto}
+.brand .txt .head+.lead+.nxt,.brand .txt .head+.nxt{margin-top:8px}
+.brand .lcol #cta-loc{margin-top:2px;width:100%;font-size:.78rem;padding:7px 8px}
+.brand .txt .head{margin-bottom:0}
+.nxt.due .sq{background:#86d8f0}
+.nxt.due .t1,.nxt.due .t1 .lb{color:#140c12}
+.nxt.due .t1 .dt{opacity:.85}
+@media (min-width:700px){.brand .lcol{width:232px}.brand .lcol .logo{width:100%;margin:0}.brand .lcol #cta-loc{font-size:.92rem;padding:9px 10px}.brand .nxt{max-width:230px}}
+@keyframes nxhl{0%,60%{box-shadow:0 0 0 3px #ffd21f,0 0 22px #ffd21f}100%{box-shadow:none}}
+li.nxhl{animation:nxhl 2.2s ease-out}
 </style>
 <link rel="stylesheet" href="vgcstats.css?v=20261102n">
 </head>
 <body>
 <main><p class="devby">Developed by: X: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a> · IG: <a href="https://www.instagram.com/AndreaK_92/" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
-<header class="brand"><img class="logo" src="logo-egg.webp" alt="Logo rAKings VGC" width="190" height="234"><div class="txt"><h1>rAKings VGC</h1><p class="head">Tornei ufficiali VGC e Tornei online</p><p class="lead">Solo videogioco Pokémon. Ogni torneo ha il tipo, il costo, il regolamento e un marcatore dorato se mette in palio denaro.</p><a class="src" href="https://shairaba.github.io/pokemon-events-italia/index.html" target="_blank" rel="noopener">
-<b>Eventi ufficiali VGC in Italia</b>
-<span class="short">Elenco e calendario dal vivo</span><span class="long">Calendario eventi dal vivo · dal sito Pokémon Event Locator but better</span>
-</a><button class="btn main" id="cta-loc" type="button">Organizzi un locale? Carica la top 8</button><div class="pwa" id="pwa-bar" hidden><span class="pwa-ic" aria-hidden="true">📲</span><div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div><button class="btn main" id="pwa-btn" type="button">Installa</button><button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button></div></div></header>
+<header class="brand"><div class="lcol"><img class="logo" src="logo-egg.webp" alt="Logo rAKings VGC" width="190" height="234"><button class="btn main" id="cta-loc" type="button">Organizzi un locale? Carica la top 8</button></div><div class="txt"><h1>rAKings VGC</h1><p class="head">Tornei ufficiali VGC e Tornei online</p><p class="lead">Solo videogioco Pokémon. Ogni torneo ha il tipo, il costo, il regolamento e un marcatore dorato se mette in palio denaro.</p><a class="nxt" id="nxt" href="#" hidden></a><div class="pwa" id="pwa-bar" hidden><span class="pwa-ic" aria-hidden="true">📲</span><div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div><button class="btn main" id="pwa-btn" type="button">Installa</button><button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button></div></div></header>
 <input id="q" type="search" placeholder="Cerca tornei, giocatori live e storico" aria-label="Cerca tornei, giocatori in gara (live) e risultati storici"><div class="pres" id="pres" hidden></div>
 
 
@@ -942,7 +974,38 @@ setup();render();
 goHash();
 applyTr();
 if(LANG!=="it")loadTr(function(){buildTr();rebuildCal();render();applyTr()});
-fetch("events.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){EVENTS=d.events||[];if(d.updated)$("upd").textContent="Aggiornato il "+new Date(d.updated).toLocaleString(LCL);setup();render();goHash()}).catch(function(){$("upd").textContent="Elenco non disponibile: events.json non trovato."});
+/* Anteprima in alto: prossimo VR e prossimo Regionale/Internazionale. Durante il torneo: LIVE e il tocco apre VGC Stats & Live. */
+var NXL={t:0,r:null,v:null};
+function nxtToday(){var d=new Date();return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())}
+function nxtShort(e){var n=String(e.name||"");if(e.org==="Victory Road")return n.replace(/^(VR|Victory Road)\s+/i,"");return n.replace(/\s+(Regional|International)\s+Championships?$/i,"").replace(/\s+Championships?$/i,"")||n}
+function nxtDate(e){var o={day:"numeric",month:"short"};try{var a=new Date(e.date+"T12:00:00"),b=e.end&&e.end!==e.date?new Date(e.end+"T12:00:00"):null;if(!b)return a.toLocaleDateString(LCL,o);if(a.getMonth()===b.getMonth())return a.getDate()+"–"+b.toLocaleDateString(LCL,o);return a.toLocaleDateString(LCL,o)+" – "+b.toLocaleDateString(LCL,o)}catch(x){return e.date}}
+function nxtPick(){var t=nxtToday(),f=function(ok){return EVENTS.filter(function(e){return e.date&&(e.end||e.date)>=t&&ok(e)}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0})[0]||null};
+return{v:f(function(e){return e.org==="Victory Road"}),r:f(function(e){return e.mode==="regional"})}}
+function nxtOggi(e){var t=nxtToday();return e&&e.date<=t&&(e.end||e.date)>=t}
+/* Stato live letto solo nei giorni del torneo (file piccoli, al massimo ogni 5 minuti) */
+function nxtLive(cb){var p=nxtPick(),need=[];if(Date.now()-NXL.t<3e5){cb();return}NXL.t=Date.now();
+function J(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
+if(nxtOggi(p.r))need.push(J("vgcstats/index.json").then(function(j){NXL.r=null;((j&&j.events)||[]).forEach(function(x){if(x.status==="running"&&x.start<=(p.r.end||p.r.date)&&(x.end||x.start)>=p.r.date)NXL.r=x.id})}));else NXL.r=null;
+if(nxtOggi(p.v))need.push(J(String(window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/")+"index.json").then(function(j){NXL.v=null;var sl=function(s){return String(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"")};((j&&j.events)||[]).forEach(function(x){if(x.status==="running"&&(x.start===p.v.date||sl(x.name)===sl(p.v.name)))NXL.v=x.id})}));else NXL.v=null;
+Promise.all(need).then(cb,cb)}
+function nxtRender(){var el=$("nxt");if(!el||!EVENTS.length)return;var p=nxtPick(),v=p.v,r=p.r;if(!v&&!r){el.hidden=true;return}
+var lab=function(e){return e.org==="Victory Road"?"Victory Road":e.type==="Mondiale"?"Mondiale":e.type==="Internazionale"?"Internazionale":e.type==="Special Event"?"Special Event":"Regionale"};
+var blk=function(e,live,cl){return '<span class="t '+cl+'"><span class="lb">'+esc(lab(e))+'</span><span class="nm">'+esc(nxtShort(e))+'</span><span class="dt">'+esc(nxtDate(e))+'</span>'+(live?'<span class="lv">LIVE</span>':'')+'</span>'};
+var lv=!!(v&&NXL.v),lr=!!(r&&NXL.r),h,href;
+var one=v&&r?null:(v||r),c2=r?"#ffd21f":"#86d8f0";
+if(one){h=blk(one,one===v?lv:lr,"t1");el.className="nxt solo"}else{h=blk(v,lv,"t1")+blk(r,lr,"t2");el.className="nxt due"}
+/* dove porta il tocco: torneo in corso -> VGC Stats & Live; altrimenti la scheda del torneo nell'elenco (il primo dei due) */
+if(lv)href="#stats-vr-"+NXL.v;else if(lr)href="#stats-reg-"+NXL.r;else{var f=one||(v.date<=r.date?v:r);href=f.url?"#e="+eh(f.url):"#";el.setAttribute("data-url",f.url||"")}
+el.style.setProperty("--nc",c2);el.style.setProperty("--c1",one&&one===r?"#ffd21f":"#86d8f0");
+el.href=href;el.innerHTML='<span class="sq">'+h+'</span><span class="ft">'+(lv||lr?'In diretta su <b>VGC Stats &amp; Live</b> ›':'Classifiche, squadre e diretta su <b>VGC Stats &amp; Live</b> ›')+'</span>';el.hidden=false}
+function nxtGo(){nxtRender();nxtLive(nxtRender)}
+/* tocco fuori dal live: porta alla scheda del torneo nell'elenco e la evidenzia */
+document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("#nxt");if(!a)return;var h=a.getAttribute("href")||"";if(h.indexOf("#e=")!==0)return;ev.preventDefault();
+var u=a.getAttribute("data-url");if(!u)return;function trova(){var x=null;[].forEach.call(document.querySelectorAll("#list li"),function(li){var l=li.querySelector("h2 a");if(!x&&l&&l.getAttribute("href")===u)x=li});return x}
+var li=trova();if(!li){var bt=document.querySelector('[data-v="all"][aria-pressed]');st.q="";$("q").value="";st.mode="all";[].forEach.call(document.querySelectorAll(".pill [data-v]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-v")==="all"))});render();li=trova()}
+if(!li){location.hash=h;goHash();return}var vai=function(){if(li.isConnected)li.scrollIntoView({block:"center"})};vai();setTimeout(vai,300);setTimeout(vai,900);li.classList.remove("nxhl");void li.offsetWidth;li.classList.add("nxhl")});
+setInterval(function(){if(!document.hidden&&EVENTS.length)nxtGo()},3e5);
+fetch("events.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){EVENTS=d.events||[];if(d.updated)$("upd").textContent="Aggiornato il "+new Date(d.updated).toLocaleString(LCL);setup();render();goHash();nxtGo()}).catch(function(){$("upd").textContent="Elenco non disponibile: events.json non trovato."});
 fetch("news.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
 if(d.types)Object.keys(d.types).forEach(function(k){MT[k]=d.types[k]});
 if(d.news&&d.news.length)NEWS=d.news;if(d.bp&&d.bp.length)BP=d.bp;if(d.ita)ITA=d.ita;render()}).catch(function(){});
