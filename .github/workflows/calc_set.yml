@@ -1,0 +1,36 @@
+name: Calcolatore - aggiorna i set
+on:
+  schedule:
+    # ogni lunedi' guarda se e' ora: il controllo vero parte ogni 1 mese e 22 giorni (52 giorni, vedi aggiorna_set.py)
+    - cron: "41 4 * * 1"
+  push:
+    paths: ["aggiorna_set.py", ".github/workflows/calc_set.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: calc-set
+  cancel-in-progress: false
+jobs:
+  set:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controlla e aggiorna i set
+        env:
+          FORZA: ${{ github.event_name == 'schedule' && '0' || '1' }}   # avviato a mano o appena caricato: controlla subito
+        run: python3 aggiorna_set.py
+      - name: Pubblica su GitHub
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add calc.html calc_set_stato.json
+          if git diff --cached --quiet; then echo "Niente da pubblicare."; else
+            git commit -m "Calcolatore: set aggiornati da nerd-of-now"
+            for i in 1 2 3; do
+              if git pull --rebase --autostash && git push; then exit 0; fi
+              sleep 5
+            done
+            echo "Salvataggio su GitHub non riuscito."; exit 1
+          fi
