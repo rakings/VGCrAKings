@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Aggiorna i set del calcolatore (calc.html) con quelli del Nimbasa City Post Damage Calculator di nerd-of-now.
+"""Aggiorna i set E il motore di calcolo (formule) del calcolatore (calc.html) dal Nimbasa City Post Damage Calculator di nerd-of-now.
+Motore (ap_calc.js, damage_*.js, ko_chance.js, dati di mosse/strumenti/abilita'/Pokedex...): si aggiorna solo se la loro pagina
+(index.html) e' rimasta la stessa di quando e' stato fatto il nostro calcolatore; se l'hanno cambiata, i file del motore NON si toccano
+e il flusso diventa rosso (mail da GitHub): va adattato a mano. I set invece si aggiornano sempre.
 Il calcolatore tiene dentro di se' una copia del motore originale (stringa ENGINE); qui si rimpiazzano solo i file
 dei set copiati per intero (Champions = setdex_ncp-g10.js, piu' Showdown, Global Link, Smogon) se online sono cambiati.
 Ogni file nuovo si controlla con node prima di usarlo: se qualcosa non torna, calc.html resta com'e'."""
@@ -12,10 +15,32 @@ RAW = "https://raw.githubusercontent.com/nerd-of-now/NCP-VGC-Damage-Calculator/m
 API = "https://api.github.com/repos/nerd-of-now/NCP-VGC-Damage-Calculator"
 
 
+INDEX_SHA = "2b47ecb1b697a0b51219c65d9a50d634eaeb46071e79ecf79e160231f577cdc6"   # index.html di nerd-of-now su cui e' fatto il calcolatore
+
+
 def scarica(url):
     req = urllib.request.Request(url, headers={"User-Agent": "rakings-calc-set"})
     with urllib.request.urlopen(req, timeout=60) as r:
-        return r.read().decode("utf-8")
+        b = r.read()
+    for enc in ("utf-8", "cp1252", "latin-1"):   # alcuni loro file non sono in utf-8
+        try:
+            return b.decode(enc)
+        except UnicodeDecodeError:
+            pass
+    return b.decode("latin-1")
+
+
+def sintassi_ok(js):
+    """node --check: il file nuovo deve essere JavaScript valido."""
+    with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False, encoding="utf-8") as f:
+        f.write(js)
+        nome = f.name
+    try:
+        return subprocess.run(["node", "--check", nome], capture_output=True, timeout=60).returncode == 0
+    except Exception:
+        return False
+    finally:
+        os.unlink(nome)
 
 
 def conta_set(js, var):
@@ -59,11 +84,21 @@ def main():
     except Exception:
         ramo = "master"
     raw = RAW.replace("/master/", "/%s/" % ramo)
-    cambiati, letti = [], 0
-    for blocco in re.finditer(r"<script[^>]*>(/\* script_res/(setdex_[\w.-]+\.js) \*/\n)(.*?)</script>", E, re.S):
+    cambiati, letti, allarme = [], 0, ""
+    import hashlib
+    try:
+        sha = hashlib.sha256(scarica(raw.replace("script_res/", "") + "index.html").replace("\r\n", "\n").encode("utf-8")).hexdigest()
+        motore_ok = sha == INDEX_SHA
+        if not motore_ok:
+            allarme = "nerd-of-now ha cambiato la sua pagina (index.html): il motore NON e' stato aggiornato, va adattato a mano."
+    except Exception as ex:
+        motore_ok = False
+        print("index.html di nerd-of-now non letto (%s): il motore resta com'e'." % ex)
+    for blocco in re.finditer(r"<script[^>]*>(/\* script_res/([\w.-]+\.js) \*/\n)(.*?)</script>", E, re.S):
         testa, file, vecchio = blocco.group(1), blocco.group(2), blocco.group(3)
         var = (re.match(r"\s*var\s+(\w+)", vecchio) or [None, None])[1]
-        if not var or not var.startswith("SETDEX"):
+        e_set = bool(var and var.startswith("SETDEX"))
+        if not e_set and not motore_ok:
             continue
         try:
             nuovo = scarica(raw + file)
@@ -74,6 +109,13 @@ def main():
         nuovo = nuovo.lstrip("﻿").replace("\r\n", "\n")
         if nuovo.strip() == vecchio.strip():
             print("%s: invariato." % file)
+            continue
+        if not e_set:   # file del motore: deve essere JavaScript valido e non troppo diverso di dimensione
+            if not sintassi_ok(nuovo) or len(nuovo) < len(vecchio) * 0.7 or "</script" in nuovo.lower():
+                print("%s: il file nuovo non mi convince: resta quello di prima." % file)
+                continue
+            E = E.replace(testa + vecchio, testa + nuovo, 1)
+            cambiati.append("%s (motore)" % file)
             continue
         cv, cn = conta_set(vecchio, var), conta_set(nuovo, var)
         if not cn or (cv and cn[1] < cv[1] * 0.7):
@@ -87,13 +129,15 @@ def main():
     if letti:   # la data si segna solo se nerd-of-now ha risposto: se era giu', si riprova il lunedi' dopo
         with open(STATO, "w", encoding="utf-8") as f:
             json.dump({"ultimo": oggi.isoformat()}, f)
+    if allarme:
+        print("[ATTENZIONE]", allarme)
     if not cambiati:
-        print("Set gia' aggiornati: niente da fare." if letti else "nerd-of-now non ha risposto: riprovo la prossima volta.")
-        return 0
+        print("Set e motore gia' aggiornati: niente da fare." if letti else "nerd-of-now non ha risposto: riprovo la prossima volta.")
+        return 1 if allarme else 0
     s = s[:m.start(1)] + json.dumps(E, ensure_ascii=False).replace("<", "\\u003c") + s[m.end(1):]
     open(CALC, "w", encoding="utf-8").write(s)
     print("Aggiornati:", "; ".join(cambiati))
-    return 0
+    return 1 if allarme else 0
 
 
 if __name__ == "__main__":

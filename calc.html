@@ -393,6 +393,9 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .hhr{display:flex;align-items:center;gap:8px}.hhn{flex:none;font-size:11.5px;font-weight:700;color:var(--mute);white-space:nowrap}.hhn em{font-style:normal;color:var(--ok)}
 .hpr.dhp{flex:1;height:6px;min-width:0}.hpr.dhp::-webkit-slider-thumb{width:16px;height:16px;border-width:2px}.hpr.dhp::-moz-range-thumb{width:13px;height:13px}
 .hha{font-size:11.5px;margin-top:3px}
+
+.rtog{display:inline-flex;align-items:center;justify-content:center;width:26px;height:22px;margin-left:4px;vertical-align:middle;border-radius:7px;border:1px solid var(--line);background:var(--card2);color:#ffd21f;font-size:13px;line-height:1;transition:transform .15s}
+.rtog.on{transform:rotate(180deg)}
 </style>
 </head>
 <body>
@@ -833,7 +836,7 @@ function detail(x,atk,def,cA,extra){
   const hpl='<div class="hhp"><div class="hhr"><span class="hhn">PS '+esc(short(def.name))+' <em>'+pr+'%</em></span>'+
     '<input type="range" class="hpr dhp" min="0" max="100" step="1" value="'+pr+'" data-c="hpdef" data-n="'+def.n+'" aria-label="PS attuali di '+esc(def.name)+'" style="--p:'+pr+'%"></div>'+
     (true?'<div class="hha">Dopo il colpo: '+(r2<=0?'<b class="k">va KO</b>':r1<=0?'<b class="k">KO possibile</b> (se no resta fino al '+r2.toFixed(1)+'%)':'resta <b>'+r1.toFixed(1)+'\u2013'+r2.toFixed(1)+'%</b>')+'</div>':'')+'</div>';
-  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div>'+(extra||'')+'<p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+(x.ko?' -- <b>'+esc(koIt(x.ko))+'</b>':'')+'</p><p class="rolls">Valori possibili: '+esc(rolls)+'</p>'+ctr+hpl+'</div>';
+  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div>'+(extra||'')+'<p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+(x.ko?' -- <b>'+esc(koIt(x.ko))+'</b>':'')+' <button type="button" class="rtog'+(S.rolls?' on':'')+'" data-a="rolls" aria-expanded="'+(S.rolls?'true':'false')+'" aria-label="Valori possibili" title="Valori possibili">\u25be</button></p>'+(S.rolls?'<p class="rolls">Valori possibili: '+esc(rolls)+'</p>':'')+ctr+hpl+'</div>';
 }
 
 /* ---------- fogli ---------- */
@@ -957,6 +960,7 @@ document.addEventListener('click',e=>{
   if(t.closest('.pz'))S.edit=S.view;
   if(S.clrArm&&a!=='eraseteam'&&a!=='erasecancel')S.clrArm=null;
   if(a==='dir'){S.dir=+d.d;refresh()}
+  else if(a==='rolls'){S.rolls=!S.rolls;refresh()}
   else if(a==='menu'){S.menu=!S.menu;refresh()}
   else if(a==='pastetxt'){openPasteSheet(+d.n)}
   else if(a==='view'){S.view=3-S.view;refresh();const z=$q('.pz');if(z&&z.getBoundingClientRect().top<60)z.scrollIntoView({block:'start'})}
