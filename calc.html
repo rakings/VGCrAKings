@@ -492,6 +492,9 @@ function readResults(d){
 /* ---------- disegno ---------- */
 function refresh(){
   if(!W)return;
+  /* il motore originale salta il calcolo finche' calcQueue>0: se un cambio (es. forma o set) si interrompe a meta',
+     resta bloccato e i risultati non si aggiornano piu' (nome nuovo ma calcolo sul Pokemon vecchio). Qui lo si sblocca. */
+  try{if(W.calcQueue>0&&!S.mc.busy&&!S.sm.busy){W.calcQueue=0;W.calculate()}}catch(e){}
   const a=readSide(1),b=readSide(2),res=[readResults(0),readResults(1)];
   S.cache={a,b,res};S.sm.q=null;
   const mcStale=!!(S.mc.res&&!S.mc.busy&&S.mc.sig&&S.mc.sig!==mcSig());
