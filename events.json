@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T18:55:01+00:00",
+ "updated": "2026-11-16T20:33:25+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "Back In The 2022,Sword/Shield VGC 2022 Series 12",
-   "org": "HaoQi cup",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-16",
-   "time": "12:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6af98f67b2fccaf0272d30a6/details"
-  },
-  {
    "name": "Amyverse VGC Champions Arena #19 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -197,6 +182,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
   },
   {
+   "name": "Back In The 2022,Sword/Shield VGC 2022 Series 12",
+   "org": "HaoQi cup",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-16",
+   "time": "12:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6af98f67b2fccaf0272d30a6/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -208,8 +208,23 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 30,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
+  },
+  {
+   "name": "Intimidators Champions Challenge #55 REG M-C",
+   "org": "INTIMIDATORS VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-17",
+   "time": "00:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6afb3ba6b2fccaf0272d40a9/details"
   },
   {
    "name": "The Drywall Series #27",
@@ -223,7 +238,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:30",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
@@ -238,7 +253,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "12:00",
-   "players": 42,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6afaaf37b2fccaf0272d3d12/details"
   },
   {
@@ -358,7 +373,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
   },
   {
@@ -373,7 +388,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
@@ -422,6 +437,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
+   "name": "Off Meta Fight Club #11",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
+  },
+  {
    "name": "Tenki",
    "org": "TenkiPK",
    "mode": "online",
@@ -433,7 +463,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "17:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
   },
   {
@@ -448,7 +478,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -465,6 +495,21 @@
    "time": "00:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
+  },
+  {
+   "name": "VGC Gemeinde Showdown #14",
+   "org": "VGC Gemeinde",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "19:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
    "name": "Talon",
@@ -523,23 +568,8 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
-  },
-  {
-   "name": "VGC Gemeinde Showdown #14",
-   "org": "VGC Gemeinde",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "19:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
    "name": "🌟 Movember Cup 🌟",
@@ -884,7 +914,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "03:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details"
   },
   {
