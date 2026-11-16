@@ -71,6 +71,9 @@ function tutti(){var k=kst();if(TC[k])return Promise.resolve(TC[k]);if(TP[k])ret
 TP[k]=fetch(file(S.st).replace(/[^\/]*$/,"")+D.tutti,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
 if(!j||!Array.isArray(j.r))throw 0;var top={};D.righe.forEach(function(r){top[r.pos]=r});
 TC[k]=j.r.map(function(x){return top[x[0]]||{pos:x[0],rank:x[1],name:x[2],country:x[3],cp:x[4],storia:null}});return TC[k]}).catch(function(){TP[k]=null;return null});return TP[k]}
+/* Storia dei punti di TUTTI i giocatori (<nome>-storie.json): si scarica solo quando tocchi un giocatore oltre i primi della lista. */
+var SC={},SP={};function storie(){var k=kst();if(SC[k])return Promise.resolve(SC[k]);if(SP[k])return SP[k];if(!D||!D.tutti)return Promise.resolve(null);
+ SP[k]=fetch(file(S.st).replace(/[^\/]*$/,"")+D.tutti.replace(/-tutti\.json$/,"-storie.json"),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.s)throw 0;SC[k]=j.s;return j.s}).catch(function(){SP[k]=null;return null});return SP[k]}
 function tutte(){return TC[kst()]||D.righe}
 function head(){return'<div class="cp-h"><b>CP bar</b><span>Europa · VG Masters '+E((D&&D.stagione)||"2027")+'</span><button type="button" class="cp-x" data-cp="x" aria-label="Chiudi">×</button></div>'}
 function ov(){if(OV)return OV;OV=document.createElement("div");OV.id="cpov";OV.hidden=true;OV.setAttribute("role","dialog");OV.setAttribute("aria-modal","true");OV.setAttribute("aria-label","Classifica CP");document.body.appendChild(OV);
@@ -94,8 +97,11 @@ function etichette(){var b=OV&&OV.querySelector('[data-cp="f"][data-v="it"]'),c=
 var f=OV&&OV.querySelector(".cp-f b");if(f&&c)f.textContent="tutti i "+num(c.length)}
 function tog(btn){var nx=btn.nextElementSibling;if(nx&&nx.classList.contains("cp-d")){nx.remove();btn.setAttribute("aria-expanded","false");return}
 var r=CUR[Number(btn.getAttribute("data-i"))],d=document.createElement("div");d.className="cp-d";
-if(!r)return;if(r.storia===null){d.innerHTML='<div class="cp-e cp-no">'+num(r.cp)+" CP · posto "+E(r.pos)+". La storia dei punti c'è per i primi "+D.righe.length+'; per gli altri vedi <a href="'+POKEDATA+'&search='+encodeURIComponent(r.name)+'" target="_blank" rel="noopener">Pokédata</a>.</div>';btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");return}
-d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">Cerco il torneo…</div>');btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");
+if(!r)return;if(r.storia===null){d.innerHTML='<div class="cp-e cp-no">…</div>';btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");
+ storie().then(function(m){var v=m&&m[String(r.pos)];if(v){r.storia=v.map(function(x){return{cp:x[0],delta:x[1],data:x[2]}});mostra(r,d)}
+ else d.innerHTML='<div class="cp-e cp-no">'+num(r.cp)+" CP · posto "+E(r.pos)+'. Dettaglio non ancora disponibile: vedi <a href="'+POKEDATA+'&search='+encodeURIComponent(r.name)+'" target="_blank" rel="noopener">Pokédata</a>.</div>'});return}
+btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");mostra(r,d)}
+function mostra(r,d){d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">Cerco il torneo…</div>');
 var stag=D.stagione;dati().then(function(ok){if(!d.isConnected)return;var t=ok?trova(r,stag):{k:"nd"};d.innerHTML=linee(r,t.k==="ok"?t.righe:null)})}
 function draw(){var o=ov(),sg=D.soglia||{},nIt=tutte().filter(function(r){return r.country==="ITA"}).length,fin=D.finale===true,
 sel=IX&&IX.stagioni.length>1?'<div class="cp-st">'+IX.stagioni.map(function(v){return'<button type="button" class="cp-chip" data-cp="s" data-v="'+E(v.stagione)+'" aria-pressed="'+(v.stagione===S.st)+'">'+E(v.stagione)+" · "+(v.stato==="in corso"?"in corso":"finale")+"</button>"}).join("")+"</div>":"";
