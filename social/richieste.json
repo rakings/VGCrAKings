@@ -7,9 +7,10 @@
  "richieste": [
   {
    "id": "mon-202647",
+   "v": 2,
    "tipo": "money",
    "rif": 0,
-   "creata": "2026-11-16T07:51:42Z",
+   "creata": "2026-11-16T08:29:54Z",
    "titolo": "Money tournament · 16–22 novembre",
    "sotto": "4 tornei, dal premio piu' alto",
    "img": "social/img/mon-202647-1.jpg",
@@ -21,11 +22,11 @@
    "link": "https://rakings.github.io/VGCrAKings/#online",
    "ig": {
     "stato": "da approvare",
-    "testo": "💰 Money tournament della settimana · 16–22 novembre\n\n1. 50€ · Torre Lotta Cup #4 50€ Amazon Gift Cards (sab 21 nov · 14:00)\n2. $5 · Friday Fight Night 82! $50 Prize & Team Report (sab 21 nov · 00:00)\n3. $5 · Runback Series #6 - Reg I $50 to 1st place (dom 22 nov · 23:00)\n4. Cash · Amyverse VGC Champions Arena #19 Cash Prize! (lun 16 nov · 20:00)\n\nOrari in ora italiana. Iscrizioni, promemoria e tutti i tornei nell'app rAKings VGC: link in bio 📲\n\n#PokemonVGC #VGC #VGCItalia #Pokemon #MoneyTournament"
+    "testo": "💰 Money tournaments of the week · Nov 16–22\n\n1. 50€ · Torre Lotta Cup #4 50€ Amazon Gift Cards (Sat Nov 21 · 14:00 CET)\n2. $50 · Friday Fight Night 82! $50 Prize & Team Report (Sat Nov 21 · 00:00 CET)\n3. $50 · Runback Series #6 - Reg I $50 to 1st place (Sun Nov 22 · 23:00 CET)\n4. Cash · Amyverse VGC Champions Arena #19 Cash Prize! (Mon Nov 16 · 20:00 CET)\n\nSign-ups, reminders and every tournament in the rAKings VGC app: link in bio 📲\n\n#PokemonVGC #PokemonChampions #VGC #Pokemon #MoneyTournament #VGCItalia"
    },
    "x": {
     "stato": "da approvare",
-    "testo": "💰 Money tournament della settimana (16–22 novembre)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $5 Friday Fight Night 82! $50 Prize & Team…\n3) $5 Runback Series #6 - Reg I $50 to 1st…\nTutti nell'app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonVGC #VGCItalia"
+    "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Friday Fight Night 82! $50 Prize & Team…\n3) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonVGC #PokemonChampions #VGC"
    }
   }
  ],
@@ -35,7 +36,9 @@
   "quando": "2026-11-14T20:57:29Z"
  },
  "fatti": [
-  "mon-202647"
+  "mon-202647",
+  "sto-116899157"
  ],
- "tornei_dal": "2026-11-16T07:51:42Z"
+ "tornei_dal": "2026-11-16T07:51:42Z",
+ "storie_dal": "2026-11-16T08:29:54Z"
 }
