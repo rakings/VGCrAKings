@@ -85,28 +85,43 @@ def tag(s):
     return "".join(c for c in s.title() if c.isalnum())
 
 
+TIPI_EN = {"sfida di lega": "League Challenge", "coppa di lega": "League Cup"}
+
+
+def tipo_en(t):
+    return TIPI_EN.get(str(t or "").strip().lower(), t or "")
+
+
+def data_en(t):
+    """«8 novembre 2026» -> «Nov 8, 2026» (se non la riconosce la lascia com'e')."""
+    m = re.match(r"\s*(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s*$", str(t or ""))
+    if m and m.group(2).lower() in MESI:
+        return "%s %d, %s" % (MESI_EN[MESI.index(m.group(2).lower())], int(m.group(1)), m.group(3))
+    return t or ""
+
+
 def testi_locale(v, link):
-    tipo, neg, citta, data = v.get("t", ""), v.get("s", ""), v.get("c", ""), v.get("d", "")
+    tipo, neg, citta, data = tipo_en(v.get("t", "")), v.get("s", ""), v.get("c", ""), data_en(v.get("d", ""))
     nomi = [str(x or "").strip() for x in (v.get("top") or [])][:8]
     nomi = [x for x in nomi if x]
     righe = [(MEDAGLIE[i] if i < 3 else "%d." % (i + 1)) + " " + n for i, n in enumerate(nomi)]
     n = v.get("n")
-    gioc = ("\n👥 %s giocatori" % n) if isinstance(n, int) or (isinstance(n, str) and n.isdigit()) else ""
+    gioc = ("\n👥 %s players" % n) if isinstance(n, int) or (isinstance(n, str) and n.isdigit()) else ""
     intro = [
-        "🏆 Ecco la Top 8 della %s di %s (%s), %s!" % (tipo, neg, citta, data),
-        "🏆 %s da %s a %s: ecco la Top 8 del %s." % (tipo, neg, citta, data),
+        "🏆 Here's the Top 8 of the %s at %s (%s), %s!" % (tipo, neg, citta, data),
+        "🏆 %s at %s in %s: here's the Top 8 of %s." % (tipo, neg, citta, data),
         "🏆 Top 8 · %s · %s, %s · %s" % (tipo, neg, citta, data),
     ][int(v.get("id") or 0) % 3]     # il testo cambia un po' da un post all'altro (niente post tutti identici)
     ig = intro + gioc + "\n\n" + "\n".join(righe)
     if nomi:
-        ig += "\n\nComplimenti a %s! 👏" % nomi[0]
-    ig += "\n\nSquadre e risultati completi su rAKings VGC: link in bio 📲"
-    ig += "\n\n#PokemonVGC #VGC #VGCItalia #Pokemon #VGC%s" % tag(citta)
+        ig += "\n\nCongrats to %s! 👏" % nomi[0]
+    ig += "\n\nFull teams and results on rAKings VGC: link in bio 📲"
+    ig += "\n\n#PokemonVGC #PokemonChampions #VGC #VGCItalia #Pokemon #VGC%s" % tag(citta)
     ig = ig[:MAX_IG]
 
     def x_con(k):
         corpo = "\n".join(righe[:k])
-        return "🏆 Top 8 %s · %s (%s)\n%s\nSquadre su rAKings VGC 👇\n%s\n#PokemonVGC #VGCItalia" % (tipo, neg, citta, corpo, link)
+        return "🏆 Top 8 %s · %s (%s)\n%s\nTeams on rAKings VGC 👇\n%s\n#PokemonVGC #PokemonChampions #VGCItalia" % (tipo, neg, citta, corpo, link)
     k = len(righe)
     while k > 1 and peso_x(x_con(k), link) > 275:
         k -= 1
@@ -124,11 +139,11 @@ def prepara_locale(v, vecchia=None):
     rid = "loc-%d" % v["id"]
     img = "%s/%s-%s.jpg" % (DIR_IMG, rid, f)
     os.makedirs(DIR_IMG, exist_ok=True)
-    social_img.top8(v.get("t", ""), v.get("s", ""), v.get("c", ""), v.get("d", ""), list(v.get("top") or []), img)
+    social_img.top8(tipo_en(v.get("t", "")), v.get("s", ""), v.get("c", ""), data_en(v.get("d", "")), list(v.get("top") or []), img)
     link = SITO + "#locali-" + eh("|".join(str(v.get(k, "")) for k in ("t", "s", "c", "d")))
     ig, x = testi_locale(v, link)
     r = vecchia or {"id": rid, "tipo": "locali", "rif": v["id"], "creata": ora()}
-    r.update({"firma": f, "titolo": "Top 8 · %s · %s" % (v.get("t", ""), v.get("s", "")),
+    r.update({"v": LINGUA_V, "firma": f, "titolo": "Top 8 · %s · %s" % (v.get("t", ""), v.get("s", "")),
               "sotto": "%s · %s" % (v.get("c", ""), v.get("d", "")), "img": img, "link": link})
     for k, t in (("ig", ig), ("x", x)):
         if not vecchia or r[k]["stato"] in APERTE:
@@ -187,6 +202,18 @@ def crea():
     visti = set(d.get("visti", []))
     per_rif = {r["rif"]: r for r in d["richieste"] if r.get("tipo") == "locali"}
     nuove = agg = 0
+    # passaggio all'inglese (16/11/2026): le richieste ancora da approvare fatte con i testi vecchi si rifanno da sole
+    for r in list(d["richieste"]):
+        if r.get("v") == LINGUA_V or not (r["ig"]["stato"] in APERTE and r["x"]["stato"] in APERTE):
+            continue
+        if r.get("tipo") == "locali":
+            if r["rif"] in presenti:
+                prepara_locale(presenti[r["rif"]], r); agg += 1
+        else:
+            d["richieste"].remove(r)
+            if r["id"] in d.get("fatti", []):
+                d["fatti"].remove(r["id"])
+            log("Rifatta in inglese: %s" % r["id"])
     for v in sorted(reali, key=lambda v: v.get("pub", "")):
         r = per_rif.get(v["id"])
         if r:
@@ -238,11 +265,14 @@ def valore_eur(t):
 
 def premio_testo(e):
     t = str(e.get("prize") or "").strip()
-    if t and re.search(r"\d", t):
-        return t
-    m = re.search(r"[€$£]\s?\d[\d.,]*(?:\s?k\b)?|\d[\d.,]*\s?(?:k\s?)?(?:[€$£]|usd\b|eur\b)", e.get("name") or "", re.I)
+    n = e.get("name") or ""   # prima «$50», poi «50€»/«20 USD»: cosi' «Cup #4 $50» da' «$50» e non «4 $»
+    m = re.search(r"[€$£]\s?\d[\d.,]*(?:\s?k\b)?", n, re.I) or re.search(r"\d[\d.,]*\s?(?:k\s?)?(?:[€$£]|usd\b|eur\b)", n, re.I)
+    if t and re.search(r"\d", t) and not (m and m.group(0).strip().replace(" ", "").startswith(t.replace(" ", "")) and m.group(0).strip() != t):
+        return t   # il premio scritto nel torneo, tranne se e' la cifra del nome tagliata (vecchio «$5» al posto di «$50»)
     if m:
         return m.group(0).strip()
+    if t and re.search(r"\d", t):
+        return t
     return "Montepremi" if t.lower() == "montepremi" else "Cash"
 
 
@@ -252,6 +282,32 @@ def quando_it(d_iso, hhmm=None):
     except (TypeError, ValueError):
         return ""
     return "%s %d %s" % (GIORNI[g.weekday()], g.day, MESI[g.month - 1][:3]) + (" · %s" % hhmm if hhmm else "")
+
+
+MESI_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+GIORNI_EN = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+
+def quando_en(d_iso, hhmm=None):
+    """Data per le IMMAGINI (in inglese, pubblico internazionale), con il fuso orario italiano (CET/CEST)."""
+    try:
+        g = date.fromisoformat(d_iso)
+    except (TypeError, ValueError):
+        return ""
+    fuso = ""
+    if hhmm:
+        try:
+            fuso = " " + datetime(g.year, g.month, g.day, 12, tzinfo=ROMA).tzname()
+        except Exception:
+            fuso = ""
+    return "%s %s %d" % (GIORNI_EN[g.weekday()], MESI_EN[g.month - 1], g.day) + (" · %s%s" % (hhmm, fuso) if hhmm else "")
+
+
+def premio_en(p):
+    return "Prize pool" if p == "Montepremi" else p
+
+
+LINGUA_V = 2   # versione dei testi: 2 = tutto in inglese
 
 
 def corto(t, n):
@@ -285,30 +341,34 @@ def money_settimana(d, ev, adesso):
         e["_eur"] = valore_eur(premio_testo(e)) or valore_eur(e.get("name"))
     lista.sort(key=lambda e: (e["_eur"] is None, -(e["_eur"] or 0), e["date"], e.get("time") or ""))
     lista = lista[:MONEY_MAX]
-    t = [{"pos": i + 1, "premio": premio_testo(e), "nome": e["name"], "quando": quando_it(e["date"], e.get("time")),
+    # nelle immagini tutto in inglese (pubblico internazionale); nel testo del post resta l'italiano
+    t = [{"pos": i + 1, "premio": premio_en(premio_testo(e)), "p_it": premio_testo(e), "nome": e["name"],
+          "quando": quando_en(e["date"], e.get("time")), "q_it": quando_it(e["date"], e.get("time")),
           "dove": piattaforma(e.get("url"))} for i, e in enumerate(lista)]
     sett_txt = "%d–%d %s" % (lun.day, dom.day, MESI[dom.month - 1]) if lun.month == dom.month else \
                "%d %s – %d %s" % (lun.day, MESI[lun.month - 1][:3], dom.day, MESI[dom.month - 1][:3])
+    sett_en = "%s %d–%d" % (MESI_EN[lun.month - 1], lun.day, dom.day) if lun.month == dom.month else \
+              "%s %d – %s %d" % (MESI_EN[lun.month - 1], lun.day, MESI_EN[dom.month - 1], dom.day)
     import social_img
     social_img.assegna_caratteri(t, rid)   # carattere «simpatico» a caso per ogni torneo, mai monotono
     os.makedirs(DIR_IMG, exist_ok=True)
     imgs = ["%s/%s-1.jpg" % (DIR_IMG, rid)]
-    social_img.settimana_copertina(sett_txt, t[0], len(t), imgs[0])
+    social_img.settimana_copertina(sett_en, t[0], len(t), imgs[0])
     for n, i in enumerate(range(1, len(t), 2), start=2):
         imgs.append("%s/%s-%d.jpg" % (DIR_IMG, rid, n))
         social_img.settimana_slide(n, t[i:i + 2], imgs[-1])
     import social_img as _si
     righe = ["%d. %s · %s (%s)" % (x["pos"], x["premio"], corto(_si.pulito(x["nome"]), 60), x["quando"]) for x in t]
-    ig = ("💰 Money tournament della settimana · %s\n\n%s\n\nOrari in ora italiana. Iscrizioni, promemoria e tutti i tornei nell'app rAKings VGC: link in bio 📲"
-          "\n\n#PokemonVGC #VGC #VGCItalia #Pokemon #MoneyTournament") % (sett_txt, "\n".join(righe))
+    ig = ("💰 Money tournaments of the week · %s\n\n%s\n\nSign-ups, reminders and every tournament in the rAKings VGC app: link in bio 📲"
+          "\n\n#PokemonVGC #PokemonChampions #VGC #Pokemon #MoneyTournament #VGCItalia") % (sett_en, "\n".join(righe))
     link = SITO + "#online"
     def x_con(k):
-        return "💰 Money tournament della settimana (%s)\n%s\nTutti nell'app 👇\n%s\n#PokemonVGC #VGCItalia" % (
-            sett_txt, "\n".join("%d) %s %s" % (x["pos"], x["premio"], corto(_si.pulito(x["nome"]), 40)) for x in t[:k]), link)
+        return "💰 Money tournaments of the week (%s)\n%s\nAll of them in the app 👇\n%s\n#PokemonVGC #PokemonChampions #VGC" % (
+            sett_en, "\n".join("%d) %s %s" % (x["pos"], x["premio"], corto(_si.pulito(x["nome"]), 40)) for x in t[:k]), link)
     k = min(5, len(t))
     while k > 1 and peso_x(x_con(k), link) > 275:
         k -= 1
-    d["richieste"].append({"id": rid, "tipo": "money", "rif": 0, "creata": ora(), "titolo": "Money tournament · " + sett_txt,
+    d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": "money", "rif": 0, "creata": ora(), "titolo": "Money tournament · " + sett_txt,
                            "sotto": "%d tornei, dal premio piu' alto" % len(t), "img": imgs[0], "imgs": imgs, "link": link,
                            "ig": {"stato": "da approvare", "testo": ig[:MAX_IG]}, "x": {"stato": "da approvare", "testo": x_con(k)}})
     log("Nuova richiesta: money tournament della settimana (%d tornei, %d immagini)" % (len(t), len(imgs)))
@@ -324,21 +384,152 @@ def grande_evento(d, e, tipo, riga3, rid):
         r1 = "Online · %s" % quando_it(e["date"], e.get("time"))
         r2 = "Montepremi" + (" · iscrizione %s €" % ("%.2f" % e["fee"]).replace(".", ",") if isinstance(e.get("fee"), (int, float)) else "")
         link = e.get("signup") or e.get("url") or SITO
-        ig = ("🏁 Iscrizioni aperte: %s\n📅 %s\n💰 %s\n\nIscriviti dal link nella bio o dall'app rAKings VGC, con il promemoria prima dell'inizio 📲"
-              "\n\n#PokemonVGC #VictoryRoad #VGC #VGCItalia") % (nome, quando_it(e["date"], e.get("time")), r2)
-        xt = "🏁 Iscrizioni aperte: %s\n📅 %s · %s\nIscriviti 👇\n%s\n#PokemonVGC #VictoryRoad" % (nome, quando_it(e["date"], e.get("time")), r2, link)
+        r2 = "Prize pool" + (" · Entry €%.2f" % e["fee"] if isinstance(e.get("fee"), (int, float)) else "")
+        ig = ("🏁 Registration open: %s\n📅 %s\n💰 %s\n\nSign up from the link in bio or in the rAKings VGC app, with a reminder before it starts 📲"
+              "\n\n#PokemonVGC #PokemonChampions #VictoryRoad #VGC #VGCItalia") % (nome, quando_en(e["date"], e.get("time")), r2)
+        xt = "🏁 Registration open: %s\n📅 %s · %s\nSign up 👇\n%s\n#PokemonVGC #PokemonChampions #VictoryRoad" % (nome, quando_en(e["date"], e.get("time")), r2, link)
     else:
         dove = e.get("where") or ""
         r1 = (dove + " · " if dove else "") + quando_it(e["date"])
         r2 = "Premi: " + e["prize"] if e.get("prize") else ""
         link = SITO + "#regionali"
-        ig = ("🏆 %s · %s\n📍 %s\n📅 %s\n\nSeguilo in diretta nell'app rAKings VGC: classifica, squadre e Top 8 📲"
-              "\n\n#PokemonVGC #VGC #Regionals #VGCItalia") % (nome, riga3, dove or "da confermare", quando_it(e["date"]))
-        xt = "🏆 %s · %s\n📍 %s\nSeguilo in diretta nell'app 👇\n%s\n#PokemonVGC #VGCItalia" % (nome, riga3, dove or "", link)
-    social_img.evento("vr" if tipo == "vr" else "regionale", nome, r1, r2, riga3[:1].upper() + riga3[1:], img)
-    d["richieste"].append({"id": rid, "tipo": tipo, "rif": 0, "creata": ora(), "titolo": nome, "sotto": r1, "img": img, "link": link,
+        q3 = {"iscrizioni aperte": "registration open", "tra 2 giorni": "in 2 days", "domani": "tomorrow", "oggi": "today"}.get(riga3, riga3)
+        ig = ("🏆 %s · %s\n📍 %s\n📅 %s\n\nFollow it live in the rAKings VGC app: standings, teams and Top 8 📲"
+              "\n\n#PokemonVGC #PokemonChampions #VGC #Regionals #VGCItalia") % (nome, q3, dove or "TBA", quando_en(e["date"]))
+        xt = "🏆 %s · %s\n📍 %s\nFollow it live in the app 👇\n%s\n#PokemonVGC #PokemonChampions #VGC" % (nome, q3, dove or "", link)
+    # righe dell'immagine in inglese
+    if tipo == "vr":
+        e1 = "Online · %s" % quando_en(e["date"], e.get("time"))
+        e2 = "Prize pool" + (" · Entry €%.2f" % e["fee"] if isinstance(e.get("fee"), (int, float)) else "")
+    else:
+        e1 = ((e.get("where") or "") + " · " if e.get("where") else "") + quando_en(e["date"])
+        e2 = "Prizes: " + e["prize"] if e.get("prize") else ""
+    e3 = {"iscrizioni aperte": "Registration open", "tra 2 giorni": "In 2 days", "domani": "Tomorrow", "oggi": "Today"}.get(riga3, riga3)
+    social_img.evento("vr" if tipo == "vr" else "regionale", nome, e1, e2, e3, img)
+    d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": tipo, "rif": 0, "creata": ora(), "titolo": nome, "sotto": r1, "img": img, "link": link,
                            "ig": {"stato": "da approvare", "testo": ig[:MAX_IG]}, "x": {"stato": "da approvare", "testo": xt}})
     log("Nuova richiesta: %s" % nome)
+
+
+VR_DATI = "https://rakings.github.io/VGCdatiAK/vr/"
+STATS = "vgcstats"
+STORIA_GIORNI = 3      # la storia del vincitore si prepara solo per tornei finiti da meno di 3 giorni
+
+
+def leggi_url(url):
+    req = urllib.request.Request(url + ("&" if "?" in url else "?") + "t=%d" % time.time(), headers={"User-Agent": "rakings-social"})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def date_brevi(a, b=None, en=False):
+    try:
+        x = date.fromisoformat(a)
+    except (TypeError, ValueError):
+        return ""
+    if en:
+        try:
+            y = date.fromisoformat(b) if b and b != a else None
+        except ValueError:
+            y = None
+        if not y:
+            return "%s %d" % (MESI_EN[x.month - 1], x.day)
+        return "%s %d–%d" % (MESI_EN[x.month - 1], x.day, y.day) if y.month == x.month else \
+               "%s %d – %s %d" % (MESI_EN[x.month - 1], x.day, MESI_EN[y.month - 1], y.day)
+    t = "%d %s" % (x.day, MESI[x.month - 1][:3])
+    try:
+        y = date.fromisoformat(b) if b and b != a else None
+    except ValueError:
+        y = None
+    return "%d %s - %s" % (x.day, MESI[x.month - 1][:3], "%d %s" % (y.day, MESI[y.month - 1][:3])) if y else t
+
+
+def tipi_di(ref, slug):
+    t = ref.get(slug) or ""
+    if not t:
+        k = next((k for k in ref if k.startswith(slug + "-")), None)
+        p = slug
+        while not t and "-" in p:
+            p = p.rsplit("-", 1)[0]
+            t = ref.get(p) or ""
+        t = t or (ref.get(k) if k else "")
+    return [x for x in (t or "").split("/") if x]
+
+
+def storia_vincitore(d, tipo, eid, meta, giocatori, squadre, ref):
+    rid = "sto-%d" % numero(tipo + str(eid))
+    top = sorted([p for p in giocatori if isinstance(p, list) and len(p) > 3 and isinstance(p[3], int) and 1 <= p[3] <= 8], key=lambda p: p[3])
+    if not top or top[0][3] != 1:
+        return None
+    w = top[0]
+    sq = [(m[1], tipi_di(ref, m[0])) for m in (squadre.get(str(w[0])) or [])][:6]
+    evento = meta.get("name") or eid
+    luogo = "Online" if tipo == "vr" else (meta.get("city") or "")
+    quando = (luogo + " · " if luogo else "") + date_brevi(meta.get("date"), meta.get("end"), en=True)
+    import social_img
+    os.makedirs(DIR_IMG, exist_ok=True)
+    img = "%s/%s.jpg" % (DIR_IMG, rid)
+    social_img.storia("vr" if tipo == "vr" else "regionale", evento, quando, w[1], w[2], sq, [(p[3], p[1], p[2]) for p in top[1:]], img)
+    link = SITO + ("#stats-vr-" + eid if tipo == "vr" else "#stats-reg-" + str(eid))
+    paese = " (%s)" % w[2] if w[2] else ""
+    def x_con(k):
+        return "🏆 %s%s wins %s!\nTop 8: %s\nTeams and results in the app 👇\n%s\n#PokemonVGC #PokemonChampions #VGC" % (
+            w[1], paese, corto(evento, 60), ", ".join("%s %s" % (social_img.ordinale(p[3]), corto(p[1], 22)) for p in top[1:1 + k]), link)
+    k = len(top) - 1
+    while k > 0 and peso_x(x_con(k), link) > 275:
+        k -= 1
+    d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": "storia", "storia": True, "rif": 0, "creata": ora(),
+                           "titolo": "Storia: %s vince" % w[1], "sotto": corto(evento, 70), "img": img, "link": link,
+                           "ig": {"stato": "da approvare", "testo": "(storia: Instagram non permette testo nelle storie)"},
+                           "x": {"stato": "da approvare", "testo": x_con(k)}})
+    log("Nuova richiesta: storia del vincitore, %s" % evento)
+    return rid
+
+
+def storie(d, adesso):
+    """Storia «vincitore + squadra + Top 8» per ogni Regionale (vgcstats/) e VR (VGCdatiAK) appena finito (finale decisa)."""
+    fatti = d.setdefault("fatti", [])
+    primo = not d.get("storie_dal")
+    ora_s = adesso.timestamp()
+    nuove = 0
+    try:
+        ref = load(os.path.join(STATS, "ref.json"), {}).get("t") or {}
+    except Exception:
+        ref = {}
+    cand = []
+    if os.path.isdir(STATS):
+        for eid in os.listdir(STATS):
+            m = load(os.path.join(STATS, eid, "meta.json"), None) if os.path.isdir(os.path.join(STATS, eid)) else None
+            if isinstance(m, dict) and m.get("status") == "finished" and m.get("finale_alle") and 0 <= ora_s - m["finale_alle"] < STORIA_GIORNI * 86400:
+                cand.append(("regionale", eid, m, None))
+    try:
+        for e in (leggi_url(VR_DATI + "index.json").get("events") or [])[:6]:
+            if e.get("status") == "finished":
+                m = leggi_url(VR_DATI + e["id"] + "/meta.json")
+                if m.get("finale_alle") and 0 <= ora_s - m["finale_alle"] < STORIA_GIORNI * 86400:
+                    cand.append(("vr", e["id"], m, VR_DATI + e["id"] + "/"))
+    except Exception as ex:
+        log("Storie VR: dati non letti (%s)" % ex)
+    for tipo, eid, m, base in cand:
+        rid = "sto-%d" % numero(tipo + str(eid))
+        if rid in fatti:
+            continue
+        fatti.append(rid)
+        if primo:
+            continue
+        try:
+            if base:
+                gi, sq = leggi_url(base + "players.json"), leggi_url(base + "teams.json")
+            else:
+                gi, sq = load(os.path.join(STATS, eid, "players.json"), []), load(os.path.join(STATS, eid, "teams.json"), {})
+            if storia_vincitore(d, tipo, eid, m, gi, sq, ref):
+                nuove += 1
+        except Exception as ex:
+            log("Storia non preparata per %s: %s" % (eid, ex))
+    if primo:
+        d["storie_dal"] = ora()
+        log("Storie: primo giro, ricordati %d tornei gia' finiti (nessuna storia)." % len(cand))
+    return nuove
 
 
 def tornei(d, adesso=None):
@@ -382,7 +573,8 @@ def tornei(d, adesso=None):
         d["tornei_dal"] = ora()
         log("Money tournament / Regionali / VR: primo giro, ricordati %d tornei gia' in corso (nessun post)." % len(fatti))
     nuove += money_settimana(d, ev, adesso)
-    d["fatti"] = fatti[-300:]
+    nuove += storie(d, adesso)
+    d["fatti"] = d["fatti"][-300:]
     return nuove
 
 
@@ -438,6 +630,16 @@ def pubblica_ig(r, testo):
     for url in urls:
         if not immagine_online(url):
             raise RuntimeError("l'immagine non e' ancora online sul sito, riprova tra qualche minuto")
+    if r.get("storia"):   # storia: un'immagine verticale, senza testo (l'API non permette adesivi ne' link)
+        c = graph("POST", "%s/media" % user, {"image_url": urls[0], "media_type": "STORIES"})
+        cid = c.get("id")
+        if not cid:
+            raise RuntimeError("Meta non ha preparato la storia (account Creator? passalo ad Azienda)")
+        pronto(cid)
+        p = graph("POST", "%s/media_publish" % user, {"creation_id": cid})
+        if not p.get("id"):
+            raise RuntimeError("pubblicazione della storia non confermata da Meta")
+        return "https://www.instagram.com/stories/"
     if len(urls) > 1:   # carosello: prima ogni immagine, poi il post che le contiene (massimo 10)
         figli = []
         for url in urls:
