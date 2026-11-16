@@ -349,6 +349,12 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .pst .bsx input{width:100%;height:34px;min-height:0!important;padding:0;border-radius:8px;background:transparent;border:1px dashed var(--line);text-align:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums;-moz-appearance:textfield}
 .pst .bsx input:focus{border-style:solid;border-color:#ffd21f;color:var(--ink);outline:none}
 .pst .bsx input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+.pzh{margin:0 0 8px}.pzt b{font-size:13.5px}.pzt small{font-size:11px}
+.pzsw{min-height:38px;padding:3px 10px 3px 12px;border-radius:12px}.pzsw small{font-size:9.5px}.pzsw b{font-size:13.5px}.pzsw i{font-size:18px}
+.pz{padding-top:8px}
+
+.pzsw{border:2px solid #ffd21f;box-shadow:0 0 0 1px rgba(255,210,31,.35),0 4px 14px rgba(0,0,0,.35)}
 </style>
 </head>
 <body>
@@ -451,12 +457,12 @@ function refresh(){
   const a=readSide(1),b=readSide(2),res=[readResults(0),readResults(1)];
   S.cache={a,b,res};S.sm.q=null;
   const mcStale=!!(S.mc.res&&!S.mc.busy&&S.mc.sig&&S.mc.sig!==mcSig());
+  S.dir=S.view-1;   /* chi attacca = il Pokemon che stai guardando (si cambia con «Pokemon 2 →») */
   const sides=[a,b],atk=sides[S.dir],def=sides[1-S.dir],R=res[S.dir];
   if(S.sel[S.dir]<0||!R[S.sel[S.dir]]||(R[S.sel[S.dir]]&&R[S.sel[S.dir]].max===0&&R.some(x=>x&&x.max>0))){let bi=-1,bm=-1;R.forEach((x,i)=>{if(x&&x.max>bm){bm=x.max;bi=i}});S.sel[S.dir]=bi<0?0:bi}
   const cA=S.dir?'var(--violet)':'var(--red)';
   $q('#main').innerHTML=
    detail(R[S.sel[S.dir]],atk,def,cA,smHero(atk,def))+
-  '<div class="seg dirb" style="--c:'+cA+'"><button data-a="dir" data-d="0" class="'+(S.dir===0?'on':'')+'" style="--c:var(--red)"><span class="dn">'+esc(short(a.name))+'</span><small>attacca</small></button><button data-a="dir" data-d="1" class="'+(S.dir===1?'on':'')+'" style="--c:var(--violet)"><span class="dn">'+esc(short(b.name))+'</span><small>attacca</small></button></div>'+
     panelHtml(sides[S.view-1],sides[2-S.view])+
    '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+smHtml(atk,def,cA)+mcHtml(atk,def,cA,mcStale)+
    '<p class="foot">Calcoli del <b>Nimbasa City Post Damage Calculator</b> (licenza MIT) di Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interfaccia per telefono di rAKings VGC. Strumento non ufficiale.</p>';
@@ -690,7 +696,6 @@ function teamCol(n){
   const arm=S.clrArm&&S.clrArm.n===n&&S.clrArm.until>Date.now();
   let h=t.map((nm,i)=>{const on=cur.indexOf(side+' Sidebar Slot '+(i+1)+')')>=0;
     return '<button type="button" class="tsl'+(on?' on':'')+'" data-a="slot" data-n="'+n+'" data-i="'+(i+1)+'"><span class="tn">'+esc(nm)+'</span><span class="td">'+typesOf(nm).map(dot).join('')+'</span></button>'}).join('');
-  if(!t.length)h+='<button type="button" class="tsl add" data-a="paste" data-n="'+n+'">+ Incolla squadra</button>';
   if(t.length)h+=arm?'<button type="button" class="tsl era danger" data-a="eraseteam" data-n="'+n+'">Svuota?</button>':'<button type="button" class="tsl era" data-a="eraseteam" data-n="'+n+'" aria-label="Svuota la squadra" title="Svuota la squadra">'+ERASER+'</button>';
   const CLIP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/></svg>';
   const CLOUD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 5 14a4 4 0 0 0 .5 5z"/></svg>';
@@ -709,9 +714,17 @@ function fieldSummary(){
   if(k)on.push(k+(k===1?' effetto':' effetti')+' sui lati');
   return on.join(' \u00b7 ');
 }
+/* Set di nerd-of-now: sono salvati sotto la specie base (es. «Charizard» per Mega Charizard Y). */
+function baseSp(nm){if(!W.setdex)return nm;if(W.setdex[nm])return nm;const m=nm.match(/^Mega (.+?)(?: ([XYZ]))?$/);if(m&&W.setdex[m[1]])return m[1];
+  const d=W.pokedex[nm];if(d&&d.baseSpecies&&W.setdex[d.baseSpecies])return d.baseSpecies;const h=nm.split('-')[0];if(W.setdex[h])return h;const w=nm.split(' ')[0];if(W.setdex[w])return w;return nm}
+function setsOf(nm){const b=baseSp(nm);return Object.keys((W.setdex&&W.setdex[b])||{}).filter(x=>x!=='Blank Set'&&x!=='My Custom Set'&&!/Sidebar Slot/.test(x))}
+function bestSet(nm){const L=setsOf(nm);if(!L.length)return null;const m=nm.match(/^Mega .+?(?: ([XYZ]))?$/)||nm.match(/-Mega(?:-([XYZ]))?$/);
+  let c=L;if(m){const f=L.filter(x=>m[1]?new RegExp('Mega '+m[1]+'\\b').test(x):/Mega/.test(x));if(f.length)c=f}else{const f=L.filter(x=>!/Mega/.test(x));if(f.length)c=f}return c[0]}
+function loadMon(n,id){const s=bestSet(id);try{if(s)W.loadPreset(P(n),baseSp(id)+' ('+s+')');else W.loadPreset(P(n),id+' (Blank Set)')}catch(e){W.loadPreset(P(n),id+' (Blank Set)')}
+  if(s&&/^Mega |-Mega/.test(id)){try{const fm=J(P(n)+' .forme');if(fm.length&&[...fm.find('option')].some(x=>x.value===id))fm.val(id).change()}catch(e){}}}
 function panelHtml(o,other){
   const n=o.n,c=n===1?'var(--red)':'var(--violet)',c2=n===1?'var(--violet)':'var(--red)';
-  const sets=Object.keys((W.setdex&&W.setdex[o.name.replace(/ \(.*/,'')])||{}).filter(x=>!/Sidebar Slot/.test(x));
+  const sets=setsOf(o.name.replace(/ \(.*/,''));
   const curSet=(o.set.match(/\((.*)\)$/)||[])[1]||'';
   const setSel='<select class="sel sm" data-c="setsel" aria-label="Set">'+(sets.indexOf(curSet)<0?'<option selected>'+esc(o.setName||'Set')+'</option>':'')+['Blank Set'].concat(sets.filter(x=>x!=='Blank Set')).map(x=>'<option value="'+esc(x)+'"'+(x===curSet?' selected':'')+'>'+esc(x==='Blank Set'?'Set libero':x)+'</option>').join('')+'</select>';
   const fm=o.forme.length>1?'<select class="sel sm" data-c="forme" aria-label="Forma">'+o.forme.map(f=>'<option'+(f===o.formeVal?' selected':'')+'>'+esc(f)+'</option>').join('')+'</select>':'';
@@ -724,7 +737,7 @@ function panelHtml(o,other){
   const abtog=o.abTog?'<button class="tg sm'+(o.abOn?' on':'')+'" data-a="abtog">'+esc(o.abLabel||'Abilit\u00e0 attiva')+'</button>':'';
   const pct=o.hpTot?Math.max(0,Math.min(100,Math.round(o.hpCur*100/o.hpTot))):100;
   return '<div class="pz" style="--c:'+c+'">'+
-   '<div class="pzh"><span class="pzt"><b>Pok\u00e9mon '+n+'</b><small>'+(n===1?'sinistra':'destra')+'</small></span>'+
+   '<div class="pzh"><span class="pzt"><b>Pok\u00e9mon '+n+'</b><small>attacca</small></span>'+
      '<button type="button" class="pzsw" style="--c2:'+c2+'" data-a="view"><small>Pok\u00e9mon '+(3-n)+'</small><b>'+esc(short(other.name))+'</b><i>\u2192</i></button></div>'+
    '<div class="pzb"><div class="pan">'+
      '<button class="pmon" data-a="pickmon"><b>'+esc(o.name)+'</b><span class="types">'+tyChip(o.t1)+tyChip(o.t2)+'</span></button>'+
@@ -827,7 +840,7 @@ function renderEditor(keep,noOpen){
   if(S.sheet!=='edit')S.sheet='edit';$q('#sheet').classList.add('full','open');
   box.innerHTML=editorBody(o);box.style.setProperty('--c',S.edit===1?'var(--red)':'var(--violet)');box.scrollTop=keep?sc:0;
 }
-function pokemonItems(){return Object.keys(W.pokedex).sort().map(n=>{const d=W.pokedex[n];return {id:n,l:n,s:[d.t1,d.t2].filter(Boolean).join(' / ')+(d.isAlternateForme?' · forma':'')}})}
+function pokemonItems(){return Object.keys(W.pokedex).sort().map(n=>{const d=W.pokedex[n],k=setsOf(n).length;return {id:n,l:n,s:[d.t1,d.t2].filter(Boolean).join(' / ')+(d.isAlternateForme?' · forma':'')+(k?' · '+k+' set pronti':'')}})}
 function recent(k,n){try{return JSON.parse(LS.get(k,'[]'))}catch(e){return []}}
 function pushRecent(k,v){let r=recent(k).filter(x=>x!==v);r.unshift(v);LS.set(k,JSON.stringify(r.slice(0,12)))}
 
@@ -912,7 +925,7 @@ document.addEventListener('click',e=>{
   else if(a==='closeSheet'){closeSheet()}
   else if(a==='copy'){const R=S.cache.res[S.dir][S.sel[S.dir]];const txt=R?R.desc+': '+R.dmg+' -- '+R.ko:'';try{navigator.clipboard.writeText(txt).then(()=>toast('Copiato'),()=>fallbackCopy(txt))}catch(x){fallbackCopy(txt)}}
   else if(a==='pickmon'){const n=S.edit;const rec=recent('calc_rec_mon');let items=pokemonItems();if(rec.length){const m=new Map(items.map(i=>[i.id,i]));items=rec.filter(x=>m.has(x)).map(x=>({...m.get(x),s:'recente · '+m.get(x).s})).concat(items.filter(i=>rec.indexOf(i.id)<0))}
-    picker('Scegli il Pokémon',items,id=>{pushRecent('calc_rec_mon',id);W.loadPreset(P(n),id+' (Blank Set)');})}
+    picker('Scegli il Pokémon',items,id=>{pushRecent('calc_rec_mon',id);loadMon(n,id)})}
   else if(a==='loadset'){const o=S.cache[S.edit===1?'a':'b'];const base=o.name.replace(/ \(.*/,'');after(()=>W.loadPreset(P(S.edit),base+' ('+d.set+')'))}
   else if(a==='mvedit'){const n=S.dir+1,i=+d.i+1;const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});
     picker('Mossa '+i+' di '+S.cache[S.dir?'b':'a'].name,items,id=>mvSet(P(n),i,id))}
@@ -940,7 +953,7 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('change',e=>{
   const t=e.target.closest('[data-c]');if(!t||!W)return;if(t.closest('.pz'))S.edit=S.view;const c=t.dataset.c,p=P(S.edit);
-  if(c==='setsel'){const o=S.cache[S.edit===1?'a':'b'];const base=o.name.replace(/ \(.*/,'');after(()=>W.loadPreset(p,base+' ('+t.value+')'));return}
+  if(c==='setsel'){const o=S.cache[S.edit===1?'a':'b'];const nm=o.name.replace(/ \(.*/,''),base=t.value==='Blank Set'?nm:baseSp(nm);after(()=>W.loadPreset(p,base+' ('+t.value+')'));return}
   if(c==='base'){const v=Math.max(1,Math.min(255,Math.round(+t.value||1)));after(()=>J(p+' .'+t.dataset.s+' .base').val(v).trigger('keyup').trigger('change'));return}
   if(c==='hpr'){after(()=>J(p+' .percent-hp').val(+t.value).trigger('input').trigger('change'));return}
   if(c==='sp'){const v=Math.max(0,Math.min(32,Math.round(+t.value||0)));after(()=>J(p+' .'+t.dataset.s+' .sps').val(v).trigger('input').trigger('change'))}
