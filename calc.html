@@ -1011,7 +1011,10 @@ document.addEventListener('change',e=>{
   else if(c==='hp'){const v=Math.max(0,Math.min(100,Math.round(+t.value||0)));after(()=>J(p+' .percent-hp').val(v).trigger('input').trigger('keyup').trigger('change'))}
   else if(c==='disp'){W.toggleResultDisplay(t.value);J('#toggleResult').val(t.value);setTimeout(refresh,0)}
 });
-document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('hpr')){t.style.setProperty('--p',t.value+'%');const z=t.closest('.php,.hhp'),em=z&&z.querySelector('em');if(em)em.textContent=z.classList.contains('hhp')?t.value+'%':'('+t.value+'%)'}});
+document.addEventListener('input',e=>{const t=e.target;
+  /* come su nerd-of-now: oltre il massimo il numero torna subito al massimo (punti 32, base 255, PS 100) */
+  const mx=t.dataset&&({sp:32,base:255,hp:100})[t.dataset.c];
+  if(mx&&t.value!==''){let v=Math.round(+t.value);if(!(v>=0))v=0;if(v>mx)v=mx;if(String(v)!==t.value)t.value=v}if(t.classList&&t.classList.contains('hpr')){t.style.setProperty('--p',t.value+'%');const z=t.closest('.php,.hhp'),em=z&&z.querySelector('em');if(em)em.textContent=z.classList.contains('hhp')?t.value+'%':'('+t.value+'%)'}});
 function fallbackCopy(txt){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copiato')}catch(x){toast('Copia non riuscita')}ta.remove()}
 /* integrazione con il sito: il tasto indietro del sito chiede se c'e' un foglio da chiudere */
 window.addEventListener('message',e=>{
