@@ -226,7 +226,7 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .tgrid .chip.dis{opacity:.45;pointer-events:none;flex-direction:column;gap:0}.tgrid .chip.dis small{font-size:9.5px;color:var(--mute)}
 .mrow.main{border-color:#ffd21f}.mrow.main.off{opacity:.5}.mrow .who i{font-style:normal;font-weight:600;font-size:11px;color:var(--mute)}
 .mx.pk{width:100%;text-align:left;background:none;color:inherit;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:7px 2px}
-.mx.pk.sel{color:#ffd21f}.mx.pk.sel span::before{content:"\2713 ";}
+.mx.pk.pks{color:#ffd21f}.mx.pk.pks span::before{content:"\2713 ";}
 .mtot{margin-top:10px;padding:12px;border-radius:14px;background:var(--card2);border:2px solid #ffd21f}
 .mtl{font-size:12.5px;color:var(--mute);font-weight:700}.mtl small{font-weight:500}
 .mtp{font-size:28px;font-weight:900;line-height:1.1;margin-top:4px;font-variant-numeric:tabular-nums}
@@ -265,7 +265,7 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 /* mosse di un Pokemon aggiunto: riga selezionabile con la matita a destra */
 .mx.pk{display:grid;grid-template-columns:1fr auto 34px;align-items:center;gap:0 8px;width:100%;text-align:left;background:none;color:inherit;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:5px 0 5px 2px;cursor:pointer}
 .mx.pk.z{cursor:default}
-.mx.pk.sel{color:#ffd21f}.mx.pk.sel span::before{content:"\2713 "}
+.mx.pk.pks{color:#ffd21f}.mx.pk.pks span::before{content:"\2713 "}
 .mxe{width:30px;height:30px;border-radius:9px;background:var(--card);border:1px solid var(--line);color:var(--ink);display:grid;place-items:center;padding:0;position:relative}
 .mxe::after{content:"";position:absolute;inset:-6px}
 .mrow.main{cursor:default}
@@ -367,6 +367,27 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .hsum{background:rgba(255,210,31,.14);border:1px solid #ffd21f;border-radius:14px}
 
 .sumbox .tgrid .chip.on{background:#ffd21f;color:#1d0b0d;border-color:#ffd21f}
+
+.hsl em{display:block;font-style:normal;font-weight:800;font-size:14.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* tipi sulla stessa riga del nome (16/11/2026) */
+.pmon{flex-wrap:nowrap;min-height:44px;padding:6px 10px}
+.pmon b{min-width:0;flex:0 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px}
+.pmon .types{flex:none;gap:3px}
+.tsl{flex-direction:row;flex-wrap:wrap;align-items:center;gap:3px 5px;min-height:40px;padding:6px 7px}
+.tsl .tn{-webkit-line-clamp:1;white-space:nowrap;text-overflow:ellipsis;display:block;max-width:100%}
+.tsl .td{gap:3px}.tdot{width:10px;height:10px}
+.tsl .tc{flex-basis:100%}
+
+.hsl small .plus{font-weight:900;font-size:14px;color:#ffd21f}
+
+.hhp{font-size:12.5px;color:var(--mute);margin-top:7px}.hhp b{color:var(--ink)}.hhp .k{color:#ff6b78}
+.php{margin-top:8px;padding:7px 10px 9px}.phl{margin-bottom:5px;font-size:12px}.phl b{font-size:13px}
+.hpr{height:10px}.hpr::-webkit-slider-thumb{width:22px;height:22px;border-width:2px}.hpr::-moz-range-thumb{width:18px;height:18px}
+
+.hhp{margin-top:10px;padding:7px 10px 9px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid var(--line)}
+.hhl{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;font-weight:700;margin-bottom:5px}.hhl b{font-size:13px;color:var(--ink)}.hhl em{font-style:normal;color:var(--ok)}
+.hha{font-size:12.5px;margin-top:6px;color:var(--mute)}.hha b{color:var(--ink)}.hha .k{color:#ff6b78}
 </style>
 </head>
 <body>
@@ -491,7 +512,7 @@ const MC_FIELDS=n=>{const q=s=>J(P(n)+' '+s);return [
   ...ST.map(([k])=>({id:'sps.'+k,get:o=>o.sps[k],set:v=>q('.'+k+' .sps').val(v).trigger('input').trigger('change')})),
   ...ST.filter(([k])=>k!=='hp').map(([k])=>({id:'bo.'+k,get:o=>o.bo[k],set:v=>q('.'+k+' .boost').val(v).change()})),
   {id:'nat',get:o=>o.nat,set:v=>q('.nature').val(v).change()},{id:'item',get:o=>o.item,set:v=>q('select.item').val(v).change()},{id:'ab',get:o=>o.ab,set:v=>q('select.ability').val(v).change()},
-  {id:'status',get:o=>o.status,set:v=>q('.status').val(v).change()},{id:'hpPct',get:o=>o.hpPct,set:v=>q('.percent-hp').val(v).trigger('input').trigger('change')},
+  {id:'status',get:o=>o.status,set:v=>q('.status').val(v).change()},{id:'hpPct',get:o=>o.hpPct,set:v=>q('.percent-hp').val(v).trigger('input').trigger('keyup').trigger('change')},
   {id:'teraOn',get:o=>o.teraOn,set:v=>q('.tera').prop('checked',!!v).change()},{id:'teraType',get:o=>o.teraType,set:v=>q('.tera-type').val(v).change()},
   {id:'abOn',get:o=>o.abOn,set:v=>q('.abilityToggle').prop('checked',!!v).change()},
   ...[0,1,2,3].map(i=>({id:'mv'+i,get:o=>o.moves[i].name,set:v=>q('.move'+(i+1)+' select.move-selector').val(v).change()})),
@@ -648,8 +669,8 @@ function smCalc(atk,def){
 function smHero(atk,def){
   const Q=smCalc(atk,def),M=S.sm;if(!Q.c||!M.ents.length)return '';
   const L=[];
-  if(Q.mainX&&Q.on)L.push('<div class="hsl"><span>Danno di prima<small>'+esc(atk.name)+' \u00b7 '+esc(Q.mainX.name)+'</small></span><b>'+mcFmt(Q.mainX)+'</b></div>');
-  Q.rowsOut.forEach(r=>{if(r.na)return;L.push('<div class="hsl add"><span>+ Danno aggiunto<small>'+esc(r.name)+' \u00b7 '+esc(mvN(r.x.name))+'</small></span><b>'+mcFmt(r.x)+'</b>'+(Q.rowsOut.filter(z=>!z.na).length>1?'<button type="button" class="hx sm" data-a="smdel" data-k="'+r.e.k+'" aria-label="Togli '+esc(r.name)+'" title="Togli '+esc(r.name)+'">\u00d7</button>':'')+'</div>')});
+  if(Q.mainX&&Q.on)L.push('<div class="hsl"><span><em>'+esc(atk.name)+' \u00b7 '+esc(Q.mainX.name)+'</em><small>Danno di prima</small></span><b>'+mcFmt(Q.mainX)+'</b></div>');
+  Q.rowsOut.forEach(r=>{if(r.na)return;L.push('<div class="hsl add"><span><em>'+esc(r.name)+' \u00b7 '+esc(mvN(r.x.name))+'</em><small><strong class="plus">+</strong> Danno aggiunto</small></span><b>'+mcFmt(r.x)+'</b>'+(Q.rowsOut.filter(z=>!z.na).length>1?'<button type="button" class="hx sm" data-a="smdel" data-k="'+r.e.k+'" aria-label="Togli '+esc(r.name)+'" title="Togli '+esc(r.name)+'">\u00d7</button>':'')+'</div>')});
   const c=Q.c,cap=Math.min(100,c.pmax),lo=Math.min(100,c.pmin);
   return '<div class="hsum"><div class="hst"><span>Danno combinato su '+esc(def.name)+'</span><span class="hbt"><button type="button" class="hc" data-a="smcopy" aria-label="Copia il danno combinato" title="Copia il danno combinato">Copia</button><button type="button" class="hx" data-a="smclear" aria-label="Togli il danno aggiunto" title="Togli il danno aggiunto">\u00d7</button></span></div>'+L.join('')+'<div class="hsl tot"><span>= Totale insieme</span><b>'+Q.pr+'</b></div><div class="hsv '+Q.verd[1]+'">'+Q.verd[0]+'</div>'+
     '<div class="dbar"><i class="rest" style="width:'+Math.max(0,100-cap).toFixed(1)+'%"></i><i class="dm" style="left:'+Math.max(0,100-cap).toFixed(1)+'%;width:'+Math.max(0.8,cap-lo).toFixed(1)+'%"></i></div></div>';
@@ -684,16 +705,10 @@ function smHtml(atk,def,cA){
       if(open)h+='<div class="mxs">'+(e.src==='man'&&!e.snap?'<div class="hint" style="margin:2px 0 4px">Set: <b>'+esc(smSetLabel(smSetName(e)))+'</b></div>':'')+
         '<div class="hint" style="margin:2px 0 6px">Tocca una mossa per sommarla \u00b7 la matita la cambia</div>'+
         ro.r.res.map((x,j)=>{const sel=j===ro.j,ok=!!(x&&x.max>0);
-          return '<div class="mx pk'+(sel?' sel':'')+(ok?'':' z')+'"'+(ok?' data-a="smpick" data-k="'+e.k+'" data-j="'+j+'"':'')+'><span>'+esc(x?mvN(x.name):'Nessuna mossa')+'</span><b>'+(x?mcFmt(x):'0%')+'</b><button type="button" class="mxe" data-a="smmv" data-k="'+e.k+'" data-j="'+j+'" aria-label="Cambia la mossa" title="Cambia mossa">'+PENCIL+'</button></div>'}).join('')+
+          return '<div class="mx pk'+(sel?' pks':'')+(ok?'':' z')+'"'+(ok?' data-a="smpick" data-k="'+e.k+'" data-j="'+j+'"':'')+'><span>'+esc(x?mvN(x.name):'Nessuna mossa')+'</span><b>'+(x?mcFmt(x):'0%')+'</b><button type="button" class="mxe" data-a="smmv" data-k="'+e.k+'" data-j="'+j+'" aria-label="Cambia la mossa" title="Cambia mossa">'+PENCIL+'</button></div>'}).join('')+
         '<div class="row" style="margin:8px 0 4px">'+(e.src==='man'&&!e.snap&&smSetsAll(e.species).length?'<button type="button" class="btn sm" data-a="smset" data-k="'+e.k+'">Cambia set\u2026</button>':'')+'<button type="button" class="btn sm" data-a="smedit" data-k="'+e.k+'">Modifica Pok\u00e9mon</button><button type="button" class="btn sm" data-a="smdel" data-k="'+e.k+'">Rimuovi</button></div></div>';
     });
     if(M.busy||pending)h+='<p class="hint" style="margin:8px 2px 0">Calcolo\u2026</p>';
-    if(c){
-      const cap=Math.min(100,c.pmax),lo=Math.min(100,c.pmin);
-      h+='<div class="mtot"><div class="mtl">Totale su '+esc(def.name)+' <small>PS '+hpC+'/'+hpT+'</small></div><div class="mtp">'+pr+'</div><div class="mtk '+verd[1]+'">'+verd[0]+'</div>'+
-        '<div class="dbar"><i class="rest" style="width:'+Math.max(0,100-cap).toFixed(1)+'%"></i><i class="dm" style="left:'+Math.max(0,100-cap).toFixed(1)+'%;width:'+Math.max(0.8,cap-lo).toFixed(1)+'%"></i></div>'+
-        '<p class="hint" style="margin:8px 0 0">I colpi sono sommati come se arrivassero insieme nello stesso turno. Effetti che dipendono dai PS (Focus Sash, Multiscale, bacche) non sono considerati.</p></div>';
-    }
     h+='</div>';
   }
   return head+h+'</div>';
@@ -803,8 +818,14 @@ function detail(x,atk,def,cA,extra){
   const rolls=Array.isArray(x.rolls)?(Array.isArray(x.rolls[0])?x.rolls.map(r=>r.join(', ')).join(' | '):x.rolls.join(', ')):'';
   const mvd=atk.moves[x.i]||{};
   const ctr='<div class="row"><button class="btn sm" data-a="copy">Copia risultato</button><button class="btn sm'+(mvd.crit?' pri':'')+'" data-a="critc" data-i="'+x.i+'" aria-pressed="'+(mvd.crit?'true':'false')+'">Brutto colpo</button>'+(mvd.hitsOn?'<select class="sel" style="width:auto;min-height:38px;padding:0 30px 0 12px;font-size:13px" data-c="hitsc" data-i="'+x.i+'" aria-label="Numero di colpi">'+mvd.hitsOpts.map(h=>'<option'+(h===mvd.hits?' selected':'')+'>'+esc(h)+'</option>').join('')+'</select>':'')+'</div>';
-  const lo=Math.max(0,100-Math.min(100,x.max)).toFixed(1),wd=Math.max(0.8,Math.min(100,x.max)-Math.min(100,x.min)).toFixed(1);
-  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div>'+(extra||'')+'<p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+'</p><p class="rolls">Valori possibili: '+esc(rolls)+'</p>'+ctr+'</div>';
+  /* barra sui PS ATTUALI del bersaglio: verde = PS che restano dopo il colpo, rosso = il danno (da min a max) */
+  const hp=def.hpTot?Math.max(0,Math.min(100,def.hpCur*100/def.hpTot)):100,r1=Math.max(0,hp-x.max),r2=Math.max(0,hp-x.min);
+  const lo=r1.toFixed(1),wd=Math.max(0.8,hp-r1).toFixed(1);   /* verde = PS che restano di sicuro, rosso = quelli che il colpo puo' togliere */
+  const pr=Math.round(hp);
+  const hpl='<div class="hhp"><div class="hhl"><span>PS di '+esc(def.name)+'</span><b>'+def.hpCur+'/'+def.hpTot+' <em>('+pr+'%)</em></b></div>'+
+    '<input type="range" class="hpr dhp" min="0" max="100" step="1" value="'+pr+'" data-c="hpdef" data-n="'+def.n+'" aria-label="PS attuali di '+esc(def.name)+'" style="--p:'+pr+'%">'+
+    (pr<100?'<div class="hha">Dopo il colpo: '+(r2<=0?'<b class="k">va KO</b>':r1<=0?'<b class="k">KO possibile</b> (se no resta fino al '+r2.toFixed(1)+'%)':'resta <b>'+r1.toFixed(1)+'\u2013'+r2.toFixed(1)+'%</b>')+'</div>':'')+'</div>';
+  return '<div class="det hero" style="--c:'+cA+'"><div class="hr"><span class="hn">'+esc(x.name)+'</span><span class="hdm">'+esc(x.txt.replace(/\s*\(.*\)/,'').replace(/ - /,'–'))+'</span></div><div class="hk">'+esc(koIt(x.ko||'—'))+'</div><div class="dbar"><i class="rest" style="width:'+lo+'%"></i><i class="dm" style="left:'+lo+'%;width:'+wd+'%"></i></div>'+hpl+(extra||'')+'<p class="hd">'+esc(x.desc)+': '+esc(x.dmg)+'</p><p class="rolls">Valori possibili: '+esc(rolls)+'</p>'+ctr+'</div>';
 }
 
 /* ---------- fogli ---------- */
@@ -935,7 +956,7 @@ document.addEventListener('click',e=>{
   else if(a==='edit'){S.edit=+d.n;renderEditor(false)}
   else if(a==='slot'){after(()=>W.loadSidebarSlot(+d.n,+d.i))}
   else if(a==='paste'){pasteDirect(+d.n||0)}
-  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)} else if(a==='mctog'){S.mc.open=!S.mc.open;refresh()} else if(a==='mcmode'){S.mc.mode=+d.m;S.mc.sel={};S.mc.res=null;S.mc.exp={};refresh()} else if(a==='mcsel'){S.mc.sel[+d.i]=!S.mc.sel[+d.i];refresh()} else if(a==='mcall'){const tm=(W.CURRENT_SIDEBARS[(S.mc.mode===0?2-S.dir:S.dir+1)-1]||[]);const all=tm.every((x,i)=>S.mc.sel[i+1]);S.mc.sel={};if(!all)tm.forEach((x,i)=>S.mc.sel[i+1]=true);refresh()} else if(a==='mcrun'){mcRun()} else if(a==='mcrow'){S.mc.exp[+d.k]=!S.mc.exp[+d.k];refresh()} else if(a==='smtog'){S.sm.open=!S.sm.open;refresh()} else if(a==='smsel'){const i=+d.i,M=S.sm,x=M.ents.findIndex(e=>e.src==='slot'&&e.i===i);if(x>=0){const k=M.ents[x].k;M.ents.splice(x,1);delete M.rows[k];delete M.pick[k];delete M.exp[k]}else M.ents.push({k:'s'+i,src:'slot',i});refresh()} else if(a==='smaddman'){const M=S.sm;let items=pokemonItems();picker('Scegli il Pokémon da aggiungere',items,id=>{const k='m'+(++M.uid);M.ents.push({k,src:'man',species:id});M.exp[k]=true;M.open=true})} else if(a==='smrow'){S.sm.exp[d.k]=!S.sm.exp[d.k];refresh()} else if(a==='smpick'){S.sm.pick[d.k]=+d.j;refresh()} else if(a==='smmv'){const M=S.sm,e=smEnt(d.k);if(e){const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});picker('Mossa '+(+d.j+1)+' di '+(e.species||'questo Pok\u00e9mon'),items,id=>{e.mvs=e.mvs||{};e.mvs[+d.j+1]=id;M.pick[e.k]=+d.j;delete M.rows[e.k]})}} else if(a==='smedit'){smEdit(d.k)} else if(a==='smcopy'){const txt=smText();if(txt){try{navigator.clipboard.writeText(txt).then(()=>toast('Danno combinato copiato'),()=>fallbackCopy(txt))}catch(x){fallbackCopy(txt)}}} else if(a==='smclear'){const M=S.sm;M.ents=[];M.rows={};M.pick={};M.exp={};refresh()} else if(a==='smset'){const M=S.sm,e=smEnt(d.k);if(e){const L=smSetsAll(e.species);const items=[{id:'Blank Set',l:'Set libero (vuoto)',s:'nessuna mossa, punti a zero'}].concat(L.map(n=>{const x=(W.setdex[e.species]||{})[n]||{};return {id:n,l:smSetLabel(n),s:[x.item,x.nature,(x.moves||[]).join(', ')].filter(Boolean).join(' · ')}}));picker('Set di '+e.species,items,id=>{e.setName=id;e.mvs=null;delete M.rows[e.k];delete M.pick[e.k]})}} else if(a==='smdel'){const M=S.sm,x=M.ents.findIndex(e=>e.k===d.k);if(x>=0){M.ents.splice(x,1);delete M.rows[d.k];delete M.pick[d.k];delete M.exp[d.k]}refresh()}
+  else if(a==='imp'){importTeam($q('#ptxt').value,+d.n)} else if(a==='mctog'){S.mc.open=!S.mc.open;refresh()} else if(a==='mcmode'){S.mc.mode=+d.m;S.mc.sel={};S.mc.res=null;S.mc.exp={};refresh()} else if(a==='mcsel'){S.mc.sel[+d.i]=!S.mc.sel[+d.i];refresh()} else if(a==='mcall'){const tm=(W.CURRENT_SIDEBARS[(S.mc.mode===0?2-S.dir:S.dir+1)-1]||[]);const all=tm.every((x,i)=>S.mc.sel[i+1]);S.mc.sel={};if(!all)tm.forEach((x,i)=>S.mc.sel[i+1]=true);refresh()} else if(a==='mcrun'){mcRun()} else if(a==='mcrow'){S.mc.exp[+d.k]=!S.mc.exp[+d.k];refresh()} else if(a==='smtog'){S.sm.open=!S.sm.open;refresh()} else if(a==='smsel'){const i=+d.i,M=S.sm,x=M.ents.findIndex(e=>e.src==='slot'&&e.i===i);if(x>=0){const k=M.ents[x].k;M.ents.splice(x,1);delete M.rows[k];delete M.pick[k];delete M.exp[k]}else{M.ents.push({k:'s'+i,src:'slot',i});M.exp['s'+i]=true}refresh()} else if(a==='smaddman'){const M=S.sm;let items=pokemonItems();picker('Scegli il Pokémon da aggiungere',items,id=>{const k='m'+(++M.uid);M.ents.push({k,src:'man',species:id});M.exp[k]=true;M.open=true})} else if(a==='smrow'){S.sm.exp[d.k]=!S.sm.exp[d.k];refresh()} else if(a==='smpick'){S.sm.pick[d.k]=+d.j;refresh()} else if(a==='smmv'){const M=S.sm,e=smEnt(d.k);if(e){const items=Object.keys(W.moves).sort().map(m=>{const x=W.moves[m];return {id:m,l:m,s:[x.type,CAT_IT[x.category]||x.category,x.bp?'Pot. '+x.bp:''].filter(Boolean).join(' · ')}});picker('Mossa '+(+d.j+1)+' di '+(e.species||'questo Pok\u00e9mon'),items,id=>{e.mvs=e.mvs||{};e.mvs[+d.j+1]=id;M.pick[e.k]=+d.j;delete M.rows[e.k]})}} else if(a==='smedit'){smEdit(d.k)} else if(a==='smcopy'){const txt=smText();if(txt){try{navigator.clipboard.writeText(txt).then(()=>toast('Danno combinato copiato'),()=>fallbackCopy(txt))}catch(x){fallbackCopy(txt)}}} else if(a==='smclear'){const M=S.sm;M.ents=[];M.rows={};M.pick={};M.exp={};refresh()} else if(a==='smset'){const M=S.sm,e=smEnt(d.k);if(e){const L=smSetsAll(e.species);const items=[{id:'Blank Set',l:'Set libero (vuoto)',s:'nessuna mossa, punti a zero'}].concat(L.map(n=>{const x=(W.setdex[e.species]||{})[n]||{};return {id:n,l:smSetLabel(n),s:[x.item,x.nature,(x.moves||[]).join(', ')].filter(Boolean).join(' · ')}}));picker('Set di '+e.species,items,id=>{e.setName=id;e.mvs=null;delete M.rows[e.k];delete M.pick[e.k]})}} else if(a==='smdel'){const M=S.sm,x=M.ents.findIndex(e=>e.k===d.k);if(x>=0){M.ents.splice(x,1);delete M.rows[d.k];delete M.pick[d.k];delete M.exp[d.k]}refresh()}
   else if(a==='clr'){try{W.clearSidebar(+d.n)}catch(x){W.CURRENT_SIDEBARS[+d.n-1]=[];try{W.reloadSidebar(+d.n)}catch(y){}}toast('Squadra svuotata');setTimeout(refresh,60)}
   else if(a==='field'){S.cache&&renderField(false)}
   else if(a==='settings'){openSheet('settings','Impostazioni',false);$q('#shB').innerHTML=settingsBody()}
@@ -972,7 +993,8 @@ document.addEventListener('change',e=>{
   const t=e.target.closest('[data-c]');if(!t||!W)return;if(t.closest('.pz'))S.edit=S.view;const c=t.dataset.c,p=P(S.edit);
   if(c==='setsel'){const o=S.cache[S.edit===1?'a':'b'];const nm=o.name.replace(/ \(.*/,''),base=t.value==='Blank Set'?nm:baseSp(nm);after(()=>W.loadPreset(p,base+' ('+t.value+')'));return}
   if(c==='base'){const v=Math.max(1,Math.min(255,Math.round(+t.value||1)));after(()=>J(p+' .'+t.dataset.s+' .base').val(v).trigger('keyup').trigger('change'));return}
-  if(c==='hpr'){after(()=>J(p+' .percent-hp').val(+t.value).trigger('input').trigger('change'));return}
+  if(c==='hpdef'){const n=+t.dataset.n;after(()=>J(P(n)+' .percent-hp').val(+t.value).trigger('input').trigger('keyup').trigger('change'));return}
+  if(c==='hpr'){after(()=>J(p+' .percent-hp').val(+t.value).trigger('input').trigger('keyup').trigger('change'));return}
   if(c==='sp'){const v=Math.max(0,Math.min(32,Math.round(+t.value||0)));after(()=>J(p+' .'+t.dataset.s+' .sps').val(v).trigger('input').trigger('change'))}
   else if(c==='boost'){after(()=>J(p+' .'+t.dataset.s+' .boost').val(t.value).change())}
   else if(c==='nature'){after(()=>J(p+' .nature').val(t.value).change())}
@@ -981,10 +1003,10 @@ document.addEventListener('change',e=>{
   else if(c==='hitsc'){const n=S.dir+1;after(()=>J(P(n)+' .move'+(+t.dataset.i+1)+' .move-hits').val(t.value).change())}
   else if(c==='hits'){after(()=>J(p+' .move'+t.dataset.i+' .move-hits').val(t.value).change())}
   else if(c==='teratype'){after(()=>J(p+' .tera-type').val(t.value).change())}
-  else if(c==='hp'){const v=Math.max(0,Math.min(100,Math.round(+t.value||0)));after(()=>J(p+' .percent-hp').val(v).trigger('input').trigger('change'))}
+  else if(c==='hp'){const v=Math.max(0,Math.min(100,Math.round(+t.value||0)));after(()=>J(p+' .percent-hp').val(v).trigger('input').trigger('keyup').trigger('change'))}
   else if(c==='disp'){W.toggleResultDisplay(t.value);J('#toggleResult').val(t.value);setTimeout(refresh,0)}
 });
-document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('hpr')){t.style.setProperty('--p',t.value+'%');const z=t.closest('.php'),em=z&&z.querySelector('em');if(em)em.textContent='('+t.value+'%)'}});
+document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('hpr')){t.style.setProperty('--p',t.value+'%');const z=t.closest('.php,.hhp'),em=z&&z.querySelector('em');if(em)em.textContent='('+t.value+'%)'}});
 function fallbackCopy(txt){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copiato')}catch(x){toast('Copia non riuscita')}ta.remove()}
 /* integrazione con il sito: il tasto indietro del sito chiede se c'e' un foglio da chiudere */
 window.addEventListener('message',e=>{
