@@ -358,6 +358,15 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 
 .pzsw small{white-space:nowrap;flex:none}
 .pzh.rev{flex-direction:row-reverse}.pzh.rev .pzt{text-align:right}
+
+/* ---- danno combinato in giallo (16/11/2026) ---- */
+.tsl.cmb{background:#ffd21f;border-color:#ffd21f;color:#1d0b0d}.tsl.cmb .tdot{box-shadow:0 0 0 1.5px #1d0b0d}
+.tsl .tc{font-size:10px;font-weight:800;color:#5a3d00;letter-spacing:.2px}
+.sumhead.has{background:#ffd21f;color:#1d0b0d;border-color:#ffd21f}.sumhead.has i{color:#1d0b0d}
+.sumbox{background:linear-gradient(180deg,rgba(255,210,31,.16),rgba(255,210,31,.07))!important;border:2px solid #ffd21f!important}
+.hsum{background:rgba(255,210,31,.14);border:1px solid #ffd21f;border-radius:14px}
+
+.sumbox .tgrid .chip.on{background:#ffd21f;color:#1d0b0d;border-color:#ffd21f}
 </style>
 </head>
 <body>
@@ -697,8 +706,10 @@ const dot=t=>'<i class="tdot" style="--t:'+(TC[t]||'#666')+'" title="'+esc(t)+'"
 function teamCol(n){
   const t=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[n-1])||[],cur=(J(P(n)+' input.set-selector').val()||''),side=n===1?'Left':'Right';
   const arm=S.clrArm&&S.clrArm.n===n&&S.clrArm.until>Date.now();
-  let h=t.map((nm,i)=>{const on=cur.indexOf(side+' Sidebar Slot '+(i+1)+')')>=0;
-    return '<button type="button" class="tsl'+(on?' on':'')+'" data-a="slot" data-n="'+n+'" data-i="'+(i+1)+'"><span class="tn">'+esc(nm)+'</span><span class="td">'+typesOf(nm).map(dot).join('')+'</span></button>'}).join('');
+  const atk=n===S.dir+1,ents=atk?S.sm.ents:[],inC=i=>ents.some(e=>e.src==='slot'&&e.i===i);
+  /* giallo = Pokemon aggiunto al danno combinato: toccandolo si toglie */
+  let h=t.map((nm,i)=>{const on=cur.indexOf(side+' Sidebar Slot '+(i+1)+')')>=0,cb=!on&&inC(i+1);
+    return '<button type="button" class="tsl'+(on?' on':'')+(cb?' cmb':'')+'" '+(cb?'data-a="smsel" data-i="'+(i+1)+'" title="Nel danno combinato: tocca per toglierlo"':'data-a="slot" data-n="'+n+'" data-i="'+(i+1)+'"')+'><span class="tn">'+esc(nm)+'</span><span class="td">'+typesOf(nm).map(dot).join('')+'</span>'+(cb?'<small class="tc">+ danno</small>':'')+'</button>'}).join('');
   if(t.length)h+=arm?'<button type="button" class="tsl era danger" data-a="eraseteam" data-n="'+n+'">Svuota?</button>':'<button type="button" class="tsl era" data-a="eraseteam" data-n="'+n+'" aria-label="Svuota la squadra" title="Svuota la squadra">'+ERASER+'</button>';
   const CLIP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/></svg>';
   const CLOUD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 5 14a4 4 0 0 0 .5 5z"/></svg>';
@@ -706,6 +717,9 @@ function teamCol(n){
   const menu=S.menu?'<div class="menu" role="menu"><button data-a="field"><b>Fields</b><small>'+esc(fieldSummary())+'</small></button><button data-a="addteam" data-n="'+n+'">+ Aggiungi alla squadra<small>mette questo Pok\u00e9mon nella squadra '+(n===1?'sinistra':'destra')+'</small></button><button data-a="pastetxt" data-n="'+n+'">Incolla il testo a mano<small>se l\u2019incolla automatico non funziona</small></button><button data-a="settings">Impostazioni<small>tutti i Pok\u00e9mon, statistiche, azzera</small></button></div>':'';
   const tools='<div class="tools"><button type="button" class="fldb" data-a="field" title="Fields: meteo, terreno, schermi, Tailwind\u2026">'+CLOUD+'<span>Fields</span></button>'+
     '<div class="t2"><button type="button" class="sq" data-a="paste" data-n="'+n+'" title="Incolla squadra" aria-label="Incolla squadra">'+CLIP+'</button><button type="button" class="sq'+(S.menu?' on':'')+'" data-a="menu" title="Altro" aria-label="Altro" aria-expanded="'+(S.menu?'true':'false')+'">'+DOTS+'</button></div>'+menu+'</div>';
+  /* Pokemon aggiunti a scelta (non della squadra): sotto la gomma, in giallo; toccandoli si tolgono */
+  ents.filter(e=>e.src==='man').forEach(e=>{const r=S.sm.rows[e.k],nm=(r&&r.name)||e.species||'Pok\u00e9mon';
+    h+='<button type="button" class="tsl cmb" data-a="smdel" data-k="'+e.k+'" title="Nel danno combinato: tocca per toglierlo"><span class="tn">'+esc(nm)+'</span><span class="td">'+typesOf(e.species||nm).map(dot).join('')+'</span><small class="tc">+ danno \u00d7</small></button>'});
   return '<div class="tcol">'+tools+h+'</div>';
 }
 function fieldSummary(){
