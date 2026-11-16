@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T10:53:38+00:00",
+ "updated": "2026-11-16T13:49:25+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -107,21 +107,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6abbeedf880ed327106df5a8/details"
   },
   {
-   "name": "Synergy Saga - S3",
-   "org": "BoTS PTCG Pocket",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-09",
-   "time": "07:30",
-   "players": 50,
-   "url": "https://play.limitlesstcg.com/tournament/6ae8a4f20d00101b48bf4975/details"
-  },
-  {
    "name": "🇧🇷 Hit Break #9 | Pokémon Champions",
    "org": "Hit Legends TCG",
    "mode": "online",
@@ -150,21 +135,6 @@
    "time": "18:00",
    "players": null,
    "url": "https://play.limitlesstcg.com/tournament/6ab4ccc6f127b1b52c280fff/details"
-  },
-  {
-   "name": "Chaos League Sunday Slam #120",
-   "org": "Chaos League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-15",
-   "time": "23:00",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6af8de97b2fccaf0272d2840/details"
   },
   {
    "name": "Open Champions League #6 (20 USD to 1st)",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-16",
    "time": "20:00",
-   "players": 32,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
   },
   {
@@ -253,7 +223,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
@@ -268,7 +238,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:30",
-   "players": 12,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
@@ -283,7 +253,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "12:00",
-   "players": 23,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6afaaf37b2fccaf0272d3d12/details"
   },
   {
@@ -313,7 +283,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "19:00",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aea078d0c463890f304a624/details"
   },
   {
@@ -392,21 +362,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
   },
   {
-   "name": "Champions Tour LEPE #11 (Shiny Tyranitar for 1st)",
-   "org": "LEPE Tours",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "18:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
-  },
-  {
    "name": "GLORY OF CHAMPIONS #3 - REGULATION M-C",
    "org": "TenkiPK",
    "mode": "online",
@@ -422,6 +377,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
+   "name": "Champions Tour LEPE #11 (Shiny Tyranitar for 1st)",
+   "org": "LEPE Tours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "18:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
+  },
+  {
    "name": "Alpensee Tour (Reg M-C) #84",
    "org": "Alpensee eSports e.V.",
    "mode": "online",
@@ -433,7 +403,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -493,7 +463,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 8,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -538,7 +508,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "13:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
@@ -659,8 +629,23 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 44,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
+  },
+  {
+   "name": "[2026 포켓몬 월드컵] 팀코리아 선발전",
+   "org": "너클시티 배틀연구소",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "05:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
    "name": "LEGA DEI BOLLENTI MC #2",
@@ -854,7 +839,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 7,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
@@ -914,7 +899,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "15:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af1f1b3c931f53978d972eb/details"
   },
   {
