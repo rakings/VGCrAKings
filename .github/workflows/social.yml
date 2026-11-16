@@ -1,10 +1,10 @@
 name: Social - prepara i post
-# Parte DA SOLO: quando un locale viene pubblicato sul sito (cambia locali.json), ogni ora come riserva e al caricamento di questo file.
+# Parte DA SOLO: quando un locale viene pubblicato sul sito (cambia locali.json), ogni ora (money tournament del lunedi', VR, Regionali) e al caricamento di questo file.
 # Prepara immagine + testi per Instagram e X: li approvi dalla tua pagina admin (schede Instagram e X).
 on:
   push:
     branches: [main]
-    paths: ["locali.json", ".github/workflows/social.yml", "social.py", "social_img.py", "bric.ttf"]
+    paths: ["locali.json", ".github/workflows/social.yml", "social.py", "social_img.py", "bric.ttf", "RussoOne-Regular.ttf", "ChakraPetch-Bold.ttf", "Bungee-Regular.ttf", "caratteri/**"]
   schedule:
     - cron: "23 * * * *"
   workflow_dispatch:
