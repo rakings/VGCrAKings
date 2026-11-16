@@ -847,10 +847,10 @@ window.scrollTo(0,0)}
 var LANGS=[["it","Italiano","it-IT"],["en","English","en-GB"],["es","Español","es-ES"],["pt","Português","pt-BR"],["fr","Français","fr-FR"],["de","Deutsch","de-DE"],["ja","日本語","ja-JP"],["ko","한국어","ko-KR"]];
 var LANG="it",LCL="it-IT";
 (function(){var s="";try{s=localStorage.getItem("vgc-lang")||""}catch(e){}
-if(!LANGS.some(function(l){return l[0]===s})){var n=(navigator.language||"it").slice(0,2).toLowerCase();s=LANGS.some(function(l){return l[0]===n})?n:"en"}
+if(!LANGS.some(function(l){return l[0]===s})){var nl=[].concat(navigator.languages||[],navigator.language||[]);s="en";for(var q=0;q<nl.length;q++){var n=String(nl[q]).slice(0,2).toLowerCase();if(LANGS.some(function(l){return l[0]===n})){s=n;break}}}
 LANG=s;LANGS.forEach(function(l){if(l[0]===s)LCL=l[2]})})();
 var EXK=[],EXV=[],PHK=[],PHV=[];
-var TPL={},CTRY={},CITY={},TYPE={};
+var TPL={},CTRY={},CITY={},TYPE={},TYM={};
 var EXM={},PHL=[],CTRX=null,CIRX=null,DN=null;
 var MESI_IT=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
 function langIdx(){for(var i=1;i<LANGS.length;i++)if(LANGS[i][0]===LANG)return i-1;return -1}
@@ -858,7 +858,7 @@ function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc2(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
 function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js';sc.onload=cb;document.head.appendChild(sc)}
 function buildTr(){EXM={};PHL=[];var i=langIdx();if(i<0)return;
-EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
+EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});TYM={};Object.keys(TYPE).forEach(function(k){TYM[k]=Array.isArray(TYPE[k])?TYPE[k][i]:TYPE[k]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
 var cn=Object.keys(CTRY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CTRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+cn+")(?![A-Za-zÀ-ÿ])","g");
 var ci=Object.keys(CITY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CIRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+ci+")(?![A-Za-zÀ-ÿ])","g");
 try{DN=new Intl.DisplayNames([LCL],{type:"region"})}catch(e){DN=null}}
@@ -869,10 +869,18 @@ var I=langIdx(),T=function(id){return TPL[id][I]},r=s;
 r=r.replace(/^Non seguire più (.+)$/,function(m,x){return T("nonsegui").replace("{x}",x)});
 r=r.replace(/^Segui (.+)$/,function(m,x){return T("segui").replace("{x}",x)});
 r=r.replace(/^Condividi (.+)$/,function(m,x){return T("condividi").replace("{x}",x)});
-r=r.replace(/^Tipo (.+?) e (.+)$/,function(m,a,b){return TYPE[a]&&TYPE[b]?T("tipo2").replace("{a}",TYPE[a]).replace("{b}",TYPE[b]):m});
-r=r.replace(/^Tipo (.+)$/,function(m,a){return TYPE[a]?T("tipo").replace("{a}",TYPE[a]):m});
-var tp=r.split(" / ");if(tp.length<=2&&tp.every(function(t){return TYPE[t]}))r=tp.map(function(t){return TYPE[t]}).join(" / ");
-else if(TYPE[r])r=TYPE[r];
+r=r.replace(/^Tipo (.+?) e (.+)$/,function(m,a,b){return TYM[a]&&TYM[b]?T("tipo2").replace("{a}",TYM[a]).replace("{b}",TYM[b]):m});
+r=r.replace(/^Tipo (.+)$/,function(m,a){return TYM[a]?T("tipo").replace("{a}",TYM[a]):m});
+var tp=r.split(" / ");if(tp.length<=2&&tp.every(function(t){return TYM[t]}))r=tp.map(function(t){return TYM[t]}).join(" / ");
+else if(TYM[r])r=TYM[r];
+r=r.replace(/^Mostra tutti gli annunci \((\d+)\)$/,function(m,n){return TPL.annunci?T("annunci").replace("{n}",n):m});
+var TT=function(id,o){var x=T(id);Object.keys(o).forEach(function(k){x=x.split("{"+k+"}").join(o[k])});return x};
+if(TPL.top256con){r=r.replace(/^Nella Top 256: (\d+) giocatori con (.+)\. Ogni voce con il suo numero\.$/,function(m,n,x){return TT("top256con",{n:n,x:x})});
+r=r.replace(/^“(.*)” non è ancora stato raccolto: comparirà qui appena i dati saranno pronti\.$/,function(m,x){return TT("nonraccolto",{x:x})});
+r=r.replace(/^Nessun giocatore trovato per «(.*)»\.$/,function(m,x){return TT("nessunper",{x:x})});
+r=r.replace(/^Somma di (\d+) regionali con dati\. Strumenti e mosse sono sulla Top 256 di ciascuno\.$/,function(m,n){return TT("somma",{n:n})});
+r=r.replace(/(\d+) regionali · (\d+) con dati/,function(m,a,b){return TT("regcondati",{a:a,b:b})})}
+r=r.replace(/, ore (\d{1,2}[:.]\d{2})/g,function(m,t){return TPL.ore?T("ore").replace("{t}",t):m});
 r=r.replace(/(\d+) tornei\b/g,function(m,n){return T("tornei").replace("{n}",n)});
 r=r.replace(/\b1 torneo\b/g,function(){return T("torneo1")});
 r=r.replace(/(\d+) eventi\b/g,function(m,n){return T("eventi").replace("{n}",n)});
@@ -900,7 +908,7 @@ function trTree(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,
 while(n=w.nextNode()){var p=n.parentNode&&n.parentNode.nodeName;if(p==="SCRIPT"||p==="STYLE")continue;trText(n)}
 for(var i=0;i<els.length;i++)trAttr(els[i])}
 var OBS=new MutationObserver(function(){if(TRBUSY||TRQ)return;TRQ=true;requestAnimationFrame(function(){TRQ=false;applyTr()})});
-function applyTr(){TRBUSY=true;OBS.disconnect();try{trTree(document.body);document.documentElement.lang=LANG}finally{OBS.observe(document.body,{childList:true,subtree:true,characterData:true});TRBUSY=false}}
+function applyTr(){TRBUSY=true;OBS.disconnect();try{trTree(document.body);document.documentElement.lang=LANG}finally{OBS.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:["title","aria-label","placeholder","alt"]});TRBUSY=false}}
 function langRow(){var n=LANGS.filter(function(l){return l[0]===LANG})[0][1];return '<div class="opt"><button class="btn" type="button" data-openlang="1" style="width:100%;display:flex;justify-content:space-between;align-items:center;border-radius:12px"><span>🌐 Lingua</span><span><b>'+n+'</b> ›</span></button></div>'}
 function langMenu(){$("np").innerHTML='<div class="sheet2" role="document"><div class="calbar"><button class="cnav" data-npback="1" aria-label="Indietro">‹</button><b id="np-t">Lingua</b><button class="cnav" data-npc="1" aria-label="Chiudi">✕</button></div><div class="langs">'+LANGS.map(function(l){return '<button class="btn'+(l[0]===LANG?' main':'')+'" type="button" data-lang="'+l[0]+'" lang="'+l[0]+'">'+(l[0]===LANG?"✓ ":"")+l[1]+'</button>'}).join("")+'</div></div>';$("np").hidden=false}
 function setLang(c){LANGS.forEach(function(l){if(l[0]===c){LANG=c;LCL=l[2]}});try{localStorage.setItem("vgc-lang",c)}catch(e){}if(typeof osSync==="function")osSync();$("np").hidden=true;loadTr(function(){buildTr();rebuildCal();render();applyTr();if(typeof CAL!=="undefined"&&$("sbar")&&!$("sbar").hidden)goHash()})}

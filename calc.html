@@ -476,6 +476,7 @@ function readSide(n){
 }
 function strip(h){return String(h==null?'':h).replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim()}
 function koIt(t){
+  if(typeof CL!=='undefined'&&CL!=='it')return koLang(t);
   return t.replace(/possibly the worst move ever/i,'Danno minimo').replace(/guaranteed OHKO/i,'OHKO garantito').replace(/guaranteed (\d)HKO/i,'$1HKO garantito').replace(/([\d.]+)% chance to (\d?)(OHKO|\dHKO)/i,(m,a,b,c)=>c+' al '+a+'%')
           .replace(/possible (\d+)HKO/i,'$1HKO possibile').replace(/possible OHKO/i,'OHKO possibile').replace(/after (.*) recovery/i,'dopo il recupero ($1)').replace(/ chance to /i,' di probabilità di ');
 }
@@ -1033,6 +1034,269 @@ const PTO=location.origin==='null'?'*':location.origin;
 function notifyParent(){try{if(window.parent!==window)parent.postMessage({calcSheet:!!S.sheet},PTO)}catch(e){}}
 new MutationObserver(notifyParent).observe($q('#sheet'),{attributes:true,attributeFilter:['class']});
 if(window.parent!==window&&/[?&]embed=1/.test(location.search)){const b=document.createElement('button');b.className='ib';b.textContent='Esci';b.setAttribute('aria-label','Chiudi il calcolatore');b.onclick=()=>parent.postMessage({calcClose:1},PTO);const h=$q('.top');h.insertBefore(b,h.firstChild)}
+/* ---------- traduzioni dell'interfaccia del calcolatore (i dati di gioco di nerd-of-now restano in inglese) ----------
+   Lingua: la stessa scelta nel sito (localStorage «vgc-lang»), altrimenti quella del telefono.
+   Ordine delle colonne: en, es, pt, fr, de, ja, ko. */
+const CL=(()=>{const ok=['it','en','es','pt','fr','de','ja','ko'];let s='';try{s=localStorage.getItem('vgc-lang')||''}catch(e){}
+  if(ok.indexOf(s)<0){const nl=[].concat(navigator.languages||[],navigator.language||[]).map(x=>String(x).slice(0,2).toLowerCase());s=nl.find(n=>ok.indexOf(n)>=0)||'en'}return s})();
+const CLI=['en','es','pt','fr','de','ja','ko'].indexOf(CL);
+const CT={
+'Calcolatore':['Calculator','Calculadora','Calculadora','Calculateur','Rechner','ダメージ計算','데미지 계산기'],
+'Preparo il calcolatore…':['Loading the calculator…','Preparando la calculadora…','Preparando a calculadora…','Préparation du calculateur…','Rechner wird geladen…','計算機を準備中…','계산기 준비 중…'],
+'Esci':['Exit','Salir','Sair','Quitter','Beenden','閉じる','나가기'],
+'Pokémon 1':['Pokémon 1','Pokémon 1','Pokémon 1','Pokémon 1','Pokémon 1','ポケモン1','포켓몬 1'],
+'Pokémon 2':['Pokémon 2','Pokémon 2','Pokémon 2','Pokémon 2','Pokémon 2','ポケモン2','포켓몬 2'],
+'attacca':['attacks','ataca','ataca','attaque','greift an','攻撃側','공격'],
+'Base':['Base','Base','Base','Base','Basis','種族値','종족값'],
+'Punti':['Points','Puntos','Pontos','Points','Punkte','ポイント','포인트'],
+'Stat':['Stat','Stat','Stat','Stat','Wert','実数値','능력치'],
+'PS':['HP','PS','PS','PV','KP','HP','HP'],
+'Att':['Atk','Atq','Ata','Atq','Ang','攻撃','공격'],
+'Dif':['Def','Def','Def','Déf','Vert','防御','방어'],
+'AtSp':['SpA','AtE','AtE','AtqS','SpA','特攻','특공'],
+'DfSp':['SpD','DfE','DfE','DéfS','SpV','特防','특방'],
+'Vel':['Spe','Vel','Vel','Vit','Init','素早さ','스피드'],
+'Natura':['Nature','Naturaleza','Natureza','Nature','Wesen','せいかく','성격'],
+'Abilità':['Ability','Habilidad','Habilidade','Talent','Fähigkeit','とくせい','특성'],
+'Strumento':['Item','Objeto','Item','Objet','Item','持ち物','도구'],
+'Stato':['Status','Estado','Status','Statut','Status','状態','상태'],
+'Sano':['Healthy','Sano','Saudável','En forme','Gesund','健康','건강'],
+'Avvelenato':['Poisoned','Envenenado','Envenenado','Empoisonné','Vergiftet','どく','독'],
+'Gravemente avvelenato':['Badly Poisoned','Gravemente envenenado','Gravemente envenenado','Gravement empoisonné','Schwer vergiftet','もうどく','맹독'],
+'Scottato':['Burned','Quemado','Queimado','Brûlé','Verbrannt','やけど','화상'],
+'Paralizzato':['Paralyzed','Paralizado','Paralisado','Paralysé','Paralysiert','まひ','마비'],
+'Addormentato':['Asleep','Dormido','Dormindo','Endormi','Schlafend','ねむり','잠듦'],
+'Congelato':['Frozen','Congelado','Congelado','Gelé','Eingefroren','こおり','얼음'],
+'Fisico':['Physical','Físico','Físico','Physique','Physisch','物理','물리'],
+'Speciale':['Special','Especial','Especial','Spécial','Speziell','特殊','특수'],
+'Set libero':['Blank set','Set vacío','Set vazio','Set vide','Leeres Set','空のセット','빈 세트'],
+'PS attuali':['Current HP','PS actuales','PS atuais','PV actuels','Aktuelle KP','残りHP','현재 HP'],
+'Nessuno':['None','Ninguno','Nenhum','Aucun','Keins','なし','없음'],
+'Nessuna':['None','Ninguna','Nenhuma','Aucune','Keine','なし','없음'],
+'Nessuno strumento':['No item','Sin objeto','Sem item','Aucun objet','Kein Item','持ち物なし','도구 없음'],
+'Nessuna mossa':['No move','Sin movimiento','Sem golpe','Aucune capacité','Keine Attacke','わざなし','기술 없음'],
+'Nessun danno diretto':['No direct damage','Sin daño directo','Sem dano direto','Aucun dégât direct','Kein direkter Schaden','直接ダメージなし','직접 대미지 없음'],
+'Copia risultato':['Copy result','Copiar resultado','Copiar resultado','Copier le résultat','Ergebnis kopieren','結果をコピー','결과 복사'],
+'Brutto colpo':['Critical hit','Golpe crítico','Acerto crítico','Coup critique','Volltreffer','急所','급소'],
+'Copia':['Copy','Copiar','Copiar','Copier','Kopieren','コピー','복사'],
+'Copiato':['Copied','Copiado','Copiado','Copié','Kopiert','コピーしました','복사됨'],
+'Copia non riuscita':['Copy failed','No se pudo copiar','Não foi possível copiar','Copie impossible','Kopieren fehlgeschlagen','コピーできませんでした','복사 실패'],
+'Danno combinato copiato':['Combined damage copied','Daño combinado copiado','Dano combinado copiado','Dégâts combinés copiés','Kombinierter Schaden kopiert','合計ダメージをコピーしました','합산 대미지 복사됨'],
+'Fields':['Fields','Fields','Fields','Fields','Fields','Fields','Fields'],
+'Danno di prima':['Main damage','Daño principal','Dano principal','Dégâts principaux','Hauptschaden','元のダメージ','기본 대미지'],
+'+ Danno aggiunto':['+ Added damage','+ Daño añadido','+ Dano adicionado','+ Dégâts ajoutés','+ Zusätzlicher Schaden','+ 追加ダメージ','+ 추가 대미지'],
+'Danno aggiunto':['Added damage','Daño añadido','Dano adicionado','Dégâts ajoutés','Zusätzlicher Schaden','追加ダメージ','추가 대미지'],
+'= Totale insieme':['= Total','= Total','= Total','= Total','= Gesamt','= 合計','= 합계'],
+'KO garantito':['Guaranteed KO','KO garantizado','KO garantido','KO garanti','Garantierter K.O.','確定KO','확정 KO'],
+'KO possibile':['KO possible','KO posible','KO possível','KO possible','K.O. möglich','KOの可能性','KO 가능'],
+'Insieme:':['Together:','En total:','Juntos:','Ensemble :','Zusammen:','合計:','합산:'],
+'Dopo il colpo:':['After the hit:','Tras el golpe:','Após o golpe:','Après le coup :','Nach dem Treffer:','攻撃後:','공격 후:'],
+'Dopo il colpo: resta':['After the hit: left with','Tras el golpe: quedan','Após o golpe: restam','Après le coup : il reste','Nach dem Treffer: übrig','攻撃後の残り','공격 후 남은 HP'],
+'va KO':['KO','KO','KO','KO','K.O.','KO','KO'],
+'+ Aggiungi il danno di un altro Pokémon':['+ Add damage from another Pokémon','+ Añadir el daño de otro Pokémon','+ Adicionar o dano de outro Pokémon','+ Ajouter les dégâts d’un autre Pokémon','+ Schaden eines weiteren Pokémon hinzufügen','+ 他のポケモンのダメージを追加','+ 다른 포켓몬의 대미지 추가'],
+'+ Altro Pokémon (a scelta)':['+ Any other Pokémon','+ Otro Pokémon (a elegir)','+ Outro Pokémon (à escolha)','+ Autre Pokémon (au choix)','+ Anderes Pokémon (frei wählbar)','+ 他のポケモン（自由に選択）','+ 다른 포켓몬 (선택)'],
+'Aggiungi un Pokémon dalla squadra o uno qualsiasi: il suo danno viene':['Add a Pokémon from the team or any other: its damage is','Añade un Pokémon del equipo o cualquier otro: su daño se','Adicione um Pokémon da equipe ou qualquer outro: o dano dele é','Ajoute un Pokémon de l’équipe ou n’importe lequel : ses dégâts sont','Füge ein Pokémon aus dem Team oder ein beliebiges hinzu: sein Schaden wird','チームのポケモンか任意のポケモンを追加すると、そのダメージが','팀의 포켓몬이나 다른 포켓몬을 추가하면 그 대미지가'],
+'sommato':['added','suma','somado','additionnés','addiert','合計','합산'],
+'Tocca una mossa per sommarla · la matita la cambia':['Tap a move to add it · the pencil changes it','Toca un movimiento para sumarlo · el lápiz lo cambia','Toque um golpe para somá-lo · o lápis o troca','Touche une capacité pour l’ajouter · le crayon la change','Tippe auf eine Attacke, um sie zu addieren · der Stift ändert sie','わざをタップで加算・鉛筆で変更','기술을 탭하면 합산 · 연필로 변경'],
+'Modifica Pokémon':['Edit Pokémon','Editar Pokémon','Editar Pokémon','Modifier le Pokémon','Pokémon bearbeiten','ポケモンを編集','포켓몬 편집'],
+'Rimuovi':['Remove','Quitar','Remover','Retirer','Entfernen','削除','삭제'],
+'Cambia set…':['Change set…','Cambiar set…','Trocar set…','Changer de set…','Set ändern…','セットを変更…','세트 변경…'],
+'+ danno':['+ damage','+ daño','+ dano','+ dégâts','+ Schaden','+ ダメージ','+ 대미지'],
+'+ danno ×':['+ damage ×','+ daño ×','+ dano ×','+ dégâts ×','+ Schaden ×','+ ダメージ ×','+ 대미지 ×'],
+'calcolo…':['calculating…','calculando…','calculando…','calcul…','wird berechnet…','計算中…','계산 중…'],
+'Calcolo…':['Calculating…','Calculando…','Calculando…','Calcul…','Wird berechnet…','計算中…','계산 중…'],
+'non disponibile in questa modalità':['not available in this mode','no disponible en este modo','não disponível neste modo','indisponible dans ce mode','in diesem Modus nicht verfügbar','このモードでは使用不可','이 모드에서는 사용 불가'],
+'Nessuna mossa che fa danno':['No damaging move','Ningún movimiento de daño','Nenhum golpe de dano','Aucune capacité offensive','Keine Schadensattacke','ダメージわざなし','공격 기술 없음'],
+'apri e scegli le mosse con la matita':['open it and pick moves with the pencil','ábrelo y elige movimientos con el lápiz','abra e escolha golpes com o lápis','ouvre et choisis les capacités avec le crayon','öffnen und Attacken mit dem Stift wählen','開いて鉛筆でわざを選択','열어서 연필로 기술 선택'],
+'(a scelta)':['(any)','(a elegir)','(à escolha)','(au choix)','(frei)','（自由）','(선택)'],
+'(modificato)':['(edited)','(editado)','(editado)','(modifié)','(bearbeitet)','（編集済み）','(편집됨)'],
+'Calcolo multiplo':['Multiple calc','Cálculo múltiple','Cálculo múltiplo','Calcul multiple','Mehrfachberechnung','まとめて計算','다중 계산'],
+'attacca più Pokémon':['attacks several Pokémon','ataca a varios Pokémon','ataca vários Pokémon','attaque plusieurs Pokémon','greift mehrere Pokémon an','複数のポケモンを攻撃','여러 포켓몬 공격'],
+'subisce da più Pokémon':['takes hits from several Pokémon','recibe de varios Pokémon','recebe de vários Pokémon','subit plusieurs Pokémon','wird von mehreren Pokémon getroffen','複数のポケモンから受ける','여러 포켓몬에게 받음'],
+'Calcola':['Calculate','Calcular','Calcular','Calculer','Berechnen','計算','계산'],
+'Ricalcola':['Recalculate','Recalcular','Recalcular','Recalculer','Neu berechnen','再計算','다시 계산'],
+'Tutti':['All','Todos','Todos','Tous','Alle','すべて','모두'],
+'Qualcosa è cambiato: i risultati non sono più aggiornati.':['Something changed: the results are out of date.','Algo cambió: los resultados ya no están actualizados.','Algo mudou: os resultados estão desatualizados.','Quelque chose a changé : les résultats ne sont plus à jour.','Etwas hat sich geändert: Die Ergebnisse sind veraltet.','変更があったため、結果が古くなっています。','변경 사항이 있어 결과가 최신이 아닙니다.'],
+'Fatto':['Done','Listo','Pronto','Terminé','Fertig','完了','완료'],
+'Chiudi':['Close','Cerrar','Fechar','Fermer','Schließen','閉じる','닫기'],
+'Cerca…':['Search…','Buscar…','Buscar…','Rechercher…','Suchen…','検索…','검색…'],
+'Cerca':['Search','Buscar','Buscar','Rechercher','Suchen','検索','검색'],
+'Scegli il Pokémon':['Choose the Pokémon','Elige el Pokémon','Escolha o Pokémon','Choisis le Pokémon','Pokémon wählen','ポケモンを選択','포켓몬 선택'],
+'Scegli il Pokémon da aggiungere':['Choose the Pokémon to add','Elige el Pokémon que añadir','Escolha o Pokémon para adicionar','Choisis le Pokémon à ajouter','Pokémon zum Hinzufügen wählen','追加するポケモンを選択','추가할 포켓몬 선택'],
+'Incolla squadra':['Paste team','Pegar equipo','Colar equipe','Coller l’équipe','Team einfügen','チームを貼り付け','팀 붙여넣기'],
+'Svuota la squadra':['Clear the team','Vaciar el equipo','Esvaziar a equipe','Vider l’équipe','Team leeren','チームを空にする','팀 비우기'],
+'Svuota?':['Clear?','¿Vaciar?','Esvaziar?','Vider ?','Leeren?','空にする?','비울까요?'],
+'Svuota squadra?':['Clear team?','¿Vaciar equipo?','Esvaziar equipe?','Vider l’équipe ?','Team leeren?','チームを空にする?','팀을 비울까요?'],
+'Altro':['More','Más','Mais','Plus','Mehr','その他','더보기'],
+'+ Aggiungi alla squadra':['+ Add to team','+ Añadir al equipo','+ Adicionar à equipe','+ Ajouter à l’équipe','+ Zum Team hinzufügen','+ チームに追加','+ 팀에 추가'],
+'Incolla il testo a mano':['Paste the text manually','Pegar el texto a mano','Colar o texto manualmente','Coller le texte à la main','Text manuell einfügen','テキストを手動で貼り付け','텍스트 직접 붙여넣기'],
+'se l’incolla automatico non funziona':['if automatic paste doesn’t work','si el pegado automático no funciona','se a colagem automática não funcionar','si le collage automatique ne marche pas','falls das automatische Einfügen nicht klappt','自動貼り付けが使えない場合','자동 붙여넣기가 안 될 때'],
+'Impostazioni':['Settings','Ajustes','Configurações','Paramètres','Einstellungen','設定','설정'],
+'tutti i Pokémon, statistiche, azzera':['all Pokémon, stats, reset','todos los Pokémon, estadísticas, reiniciar','todos os Pokémon, estatísticas, zerar','tous les Pokémon, stats, réinitialiser','alle Pokémon, Werte, zurücksetzen','全ポケモン・能力値・リセット','모든 포켓몬, 능력치, 초기화'],
+'Formato':['Format','Formato','Formato','Format','Format','形式','형식'],
+'Singolo':['Singles','Individual','Simples','Simple','Einzel','シングル','싱글'],
+'Doppio':['Doubles','Dobles','Duplas','Double','Doppel','ダブル','더블'],
+'Meteo':['Weather','Clima','Clima','Météo','Wetter','天気','날씨'],
+'Terreno':['Terrain','Campo','Terreno','Champ','Feld','フィールド','필드'],
+'Sole':['Sun','Sol','Sol','Soleil','Sonne','はれ','쾌청'],
+'Pioggia':['Rain','Lluvia','Chuva','Pluie','Regen','あめ','비'],
+'Sabbia':['Sand','Arena','Areia','Sable','Sand','すなあらし','모래바람'],
+'Grandine':['Hail','Granizo','Granizo','Grêle','Hagel','あられ','싸라기눈'],
+'Neve':['Snow','Nieve','Neve','Neige','Schnee','ゆき','설경'],
+'Sole estremo':['Harsh sun','Sol abrasador','Sol extremo','Zénith','Extreme Sonne','おおひでり','아주 강한 햇살'],
+'Pioggia forte':['Heavy rain','Diluvio','Chuva forte','Déluge','Starkregen','おおあめ','강한 비'],
+'Venti forti':['Strong winds','Turbulencias','Ventos fortes','Turbulence','Starke Winde','らんきりゅう','난기류'],
+'Elettrico':['Electric','Eléctrico','Elétrico','Électrique','Elektro','エレキ','일렉트릭'],
+'Erboso':['Grassy','Hierba','Grama','Herbu','Gras','グラス','그래스'],
+'Nebbioso':['Misty','Niebla','Nebuloso','Brumeux','Nebel','ミスト','미스트'],
+'Psichico':['Psychic','Psíquico','Psíquico','Psychique','Psycho','サイコ','사이코'],
+'Abilità e condizioni di campo':['Abilities and field conditions','Habilidades y condiciones del campo','Habilidades e condições de campo','Talents et conditions du terrain','Fähigkeiten und Feldeffekte','とくせい・場の状態','특성과 필드 상태'],
+'Azzera il campo':['Reset the field','Reiniciar el campo','Zerar o campo','Réinitialiser le terrain','Feld zurücksetzen','場をリセット','필드 초기화'],
+'Tutti i Pokémon (National Dex)':['All Pokémon (National Dex)','Todos los Pokémon (National Dex)','Todos os Pokémon (National Dex)','Tous les Pokémon (National Dex)','Alle Pokémon (National Dex)','全ポケモン（全国図鑑）','모든 포켓몬 (전국도감)'],
+'Acceso: ci sono tutti i Pokémon, mosse e strumenti noti, così non serve aggiornare quando ne arrivano di nuovi in Champions. Spento: solo quelli già presenti in Champions. Il cambio ricarica il calcolatore.':['On: all known Pokémon, moves and items are included, so nothing needs updating when new ones arrive in Champions. Off: only those already in Champions. Changing it reloads the calculator.','Activado: están todos los Pokémon, movimientos y objetos conocidos, así no hace falta actualizar cuando lleguen nuevos a Champions. Desactivado: solo los que ya están en Champions. El cambio recarga la calculadora.','Ligado: todos os Pokémon, golpes e itens conhecidos, assim não é preciso atualizar quando chegarem novos ao Champions. Desligado: só os que já estão no Champions. A mudança recarrega a calculadora.','Activé : tous les Pokémon, capacités et objets connus sont inclus, pas besoin de mettre à jour quand de nouveaux arrivent dans Champions. Désactivé : seulement ceux déjà présents dans Champions. Le changement recharge le calculateur.','An: alle bekannten Pokémon, Attacken und Items sind dabei, ein Update für neue in Champions ist nicht nötig. Aus: nur die bereits in Champions vorhandenen. Die Änderung lädt den Rechner neu.','オン：既知のすべてのポケモン・わざ・持ち物を収録（Championsに追加されても更新不要）。オフ：Championsにいるものだけ。切り替えると再読み込みします。','켜기: 알려진 모든 포켓몬·기술·도구 포함 (Champions에 새로 추가돼도 업데이트 불필요). 끄기: Champions에 있는 것만. 변경하면 계산기를 다시 불러옵니다.'],
+'Come mostrare le statistiche nei risultati':['How to show stats in the results','Cómo mostrar las estadísticas en los resultados','Como mostrar as estatísticas nos resultados','Affichage des stats dans les résultats','Wie Werte in den Ergebnissen angezeigt werden','結果での能力値の表示','결과에 능력치 표시 방식'],
+'Punti Statistica':['Stat Points','Puntos de estadística','Pontos de atributo','Points de stats','Statuspunkte','ステータスポイント','스탯 포인트'],
+'Statistiche reali':['Actual stats','Estadísticas reales','Atributos reais','Stats réelles','Echte Werte','実数値','실제 능력치'],
+'Azzera tutto e ricomincia':['Reset everything and start over','Reiniciar todo y empezar de nuevo','Zerar tudo e recomeçar','Tout réinitialiser et recommencer','Alles zurücksetzen und neu beginnen','すべてリセットしてやり直す','모두 초기화하고 다시 시작'],
+'Crediti':['Credits','Créditos','Créditos','Crédits','Credits','クレジット','크레딧'],
+'Licenza MIT (testo completo)':['MIT License (full text)','Licencia MIT (texto completo)','Licença MIT (texto completo)','Licence MIT (texte complet)','MIT-Lizenz (vollständiger Text)','MITライセンス（全文）','MIT 라이선스 (전문)'],
+'Importa a sinistra':['Import on the left','Importar a la izquierda','Importar à esquerda','Importer à gauche','Links importieren','左に読み込む','왼쪽으로 가져오기'],
+'Importa a destra':['Import on the right','Importar a la derecha','Importar à direita','Importer à droite','Rechts importieren','右に読み込む','오른쪽으로 가져오기'],
+'Svuota squadra sinistra':['Clear left team','Vaciar equipo izquierdo','Esvaziar equipe esquerda','Vider l’équipe de gauche','Linkes Team leeren','左のチームを空にする','왼쪽 팀 비우기'],
+'Svuota squadra destra':['Clear right team','Vaciar equipo derecho','Esvaziar equipe direita','Vider l’équipe de droite','Rechtes Team leeren','右のチームを空にする','오른쪽 팀 비우기'],
+'Incolla qui una squadra in formato Showdown (da Pokémon Showdown o dal teambuilder). Ogni Pokémon occupa un posto, fino a 6. Per ora serve il testo, non il link di PokePaste.':['Paste a team in Showdown format here (from Pokémon Showdown or the teambuilder). Each Pokémon takes a slot, up to 6. For now it needs the text, not the PokePaste link.','Pega aquí un equipo en formato Showdown (de Pokémon Showdown o del teambuilder). Cada Pokémon ocupa un hueco, hasta 6. Por ahora hace falta el texto, no el enlace de PokePaste.','Cole aqui uma equipe no formato Showdown (do Pokémon Showdown ou do teambuilder). Cada Pokémon ocupa uma vaga, até 6. Por enquanto é preciso o texto, não o link do PokePaste.','Colle ici une équipe au format Showdown (depuis Pokémon Showdown ou le teambuilder). Chaque Pokémon occupe une place, jusqu’à 6. Pour l’instant il faut le texte, pas le lien PokePaste.','Füge hier ein Team im Showdown-Format ein (aus Pokémon Showdown oder dem Teambuilder). Jedes Pokémon belegt einen Platz, bis zu 6. Vorerst wird der Text benötigt, nicht der PokePaste-Link.','Showdown形式のチームをここに貼り付けてください（Pokémon Showdownやチームビルダーから）。1匹につき1枠、最大6匹。今のところPokePasteのリンクではなくテキストが必要です。','Showdown 형식의 팀을 여기에 붙여넣으세요 (Pokémon Showdown 또는 팀빌더에서). 포켓몬 한 마리당 한 칸, 최대 6마리. 지금은 PokePaste 링크가 아닌 텍스트가 필요합니다.'],
+'Incolla squadra ':['Paste team','Pegar equipo','Colar equipe','Coller l’équipe','Team einfügen','チームを貼り付け','팀 붙여넣기'],
+'Squadra svuotata':['Team cleared','Equipo vaciado','Equipe esvaziada','Équipe vidée','Team geleert','チームを空にしました','팀을 비웠습니다'],
+'Squadra sinistra svuotata':['Left team cleared','Equipo izquierdo vaciado','Equipe esquerda esvaziada','Équipe de gauche vidée','Linkes Team geleert','左のチームを空にしました','왼쪽 팀을 비웠습니다'],
+'Squadra destra svuotata':['Right team cleared','Equipo derecho vaciado','Equipe direita esvaziada','Équipe de droite vidée','Rechtes Team geleert','右のチームを空にしました','오른쪽 팀을 비웠습니다'],
+'Incolla prima il testo della squadra':['Paste the team text first','Pega primero el texto del equipo','Cole primeiro o texto da equipe','Colle d’abord le texte de l’équipe','Füge zuerst den Teamtext ein','先にチームのテキストを貼り付けてください','먼저 팀 텍스트를 붙여넣으세요'],
+'Apri il link, copia il testo della squadra e incollalo qui':['Open the link, copy the team text and paste it here','Abre el enlace, copia el texto del equipo y pégalo aquí','Abra o link, copie o texto da equipe e cole aqui','Ouvre le lien, copie le texte de l’équipe et colle-le ici','Öffne den Link, kopiere den Teamtext und füge ihn hier ein','リンクを開いてチームのテキストをコピーし、ここに貼り付けてください','링크를 열어 팀 텍스트를 복사해 여기에 붙여넣으세요'],
+'Non ho trovato Pokémon in questo testo':['No Pokémon found in this text','No encontré Pokémon en este texto','Não encontrei Pokémon neste texto','Aucun Pokémon trouvé dans ce texte','Keine Pokémon in diesem Text gefunden','このテキストにポケモンが見つかりません','이 텍스트에서 포켓몬을 찾지 못했습니다'],
+'Gli appunti sono vuoti: copia prima la squadra':['The clipboard is empty: copy the team first','El portapapeles está vacío: copia primero el equipo','A área de transferência está vazia: copie a equipe primeiro','Le presse-papiers est vide : copie d’abord l’équipe','Die Zwischenablage ist leer: kopiere zuerst das Team','クリップボードが空です。先にチームをコピーしてください','클립보드가 비어 있습니다. 먼저 팀을 복사하세요'],
+'Non riesco ad aggiungerlo':['I can’t add it','No puedo añadirlo','Não consigo adicioná-lo','Impossible de l’ajouter','Kann nicht hinzugefügt werden','追加できません','추가할 수 없습니다'],
+'Ricarico il calcolatore…':['Reloading the calculator…','Recargando la calculadora…','Recarregando a calculadora…','Rechargement du calculateur…','Rechner wird neu geladen…','計算機を再読み込み中…','계산기를 다시 불러오는 중…'],
+'Scegli almeno un Pokémon':['Choose at least one Pokémon','Elige al menos un Pokémon','Escolha pelo menos um Pokémon','Choisis au moins un Pokémon','Wähle mindestens ein Pokémon','ポケモンを1匹以上選んでください','포켓몬을 하나 이상 선택하세요'],
+'Calcolo interrotto':['Calculation stopped','Cálculo interrumpido','Cálculo interrompido','Calcul interrompu','Berechnung abgebrochen','計算を中断しました','계산 중단'],
+'Questa mossa non fa danno diretto. Cambia mossa o i dati del Pokémon per vedere un calcolo.':['This move doesn’t deal direct damage. Change the move or the Pokémon’s data to see a calc.','Este movimiento no hace daño directo. Cambia el movimiento o los datos del Pokémon para ver un cálculo.','Este golpe não causa dano direto. Troque o golpe ou os dados do Pokémon para ver um cálculo.','Cette capacité n’inflige pas de dégâts directs. Change la capacité ou les données du Pokémon pour voir un calcul.','Diese Attacke richtet keinen direkten Schaden an. Ändere die Attacke oder die Daten des Pokémon für eine Berechnung.','このわざは直接ダメージを与えません。わざやポケモンのデータを変えると計算が表示されます。','이 기술은 직접 대미지를 주지 않습니다. 기술이나 포켓몬 데이터를 바꾸면 계산이 표시됩니다.'],
+'I colpi sono sommati come se arrivassero insieme nello stesso turno. Effetti che dipendono dai PS (Focus Sash, Multiscale, bacche) non sono considerati.':['Hits are added as if they landed together in the same turn. HP-based effects (Focus Sash, Multiscale, berries) are not considered.','Los golpes se suman como si llegaran juntos en el mismo turno. No se tienen en cuenta los efectos que dependen de los PS (Banda Focus, Multiescamas, bayas).','Os golpes são somados como se chegassem juntos no mesmo turno. Efeitos que dependem dos PS (Focus Sash, Multiscale, frutas) não são considerados.','Les coups sont additionnés comme s’ils arrivaient ensemble au même tour. Les effets liés aux PV (Ceinture Force, Multiécaille, baies) ne sont pas pris en compte.','Die Treffer werden addiert, als kämen sie zusammen in derselben Runde. KP-abhängige Effekte (Fokusgurt, Multischuppe, Beeren) werden nicht berücksichtigt.','同じターンに同時に当たったものとして合算します。HPに依存する効果（きあいのタスキ、マルチスケイル、きのみ）は考慮しません。','같은 턴에 함께 맞은 것으로 합산합니다. HP에 따른 효과(기합의띠, 멀티스케일, 나무열매)는 반영하지 않습니다.'],
+'Statistiche (Punti Statistica)':['Stats (Stat Points)','Estadísticas (Puntos de estadística)','Atributos (Pontos de atributo)','Stats (Points de stats)','Werte (Statuspunkte)','能力値（ステータスポイント）','능력치 (스탯 포인트)'],
+'Punti (0–32)':['Points (0–32)','Puntos (0–32)','Pontos (0–32)','Points (0–32)','Punkte (0–32)','ポイント (0–32)','포인트 (0–32)'],
+'Modif.':['Mod.','Mod.','Mod.','Mod.','Mod.','補正','보정'],
+'Natura, abilità e strumento':['Nature, ability and item','Naturaleza, habilidad y objeto','Natureza, habilidade e item','Nature, talent et objet','Wesen, Fähigkeit und Item','せいかく・とくせい・持ち物','성격, 특성, 도구'],
+'Teracristallizzazione':['Terastallization','Teracristalización','Terastalização','Téracristallisation','Terakristallisierung','テラスタル','테라스탈'],
+'Attiva':['On','Activada','Ativada','Activée','An','オン','켜짐'],
+'Spenta':['Off','Desactivada','Desativada','Désactivée','Aus','オフ','꺼짐'],
+'Stato e vita':['Status and HP','Estado y PS','Status e PS','Statut et PV','Status und KP','状態とHP','상태와 HP'],
+'PS attuali (%)':['Current HP (%)','PS actuales (%)','PS atuais (%)','PV actuels (%)','Aktuelle KP (%)','残りHP (%)','현재 HP (%)'],
+'Set consigliati':['Suggested sets','Sets recomendados','Sets recomendados','Sets conseillés','Empfohlene Sets','おすすめのセット','추천 세트'],
+'Cambia ›':['Change ›','Cambiar ›','Trocar ›','Changer ›','Ändern ›','変更 ›','변경 ›'],
+'Aggiungi alla squadra':['Add to team','Añadir al equipo','Adicionar à equipe','Ajouter à l’équipe','Zum Team hinzufügen','チームに追加','팀에 추가'],
+'Pokémon sinistro':['Left Pokémon','Pokémon izquierdo','Pokémon da esquerda','Pokémon de gauche','Linkes Pokémon','左のポケモン','왼쪽 포켓몬'],
+'Pokémon destro':['Right Pokémon','Pokémon derecho','Pokémon da direita','Pokémon de droite','Rechtes Pokémon','右のポケモン','오른쪽 포켓몬'],
+'Le mosse si cambiano dalla matita in basso a destra di ogni scheda mossa, nella pagina principale.':['Moves are changed with the pencil at the bottom right of each move card, on the main page.','Los movimientos se cambian con el lápiz abajo a la derecha de cada tarjeta, en la página principal.','Os golpes são trocados pelo lápis no canto inferior direito de cada cartão, na página principal.','Les capacités se changent avec le crayon en bas à droite de chaque carte, sur la page principale.','Attacken änderst du mit dem Stift unten rechts auf jeder Attackenkarte auf der Hauptseite.','わざはメイン画面の各わざカード右下の鉛筆で変更します。','기술은 메인 화면의 각 기술 카드 오른쪽 아래 연필로 바꿉니다.'],
+'Valori possibili':['Possible rolls','Valores posibles','Valores possíveis','Valeurs possibles','Mögliche Werte','乱数の値','가능한 값'],
+'Cambia mossa':['Change move','Cambiar movimiento','Trocar golpe','Changer de capacité','Attacke ändern','わざを変更','기술 변경'],
+'Cambia la mossa':['Change the move','Cambiar el movimiento','Trocar o golpe','Changer la capacité','Attacke ändern','わざを変更','기술 변경'],
+'Copia il danno combinato':['Copy the combined damage','Copiar el daño combinado','Copiar o dano combinado','Copier les dégâts combinés','Kombinierten Schaden kopieren','合計ダメージをコピー','합산 대미지 복사'],
+'Togli il danno aggiunto':['Remove the added damage','Quitar el daño añadido','Remover o dano adicionado','Retirer les dégâts ajoutés','Zusätzlichen Schaden entfernen','追加ダメージを外す','추가 대미지 제거'],
+'Nel danno combinato: tocca per toglierlo':['In the combined damage: tap to remove it','En el daño combinado: toca para quitarlo','No dano combinado: toque para removê-lo','Dans les dégâts combinés : touche pour le retirer','Im kombinierten Schaden: tippen zum Entfernen','合計ダメージに含まれています：タップで外す','합산 대미지에 포함: 탭하면 제거'],
+'PS attuali in percentuale':['Current HP in percent','PS actuales en porcentaje','PS atuais em porcentagem','PV actuels en pourcentage','Aktuelle KP in Prozent','残りHP（%）','현재 HP (%)'],
+'Numero di colpi':['Number of hits','Número de golpes','Número de acertos','Nombre de coups','Anzahl der Treffer','攻撃回数','타격 횟수'],
+'motore di calcolo':['calculation engine','motor de cálculo','motor de cálculo','moteur de calcul','Rechenmodul','計算エンジン','계산 엔진'],
+'Squadre':['Teams','Equipos','Equipes','Équipes','Teams','チーム','팀'],
+'recente':['recent','reciente','recente','récent','zuletzt','最近','최근'],
+'forma':['form','forma','forma','forme','Form','フォルム','폼'],
+'Set':['Set','Set','Set','Set','Set','セット','세트'],
+'Forma':['Form','Forma','Forma','Forme','Form','フォルム','폼'],
+'Calcoli del':['Calculations by the','Cálculos del','Cálculos do','Calculs du','Berechnungen vom','計算は','계산:'],
+'(licenza MIT) di Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interfaccia per telefono di rAKings VGC. Strumento non ufficiale.':['(MIT license) by Honko, Tapin, Firestorm, squirrelboyVGC and nerd-of-now. Phone interface by rAKings VGC. Unofficial tool.','(licencia MIT) de Honko, Tapin, Firestorm, squirrelboyVGC y nerd-of-now. Interfaz para móvil de rAKings VGC. Herramienta no oficial.','(licença MIT) de Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interface para celular da rAKings VGC. Ferramenta não oficial.','(licence MIT) de Honko, Tapin, Firestorm, squirrelboyVGC et nerd-of-now. Interface mobile de rAKings VGC. Outil non officiel.','(MIT-Lizenz) von Honko, Tapin, Firestorm, squirrelboyVGC und nerd-of-now. Handy-Oberfläche von rAKings VGC. Inoffizielles Tool.','（MITライセンス）Honko、Tapin、Firestorm、squirrelboyVGC、nerd-of-nowによる。スマホ用画面はrAKings VGC。非公式ツール。','(MIT 라이선스) Honko, Tapin, Firestorm, squirrelboyVGC, nerd-of-now 제작. 모바일 화면: rAKings VGC. 비공식 도구.']
+};
+/* frasi con parti variabili: [regex sull'italiano, [en, es, pt, fr, de, ja, ko]] ($1, $2… = parti variabili) */
+const CTP=[
+[/^Mosse di (.+) contro (.+)$/,['$1’s moves vs $2','Movimientos de $1 contra $2','Golpes de $1 contra $2','Capacités de $1 contre $2','Attacken von $1 gegen $2','$1のわざ → $2','$1의 기술 → $2']],
+[/^Danno combinato su (.+)$/,['Combined damage on $1','Daño combinado a $1','Dano combinado em $1','Dégâts combinés sur $1','Kombinierter Schaden auf $1','$1への合計ダメージ','$1에게 합산 대미지']],
+[/^PS attuali di (.+)$/,['Current HP of $1','PS actuales de $1','PS atuais de $1','PV actuels de $1','Aktuelle KP von $1','$1の残りHP','$1의 현재 HP']],
+[/^PS (.+)$/,['HP $1','PS $1','PS $1','PV $1','KP $1','HP $1','HP $1']],
+[/^Lato di (.+)$/,['$1’s side','Lado de $1','Lado de $1','Côté de $1','Seite von $1','$1側','$1 쪽']],
+[/^a quello di (.+) \((.+)\) su (.+)\.$/,['to $1’s ($2) on $3.','al de $1 ($2) sobre $3.','ao de $1 ($2) em $3.','à ceux de $1 ($2) sur $3.','zu dem von $1 ($2) auf $3.','$1（$2）の$3へのダメージに加算されます。','$1($2)의 $3 대미지에 더해집니다.']],
+[/^a quello di (.+) su (.+)\.$/,['to $1’s on $2.','al de $1 sobre $2.','ao de $1 em $2.','à ceux de $1 sur $2.','zu dem von $1 auf $2.','$1の$2へのダメージに加算されます。','$1의 $2 대미지에 더해집니다.']],
+[/^Contro quali Pokémon di sinistra calcolare:$/,['Against which Pokémon on the left:','Contra qué Pokémon de la izquierda calcular:','Contra quais Pokémon da esquerda calcular:','Contre quels Pokémon de gauche calculer :','Gegen welche Pokémon links berechnen:','左のどのポケモンに対して計算するか:','왼쪽의 어떤 포켓몬을 상대로 계산할지:']],
+[/^Contro quali Pokémon di destra calcolare:$/,['Against which Pokémon on the right:','Contra qué Pokémon de la derecha calcular:','Contra quais Pokémon da direita calcular:','Contre quels Pokémon de droite calculer :','Gegen welche Pokémon rechts berechnen:','右のどのポケモンに対して計算するか:','오른쪽의 어떤 포켓몬을 상대로 계산할지:']],
+[/^Quali Pokémon di (sinistra|destra) attaccano (.+):$/,['Which Pokémon on the {s} attack $2:','Qué Pokémon de la {s} atacan a $2:','Quais Pokémon da {s} atacam $2:','Quels Pokémon de {s} attaquent $2 :','Welche Pokémon {s} greifen $2 an:','{s}のどのポケモンが$2を攻撃するか:','{s}의 어떤 포켓몬이 $2을(를) 공격할지:']],
+[/^Incolla la squadra di (sinistra|destra) per usare il calcolo multiplo\.$/,['Paste the {s} team to use the multiple calc.','Pega el equipo de la {s} para usar el cálculo múltiple.','Cole a equipe da {s} para usar o cálculo múltiplo.','Colle l’équipe de {s} pour utiliser le calcul multiple.','Füge das {s} Team ein, um die Mehrfachberechnung zu nutzen.','まとめて計算を使うには{s}のチームを貼り付けてください。','다중 계산을 쓰려면 {s} 팀을 붙여넣으세요.']],
+[/^(\d+) Pokémon importati a (sinistra|destra)$/,['$1 Pokémon imported on the {s}','$1 Pokémon importados a la {s}','$1 Pokémon importados à {s}','$1 Pokémon importés à {s}','$1 Pokémon {s} importiert','{s}に$1匹を読み込みました','{s}에 포켓몬 $1마리를 가져왔습니다']],
+[/^Altri (\d+) risultati: continua a scrivere per restringere\.$/,['$1 more results: keep typing to narrow down.','$1 resultados más: sigue escribiendo para acotar.','Mais $1 resultados: continue digitando para filtrar.','$1 autres résultats : continue à écrire pour affiner.','$1 weitere Ergebnisse: weitertippen zum Eingrenzen.','ほか$1件：入力を続けて絞り込めます。','결과 $1개 더: 계속 입력해 좁히세요.']],
+[/^Nessun risultato per “(.*)”\.$/,['No results for “$1”.','Sin resultados para “$1”.','Nenhum resultado para “$1”.','Aucun résultat pour « $1 ».','Keine Ergebnisse für „$1“.','「$1」の結果はありません。','“$1”에 대한 결과가 없습니다.']],
+[/^Punti (\d+) \/ 66( — oltre il limite)?$/,['Points $1 / 66{o}','Puntos $1 / 66{o}','Pontos $1 / 66{o}','Points $1 / 66{o}','Punkte $1 / 66{o}','ポイント $1 / 66{o}','포인트 $1 / 66{o}']],
+[/^Totale (\d+) \/ 66( — oltre il limite)?$/,['Total $1 / 66{o}','Total $1 / 66{o}','Total $1 / 66{o}','Total $1 / 66{o}','Gesamt $1 / 66{o}','合計 $1 / 66{o}','합계 $1 / 66{o}']],
+[/^Pot\. (\d+)$/,['BP $1','Pot. $1','Poder $1','Puiss. $1','Stärke $1','威力 $1','위력 $1']],
+[/^Valori possibili: (.+)$/,['Possible rolls: $1','Valores posibles: $1','Valores possíveis: $1','Valeurs possibles : $1','Mögliche Werte: $1','乱数の値: $1','가능한 값: $1']],
+[/^(·\s*)?Non basta: al massimo ([\d.]+)%$/,['{d}Not enough: at most $2%','{d}No basta: como máximo $2%','{d}Não basta: no máximo $2%','{d}Pas assez : au plus $2 %','{d}Reicht nicht: höchstens $2 %','{d}足りません：最大$2%','{d}부족: 최대 $2%']],
+[/^(·\s*)?KO al ([\d.]+)%$/,['{d}$2% chance to KO','{d}$2% de KO','{d}$2% de chance de KO','{d}$2 % de chances de KO','{d}$2 % Chance auf K.O.','{d}KO率 $2%','{d}KO 확률 $2%']],
+[/^· KO garantito$/,['· Guaranteed KO','· KO garantizado','· KO garantido','· KO garanti','· Garantierter K.O.','· 確定KO','· 확정 KO']],
+[/^\(se no resta fino al ([\d.]+)%\)$/,['(otherwise up to $1% left)','(si no, quedan hasta $1%)','(senão restam até $1%)','(sinon il reste jusqu’à $1 %)','(sonst bis zu $1 % übrig)','（耐えた場合は最大$1%残る）','(버티면 최대 $1% 남음)']],
+[/^resta$/,['left with','quedan','restam','il reste','übrig','残り','남음']],
+[/^(.+) · (\d+) set pronti$/,['$1 · $2 ready sets','$1 · $2 sets listos','$1 · $2 sets prontos','$1 · $2 sets prêts','$1 · $2 fertige Sets','$1 · セット$2件','$1 · 세트 $2개']],
+[/^recente · (.+)$/,['recent · $1','reciente · $1','recente · $1','récent · $1','zuletzt · $1','最近 · $1','최근 · $1']],
+[/^Mossa (\d) di (.+)$/,['Move $1 of $2','Movimiento $1 de $2','Golpe $1 de $2','Capacité $1 de $2','Attacke $1 von $2','$2のわざ$1','$2의 기술 $1']],
+[/^Mossa (\d)$/,['Move $1','Movimiento $1','Golpe $1','Capacité $1','Attacke $1','わざ$1','기술 $1']],
+[/^Set di (.+)$/,['$1 sets','Sets de $1','Sets de $1','Sets de $1','Sets von $1','$1のセット','$1 세트']],
+[/^(\d+) Pokémon · (tutti|Champions)$/,['$1 Pokémon · {a}','$1 Pokémon · {a}','$1 Pokémon · {a}','$1 Pokémon · {a}','$1 Pokémon · {a}','ポケモン$1匹 · {a}','포켓몬 $1마리 · {a}']],
+[/^Calcolo (\d+)\/(\d+)…$/,['Calculating $1/$2…','Calculando $1/$2…','Calculando $1/$2…','Calcul $1/$2…','Berechne $1/$2…','計算中 $1/$2…','계산 중 $1/$2…']],
+[/^Mosse di (.+) contro:$/,['$1’s moves against:','Movimientos de $1 contra:','Golpes de $1 contra:','Capacités de $1 contre :','Attacken von $1 gegen:','$1のわざ →','$1의 기술 →']],
+[/^Contro (.+):$/,['Against $1:','Contra $1:','Contra $1:','Contre $1 :','Gegen $1:','$1に対して:','$1 상대:']],
+[/^Cambia la mossa (.+)$/,['Change the move $1','Cambiar el movimiento $1','Trocar o golpe $1','Changer la capacité $1','Attacke $1 ändern','わざ「$1」を変更','기술 $1 변경']],
+[/^Togli (.+)$/,['Remove $1','Quitar $1','Remover $1','Retirer $1','$1 entfernen','$1を外す','$1 제거']],
+[/^(Base|Punti|Più|Meno|Modificatore) (PS|Att|Dif|AtSp|DfSp|Vel)$/,['{w} {st}','{w} {st}','{w} {st}','{w} {st}','{w} {st}','{st}の{w}','{st} {w}']],
+[/^mette questo Pokémon nella squadra (sinistra|destra)$/,['puts this Pokémon in the {s} team','pone este Pokémon en el equipo de la {s}','coloca este Pokémon na equipe da {s}','met ce Pokémon dans l’équipe de {s}','legt dieses Pokémon ins {s} Team','このポケモンを{s}のチームに入れる','이 포켓몬을 {s} 팀에 넣기']],
+[/^Sostituisco la squadra (sinistra|destra) con quella incollata\?$/,['Replace the {s} team with the pasted one?','¿Sustituyo el equipo de la {s} por el pegado?','Substituir a equipe da {s} pela colada?','Remplacer l’équipe de {s} par celle collée ?','Das {s} Team durch das eingefügte ersetzen?','{s}のチームを貼り付けたチームに置き換えますか？','{s} 팀을 붙여넣은 팀으로 바꿀까요?']],
+[/^Azzerare squadre, set salvati e impostazioni di questo calcolatore\?$/,['Reset teams, saved sets and settings of this calculator?','¿Reiniciar equipos, sets guardados y ajustes de esta calculadora?','Zerar equipes, sets salvos e configurações desta calculadora?','Réinitialiser équipes, sets enregistrés et paramètres de ce calculateur ?','Teams, gespeicherte Sets und Einstellungen dieses Rechners zurücksetzen?','この計算機のチーム・保存したセット・設定をリセットしますか？','이 계산기의 팀, 저장한 세트, 설정을 초기화할까요?']],
+[/^Squadra #(\d)$/,['Team #$1','Equipo #$1','Equipe #$1','Équipe #$1','Team #$1','チーム #$1','팀 #$1']],
+[/^Set personalizzato$/,['Custom set','Set personalizado','Set personalizado','Set personnalisé','Eigenes Set','カスタムセット','사용자 세트']],
+[/^libero \(vuoto\)$/,['blank (empty)','vacío','vazio','vide','leer','空','빈']],
+[/^Set: (.+)$/,['Set: $1','Set: $1','Set: $1','Set : $1','Set: $1','セット: $1','세트: $1']],
+[/^Il motore di calcolo non si è avviato\..*$/,['The calculation engine didn’t start. Reload the page; if it stays like this, the browser may be blocking embedded pages.','El motor de cálculo no arrancó. Recarga la página; si sigue así, el navegador puede estar bloqueando páginas incrustadas.','O motor de cálculo não iniciou. Recarregue a página; se continuar assim, o navegador pode estar bloqueando páginas incorporadas.','Le moteur de calcul n’a pas démarré. Recharge la page ; si ça continue, le navigateur bloque peut-être les pages intégrées.','Das Rechenmodul ist nicht gestartet. Lade die Seite neu; bleibt es so, blockiert der Browser vielleicht eingebettete Seiten.','計算エンジンが起動しませんでした。ページを再読み込みしてください。直らない場合、ブラウザが埋め込みページをブロックしている可能性があります。','계산 엔진이 시작되지 않았습니다. 페이지를 새로고침하세요. 계속되면 브라우저가 삽입된 페이지를 막고 있을 수 있습니다.']]
+];
+const SIDE={sinistra:['left','izquierda','esquerda','gauche','links','左','왼쪽'],destra:['right','derecha','direita','droite','rechts','右','오른쪽']};
+const STW={Base:CT['Base'],Punti:CT['Punti'],'Più':['More','Más','Mais','Plus','Mehr','増やす','올리기'],Meno:['Less','Menos','Menos','Moins','Weniger','減らす','내리기'],Modificatore:['Modifier','Modificador','Modificador','Modificateur','Modifikator','ランク補正','랭크 보정']};
+const CTALL={tutti:['all','todos','todos','tous','alle','すべて','모두'],Champions:['Champions','Champions','Champions','Champions','Champions','Champions','Champions']};
+/* probabilita' di KO dal testo inglese di nerd-of-now, nella lingua scelta (in inglese resta quello originale) */
+const KOT={g:['guaranteed {n}','{n} garantizado','{n} garantido','{n} garanti','garantierter {n}','確定{k}発','확정 {k}타'],
+ c:['{p}% chance to {n}','{p}% de {n}','{p}% de chance de {n}','{p} % de chances de {n}','{p} % Chance auf {n}','乱数{k}発 ({p}%)','난수 {k}타 ({p}%)'],
+ p:['possible {n}','{n} posible','{n} possível','{n} possible','möglicher {n}','{k}発の可能性','{k}타 가능'],
+ min:['possibly the worst move ever','Daño mínimo','Dano mínimo','Dégâts minimes','Minimaler Schaden','最小ダメージ','최소 대미지'],
+ rec:[' after $1 recovery',' tras recuperar con $1',' após recuperar com $1',' après récupération ($1)',' nach Heilung durch $1',' ($1回復後)',' ($1 회복 후)']};
+function koLang(t){if(CL==='en')return t;const I=CLI,n=k=>k==='O'?1:+k;
+  return t.replace(/possibly the worst move ever/i,KOT.min[I])
+   .replace(/guaranteed (O|\d)HKO/i,(m,k)=>KOT.g[I].replace('{n}',(k==='O'?'O':k)+'HKO').replace('{k}',n(k)))
+   .replace(/([\d.]+)% chance to (O|\d)HKO/i,(m,p,k)=>KOT.c[I].replace('{p}',p).replace('{n}',(k==='O'?'O':k)+'HKO').replace('{k}',n(k)))
+   .replace(/possible (O|\d)HKO/i,(m,k)=>KOT.p[I].replace('{n}',(k==='O'?'O':k)+'HKO').replace('{k}',n(k)))
+   .replace(/ after (.*) recovery/i,(m,x)=>KOT.rec[I].replace('$1',x))}
+function trC(s){if(CL==='it')return s;const c=s.replace(/\s+/g,' ').trim();if(CT[c])return CT[c][CLI];
+  for(const [re,arr] of CTP){const m=c.match(re);if(!m)continue;let out=c.replace(re,arr[CLI]);
+    const sd=m.slice(1).find(x=>x==='sinistra'||x==='destra');if(sd)out=out.split('{s}').join(SIDE[sd][CLI]);
+    out=out.replace('{o}',m[2]?' — '+['over the limit','por encima del límite','acima do limite','au-delà de la limite','über dem Limit','上限超過','한도 초과'][CLI]:'');
+    out=out.replace('{d}',m[1]&&/^·/.test(m[1])?'· ':'');
+    if(STW[m[1]])out=out.replace('{w}',STW[m[1]][CLI]).replace('{st}',CT[m[2]][CLI]);
+    if(CTALL[m[2]])out=out.replace('{a}',CTALL[m[2]][CLI]);
+    return out}
+  return s}
+/* passa su tutto il testo della pagina dopo ogni disegno (come il sito) */
+const CORIG=new WeakMap(),CORIGA=new WeakMap();
+function trCalcTree(root){if(CL==='it'||!root)return;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null);let n;
+  while(n=w.nextNode()){const p=n.parentNode&&n.parentNode.nodeName;if(p==='SCRIPT'||p==='STYLE')continue;
+    if(n.parentElement&&n.parentElement.closest('.ty,.tdot,option.nt'))continue;
+    const cur=n.nodeValue;let o=CORIG.get(n);if(!o||(cur!==o.t&&cur!==o.v)){o={t:cur,v:cur};CORIG.set(n,o)}
+    const m=/^(\s*)([\s\S]*?)(\s*)$/.exec(o.t);if(!m[2])continue;const out=m[1]+trC(m[2])+m[3];if(out!==cur){o.v=out;n.nodeValue=out}}
+  root.querySelectorAll('[placeholder],[aria-label],[title]').forEach(el=>['placeholder','aria-label','title'].forEach(a=>{const v=el.getAttribute(a);if(v===null)return;
+    let st=CORIGA.get(el);if(!st){st={};CORIGA.set(el,st)}let o=st[a];if(!o||(v!==o.t&&v!==o.v)){o={t:v,v:v};st[a]=o}const out=trC(o.t);if(out!==v){o.v=out;el.setAttribute(a,out)}}))}
+let CTRQ=false;
+if(CL!=='it')document.documentElement.lang=CL;
+const CMO=new MutationObserver(()=>{if(CL==='it'||CTRQ)return;CTRQ=true;requestAnimationFrame(()=>{CTRQ=false;CMO.disconnect();try{trCalcTree(document.body)}finally{CMO.observe(document.body,{childList:true,subtree:true,characterData:true})}})});
+if(CL!=='it'){CMO.observe(document.body,{childList:true,subtree:true,characterData:true});trCalcTree(document.body)}
+const _confirm=window.confirm.bind(window);window.confirm=m=>_confirm(trC(String(m)));
+
 startEngine();
 </script></script>
 </body>

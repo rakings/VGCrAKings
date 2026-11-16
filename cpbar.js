@@ -8,8 +8,54 @@ var D=null,OV=null,ONC=null,S={q:"",f:"all",st:null,lim:150},BASE=URLD.replace(/
 var PASSO=150; /* righe mostrate alla volta: 6.000 righe insieme bloccherebbero i telefoni */
 function E(x){return String(x).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function pn(s){return String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\s+/g," ").trim()}
-function num(n){return Number(n).toLocaleString("it")}
-function dm(d){try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?String(d||""):x.toLocaleDateString("it",{day:"numeric",month:"short"})}catch(e){return String(d||"")}}
+/* Traduzioni della CP bar (stesso ordine delle lingue del sito: it en es pt fr de ja ko). La lingua si legge a ogni disegno. */
+var LGS=["it","en","es","pt","fr","de","ja","ko"];
+function lg(){var l="it";try{l=(typeof LANG==="string"&&LANG)||localStorage.getItem("vgc-lang")||"it"}catch(e){}return LGS.indexOf(l)<0?"it":l}
+function li(){return LGS.indexOf(lg())}
+var TX={
+nodet:["Nessun dettaglio disponibile","No details available","Sin detalles disponibles","Sem detalhes disponíveis","Aucun détail disponible","Keine Details verfügbar","詳細はありません","상세 정보 없음"],
+eur:["Europa","Europe","Europa","Europa","Europe","Europa","ヨーロッパ","유럽"],
+chiudi:["Chiudi","Close","Cerrar","Fechar","Fermer","Schließen","閉じる","닫기"],
+cls:["Classifica CP","CP ranking","Clasificación CP","Classificação CP","Classement CP","CP-Rangliste","CPランキング","CP 순위"],
+soglia:["soglia","cutoff","corte","corte","seuil","Grenze","ボーダー","커트라인"],
+taglio:["Soglia stimata: {cp} CP · {o}","Estimated cutoff: {cp} CP · {o}","Corte estimado: {cp} CP · {o}","Corte estimado: {cp} CP · {o}","Seuil estimé : {cp} CP · {o}","Geschätzte Grenze: {cp} CP · {o}","推定ボーダー: {cp} CP · {o}","예상 커트라인: {cp} CP · {o}"],
+altri:["Mostra altri ({n})","Show more ({n})","Mostrar más ({n})","Mostrar mais ({n})","Afficher plus ({n})","Mehr anzeigen ({n})","さらに表示 ({n})","더 보기 ({n})"],
+tutta:["Mostra tutta la classifica","Show the full ranking","Mostrar toda la clasificación","Mostrar a classificação completa","Afficher tout le classement","Ganze Rangliste anzeigen","ランキングをすべて表示","전체 순위 보기"],
+carico:["Carico tutta la classifica…","Loading the full ranking…","Cargando toda la clasificación…","Carregando a classificação completa…","Chargement du classement complet…","Ganze Rangliste wird geladen…","ランキングを読み込み中…","전체 순위 불러오는 중…"],
+nessuno:["Nessun giocatore trovato","No player found","Ningún jugador encontrado","Nenhum jogador encontrado","Aucun joueur trouvé","Kein Spieler gefunden","プレイヤーが見つかりません","플레이어를 찾을 수 없음"],
+traprimi:[" tra i primi {n}"," in the top {n}"," entre los primeros {n}"," entre os primeiros {n}"," parmi les {n} premiers"," unter den ersten {n}"," (上位{n}人中)"," (상위 {n}명 중)"],
+anchesu:[". La classifica è anche su {a}.",". The ranking is also on {a}.",". La clasificación también está en {a}.",". A classificação também está no {a}.",". Le classement est aussi sur {a}.",". Die Rangliste gibt es auch auf {a}.","。ランキングは{a}でも見られます。",". 순위는 {a}에서도 볼 수 있습니다."],
+ita:["Italiani","Italians","Italianos","Italianos","Italiens","Italiener","イタリア人","이탈리아인"],
+tutti:["Tutti","All","Todos","Todos","Tous","Alle","すべて","전체"],
+tuttii:["tutti i {n}","all {n}","los {n}","todos os {n}","les {n}","alle {n}","全{n}人","전체 {n}명"],
+nodisp:["{cp} CP · {o}. Dettaglio non ancora disponibile: vedi {a}.","{cp} CP · {o}. Details not available yet: see {a}.","{cp} CP · {o}. Detalle aún no disponible: mira {a}.","{cp} CP · {o}. Detalhes ainda indisponíveis: veja {a}.","{cp} CP · {o}. Détail pas encore disponible : voir {a}.","{cp} CP · {o}. Details noch nicht verfügbar: siehe {a}.","{cp} CP · {o}。詳細はまだありません: {a} を見てください。","{cp} CP · {o}. 상세 정보 아직 없음: {a} 참고."],
+cerco:["Cerco il torneo…","Looking up the tournament…","Buscando el torneo…","Procurando o torneio…","Recherche du tournoi…","Turnier wird gesucht…","大会を検索中…","대회 찾는 중…"],
+incorso:["in corso","current","en curso","em andamento","en cours","laufend","進行中","진행 중"],
+finale:["finale","final","final","final","final","final","確定","최종"],
+sstim:["soglia stimata","estimated cutoff","corte estimado","corte estimado","seuil estimé","geschätzte Grenze","推定ボーダー","예상 커트라인"],
+stima:["Stima non ufficiale","Unofficial estimate","Estimación no oficial","Estimativa não oficial","Estimation non officielle","Inoffizielle Schätzung","非公式の推定","비공식 추정"],
+ingioc:["{n} giocatori in classifica","{n} players ranked","{n} jugadores en la clasificación","{n} jogadores na classificação","{n} joueurs classés","{n} Spieler in der Rangliste","ランキング{n}人","순위 {n}명"],
+cfin:["Classifica finale {s}","Final ranking {s}","Clasificación final {s}","Classificação final {s}","Classement final {s}","Endstand {s}","最終ランキング {s}","최종 순위 {s}"],
+chiusa:["chiusa il {d}","closed on {d}","cerrada el {d}","encerrada em {d}","clôturé le {d}","abgeschlossen am {d}","{d}に締切","{d} 마감"],
+ultimo:["ultimo aggiornamento {d}","last update {d}","última actualización {d}","última atualização {d}","dernière mise à jour {d}","letztes Update {d}","最終更新 {d}","마지막 업데이트 {d}"],
+contr:["controllata il {d}","checked {d}","comprobada el {d}","verificada em {d}","vérifié le {d}","geprüft am {d}","{d}に確認","{d} 확인"],
+cambiati:["punti cambiati il {d}","points changed {d}","puntos cambiados el {d}","pontos alterados em {d}","points modifiés le {d}","Punkte geändert am {d}","{d}にポイント変動","{d} 포인트 변경"],
+aggiorn:["aggiornata il {d}","updated {d}","actualizada el {d}","atualizada em {d}","mise à jour le {d}","aktualisiert am {d}","{d}に更新","{d} 업데이트"],
+cerca:["Cerca un giocatore","Search a player","Buscar un jugador","Buscar um jogador","Chercher un joueur","Spieler suchen","プレイヤーを検索","플레이어 검색"],
+dati:["Dati","Data","Datos","Dados","Données","Daten","データ","데이터"],
+nonuff:["classifica non ufficiale","unofficial ranking","clasificación no oficial","classificação não oficial","classement non officiel","inoffizielle Rangliste","非公式ランキング","비공식 순위"],
+primi:["primi {n}","top {n}","primeros {n}","primeiros {n}","{n} premiers","erste {n}","上位{n}","상위 {n}"],
+di:[" di {n}"," of {n}"," de {n}"," de {n}"," sur {n}"," von {n}"," / {n}"," / {n}"],
+piede:[" giocatori. La soglia è una stima: il {o} dell'elenco. Torneo e piazzamento si ricavano dai nostri risultati (nome e data): mancano per gli eventi che non sono nel sito."," players. The cutoff is an estimate: the {o} on the list. Tournament and placing come from our results (name and date): they're missing for events not on the site."," jugadores. El corte es una estimación: el {o} de la lista. Torneo y posición salen de nuestros resultados (nombre y fecha): faltan para los eventos que no están en el sitio."," jogadores. O corte é uma estimativa: o {o} da lista. Torneio e colocação vêm dos nossos resultados (nome e data): faltam para eventos que não estão no site."," joueurs. Le seuil est une estimation : la {o} de la liste. Tournoi et classement viennent de nos résultats (nom et date) : ils manquent pour les événements absents du site."," Spieler. Die Grenze ist eine Schätzung: {o} der Liste. Turnier und Platzierung stammen aus unseren Ergebnissen (Name und Datum): Sie fehlen bei Events, die nicht auf der Seite sind.","人。ボーダーは推定です: リストの{o}。大会と順位はこのサイトの結果(名前と日付)から求めています。サイトにない大会は表示されません。","명. 커트라인은 추정치입니다: 목록의 {o}. 대회와 순위는 우리 결과(이름과 날짜)에서 가져오며, 사이트에 없는 대회는 빠져 있습니다."],
+carica:["Caricamento…","Loading…","Cargando…","Carregando…","Chargement…","Wird geladen…","読み込み中…","불러오는 중…"],
+nondisp:["La classifica non è disponibile in questo momento. Riprova tra poco.","The ranking isn't available right now. Try again shortly.","La clasificación no está disponible ahora. Inténtalo en un rato.","A classificação não está disponível agora. Tente de novo em breve.","Le classement n'est pas disponible pour le moment. Réessaie bientôt.","Die Rangliste ist gerade nicht verfügbar. Versuch es gleich nochmal.","現在ランキングを表示できません。しばらくして再度お試しください。","지금은 순위를 볼 수 없습니다. 잠시 후 다시 시도하세요."],
+kind:[["Mondiale","Internazionale","Special Event","Nazionale","Regionale","Mond","Int","Spec","Naz","Reg"],["World Championships","International","Special Event","National","Regional","WC","Int","Spec","Nat","Reg"],["Mundial","Internacional","Special Event","Nacional","Regional","Mund","Int","Spec","Nac","Reg"],["Mundial","Internacional","Special Event","Nacional","Regional","Mund","Int","Spec","Nac","Reg"],["Championnats du monde","International","Special Event","National","Régional","Monde","Int","Spec","Nat","Rég"],["Weltmeisterschaft","International","Special Event","National","Regional","WM","Int","Spec","Nat","Reg"],["世界大会","インターナショナル","スペシャルイベント","ナショナル","リージョナル","世界","Int","Spec","国内","Reg"],["월드 챔피언십","인터내셔널","스페셜 이벤트","내셔널","리저널","월드","Int","Spec","내셔널","Reg"]]
+};
+function t(k,o){var a=TX[k],s=a[li()];if(k==="kind")return s;if(o)Object.keys(o).forEach(function(x){s=s.split("{"+x+"}").join(o[x])});return s}
+function ordp(n){n=Number(n);switch(lg()){case"en":var v=n%100,sfx=(v>=11&&v<=13)?"th":["th","st","nd","rd"][n%10]||"th";return n+sfx+" place";case"es":return n+".º puesto";case"pt":return n+".º lugar";case"fr":return n+(n===1?"re":"e")+" place";case"de":return n+". Platz";case"ja":return n+"位";case"ko":return n+"위";default:return n+"° posto"}}
+function loc(){var l=lg();return l==="en"?"en-GB":l}
+function num(n){return Number(n).toLocaleString(loc())}
+function dm(d){try{var x=new Date(d+"T12:00:00");return isNaN(x.getTime())?String(d||""):x.toLocaleDateString(loc(),{day:"numeric",month:"short"})}catch(e){return String(d||"")}}
 function dh(s){var m=/^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2})/.exec(s||"");return m?dm(m[1])+", "+m[2]+" UTC":String(s||"")}
 function css(){if(document.getElementById("cp-css"))return;var st=document.createElement("style");st.id="cp-css";
 st.textContent="#cpov{position:fixed;inset:0;z-index:40;background:var(--bg,#1d0b0d);color:var(--ink,#fff1ef);overflow:auto;-webkit-overflow-scrolling:touch}#cpov[hidden]{display:none}"+
@@ -57,12 +103,12 @@ var usati={},n=0,out=st.map(function(s){var m=ev.filter(function(x){var g=giorni
 function trova(r,stag){if(!GJ||!EVI)return{k:"nd"};var c=candidati(r);if(!c.length)return{k:"non riconosciuto"};var best=null,tie=false;
 c.forEach(function(p){var a=assegna(r,p,stag);if(!best||a.n>best.n){best=a;tie=false}else if(a.n===best.n)tie=true});
 if(tie&&best.n>0)return{k:"ambiguo"};if(c.length>1&&best.n===0)return{k:"ambiguo"};if(best.n===0)return{k:"nessuno"};return{k:"ok",righe:best.righe}}
-function tagDi(e){var k=String(e.kind||"");return/world/i.test(k)?["Mondiale","Mond","t-ww"]:/international/i.test(k)?["Internazionale","Int","t-int"]:/special/i.test(k)?["Special Event","Spec","t-reg"]:/national/i.test(k)?["Nazionale","Naz","t-gc"]:["Regionale","Reg","t-rg"]}
+function tagDi(e){var k=String(e.kind||""),K=t("kind"),i=/world/i.test(k)?0:/international/i.test(k)?1:/special/i.test(k)?2:/national/i.test(k)?3:4;return[K[i],K[i+5],["t-ww","t-int","t-reg","t-gc","t-rg"][i]]}
 function linee(r,ab){var st=(r.storia||[]).slice().sort(function(a,b){return a.data<b.data?-1:1}),h="",prev=0;
 st.forEach(function(s,i){var m=ab?ab[i].m:[],ev="";
 if(m.length===1){var x=m[0],tg=tagDi(x.e);ev='<span class="cp-ev"><span class="tag '+tg[2]+'" title="'+E(tg[0])+'">'+tg[1]+"</span><b>"+E(x.e.city||x.e.name)+"</b><span>· "+E(x.pl)+"°</span>"+(x.w!=null?" <small>("+x.w+"-"+x.l+")</small>":"")+"</span>"}
 else if(m.length>1)ev='<span class="cp-ev"><b>'+m.map(function(x){return E(x.e.city||x.e.name)+" "+E(x.pl)+"°"}).join(" · ")+"</b></span>";
-h+='<div class="cp-e"><span class="cp-ed">'+E(dm(s.data))+"</span><b>"+num(s.cp)+" CP</b>"+(s.cp>prev?"<i>+"+num(s.cp-prev)+"</i>":"")+ev+"</div>";prev=s.cp});return h||'<div class="cp-e cp-no">Nessun dettaglio disponibile</div>'}
+h+='<div class="cp-e"><span class="cp-ed">'+E(dm(s.data))+"</span><b>"+num(s.cp)+" CP</b>"+(s.cp>prev?"<i>+"+num(s.cp-prev)+"</i>":"")+ev+"</div>";prev=s.cp});return h||'<div class="cp-e cp-no">'+t("nodet")+'</div>'}
 function load(st){var k=st||"_";if(DC[k])return Promise.resolve(DC[k]);return fetch(file(st),{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){if(!j||!Array.isArray(j.righe)||!j.righe.length)throw new Error("vuoto");DC[k]=j;return j})}
 /* Classifica completa (tutti i giocatori, file leggero <nome>-tutti.json): si scarica SOLO quando serve (ricerca, filtro Italia, «Mostra altri»).
    I primi della lista restano quelli del file principale, con la storia dei punti; gli altri hanno solo posto, nome, paese e punti. */
@@ -75,44 +121,44 @@ TC[k]=j.r.map(function(x){return top[x[0]]||{pos:x[0],rank:x[1],name:x[2],countr
 var SC={},SP={};function storie(){var k=kst();if(SC[k])return Promise.resolve(SC[k]);if(SP[k])return SP[k];if(!D||!D.tutti)return Promise.resolve(null);
  SP[k]=fetch(file(S.st).replace(/[^\/]*$/,"")+D.tutti.replace(/-tutti\.json$/,"-storie.json"),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){if(!j||!j.s)throw 0;SC[k]=j.s;return j.s}).catch(function(){SP[k]=null;return null});return SP[k]}
 function tutte(){return TC[kst()]||D.righe}
-function head(){return'<div class="cp-h"><b>CP bar</b><span>Europa · VG Masters '+E((D&&D.stagione)||"2027")+'</span><button type="button" class="cp-x" data-cp="x" aria-label="Chiudi">×</button></div>'}
-function ov(){if(OV)return OV;OV=document.createElement("div");OV.id="cpov";OV.hidden=true;OV.setAttribute("role","dialog");OV.setAttribute("aria-modal","true");OV.setAttribute("aria-label","Classifica CP");document.body.appendChild(OV);
+function head(){return'<div class="cp-h"><b>CP bar</b><span>'+t("eur")+' · VG Masters '+E((D&&D.stagione)||"2027")+'</span><button type="button" class="cp-x" data-cp="x" aria-label="'+t("chiudi")+'">×</button></div>'}
+function ov(){if(OV)return OV;OV=document.createElement("div");OV.id="cpov";OV.hidden=true;OV.setAttribute("role","dialog");OV.setAttribute("aria-modal","true");OV.setAttribute("aria-label",t("cls"));document.body.appendChild(OV);
 OV.addEventListener("click",function(e){var t=e.target.closest("[data-cp]");if(!t)return;var a=t.getAttribute("data-cp");
 if(a==="x")close(true);else if(a==="s"){var st=t.getAttribute("data-v");if(st!==S.st){S.st=st;S.q="";S.lim=PASSO;load(st).then(function(x){D=x;draw()}).catch(function(){})}}else if(a==="m"){S.lim+=PASSO;lista()}else if(a==="f"){S.f=t.getAttribute("data-v");S.lim=PASSO;[].forEach.call(OV.querySelectorAll(".cp-chip"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-v")===S.f))});lista()}else if(a==="r")tog(t)});
 OV.addEventListener("input",function(e){if(e.target.id==="cp-q"){S.q=e.target.value;S.lim=PASSO;lista()}});return OV}
-function riga(r,i,sg,max){var sotto=sg.cp!=null&&r.cp<sg.cp,dd=sg.cp==null?"":(r.cp>sg.cp?"+"+(r.cp-sg.cp):r.cp===sg.cp?"soglia":"−"+(sg.cp-r.cp)),cl=r.cp>sg.cp?"cp-su":r.cp===sg.cp?"cp-pa":"cp-gi";
+function riga(r,i,sg,max){var sotto=sg.cp!=null&&r.cp<sg.cp,dd=sg.cp==null?"":(r.cp>sg.cp?"+"+(r.cp-sg.cp):r.cp===sg.cp?t("soglia"):"−"+(sg.cp-r.cp)),cl=r.cp>sg.cp?"cp-su":r.cp===sg.cp?"cp-pa":"cp-gi";
 return'<button type="button" class="cp-r'+(sotto?" cp-sotto":"")+'" data-cp="r" data-i="'+i+'" aria-expanded="false"><span class="cp-pos">'+E(r.pos)+'</span><span class="cp-n"><b>'+E(r.name)+"</b><small>"+E(r.country||"")+'</small></span><span class="cp-cp"><b>'+num(r.cp)+'</b><small class="'+cl+'">'+E(dd)+'</small></span><i class="cp-bar"><u style="width:'+Math.max(2,Math.round(r.cp/max*100))+'%"></u></i></button>'}
 function lista(){var el=document.getElementById("cp-list");if(!el||!D)return;var sg=D.soglia||{},max=Math.max.apply(null,D.righe.map(function(r){return r.cp}))||1,q=pn(S.q),h="",cut=false,
 caricata=!!TC[kst()],serve=!caricata&&D.tutti&&(q||S.f==="it"||S.lim>D.righe.length);
 if(serve){tutti().then(function(x){if(x&&OV&&!OV.hidden){lista();etichette()}});}
 var L=tutte().filter(function(r){return!(S.f==="it"&&r.country!=="ITA")&&!(q&&pn(r.name).indexOf(q)<0)});CUR=L.slice(0,S.lim);
-CUR.forEach(function(r,i){if(!cut&&sg.posizione&&r.pos>sg.posizione){h+='<div class="cp-cut"><span>Soglia stimata: '+num(sg.cp)+" CP · "+sg.posizione+"° posto</span></div>";cut=true}h+=riga(r,i,sg,max)});
+CUR.forEach(function(r,i){if(!cut&&sg.posizione&&r.pos>sg.posizione){h+='<div class="cp-cut"><span>'+t("taglio",{cp:num(sg.cp),o:ordp(sg.posizione)})+"</span></div>";cut=true}h+=riga(r,i,sg,max)});
 var resto=L.length-CUR.length;
-if(resto>0)h+='<button type="button" class="cp-piu" data-cp="m">Mostra altri ('+num(resto)+")</button>";
-else if(!caricata&&D.tutti&&!serve)h+='<button type="button" class="cp-piu" data-cp="m">Mostra tutta la classifica</button>';
-if(serve)h+='<p class="cp-vuoto">Carico tutta la classifica…</p>';
-else if(!L.length)h='<p class="cp-vuoto">Nessun giocatore trovato'+(caricata?"":" tra i primi "+D.righe.length)+'. La classifica è anche su <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a>.</p>';
+if(resto>0)h+='<button type="button" class="cp-piu" data-cp="m">'+t("altri",{n:num(resto)})+"</button>";
+else if(!caricata&&D.tutti&&!serve)h+='<button type="button" class="cp-piu" data-cp="m">'+t("tutta")+'</button>';
+if(serve)h+='<p class="cp-vuoto">'+t("carico")+'</p>';
+else if(!L.length)h='<p class="cp-vuoto">'+t("nessuno")+(caricata?"":t("traprimi",{n:D.righe.length}))+t("anchesu",{a:'<a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a>'})+'</p>';
 el.innerHTML=h}
-function etichette(){var b=OV&&OV.querySelector('[data-cp="f"][data-v="it"]'),c=TC[kst()];if(b&&c)b.textContent="Italiani ("+num(c.filter(function(r){return r.country==="ITA"}).length)+")";
-var f=OV&&OV.querySelector(".cp-f b");if(f&&c)f.textContent="tutti i "+num(c.length)}
+function etichette(){var b=OV&&OV.querySelector('[data-cp="f"][data-v="it"]'),c=TC[kst()];if(b&&c)b.textContent=t("ita")+" ("+num(c.filter(function(r){return r.country==="ITA"}).length)+")";
+var f=OV&&OV.querySelector(".cp-f b");if(f&&c)f.textContent=t("tuttii",{n:num(c.length)})}
 function tog(btn){var nx=btn.nextElementSibling;if(nx&&nx.classList.contains("cp-d")){nx.remove();btn.setAttribute("aria-expanded","false");return}
 var r=CUR[Number(btn.getAttribute("data-i"))],d=document.createElement("div");d.className="cp-d";
 if(!r)return;if(r.storia===null){d.innerHTML='<div class="cp-e cp-no">…</div>';btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");
  storie().then(function(m){var v=m&&m[String(r.pos)];if(v){r.storia=v.map(function(x){return{cp:x[0],delta:x[1],data:x[2]}});mostra(r,d)}
- else d.innerHTML='<div class="cp-e cp-no">'+num(r.cp)+" CP · posto "+E(r.pos)+'. Dettaglio non ancora disponibile: vedi <a href="'+POKEDATA+'&search='+encodeURIComponent(r.name)+'" target="_blank" rel="noopener">Pokédata</a>.</div>'});return}
+ else d.innerHTML='<div class="cp-e cp-no">'+t("nodisp",{cp:num(r.cp),o:ordp(E(r.pos)),a:'<a href="'+POKEDATA+'&search='+encodeURIComponent(r.name)+'" target="_blank" rel="noopener">Pokédata</a>'})+'</div>'});return}
 btn.parentNode.insertBefore(d,btn.nextSibling);btn.setAttribute("aria-expanded","true");mostra(r,d)}
-function mostra(r,d){d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">Cerco il torneo…</div>');
+function mostra(r,d){d.innerHTML=linee(r,null)+(GJ?"":'<div class="cp-e cp-no">'+t("cerco")+'</div>');
 var stag=D.stagione;dati().then(function(ok){if(!d.isConnected)return;var t=ok?trova(r,stag):{k:"nd"};d.innerHTML=linee(r,t.k==="ok"?t.righe:null)})}
 function draw(){var o=ov(),sg=D.soglia||{},nIt=tutte().filter(function(r){return r.country==="ITA"}).length,fin=D.finale===true,
-sel=IX&&IX.stagioni.length>1?'<div class="cp-st">'+IX.stagioni.map(function(v){return'<button type="button" class="cp-chip" data-cp="s" data-v="'+E(v.stagione)+'" aria-pressed="'+(v.stagione===S.st)+'">'+E(v.stagione)+" · "+(v.stato==="in corso"?"in corso":"finale")+"</button>"}).join("")+"</div>":"";
+sel=IX&&IX.stagioni.length>1?'<div class="cp-st">'+IX.stagioni.map(function(v){return'<button type="button" class="cp-chip" data-cp="s" data-v="'+E(v.stagione)+'" aria-pressed="'+(v.stagione===S.st)+'">'+E(v.stagione)+" · "+(v.stato==="in corso"?t("incorso"):t("finale"))+"</button>"}).join("")+"</div>":"";
 o.innerHTML='<div class="cp-w">'+head()+sel+
-'<div class="cp-sum"><div class="cp-big"><b>'+(sg.cp!=null?num(sg.cp)+" CP":"—")+"</b><span>soglia stimata"+(sg.posizione?" ("+sg.posizione+"° posto)":"")+'</span></div>'+
-'<div class="cp-note">Stima non ufficiale · '+(D.giocatori_totali?num(D.giocatori_totali)+" giocatori in classifica · ":"")+(fin?"Classifica finale "+E(D.stagione)+(D.chiusa?" · chiusa il "+E(dm(D.chiusa)):"")+" · ultimo aggiornamento "+E(dh(D.aggiornato)):D.controllato?"controllata il "+E(dh(D.controllato))+(D.aggiornato&&D.aggiornato!==D.controllato?" · punti cambiati il "+E(dh(D.aggiornato)):""):"aggiornata il "+E(dh(D.aggiornato)))+"</div></div>"+
-'<div class="cp-ctl"><input id="cp-q" type="search" placeholder="Cerca un giocatore" aria-label="Cerca un giocatore" value="'+E(S.q)+'"><button type="button" class="cp-chip" data-cp="f" data-v="all" aria-pressed="'+(S.f==="all")+'">Tutti</button><button type="button" class="cp-chip" data-cp="f" data-v="it" aria-pressed="'+(S.f==="it")+'">Italiani'+(TC[kst()]||!D.tutti?" ("+nIt+")":"")+"</button></div>"+
-'<div id="cp-list"></div><p class="cp-f">Dati: <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a> · classifica non ufficiale · <b>'+(TC[kst()]?"tutti i "+num(TC[kst()].length):"primi "+D.righe.length+(D.giocatori_totali?" di "+num(D.giocatori_totali):""))+"</b> giocatori. La soglia è una stima: il "+(sg.posizione||90)+"° posto dell'elenco. Torneo e piazzamento si ricavano dai nostri risultati (nome e data): mancano per gli eventi che non sono nel sito.</p></div>";lista()}
+'<div class="cp-sum"><div class="cp-big"><b>'+(sg.cp!=null?num(sg.cp)+" CP":"—")+"</b><span>"+t("sstim")+(sg.posizione?" ("+ordp(sg.posizione)+")":"")+'</span></div>'+
+'<div class="cp-note">'+t("stima")+' · '+(D.giocatori_totali?t("ingioc",{n:num(D.giocatori_totali)})+" · ":"")+(fin?t("cfin",{s:E(D.stagione)})+(D.chiusa?" · "+t("chiusa",{d:E(dm(D.chiusa))}):"")+" · "+t("ultimo",{d:E(dh(D.aggiornato))}):D.controllato?t("contr",{d:E(dh(D.controllato))})+(D.aggiornato&&D.aggiornato!==D.controllato?" · "+t("cambiati",{d:E(dh(D.aggiornato))}):""):t("aggiorn",{d:E(dh(D.aggiornato))}))+"</div></div>"+
+'<div class="cp-ctl"><input id="cp-q" type="search" placeholder="'+t("cerca")+'" aria-label="'+t("cerca")+'" value="'+E(S.q)+'"><button type="button" class="cp-chip" data-cp="f" data-v="all" aria-pressed="'+(S.f==="all")+'">'+t("tutti")+'</button><button type="button" class="cp-chip" data-cp="f" data-v="it" aria-pressed="'+(S.f==="it")+'">'+t("ita")+(TC[kst()]||!D.tutti?" ("+nIt+")":"")+"</button></div>"+
+'<div id="cp-list"></div><p class="cp-f">'+t("dati")+': <a href="'+POKEDATA+'" target="_blank" rel="noopener">Pokédata</a> · '+t("nonuff")+' · <b>'+(TC[kst()]?t("tuttii",{n:num(TC[kst()].length)}):t("primi",{n:D.righe.length})+(D.giocatori_totali?t("di",{n:num(D.giocatori_totali)}):""))+"</b>"+t("piede",{o:ordp(sg.posizione||90)})+"</p></div>";lista()}
 function open(onclose){ONC=onclose||null;css();var o=ov();o.hidden=false;o.scrollTop=0;
-o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">Caricamento…</p></div>';
-indice().then(function(){S.st=IX?IX.corrente:null;return load(S.st)}).then(function(x){D=x;if(!o.hidden)draw()}).catch(function(){if(!o.hidden)o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">La classifica non è disponibile in questo momento. Riprova tra poco.</p></div>'})}
+o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">'+t("carica")+'</p></div>';
+indice().then(function(){S.st=IX?IX.corrente:null;return load(S.st)}).then(function(x){D=x;if(!o.hidden)draw()}).catch(function(){if(!o.hidden)o.innerHTML='<div class="cp-w">'+head()+'<p class="cp-vuoto">'+t("nondisp")+'</p></div>'})}
 function close(utente){if(OV)OV.hidden=true;if(utente&&ONC){var f=ONC;ONC=null;f()}}
 window.CPBAR={open:open,close:function(){close(false)}};
 })();
