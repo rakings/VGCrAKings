@@ -355,6 +355,9 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 .pz{padding-top:8px}
 
 .pzsw{border:2px solid #ffd21f;box-shadow:0 0 0 1px rgba(255,210,31,.35),0 4px 14px rgba(0,0,0,.35)}
+
+.pzsw small{white-space:nowrap;flex:none}
+.pzh.rev{flex-direction:row-reverse}.pzh.rev .pzt{text-align:right}
 </style>
 </head>
 <body>
@@ -737,8 +740,8 @@ function panelHtml(o,other){
   const abtog=o.abTog?'<button class="tg sm'+(o.abOn?' on':'')+'" data-a="abtog">'+esc(o.abLabel||'Abilit\u00e0 attiva')+'</button>':'';
   const pct=o.hpTot?Math.max(0,Math.min(100,Math.round(o.hpCur*100/o.hpTot))):100;
   return '<div class="pz" style="--c:'+c+'">'+
-   '<div class="pzh"><span class="pzt"><b>Pok\u00e9mon '+n+'</b><small>attacca</small></span>'+
-     '<button type="button" class="pzsw" style="--c2:'+c2+'" data-a="view"><small>Pok\u00e9mon '+(3-n)+'</small><b>'+esc(short(other.name))+'</b><i>\u2192</i></button></div>'+
+   '<div class="pzh'+(n===2?' rev':'')+'"><span class="pzt"><b>Pok\u00e9mon '+n+'</b><small>attacca</small></span>'+
+     '<button type="button" class="pzsw" style="--c2:'+c2+'" data-a="view">'+(n===1?'<small>Pok\u00e9mon 2</small><b>'+esc(short(other.name))+'</b><i>\u2192</i>':'<i>\u2190</i><b>'+esc(short(other.name))+'</b><small>Pok\u00e9mon 1</small>')+'</button></div>'+
    '<div class="pzb"><div class="pan">'+
      '<button class="pmon" data-a="pickmon"><b>'+esc(o.name)+'</b><span class="types">'+tyChip(o.t1)+tyChip(o.t2)+'</span></button>'+
      '<div class="pr2">'+setSel+fm+'</div>'+tera+
