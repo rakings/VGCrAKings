@@ -499,11 +499,11 @@ def push_on():
     """Notifiche nell'app attive: servono il segreto FCM_SERVICE_ACCOUNT (Firebase) e l'archivio iscritti."""
     return fcm_on()
 
-def send_push(ids, title, body, click, tag=None):
-    """Invia con Firebase a un elenco di token dell'archivio iscritti."""
+def send_push(ids, title, body, click, tag=None, cat=None):
+    """Invia con Firebase a un elenco di token dell'archivio iscritti. cat = categoria dell'avviso (sceglie l'icona)."""
     if ids is None:
         raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
-    return send_fcm(ids, title, body, click, tag)
+    return send_fcm(ids, title, body, click, tag, cat)
 
 
 # ---------- Argomenti Firebase (FCM topics): un solo invio per canale ----------
@@ -559,7 +559,7 @@ def tag_avviso(title, body, click):
     import hashlib
     return "vgc-" + hashlib.sha1(("%s|%s|%s" % (title, body, click or "")).encode("utf-8")).hexdigest()[:12]
 
-def send_topic(target, title, body, click, tag=None):
+def send_topic(target, title, body, click, tag=None, cat=None):
     """Un solo invio a un argomento (target = {"topic": nome}) o a una condizione (target = {"condition": "..."}). Ritorna True se Google lo accetta."""
     try:
         access = fcm_access_token()
@@ -572,6 +572,8 @@ def send_topic(target, title, body, click, tag=None):
         data["link"] = click
     if tag:
         data["tag"] = tag
+    if cat:
+        data["cat"] = cat   # categoria: il telefono sceglie l'icona (icone/<cat>.png)
     msg = {"notification": {"title": title, "body": body}, "data": data, "webpush": {"headers": {"Urgency": "high", "TTL": "86400"}}}
     msg.update(target)
     payload = json.dumps({"message": msg}).encode("utf-8")
@@ -598,7 +600,7 @@ def send_topic(target, title, body, click, tag=None):
             return False
     return False
 
-def _via_archivio(topics, title, body, click, tag=None):
+def _via_archivio(topics, title, body, click, tag=None, cat=None):
     """L'invio di sempre: gli ID dei dispositivi si leggono dall'archivio iscritti e l'avviso va a ciascuno."""
     ids = []
     for t in topics:
@@ -606,11 +608,11 @@ def _via_archivio(topics, title, body, click, tag=None):
             if i not in ids:
                 ids.append(i)
     if ids:
-        send_push(ids, title, body, click, tag)
+        send_push(ids, title, body, click, tag, cat or topics[0])
     else:
         print("Nessun iscritto per", "il canale" if len(topics) == 1 else "i canali", topics[0] if len(topics) == 1 else topics)
 
-def _invia(topics, title, body, click):
+def _invia(topics, title, body, click, cat=None):
     """Sceglie il modo (old / both / new) per questi canali e manda l'avviso."""
     nomi = [argomento_di(t) for t in topics]
     if all(nomi) and len(nomi) <= 5:   # una condizione di Firebase ammette al massimo 5 argomenti
@@ -619,14 +621,15 @@ def _invia(topics, title, body, click):
     else:
         modo = "old"
     tag = tag_avviso(title, body, click) if modo == "both" else None
+    cat = cat or topics[0]
     if modo in ("old", "both"):
-        _via_archivio(topics, title, body, click, tag)
+        _via_archivio(topics, title, body, click, tag, cat)
     if modo in ("both", "new"):
         target = {"topic": nomi[0]} if len(nomi) == 1 else {"condition": " || ".join("'%s' in topics" % n for n in nomi)}
-        ok = send_topic(target, title, body, click, tag)
+        ok = send_topic(target, title, body, click, tag, cat)
         if modo == "new" and not ok:
             print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'avviso ai dispositivi come prima")
-            _via_archivio(topics, title, body, click)
+            _via_archivio(topics, title, body, click, None, cat)
 
 # ---------- Firebase (FCM) ----------
 _FCM = {}
@@ -674,7 +677,7 @@ DEAD_BRAKE_MIN = 10      # freno di sicurezza: se in un invio ALMENO 10 disposit
 DEAD_BRAKE_SHARE = 0.30  # ...e sono PIU' del 30% di quelli raggiunti, non se ne toglie nessuno (puo' essere un problema di configurazione, non una moria vera)
 FCM_PARALLEL = 68   # invii contemporanei verso Firebase (erano 10, poi 40): con tanti iscritti un avviso a tutti arriva in pochi minuti. La quota di Firebase e' di 600.000 messaggi al minuto
 
-def send_fcm(ids, title, body, click, tag=None):
+def send_fcm(ids, title, body, click, tag=None, cat=None):
     """Manda l'avviso a un elenco di token Firebase (a gruppi in parallelo). I token morti si tolgono dall'archivio iscritti."""
     global _SUBS
     from concurrent.futures import ThreadPoolExecutor
@@ -686,6 +689,8 @@ def send_fcm(ids, title, body, click, tag=None):
         data["link"] = click
     if tag:
         data["tag"] = tag
+    if cat:
+        data["cat"] = cat
     hdr = {"Authorization": "Bearer " + access, "Content-Type": "application/json; charset=UTF-8", "User-Agent": UA}
 
     def one(tok):
@@ -847,15 +852,15 @@ def deliver_tutti(title, body, click):
         if modo in ("old", "both"):
             ids = [s["id"] for s in subs_list() if s.get("id")]
             if ids:
-                send_push(ids, title, body, click, tag)
+                send_push(ids, title, body, click, tag, "annunci")
             else:
                 print("Nessun iscritto a cui mandare l'annuncio")
         if modo in ("both", "new"):
-            if not send_topic({"topic": "tutti"}, title, body, click, tag) and modo == "new":
+            if not send_topic({"topic": "tutti"}, title, body, click, tag, "annunci") and modo == "new":
                 print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'annuncio ai dispositivi come prima")
                 ids = [s["id"] for s in subs_list() if s.get("id")]
                 if ids:
-                    send_push(ids, title, body, click)
+                    send_push(ids, title, body, click, None, "annunci")
     else:
         say(os.environ.get("NTFY_PREFIX", "") + "-annunci", title, body, click)
     log_notif("annunci", title, body, click, "notifiche_avvisi.json")

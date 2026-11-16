@@ -103,7 +103,7 @@ def deliver_union(topics, title, body, click):
                 if i not in ids:
                     ids.append(i)
         if ids:
-            send_push(ids, title, body, click)
+            send_push(ids, title, body, click, None, "promemoria")
         else:
             print("Nessun iscritto per i canali", topics)
     else:
@@ -118,7 +118,7 @@ def deliver(topic, title, body, click):
             raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
         ids = subs_for(topic)
         if ids:
-            send_push(ids, title, body, click)
+            send_push(ids, title, body, click, None, "promemoria")
         else:
             print("Nessun iscritto per il canale", topic)
     else:

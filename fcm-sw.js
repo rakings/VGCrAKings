@@ -5,19 +5,41 @@ self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim(
 
 // Cronologia sul dispositivo: la campanella del sito la legge dalla stessa cache che usava sw.js.
 // Gli avvisi che arrivano nello stesso istante si salvano uno dopo l'altro: prima leggevano tutti lo stesso elenco e l'ultimo a scrivere cancellava gli altri.
+// Icona a destra di ogni avviso, secondo la categoria (dato «cat»; per gli avvisi vecchi si riconosce dal titolo).
+function vgcCat(cat, title) {
+  var c = String(cat || ""), t = String(title || "");
+  if (/-1h$|^t-|^promemoria$/.test(c)) return "promemoria";
+  var m = { money: "money", money33: "money", gc: "gc", maddos: "maddos", regionali: "regionali", vr: "vr", vrreg: "vrreg", vrwin: "vrwin",
+            winner: "winner", locali: "locali", locali8: "locali8", player: "player", pardini: "pardini", tutti: "annunci", annunci: "annunci" };
+  if (m[c]) return m[c];
+  if (/^Vincitore Victory Road/i.test(t)) return "vrwin";
+  if (/^Vincitore Regional/i.test(t)) return "winner";
+  if (/Maddos/i.test(t)) return "maddos";
+  if (/Victory Road/i.test(t)) return "vr";
+  if (/^Region/i.test(t)) return "regionali";
+  if (/money/i.test(t)) return "money";
+  if (/Global Challenge/i.test(t)) return "gc";
+  if (/^Player in evidenza/i.test(t)) return "player";
+  if (/top 8/i.test(t)) return "locali8";
+  if (/Pardini/i.test(t)) return "pardini";
+  if (/^Promemoria|tra 1 ora|fra un'ora|inizia tra/i.test(t)) return "promemoria";
+  if (/^Annuncio/i.test(t)) return "annunci";
+  return "";
+}
 var histQ = Promise.resolve();
-function histSave(title, body, link, tag) {
-  var job = histQ.then(function () { return histSaveOne(title, body, link, tag); });
+function histSave(title, body, link, tag, cat) {
+  var job = histQ.then(function () { return histSaveOne(title, body, link, tag, cat); });
   histQ = job.catch(function () {});
   return job;
 }
 // Modo «both»: lo stesso avviso arriva due volte (invio diretto + argomento) con lo stesso «tag»: in campanella resta UNA riga sola.
 // Il secondo arrivo si annota nella riga gia' salvata (campo arr, letto da avvisi-log.html). Vale solo per avvisi con tag, entro 6 ore.
 var TAG_FINESTRA = 6 * 3600 * 1000;
-function histSaveOne(title, body, link, tag) {
+function histSaveOne(title, body, link, tag, cat) {
   var t = Date.now();
   var item = { id: "|" + title + "|" + body + "|" + t, t: t, title: title, body: body, url: /^https?:/.test(link || "") ? link : "" };
   if (tag) { item.tag = tag; item.arr = [t]; }
+  if (cat) item.cat = cat;
   return caches.open("vgc-hist").then(function (c) {
     return c.match("hist.json").then(function (r) { return r ? r.json().catch(function () { return []; }) : []; }).then(function (a) {
       if (!Array.isArray(a)) a = [];
@@ -56,9 +78,9 @@ self.addEventListener("push", function (e) {
   var title = n.title || d.title || "rAKings VGC";
   var body = n.body || d.body || (!n.title && !d.title ? raw.slice(0, 200) : "");
   var link = (j.fcmOptions && j.fcmOptions.link) || n.click_action || d.link || d.url || "./";
-  e.waitUntil(Promise.all([logP, histSave(title, body, link, d.tag || ""), self.registration.showNotification(title, {
+  e.waitUntil(Promise.all([logP, histSave(title, body, link, d.tag || "", d.cat || ""), self.registration.showNotification(title, {
     body: body,
-    icon: n.icon || d.icon || "icon-192.png",
+    icon: n.icon || d.icon || (vgcCat(d.cat, title) ? "icone/" + vgcCat(d.cat, title) + ".png" : "icon-192.png"),
     badge: "badge-96.png",
     data: { link: link },
     tag: d.tag || undefined
