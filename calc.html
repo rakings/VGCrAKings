@@ -279,16 +279,83 @@ textarea.in{padding:10px 12px;min-height:200px;font:13px/1.35 ui-monospace,Menlo
 /* le mosse vuote o senza danno sono attenuate, ma la matita resta piena (serve per riempirle) */
 .mx.pk.z{opacity:1}
 .mx.pk.z span,.mx.pk.z b{opacity:.5}
+
+/* ---- pannello sempre aperto + squadra di lato (16/11/2026) ---- */
+.pz{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:10px;position:relative;overflow:hidden}
+.pz::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--c)}
+.pzh{display:flex;align-items:center;gap:8px;margin:2px 0 10px}
+.pzt{flex:1;min-width:0;line-height:1.1}.pzt b{display:block;font-size:15px;color:var(--c)}.pzt small{font-size:11.5px;color:var(--mute)}
+.pzsw{display:flex;align-items:center;gap:8px;min-height:44px;padding:4px 12px 4px 14px;border-radius:14px;background:linear-gradient(135deg,var(--c2),#2a0d1c);color:#fff;text-align:left;max-width:62%;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.pzsw small{display:block;font-size:10.5px;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.4px}
+.pzsw b{display:block;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pzsw>span,.pzsw b,.pzsw small{min-width:0}.pzsw i{font-style:normal;font-size:22px;font-weight:900;flex:none}
+.pzsw:active{filter:brightness(1.2)}
+.pzb{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:8px;align-items:start}
+.pan{min-width:0}
+.pmon{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;width:100%;min-height:46px;padding:6px 10px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);text-align:left}
+.pmon b{font-size:17px;font-weight:800;line-height:1.1;word-break:break-word}.pmon .types{display:flex;gap:4px}
+.pr2{display:flex;gap:6px;margin-top:6px}.pr2 .sel{flex:1;min-width:0}
+.sel.sm{min-height:38px;font-size:13px;padding-left:10px;border-radius:10px}
+.sel.pk{display:block;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#ffd21f}
+.pr{display:flex;align-items:center;gap:6px;margin-top:6px}.pr .pl{width:66px;flex:none;font-size:12px;font-weight:700;color:var(--mute)}.pr .sel{flex:1;min-width:0}
+.pst{display:grid;grid-template-columns:30px 30px minmax(0,1fr) 34px 44px;gap:4px;align-items:center;margin-top:8px}
+.pst .h{font-size:10.5px;color:var(--dim);font-weight:700}
+.pst .sl{font-weight:800;font-size:12px}.pst .bsx{font-size:12px;letter-spacing:-.3px;color:var(--mute);text-align:center;font-variant-numeric:tabular-nums}
+.pst .sv{font-weight:800;text-align:right;font-variant-numeric:tabular-nums;font-size:14px}
+.pst .stp{grid-template-columns:26px minmax(0,1fr) 26px;gap:2px}
+.pst .stp button,.pst .stp input,.pst select{min-height:0!important}
+.pst .stp button{height:34px;border-radius:8px;font-size:18px}
+.pst .stp input{height:34px;border-radius:8px;font-size:14px;padding:0;-moz-appearance:textfield}
+.pst .stp input::-webkit-inner-spin-button,.pst .stp input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.pst select{height:34px;padding:0 2px;text-align:center;border-radius:8px;background:var(--card2);border:1px solid var(--line);width:100%;font-size:12.5px;font-weight:700}
+.pst select.bo{border-color:#ffd21f;color:#ffd21f}
+.pz .spt{font-size:12px;margin:5px 2px 2px;text-align:right}
+.tg.sm{min-height:38px;font-size:13px;margin-top:6px}
+.tcol{display:flex;flex-direction:column;gap:5px}
+.tsl{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;min-height:50px;padding:6px 7px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);text-align:left}
+.tsl .tn{font-size:11.5px;font-weight:700;line-height:1.15;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.tsl .td{display:flex;gap:4px}
+.tdot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--t);box-shadow:0 0 0 1.5px rgba(255,255,255,.25)}
+.tsl.on{background:var(--c);border-color:transparent}.tsl.on .tdot{box-shadow:0 0 0 1.5px #fff}
+.tsl.add{align-items:center;justify-content:center;border-style:dashed;color:var(--mute);font-size:11.5px;font-weight:700;text-align:center;min-height:44px}
+.tsl.era{align-items:center;justify-content:center;min-height:40px;color:var(--mute)}
+.tsl.era.danger{background:#7a1226;border-color:#ff4a63;color:#fff;font-size:12px;font-weight:700}
+.tsl:active{filter:brightness(1.25)}
+.php{margin-top:12px;padding:10px 12px 12px;border-radius:14px;background:var(--bg2);border:1px solid var(--line)}
+.phl{display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:var(--mute);font-weight:700;margin-bottom:8px}
+.phl b{color:var(--ink);font-size:14px;font-variant-numeric:tabular-nums}.phl em{font-style:normal;color:var(--ok)}
+.hpr{-webkit-appearance:none;appearance:none;width:100%;height:14px;border-radius:99px;margin:0;outline:none;
+  background:linear-gradient(90deg,#2fd27a 0,#3ddc97 var(--p,100%),#3a1626 var(--p,100%))}
+.hpr::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:3px solid #2fd27a;box-shadow:0 2px 6px rgba(0,0,0,.45)}
+.hpr::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid #2fd27a}
+.pzf{display:flex;gap:8px;margin-top:10px}
+.fbtn{flex:1;min-width:0;display:flex;align-items:center;gap:8px;min-height:48px;padding:6px 12px;border-radius:14px;background:linear-gradient(135deg,#1f6f8b,#173a5e);color:#fff;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.fbtn span{flex:1;min-width:0}.fbtn b{display:block;font-size:14.5px}.fbtn small{display:block;font-size:11.5px;opacity:.9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fbtn i{font-style:normal;font-size:24px;font-weight:900}
+.chip.add.redadd{background:var(--red);border:0;color:#fff;font-weight:800;font-size:13px}
+
+/* ---- strumenti sopra la squadra (16/11/2026 b) ---- */
+.tools{display:flex;flex-direction:column;gap:5px;margin-bottom:5px;position:relative}
+.fldb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;width:100%;min-height:46px;border-radius:12px;background:var(--red);color:#fff;font-weight:800;font-size:13px;border:2px solid #ffd21f;box-shadow:0 0 0 1px rgba(255,210,31,.35),0 3px 10px rgba(255,31,61,.35)}
+.fldb svg{width:18px;height:18px}
+.fldb:active{filter:brightness(1.2)}
+.t2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.sq{aspect-ratio:1/1;width:100%;border-radius:10px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.sq svg{width:18px;height:18px}.sq.on{border-color:#ffd21f;color:#ffd21f}
+.menu{position:absolute;right:0;top:100%;margin-top:6px;z-index:30;width:230px;background:#2a1220;border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 12px 30px rgba(0,0,0,.55)}
+.menu button{display:block;width:100%;text-align:left;padding:10px 10px;border-radius:10px;font-size:14px;font-weight:700}
+.menu button small{display:block;font-size:11.5px;font-weight:500;color:var(--mute);margin-top:2px}
+.menu button:active{background:var(--card2)}
+.pst .bsx input{width:100%;height:34px;min-height:0!important;padding:0;border-radius:8px;background:transparent;border:1px dashed var(--line);text-align:center;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.pst .bsx input:focus{border-style:solid;border-color:#ffd21f;color:var(--ink);outline:none}
+.pst .bsx input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 </style>
 </head>
 <body>
 <div class="app" id="app">
   <header class="top">
     <h1>Calcolatore<small id="sub">Champions · caricamento…</small></h1>
-    <button class="ib" id="bImp" data-a="paste" title="Incolla squadra"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/></svg><span class="lb">Squadre</span></button>
-    <button class="ib" id="bFld" data-a="field" title="Campo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 5 14a4 4 0 0 0 .5 5z"/></svg><span class="lb">Campo</span></button>
-    <button class="ib" data-a="settings" title="Impostazioni" aria-label="Impostazioni"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
-  </header>
+    </header>
   <div id="load"><i></i>Preparo il calcolatore…</div>
   <div id="err"></div>
   <main id="main" hidden></main>
@@ -305,7 +372,7 @@ const ENGINE="﻿\u003c!doctype HTML>\n\u003chtml lang=\"us\" xmlns=\"http://www
 var W=null,J=null;
 const $q=(s,r)=>(r||document).querySelector(s),$$=(s,r)=>[...(r||document).querySelectorAll(s)];
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const S={dir:0,sel:[-1,-1],sheet:null,edit:1,pickCb:null,mc:{open:false,mode:0,sel:{},res:null,busy:false,sig:'',exp:{},vn:0,prog:0,tot:0,fixed:''},sm:{open:false,ents:[],rows:{},pick:{},exp:{},busy:false,mainOn:true,sig:'',an:0,prog:0,tot:0,uid:0,editing:null,mainSnap:null}};
+const S={view:1,dir:0,sel:[-1,-1],sheet:null,edit:1,pickCb:null,mc:{open:false,mode:0,sel:{},res:null,busy:false,sig:'',exp:{},vn:0,prog:0,tot:0,fixed:''},sm:{open:false,ents:[],rows:{},pick:{},exp:{},busy:false,mainOn:true,sig:'',an:0,prog:0,tot:0,uid:0,editing:null,mainSnap:null}};
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const TC={Normal:'#8a8a6a',Fire:'#e2652b',Water:'#4a7fe0',Electric:'#d6a900',Grass:'#4aa44a',Ice:'#4fb7b7',Fighting:'#b53a2f',Poison:'#9a3fa0',Ground:'#b99a45',Flying:'#8a7ae0',Psychic:'#e04a7a',Bug:'#8aa31f',Rock:'#9a8530',Ghost:'#6a4a8f',Dragon:'#5a2fe0',Dark:'#5a4a3f',Steel:'#8a8aa5',Fairy:'#d97fb0',Typeless:'#777',Stellar:'#3a9a8a'};
 const ST=[['hp','PS'],['at','Att'],['df','Dif'],['sa','AtSp'],['sd','DfSp'],['sp','Vel']];
@@ -390,8 +457,7 @@ function refresh(){
   $q('#main').innerHTML=
    detail(R[S.sel[S.dir]],atk,def,cA,smHero(atk,def))+
   '<div class="seg dirb" style="--c:'+cA+'"><button data-a="dir" data-d="0" class="'+(S.dir===0?'on':'')+'" style="--c:var(--red)"><span class="dn">'+esc(short(a.name))+'</span><small>attacca</small></button><button data-a="dir" data-d="1" class="'+(S.dir===1?'on':'')+'" style="--c:var(--violet)"><span class="dn">'+esc(short(b.name))+'</span><small>attacca</small></button></div>'+
-    '<div class="mu">'+sideCard(a,'a')+sideCard(b,'b')+'</div>'+
-   '<div class="mu" style="margin-top:0">'+teamStrip(1)+teamStrip(2)+'</div>'+
+    panelHtml(sides[S.view-1],sides[2-S.view])+
    '<h2>Mosse di '+esc(atk.name)+' contro '+esc(def.name)+'</h2><div class="res" style="--c:'+cA+'">'+R.map((x,i)=>moveCard(x,atk,def,i)).join('')+'</div>'+smHtml(atk,def,cA)+mcHtml(atk,def,cA,mcStale)+
    '<p class="foot">Calcoli del <b>Nimbasa City Post Damage Calculator</b> (licenza MIT) di Honko, Tapin, Firestorm, squirrelboyVGC e nerd-of-now. Interfaccia per telefono di rAKings VGC. Strumento non ufficiale.</p>';
   if(S.sheet==='edit')renderEditor(true);
@@ -588,10 +654,9 @@ function smHtml(atk,def,cA){
   if(!M.open)return head;
   const slotOn=i=>M.ents.some(e=>e.src==='slot'&&e.i===i);
   let h='<div class="sumbox"><p class="hint" style="margin:2px 2px 8px">Aggiungi un Pok\u00e9mon dalla squadra o uno qualsiasi: il suo danno viene <b>sommato</b> a quello di '+esc(atk.name)+(mainX?' ('+esc(mainX.name)+')':'')+' su '+esc(def.name)+'.</p>'+
-    '<div class="tgrid mcg" style="--c:'+(atkN===1?'var(--red)':'var(--violet)')+'">'+others.map(o=>'<button type="button" class="chip'+(slotOn(o.i)?' on':'')+'" data-a="smsel" data-i="'+o.i+'"><span>'+esc(o.nm)+'</span></button>').join('')+'<button type="button" class="chip add" data-a="smaddman">+ Altro Pok\u00e9mon (a scelta)</button></div>';
+    '<div class="tgrid mcg" style="--c:'+(atkN===1?'var(--red)':'var(--violet)')+'">'+others.map(o=>'<button type="button" class="chip'+(slotOn(o.i)?' on':'')+'" data-a="smsel" data-i="'+o.i+'"><span>'+esc(o.nm)+'</span></button>').join('')+'<button type="button" class="chip add redadd" data-a="smaddman">+ Altro Pok\u00e9mon (a scelta)</button></div>';
   if(M.ents.length){
     h+='<div style="margin-top:8px">';
-    if(mainX)h+='<div class="mrow main"><span class="who">'+esc(atk.name)+'</span><span class="bp">'+mcFmt(mainX)+'</span><span class="bm">'+esc(mainX.name)+'</span><span class="bk">principale \u00b7 sempre incluso</span></div>';
     M.ents.forEach(e=>{
       const ro=rowsOut.find(r=>r.e===e),open=M.exp[e.k];
       if(!M.rows[e.k]){h+='<div class="mrow na"><b class="who">'+esc(e.species||((team[e.i-1])||'Pok\u00e9mon'))+'</b><span class="bm">calcolo\u2026</span></div>';return}
@@ -616,6 +681,65 @@ function smHtml(atk,def,cA){
   return head+h+'</div>';
 }
 
+/* ---------- pannello del Pokemon sempre aperto (come il calcolatore originale): niente piu' «Modifica» ---------- */
+function baseStat(n,k){return J(P(n)+' .'+k+' .base').val()||''}
+function typesOf(sp){const d=W.pokedex&&W.pokedex[sp];return d?[d.t1,d.t2].filter(Boolean):[]}
+const dot=t=>'<i class="tdot" style="--t:'+(TC[t]||'#666')+'" title="'+esc(t)+'"></i>';
+function teamCol(n){
+  const t=(W.CURRENT_SIDEBARS&&W.CURRENT_SIDEBARS[n-1])||[],cur=(J(P(n)+' input.set-selector').val()||''),side=n===1?'Left':'Right';
+  const arm=S.clrArm&&S.clrArm.n===n&&S.clrArm.until>Date.now();
+  let h=t.map((nm,i)=>{const on=cur.indexOf(side+' Sidebar Slot '+(i+1)+')')>=0;
+    return '<button type="button" class="tsl'+(on?' on':'')+'" data-a="slot" data-n="'+n+'" data-i="'+(i+1)+'"><span class="tn">'+esc(nm)+'</span><span class="td">'+typesOf(nm).map(dot).join('')+'</span></button>'}).join('');
+  if(!t.length)h+='<button type="button" class="tsl add" data-a="paste" data-n="'+n+'">+ Incolla squadra</button>';
+  if(t.length)h+=arm?'<button type="button" class="tsl era danger" data-a="eraseteam" data-n="'+n+'">Svuota?</button>':'<button type="button" class="tsl era" data-a="eraseteam" data-n="'+n+'" aria-label="Svuota la squadra" title="Svuota la squadra">'+ERASER+'</button>';
+  const CLIP='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/></svg>';
+  const CLOUD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 5 14a4 4 0 0 0 .5 5z"/></svg>';
+  const DOTS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>';
+  const menu=S.menu?'<div class="menu" role="menu"><button data-a="field"><b>Fields</b><small>'+esc(fieldSummary())+'</small></button><button data-a="addteam" data-n="'+n+'">+ Aggiungi alla squadra<small>mette questo Pok\u00e9mon nella squadra '+(n===1?'sinistra':'destra')+'</small></button><button data-a="pastetxt" data-n="'+n+'">Incolla il testo a mano<small>se l\u2019incolla automatico non funziona</small></button><button data-a="settings">Impostazioni<small>tutti i Pok\u00e9mon, statistiche, azzera</small></button></div>':'';
+  const tools='<div class="tools"><button type="button" class="fldb" data-a="field" title="Fields: meteo, terreno, schermi, Tailwind\u2026">'+CLOUD+'<span>Fields</span></button>'+
+    '<div class="t2"><button type="button" class="sq" data-a="paste" data-n="'+n+'" title="Incolla squadra" aria-label="Incolla squadra">'+CLIP+'</button><button type="button" class="sq'+(S.menu?' on':'')+'" data-a="menu" title="Altro" aria-label="Altro" aria-expanded="'+(S.menu?'true':'false')+'">'+DOTS+'</button></div>'+menu+'</div>';
+  return '<div class="tcol">'+tools+h+'</div>';
+}
+function fieldSummary(){
+  const on=[];const rd=(id,l)=>{if(chk(id))on.push(l)};
+  on.push(chk('doubles')?'Doppio':'Singolo');
+  [['sun','Sole'],['rain','Pioggia'],['sand','Sabbia'],['hail','Grandine'],['snow','Neve'],['harsh-sun','Sole estremo'],['heavy-rain','Pioggia forte'],['strong-winds','Venti forti'],
+   ['electric','Elettrico'],['grassy','Erboso'],['misty','Nebbioso'],['psychic','Psichico'],['gravity','Gravity'],['fairy-aura','Fairy Aura'],['dark-aura','Dark Aura']].forEach(([i,l])=>rd(i,l));
+  let k=0;J('#p1,#p2').length;['L','R'].forEach(sd=>['reflect','lightScreen','auroraVeil','tailwind','helpingHand','friendGuard','protect','leechSeed','saltCure','sr','steelySpirit','battery','powerSpot','flowerGift'].forEach(x=>{if(chk(x+sd))k++}));
+  if(k)on.push(k+(k===1?' effetto':' effetti')+' sui lati');
+  return on.join(' \u00b7 ');
+}
+function panelHtml(o,other){
+  const n=o.n,c=n===1?'var(--red)':'var(--violet)',c2=n===1?'var(--violet)':'var(--red)';
+  const sets=Object.keys((W.setdex&&W.setdex[o.name.replace(/ \(.*/,'')])||{}).filter(x=>!/Sidebar Slot/.test(x));
+  const curSet=(o.set.match(/\((.*)\)$/)||[])[1]||'';
+  const setSel='<select class="sel sm" data-c="setsel" aria-label="Set">'+(sets.indexOf(curSet)<0?'<option selected>'+esc(o.setName||'Set')+'</option>':'')+['Blank Set'].concat(sets.filter(x=>x!=='Blank Set')).map(x=>'<option value="'+esc(x)+'"'+(x===curSet?' selected':'')+'>'+esc(x==='Blank Set'?'Set libero':x)+'</option>').join('')+'</select>';
+  const fm=o.forme.length>1?'<select class="sel sm" data-c="forme" aria-label="Forma">'+o.forme.map(f=>'<option'+(f===o.formeVal?' selected':'')+'>'+esc(f)+'</option>').join('')+'</select>':'';
+  let spSum=0;ST.forEach(([k])=>spSum+=o.sps[k]);
+  const rows=ST.map(([k,l])=>'<span class="sl">'+l+'</span><span class="bsx"><input type="number" inputmode="numeric" min="1" max="255" value="'+esc(baseStat(n,k))+'" data-c="base" data-s="'+k+'" aria-label="Base '+l+'"></span><div class="stp"><button data-a="sp" data-s="'+k+'" data-v="-1" aria-label="Meno '+l+'">\u2212</button><input type="number" inputmode="numeric" min="0" max="32" value="'+o.sps[k]+'" data-c="sp" data-s="'+k+'" aria-label="Punti '+l+'"><button data-a="sp" data-s="'+k+'" data-v="1" aria-label="Pi\u00f9 '+l+'">+</button></div><span class="sv">'+esc(o.tot[k])+'</span>'+
+    (k==='hp'?'<span></span>':'<select data-c="boost" data-s="'+k+'" aria-label="Modificatore '+l+'" class="'+(o.bo[k]?'bo':'')+'">'+[6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6].map(v=>'<option value="'+v+'"'+(o.bo[k]===v?' selected':'')+'>'+(v>0?'+'+v:v===0?'--':v)+'</option>').join('')+'</select>')).join('');
+  const natOpts=[...J(o.p+' .nature option')].map(x=>'<option value="'+esc(x.value)+'"'+(x.value===o.nat?' selected':'')+'>'+esc(x.text)+'</option>').join('');
+  const stOpts=[...J(o.p+' .status option')].map(x=>'<option value="'+esc(x.value)+'"'+(x.value===o.status?' selected':'')+'>'+esc(STATUS_IT[x.value]||x.value)+'</option>').join('');
+  const tera=o.tera?'<div class="pr"><span class="pl">Tera</span><div class="row" style="flex:1;gap:6px;flex-wrap:nowrap"><button class="sw'+(o.teraOn?' on':'')+'" data-a="tera">'+(o.teraOn?'S\u00ec':'No')+'</button><select class="sel sm" style="flex:1" data-c="teratype">'+[...J(o.p+' .tera-type option')].map(x=>'<option'+(x.value===o.teraType?' selected':'')+'>'+esc(x.value)+'</option>').join('')+'</select></div></div>':'';
+  const abtog=o.abTog?'<button class="tg sm'+(o.abOn?' on':'')+'" data-a="abtog">'+esc(o.abLabel||'Abilit\u00e0 attiva')+'</button>':'';
+  const pct=o.hpTot?Math.max(0,Math.min(100,Math.round(o.hpCur*100/o.hpTot))):100;
+  return '<div class="pz" style="--c:'+c+'">'+
+   '<div class="pzh"><span class="pzt"><b>Pok\u00e9mon '+n+'</b><small>'+(n===1?'sinistra':'destra')+'</small></span>'+
+     '<button type="button" class="pzsw" style="--c2:'+c2+'" data-a="view"><small>Pok\u00e9mon '+(3-n)+'</small><b>'+esc(short(other.name))+'</b><i>\u2192</i></button></div>'+
+   '<div class="pzb"><div class="pan">'+
+     '<button class="pmon" data-a="pickmon"><b>'+esc(o.name)+'</b><span class="types">'+tyChip(o.t1)+tyChip(o.t2)+'</span></button>'+
+     '<div class="pr2">'+setSel+fm+'</div>'+tera+
+     '<div class="pst"><span class="h"></span><span class="h">Base</span><span class="h" style="text-align:center">Punti</span><span class="h" style="text-align:right">Stat</span><span class="h"></span>'+rows+'</div>'+
+     '<div class="spt'+(spSum>66?' over':'')+'">Punti '+spSum+' / 66'+(spSum>66?' \u2014 oltre il limite':'')+'</div>'+
+     '<div class="pr"><span class="pl">Natura</span><select class="sel sm" data-c="nature">'+natOpts+'</select></div>'+
+     '<div class="pr"><span class="pl">Abilit\u00e0</span><button class="sel sm pk" data-a="pickab">'+esc(o.ab||'Nessuna')+'</button></div>'+abtog+
+     '<div class="pr"><span class="pl">Strumento</span><button class="sel sm pk" data-a="pickitem">'+esc(o.item||'Nessuno')+'</button></div>'+
+     '<div class="pr"><span class="pl">Stato</span><select class="sel sm" data-c="status">'+stOpts+'</select></div>'+
+   '</div>'+teamCol(n)+'</div>'+
+   '<div class="php"><div class="phl"><span>PS attuali</span><b>'+o.hpCur+' / '+o.hpTot+' <em>('+pct+'%)</em></b></div>'+
+     '<input type="range" class="hpr" min="0" max="100" step="1" value="'+pct+'" data-c="hpr" aria-label="PS attuali in percentuale" style="--p:'+pct+'%"></div>'+
+  '</div>';
+}
 function sideCard(o,k){
   const pct=o.hpTot?Math.max(0,Math.min(100,Math.round(o.hpCur*100/o.hpTot))):100;
   const sub=[o.item&&o.item!==''?o.item:'Nessuno strumento',o.ab||''].filter(Boolean);
@@ -725,7 +849,7 @@ function fieldBody(){
    '<div class="cols">'+col('L',a.name,'var(--red)')+col('R',b.name,'var(--violet)')+'</div>'+
    '<div class="row" style="margin-top:16px"><button class="btn" data-a="fclear">Azzera il campo</button><button class="btn pri" data-a="closeSheet">Fatto</button></div>';
 }
-function renderField(keep){const box=$q('#shB');const sc=box.scrollTop;if(S.sheet!=='field')openSheet('field','Campo di battaglia',true);box.innerHTML=fieldBody();box.scrollTop=keep?sc:0}
+function renderField(keep){const box=$q('#shB');const sc=box.scrollTop;if(S.sheet!=='field')openSheet('field','Fields',true);box.innerHTML=fieldBody();box.scrollTop=keep?sc:0}
 
 /* ---------- squadre ---------- */
 function pasteBody(n){
@@ -767,10 +891,16 @@ function settingsBody(){
 
 /* ---------- eventi ---------- */
 document.addEventListener('click',e=>{
-  const t=e.target.closest('[data-a]');if(!t||!W&&t.dataset.a!=='closeSheet')return;
+  const t=e.target.closest('[data-a]');
+  if(S.menu&&(!t||t.dataset.a!=='menu')){S.menu=false;if(!t){refresh();return}}
+  if(!t||!W&&t.dataset.a!=='closeSheet')return;
   const d=t.dataset,a=d.a;
+  if(t.closest('.pz'))S.edit=S.view;
   if(S.clrArm&&a!=='eraseteam'&&a!=='erasecancel')S.clrArm=null;
   if(a==='dir'){S.dir=+d.d;refresh()}
+  else if(a==='menu'){S.menu=!S.menu;refresh()}
+  else if(a==='pastetxt'){openPasteSheet(+d.n)}
+  else if(a==='view'){S.view=3-S.view;refresh();const z=$q('.pz');if(z&&z.getBoundingClientRect().top<60)z.scrollIntoView({block:'start'})}
   else if(a==='selmove'){S.sel[S.dir]=+d.i;refresh()}
   else if(a==='edit'){S.edit=+d.n;renderEditor(false)}
   else if(a==='slot'){after(()=>W.loadSidebarSlot(+d.n,+d.i))}
@@ -809,7 +939,10 @@ document.addEventListener('click',e=>{
   else if(a==='reset'){if(confirm('Azzerare squadre, set salvati e impostazioni di questo calcolatore?')){try{const ks=[];for(let i=0;i<localStorage.length;i++)ks.push(localStorage.key(i));ks.forEach(k=>{if(/^(calc_.*|custom_gen_\d+|g\d+_sidebars|gen|dex)$/.test(k))localStorage.removeItem(k)})}catch(x){}location.reload()}}
 });
 document.addEventListener('change',e=>{
-  const t=e.target.closest('[data-c]');if(!t||!W)return;const c=t.dataset.c,p=P(S.edit);
+  const t=e.target.closest('[data-c]');if(!t||!W)return;if(t.closest('.pz'))S.edit=S.view;const c=t.dataset.c,p=P(S.edit);
+  if(c==='setsel'){const o=S.cache[S.edit===1?'a':'b'];const base=o.name.replace(/ \(.*/,'');after(()=>W.loadPreset(p,base+' ('+t.value+')'));return}
+  if(c==='base'){const v=Math.max(1,Math.min(255,Math.round(+t.value||1)));after(()=>J(p+' .'+t.dataset.s+' .base').val(v).trigger('keyup').trigger('change'));return}
+  if(c==='hpr'){after(()=>J(p+' .percent-hp').val(+t.value).trigger('input').trigger('change'));return}
   if(c==='sp'){const v=Math.max(0,Math.min(32,Math.round(+t.value||0)));after(()=>J(p+' .'+t.dataset.s+' .sps').val(v).trigger('input').trigger('change'))}
   else if(c==='boost'){after(()=>J(p+' .'+t.dataset.s+' .boost').val(t.value).change())}
   else if(c==='nature'){after(()=>J(p+' .nature').val(t.value).change())}
@@ -821,6 +954,7 @@ document.addEventListener('change',e=>{
   else if(c==='hp'){const v=Math.max(0,Math.min(100,Math.round(+t.value||0)));after(()=>J(p+' .percent-hp').val(v).trigger('input').trigger('change'))}
   else if(c==='disp'){W.toggleResultDisplay(t.value);J('#toggleResult').val(t.value);setTimeout(refresh,0)}
 });
+document.addEventListener('input',e=>{const t=e.target;if(t.classList&&t.classList.contains('hpr')){t.style.setProperty('--p',t.value+'%');const z=t.closest('.php'),em=z&&z.querySelector('em');if(em)em.textContent='('+t.value+'%)'}});
 function fallbackCopy(txt){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copiato')}catch(x){toast('Copia non riuscita')}ta.remove()}
 /* integrazione con il sito: il tasto indietro del sito chiede se c'e' un foglio da chiudere */
 window.addEventListener('message',e=>{
@@ -833,6 +967,6 @@ function notifyParent(){try{if(window.parent!==window)parent.postMessage({calcSh
 new MutationObserver(notifyParent).observe($q('#sheet'),{attributes:true,attributeFilter:['class']});
 if(window.parent!==window&&/[?&]embed=1/.test(location.search)){const b=document.createElement('button');b.className='ib';b.textContent='Esci';b.setAttribute('aria-label','Chiudi il calcolatore');b.onclick=()=>parent.postMessage({calcClose:1},PTO);const h=$q('.top');h.insertBefore(b,h.firstChild)}
 startEngine();
-</script>
+</script></script>
 </body>
 </html>
