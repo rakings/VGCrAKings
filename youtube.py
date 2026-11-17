@@ -7,11 +7,12 @@ Segreti su GitHub (Settings > Secrets and variables > Actions):
   YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN   (vedi GUIDA_YOUTUBE.txt)
 Finche' Google non approva il progetto (audit), YouTube rende PRIVATI i video caricati dall'API: e' normale.
 Solo libreria standard + Pillow + ffmpeg."""
-import json, os, shutil, subprocess, tempfile, time, urllib.error, urllib.parse, urllib.request
+import json, os, random, shutil, subprocess, tempfile, time, urllib.error, urllib.parse, urllib.request
 
 W, H, FPS = 1080, 1920, 30
 SITO = "https://rakings.github.io/VGCrAKings/"
 APERTE = ("da approvare", "errore")
+MUSICA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "musica")   # brani della Libreria audio di YouTube
 TAGS = ["Pokemon VGC", "Pokemon Champions", "VGC", "Pokemon", "Victory Road", "Pokemon tournament", "rAKings VGC"]
 
 
@@ -65,6 +66,14 @@ def _fotogramma(src, dst):
     bg.save(dst, quality=95)
 
 
+def _brano():
+    """Un brano a caso dalla cartella musica/ (mp3, m4a, wav). None se la cartella e' vuota: video muto."""
+    if not os.path.isdir(MUSICA):
+        return None
+    b = [os.path.join(MUSICA, x) for x in sorted(os.listdir(MUSICA)) if x.lower().endswith((".mp3", ".m4a", ".wav"))]
+    return random.choice(b) if b else None
+
+
 def crea_video(immagini, out):
     """Short: 4 secondi per immagine (6 se e' una sola), leggero zoom e dissolvenza tra le immagini, al massimo 60 secondi."""
     if not shutil.which("ffmpeg"):
@@ -91,11 +100,19 @@ def crea_video(immagini, out):
             fil.append("[%s][v%d]xfade=transition=fade:duration=%.2f:offset=%.2f[x%d]" % (last, i, fd, t, i))
             last, t = "x%d" % i, t + dur - fd
     totale = len(immagini) * dur - (len(immagini) - 1) * fd
+    brano = _brano()
+    if brano:   # musica: volume moderato, dissolvenza all'inizio e alla fine, tagliata sulla durata del video
+        ins += ["-stream_loop", "-1", "-i", brano]
+        fil.append("[%d:a]atrim=0:%.2f,asetpts=PTS-STARTPTS,volume=0.6,afade=t=in:st=0:d=0.5,afade=t=out:st=%.2f:d=1.2,"
+                   "aformat=sample_rates=44100:channel_layouts=stereo[aud]" % (len(immagini), totale, max(totale - 1.2, 0)))
+        audio = "[aud]"
+    else:
+        ins += ["-f", "lavfi", "-t", "%.2f" % totale, "-i", "anullsrc=channel_layout=stereo:sample_rate=44100"]
+        audio = "%d:a" % len(immagini)
     cmd = ["ffmpeg", "-y", "-loglevel", "error"] + ins + [
-        "-f", "lavfi", "-t", "%.2f" % totale, "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
-        "-filter_complex", ";".join(fil), "-map", "[%s]" % last, "-map", "%d:a" % len(immagini), "-t", "%.2f" % totale,
+        "-filter_complex", ";".join(fil), "-map", "[%s]" % last, "-map", audio, "-t", "%.2f" % totale,
         "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(FPS),
-        "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", out]
+        "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", out]
     subprocess.run(cmd, check=True)
     shutil.rmtree(tmp, ignore_errors=True)
     return out
