@@ -118,9 +118,21 @@ def _token():
 
 def carica(video, titolo, descrizione):
     tok = _token()
-    meta = {"snippet": {"title": titolo, "description": descrizione, "tags": TAGS, "categoryId": "20",
-                        "defaultLanguage": "en", "defaultAudioLanguage": "zxx"},
-            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False, "embeddable": True}}
+    meta = {"snippet": {"title": titolo, "description": descrizione, "tags": TAGS, "categoryId": "20"},
+            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}}
+    try:
+        return _invia(video, meta, tok)
+    except ValueError:
+        # YouTube ha rifiutato un campo facoltativo: riprova con i soli dati essenziali
+        minimo = {"snippet": {"title": titolo, "description": descrizione, "categoryId": "20"},
+                  "status": {"privacyStatus": "public"}}
+        try:
+            return _invia(video, minimo, tok)
+        except ValueError as e:
+            raise RuntimeError(str(e))
+
+
+def _invia(video, meta, tok):
     size = os.path.getsize(video)
     req = urllib.request.Request("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
                                  data=json.dumps(meta).encode(), method="POST",
@@ -137,9 +149,13 @@ def carica(video, titolo, descrizione):
     except urllib.error.HTTPError as e:
         try:
             err = json.load(e).get("error", {})
-            raise RuntimeError("YouTube: %s" % (err.get("message") or e.code))
         except ValueError:
-            raise RuntimeError("YouTube ha risposto %s" % e.code)
+            err = {}
+        dett = "; ".join(x.get("reason", "") for x in err.get("errors", []) if x.get("reason"))
+        msg = "YouTube: %s%s" % (err.get("message") or e.code, " (%s)" % dett if dett else "")
+        if e.code == 400:
+            raise ValueError(msg)
+        raise RuntimeError(msg)
     vid = j.get("id")
     if not vid:
         raise RuntimeError("YouTube non ha confermato il caricamento")
