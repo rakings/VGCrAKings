@@ -29,8 +29,9 @@
     "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Friday Fight Night 82! $50 Prize & Team…\n3) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonVGC #PokemonChampions #VGC"
    },
    "yt": {
-    "stato": "da approvare",
-    "testo": "💰 Money tournaments of the week · Nov 16–22 #Shorts"
+    "stato": "errore",
+    "testo": "💰 Money tournaments of the week · Nov 16–22 #Shorts",
+    "msg": "YouTube: Request contains an invalid argument."
    }
   }
  ],
