@@ -96,6 +96,9 @@ li.nw details[open]>summary::after{content:"▴"}
 .mt small{font-weight:500;color:var(--mute);font-size:.7rem}
 .ph{width:26px;height:26px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.22)}
 .pill button{letter-spacing:0;font-size:.66rem}
+/* barra in basso: le scritte lunghe (es. FOLLOWING in inglese) non si toccano sui telefoni stretti */
+.pill button{min-width:0}.pill button span{text-align:center;line-height:1.05}
+@media (max-width:400px){.pill{gap:2px}.pill button{padding-left:1px;padding-right:1px}.pill button:not([data-v="vgcs"]) span{font-size:.54rem;letter-spacing:-.03em}}
 .ots{margin-top:8px}.ots>summary{font-weight:700;color:var(--live);cursor:pointer;padding:4px 0}
 .sheet{display:grid;gap:8px;margin-top:6px}
 .slot{background:var(--none);border-radius:12px;padding:8px 10px}
@@ -1060,7 +1063,7 @@ fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;retur
 var ANNGO=null;
 var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["all"],tutti:["all"],online:["online"],regionali:["regional"]};
 /* #cpbar apre la CP bar (link del widget) */
-function annGo(){if(location.hash==="#cpbar"){try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}(function t(n){if(typeof cpOpen==="function")cpOpen();else if(n<40)setTimeout(function(){t(n+1)},150)})(0);return}
+function annGo(){if(location.hash==="#cpbar"){try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}(function t(n){if(typeof window.cpOpen==="function")window.cpOpen();else if(n<40)setTimeout(function(){t(n+1)},150)})(0);return}
 var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),mode="news",wantBK=false;
 if(lo){LOCGO=lo[1];LOCDONE=false;VRGO=null;NV="loc"}
 else if(sg){VRGO=null;mode="vgcs";STG={sx:sg[1],key:sg[2]||""}}
@@ -1118,6 +1121,7 @@ var CP={open:false},CPV="20261115a";
 function cpClose(){CP.open=false;document.documentElement.classList.remove("cp-open");if(window.CPBAR)CPBAR.close()}
 function cpOpen(){CP.open=true;document.documentElement.classList.add("cp-open");var go=function(){if(window.CPBAR&&CP.open)CPBAR.open(cpClose)};if(window.CPBAR){go();return}
 var sc=document.createElement("script");sc.src="cpbar.js?v="+CPV;sc.onload=go;sc.onerror=function(){cpClose()};document.head.appendChild(sc)}
+window.cpOpen=cpOpen; /* per il link #cpbar (widget dell'app) */
 var CPICON='<svg viewBox="0 0 72 88" width="72" height="88" aria-hidden="true"><rect x="9" y="40" width="13" height="26" rx="3" fill="#ffd21f"/><rect x="29.5" y="24" width="13" height="42" rx="3" fill="#ffd21f"/><rect x="50" y="9" width="13" height="57" rx="3" fill="#ffd21f"/><line x1="3" y1="46" x2="69" y2="46" stroke="#ff6b78" stroke-width="2.5" stroke-dasharray="5 4"/><text x="36" y="84" text-anchor="middle" font-size="15" font-weight="800" font-family="system-ui,sans-serif" style="fill:var(--ink,#fff1ef)">CP bar</text></svg>';
 var MENUO=false,MENU=[{id:"calc",run:calcOpen,t:["Calcolatore danni","Damage calculator"],i:SHIELD},{id:"cp",run:cpOpen,t:["Classifica CP","CP standings"],i:CPICON}];
 function fabPos(){var p=$("f-mode");if(!p)return;var r=p.getBoundingClientRect(),h=window.innerHeight||document.documentElement.clientHeight;if(r.height>0&&r.top>0)document.documentElement.style.setProperty("--fabb",Math.max(70,Math.round(h-r.top+2))+"px")}
