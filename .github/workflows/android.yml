@@ -1,6 +1,7 @@
 name: App Android - crea l'APK
 # Parte DA SOLO quando carichi o cambi qualcosa nella cartella «android» (e si puo' avviare anche a mano).
-# Crea l'app e la mette nella pagina «Releases» della repo: rAKings-VGC.apk, da scaricare e installare sul telefono.
+# Crea l'app firmata con la chiave segreta e la mette in «Releases»: rAKings-VGC.apk (link diretto sempre uguale).
+# Poi scrive app_versione.json: il sito lo legge per avvisare chi ha l'app vecchia che c'e' una nuova versione.
 on:
   push:
     branches: [main]
@@ -17,6 +18,16 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Controlla la chiave segreta
+        env:
+          CHIAVE_B64: ${{ secrets.APP_CHIAVE }}
+          CHIAVE_PASSWORD: ${{ secrets.APP_CHIAVE_PASSWORD }}
+        run: |
+          if [ -z "$CHIAVE_B64" ] || [ -z "$CHIAVE_PASSWORD" ]; then
+            echo "::error::Mancano i segreti APP_CHIAVE e APP_CHIAVE_PASSWORD (Settings > Secrets and variables > Actions). Senza chiave segreta l'app non viene creata."
+            exit 1
+          fi
+          echo "$CHIAVE_B64" | base64 -d > "$RUNNER_TEMP/rakings.jks"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -28,13 +39,31 @@ jobs:
         working-directory: android
         env:
           VERSIONE: ${{ github.run_number }}
+          CHIAVE_FILE: ${{ runner.temp }}/rakings.jks
+          CHIAVE_PASSWORD: ${{ secrets.APP_CHIAVE_PASSWORD }}
+          CHIAVE_ALIAS: rakings
         run: gradle assembleRelease --no-daemon
-      - name: Pubblica in Releases (sostituisce la versione di prova precedente)
+      - name: Pubblica in Releases (sostituisce la versione precedente)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/release/app-release.apk rAKings-VGC.apk
           gh release delete app-prova --yes --cleanup-tag 2>/dev/null || true
           gh release create app-prova rAKings-VGC.apk --prerelease \
-            --title "App Android (prova) · versione ${{ github.run_number }}" \
-            --notes "App di prova con i widget Tornei, CP bar e Bacheca. Scarica rAKings-VGC.apk dal telefono e installala."
+            --title "App Android · versione ${{ github.run_number }}" \
+            --notes "App rAKings VGC con i widget Tornei, CP bar e Bacheca. Scarica rAKings-VGC.apk dal telefono e installala."
+      - name: Scrive la versione per l'avviso nel sito
+        run: |
+          rm -f rAKings-VGC.apk
+          echo "{\"v\":${{ github.run_number }},\"u\":\"https://github.com/rakings/VGCrAKings/releases/download/app-prova/rAKings-VGC.apk\"}" > app_versione.json
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add app_versione.json
+          if ! git diff --staged --quiet; then
+            git commit -m "App Android: versione ${{ github.run_number }}"
+            for i in 1 2 3 4; do
+              if git pull --rebase --autostash && git push; then break; fi
+              git rebase --abort 2>/dev/null || true
+              sleep 6
+            done
+          fi
