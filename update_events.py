@@ -511,7 +511,9 @@ def send_push(ids, title, body, click, tag=None, cat=None):
 #   "old"  = avviso mandato a ogni dispositivo, come sempre (e' il modo di partenza)
 #   "both" = prova in parallelo: lo STESSO avviso parte nei due modi con lo stesso «tag», cosi' ogni dispositivo ne mostra UNO solo
 #            (la cronologia del sito ne elenca due se sono arrivati tutti e due)
-#   "new"  = solo argomenti; se l'invio all'argomento non riesce, l'avviso parte comunque ai dispositivi come prima (FALLBACK)
+#   "new"  = argomenti; in piu' l'invio diretto SOLO ai telefoni che il Worker non ha ancora confermato negli argomenti (stesso «tag»:
+#            chi li riceve tutti e due ne vede UNO). Se l'invio all'argomento non riesce, l'avviso parte a tutti i dispositivi (FALLBACK).
+#            Senza conferme (Worker vecchio o database assente) nessuno risulta confermato: l'invio diretto va a tutti, come «both».
 # I promemoria «1 ora prima» (send_reminders.py) restano sempre sull'invio ai singoli dispositivi.
 MODO_FILE = "argomenti_modo.json"
 MODI = ("old", "both", "new")
@@ -540,6 +542,19 @@ def argomenti_config():
             print("argomenti_modo.json non leggibile (%s): tutto resta «old»" % str(ex)[:80])
         _CFG["v"] = cfg
     return _CFG["v"]
+
+def usa_new():
+    """C'e' almeno un canale in «new»? Solo allora si chiedono al Worker le conferme degli argomenti (una lettura in piu' per pagina)."""
+    cfg = argomenti_config()
+    return cfg["default"] == "new" or "new" in cfg["canali"].values()
+
+def confermato(s):
+    return s.get("a") == 1
+
+def scoperti(ids):
+    """Degli ID dati, quelli NON confermati negli argomenti: ricevono anche l'invio diretto in modo «new»."""
+    ok = {s.get("id") for s in subs_list() if confermato(s)}
+    return [i for i in ids if i not in ok]
 
 def modo_canale(canale):
     cfg = argomenti_config()
@@ -600,13 +615,20 @@ def send_topic(target, title, body, click, tag=None, cat=None):
             return False
     return False
 
-def _via_archivio(topics, title, body, click, tag=None, cat=None):
-    """L'invio di sempre: gli ID dei dispositivi si leggono dall'archivio iscritti e l'avviso va a ciascuno."""
+def _via_archivio(topics, title, body, click, tag=None, cat=None, solo_scoperti=False):
+    """L'invio di sempre: gli ID dei dispositivi si leggono dall'archivio iscritti e l'avviso va a ciascuno.
+    solo_scoperti=True (modo «new»): solo ai telefoni non ancora confermati negli argomenti."""
     ids = []
     for t in topics:
         for i in subs_for(t):
             if i not in ids:
                 ids.append(i)
+    if solo_scoperti:
+        tutti_ = len(ids)
+        ids = scoperti(ids)
+        print("Modo new: %d iscritti al canale, %d confermati (solo argomento), %d anche con invio diretto" % (tutti_, tutti_ - len(ids), len(ids)))
+        if not ids:
+            return
     if ids:
         send_push(ids, title, body, click, tag, cat or topics[0])
     else:
@@ -620,16 +642,19 @@ def _invia(topics, title, body, click, cat=None):
         modo = modi[0] if len(set(modi)) == 1 else "both"
     else:
         modo = "old"
-    tag = tag_avviso(title, body, click) if modo == "both" else None
+    tag = tag_avviso(title, body, click) if modo in ("both", "new") else None
     cat = cat or topics[0]
     if modo in ("old", "both"):
         _via_archivio(topics, title, body, click, tag, cat)
     if modo in ("both", "new"):
         target = {"topic": nomi[0]} if len(nomi) == 1 else {"condition": " || ".join("'%s' in topics" % n for n in nomi)}
         ok = send_topic(target, title, body, click, tag, cat)
-        if modo == "new" and not ok:
-            print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'avviso ai dispositivi come prima")
-            _via_archivio(topics, title, body, click, None, cat)
+        if modo == "new":
+            if ok:
+                _via_archivio(topics, title, body, click, tag, cat, solo_scoperti=True)   # chi non e' ancora confermato non resta scoperto
+            else:
+                print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'avviso ai dispositivi come prima")
+                _via_archivio(topics, title, body, click, None, cat)
 
 # ---------- Firebase (FCM) ----------
 _FCM = {}
@@ -764,6 +789,8 @@ def subs_list():
         while True:
             q = [("kind", "fcm")] if fcm_on() else []
             q.append(("limit", str(SUBS_PAGE)))
+            if fcm_on() and usa_new():
+                q.append(("conf", "1"))
             if cursor:
                 q.append(("cursor", cursor))
             req = urllib.request.Request(base + "?" + urllib.parse.urlencode(q), headers=hdr)
@@ -780,6 +807,8 @@ def subs_list():
                 raise RuntimeError("Archivio iscritti: troppe pagine")
         _SUBS = subs
         print("Archivio iscritti: %d iscrizioni (%d %s)" % (len(_SUBS), pages, "pagina" if pages == 1 else "pagine"))
+        if any(confermato(x) for x in subs):
+            print("Argomenti: %d iscrizioni confermate su %d" % (sum(1 for x in subs if confermato(x)), len(subs)))
     return _SUBS
 
 def subs_check_due():
@@ -848,7 +877,7 @@ def deliver_tutti(title, body, click):
         if not subs_on():
             raise RuntimeError("Con Firebase serve l'archivio iscritti (variabile SUBS_URL e segreto SUBS_TOKEN).")
         modo = modo_canale("tutti")
-        tag = tag_avviso(title, body, click) if modo == "both" else None
+        tag = tag_avviso(title, body, click) if modo in ("both", "new") else None
         if modo in ("old", "both"):
             ids = [s["id"] for s in subs_list() if s.get("id")]
             if ids:
@@ -856,7 +885,14 @@ def deliver_tutti(title, body, click):
             else:
                 print("Nessun iscritto a cui mandare l'annuncio")
         if modo in ("both", "new"):
-            if not send_topic({"topic": "tutti"}, title, body, click, tag, "annunci") and modo == "new":
+            ok = send_topic({"topic": "tutti"}, title, body, click, tag, "annunci")
+            if modo == "new" and ok:
+                tutti_ = [s["id"] for s in subs_list() if s.get("id")]
+                ids = scoperti(tutti_)
+                print("Modo new: %d iscritti, %d confermati (solo argomento), %d anche con invio diretto" % (len(tutti_), len(tutti_) - len(ids), len(ids)))
+                if ids:
+                    send_push(ids, title, body, click, tag, "annunci")
+            elif modo == "new":
                 print("FALLBACK: l'invio all'argomento non e' riuscito, mando l'annuncio ai dispositivi come prima")
                 ids = [s["id"] for s in subs_list() if s.get("id")]
                 if ids:

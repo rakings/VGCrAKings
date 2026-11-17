@@ -55,7 +55,7 @@ button:disabled{opacity:.55;cursor:default}
 .rq b{display:block}.rq small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}.rq ol{margin:6px 0 0;padding-left:20px;font-size:.85rem}
 .rq .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.rq .bt button{padding:8px 12px;min-height:38px;font-size:.85rem}.rq .bt button.ok{background:#1f8a4c}
 [hidden]{display:none!important}
-.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:rgba(12,4,6,.72);padding:8px 0;margin:0 0 4px}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(12,4,6,.72);padding:8px 0;margin:0 0 4px}
 .tabs button{padding:10px 2px;min-height:44px;font-size:.82rem;white-space:nowrap;background:var(--card);border:1px solid var(--line);color:var(--tx);position:relative}
 .tabs button[aria-selected=true]{background:var(--ac);border-color:var(--ac);color:#fff}
 .tabs i{font-style:normal;display:inline-block;min-width:19px;padding:1px 5px;margin-left:4px;border-radius:999px;background:var(--go);color:#2a1a00;font-size:.72rem;font-weight:800}
@@ -101,12 +101,12 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <button type="button" role="tab" data-tab="ig" aria-selected="false">Instagram<i id="bi" hidden></i></button>
     <button type="button" role="tab" data-tab="x" aria-selected="false">X<i id="bx" hidden></i></button>
     <button type="button" role="tab" data-tab="yt" aria-selected="false">YouTube<i id="by" hidden></i></button>
+    <button type="button" role="tab" data-tab="an" aria-selected="false">Annunci</button>
     <button type="button" role="tab" data-tab="st" aria-selected="false">Statistiche</button>
   </nav>
 
   <div id="p-loc" data-panel="loc">
     <div class="card"><h2>Richieste dei locali e annunci da approvare</h2><div id="rq"><div class="hint">Carico…</div></div></div>
-    <div class="card"><h2>Annunci in bacheca (tuoi e di Francesco)</h2><div id="pa"><div class="hint">Carico…</div></div></div>
   </div>
 
   <div id="p-ig" data-panel="ig" hidden>
@@ -124,7 +124,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <p class="hint">Ogni post preparato per Instagram diventa anche uno Short (video verticale con le stesse immagini). «Approva e carica» crea il video e lo carica sul canale rAKings VGC con il titolo scritto qui sopra (puoi cambiarlo, massimo 100 caratteri). Finché Google non approva il progetto, YouTube lo carica come privato: è normale.</p>
   </div>
 
-  <div id="p-st" data-panel="st" hidden>
+  <div id="p-an" data-panel="an" hidden>
     <div class="card fm"><h2>Nuovo annuncio in bacheca</h2>
       <label for="an-ti">Titolo <span class="cnt" id="an-cti">0/60</span></label>
       <input id="an-ti" maxlength="60" placeholder="Es. Torneo al PlayTime sabato 28/11">
@@ -139,12 +139,17 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
       <div id="an-imbox" hidden style="margin-top:8px"><img id="an-imprev" alt="" style="max-width:100%;max-height:260px;border-radius:10px;display:block"><button class="sec" id="an-imdel" type="button" style="margin-top:6px">Togli la foto</button></div>
       <div style="margin-top:12px"><button id="an-go" type="button" style="width:100%" disabled>Pubblica e avvisa tutti</button></div>
       <p class="msg" id="an-msg" role="status"></p>
-      <div class="hint">Esce in bacheca con l'etichetta «rAKings VGC» e la notifica arriva a TUTTI gli iscritti in circa 1 minuto. Lo ritrovi nella scheda Locali, in «Annunci in bacheca», dove puoi cancellarlo.</div>
+      <div class="hint">Esce in bacheca con l'etichetta «rAKings VGC» e la notifica arriva a TUTTI gli iscritti in circa 1 minuto. Lo ritrovi qui sotto, in «Annunci in bacheca», dove puoi cancellarlo.</div>
     </div>
+    <div class="card"><h2>Annunci in bacheca (tuoi e di Francesco)</h2><div id="pa"><div class="hint">Carico…</div></div></div>
+  </div>
+
+  <div id="p-st" data-panel="st" hidden>
     <div class="card">
       <h2>Iscritti</h2>
       <div class="big" id="n">–</div>
       <div class="hint" id="split"></div>
+      <div id="argc" hidden style="margin-top:10px"></div>
     </div>
     <div class="card">
       <h2>Iscrizioni nuove o modificate</h2>
@@ -207,6 +212,12 @@ function byOrder(obj,rename){
 function show(t){
   $("n").textContent=fmt(t.n);
   $("split").textContent="Firebase "+fmt(t.fcm)+(t.os?" · OneSignal "+fmt(t.os):"");
+  /* conferma degli argomenti: quanti telefoni Google ha davvero iscritto a tutti i loro argomenti (serve prima di passare un canale a «new») */
+  var ac=$("argc");
+  if(t.cdb){var pa=t.fcm>0?Math.floor(100*t.conf/t.fcm):0;ac.hidden=false;
+    ac.innerHTML='<div class="row"><span>Confermati negli argomenti</span><span class="bar"><i style="width:'+pa+'%"></i></span><span class="num">'+fmt(t.conf)+' <small>'+pa+'%</small></span></div>'+
+      '<div class="hint">'+(pa>=98?'Pronto per il modo «new»: i pochi non confermati ricevono comunque con l\'invio diretto.':'Il Worker li controlla da solo, un gruppo ogni ora: la percentuale sale nei prossimi giorni. I non confermati ricevono sempre con l\'invio diretto.')+'</div>'}
+  else ac.hidden=true;
   $("t1").textContent=fmt(t.t1);$("t7").textContent=fmt(t.t7);$("t30").textContent=fmt(t.t30);
   rows($("ch"),byOrder(t.c,chName),t.n);
   rows($("hr"),byOrder(t.h),t.n,"-1h");
@@ -481,15 +492,15 @@ function controlli(){
 
 /* statistiche: si leggono SOLO aprendo la scheda (risparmia letture di KV) */
 function stats(token){
-  var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0},cur=null,pages=0;
+  var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0,conf:0,cdb:0},cur=null,pages=0;
   $("n").textContent="…";
   function next(){
-    var u=W+"/stats?kind=all&limit=1000"+(cur?"&cursor="+encodeURIComponent(cur):"");
+    var u=W+"/stats?kind=all&limit=1000&conf=1"+(cur?"&cursor="+encodeURIComponent(cur):"");
     return fetch(u,{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){
       if(!r.ok)throw new Error("il Worker ha risposto "+r.status);
       return r.json().then(function(j){
         if(typeof j.n!=="number")throw new Error("Worker senza statistiche");
-        ["n","fcm","os","seguono","tornei","t1","t7","t30"].forEach(function(k){tot[k]+=j[k]||0});
+        ["n","fcm","os","seguono","tornei","t1","t7","t30","conf","cdb"].forEach(function(k){tot[k]+=j[k]||0});
         ["c","h","l"].forEach(function(g){Object.keys(j[g]||{}).forEach(function(k){tot[g][k]=(tot[g][k]||0)+j[g][k]})});
         cur=j.cursor||null;pages++;
         if(cur&&pages<1000){$("split").textContent="Leggo l'archivio… pagina "+(pages+1);return next()}
