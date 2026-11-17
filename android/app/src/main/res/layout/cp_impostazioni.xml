@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/fondo_schermata"
+    android:fitsSystemWindows="true" android:fillViewport="true">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+    <TextView android:id="@+id/titolo" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_titolo"
+        android:textColor="@color/testo" android:textStyle="bold" android:textSize="19sp" />
+    <LinearLayout android:id="@+id/sez_cp" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:text="@string/cfg_giocatore" android:textColor="@color/testo" android:textSize="14sp" />
+        <EditText android:id="@+id/cerca" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+            android:hint="@string/cfg_cerca" android:textColorHint="@color/tenue" android:textColor="@color/testo" android:background="@drawable/fondo_campo"
+            android:padding="11dp" android:inputType="textPersonName" android:imeOptions="actionSearch" android:singleLine="true" />
+        <TextView android:id="@+id/scelto" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            android:background="@drawable/fondo_box" android:padding="10dp" android:textColor="@color/testo" android:textStyle="bold" android:textSize="14sp" />
+        <ListView android:id="@+id/risultati" android:layout_width="match_parent" android:layout_height="190dp" android:nestedScrollingEnabled="true"
+            android:layout_marginTop="6dp" android:divider="@color/linea" android:dividerHeight="1dp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp"
+            android:text="@string/cfg_sotto" android:textColor="@color/tenue" android:textSize="13sp" />
+        <RadioGroup android:id="@+id/quanti" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+            <RadioButton android:id="@+id/q0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cfg_solo" android:textColor="@color/testo" android:textSize="12sp" />
+            <RadioButton android:id="@+id/q10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top 10" android:textColor="@color/testo" android:textSize="12sp" />
+            <RadioButton android:id="@+id/q25" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top 25" android:textColor="@color/testo" android:textSize="12sp" />
+            <RadioButton android:id="@+id/q50" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Top 50" android:textColor="@color/testo" android:textSize="12sp" />
+        </RadioGroup>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            android:text="@string/cfg_nota" android:textColor="@color/tenue" android:textSize="12sp" />
+    </LinearLayout>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+        android:text="@string/cfg_colore" android:textColor="@color/tenue" android:textSize="13sp" />
+    <LinearLayout android:id="@+id/colori" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:layout_marginTop="6dp" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+        android:text="@string/cfg_colore_nota" android:textColor="@color/tenue" android:textSize="12sp" />
+    <Button android:id="@+id/salva" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp"
+        android:text="@string/salva" android:textColor="#FFFFFF" android:textStyle="bold" android:background="@drawable/fondo_bottone" />
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/fondo_widget">
+    <include android:id="@+id/testata" layout="@layout/w_testata" />
+    <LinearLayout android:id="@+id/box" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginStart="12dp" android:layout_marginEnd="12dp" android:layout_marginBottom="5dp"
+        android:background="@drawable/fondo_box" android:orientation="horizontal" android:gravity="center_vertical"
+        android:paddingStart="10dp" android:paddingEnd="10dp" android:paddingTop="5dp" android:paddingBottom="5dp">
+        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:id="@+id/b_nome" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/testo" android:textStyle="bold" android:textSize="14sp" android:maxLines="1" android:ellipsize="end" />
+            <TextView android:id="@+id/b_info" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textColor="@color/tenue" android:textSize="10.5sp" android:maxLines="1" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="end">
+            <TextView android:id="@+id/b_cp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/giallo" android:textStyle="bold" android:textSize="22sp" android:maxLines="1" />
+            <TextView android:id="@+id/b_delta" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textStyle="bold" android:textSize="10sp" android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/sub" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+        android:paddingStart="12dp" android:paddingEnd="12dp">
+        <TextView android:id="@+id/s_top" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:textColor="@color/giallo" android:textStyle="bold" android:textSize="10sp" android:textAllCaps="true" />
+        <TextView android:id="@+id/s_soglia" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="@color/tenue" android:textStyle="bold" android:textSize="10sp" android:textAllCaps="true" />
+    </LinearLayout>
+    <ListView android:id="@+id/lista" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingBottom="8dp" android:clipToPadding="false"
+        android:divider="#26808080" android:dividerHeight="1dp" android:scrollbars="vertical" />
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/riga" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal"
+    android:gravity="center_vertical" android:paddingTop="3dp" android:paddingBottom="3dp" android:paddingStart="4dp" android:paddingEnd="4dp">
+    <TextView android:id="@+id/r_pos" android:layout_width="26dp" android:layout_height="wrap_content" android:gravity="end"
+        android:textColor="@color/tenue" android:textStyle="bold" android:textSize="11.5sp" />
+    <TextView android:id="@+id/r_nome" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+        android:layout_marginStart="8dp" android:textColor="@color/testo" android:textSize="11.5sp" android:maxLines="1" android:ellipsize="end" />
+    <TextView android:id="@+id/r_cp" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textColor="@color/testo" android:textStyle="bold" android:textSize="11.5sp" />
+</LinearLayout>

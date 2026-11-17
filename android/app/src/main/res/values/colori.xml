@@ -1,0 +1,13 @@
+<resources>
+    <color name="sfondo">#1D0B0D</color>
+    <color name="testo">#FFF1EF</color>
+    <color name="tenue">#E0AAA6</color>
+    <color name="linea">#3A1B1F</color>
+    <color name="giallo">#FFD21F</color>
+    <color name="celeste">#86D8F0</color>
+    <color name="nero">#140C12</color>
+    <color name="verde">#4ADE80</color>
+    <color name="rosso">#FF6B78</color>
+    <color name="arancio">#FF8A1F</color>
+    <color name="viola">#9146FF</color>
+</resources>

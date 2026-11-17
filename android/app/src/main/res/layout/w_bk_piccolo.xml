@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/fondo_widget" android:padding="10dp">
+    <ImageView android:id="@+id/img" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:scaleType="centerCrop" />
+    <TextView android:id="@+id/tag" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+        android:background="@drawable/fondo_tag" android:paddingStart="7dp" android:paddingEnd="7dp" android:paddingTop="1dp" android:paddingBottom="1dp"
+        android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="9.5sp" android:maxLines="1" />
+    <TextView android:id="@+id/tit" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp"
+        android:textColor="@color/testo" android:textStyle="bold" android:textSize="13sp" android:maxLines="2" android:ellipsize="end" />
+</LinearLayout>
