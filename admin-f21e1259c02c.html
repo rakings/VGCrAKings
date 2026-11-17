@@ -97,6 +97,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <button type="button" role="tab" data-tab="loc" aria-selected="true">Locali<i id="bl" hidden></i></button>
     <button type="button" role="tab" data-tab="ig" aria-selected="false">Instagram<i id="bi" hidden></i></button>
     <button type="button" role="tab" data-tab="x" aria-selected="false">X<i id="bx" hidden></i></button>
+    <button type="button" role="tab" data-tab="yt" aria-selected="false">YouTube<i id="by" hidden></i></button>
     <button type="button" role="tab" data-tab="st" aria-selected="false">Statistiche</button>
   </nav>
 
@@ -113,6 +114,11 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
   <div id="p-x" data-panel="x" hidden>
     <div class="card"><h2>Post per X</h2><div id="xl"><div class="hint">Carico…</div></div></div>
     <p class="hint">X non permette di pubblicare gratis in automatico: «Condividi su X» apre l'app di X con immagine e testo pronti, tu premi solo Pubblica. Poi torna qui e premi «Fatto, pubblicato». Il testo viene anche copiato: se X non lo mette, tieni premuto nel riquadro e scegli Incolla.</p>
+  </div>
+
+  <div id="p-yt" data-panel="yt" hidden>
+    <div class="card"><h2>Shorts per YouTube</h2><div id="ylt"><div class="hint">Carico…</div></div></div>
+    <p class="hint">Ogni post preparato per Instagram diventa anche uno Short (video verticale con le stesse immagini). «Approva e carica» crea il video e lo carica sul canale rAKings VGC con il titolo scritto qui sopra (puoi cambiarlo, massimo 100 caratteri). Finché Google non approva il progetto, YouTube lo carica come privato: è normale.</p>
   </div>
 
   <div id="p-st" data-panel="st" hidden>
@@ -298,15 +304,22 @@ function stato(s){var x=NOMI[s.stato]||[s.stato,""];return '<span class="st '+x[
 function aperta(s){return s.stato==="da approvare"||s.stato==="errore"}
 function social(){
   return fetch(SITE+"social/richieste.json?t="+Date.now(),{cache:"no-store"}).then(function(r){
-    if(r.status===404)return {nuovo:true};if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){SOC=d;disegnaIg();disegnaX()})
-  .catch(function(e){$("igl").innerHTML=$("xl").innerHTML='<div class="hint">Elenco non letto ('+esc(e.message||"errore")+'). Premi Aggiorna.</div>'})
+    if(r.status===404)return {nuovo:true};if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){SOC=d;disegnaIg();disegnaX();disegnaYt()})
+  .catch(function(e){$("igl").innerHTML=$("xl").innerHTML=$("ylt").innerHTML='<div class="hint">Elenco non letto ('+esc(e.message||"errore")+'). Premi Aggiorna.</div>'})
 }
 function elenco(rete,el,riga){
-  if(SOC&&SOC.nuovo){el.innerHTML='<div class="hint">Non ancora attivo: carica i file del pacchetto (flusso «Social»). Le richieste nascono dal primo locale approvato dopo.</div>';badge(rete==="ig"?"bi":"bx",0);return}
-  var l=(SOC&&SOC.richieste)||[],ap=l.filter(function(r){return aperta(r[rete])&&!FATTI[r.id+rete]}),ch=l.filter(function(r){return ap.indexOf(r)<0});
-  badge(rete==="ig"?"bi":"bx",ap.length);
+  if(SOC&&SOC.nuovo){el.innerHTML='<div class="hint">Non ancora attivo: carica i file del pacchetto (flusso «Social»). Le richieste nascono dal primo locale approvato dopo.</div>';badge(BID[rete],0);return}
+  var l=((SOC&&SOC.richieste)||[]).filter(function(r){return r[rete]}),ap=l.filter(function(r){return aperta(r[rete])&&!FATTI[r.id+rete]}),ch=l.filter(function(r){return ap.indexOf(r)<0});
+  badge(BID[rete],ap.length);
   el.innerHTML=(ap.length?ap.map(function(r){return riga(r,true)}).join(""):'<div class="hint">Nessun post da approvare.</div>')+
     (ch.length?'<details class="old"><summary>Già fatti ('+ch.length+')</summary>'+ch.map(function(r){return riga(r,false)}).join("")+'</details>':'')
+}
+var BID={ig:"bi",x:"bx",yt:"by"};
+function disegnaYt(){
+  elenco("yt",$("ylt"),function(r,ap){var s=r.yt,k=r.id+"yt";
+    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="100" style="min-height:64px">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
+      '<div class="bt"><button type="button" class="ok" data-so="approva" data-r="yt" data-id="'+esc(r.id)+'">'+(s.stato==="errore"?"Riprova a caricare":"Approva e carica")+'</button><button type="button" class="sec" data-so="rifiuta" data-r="yt" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':
+      (s.url?'<div class="full"><a class="hint" href="'+esc(s.url)+'" target="_blank" rel="noopener">apri su YouTube</a></div>':''))+'</div>'})
 }
 function tutte(r){return (r.imgs&&r.imgs.length)?r.imgs:[r.img]}
 function striscia(r){var l=tutte(r);if(l.length<2)return "";return '<div class="car" title="Tutte le immagini del carosello (tocca per scaricarla)">'+l.map(function(x,i){return '<a href="'+esc(SITE+x)+'" download="'+esc(r.id)+'-'+(i+1)+'.jpg"><img src="'+esc(SITE+x)+'" alt="" loading="lazy"></a>'}).join("")+'</div>'}
@@ -354,12 +367,13 @@ document.addEventListener("click",function(ev){
   if(!token){msg("Rientra con il codice di accesso.",true);return}
   if(!r)return;
   var ta=document.querySelector('textarea[data-k="'+id+rete+'"]'),testo=ta?ta.value:"";
-  var dom=az==="approva"?"Pubblico ADESSO su Instagram questo post?\n\n«"+r.titolo+"»":az==="fatto"?"L'hai pubblicato su X? Lo segno come fatto.":"Rifiuto questo post ("+(rete==="ig"?"Instagram":"X")+")?\n\n«"+r.titolo+"»";
+  var NOME={ig:"Instagram",x:"X",yt:"YouTube"}[rete];
+  var dom=az==="approva"?(rete==="yt"?"Creo lo Short e lo carico ADESSO su YouTube?":"Pubblico ADESSO su Instagram questo post?")+"\n\n«"+r.titolo+"»":az==="fatto"?"L'hai pubblicato su X? Lo segno come fatto.":"Rifiuto questo post ("+NOME+")?\n\n«"+r.titolo+"»";
   if(!confirm(dom))return;
   var box=b.parentNode;Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=true});
-  fetch(W+"/admin/social",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id,rete:rete,azione:az,testo:rete==="ig"?testo:""})})
+  fetch(W+"/admin/social",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id,rete:rete,azione:az,testo:rete!=="x"?testo:""})})
     .then(function(x){return x.json().catch(function(){return {}}).then(function(j){
-      if(x.ok&&j.ok){FATTI[id+rete]=1;box.innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Inviato ✓ Pubblicazione in corso: tra 1-2 minuti premi Aggiorna (se qualcosa va storto lo vedi qui, con «Riprova»).":"Fatto ✓ Tra un minuto, premendo Aggiorna, passa in «Già fatti».")+'</small>';badge(rete==="ig"?"bi":"bx",Math.max(0,(+$(rete==="ig"?"bi":"bx").textContent||1)-1))}
+      if(x.ok&&j.ok){FATTI[id+rete]=1;box.innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Inviato ✓ Pubblicazione in corso: tra 1-2 minuti premi Aggiorna (se qualcosa va storto lo vedi qui, con «Riprova»).":"Fatto ✓ Tra un minuto, premendo Aggiorna, passa in «Già fatti».")+'</small>';badge(BID[rete],Math.max(0,(+$(BID[rete]).textContent||1)-1))}
       else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Non fatto: "+(j.error||("errore "+x.status)))}})},
     function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Nessuna connessione con il Worker.")})
 });

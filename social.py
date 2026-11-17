@@ -5,7 +5,8 @@
                                immagine della Top 8 + testo per Instagram + testo per X, da approvare nella tua pagina admin.
                                Controlla anche, una volta al giorno, che la chiave di Instagram funzioni.
   python3 social.py azione  -> esegue quello che hai scelto nella pagina admin (variabili ID, RETE, AZIONE, TESTO):
-                               Instagram «approva» = pubblica davvero; X «fatto» = segna come pubblicato da te; «rifiuta».
+                               Instagram «approva» = pubblica davvero; X «fatto» = segna come pubblicato da te;
+                               YouTube «approva» = crea lo Short dalle stesse immagini e lo carica (youtube.py); «rifiuta».
 
 Regola: prima il sito, poi i social. Una richiesta nasce SOLO da un locale gia' approvato e pubblicato sul sito;
 se il locale viene tolto dal sito, le sue richieste non ancora pubblicate si annullano da sole.
@@ -178,7 +179,7 @@ def controllo_chiave(d):
 
 
 def pulisci(d):
-    aperte = [r for r in d["richieste"] if r["ig"]["stato"] in APERTE or r["x"]["stato"] in APERTE]
+    aperte = [r for r in d["richieste"] if r["ig"]["stato"] in APERTE or r["x"]["stato"] in APERTE or (r.get("yt") or {}).get("stato") in APERTE]
     chiuse = [r for r in d["richieste"] if r not in aperte]
     chiuse.sort(key=lambda r: r.get("creata", ""), reverse=True)
     d["richieste"] = sorted(aperte + chiuse[:TENERE], key=lambda r: r.get("creata", ""), reverse=True)
@@ -228,14 +229,19 @@ def crea():
         log("Nuova richiesta: Top 8 #%d %s · %s" % (v["id"], v.get("t", ""), v.get("s", "")))
     for r in d["richieste"]:                  # locale tolto dal sito: quello che non e' ancora uscito si annulla
         if r.get("tipo") == "locali" and r["rif"] not in presenti:
-            for k in ("ig", "x"):
-                if r[k]["stato"] in APERTE:
+            for k in ("ig", "x", "yt"):
+                if k in r and r[k]["stato"] in APERTE:
                     r[k]["stato"], r[k]["msg"] = "annullato", "il torneo e' stato tolto dal sito"
     d["visti"] = sorted(i for i in visti | {v["id"] for v in reali} if i in presenti)
     try:
         nuove += tornei(d)
     except Exception as ex:   # un problema qui non deve fermare le top 8 dei locali
         log("[ATTENZIONE] money tournament / Regionali / VR non preparati:", ex)
+    try:                       # YouTube Shorts: ogni richiesta aperta riceve anche la sua voce per la scheda YouTube
+        import youtube
+        youtube.aggiungi(d)
+    except Exception as ex:
+        log("[ATTENZIONE] YouTube:", ex)
     esito = controllo_chiave(d)
     pulisci(d)
     save(FILE, d)
@@ -669,7 +675,7 @@ def azione():
     testo = (os.environ.get("TESTO") or "").replace("\r", "").strip()
     d = load(FILE, None)
     r = next((x for x in (d or {}).get("richieste", []) if x.get("id") == rid), None)
-    if not r or rete not in ("ig", "x"):
+    if not r or rete not in ("ig", "x", "yt") or rete not in r:
         log("Richiesta %s non trovata: niente da fare." % rid)
         return 0
     s = r[rete]
@@ -677,7 +683,7 @@ def azione():
         log("Richiesta %s (%s) gia' chiusa (%s): niente da fare." % (rid, rete, s["stato"]))
         return 0
     if testo:
-        s["testo"] = testo[:MAX_IG]
+        s["testo"] = testo[:100] if rete == "yt" else testo[:MAX_IG]
     if az == "rifiuta":
         s.update({"stato": "rifiutato", "quando": ora()})
         s.pop("msg", None)
@@ -696,6 +702,18 @@ def azione():
             except RuntimeError as ex:
                 s.update({"stato": "errore", "msg": str(ex)[:300]})
                 log("[ERRORE] Instagram:", ex)
+    elif rete == "yt" and az == "approva":
+        try:
+            import youtube
+            link, nota = youtube.pubblica(r, s["testo"])
+            s.update({"stato": "pubblicato", "quando": ora(), "url": link})
+            s.pop("msg", None)
+            if nota:
+                s["msg"] = nota
+            log("Caricato su YouTube: %s" % link)
+        except Exception as ex:
+            s.update({"stato": "errore", "msg": str(ex)[:300]})
+            log("[ERRORE] YouTube:", ex)
     else:
         log("Azione non valida: %s / %s" % (rete, az))
         return 0
