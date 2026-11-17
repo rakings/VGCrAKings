@@ -842,7 +842,7 @@ var DEFER=null;window.addEventListener("beforeinstallprompt",function(e){e.preve
 var PWA={k:"vgc-pwa-x",ik:"vgc-ios-x",giorni:14};
 /* App Android (APK): apre il sito con ?app=android. Lo ricordiamo, cosi' dentro l'app non compare nessun invito a installare. */
 var APK_URL="https://github.com/rakings/VGCrAKings/releases/download/app-prova/rAKings-VGC.apk";
-(function(){try{var q=new URLSearchParams(location.search);if(q.get("app")==="android"){localStorage.setItem("vgc-appnativa","android");q.delete("app");var r=q.toString();history.replaceState(history.state,"",location.pathname+(r?"?"+r:"")+location.hash)}}catch(e){}})();
+(function(){try{var q=new URLSearchParams(location.search);if(q.get("app")==="android"){localStorage.setItem("vgc-appnativa","android");if(q.get("v"))localStorage.setItem("vgc-appv",q.get("v"));q.delete("app");q.delete("v");var r=q.toString();history.replaceState(history.state,"",location.pathname+(r?"?"+r:"")+location.hash)}}catch(e){}})();
 function appNativa(){try{return localStorage.getItem("vgc-appnativa")==="android"&&/android/i.test(navigator.userAgent)}catch(e){return false}}
 function pwaAndroid(){return /android/i.test(navigator.userAgent)}
 function pwaStandalone(){return (window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches)||window.navigator.standalone===true||appNativa()}
@@ -862,6 +862,15 @@ function pwaMarca(){try{localStorage.setItem("vgc-app","1")}catch(e){}}
 window.addEventListener("appinstalled",function(){DEFER=null;pwaMarca();pwaRefresh()});if(pwaStandalone())pwaMarca();
 try{window.matchMedia("(display-mode: standalone)").addEventListener("change",pwaRefresh)}catch(e){}
 pwaRefresh();
+/* App Android vecchia: se su GitHub c'e' una versione piu' nuova, la barra in alto invita ad aggiornarla (una volta per versione) */
+function appAggiorna(){if(!appNativa())return;var mia=0;try{mia=+localStorage.getItem("vgc-appv")||0}catch(e){}if(!mia)return;
+fetch("app_versione.json",{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(j){if(!j||!(j.v>mia))return;try{if(+localStorage.getItem("vgc-appv-x")===j.v)return}catch(e){}
+var bar=$("pwa-bar"),bt=$("pwa-btn"),tt=document.querySelector("#pwa-bar .pwa-t");if(!bar||!bt||!tt)return;
+tt.innerHTML="<b>Nuova versione dell\u2019app</b><span>Scaricala e installala sopra quella che hai.</span>";bt.textContent="Aggiorna";
+bt.onclick=function(e){e.stopImmediatePropagation();location.href=j.u||APK_URL};
+$("pwa-x").onclick=function(e){e.stopImmediatePropagation();try{localStorage.setItem("vgc-appv-x",String(j.v))}catch(x){}bar.hidden=true};
+bar.hidden=false}).catch(function(){})}
+setTimeout(appAggiorna,1500);
 function shareUrl(e){var b=(SITE_URL||location.href.split("#")[0].replace(/[^\/]*$/,"")).replace(/\/?$/,"/");return b+"e/"+eh(e.url)+".html"}
 function shareText(e){return e.name+(e.date?" · "+fmt(e.date)+(e.time?" ore "+e.time:""):"")}
 function shareEv(e){shareGen(e.name,shareText(e),shareUrl(e),"Condividi il torneo")}
