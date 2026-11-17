@@ -34,7 +34,7 @@ jobs:
           java-version: "17"
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: "8.9"
+          gradle-version: "8.14.3"
       - name: Crea l'APK
         working-directory: android
         env:
@@ -42,19 +42,20 @@ jobs:
           CHIAVE_FILE: ${{ runner.temp }}/rakings.jks
           CHIAVE_PASSWORD: ${{ secrets.APP_CHIAVE_PASSWORD }}
           CHIAVE_ALIAS: rakings
-        run: gradle assembleRelease --no-daemon
+        run: gradle assembleRelease bundleRelease --no-daemon
       - name: Pubblica in Releases (sostituisce la versione precedente)
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp android/app/build/outputs/apk/release/app-release.apk rAKings-VGC.apk
+          cp android/app/build/outputs/bundle/release/app-release.aab rAKings-VGC-PlayStore.aab
           gh release delete app-prova --yes --cleanup-tag 2>/dev/null || true
-          gh release create app-prova rAKings-VGC.apk --prerelease \
+          gh release create app-prova rAKings-VGC.apk rAKings-VGC-PlayStore.aab --prerelease \
             --title "App Android · versione ${{ github.run_number }}" \
-            --notes "App rAKings VGC con i widget Tornei, CP bar e Bacheca. Scarica rAKings-VGC.apk dal telefono e installala."
+            --notes "App rAKings VGC con i widget Tornei, CP bar e Bacheca. Telefono: scarica rAKings-VGC.apk e installala. Play Store: carica rAKings-VGC-PlayStore.aab in Play Console."
       - name: Scrive la versione per l'avviso nel sito
         run: |
-          rm -f rAKings-VGC.apk
+          rm -f rAKings-VGC.apk rAKings-VGC-PlayStore.aab
           echo "{\"v\":${{ github.run_number }},\"u\":\"https://github.com/rakings/VGCrAKings/releases/download/app-prova/rAKings-VGC.apk\"}" > app_versione.json
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
