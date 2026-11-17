@@ -1045,7 +1045,9 @@ fetch("annunci.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;retur
 /* Link dalle notifiche: #annuncio-ID apre Info con quella tendina aperta; #locali apre la sezione Locali */
 var ANNGO=null;
 var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["all"],tutti:["all"],online:["online"],regionali:["regional"]};
-function annGo(){var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),mode="news",wantBK=false;
+/* #cpbar apre la CP bar (link del widget) */
+function annGo(){if(location.hash==="#cpbar"){try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}(function t(n){if(typeof cpOpen==="function")cpOpen();else if(n<40)setTimeout(function(){t(n+1)},150)})(0);return}
+var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),mode="news",wantBK=false;
 if(lo){LOCGO=lo[1];LOCDONE=false;VRGO=null;NV="loc"}
 else if(sg){VRGO=null;mode="vgcs";STG={sx:sg[1],key:sg[2]||""}}
 else if(v){VRGO=v[1];VRDONE=false;NV="big"}
