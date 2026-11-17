@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T22:31:08+00:00",
+ "updated": "2026-11-17T23:06:52+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "01:30",
-   "players": 32,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6af80e81ee43ef78914743d7/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "01:45",
-   "players": 2,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af0fa25e99f3235a75e45c7/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "02:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6afbd835b2fccaf0272d49e7/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -704,23 +704,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
-  },
-  {
-   "name": "Risen Epsorts Thanksgiving Challenge",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
@@ -736,6 +721,21 @@
    "time": "18:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
+  },
+  {
+   "name": "Risen Epsorts Thanksgiving Challenge",
+   "org": "Risen Esports VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -944,7 +944,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "19:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details"
   },
   {
