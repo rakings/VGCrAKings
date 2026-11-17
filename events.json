@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T02:40:38+00:00",
+ "updated": "2026-11-17T04:28:36+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,23 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "Amyverse VGC Champions Arena #19 ❤️ Cash Prize!",
+   "name": "RookideeVGC Qualifier| Prize Shiny Venasaur",
    "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "Cash",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-16",
-   "time": "20:00",
-   "players": 81,
-   "url": "https://play.limitlesstcg.com/tournament/6af28d46e99f3235a75e5895/details"
-  },
-  {
-   "name": "Back In The 2022,Sword/Shield VGC 2022 Series 12",
-   "org": "HaoQi cup",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -192,13 +177,13 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-16",
-   "time": "12:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6af98f67b2fccaf0272d30a6/details"
+   "time": "23:00",
+   "players": 35,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
    "name": "The Drywall Series #27",
-   "org": "The Drywalls Series",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -208,12 +193,12 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:30",
-   "players": 34,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6af8c6daee43ef7891474c8e/details"
   },
   {
    "name": "Intimidators Champions Challenge #55 REG M-C",
-   "org": "INTIMIDATORS VGC",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -223,23 +208,8 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "00:00",
-   "players": 47,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6afb3ba6b2fccaf0272d40a9/details"
-  },
-  {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
-   "org": "RookideeVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-17",
-   "time": "00:00",
-   "players": 43,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d5485920e4d25363410/details"
   },
   {
    "name": "Lychee Day Care - Sports Fest #1",
@@ -253,7 +223,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "12:00",
-   "players": 47,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6afaaf37b2fccaf0272d3d12/details"
   },
   {
@@ -268,7 +238,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "17:30",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af37ac600d53a11f5b908db/details"
   },
   {
@@ -283,7 +253,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "19:00",
-   "players": 20,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6aea078d0c463890f304a624/details"
   },
   {
@@ -313,7 +283,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "01:30",
-   "players": 6,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af80e81ee43ef78914743d7/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 36,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -523,7 +493,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "01:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
@@ -764,7 +734,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 24,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -869,7 +839,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
@@ -899,7 +869,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -914,7 +884,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "03:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details"
   },
   {
