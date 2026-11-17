@@ -9,7 +9,7 @@
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
     android:initialLayout="@layout/w_tornei_largo"
-    android:previewLayout="@layout/w_tornei_largo"
+    android:previewImage="@drawable/anteprima_tornei"
     android:description="@string/d_tornei"
     android:widgetCategory="home_screen"
     android:configure="com.rakings.vgc.CpImpostazioni"

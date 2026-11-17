@@ -9,7 +9,7 @@
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
     android:initialLayout="@layout/w_bk_largo"
-    android:previewLayout="@layout/w_bk_largo"
+    android:previewImage="@drawable/anteprima_bacheca"
     android:description="@string/d_bk"
     android:widgetCategory="home_screen"
     android:configure="com.rakings.vgc.CpImpostazioni"
