@@ -21,7 +21,7 @@
 //     la coda degli argomenti cancella dall'archivio i telefoni che Google dice non esistere piu'.
 //   AVVISI AUTOMATICI (2026-11-15b): live Twitch + live e video YouTube di Francesco, con le API ufficiali (vedi sotto, «AVVISI AUTOMATICI»).
 //     POST /auto/twitch, GET|POST /auto/youtube (li chiamano Twitch e YouTube, con firma), GET /admin/auto (ADMIN_TOKEN), giro ogni 5 minuti (Cron).
-//   SOCIAL (2026-11-15a): POST /admin/social {id, rete: ig|x, azione: approva|rifiuta|fatto, testo} (solo ADMIN_TOKEN, dalla pagina admin):
+//   SOCIAL (2026-11-17, + YouTube Shorts): POST /admin/social {id, rete: ig|x|yt, azione: approva|rifiuta|fatto, testo} (solo ADMIN_TOKEN, dalla pagina admin):
 //     avvia il flusso «Social - azione dall'admin» del sito (segreto GH_AVVISI). La chiave di Instagram resta SOLO su GitHub.
 //   RICHIESTE LOCALI: GET /admin/richieste e POST /admin/richieste/etichetta (ADMIN_TOKEN), con GH_RICHIESTE e RICHIESTE_REPO.
 //     GET /partner/statistiche: gli stessi numeri della pagina admin (mai i token), aggiornabili ogni 10 minuti.
@@ -669,8 +669,8 @@ export default {
       let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
       const id = String((b && b.id) || ""), rete = String((b && b.rete) || ""), az = String((b && b.azione) || "");
       const testo = typeof (b && b.testo) === "string" ? b.testo.slice(0, 2200) : "";
-      if (!/^[a-z]{2,8}-\d{1,10}$/.test(id) || !["ig", "x"].includes(rete) || !["approva", "rifiuta", "fatto"].includes(az)
-          || (rete === "ig" && az === "fatto") || (rete === "x" && az === "approva")) return out({ error: "richiesta non valida" }, 400);
+      if (!/^[a-z]{2,8}-\d{1,10}$/.test(id) || !["ig", "x", "yt"].includes(rete) || !["approva", "rifiuta", "fatto"].includes(az)
+          || (rete !== "x" && az === "fatto") || (rete === "x" && az === "approva")) return out({ error: "richiesta non valida" }, 400);
       if (!env.GH_AVVISI) return out({ error: "manca il segreto GH_AVVISI" }, 503);
       const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/social-azione.yml/dispatches", {
         method: "POST",
