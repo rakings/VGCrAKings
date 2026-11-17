@@ -7,7 +7,7 @@ on:
         description: "richiesta (es. loc-123)"
         required: true
       rete:
-        description: "ig oppure x"
+        description: "ig, x oppure yt"
         required: true
       azione:
         description: "approva, rifiuta oppure fatto"
@@ -24,9 +24,14 @@ concurrency:
 jobs:
   azione:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Strumenti per gli Shorts (solo YouTube)
+        if: ${{ inputs.rete == 'yt' }}
+        run: |
+          python3 -m pip install --quiet pillow
+          command -v ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
       - run: python3 -u social.py azione
         env:
           ID: ${{ inputs.id }}
@@ -37,6 +42,9 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_HOST: ${{ vars.IG_HOST }}
           IG_API_VER: ${{ vars.IG_API_VER }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
       - name: Salva su GitHub
         if: ${{ !cancelled() }}
         run: |
