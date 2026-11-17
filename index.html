@@ -712,7 +712,8 @@ var NTFY_PREFIX="";
 var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,vrreg:false,maddos:false,locali:false,locali8:false,player:false,winner:false,vrwin:false,pardini:false,h:{}};
 try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv)}catch(e){}
 /* icone delle notifiche (icone/<nome>.png): stessa regola del service worker fcm-sw.js */
-function vgcCat(cat,title){var c=String(cat||""),t=String(title||"");if(/-1h$|^t-|^promemoria$/.test(c))return"promemoria";
+function vgcCat(cat,title,link){var k=vgcCat0(cat,title),u=String(link||"");if(k==="pardini"&&/twitch\.tv\//i.test(u))return"pardini-twitch";if(k==="pardini"&&/(youtube\.com|youtu\.be)\//i.test(u))return"pardini-youtube";return k}
+function vgcCat0(cat,title){var c=String(cat||""),t=String(title||"");if(/-1h$|^t-|^promemoria$/.test(c))return"promemoria";
 var m={money:"money",money33:"money",gc:"gc",maddos:"maddos",regionali:"regionali",vr:"vr",vrreg:"vrreg",vrwin:"vrwin",winner:"winner",locali:"locali",locali8:"locali8",player:"player",pardini:"pardini",tutti:"annunci",annunci:"annunci"};if(m[c])return m[c];
 if(/^Vincitore Victory Road/i.test(t))return"vrwin";if(/^Vincitore Regional/i.test(t))return"winner";if(/Maddos/i.test(t))return"maddos";if(/Victory Road/i.test(t))return"vr";if(/^Region/i.test(t))return"regionali";if(/money/i.test(t))return"money";
 if(/Global Challenge/i.test(t))return"gc";if(/^Player in evidenza/i.test(t))return"player";if(/top 8/i.test(t))return"locali8";if(/Pardini/i.test(t))return"pardini";if(/^Promemoria|tra 1 ora|inizia tra/i.test(t))return"promemoria";if(/^Annuncio/i.test(t))return"annunci";return""}
@@ -799,7 +800,7 @@ try{caches.open("vgc-hist").then(function(c){return c.match("hist.json")}).then(
 function nHtml(){var l=nList().slice(0,30),h='<div class="sheet2" role="document"><div class="calbar"><b id="np-t">Cronologia notifiche</b><button class="cnav" data-npc="1" aria-label="Chiudi">\u2715</button></div><p class="meta" style="margin:0 0 8px">Gli ultimi avvisi sulle categorie che hai attivato.</p><div class="opt"><button class="btn" type="button" data-nclear="1" style="width:100%;border-radius:12px">\ud83e\uddf9 Segna come lette e azzera il contatore</button></div><div class="opt"><button class="btn" type="button" data-ncut="1" style="width:100%;border-radius:12px">Svuota la cronologia</button></div>';
 if(!l.length)h+='<p class="meta">Nessun avviso per ora.</p>';
 l.forEach(function(x){var nw=x.ms>NSEEN,d=x.ms?new Date(x.ms).toLocaleString(LCL,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"";
-var inner=vgcIco(vgcCat(x.cat||x.topic,x.title),"nico2")+'<b>'+esc(x.title||"")+'</b>'+(nw?' <span class="nnew">nuovo</span>':'')+'<br><span>'+esc(x.body||"").replace(/\n/g,"<br>")+'</span><br><small>'+esc(d)+'</small>';
+var inner=vgcIco(vgcCat(x.cat||x.topic,x.title,x.url),"nico2")+'<b>'+esc(x.title||"")+'</b>'+(nw?' <span class="nnew">nuovo</span>':'')+'<br><span>'+esc(x.body||"").replace(/\n/g,"<br>")+'</span><br><small>'+esc(d)+'</small>';
 h+=/^https?:/.test(x.url||"")?'<a class="nit" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="nit">'+inner+'</div>'});
 return h+'</div>'}
 function nRedraw(vis){var o=$("np");if(o.hidden||!o.querySelector("[data-nclear]"))return;var s=NSEEN;if(vis!==undefined)NSEEN=vis;o.innerHTML=nHtml();NSEEN=s}

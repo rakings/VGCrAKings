@@ -6,7 +6,14 @@ self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim(
 // Cronologia sul dispositivo: la campanella del sito la legge dalla stessa cache che usava sw.js.
 // Gli avvisi che arrivano nello stesso istante si salvano uno dopo l'altro: prima leggevano tutti lo stesso elenco e l'ultimo a scrivere cancellava gli altri.
 // Icona a destra di ogni avviso, secondo la categoria (dato «cat»; per gli avvisi vecchi si riconosce dal titolo).
-function vgcCat(cat, title) {
+// Avvisi di Francesco Pardini: icona viola per le live Twitch, rossa per YouTube (si capisce dal link).
+function vgcCat(cat, title, link) {
+  var k = vgcCat0(cat, title), u = String(link || "");
+  if (k === "pardini" && /twitch\.tv\//i.test(u)) return "pardini-twitch";
+  if (k === "pardini" && /(youtube\.com|youtu\.be)\//i.test(u)) return "pardini-youtube";
+  return k;
+}
+function vgcCat0(cat, title) {
   var c = String(cat || ""), t = String(title || "");
   if (/-1h$|^t-|^promemoria$/.test(c)) return "promemoria";
   var m = { money: "money", money33: "money", gc: "gc", maddos: "maddos", regionali: "regionali", vr: "vr", vrreg: "vrreg", vrwin: "vrwin",
@@ -80,7 +87,7 @@ self.addEventListener("push", function (e) {
   var link = (j.fcmOptions && j.fcmOptions.link) || n.click_action || d.link || d.url || "./";
   e.waitUntil(Promise.all([logP, histSave(title, body, link, d.tag || "", d.cat || ""), self.registration.showNotification(title, {
     body: body,
-    icon: n.icon || d.icon || (vgcCat(d.cat, title) ? "icone/" + vgcCat(d.cat, title) + ".png" : "icon-192.png"),
+    icon: n.icon || d.icon || (vgcCat(d.cat, title, link) ? "icone/" + vgcCat(d.cat, title, link) + ".png" : "icon-192.png"),
     badge: "badge-96.png",
     data: { link: link },
     tag: d.tag || undefined
