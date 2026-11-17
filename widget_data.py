@@ -79,7 +79,7 @@ def main():
     an = sorted(an, key=lambda a: a.get("pub") or "", reverse=True)
     an = [a for a in an if a.get("pin")][:1] + [a for a in an if not a.get("pin")][:4]
     bk = [{"id": a["id"], "t": a.get("t", ""), "d": a.get("d", "")[:220], "pin": bool(a.get("pin")),
-           "p": "Francesco Pardini" if a.get("partner") == "pardini" else "", "img": SITO + a["img"] if a.get("img") else "",
+           "p": {"pardini": "Francesco Pardini", "rakings": "rAKings VGC"}.get(a.get("partner"), ""), "img": SITO + a["img"] if a.get("img") else "",
            "pub": a.get("pub", ""), "u": SITO + "#annuncio-%s" % a["id"]} for a in an]
 
     w = {"v": 1, "vr": ev_w(vr, "vr") if vr else None, "rg": ev_w(rg, tipo(rg)) if rg else None, "money": money, "cp": cp, "bk": bk,

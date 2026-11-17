@@ -13,7 +13,7 @@ import base64, json, os, re, sys, urllib.request
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
-PARTNER = {"pardini": "pardini"}          # partner -> canale
+PARTNER = {"pardini": "pardini", "rakings": "tutti"}   # partner -> canale («rakings» = annunci di Andrea dalla pagina admin: a TUTTI)
 HOST_OK = re.compile(r"^((www\.|m\.)?(twitch\.tv|youtube\.com|youtu\.be)|rakings\.github\.io)$", re.I)
 PARTNER_MAX = 20                           # annunci del partner tenuti in bacheca
 ANNUNCI = "annunci.json"
@@ -135,6 +135,11 @@ def invia(e, attendi=None):
         print("Avviso partner: notifiche non configurate.")
         return 1
     print("Avviso partner (%s, canale %s): %s | %s | %s" % (d["partner"], d["canale"], d["titolo"], d["testo"], link))
+    if d["canale"] == "tutti":
+        # annuncio di Andrea: notifica OBBLIGATORIA a tutti gli iscritti, come gli annunci arrivati via mail
+        ue.deliver_tutti("Annuncio: %s" % d["titolo"], d["testo"], link)
+        print("Annuncio inviato a tutti.")
+        return 0
     if d["bacheca"]:
         # avvisi scritti: non urgenti, seguono argomenti_modo.json per il canale (old / both / new)
         print("Avviso scritto: modo «%s» (argomenti_modo.json)" % ue.modo_canale(d["canale"]))

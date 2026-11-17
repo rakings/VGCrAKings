@@ -75,6 +75,9 @@ a.b{display:inline-flex;align-items:center;font-weight:700;border-radius:10px;bo
 .cnt{font-size:.78rem;color:var(--mu);text-align:right;margin-top:2px}.cnt.over{color:#ff8b95;font-weight:700}
 .ban{border-radius:10px;padding:10px 12px;font-size:.88rem;border:1px solid var(--line);margin:0 0 4px;background:rgba(0,0,0,.25)}
 .ban.ok{border-color:#2e6b47}.ban.err{border-color:#7a2a33}
+.fm input:not([type=checkbox]):not([type=file]),.fm textarea{width:100%;font:inherit;font-size:16px;padding:11px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit)}
+.fm textarea{min-height:90px;resize:vertical}.fm label .cnt{float:right;margin:0}.fm input[type=file]{font-size:.85rem;color:var(--mu);max-width:100%}
+.fm .cnt.over{color:#ff8b95}
 details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);font-size:.88rem;padding:6px 0}
 </style>
 </head>
@@ -103,7 +106,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
 
   <div id="p-loc" data-panel="loc">
     <div class="card"><h2>Richieste dei locali e annunci da approvare</h2><div id="rq"><div class="hint">Carico…</div></div></div>
-    <div class="card"><h2>Annunci di Francesco Pardini in bacheca</h2><div id="pa"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>Annunci in bacheca (tuoi e di Francesco)</h2><div id="pa"><div class="hint">Carico…</div></div></div>
   </div>
 
   <div id="p-ig" data-panel="ig" hidden>
@@ -122,6 +125,22 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
   </div>
 
   <div id="p-st" data-panel="st" hidden>
+    <div class="card fm"><h2>Nuovo annuncio in bacheca</h2>
+      <label for="an-ti">Titolo <span class="cnt" id="an-cti">0/60</span></label>
+      <input id="an-ti" maxlength="60" placeholder="Es. Torneo al PlayTime sabato 28/11">
+      <label for="an-te">Testo della notifica <span class="cnt" id="an-cte">0/180</span></label>
+      <textarea id="an-te" maxlength="180" placeholder="Arriva a tutti gli iscritti come notifica"></textarea>
+      <label for="an-li">Link (facoltativo: Twitch, YouTube o sito rAKings)</label>
+      <input id="an-li" inputmode="url" placeholder="https://...">
+      <label for="an-ar">Articolo per la bacheca (facoltativo) <span class="cnt" id="an-car">0/2000</span></label>
+      <textarea id="an-ar" maxlength="2000" style="min-height:120px" placeholder="Se lo lasci vuoto, in bacheca va il testo della notifica."></textarea>
+      <label for="an-im">Foto per la bacheca (facoltativa)</label>
+      <input id="an-im" type="file" accept="image/*">
+      <div id="an-imbox" hidden style="margin-top:8px"><img id="an-imprev" alt="" style="max-width:100%;max-height:260px;border-radius:10px;display:block"><button class="sec" id="an-imdel" type="button" style="margin-top:6px">Togli la foto</button></div>
+      <div style="margin-top:12px"><button id="an-go" type="button" style="width:100%" disabled>Pubblica e avvisa tutti</button></div>
+      <p class="msg" id="an-msg" role="status"></p>
+      <div class="hint">Esce in bacheca con l'etichetta «rAKings VGC» e la notifica arriva a TUTTI gli iscritti in circa 1 minuto. Lo ritrovi nella scheda Locali, in «Annunci in bacheca», dove puoi cancellarlo.</div>
+    </div>
     <div class="card">
       <h2>Iscritti</h2>
       <div class="big" id="n">–</div>
@@ -271,13 +290,22 @@ document.addEventListener("click",function(ev){
 });
 
 /* ---- annunci di Francesco: elenco + tasto Cancella (il Worker avvia il flusso che li toglie dalla bacheca) ---- */
-var TOLTI={};
+/* gli annunci gia' cancellati restano ricordati sul dispositivo (2 ore), cosi' aggiornando la pagina non tornano il tasto «Cancella»
+   mentre GitHub sta ancora pubblicando la bacheca nuova */
+var TOLTI=(function(){try{var t=JSON.parse(localStorage.getItem("adm-tolti")||"{}"),n=Date.now(),o={};for(var k in t)if(n-t[k]<7200000)o[k]=t[k];return o}catch(e){return {}}})();
+function salvaTolti(){try{localStorage.setItem("adm-tolti",JSON.stringify(TOLTI))}catch(e){}}
 function annunciPartner(token){
   var el=$("pa");el.innerHTML='<div class="hint">Carico…</div>';
   return fetch(SITE+"annunci.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("bacheca "+r.status);return r.json()}).then(function(d){
-    var l=((d&&d.annunci)||[]).filter(function(a){return a&&a.partner&&!TOLTI[a.id]}).sort(function(x,y){return String(y.pub||"").localeCompare(String(x.pub||""))});
-    if(!l.length){el.innerHTML='<div class="hint">Nessun annuncio di Francesco in bacheca.</div>';return}
-    el.innerHTML=l.map(function(a){var dt=new Date(a.pub||0);return '<div class="pa"><span><b title="'+esc(a.t||"")+'">'+esc(a.t||"(senza titolo)")+'</b><small>'+(isNaN(dt)?"":dt.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}))+(a.img?" · con immagine":"")+'</small></span><button class="sec" type="button" data-rm="'+esc(a.id)+'">Cancella</button></div>'}).join("")+
+    var tutti=((d&&d.annunci)||[]).filter(function(a){return a&&a.partner}),ci={};
+    tutti.forEach(function(a){ci[a.id]=1});
+    for(var k in TOLTI)if(!ci[k])delete TOLTI[k];   // gia' sparito dalla bacheca: non serve piu' ricordarlo
+    salvaTolti();
+    var l=tutti.sort(function(x,y){return String(y.pub||"").localeCompare(String(x.pub||""))});
+    if(!l.length){el.innerHTML='<div class="hint">Nessun annuncio tuo o di Francesco in bacheca.</div>';return}
+    el.innerHTML=l.map(function(a){var dt=new Date(a.pub||0),tit='<b title="'+esc(a.t||"")+'">'+esc(a.t||"(senza titolo)")+'</b>';
+      if(TOLTI[a.id])return '<div class="pa"><span>'+tit+'<small style="color:var(--ok)">Cancellato ✓ in attesa che il sito si aggiorni</small></span><span></span></div>';
+      return '<div class="pa"><span>'+tit+'<small>'+(isNaN(dt)?"":dt.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}))+(a.partner==="rakings"?" · tuo":" · Francesco")+(a.img?" · con immagine":"")+'</small></span><button class="sec" type="button" data-rm="'+esc(a.id)+'">Cancella</button></div>'}).join("")+
       '<div class="hint">Dopo «Cancella» l\'annuncio sparisce dalla bacheca entro qualche minuto (il tempo che GitHub aggiorni il sito).</div>'
   }).catch(function(e){el.innerHTML='<div class="hint">Bacheca non letta ('+esc(e.message||"errore")+').</div>'})
 }
@@ -285,13 +313,50 @@ document.addEventListener("click",function(ev){
   var b=ev.target&&ev.target.closest?ev.target.closest("[data-rm]"):null;if(!b)return;
   var id=b.getAttribute("data-rm"),tit=(b.parentNode.querySelector("b")||{}).textContent||id,token=getTok();
   if(!token){msg("Rientra con il codice di accesso.",true);return}
-  if(!confirm("Tolgo dalla bacheca l'annuncio di Francesco:\n\n«"+tit+"»?\n\nNon si puo' annullare."))return;
+  if(!confirm("Tolgo dalla bacheca l'annuncio:\n\n«"+tit+"»?\n\nNon si puo' annullare."))return;
   b.disabled=true;b.textContent="…";
   fetch(W+"/admin/rimuovi-annuncio",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id})})
     .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
-      if(r.ok&&j.ok){TOLTI[id]=1;var row=b.parentNode;row.innerHTML='<span><b>'+esc(tit)+'</b><small style="color:var(--ok)">Cancellato ✓ sparisce dalla bacheca entro qualche minuto</small></span><span></span>'}
+      if(r.ok&&j.ok){TOLTI[id]=Date.now();salvaTolti();var row=b.parentNode;row.innerHTML='<span><b>'+esc(tit)+'</b><small style="color:var(--ok)">Cancellato ✓ sparisce dalla bacheca entro qualche minuto</small></span><span></span>'}
       else{b.disabled=false;b.textContent="Cancella";alert("Non cancellato: "+(j.error||("errore "+r.status)))}})},
     function(){b.disabled=false;b.textContent="Cancella";alert("Nessuna connessione con il Worker: non cancellato.")})
+});
+
+/* ---- annuncio di Andrea: stesso percorso di quelli di Francesco (Worker /admin/annuncio), notifica a TUTTI ---- */
+var ANIMG="";
+function anLinkOk(u){if(!u)return true;try{var x=new URL(u);return x.protocol==="https:"&&/^((www\.|m\.)?(twitch\.tv|youtube\.com|youtu\.be)|rakings\.github\.io)$/i.test(x.hostname)}catch(e){return false}}
+function anMsg(t,k){var m=$("an-msg");m.textContent=t||"";m.className="msg"+(k==="err"?" err":"");m.style.color=k==="ok"?"var(--ok)":""}
+function anCheck(){
+  var ti=$("an-ti").value.trim(),te=$("an-te").value.trim(),li=$("an-li").value.trim();
+  $("an-cti").textContent=$("an-ti").value.length+"/60";$("an-cte").textContent=$("an-te").value.length+"/180";$("an-car").textContent=$("an-ar").value.length+"/2000";
+  if(li&&!anLinkOk(li))anMsg("Link non ammesso: solo Twitch, YouTube o il sito rAKings (https).","err");else if($("an-msg").className.indexOf("err")>-1)anMsg("");
+  $("an-go").disabled=ti.length<3||te.length<3||!anLinkOk(li)
+}
+function anRiduci(file){return new Promise(function(ok,ko){
+  var u=URL.createObjectURL(file),im=new Image();
+  im.onload=function(){var lato=1080,q=0.82,out="";
+    for(var k=0;k<6;k++){var sc=Math.min(1,lato/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);
+      var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);out=c.toDataURL("image/jpeg",q);
+      if(out.length<950000)break;lato=Math.round(lato*0.8);q=Math.max(0.6,q-0.06)}
+    URL.revokeObjectURL(u);out.length<950000?ok(out):ko(new Error("immagine troppo pesante"))};
+  im.onerror=function(){URL.revokeObjectURL(u);ko(new Error("file non leggibile come immagine"))};im.src=u})}
+["an-ti","an-te","an-li","an-ar"].forEach(function(i){$(i).addEventListener("input",anCheck)});
+$("an-im").addEventListener("change",function(){var f=this.files&&this.files[0];if(!f)return;anMsg("Preparo la foto…");
+  anRiduci(f).then(function(d){ANIMG=d;$("an-imprev").src=d;$("an-imbox").hidden=false;anMsg("Foto pronta ("+Math.round(d.length*0.75/1024)+" KB).")},
+    function(e){ANIMG="";$("an-im").value="";$("an-imbox").hidden=true;anMsg("Foto non usabile: "+e.message+".","err")})});
+$("an-imdel").addEventListener("click",function(){ANIMG="";$("an-im").value="";$("an-imbox").hidden=true});
+$("an-go").addEventListener("click",function(){
+  var token=getTok();if(!token){msg("Rientra con il codice di accesso.",true);return}
+  var ti=$("an-ti").value.trim(),te=$("an-te").value.trim(),b=$("an-go");
+  if(!confirm("Pubblico in bacheca"+(ANIMG?" con la foto":"")+" e mando la notifica a TUTTI gli iscritti?\n\n"+ti+"\n"+te))return;
+  b.disabled=true;anMsg("Invio…");
+  fetch(W+"/admin/annuncio",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},
+    body:JSON.stringify({titolo:ti,testo:te,link:$("an-li").value.trim(),articolo:$("an-ar").value,img:ANIMG||""})})
+    .then(function(r){return r.json().catch(function(){return {}}).then(function(j){
+      if(r.ok&&j.ok){["an-ti","an-te","an-li","an-ar","an-im"].forEach(function(i){$(i).value=""});ANIMG="";$("an-imbox").hidden=true;anCheck();
+        anMsg("Pubblicato ✓ La notifica arriva a tutti in circa 1 minuto; in bacheca compare entro pochi minuti.","ok")}
+      else{b.disabled=false;anMsg("Non pubblicato: "+(j.error||("errore "+r.status)),"err")}})},
+    function(){b.disabled=false;anMsg("Nessuna connessione con il Worker: annuncio NON partito.","err")})
 });
 
 /* ---- post per Instagram e X: social/richieste.json del sito (lo scrive il flusso «Social»), azioni tramite il Worker ---- */
