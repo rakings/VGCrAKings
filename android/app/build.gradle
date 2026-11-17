@@ -7,11 +7,11 @@ def chiaveFile = System.getenv('CHIAVE_FILE')
 
 android {
     namespace 'com.rakings.vgc'
-    compileSdk 34
+    compileSdk 36
     defaultConfig {
         applicationId 'com.rakings.vgc'
         minSdk 23
-        targetSdk 34
+        targetSdk 36
         versionCode versione
         versionName '1.0.' + versione
         // l'app apre il sito dicendo «sono l'app» e la sua versione (per l'avviso «nuova versione disponibile»)
