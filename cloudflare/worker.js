@@ -14,6 +14,9 @@
 //     Ogni avviso scritto esce anche in BACHECA (annunci.json, etichetta «Francesco Pardini», con articolo e immagine facoltativi):
 //     l'immagine passa dal KV (partner:img:<id>, scade in 2 giorni) e il flusso la copia nel sito (GET /partner/img/<id>, codice admin).
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
+//   ANNUNCIO DI ANDREA (2026-11-17): POST /admin/annuncio {titolo, testo, link, articolo, img} (solo ADMIN_TOKEN, dalla pagina admin):
+//     stesso percorso degli annunci di Francesco (flusso «Avviso partner», partner «rakings»), etichetta «rAKings VGC» in bacheca,
+//     notifica OBBLIGATORIA a tutti gli iscritti. Nessun limite (solo 1 minuto tra due invii, contro il doppio tocco).
 //   LIKE (2026-11-14d): POST /like {dev, ops:[[idAnnuncio, 1|0], ...]} pubblico, a pacchetti; GET /like/conteggi (ADMIN_TOKEN) per il flusso orario.
 //     Serve il collegamento D1 con nome LIKE (le tabelle si creano da sole). Senza, i like restano solo sul telefono.
 //   PROTEZIONE (2026-11-15d, limiti allargati in 2026-11-15e): limite per indirizzo IP sulle scritture (iscrizioni 150 e like 400 ogni 10 minuti), in memoria (niente KV);
@@ -697,6 +700,40 @@ export default {
       await env.SUBS.delete("partner:ann:" + id);   // anche la copia veloce: il tocco su una vecchia notifica non lo mostra piu'
       await env.SUBS.delete("partner:img:" + id);
       return out({ ok: true });
+    }
+    if (req.method === "POST" && url.pathname === "/admin/annuncio") {   // SOLO Andrea (ADMIN_TOKEN): annuncio in bacheca + notifica a tutti
+      if (!admin()) return out({ error: "non autorizzato" }, 401);
+      if (!env.GH_AVVISI) return out({ error: "manca il segreto GH_AVVISI" }, 503);
+      const txt = await req.text();
+      if (txt.length > 1100000) return out({ error: "Immagine troppo grande." }, 413);
+      let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
+      const titolo = pulisci(b.titolo, 60), testo = pulisci(b.testo, 180), link = linkOk(pulisci(b.link, 300));
+      const articolo = String(b.articolo || "").replace(/\r/g, "").replace(/[\u0000-\u0009\u000b-\u001f\u007f]+/g, " ").replace(/\n{3,}/g, "\n\n").trim().slice(0, 2000);
+      if (titolo.length < 3) return out({ error: "Il titolo deve avere almeno 3 caratteri." }, 400);
+      if (testo.length < 3) return out({ error: "Il testo deve avere almeno 3 caratteri." }, 400);
+      if (link === null) return out({ error: "Link non ammesso: solo Twitch, YouTube o il sito rAKings (https)." }, 400);
+      let img = null;
+      if (b.img) {
+        const s64 = String(b.img).replace(/^data:image\/jpeg;base64,/, "");
+        if (s64 === String(b.img) || !/^\/9j\//.test(s64) || s64.length < 200 || s64.length > 1000000 || /[^A-Za-z0-9+/=]/.test(s64.slice(0, 4000)))
+          return out({ error: "Immagine non valida: usa una foto JPG o PNG." }, 400);
+        img = s64;
+      }
+      const ora = Math.floor(Date.now() / 1000), ult = Number(await env.SUBS.get("admin:annT")) || 0;
+      if (ora - ult < 60) return out({ error: "Hai appena mandato un annuncio: aspetta un minuto." }, 429);
+      await env.SUBS.put("admin:annT", String(ora), { expirationTtl: 3600 });
+      if (img) await env.SUBS.put("partner:img:" + ora, img, { expirationTtl: 2 * 86400 });
+      const r = await fetch(PARTNER_FLUSSO, {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+                   "User-Agent": "vgc-subs-admin", "Content-Type": "application/json" },
+        body: JSON.stringify({ ref: "main", inputs: { partner: "rakings", id: String(ora), titolo, testo, link: link || "",
+                                                      bacheca: "1", articolo, img: img ? "1" : "" } }),
+      });
+      if (r.status !== 204) { await env.SUBS.delete("admin:annT"); return out({ error: "GitHub ha risposto " + r.status + ": annuncio non partito, riprova." }, 502); }
+      await env.SUBS.put("partner:ann:" + ora, JSON.stringify({ id: ora, t: titolo, d: articolo || testo, pub: new Date(ora * 1000).toISOString().slice(0, 19) + "Z",
+                                                               partner: "rakings", link: link || "", img: !!img }), { expirationTtl: 2 * 86400 });
+      return out({ ok: true, id: ora });
     }
     if (req.method === "GET" && /^\/partner\/annuncio\/\d{9,11}$/.test(url.pathname)) {   // PUBBLICO: un annuncio del partner appena mandato
       const id = url.pathname.split("/").pop();
