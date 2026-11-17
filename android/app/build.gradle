@@ -1,0 +1,37 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.rakings.vgc'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.rakings.vgc'
+        minSdk 23
+        targetSdk 34
+        // numero di versione automatico dal flusso di GitHub (ogni build ha un numero piu' alto)
+        versionCode((System.getenv('VERSIONE') ?: '1') as int)
+        versionName '1.0.' + (System.getenv('VERSIONE') ?: '1')
+    }
+    signingConfigs {
+        prova {
+            // chiave di PROVA (per installare l'app sul telefono). Per il Play Store se ne usera' una segreta.
+            storeFile file('prova.keystore')
+            storePassword 'rakings-prova'
+            keyAlias 'prova'
+            keyPassword 'rakings-prova'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.prova
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+}
