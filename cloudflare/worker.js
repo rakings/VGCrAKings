@@ -14,6 +14,11 @@
 //     Ogni avviso scritto esce anche in BACHECA (annunci.json, etichetta «Francesco Pardini», con articolo e immagine facoltativi):
 //     l'immagine passa dal KV (partner:img:<id>, scade in 2 giorni) e il flusso la copia nel sito (GET /partner/img/<id>, codice admin).
 //     POST /admin/rimuovi-annuncio {id} (solo ADMIN_TOKEN, dalla pagina admin privata): avvia «Rimuovi annuncio partner».
+//   CONFERMA ARGOMENTI (2026-11-17b): quando Google conferma che un telefono e' iscritto a TUTTI i suoi argomenti, il Worker lo segna nel
+//     database D1 «LIKE» (tabella argok: chiave del telefono + firma delle sue scelte). Niente scritture KV in piu'.
+//     GET /list?...&conf=1 aggiunge "a":1 ai telefoni confermati: in modo «new» il flusso manda l'argomento a tutti e l'invio diretto
+//     SOLO ai non confermati (nessuno resta scoperto). GET /stats?...&conf=1 conta i confermati (pagina admin).
+//     Giro orario dal Cron: rimette in coda (al massimo GIRO_MAX all'ora) i telefoni non ancora confermati e pulisce le righe vecchie.
 //   ANNUNCIO DI ANDREA (2026-11-17): POST /admin/annuncio {titolo, testo, link, articolo, img} (solo ADMIN_TOKEN, dalla pagina admin):
 //     stesso percorso degli annunci di Francesco (flusso «Avviso partner», partner «rakings»), etichetta «rAKings VGC» in bacheca,
 //     notifica OBBLIGATORIA a tutti gli iscritti. Nessun limite (solo 1 minuto tra due invii, contro il doppio tocco).
@@ -99,16 +104,20 @@ async function rawPage(env, want, cursorIn, limit) {
   return { p, keys: r.keys, cursor };
 }
 
-async function listPage(env, want, cursorIn, limit) {
+async function listPage(env, want, cursorIn, limit, conf) {
   const g = await rawPage(env, want, cursorIn, limit);
+  let ok = null;
+  if (conf && g.p === "f") { try { ok = await confermati(env, g.keys); } catch (e) { ok = null; } }   // senza database: nessuno confermato (invio diretto a tutti)
   const subs = [];
-  for (const k of g.keys) if (k.metadata) subs.push({ id: k.name.slice(2), k: g.p === "s" ? "os" : "fcm", ...k.metadata });
+  for (const k of g.keys) if (k.metadata) subs.push(ok && ok.has(k.name) ? { id: k.name.slice(2), k: "fcm", ...k.metadata, a: 1 } : { id: k.name.slice(2), k: g.p === "s" ? "os" : "fcm", ...k.metadata });
   return { subs, cursor: g.cursor };
 }
 
 // Conta una pagina di iscritti senza mai mostrare i token: solo numeri.
-async function statPage(env, want, cursorIn, limit) {
-  return contaChiavi(await rawPage(env, want, cursorIn, limit));
+async function statPage(env, want, cursorIn, limit, conf) {
+  const g = await rawPage(env, want, cursorIn, limit), st = contaChiavi(g);
+  if (conf && g.p === "f") { try { const ok = await confermati(env, g.keys); if (ok) { st.conf = ok.size; st.cdb = 1; } } catch (e) {} }
+  return st;
 }
 function contaChiavi(g) {
   const st = { n: 0, fcm: 0, os: 0, c: {}, h: {}, l: {}, seguono: 0, tornei: 0, t1: 0, t7: 0, t30: 0 };
@@ -128,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-15e";
+const VERSIONE = "2026-11-17b";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -149,6 +158,72 @@ function argomentiDi(m) {
 
 const ultimi6 = t => "..." + String(t).slice(-6);
 const argomentiAcceso = env => env.ARGOMENTI === "on";
+
+// ---- conferma degli argomenti (database D1 «LIKE», lo stesso dei like: piano gratuito 100.000 scritture al giorno, KV solo 1.000) ----
+const GIRO_MAX = 40;   // telefoni non confermati rimessi in coda dal giro orario (la coda gratuita regge circa 10.000 operazioni al giorno)
+function firmaArg(m) {   // firma corta delle scelte: cambia se cambiano gli argomenti voluti
+  const t = [...argomentiDi(m)].sort().join(",");
+  let h = 5381; for (let i = 0; i < t.length; i++) h = ((h * 33) ^ t.charCodeAt(i)) >>> 0;
+  return h.toString(36) + "." + t.length;
+}
+let ARGOK_PRONTO = false;
+async function argokDb(env) {
+  if (!env.LIKE) return null;
+  if (!ARGOK_PRONTO) {
+    await env.LIKE.batch([
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS argok (id TEXT PRIMARY KEY, s TEXT NOT NULL)"),
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS argstato (k TEXT PRIMARY KEY, v TEXT)"),
+    ]);
+    ARGOK_PRONTO = true;
+  }
+  return env.LIKE;
+}
+async function segnaConfermato(env, chiave, meta) {
+  try {
+    const db = await argokDb(env); if (!db) return;
+    await db.prepare("INSERT INTO argok (id, s) VALUES (?, ?) ON CONFLICT(id) DO UPDATE SET s = excluded.s WHERE argok.s <> excluded.s")
+      .bind(chiave, firmaArg(meta)).run();
+  } catch (e) { console.log("argomenti: conferma non scritta", String((e && e.message) || e).slice(0, 80)); }
+}
+async function togliConferma(env, chiave) {
+  try { const db = await argokDb(env); if (db) await db.prepare("DELETE FROM argok WHERE id = ?").bind(chiave).run(); } catch (e) {}
+}
+// I telefoni confermati di una pagina di chiavi KV (ordinate per nome): UNA sola lettura del database. null = database assente.
+async function confermati(env, keys) {
+  const db = await argokDb(env); if (!db) return null;
+  const ok = new Set(); if (!keys.length) return ok;
+  const r = await db.prepare("SELECT id, s FROM argok WHERE id >= ? AND id <= ?").bind(keys[0].name, keys[keys.length - 1].name).all();
+  const m = new Map((r.results || []).map(x => [x.id, x.s]));
+  for (const k of keys) if (k.metadata && m.get(k.name) === firmaArg(k.metadata)) ok.add(k.name);
+  return ok;
+}
+// Giro orario (dal Cron): i telefoni non ancora confermati tornano in coda, a piccoli lotti; si tolgono le righe di telefoni usciti.
+async function giroConferme(env) {
+  if (!argomentiAcceso(env) || !env.CODA || !env.FCM_TOPICS_KEY || new Date().getUTCMinutes() >= 5) return;
+  const db = await argokDb(env); if (!db) return;
+  const ora = Date.now();
+  let s = {}; try { const x = await db.prepare("SELECT v FROM argstato WHERE k = 'giro'").first(); s = JSON.parse((x && x.v) || "{}"); } catch (e) {}
+  if (ora - (s.ult || 0) < 50 * 60 * 1000) return;
+  const r = await env.SUBS.list({ prefix: "f:", cursor: s.cur || undefined, limit: 1000 });
+  const keys = r.keys;
+  let avanti = true, accodati = 0;
+  if (keys.length) {
+    const ok = (await confermati(env, keys)) || new Set();
+    const scoperti = keys.filter(k => k.metadata && !ok.has(k.name));
+    const lotto = scoperti.slice(0, GIRO_MAX);
+    if (lotto.length) { await env.CODA.sendBatch(lotto.map(k => ({ body: { k: k.name.slice(2), n: 0, v: 0 } }))); accodati = lotto.length; }
+    avanti = scoperti.length <= GIRO_MAX;
+    const lo = s.cur ? (s.ultimo || keys[0].name) : "f:", hi = r.list_complete ? "f;" : keys[keys.length - 1].name, ci = new Set(keys.map(k => k.name));
+    const righe = await db.prepare("SELECT id FROM argok WHERE id > ? AND id <= ?").bind(lo, hi).all();
+    const via = (righe.results || []).map(x => x.id).filter(id => !ci.has(id)).slice(0, 100);
+    if (via.length) await db.batch(via.map(id => db.prepare("DELETE FROM argok WHERE id = ?").bind(id)));
+  }
+  const fine = avanti && r.list_complete;
+  const n = { ult: ora, cur: avanti ? (fine ? "" : r.cursor) : (s.cur || ""), ultimo: avanti ? (fine ? "" : (keys.length ? keys[keys.length - 1].name : "")) : (s.ultimo || ""),
+              accodati, giri: (s.giri || 0) + (fine ? 1 : 0) };
+  await db.prepare("INSERT INTO argstato (k, v) VALUES ('giro', ?) ON CONFLICT(k) DO UPDATE SET v = excluded.v").bind(JSON.stringify(n)).run();
+  if (accodati) console.log("argomenti: giro conferme, rimessi in coda", accodati);
+}
 
 async function accoda(env, token, n, v, secondi) {
   if (!argomentiAcceso(env) || !env.CODA) return;
@@ -199,12 +274,13 @@ async function sincronizza(env, body) {
 
   // cosa ha oggi Google per questo dispositivo (e' la verita': niente stato salvato che possa sfasarsi)
   const gg = await gcall(g, "GET", "", body.k);
-  if (morto(gg)) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); return "ok"; }
+  if (morto(gg)) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); await togliConferma(env, kv.key); return "ok"; }
   if (gg.st !== 200) return { retry: ritardo(body.attempts), perche: "elenco HTTP " + gg.st };
   let attuali = new Set();
   try { const j = JSON.parse(gg.txt); for (const x of j.topic_subscriptions || j.topicSubscriptions || []) { const n = x.topic_name || x.topicName; if (n && NS.test(n)) attuali.add(n); } } catch (e) {}
 
   const lavori = [...voluti].filter(x => !attuali.has(x)).map(x => ["add", x]).concat([...attuali].filter(x => !voluti.has(x)).map(x => ["del", x]));
+  if (!lavori.length) { await segnaConfermato(env, kv.key, rec.metadata); return "ok"; }   // Google dice che e' tutto a posto: confermato
   const adesso = lavori.slice(0, MAX_CHIAMATE);
   let prossimo = 0, errore = null, mortoQui = false;
   async function lavora() {
@@ -216,7 +292,7 @@ async function sincronizza(env, body) {
     }
   }
   await Promise.all(Array.from({ length: Math.min(PARALLELE, adesso.length) }, lavora));
-  if (mortoQui) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); return "ok"; }
+  if (mortoQui) { console.log("argomenti: dispositivo non piu' valido, tolto dall'archivio", ultimi6(body.k)); await env.SUBS.delete(kv.key); await togliConferma(env, kv.key); return "ok"; }
   if (errore) { console.log("argomenti: errore", errore, ultimi6(body.k)); return { retry: ritardo(body.attempts), perche: errore }; }
 
   if (lavori.length > adesso.length) {   // altre iscrizioni da fare: un nuovo messaggio (con un budget di chiamate tutto suo)
@@ -756,7 +832,7 @@ export default {
       if (lim !== null || cur) {   // lettura a pagine
         const limit = Math.min(1000, Math.max(1, parseInt(lim, 10) || 1000));
         try {
-          const r = await listPage(env, want, cur, limit);
+          const r = await listPage(env, want, cur, limit, url.searchParams.get("conf") === "1");
           return out(r.cursor ? { n: r.subs.length, subs: r.subs, cursor: r.cursor } : { n: r.subs.length, subs: r.subs });
         } catch (e) {
           return out({ error: "cursor non valido" }, 400);
@@ -773,7 +849,7 @@ export default {
       const want = url.searchParams.get("kind") || "all";
       const limit = Math.min(1000, Math.max(1, parseInt(url.searchParams.get("limit"), 10) || 1000));
       try {
-        return out(await statPage(env, want, url.searchParams.get("cursor"), limit));
+        return out(await statPage(env, want, url.searchParams.get("cursor"), limit, url.searchParams.get("conf") === "1"));
       } catch (e) {
         return out({ error: "cursor non valido" }, 400);
       }
@@ -825,6 +901,7 @@ export default {
   // ogni 5 minuti (Cron Trigger «*/5 * * * *» nelle impostazioni del Worker): avvisi automatici di Francesco
   async scheduled(event, env, ctx) {
     ctx.waitUntil(autoGiro(env).catch(e => console.log("auto:", String((e && e.message) || e).slice(0, 160))));
+    ctx.waitUntil(giroConferme(env).catch(e => console.log("argomenti: giro conferme", String((e && e.message) || e).slice(0, 160))));
   },
 
   // la coda degli argomenti: un messaggio per volta (Maximum batch size = 1), un dispositivo per messaggio
