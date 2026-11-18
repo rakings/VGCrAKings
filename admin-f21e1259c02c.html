@@ -164,6 +164,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <div class="card"><h2>Tornei seguiti adesso <small style="text-transform:none;letter-spacing:0">(non ancora finiti)</small></h2><div id="ta"><div class="hint">Calcolo…</div></div></div>
     <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
     <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
+    <div class="card"><h2>Visitatori del sito e dell'app</h2><div id="vi"><div class="hint">Carico…</div></div></div>
     <div class="card"><h2>Avvisi automatici di Francesco (Twitch e YouTube)</h2><div id="au"><div class="hint">Carico…</div></div></div>
     <div class="card"><h2>Controlli automatici</h2><div id="ca"><div class="hint">Carico…</div></div></div>
     <p class="hint">Le statistiche si leggono solo quando apri questa scheda (o premi Aggiorna stando qui): ogni lettura costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
@@ -463,6 +464,20 @@ function vai(t){if(!$("p-"+t))t="loc";TAB=t;try{localStorage.setItem(TKEY,t)}cat
 document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-tab]"):null;if(b)vai(b.getAttribute("data-tab"))});
 function ora(){var d=new Date();$("when").textContent="Aggiornato alle "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2)}
 
+/* visitatori: persone diverse (un telefono = una) nelle ultime 24 ore e negli ultimi 7 giorni, divise tra app, sito installato e browser */
+function visite(token){
+  var el=$("vi");el.innerHTML='<div class="hint">Carico…</div>';
+  fetch(W+"/admin/visite",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("Worker "+r.status);return r.json()}).then(function(j){
+    var n=j.n24||0,k=j.k||{};
+    var h='<div class="row"><span><b>Ultime 24 ore</b></span><span class="bar"><i style="width:100%"></i></span><span class="num"><b>'+fmt(n)+'</b></span></div>';
+    [["App (Play Store / APK)","a"],["Sito installato sulla Home","i"],["Browser","b"]].forEach(function(x){var v=k[x[1]]||0,pc=n>0?Math.round(100*v/n):0;
+      h+='<div class="row"><span>'+x[0]+'</span><span class="bar"><i style="width:'+pc+'%"></i></span><span class="num">'+fmt(v)+' <small>'+pc+'%</small></span></div>'});
+    h+='<div class="row"><span>Ultimi 7 giorni</span><span class="bar"><i style="width:0"></i></span><span class="num">'+fmt(j.n7||0)+'</span></div>';
+    h+='<div class="hint">Ogni telefono conta una volta, anche se apre il sito più volte. Il conteggio parte dal giorno in cui è stato attivato.'+((j.segnaliOggi||0)>=(j.max||1e9)?' <b>Limite giornaliero raggiunto: il conteggio riprende domani.</b>':'')+'</div>';
+    el.innerHTML=h
+  }).catch(function(e){el.innerHTML='<div class="hint">Visitatori non letti ('+esc(e.message||"errore")+'). Il Worker su Cloudflare è aggiornato?</div>'})
+}
+
 /* avvisi automatici di Francesco: stato delle iscrizioni a Twitch e YouTube (una sola lettura di KV) */
 function auto(token){
   var el=$("au");el.innerHTML='<div class="hint">Carico…</div>';
@@ -506,7 +521,7 @@ function stats(token){
         if(cur&&pages<1000){$("split").textContent="Leggo l'archivio… pagina "+(pages+1);return next()}
         return tot})})
   }
-  auto(token);controlli();
+  auto(token);visite(token);controlli();
   return next().then(function(t){show(t);attivi(token)}).catch(function(e){$("n").textContent="–";$("split").textContent="Statistiche non lette ("+(e.message||"errore")+"). Premi Aggiorna."})
 }
 

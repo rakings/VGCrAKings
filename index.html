@@ -1073,6 +1073,11 @@ var LKF={c:{},u:0},LKK="vgc-like",LKP="vgc-like-pend",LKD="vgc-dev",LKT=null,LKL
 function lkGet(k,d){try{return JSON.parse(localStorage.getItem(k)||"null")||d}catch(e){return d}}
 function lkSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function lkDev(){var d="";try{d=localStorage.getItem(LKD)||""}catch(e){}if(!/^[a-z0-9]{16,40}$/.test(d)){d="";var a=new Uint8Array(12);try{crypto.getRandomValues(a)}catch(e){for(var i=0;i<12;i++)a[i]=Math.random()*256|0}for(var j=0;j<12;j++)d+=("0"+a[j].toString(16)).slice(-2);try{localStorage.setItem(LKD,d)}catch(e){}}return d}
+/* Visitatori (statistiche admin): un solo segnale per telefono al massimo ogni 12 ore, con il codice casuale dei like. Nessun dato personale. */
+function visSegnala(){try{if(!SUBS_URL)return;var K="vgc-vis",u=+(localStorage.getItem(K)||0),n=Date.now();if(n-u<12*3600e3)return;
+var k="b";try{if(sessionStorage.getItem("vgc-inapp")==="1")k="a";else if((window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true)k="i"}catch(e){}
+fetch(SUBS_URL+"/visita",{method:"POST",keepalive:true,headers:{"Content-Type":"text/plain"},body:JSON.stringify({dev:lkDev(),k:k})}).then(function(r){if(r.ok)try{localStorage.setItem(K,String(n))}catch(e){}}).catch(function(){})}catch(e){}}
+setTimeout(visSegnala,4000);
 function lkNum(id){var L=lkGet(LKK,{})[id],n=+(LKF.c[id]||0);if(L&&L.t>LKF.u)n+=(L.on?1:0)-(L.was?1:0);return Math.max(0,n)}
 function lkBtn(id){var L=lkGet(LKK,{})[id],on=!!(L&&L.on),n=lkNum(id);return '<button class="lk" type="button" data-lk="'+esc(id)+'" aria-pressed="'+on+'" aria-label="Mi piace"><i>'+(on?"♥":"♡")+'</i>'+(n?'<span>'+n+'</span>':'')+'</button>'}
 function lkFlush(){var p=lkGet(LKP,{}),ids=Object.keys(p);if(!ids.length||!SUBS_URL)return;LKLAST=Date.now();var ops=ids.slice(0,50).map(function(k){return [+k,p[k]?1:0]});
