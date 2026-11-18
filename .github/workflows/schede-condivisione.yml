@@ -1,0 +1,41 @@
+name: Schede di condivisione
+# Crea le anteprime per WhatsApp, Telegram, Facebook, X, Discord... delle Top 8 dei locali (cartella l/) e degli annunci
+# della bacheca (cartella a/). Parte DA SOLO: quando arriva una Top 8 o un annuncio approvato (modifica a locali.json o
+# annunci.json) e dopo i flussi che pubblicano o cancellano annunci. NON serve lanciarlo a mano.
+on:
+  push:
+    branches: [main]
+    paths: [locali.json, annunci.json, make_share_cards.py]
+  workflow_run:
+    workflows: ["Avviso partner", "Rimuovi annuncio partner", "Locali - pulizia dei vecchi report"]
+    types: [completed]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: schede-condivisione
+  cancel-in-progress: false
+jobs:
+  schede:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - run: pip install pillow
+      - run: python3 -u make_share_cards.py
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+      - name: Salva le schede
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add -A l a
+          if git diff --staged --quiet; then echo "Niente da salvare"; exit 0; fi
+          git commit -m "Schede di condivisione aggiornate"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash && git push; then exit 0; fi
+            sleep $((i * 5))
+          done
+          exit 1
