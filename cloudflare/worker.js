@@ -8,8 +8,6 @@
 //   anche {cursor}: si richiama lo stesso indirizzo aggiungendo &cursor=<valore> finche' non c'e' piu' il cursor.
 //   Senza limit e senza cursor la risposta e' una sola, completa, come prima (i bot vecchi continuano a funzionare).
 //   POST /remove           -> {"ids":[...]} toglie dall'archivio (serve ADMIN_TOKEN), per i token morti
-//   GET /app.apk           -> PUBBLICO (dal 2026-11-18a): l'APK dell'app Android preso da Releases e consegnato in un solo passaggio,
-//                             senza il rimando di GitHub che su alcuni telefoni blocca il download. Il ?v= nell'indirizzo non conta.
 //   PARTNER (dal 2026-11-13a): GET /partner/stato e POST /partner/invia con il codice del partner (segreto PARDINI_TOKEN):
 //     la pagina partner-pardini.html del sito manda avvisi al canale «pardini» (testo libero o «e' in live»), con limiti.
 //     Il Worker controlla codice, testi, link e limiti, poi avvia il flusso GitHub «Avviso partner» (segreto GH_AVVISI).
@@ -139,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-18a";
+const VERSIONE = "2026-11-17b";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -720,19 +718,6 @@ async function autoGiro(env) {
   if (JSON.stringify(s) !== prima) await autoSalva(env, s);   // si scrive solo se e' cambiato qualcosa
 }
 
-// ======================= APP ANDROID: download dell'APK in un solo passaggio =======================
-// Il link di Releases rimanda a un indirizzo temporaneo di GitHub: su alcuni telefoni il download li' si blocca senza avvisi.
-// Qui il Worker prende il file e lo manda al telefono direttamente (niente rimandi, niente file nella repo).
-const APK_URL = "https://github.com/rakings/VGCrAKings/releases/download/app-prova/rAKings-VGC.apk";
-async function apkRoute(req) {
-  let g;
-  try { g = await fetch(APK_URL, { redirect: "follow" }); } catch (e) { g = null; }
-  if (!g || !g.ok) return new Response("App non disponibile in questo momento, riprova tra poco.", { status: 502, headers: { "Content-Type": "text/plain; charset=utf-8" } });
-  const h = { "Content-Type": "application/vnd.android.package-archive", "Content-Disposition": 'attachment; filename="rAKings-VGC.apk"', "Cache-Control": "no-cache", "X-Content-Type-Options": "nosniff" };
-  const len = g.headers.get("Content-Length"); if (len) h["Content-Length"] = len;
-  return new Response(req.method === "HEAD" ? null : g.body, { status: 200, headers: h });
-}
-
 export default {
   async fetch(req, env) {
     const cors = {
@@ -744,7 +729,6 @@ export default {
     const out = (o, s = 200) => new Response(JSON.stringify(o), { status: s, headers: { ...cors, "Content-Type": "application/json" } });
     if (req.method === "OPTIONS") return new Response(null, { headers: cors });
     const url = new URL(req.url);
-    if ((req.method === "GET" || req.method === "HEAD") && url.pathname === "/app.apk") return apkRoute(req);
     const admin = () => env.ADMIN_TOKEN && req.headers.get("Authorization") === "Bearer " + env.ADMIN_TOKEN;
 
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
