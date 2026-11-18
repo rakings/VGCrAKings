@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T14:10:54+00:00",
+ "updated": "2026-11-18T16:13:18+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 26,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 58,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -223,7 +223,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "20:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "22:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6afda223b2fccaf0272d576f/details"
   },
   {
@@ -268,7 +268,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 7,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
   },
   {
@@ -283,7 +283,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:30",
-   "players": 9,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6afc49b9b2fccaf0272d4b56/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "02:00",
-   "players": 22,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
   },
   {
@@ -358,7 +358,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -418,7 +418,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "13:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
@@ -463,7 +463,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "19:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
   },
   {
@@ -524,7 +524,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 59,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -543,6 +543,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
   },
   {
+   "name": "Texas Throwdown #2 (USPA Soon?)",
+   "org": "SyncTours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "02:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
+  },
+  {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
    "org": "Pokémon Philippines Community",
    "mode": "online",
@@ -554,7 +569,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
@@ -599,7 +614,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 46,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -614,7 +629,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -648,21 +663,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
-   "name": "Risen Epsorts Thanksgiving Challenge",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
-  },
-  {
    "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
    "org": "Santa Fe VGC",
    "mode": "online",
@@ -676,6 +676,21 @@
    "time": "18:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
+  },
+  {
+   "name": "Risen Epsorts Thanksgiving Challenge",
+   "org": "Risen Esports VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -719,7 +734,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
@@ -989,7 +1004,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details"
   },
   {
