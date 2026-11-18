@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T11:26:54+00:00",
+ "updated": "2026-11-18T14:10:54+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,6 +137,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
+   "name": "ValkrixVGC Rising Champions League #07",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "13:00",
+   "players": 39,
+   "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
+  },
+  {
    "name": "Mid-Week Smoke #13",
    "org": "Play N' Connect",
    "mode": "online",
@@ -167,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6afa3f77ee43ef7891475c37/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #07",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "13:00",
-   "players": 39,
-   "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
-  },
-  {
    "name": "GLORY OF CHAMPIONS #3 - REGULATION M-C",
    "org": "TenkiPK",
    "mode": "online",
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 16,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 51,
+   "players": 58,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -223,8 +223,23 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "20:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
+  },
+  {
+   "name": "Game Corner Battle School #4",
+   "org": "Pokémon Portugal",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-18",
+   "time": "22:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6afda223b2fccaf0272d576f/details"
   },
   {
    "name": "Preparação Pré LAIC da Roaring Card Store!",
@@ -268,7 +283,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 25,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
@@ -283,7 +298,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:30",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6afc49b9b2fccaf0272d4b56/details"
   },
   {
@@ -298,7 +313,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "02:00",
-   "players": 19,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
   },
   {
@@ -343,7 +358,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 24,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -373,7 +388,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "19:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
@@ -388,7 +403,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "01:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
@@ -433,7 +448,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -509,7 +524,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 58,
+   "players": 59,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -584,7 +599,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 45,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -599,7 +614,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -629,7 +644,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 40,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -674,7 +689,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
@@ -704,7 +719,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
@@ -749,7 +764,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details"
   },
   {
@@ -794,7 +809,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 17,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -944,7 +959,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details"
   },
   {
@@ -974,7 +989,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 38,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details"
   },
   {
