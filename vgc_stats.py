@@ -378,8 +378,26 @@ def list_events():
                     "winners": {d: person((t.get("winners") or {}).get(d)) for d in ("masters", "seniors", "juniors")},
                     "players_div": t.get("players") or {}})
     completa_date(out)
+    vecchi_in_corso(out)
     out.sort(key=lambda e: e["start"], reverse=True)
     return out
+
+
+GIORNI_IN_CORSO = 4    # un regionale finito da piu' di 4 giorni non puo' essere «in corso», anche se Pokedata lo segna cosi'
+
+
+def vecchi_in_corso(events, oggi=None):
+    """Pokedata a volte aggiunge tornei vecchi con lo stato «running» mai aggiornato (es. San Juan del 7 marzo 2026, comparso
+    il 18 novembre 2026): nel sito risultavano «In corso». Se la data di fine (o d'inizio) e' piu' vecchia di GIORNI_IN_CORSO
+    giorni, il torneo si considera finito. I regionali tenuti in corso a mano (forza_live.txt) restano in corso: li gestisce live_cycle."""
+    oggi = oggi or time.strftime("%Y-%m-%d", time.gmtime())
+    lim = time.strftime("%Y-%m-%d", time.gmtime(time.mktime(time.strptime(oggi, "%Y-%m-%d")) - GIORNI_IN_CORSO * 86400))
+    for e in events:
+        fine = (e.get("end") or e.get("start") or "")[:10]
+        if e.get("status") == "running" and fine and fine < lim:
+            print("%s: Pokedata lo segna in corso, ma e' del %s: lo considero finito." % (e["name"], fine))
+            e["status"] = "finished"
+    return events
 
 
 def current_reg(events):
