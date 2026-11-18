@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T07:55:24+00:00",
+ "updated": "2026-11-18T11:26:54+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,8 +137,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "HeroicTitan’s VGC Battle Arena",
-   "org": "",
+   "name": "Mid-Week Smoke #13",
+   "org": "Play N' Connect",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -147,24 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-18",
-   "time": "02:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6afbd835b2fccaf0272d49e7/details"
-  },
-  {
-   "name": "Tuesday Throwdowns #4",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "01:30",
-   "players": 33,
-   "url": "https://play.limitlesstcg.com/tournament/6af80e81ee43ef78914743d7/details"
+   "time": "12:00",
+   "players": 49,
+   "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
    "name": "🇧🇷 Hit Nexus #4 | Pokémon Champions",
@@ -182,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6afa3f77ee43ef7891475c37/details"
   },
   {
-   "name": "Mid-Week Smoke #13",
-   "org": "Play N' Connect",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "12:00",
-   "players": 49,
-   "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
-  },
-  {
    "name": "ValkrixVGC Rising Champions League #07",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -208,7 +178,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "13:00",
-   "players": 29,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
   },
   {
@@ -223,7 +193,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "18:00",
-   "players": 14,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 46,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -298,7 +268,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
@@ -343,7 +313,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "12:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6afc6acaee43ef7891477161/details"
   },
   {
@@ -373,7 +343,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -508,7 +478,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "23:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
   },
   {
@@ -569,23 +539,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 54,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
-  },
-  {
-   "name": "LEGA DEI BOLLENTI MC #2",
-   "org": "CkVerse_Twitch",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
    "name": "Ukraine tryouts",
@@ -603,6 +558,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
+   "name": "LEGA DEI BOLLENTI MC #2",
+   "org": "CkVerse_Twitch",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
+  },
+  {
    "name": "Champions League VGC November",
    "org": "Battle Chateau",
    "mode": "online",
@@ -614,7 +584,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 44,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -629,7 +599,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -644,7 +614,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "15:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af8d364b2fccaf0272d27e5/details"
   },
   {
@@ -659,7 +629,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 39,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -734,7 +704,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
@@ -888,6 +858,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
   },
   {
+   "name": "VGC UmbreNews 24.11.2026 #41 - Champion",
+   "org": "UmbreNews",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-24",
+   "time": "17:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details"
+  },
+  {
    "name": "Beaniest Path to Stuttgart! #5 M-C Shiny Prizes",
    "org": "Bean Battles",
    "mode": "online",
@@ -948,6 +933,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details"
   },
   {
+   "name": "VGC Indigo League #8 (Prize: Eternal Floette)",
+   "org": "Champions International",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-27",
+   "time": "14:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details"
+  },
+  {
    "name": "Mamoswine Online 11-27-26",
    "org": "MinnDak VGC",
    "mode": "online",
@@ -974,7 +974,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 32,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details"
   },
   {
