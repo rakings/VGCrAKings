@@ -1,6 +1,14 @@
 {
  "annunci": [
   {
+   "id": 1795000238,
+   "t": "BALANCE PATCH",
+   "d": "THE FIRST EVER POKÉMON BALANCE PATCH ARRIVES ON DECEMBER 2nd\n\nChanges in moves:\n\nScreech: 85% → 100% accuracy Rock Slide: 90% → 95% accuracy, 30% → 20% chance to make targets flinch  Steel Wing: 90% → 100% accuracy Metal Sound: 85% → 100% accuracy Frost Breath: 90% → 100% accuracy\n\nChanges in abilities:\n\nFlash Fire: When the Ability Flash Fire is activated, the Pokémon now gains the Fire Boost status. The Fire Boost status will persist even if the Pokémon Mega Evolves.  Stalwart:\nCurrent effect: The Pokémon ignores the effects of Abilities and moves that draw in moves.\n New effect: The Pokémon ignores the effects of Abilities and moves that draw in moves. When using its moves, the Pokémon ignores the effects of targets' substitutes.",
+   "pub": "2026-11-18T11:10:47Z",
+   "partner": "rakings",
+   "img": "img/annunci/1795000238.jpg"
+  },
+  {
    "id": 1795000062,
    "t": "BALANCE PATCH",
    "d": "THE FIRST EVER POKÉMON BALANCE PATCH ARRIVES ON DECEMBER 2nd\n\nChanges in moves:\n\nScreech: 85% → 100% accuracy Rock Slide: 90% → 95% accuracy, 30% → 20% chance to make targets flinc",
