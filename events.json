@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T23:54:33+00:00",
+ "updated": "2026-11-18T01:05:06+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -138,7 +138,7 @@
   },
   {
    "name": "Beaniest Path to LAIC! #4 M-C Shiny Prizing",
-   "org": "Bean Battles",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -148,7 +148,7 @@
    "bo": null,
    "date": "2026-11-17",
    "time": "19:00",
-   "players": 64,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aea078d0c463890f304a624/details"
   },
   {
@@ -167,8 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af37ac600d53a11f5b908db/details"
   },
   {
-   "name": "🇧🇷 Hit Nexus #4 | Pokémon Champions",
-   "org": "Hit Legends TCG",
+   "name": "HeroicTitan’s VGC Battle Arena",
+   "org": "The PokeKitchen Battle Series",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -177,9 +177,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-18",
-   "time": "00:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6afa3f77ee43ef7891475c37/details"
+   "time": "02:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6afbd835b2fccaf0272d49e7/details"
   },
   {
    "name": "Tuesday Throwdowns #4",
@@ -197,8 +197,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af80e81ee43ef78914743d7/details"
   },
   {
-   "name": "Mamoswine Online 11-17-26",
-   "org": "MinnDak VGC",
+   "name": "🇧🇷 Hit Nexus #4 | Pokémon Champions",
+   "org": "Hit Legends TCG",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -207,24 +207,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-18",
-   "time": "01:45",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6af0fa25e99f3235a75e45c7/details"
-  },
-  {
-   "name": "HeroicTitan’s VGC Battle Arena",
-   "org": "The PokeKitchen Battle Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "02:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6afbd835b2fccaf0272d49e7/details"
+   "time": "00:00",
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6afa3f77ee43ef7891475c37/details"
   },
   {
    "name": "Mid-Week Smoke #13",
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "12:00",
-   "players": 44,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "13:00",
-   "players": 22,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6af1e82ce99f3235a75e4c32/details"
   },
   {
@@ -283,7 +268,7 @@
    "bo": null,
    "date": "2026-11-18",
    "time": "19:00",
-   "players": 42,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
@@ -343,7 +328,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
@@ -358,7 +343,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6afc49b9b2fccaf0272d4b56/details"
   },
   {
@@ -373,7 +358,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "02:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
   },
   {
@@ -463,7 +448,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "01:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
@@ -704,23 +689,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 36,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
-  },
-  {
-   "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
-   "org": "Santa Fe VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
   },
   {
    "name": "Risen Epsorts Thanksgiving Challenge",
@@ -736,6 +706,21 @@
    "time": "18:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
+  },
+  {
+   "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
+   "org": "Santa Fe VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -764,7 +749,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "22:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6afc90ddee43ef789147725e/details"
   },
   {
@@ -1088,7 +1073,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details"
   },
   {
