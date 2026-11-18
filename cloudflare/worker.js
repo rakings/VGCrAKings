@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-17b";
+const VERSIONE = "2026-11-18v";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -493,6 +493,54 @@ async function likeRoute(req, env, url, out, admin) {
   return out({ ok: true, n: ops.length });
 }
 
+// ======================= VISITATORI (database D1, collegamento LIKE, tabella v) =======================
+// Il sito manda UN segnale per telefono al massimo ogni 12 ore, con lo stesso codice casuale dei like (nessun dato personale).
+// Una riga per telefono: ora dell'ultima visita e tipo (a = app, i = sito installato, b = browser). Si legge solo dalla pagina admin.
+// Freno: oltre VIS_MAX_GIORNO segnali in un giorno si smette di contare fino al giorno dopo, cosi' like e conferme non restano mai senza scritture.
+// Niente indice sulla colonna t: ogni indice raddoppierebbe le scritture. Le righe piu' vecchie di 8 giorni si tolgono quando apri le statistiche.
+const VIS_MAX_GIORNO = 15000, LIM_VIS = 60;
+let VIS_PRONTO = false;
+async function visDb(env) {
+  if (!env.LIKE) return null;
+  if (!VIS_PRONTO) {
+    await env.LIKE.batch([
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS v (dev TEXT PRIMARY KEY, t INTEGER NOT NULL, k TEXT NOT NULL)"),
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS g (d TEXT PRIMARY KEY, n INTEGER NOT NULL)"),
+    ]);
+    VIS_PRONTO = true;
+  }
+  return env.LIKE;
+}
+async function visiteRoute(req, env, url, out, admin) {
+  const db = await visDb(env);
+  if (!db) return out({ error: "visite non attive (manca il database LIKE)" }, 503);
+  const ora = Math.floor(Date.now() / 1000), gk = "v:" + new Date().toISOString().slice(0, 10);
+  if (req.method === "GET" && url.pathname === "/admin/visite") {   // SOLO Andrea (ADMIN_TOKEN)
+    if (!admin()) return out({ error: "non autorizzato" }, 401);
+    await db.prepare("DELETE FROM v WHERE t < ?").bind(ora - 8 * 86400).run();
+    const r = await db.prepare("SELECT k, COUNT(*) AS c FROM v WHERE t >= ? GROUP BY k").bind(ora - 86400).all();
+    const s7 = await db.prepare("SELECT COUNT(*) AS c FROM v WHERE t >= ?").bind(ora - 7 * 86400).first();
+    const g = await db.prepare("SELECT n FROM g WHERE d = ?").bind(gk).first();
+    const k = { a: 0, i: 0, b: 0 }; let n = 0;
+    for (const x of r.results || []) { if (x.k in k) k[x.k] = x.c; n += x.c; }
+    return out({ ok: true, n24: n, k, n7: (s7 && s7.c) || 0, segnaliOggi: (g && g.n) || 0, max: VIS_MAX_GIORNO });
+  }
+  if (req.method !== "POST" || url.pathname !== "/visita") return out({ error: "richiesta non valida" }, 400);
+  if (troppe(req, "visita", LIM_VIS, 600)) return out({ ok: true, pausa: true });
+  const txt = await req.text();
+  if (txt.length > 300) return out({ error: "troppo grande" }, 413);
+  let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
+  const dev = String((b && b.dev) || ""), k = String((b && b.k) || "b");
+  if (!/^[a-z0-9]{12,40}$/.test(dev) || !["a", "i", "b"].includes(k)) return out({ error: "richiesta non valida" }, 400);
+  const g = await db.prepare("SELECT n FROM g WHERE d = ?").bind(gk).first();
+  if (g && g.n >= VIS_MAX_GIORNO) return out({ ok: true, pausa: true });
+  await db.batch([
+    db.prepare("INSERT INTO v (dev, t, k) VALUES (?, ?, ?) ON CONFLICT(dev) DO UPDATE SET t = excluded.t, k = excluded.k").bind(dev, ora, k),
+    db.prepare("INSERT INTO g (d, n) VALUES (?, 1) ON CONFLICT(d) DO UPDATE SET n = n + 1").bind(gk),
+  ]);
+  return out({ ok: true });
+}
+
 // ======================= RICHIESTE DEI LOCALI (Issue della repo privata) nella pagina admin =======================
 // Segreto GH_RICHIESTE = chiave GitHub di Andrea con «Issues: lettura e scrittura» SOLO sulla repo privata; variabile RICHIESTE_REPO = "proprietario/nome".
 // La chiave e' di Andrea, quindi l'etichetta risulta messa da lui: il controllo della repo privata («solo il proprietario») la accetta.
@@ -734,6 +782,9 @@ export default {
     if (url.pathname === "/partner/stato" || url.pathname === "/partner/invia" || url.pathname === "/partner/statistiche") return partnerRoute(req, env, url, out);
     if (url.pathname === "/like" || url.pathname === "/like/conteggi") {
       try { return await likeRoute(req, env, url, out, admin); } catch (e) { console.log("like:", String(e && e.message || e).slice(0, 120)); return out({ error: "like non disponibili" }, 503); }
+    }
+    if (url.pathname === "/visita" || url.pathname === "/admin/visite") {
+      try { return await visiteRoute(req, env, url, out, admin); } catch (e) { console.log("visite:", String(e && e.message || e).slice(0, 120)); return out({ error: "visite non disponibili" }, 503); }
     }
     if (url.pathname === "/auto/twitch" && req.method === "POST") return twEvento(req, env, out);
     if (url.pathname === "/auto/youtube" && (req.method === "GET" || req.method === "POST")) return ytEvento(req, env, out, url);
