@@ -722,7 +722,7 @@ var DONATE_URL="https://www.paypal.me/Andryk92";
 if(DONATE_URL){$("don-a").href=DONATE_URL;$("don").hidden=false}
 var NTFY_PREFIX="";
 var NPK="vgc-notif",NP={money:"",gc:false,regionali:false,vr:false,vrreg:false,maddos:false,locali:false,locali8:false,player:false,winner:false,vrwin:false,pardini:false,h:{}};
-try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv)}catch(e){}
+try{var sv=JSON.parse(localStorage.getItem(NPK)||"null");if(sv)NP=Object.assign(NP,sv);/* canali accesi in partenza (dal 2026-11-18): SOLO per chi non ha mai scelto e non e' mai stato iscritto su questo dispositivo; chi e' gia' iscritto resta con le sue scelte */else if(!localStorage.getItem("vgc-subsync"))Object.assign(NP,{money:"all",pardini:true,gc:true,regionali:true,vr:true,vrwin:true,maddos:true,locali8:true,winner:true})}catch(e){}
 /* icone delle notifiche (icone/<nome>.png): stessa regola del service worker fcm-sw.js */
 function vgcCat(cat,title,link){var k=vgcCat0(cat,title),u=String(link||"");if(k==="pardini"&&/twitch\.tv\//i.test(u))return"pardini-twitch";if(k==="pardini"&&/(youtube\.com|youtu\.be)\//i.test(u))return"pardini-youtube";return k}
 function vgcCat0(cat,title){var c=String(cat||""),t=String(title||"");if(/-1h$|^t-|^promemoria$/.test(c))return"promemoria";
