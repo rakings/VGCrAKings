@@ -48,4 +48,18 @@
     <string name="cfg_colore">위젯 색상</string>
     <string name="cfg_colore_nota">모든 rAKings 위젯에 적용됩니다. 앱 테마와 같은 색입니다.</string>
     <string name="cfg_widget">위젯 · 설정</string>
+    <string name="w_lc">로컬 대회 Top 8</string>
+    <string name="d_lc">로컬 대회 최신 Top 8 (팀 포함)</string>
+    <string name="nessun_locale">아직 로컬 Top 8이 없습니다</string>
+    <string name="n_giocatori">%d명</string>
+    <string name="cfg_n_bk">표시할 공지</string>
+    <string name="cfg_n_bk_nota">최신 공지 (고정 공지 먼저). 개수가 적을수록 크게 표시됩니다.</string>
+    <string name="cfg_n_lc">표시할 대회</string>
+    <string name="cfg_n_lc_nota">최신 로컬 Top 8. 주최자가 공개하면 팀도 표시됩니다. 목록은 스크롤됩니다.</string>
+    <string name="w_us">사용률 Top</string>
+    <string name="d_us">현재 레귤레이션에서 가장 많이 쓰인 포켓몬과 세트</string>
+    <string name="nessun_usage">아직 사용률이 없습니다</string>
+    <string name="n_tornei">대회 %d개</string>
+    <string name="cfg_n_us">표시할 포켓몬</string>
+    <string name="cfg_n_us_nota">현재 레귤레이션에서 끝난 리저널·인터내셔널·스페셜의 합계. 세트는 공개된 팀 기준. 목록은 스크롤됩니다.</string>
 </resources>

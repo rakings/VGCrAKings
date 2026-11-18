@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Top 8 dei locali: testata + elenco che scorre (1, 2 o 3 tornei, con la squadra se l'organizzatore l'ha pubblicata) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/fondo_widget">
+    <include android:id="@+id/testata" layout="@layout/w_testata" />
+    <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:paddingStart="8dp" android:paddingEnd="8dp" android:paddingBottom="8dp">
+        <ListView android:id="@+id/lista" android:layout_width="match_parent" android:layout_height="match_parent"
+            android:divider="@null" android:dividerHeight="0dp" android:scrollbars="none" />
+        <TextView android:id="@+id/vuoto" android:layout_width="match_parent" android:layout_height="match_parent"
+            android:gravity="center" android:textColor="@color/tenue" android:textSize="13sp" />
+    </FrameLayout>
+</LinearLayout>

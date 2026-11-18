@@ -104,6 +104,31 @@ final class Dati {
 
     static String norma(String s) { return s == null ? "" : s.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", ""); }
 
+    private static final long USAGE_OGNI = 6 * 60 * 60 * 1000L; // usage generale: al massimo una volta ogni 6 ore
+
+    /** Usage generale (widget Top usage): file a parte, scaricato solo se il widget e' sulla Home. */
+    static JSONObject usage(Context c, boolean scaricaSeServe) {
+        File f = new File(c.getFilesDir(), "usage.json");
+        SharedPreferences p = pref(c);
+        if (scaricaSeServe && (!f.exists() || System.currentTimeMillis() - p.getLong("usage_quando", 0) > USAGE_OGNI)) {
+            try {
+                String u = w(c).optString("us");
+                if (!u.isEmpty()) {
+                    String s = scarica(u);
+                    new JSONObject(s); // controllo che sia valido
+                    try (FileOutputStream o = new FileOutputStream(f)) { o.write(s.getBytes(StandardCharsets.UTF_8)); }
+                    p.edit().putLong("usage_quando", System.currentTimeMillis()).apply();
+                }
+            } catch (Exception ignorata) { }
+        }
+        try {
+            if (!f.exists()) return null;
+            byte[] b = new byte[(int) f.length()];
+            try (InputStream in = new java.io.FileInputStream(f)) { int l = 0; while (l < b.length) { int n = in.read(b, l, b.length - l); if (n < 0) break; l += n; } }
+            return new JSONObject(new String(b, StandardCharsets.UTF_8));
+        } catch (Exception e) { return null; }
+    }
+
     /** Classifica completa CP (per cercare/mostrare un giocatore oltre i primi 150). */
     static JSONArray tutti(Context c, boolean scaricaSeServe) {
         File f = new File(c.getFilesDir(), "cp_tutti.json");

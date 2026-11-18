@@ -48,4 +48,18 @@
     <string name="cfg_colore">Cor dos widgets</string>
     <string name="cfg_colore_nota">Vale para todos os widgets rAKings. Mesmas cores dos temas do app.</string>
     <string name="cfg_widget">Widget · configurações</string>
+    <string name="w_lc">Top 8 locais</string>
+    <string name="d_lc">Últimos Top 8 de torneios locais, com equipas</string>
+    <string name="nessun_locale">Ainda não há Top 8 locais</string>
+    <string name="n_giocatori">%d jogadores</string>
+    <string name="cfg_n_bk">Anúncios a mostrar</string>
+    <string name="cfg_n_bk_nota">Os mais recentes, primeiro o destacado. Cada um ocupa o mesmo espaço: com menos anúncios ficam maiores.</string>
+    <string name="cfg_n_lc">Torneios a mostrar</string>
+    <string name="cfg_n_lc_nota">Os últimos Top 8 locais. As equipas aparecem quando o organizador as publica. A lista desliza.</string>
+    <string name="w_us">Top uso</string>
+    <string name="d_us">Pokémon mais usados do regulamento atual, com os sets</string>
+    <string name="nessun_usage">Uso ainda não disponível</string>
+    <string name="n_tornei">%d torneios</string>
+    <string name="cfg_n_us">Pokémon a mostrar</string>
+    <string name="cfg_n_us_nota">Soma dos Regionais, Internacionais e Especiais terminados do regulamento atual. Os sets vêm das equipas publicadas. A lista desliza.</string>
 </resources>

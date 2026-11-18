@@ -27,6 +27,16 @@
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp"
             android:text="@string/cfg_nota" android:textColor="@color/tenue" android:textSize="12sp" />
     </LinearLayout>
+    <!-- Bacheca e Top 8 dei locali: quanti mostrarne (menu a tendina) -->
+    <LinearLayout android:id="@+id/sez_n" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:visibility="gone">
+        <TextView android:id="@+id/n_titolo" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:textColor="@color/testo" android:textSize="14sp" />
+        <Spinner android:id="@+id/n_scelta" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+            android:background="@drawable/fondo_campo" android:padding="6dp" android:popupBackground="#2A1216" />
+        <TextView android:id="@+id/n_nota" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
+            android:textColor="@color/tenue" android:textSize="12sp" />
+    </LinearLayout>
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
         android:text="@string/cfg_colore" android:textColor="@color/tenue" android:textSize="13sp" />
     <LinearLayout android:id="@+id/colori" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"

@@ -31,6 +31,7 @@ public class CpImpostazioni extends Activity {
     final List<String[]> trovati = new ArrayList<>();
     ArrayAdapter<String[]> ad;
     boolean cp = true;
+    String tipo = "cp";   // cp, bk (bacheca), lc (top 8 dei locali), altro
     String temaScelto;
     final java.util.List<TextView> chip = new ArrayList<>();
 
@@ -43,12 +44,15 @@ public class CpImpostazioni extends Activity {
         if (id == AppWidgetManager.INVALID_APPWIDGET_ID) { finish(); return; }
         setContentView(R.layout.cp_impostazioni);
         android.appwidget.AppWidgetProviderInfo info = AppWidgetManager.getInstance(this).getAppWidgetInfo(id);
-        cp = info == null || info.provider == null || info.provider.getClassName().endsWith("WidgetCp");
+        String cl = info == null || info.provider == null ? "WidgetCp" : info.provider.getClassName();
+        tipo = cl.endsWith("WidgetCp") ? "cp" : cl.endsWith("WidgetBacheca") ? "bk" : cl.endsWith("WidgetLocali") ? "lc" : cl.endsWith("WidgetUsage") ? "us" : "altro";
+        cp = "cp".equals(tipo);
         temaScelto = Tema.attuale(this).id;
         preparaColori();
         if (!cp) {
             findViewById(R.id.sez_cp).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.titolo)).setText(R.string.cfg_widget);
+            if ("bk".equals(tipo) || "lc".equals(tipo) || "us".equals(tipo)) preparaQuanti();
             findViewById(R.id.salva).setOnClickListener(v -> salva());
             return;
         }
@@ -95,6 +99,32 @@ public class CpImpostazioni extends Activity {
                 filtra(cerca.getText().toString());
             });
         }).start();
+    }
+
+    /** valori del menu a tendina: Bacheca e Top 8 → 1, 2, 3; Top usage → Top 10/20/50/100 */
+    int[] valori() { return "us".equals(tipo) ? new int[]{10, 20, 50, 100} : new int[]{1, 2, 3}; }
+
+    /** Bacheca / Top 8 / Top usage: menu a tendina con quanti mostrarne */
+    void preparaQuanti() {
+        boolean bk = "bk".equals(tipo), us = "us".equals(tipo);
+        findViewById(R.id.sez_n).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.n_titolo)).setText(bk ? R.string.cfg_n_bk : us ? R.string.cfg_n_us : R.string.cfg_n_lc);
+        ((TextView) findViewById(R.id.n_nota)).setText(bk ? R.string.cfg_n_bk_nota : us ? R.string.cfg_n_us_nota : R.string.cfg_n_lc_nota);
+        android.widget.Spinner s = findViewById(R.id.n_scelta);
+        int[] val = valori();
+        String[] et = new String[val.length];
+        for (int i = 0; i < val.length; i++) et[i] = us ? "Top " + val[i] : String.valueOf(val[i]);
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, et) {
+            @Override public View getView(int pos, View cv, ViewGroup parent) { return colora(super.getView(pos, cv, parent)); }
+            @Override public View getDropDownView(int pos, View cv, ViewGroup parent) { return colora(super.getDropDownView(pos, cv, parent)); }
+            View colora(View v) { if (v instanceof TextView) { ((TextView) v).setTextColor(0xFFFFF1EF); ((TextView) v).setTextSize(15); } return v; }
+        };
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(ad);
+        int n = bk ? WidgetBacheca.quanti(this, id) : us ? WidgetUsage.quanti(this, id) : WidgetLocali.quanti(this, id);
+        int sel = 0;
+        for (int i = 0; i < val.length; i++) if (val[i] == n) sel = i;
+        s.setSelection(sel);
     }
 
     /** pulsanti dei colori, due per riga; quello scelto e' giallo */
@@ -167,6 +197,15 @@ public class CpImpostazioni extends Activity {
 
     void salva() {
         Tema.scegli(this, temaScelto);
+        if ("bk".equals(tipo) || "lc".equals(tipo) || "us".equals(tipo)) {
+            int[] val = valori();
+            int pos = Math.max(0, Math.min(val.length - 1, ((android.widget.Spinner) findViewById(R.id.n_scelta)).getSelectedItemPosition()));
+            ("bk".equals(tipo) ? WidgetBacheca.imp(this) : "us".equals(tipo) ? WidgetUsage.imp(this) : WidgetLocali.imp(this)).edit().putInt("n_" + id, val[pos]).apply();
+            if ("us".equals(tipo)) {   // primo avvio del widget: scarica subito l'usage
+                final android.content.Context app = getApplicationContext();
+                new Thread(() -> { Dati.aggiorna(app, false); Dati.usage(app, true); runOnUiThread(() -> Base.ridisegnaTutti(app)); }).start();
+            }
+        }
         if (!cp) {
             Base.ridisegnaTutti(getApplicationContext());
             setResult(RESULT_OK, new Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id));

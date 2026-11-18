@@ -48,4 +48,18 @@
     <string name="cfg_colore">ウィジェットの色</string>
     <string name="cfg_colore_nota">すべてのrAKingsウィジェットに適用。アプリのテーマと同じ色です。</string>
     <string name="cfg_widget">ウィジェット · 設定</string>
+    <string name="w_lc">ローカル大会トップ8</string>
+    <string name="d_lc">ローカル大会の最新トップ8（チーム付き）</string>
+    <string name="nessun_locale">ローカル大会のトップ8はまだありません</string>
+    <string name="n_giocatori">%d人</string>
+    <string name="cfg_n_bk">表示するお知らせ</string>
+    <string name="cfg_n_bk_nota">最新のもの（固定を先頭に）。数が少ないほど大きく表示されます。</string>
+    <string name="cfg_n_lc">表示する大会</string>
+    <string name="cfg_n_lc_nota">最新のローカル大会トップ8。主催者が公開するとチームも表示されます。リストはスクロールできます。</string>
+    <string name="w_us">使用率トップ</string>
+    <string name="d_us">現在のレギュレーションで最も使われたポケモンと型</string>
+    <string name="nessun_usage">使用率はまだありません</string>
+    <string name="n_tornei">%d大会</string>
+    <string name="cfg_n_us">表示するポケモン</string>
+    <string name="cfg_n_us_nota">現在のレギュレーションで終了したリージョナル・インターナショナル・スペシャルの合計。型は公開されたチームから。リストはスクロールできます。</string>
 </resources>

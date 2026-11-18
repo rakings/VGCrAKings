@@ -65,6 +65,22 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_bacheca" />
         </receiver>
 
+        <receiver android:name=".WidgetLocali" android:exported="true" android:label="@string/w_lc">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_locali" />
+        </receiver>
+
+        <receiver android:name=".WidgetUsage" android:exported="true" android:label="@string/w_us">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_usage" />
+        </receiver>
+
+        <service android:name=".UsageListaServizio"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
+        <service android:name=".LocaliListaServizio"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
         <service android:name=".CpListaServizio"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false" />

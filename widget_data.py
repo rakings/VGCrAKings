@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Prepara widget.json: il file PICCOLO che leggono i widget dell'app Android (pochi KB, invece dei file grandi del sito).
 Contiene: prossimo VR, prossimo Regionale/Internazionale, i prossimi money tournament (dal premio piu' alto),
-CP bar (soglia + primi 150) e gli ultimi annunci della bacheca. Si scrive solo se il contenuto cambia."""
+CP bar (soglia + primi 150), gli ultimi annunci della bacheca, le ultime Top 8 dei locali
+e l'indirizzo di widget_usage.json (usage generale del regolamento in corso, file a parte). Si scrive solo se il contenuto cambia."""
 import json, os, re, urllib.request
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
@@ -47,6 +48,40 @@ def ev_w(e, tipo):
             "u": SITO + ("#e=" + eh(e["url"]) if e.get("url") else "")}
 
 
+KIND_OK = ("Regional Championships", "International Championships", "Special Championships", "World Championship")
+OUT_US = "widget_usage.json"
+
+
+def usage():
+    """Usage generale per il widget «Top usage»: somma dei tornei FINITI del regolamento in corso (Regionali, Internazionali,
+    Special, Mondiali) con le squadre. Per ogni Pokemon: % di squadre che lo usano e i set piu' usati (strumento, abilita',
+    natura, mosse) dalle squadre complete. Solo testo, nessuna immagine. File a parte: lo scarica solo chi ha messo il widget."""
+    idx = leggi("vgcstats/index.json", {})
+    cur = idx.get("current")
+    ev = [e for e in idx.get("events", []) if e.get("reg") == cur and e.get("status") == "finished" and e.get("decklists")
+          and e.get("kind") in KIND_OK and os.path.exists("vgcstats/%s/pokemon.json" % e.get("id"))]
+    if not cur or not ev:
+        return None
+    tot, P = 0, {}
+    for e in ev:
+        tot += int(e.get("decklists") or 0)
+        for x in leggi("vgcstats/%s/pokemon.json" % e["id"], []):
+            q = P.setdefault(x.get("slug"), {"n": x.get("name") or x.get("slug"), "c": 0, "s": 0, "item": {}, "ability": {}, "nature": {}, "moves": {}})
+            q["c"] += int(x.get("count") or 0)
+            q["s"] += int(x.get("sample") or 0)
+            for k in ("item", "ability", "nature", "moves"):
+                for nome, c in x.get(k) or []:
+                    q[k][nome] = q[k].get(nome, 0) + int(c)
+    if tot <= 0:
+        return None
+    def top(d, s, n):
+        return [[k, round(100 * v / s)] for k, v in sorted(d.items(), key=lambda kv: -kv[1])[:n] if round(100 * v / s) >= 1] if s > 0 else []
+    righe = sorted(P.values(), key=lambda q: -q["c"])[:100]
+    r = [[q["n"], round(100 * q["c"] / tot, 1), top(q["item"], q["s"], 3), top(q["ability"], q["s"], 2), top(q["nature"], q["s"], 2), top(q["moves"], q["s"], 6)]
+         for q in righe]
+    return {"v": 1, "reg": cur, "ev": len(ev), "sq": tot, "r": r}
+
+
 def main():
     oggi = datetime.now(ROMA).date().isoformat()
     ev = leggi("events.json", {}).get("events", [])
@@ -82,8 +117,22 @@ def main():
            "p": {"pardini": "Francesco Pardini", "rakings": "rAKings VGC"}.get(a.get("partner"), ""), "img": SITO + a["img"] if a.get("img") else "",
            "pub": a.get("pub", ""), "u": SITO + "#annuncio-%s" % a["id"]} for a in an]
 
-    w = {"v": 1, "vr": ev_w(vr, "vr") if vr else None, "rg": ev_w(rg, tipo(rg)) if rg else None, "money": money, "cp": cp, "bk": bk,
+    # Top 8 dei locali: gli ultimi 3 (il widget ne mostra 1, 2 o 3 a scelta). Squadra: solo i NOMI dei Pokemon, nessuna immagine.
+    lo = [l for l in leggi("locali.json", {}).get("locali", []) if l.get("real", True) and l.get("top")]
+    lo.sort(key=lambda l: (l.get("iso") or "", l.get("pub") or ""), reverse=True)
+    lc = [{"id": l.get("id"), "t": l.get("t", ""), "s": l.get("s", ""), "c": l.get("c", ""), "d": l.get("d", ""), "n": l.get("n") or 0,
+           "top": [str(x) for x in (l.get("top") or [])[:8]],
+           "tm": {k: [str(m.get("n", "")) for m in v if isinstance(m, dict) and m.get("n")] for k, v in (l.get("tm") or {}).items() if isinstance(v, list)},
+           "u": SITO + "#locali-" + eh("|".join([l.get("t", ""), l.get("s", ""), l.get("c", ""), l.get("d", "")]))} for l in lo[:3]]
+
+    w = {"v": 1, "vr": ev_w(vr, "vr") if vr else None, "rg": ev_w(rg, tipo(rg)) if rg else None, "money": money, "cp": cp, "bk": bk, "lc": lc,
          "live": {"reg": SITO + "vgcstats/index.json", "vr": "https://rakings.github.io/VGCdatiAK/vr/index.json"}}
+    us = usage()
+    if us and leggi(OUT_US, None) != us:
+        with open(OUT_US, "w", encoding="utf-8") as f:
+            json.dump(us, f, ensure_ascii=False, separators=(",", ":"))
+        print("widget_usage.json scritto (%d byte)" % os.path.getsize(OUT_US))
+    w["us"] = SITO + OUT_US if us else ""
     vecchio = leggi(OUT, None)
     if vecchio:
         vecchio.pop("agg", None)

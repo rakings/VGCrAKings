@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import com.google.androidbrowserhelper.trusted.LauncherActivity;
 
-/** Parte comune dei tre widget: un solo download aggiorna tutti i widget (Tornei, CP bar, Bacheca). */
+/** Parte comune dei widget: un solo download aggiorna tutti i widget (Tornei, CP bar, Bacheca, Top 8 dei locali, Top usage). */
 abstract class Base extends AppWidgetProvider {
 
     abstract void disegna(Context c, AppWidgetManager m, int id);
@@ -26,6 +26,7 @@ abstract class Base extends AppWidgetProvider {
                 Dati.aggiorna(app, false);
                 WidgetBacheca.scaricaImmagini(app);
                 WidgetCp.preparaGiocatori(app);
+                WidgetUsage.prepara(app);
                 ridisegnaTutti(app);
             } finally { pr.finish(); }
         }).start();
@@ -38,7 +39,7 @@ abstract class Base extends AppWidgetProvider {
 
     static void ridisegnaTutti(Context c) {
         AppWidgetManager m = AppWidgetManager.getInstance(c);
-        for (Base b : new Base[]{new WidgetTornei(), new WidgetCp(), new WidgetBacheca()}) {
+        for (Base b : new Base[]{new WidgetTornei(), new WidgetCp(), new WidgetBacheca(), new WidgetLocali(), new WidgetUsage()}) {
             int[] ids = m.getAppWidgetIds(new ComponentName(c, b.getClass()));
             for (int id : ids) b.disegna(c, m, id);
         }

@@ -18,44 +18,96 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/** Widget BACHECA: un annuncio alla volta (prima quello «In evidenza», poi i piu' recenti), con «›» per passare al successivo. */
+/** Widget BACHECA: gli ultimi 1, 2 o 3 annunci (si sceglie nelle impostazioni del widget; prima quello «In evidenza»).
+ *  Ogni annuncio prende la stessa altezza: la riga diventa piu' grande o piu' piccola secondo lo spazio, cosi' il widget non resta vuoto. */
 public class WidgetBacheca extends Base {
-    static final String AVANTI = "com.rakings.vgc.BK_AVANTI";
+    static final String AVANTI = "com.rakings.vgc.BK_AVANTI";   // vecchio pulsante «›»: non si usa piu', resta per i widget gia' messi
+
+    static android.content.SharedPreferences imp(Context c) { return c.getSharedPreferences("bk_widget", Context.MODE_PRIVATE); }
+    static int quanti(Context c, int id) { return Math.max(1, Math.min(3, imp(c).getInt("n_" + id, 2))); }
 
     @Override
     public void onReceive(Context c, Intent i) {
-        if (AVANTI.equals(i.getAction())) {
-            int id = i.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
-            android.content.SharedPreferences p = c.getSharedPreferences("bk_widget", Context.MODE_PRIVATE);
-            p.edit().putInt("i_" + id, p.getInt("i_" + id, 0) + 1).apply();
-            disegna(c, AppWidgetManager.getInstance(c), id);
-            return;
-        }
+        if (AVANTI.equals(i.getAction())) { disegna(c, AppWidgetManager.getInstance(c), i.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0)); return; }
         super.onReceive(c, i);
+    }
+
+    @Override
+    public void onDeleted(Context c, int[] ids) {
+        android.content.SharedPreferences.Editor e = imp(c).edit();
+        for (int id : ids) e.remove("n_" + id).remove("i_" + id);
+        e.apply();
     }
 
     @Override
     void disegna(Context c, AppWidgetManager m, int id) {
         JSONArray a = Dati.w(c).optJSONArray("bk");
         int[] mis = misura(m, id);
-        boolean largo = mis[0] >= 220;
-        RemoteViews v = new RemoteViews(c.getPackageName(), largo ? R.layout.w_bk_largo : R.layout.w_bk_piccolo);
         Tema t = Tema.attuale(c);
-        tema(v, t, largo);
-        v.setTextColor(R.id.tit, t.testo);
-        if (largo) { v.setTextColor(R.id.txt, t.tenue); v.setTextColor(R.id.avanti, t.accento); }
-        if (largo) {
-            v.setTextViewText(R.id.t_titolo, c.getString(R.string.w_bk));
-            v.setTextViewText(R.id.t_destra, a == null || a.length() < 2 ? "" : ((c.getSharedPreferences("bk_widget", Context.MODE_PRIVATE).getInt("i_" + id, 0) % a.length()) + 1) + "/" + a.length());
-        }
-        if (a == null || a.length() == 0) {
-            v.setTextViewText(R.id.tit, c.getString(R.string.nessun_annuncio));
-            v.setTextViewText(R.id.tag, "");
+        if (mis[0] < 220) { piccolo(c, m, id, a, t); return; }
+        RemoteViews v = new RemoteViews(c.getPackageName(), R.layout.w_bk_lista);
+        tema(v, t, true);
+        v.setTextViewText(R.id.t_titolo, c.getString(R.string.w_bk));
+        v.setTextViewText(R.id.t_destra, "");
+        v.removeAllViews(R.id.lista);
+        int k = a == null ? 0 : Math.min(quanti(c, id), a.length());
+        if (k == 0) {
+            v.setViewVisibility(R.id.lista, android.view.View.GONE);
+            v.setViewVisibility(R.id.vuoto, android.view.View.VISIBLE);
+            v.setTextViewText(R.id.vuoto, c.getString(R.string.nessun_annuncio));
+            v.setTextColor(R.id.vuoto, t.tenue);
+            v.setOnClickPendingIntent(R.id.radice, apri(c, Dati.SITO, id * 10 + 1));
             m.updateAppWidget(id, v);
             return;
         }
-        int i = c.getSharedPreferences("bk_widget", Context.MODE_PRIVATE).getInt("i_" + id, 0) % a.length();
-        JSONObject x = a.optJSONObject(i);
+        // altezza di ogni riga (dp): testata ~34dp, margine in basso 8dp
+        int hr = (mis[1] - 42) / k;
+        int lay = hr >= 132 ? R.layout.w_bk_r_grande : hr >= 84 ? R.layout.w_bk_r_media : R.layout.w_bk_r_piccola;
+        for (int i = 0; i < k; i++) {
+            JSONObject x = a.optJSONObject(i);
+            if (x == null) continue;
+            RemoteViews r = new RemoteViews(c.getPackageName(), lay);
+            riempi(c, r, x, t);
+            r.setOnClickPendingIntent(R.id.riga, apri(c, x.optString("u"), id * 10 + 2 + i));
+            v.addView(R.id.lista, r);
+        }
+        v.setOnClickPendingIntent(R.id.radice, apri(c, Dati.SITO, id * 10 + 1));
+        m.updateAppWidget(id, v);
+    }
+
+    /** una riga: etichetta, titolo, testo, immagine (o l'uovo se l'annuncio non ha foto) */
+    static void riempi(Context c, RemoteViews r, JSONObject x, Tema t) {
+        boolean pin = x.optBoolean("pin");
+        String tag = pin ? c.getString(R.string.in_evidenza) : x.optString("p");
+        r.setTextViewText(R.id.tag, tag);
+        r.setViewVisibility(R.id.tag, tag.isEmpty() ? android.view.View.GONE : android.view.View.VISIBLE);
+        r.setInt(R.id.tag, "setBackgroundResource", pin ? R.drawable.fondo_tag_pin : R.drawable.fondo_tag);
+        r.setTextColor(R.id.tag, pin ? 0xFF3A2A00 : 0xFFFFFFFF);
+        r.setTextViewText(R.id.tit, x.optString("t"));
+        r.setTextColor(R.id.tit, t.testo);
+        String d = x.optString("d").replace('\n', ' ').trim();
+        r.setTextViewText(R.id.txt, d);
+        r.setTextColor(R.id.txt, t.tenue);
+        r.setViewVisibility(R.id.txt, d.isEmpty() ? android.view.View.GONE : android.view.View.VISIBLE);
+        Bitmap img = immagine(c, x);
+        if (img != null) r.setImageViewBitmap(R.id.img, img); else r.setImageViewResource(R.id.img, R.mipmap.ic_launcher);
+    }
+
+    /** formato stretto (1 casella di larghezza): un solo annuncio, immagine sopra e titolo sotto */
+    void piccolo(Context c, AppWidgetManager m, int id, JSONArray a, Tema t) {
+        RemoteViews v = new RemoteViews(c.getPackageName(), R.layout.w_bk_piccolo);
+        tema(v, t, false);
+        v.setTextColor(R.id.tit, t.testo);
+        JSONObject x = a == null ? null : a.optJSONObject(0);
+        if (x == null) {
+            v.setTextViewText(R.id.tit, c.getString(R.string.nessun_annuncio));
+            v.setTextViewText(R.id.tag, "");
+            v.setViewVisibility(R.id.tag, android.view.View.GONE);
+            v.setImageViewResource(R.id.img, R.mipmap.ic_launcher);
+            v.setOnClickPendingIntent(R.id.radice, apri(c, Dati.SITO, id * 10 + 1));
+            m.updateAppWidget(id, v);
+            return;
+        }
         boolean pin = x.optBoolean("pin");
         String tag = pin ? c.getString(R.string.in_evidenza) : x.optString("p");
         v.setTextViewText(R.id.tag, tag);
@@ -63,15 +115,8 @@ public class WidgetBacheca extends Base {
         v.setInt(R.id.tag, "setBackgroundResource", pin ? R.drawable.fondo_tag_pin : R.drawable.fondo_tag);
         v.setTextColor(R.id.tag, pin ? 0xFF3A2A00 : 0xFFFFFFFF);
         v.setTextViewText(R.id.tit, x.optString("t"));
-        if (largo) {
-            v.setTextViewText(R.id.txt, x.optString("d"));
-            Intent av = new Intent(c, WidgetBacheca.class).setAction(AVANTI).putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
-            v.setOnClickPendingIntent(R.id.avanti, PendingIntent.getBroadcast(c, id, av, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
-            v.setViewVisibility(R.id.avanti, a.length() > 1 ? android.view.View.VISIBLE : android.view.View.GONE);
-        }
         Bitmap img = immagine(c, x);
-        if (img != null) { v.setImageViewBitmap(R.id.img, img); v.setViewVisibility(R.id.img, android.view.View.VISIBLE); }
-        else v.setImageViewResource(R.id.img, R.mipmap.ic_launcher);
+        if (img != null) v.setImageViewBitmap(R.id.img, img); else v.setImageViewResource(R.id.img, R.mipmap.ic_launcher);
         v.setOnClickPendingIntent(R.id.radice, apri(c, x.optString("u"), id * 10 + 1));
         m.updateAppWidget(id, v);
     }
