@@ -5,6 +5,29 @@
  ],
  "richieste": [
   {
+   "id": "reg-141713055",
+   "v": 2,
+   "tipo": "regionale",
+   "rif": 0,
+   "creata": "2026-11-18T02:57:42Z",
+   "titolo": "Latin America International Championships",
+   "sotto": "San Paolo, Brasile · ven 20 nov",
+   "img": "social/img/reg-141713055.jpg",
+   "link": "https://rakings.github.io/VGCrAKings/#regionali",
+   "ig": {
+    "stato": "da approvare",
+    "testo": "🏆 Latin America International Championships · in 2 days\n📍 San Paolo, Brasile\n📅 Fri Nov 20\n\nFollow it live in the rAKings VGC app: standings, teams and Top 8 📲\n\n#PokemonVGC #PokemonChampions #VGC #Regionals #VGCItalia"
+   },
+   "x": {
+    "stato": "da approvare",
+    "testo": "🏆 Latin America International Championships · in 2 days\n📍 San Paolo, Brasile\nFollow it live in the app 👇\nhttps://rakings.github.io/VGCrAKings/#regionali\n#PokemonVGC #PokemonChampions #VGC"
+   },
+   "yt": {
+    "stato": "da approvare",
+    "testo": "🏆 Latin America International Championships · in 2 days #Shorts"
+   }
+  },
+  {
    "id": "mon-202647",
    "v": 2,
    "tipo": "money",
@@ -42,7 +65,8 @@
  },
  "fatti": [
   "mon-202647",
-  "sto-116899157"
+  "sto-116899157",
+  "reg-141713055"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
  "storie_dal": "2026-11-16T08:29:54Z",
