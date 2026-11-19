@@ -11,6 +11,6 @@
     android:initialLayout="@layout/w_cp_grande"
     android:previewImage="@drawable/anteprima_cp"
     android:description="@string/d_cp"
-    android:widgetCategory="home_screen"
+    android:widgetCategory="home_screen|keyguard"
     android:configure="com.rakings.vgc.CpImpostazioni"
     android:widgetFeatures="reconfigurable" />

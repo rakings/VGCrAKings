@@ -11,7 +11,7 @@
     android:initialLayout="@layout/w_bk_largo"
     android:previewImage="@drawable/anteprima_bacheca"
     android:description="@string/d_bk"
-    android:widgetCategory="home_screen"
+    android:widgetCategory="home_screen|keyguard"
     android:configure="com.rakings.vgc.CpImpostazioni"
     android:widgetFeatures="reconfigurable|configuration_optional"
      />
