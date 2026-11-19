@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T01:34:15+00:00",
+ "updated": "2026-11-19T03:17:51+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -152,36 +152,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6afda223b2fccaf0272d576f/details"
   },
   {
-   "name": "Hatterene Series Weekly #12 2027 - 7PM UTC - M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "20:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ae61a250d00101b48bf3697/details"
-  },
-  {
-   "name": "Alpensee Tour (Reg M-C) #84",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "19:00",
-   "players": 100,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
-  },
-  {
    "name": "Mid-Week Smoke #13",
    "org": "Play N' Connect",
    "mode": "online",
@@ -268,7 +238,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "05:00",
-   "players": 11,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6afe0c1c2b9e244e6cee508e/details"
   },
   {
@@ -313,7 +283,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 34,
+   "players": 35,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -328,7 +298,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "00:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
   },
   {
@@ -479,7 +449,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 68,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -584,7 +554,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -614,7 +584,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 43,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -704,7 +674,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
@@ -749,7 +719,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "02:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
   },
   {
@@ -764,7 +734,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "04:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6afe4b762b9e244e6cee533f/details"
   },
   {
@@ -824,7 +794,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -916,6 +886,21 @@
    "time": "19:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details"
+  },
+  {
+   "name": "Champions Tour LEPE #11 (Shiny Tyranitar for 1st)",
+   "org": "LEPE Tours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-25",
+   "time": "18:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
   },
   {
    "name": "Alpensee Tour (Reg M-C) #85",
