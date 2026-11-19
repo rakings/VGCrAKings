@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T23:27:03+00:00",
+ "updated": "2026-11-19T00:35:34+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -183,7 +183,7 @@
   },
   {
    "name": "GLORY OF CHAMPIONS #3 - REGULATION M-C",
-   "org": "TenkiPK",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -192,8 +192,8 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-18",
-   "time": "18:00",
-   "players": 42,
+   "time": "18:05",
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
   },
   {
@@ -257,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
   },
   {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#83",
-   "org": "HM4coach & The Boys",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "00:00",
-   "players": 79,
-   "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
-  },
-  {
    "name": "VGC: 7mo Torneo Express",
    "org": "MI.Team",
    "mode": "online",
@@ -287,6 +272,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6afc49b9b2fccaf0272d4b56/details"
   },
   {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#83",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-19",
+   "time": "00:00",
+   "players": 79,
+   "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
+  },
+  {
    "name": "Off Meta Fight Club #11",
    "org": "DevinTLegend",
    "mode": "online",
@@ -298,7 +298,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "02:00",
-   "players": 33,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
   },
   {
@@ -313,7 +313,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "05:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6afe0c1c2b9e244e6cee508e/details"
   },
   {
@@ -403,7 +403,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "01:00",
-   "players": 10,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
@@ -528,21 +528,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
-   "name": "Texas Throwdown #2 (USPA Soon?)",
-   "org": "SyncTours",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "02:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
-  },
-  {
    "name": "ValkrixVGC Rising Champions League #09",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -556,6 +541,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
+  },
+  {
+   "name": "Texas Throwdown #2 (USPA Soon?)",
+   "org": "SyncTours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "02:00",
+   "players": 7,
+   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -663,21 +663,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
-   "name": "Risen Epsorts Thanksgiving Challenge",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
-  },
-  {
    "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
    "org": "Santa Fe VGC",
    "mode": "online",
@@ -691,6 +676,21 @@
    "time": "18:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
+  },
+  {
+   "name": "Risen Epsorts Thanksgiving Challenge",
+   "org": "Risen Esports VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -708,21 +708,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
-   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
-   "org": "biffpipp's Battle Frontier",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "22:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details"
-  },
-  {
    "name": "Thavorian Trials - 13",
    "org": "Thavorian Skies",
    "mode": "online",
@@ -736,6 +721,21 @@
    "time": "22:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6afc90ddee43ef789147725e/details"
+  },
+  {
+   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
+   "org": "biffpipp's Battle Frontier",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "22:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details"
   },
   {
    "name": "[2026 포켓몬 월드컵] 팀코리아 선발전",
@@ -766,6 +766,21 @@
    "time": "00:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af9e3a1ee43ef789147588a/details"
+  },
+  {
+   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details"
   },
   {
    "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
