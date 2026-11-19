@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T00:35:34+00:00",
+ "updated": "2026-11-19T01:34:15+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -182,21 +182,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8f12b8a8383117e3f0c26/details"
   },
   {
-   "name": "GLORY OF CHAMPIONS #3 - REGULATION M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "18:05",
-   "players": 50,
-   "url": "https://play.limitlesstcg.com/tournament/6af4bdeb00d53a11f5b91548/details"
-  },
-  {
    "name": "Mid-Week Smoke #13",
    "org": "Play N' Connect",
    "mode": "online",
@@ -210,21 +195,6 @@
    "time": "12:00",
    "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6af6358900d53a11f5b92532/details"
-  },
-  {
-   "name": "🇧🇷 Hit Nexus #4 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-18",
-   "time": "00:00",
-   "players": 13,
-   "url": "https://play.limitlesstcg.com/tournament/6afa3f77ee43ef7891475c37/details"
   },
   {
    "name": "Preparação Pré LAIC da Roaring Card Store!",
@@ -242,8 +212,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
   },
   {
-   "name": "Champions Tour LEPE #11 (Shiny Tyranitar for 1st)",
-   "org": "LEPE Tours",
+   "name": "Off Meta Fight Club #11",
+   "org": "DevinTLegend",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -251,10 +221,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-11-18",
-   "time": "18:00",
-   "players": 7,
-   "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
+   "date": "2026-11-19",
+   "time": "02:00",
+   "players": 37,
+   "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
   },
   {
    "name": "VGC: 7mo Torneo Express",
@@ -287,21 +257,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aec7ff70c463890f304bd58/details"
   },
   {
-   "name": "Off Meta Fight Club #11",
-   "org": "DevinTLegend",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "02:00",
-   "players": 37,
-   "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -313,7 +268,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "05:00",
-   "players": 7,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6afe0c1c2b9e244e6cee508e/details"
   },
   {
@@ -343,7 +298,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "17:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
   },
   {
@@ -358,7 +313,7 @@
    "bo": null,
    "date": "2026-11-19",
    "time": "19:30",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
   },
   {
@@ -524,7 +479,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 65,
+   "players": 68,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -663,21 +618,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
-   "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
-   "org": "Santa Fe VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
-  },
-  {
    "name": "Risen Epsorts Thanksgiving Challenge",
    "org": "Risen Esports VGC",
    "mode": "online",
@@ -691,6 +631,21 @@
    "time": "18:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
+  },
+  {
+   "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
+   "org": "Santa Fe VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -796,6 +751,21 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
+  },
+  {
+   "name": "Denali Battle League VGC Series #1",
+   "org": "VGC ALASKA",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "04:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6afe4b762b9e244e6cee533f/details"
   },
   {
    "name": "Outlanders Trainers Camp: Encampment",
