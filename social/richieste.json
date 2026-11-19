@@ -5,6 +5,30 @@
  ],
  "richieste": [
   {
+   "id": "sto-133445398",
+   "v": 2,
+   "tipo": "storia",
+   "storia": true,
+   "rif": 0,
+   "creata": "2026-11-19T02:39:05Z",
+   "titolo": "Storia: Ezequiel Bustamante vince",
+   "sotto": "2027 Buenos Aires Pokémon VG Special Championships",
+   "img": "social/img/sto-133445398.jpg",
+   "link": "https://rakings.github.io/VGCrAKings/#stats-reg-1000084",
+   "ig": {
+    "stato": "da approvare",
+    "testo": "(storia: Instagram non permette testo nelle storie)"
+   },
+   "x": {
+    "stato": "da approvare",
+    "testo": "🏆 Ezequiel Bustamante (AR) wins 2027 Buenos Aires Pokémon VG Special Championships!\nTop 8: 2nd Bruno Quiroga, 3rd Samuel Pereira Marante, 4th Diego Ferreira Silva, 5th Len Deuel\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000084\n#PokemonVGC #PokemonChampions #VGC"
+   },
+   "yt": {
+    "stato": "da approvare",
+    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts"
+   }
+  },
+  {
    "id": "reg-141713055",
    "v": 2,
    "tipo": "regionale",
@@ -66,7 +90,8 @@
  "fatti": [
   "mon-202647",
   "sto-116899157",
-  "reg-141713055"
+  "reg-141713055",
+  "sto-133445398"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
  "storie_dal": "2026-11-16T08:29:54Z",
