@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Tema">
 
-        <!-- Il sito a schermo intero (Trusted Web Activity di Chrome): notifiche e tutto il resto come sul sito -->
+        <!-- Il sito a schermo intero (Trusted Web Activity di Chrome): notifiche e tutto il resto come sul sito.
+             src = da dove arriva l'app: apk (sito) o play (Play Store); serve all'avviso «nuova versione» del sito -->
         <activity
             android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
             android:exported="true"
             android:label="@string/app_name">
             <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL"
-                android:value="https://rakings.github.io/VGCrAKings/?app=android&amp;v=${versione}" />
+                android:value="https://rakings.github.io/VGCrAKings/?app=android&amp;v=${versione}&amp;src=${fonte}" />
             <meta-data android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
                 android:resource="@color/sfondo" />
             <meta-data android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"

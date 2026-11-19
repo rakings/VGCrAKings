@@ -2,6 +2,8 @@ plugins { id 'com.android.application' }
 
 // Numero di versione: lo mette il flusso di GitHub (ogni build ha un numero piu' alto)
 def versione = (System.getenv('VERSIONE') ?: '1') as int
+// da dove arriva l'app: apk (scaricata dal sito) o play (Play Store). Il flusso crea l'APK con apk e il pacchetto per il Play Store con play.
+def fonte = (System.getenv('FONTE') ?: 'apk')
 // Chiave dell'app: arriva SOLO dai segreti di GitHub (mai nella repo)
 def chiaveFile = System.getenv('CHIAVE_FILE')
 
@@ -15,7 +17,7 @@ android {
         versionCode versione
         versionName '1.0.' + versione
         // l'app apre il sito dicendo «sono l'app» e la sua versione (per l'avviso «nuova versione disponibile»)
-        manifestPlaceholders = [versione: versione]
+        manifestPlaceholders = [versione: versione, fonte: fonte]
     }
     signingConfigs {
         rilascio {
