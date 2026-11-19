@@ -70,6 +70,13 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_locali" />
         </receiver>
 
+        <!-- dopo un aggiornamento dell'app ridisegna subito i widget gia' messi (nessun permesso in piu') -->
+        <receiver android:name=".AppAggiornata" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
         <receiver android:name=".WidgetUsage" android:exported="true" android:label="@string/w_us">
             <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_usage" />
