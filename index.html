@@ -1162,6 +1162,9 @@ var quando=function(f){if(document.visibilityState==="visible")return f();var h=
 if(viaBc)quando(function(){setTimeout(function(){if(document.hasFocus())run()},350)});else quando(run)}catch(e){}}
 try{var VBC=new BroadcastChannel("vgc-nav");VBC.onmessage=function(ev){if(ev&&ev.data&&ev.data.url)vgcGo(ev.data.url,ev.data.id,true)}}catch(e){}
 if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",function(ev){if(ev.data&&ev.data.vgcGo)vgcGo(ev.data.vgcGo,ev.data.id,false)});
+/* App installata sul computer (Chrome, Edge e gli altri browser che lo supportano): con «launch_handler: focus-existing» nel manifest,
+   una notifica o un link non aprono una seconda finestra: il browser porta davanti quella gia' aperta e le passa l'indirizzo qui. */
+try{if("launchQueue"in window)window.launchQueue.setConsumer(function(p){try{var u=p&&p.targetURL;if(!u||u===location.href||Date.now()-VGO.t<3000)return;vgcGo(u,"lq"+Date.now(),false)}catch(e){}})}catch(e){}
 /* tocco su una notifica dalla schermata di blocco: il service worker scrive anche dove andare (nav.json). Se il messaggio si e' perso,
    la pagina lo legge all'avvio e ogni volta che torna visibile (vale 2 minuti, poi si cancella) */
 function navPend(){try{if(!window.caches||document.visibilityState!=="visible")return;caches.open("vgc-hist").then(function(c){return c.match("nav.json").then(function(r){if(!r)return;return r.json().then(function(j){return c.delete("nav.json").then(function(){if(j&&j.url&&Date.now()-(j.t||0)<120000)vgcGo(j.url,j.id,false)})})})}).catch(function(){})}catch(e){}}
