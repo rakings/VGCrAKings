@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T23:42:04+00:00",
+ "updated": "2026-11-20T00:42:49+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -167,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
   },
   {
-   "name": "Tenki's Cart Weekly #127 - Reg M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "17:00",
-   "players": 56,
-   "url": "https://play.limitlesstcg.com/tournament/6af72d06b2fccaf0272d0fbc/details"
-  },
-  {
    "name": "Off Meta Fight Club #11",
    "org": "DevinTLegend",
    "mode": "online",
@@ -195,21 +180,6 @@
    "time": "02:00",
    "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
-  },
-  {
-   "name": "Preparação Pré LAIC da Roaring Card Store!",
-   "org": "SongFuê",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "23:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6af4907000d53a11f5b9130b/details"
   },
   {
    "name": "Talon",
@@ -238,7 +208,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "05:00",
-   "players": 7,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6aff394a2b9e244e6cee576e/details"
   },
   {
@@ -253,7 +223,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "13:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
@@ -389,7 +359,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
   },
   {
@@ -434,7 +404,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "12:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
@@ -464,7 +434,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 50,
+   "players": 51,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -479,7 +449,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 54,
+   "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
