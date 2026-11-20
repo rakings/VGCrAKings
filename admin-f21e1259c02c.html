@@ -102,7 +102,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <button type="button" role="tab" data-tab="x" aria-selected="false">X<i id="bx" hidden></i></button>
     <button type="button" role="tab" data-tab="yt" aria-selected="false">YouTube<i id="by" hidden></i></button>
     <button type="button" role="tab" data-tab="an" aria-selected="false">Annunci</button>
-    <button type="button" role="tab" data-tab="st" aria-selected="false">Statistiche</button>
+    <button type="button" role="tab" data-tab="st" aria-selected="false">Statistiche<i id="bst" hidden></i></button>
   </nav>
 
   <div id="p-loc" data-panel="loc">
@@ -145,6 +145,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
   </div>
 
   <div id="p-st" data-panel="st" hidden>
+    <div class="card"><h2>Segnalazioni degli utenti</h2><div id="sg"><div class="hint">Carico…</div></div></div>
     <div class="card">
       <h2>Iscritti</h2>
       <div class="big" id="n">–</div>
@@ -505,6 +506,20 @@ function controlli(){
   }).catch(function(e){el.innerHTML='<div class="hint">Non letto ('+esc(e.message||"errore")+').</div>'})
 }
 
+/* segnalazioni dal pulsante «Segnala un problema» del sito (database D1 del Worker): si leggono all'accesso, il numero va sulla scheda Statistiche */
+function segnalazioni(token){
+  var el=$("sg");el.innerHTML='<div class="hint">Carico…</div>';
+  fetch(W+"/admin/segnalazioni",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("Worker "+r.status);return r.json()}).then(function(j){
+    var L=j.lista||[],K={a:"App",i:"Sito installato",b:"Browser"};badge("bst",L.length);
+    if(!L.length){el.innerHTML='<div class="hint">Nessuna segnalazione.</div>';return}
+    el.innerHTML=L.map(function(s){var i=s.i||{};
+      return '<div class="pa" data-sg="'+s.id+'"><span><small>'+esc(quando(new Date(s.t*1000).toISOString()))+' · '+esc(K[i.k]||"?")+(i.l?' · '+esc(i.l):'')+(i.v?' · '+esc(i.v):'')+(i.n?' · notifiche: '+esc(i.n):'')+'</small><b style="font-weight:600;white-space:pre-wrap;overflow-wrap:anywhere">'+esc(s.x)+'</b>'+(s.c?'<small>Contatto: '+esc(s.c)+'</small>':'')+(i.ua?'<small style="opacity:.6;overflow-wrap:anywhere">'+esc(i.ua)+'</small>':'')+'</span><button class="sec" type="button" data-sgdel="'+s.id+'">Cancella</button></div>'}).join("")
+  }).catch(function(e){el.innerHTML='<div class="hint">Segnalazioni non lette ('+esc(e.message||"errore")+'). Il Worker su Cloudflare è aggiornato?</div>'})
+}
+document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-sgdel]"):null;if(!b)return;var id=+b.getAttribute("data-sgdel");b.disabled=true;
+  fetch(W+"/admin/segnalazioni",{method:"POST",headers:{"Authorization":"Bearer "+getTok(),"Content-Type":"application/json"},body:JSON.stringify({id:id})}).then(function(r){if(!r.ok)throw 0;
+    var row=document.querySelector('[data-sg="'+id+'"]');if(row)row.remove();var n=document.querySelectorAll("[data-sg]").length;badge("bst",n);if(!n)$("sg").innerHTML='<div class="hint">Nessuna segnalazione.</div>'}).catch(function(){b.disabled=false;alert("Non cancellata: riprova.")})});
+
 /* statistiche: si leggono SOLO aprendo la scheda (risparmia letture di KV) */
 function stats(token){
   var tot={n:0,fcm:0,os:0,c:{},h:{},l:{},seguono:0,tornei:0,t1:0,t7:0,t30:0,conf:0,cdb:0},cur=null,pages=0;
@@ -531,7 +546,7 @@ function load(token,remember){
     $("go").disabled=false;$("again").disabled=false;
     if(s===401){msg("Codice non valido.",true);clearTok();$("res").hidden=true;$("login").hidden=false;return}
     setTok(token,remember);$("tk").value="";msg("");$("login").hidden=true;$("res").hidden=false;ora();
-    annunciPartner(token);social();
+    annunciPartner(token);social();segnalazioni(token);
     if(STATS||TAB==="st"){STATS=true;stats(token)}
   })
 }
