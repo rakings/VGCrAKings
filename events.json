@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T22:21:15+00:00",
+ "updated": "2026-11-20T22:48:32+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -152,6 +152,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
   },
   {
+   "name": "Metal",
+   "org": "Metal VGC Weeklies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "23:30",
+   "players": 29,
+   "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
+  },
+  {
    "name": "⛩️Chadweezy95 $20 VGC Champions Tourney Ep 38!⛩️",
    "org": "Chadweezy95",
    "mode": "online",
@@ -197,21 +212,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
   },
   {
-   "name": "Metal",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "23:30",
-   "players": 29,
-   "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
-  },
-  {
    "name": "Latin America International Championships",
    "org": "",
    "mode": "regional",
@@ -239,12 +239,12 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 149,
+   "players": 156,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
-   "name": "Texas Throwdown #2 (USPA Soon?)",
-   "org": "SyncTours",
+   "name": "ValkrixVGC Rising Champions League #09",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -254,8 +254,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
   },
   {
    "name": "Pokemon Dominicana - Champions League #19",
@@ -273,8 +273,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #09",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "Texas Throwdown #2 (USPA Soon?)",
+   "org": "SyncTours",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -284,8 +284,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
+   "players": 13,
+   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -359,7 +359,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 62,
+   "players": 63,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -374,7 +374,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 78,
+   "players": 79,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -479,7 +479,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "22:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details"
   },
   {
