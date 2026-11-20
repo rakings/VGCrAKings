@@ -5,7 +5,7 @@ Facebook, X, Discord ecc.; chi apre il link viene portato nel sito, gia' sulla T
 Gira dal flusso «Schede di condivisione» quando cambiano locali.json o annunci.json (o dopo i flussi che li modificano).
 Crea solo le schede che mancano o che sono cambiate e cancella quelle di Top 8 e annunci tolti (il repo resta leggero).
 Serve SITE_URL (indirizzo del sito) e Pillow. Solo grafica del sito: nessuna immagine ufficiale Pokemon."""
-import html, json, os, textwrap
+import html, json, os, re, textwrap
 from PIL import Image, ImageDraw
 
 import social_img as S
@@ -36,7 +36,8 @@ def lid(l):
 
 def righe(testo, larghezza, quante):
     out = []
-    for par in str(testo or "").replace("\r", "").split("\n"):
+    # a capo scritti in modi diversi (\r\n di Windows, U+2028 dei testi copiati da X/Twitter) diventano tutti \n
+    for par in re.sub(r"\r\n?|[\u2028\u2029\u0085]", "\n", str(testo or "")).split("\n"):
         out += textwrap.wrap(par, larghezza) or []
     return out[:quante]
 
