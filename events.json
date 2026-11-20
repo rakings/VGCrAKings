@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T11:14:59+00:00",
+ "updated": "2026-11-20T14:08:14+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -122,8 +122,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aee43b3c931f53978d9507b/details"
   },
   {
-   "name": "E-Zone Neko Social Club",
-   "org": "Fiery Sparks",
+   "name": "ValkrixVGC Rising Champions League #08",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -131,10 +131,10 @@
    "prize": "",
    "reg": null,
    "bo": null,
-   "date": "2026-11-15",
-   "time": "11:30",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
+   "date": "2026-11-20",
+   "time": "13:00",
+   "players": 38,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
@@ -167,21 +167,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #08",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "13:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
-  },
-  {
    "name": "BK Cup #5 x Micelion | Lucario Deckbox de premio",
    "org": "OscarBK",
    "mode": "online",
@@ -193,7 +178,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "17:30",
-   "players": 30,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
   },
   {
@@ -208,7 +193,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 37,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "20:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6afc1050b2fccaf0272d4a28/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "21:00",
-   "players": 23,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
   },
   {
@@ -299,38 +284,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 108,
+   "players": 111,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
-  },
-  {
-   "name": "Texas Throwdown #2 (USPA Soon?)",
-   "org": "SyncTours",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "02:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
-  },
-  {
-   "name": "Pokemon Dominicana - Champions League #19",
-   "org": "Smilegazer League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "02:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
   },
   {
    "name": "ValkrixVGC Rising Champions League #09",
@@ -346,6 +301,36 @@
    "time": "02:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
+  },
+  {
+   "name": "Pokemon Dominicana - Champions League #19",
+   "org": "Smilegazer League",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "02:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
+  },
+  {
+   "name": "Texas Throwdown #2 (USPA Soon?)",
+   "org": "SyncTours",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "02:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -404,7 +389,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 54,
+   "players": 56,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -419,7 +404,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 64,
+   "players": 67,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -434,7 +419,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "15:00",
-   "players": 18,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af8d364b2fccaf0272d27e5/details"
   },
   {
@@ -464,7 +449,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "18:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
@@ -599,7 +584,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details"
   },
   {
@@ -614,7 +599,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:30",
-   "players": 17,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details"
   },
   {
@@ -629,7 +614,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
@@ -644,7 +629,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6aff3c1b2b9e244e6cee57be/details"
   },
   {
@@ -749,7 +734,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details"
   },
   {
@@ -824,7 +809,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
   },
   {
@@ -983,7 +968,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details"
   },
   {
@@ -1028,7 +1013,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
