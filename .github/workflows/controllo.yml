@@ -1,0 +1,21 @@
+name: Controllo del sito
+# Ogni mattina controlla flussi, Worker, sito, tornei e copia degli iscritti.
+# Se trova un problema il giro finisce con errore e GitHub manda una mail ad Andrea con l'elenco. Se e' tutto a posto, silenzio.
+on:
+  schedule:
+    - cron: "47 6 * * *"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  controllo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Controlla
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: python3 controllo_sito.py

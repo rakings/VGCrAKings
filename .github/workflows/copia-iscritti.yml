@@ -1,0 +1,35 @@
+name: Copia di sicurezza degli iscritti
+# Ogni lunedi' notte: copia CIFRATA degli iscritti alle notifiche nella Release «copia-iscritti» (sostituisce quella vecchia).
+# Serve il segreto BACKUP_CHIAVE (una password lunga che conosce solo Andrea). Senza, il flusso avvisa e non fa niente.
+on:
+  schedule:
+    - cron: "13 3 * * 1"
+permissions:
+  contents: write
+concurrency:
+  group: copia-iscritti
+  cancel-in-progress: false
+jobs:
+  copia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Legge e cifra gli iscritti
+        env:
+          SUBS_URL: ${{ vars.SUBS_URL }}
+          SUBS_TOKEN: ${{ secrets.SUBS_TOKEN }}
+          BACKUP_CHIAVE: ${{ secrets.BACKUP_CHIAVE }}
+        run: python copia_iscritti.py
+      - name: Mette la copia nella Release (sostituisce la precedente)
+        if: hashFiles('iscritti.enc') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view copia-iscritti >/dev/null 2>&1 || gh release create copia-iscritti --prerelease \
+            --title "Copia di sicurezza degli iscritti (cifrata)" \
+            --notes "File cifrato con la chiave BACKUP_CHIAVE: senza la chiave e' illeggibile. Si aggiorna da solo ogni lunedi'."
+          gh release upload copia-iscritti iscritti.enc copia_info.txt --clobber
