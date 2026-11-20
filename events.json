@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T07:43:31+00:00",
+ "updated": "2026-11-20T11:14:59+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -178,7 +178,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "13:00",
-   "players": 19,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
@@ -193,7 +193,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "17:30",
-   "players": 26,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
   },
   {
@@ -208,7 +208,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 32,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "20:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6afc1050b2fccaf0272d4a28/details"
   },
   {
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "21:00",
-   "players": 14,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
   },
   {
@@ -299,7 +299,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 102,
+   "players": 108,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -404,7 +404,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 53,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -419,7 +419,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 58,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -449,7 +449,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 45,
+   "players": 46,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -584,7 +584,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "04:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6afe4b762b9e244e6cee533f/details"
   },
   {
@@ -614,7 +614,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:30",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details"
   },
   {
@@ -629,7 +629,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details"
   },
   {
@@ -749,7 +749,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details"
   },
   {
@@ -824,7 +824,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
   },
   {
@@ -929,7 +929,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 52,
+   "players": 53,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details"
   },
   {
@@ -983,7 +983,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details"
   },
   {
@@ -1028,7 +1028,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details"
   },
   {
@@ -1233,7 +1233,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details"
   },
   {
