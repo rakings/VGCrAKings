@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-18v";
+const VERSIONE = "2026-11-20s";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -541,6 +541,62 @@ async function visiteRoute(req, env, url, out, admin) {
   return out({ ok: true });
 }
 
+// ======================= SEGNALAZIONI («Segnala un problema» nelle Impostazioni del sito) =======================
+// Tabella s nel database D1 dei like. Freni: 3 segnalazioni al giorno per telefono, 6 all'ora per indirizzo IP, 200 al giorno in tutto.
+// Si cancellano da sole dopo 120 giorni (quando apri la pagina admin) o con «Cancella» nella scheda Statistiche.
+const SEG_MAX_GIORNO = 200, SEG_PER_TEL = 3;
+let SEG_PRONTO = false;
+async function segDb(env) {
+  if (!env.LIKE) return null;
+  if (!SEG_PRONTO) {
+    await env.LIKE.batch([
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS s (id INTEGER PRIMARY KEY AUTOINCREMENT, t INTEGER NOT NULL, dev TEXT NOT NULL, x TEXT NOT NULL, c TEXT NOT NULL, i TEXT NOT NULL)"),
+      env.LIKE.prepare("CREATE INDEX IF NOT EXISTS s_dev ON s (dev, t)"),
+      env.LIKE.prepare("CREATE TABLE IF NOT EXISTS g (d TEXT PRIMARY KEY, n INTEGER NOT NULL)"),
+    ]);
+    SEG_PRONTO = true;
+  }
+  return env.LIKE;
+}
+async function segnalaRoute(req, env, url, out, admin) {
+  const db = await segDb(env);
+  if (!db) return out({ error: "segnalazioni non attive (manca il database LIKE)" }, 503);
+  const ora = Math.floor(Date.now() / 1000);
+  if (url.pathname === "/admin/segnalazioni") {   // SOLO Andrea (ADMIN_TOKEN): elenco (GET) e cancellazione (POST {id})
+    if (!admin()) return out({ error: "non autorizzato" }, 401);
+    if (req.method === "POST") {
+      let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
+      const id = Number(b && b.id);
+      if (!Number.isInteger(id) || id < 1) return out({ error: "id non valido" }, 400);
+      await db.prepare("DELETE FROM s WHERE id = ?").bind(id).run();
+      return out({ ok: true });
+    }
+    await db.prepare("DELETE FROM s WHERE t < ?").bind(ora - 120 * 86400).run();
+    const r = await db.prepare("SELECT id, t, x, c, i FROM s ORDER BY id DESC LIMIT 100").all();
+    return out({ ok: true, lista: (r.results || []).map(o => { let i = {}; try { i = JSON.parse(o.i); } catch (e) {} return { id: o.id, t: o.t, x: o.x, c: o.c, i }; }) });
+  }
+  if (req.method !== "POST") return out({ error: "richiesta non valida" }, 400);
+  if (troppe(req, "segnala", 6, 3600)) return out({ error: "troppe segnalazioni, riprova piu' tardi" }, 429);
+  const txt = await req.text();
+  if (txt.length > 2500) return out({ error: "troppo grande" }, 413);
+  let b; try { b = JSON.parse(txt); } catch (e) { return out({ error: "json non valido" }, 400); }
+  const dev = String((b && b.dev) || ""), x = String((b && b.x) || "").trim().slice(0, 1000), c = String((b && b.c) || "").trim().slice(0, 80);
+  if (!/^[a-z0-9]{12,40}$/.test(dev)) return out({ error: "richiesta non valida" }, 400);
+  if (x.length < 5) return out({ error: "testo troppo corto" }, 400);
+  const cut = (v, n) => String(v == null ? "" : v).slice(0, n);
+  const i = JSON.stringify({ k: ["a", "i", "b"].includes(b.k) ? b.k : "b", l: cut(b.l, 8), v: cut(b.v, 20), n: cut(b.n, 12), ua: cut(b.ua, 160) });
+  const gk = "s:" + new Date().toISOString().slice(0, 10);
+  const g = await db.prepare("SELECT n FROM g WHERE d = ?").bind(gk).first();
+  if (g && g.n >= SEG_MAX_GIORNO) return out({ error: "limite giornaliero raggiunto" }, 429);
+  const q = await db.prepare("SELECT COUNT(*) AS c FROM s WHERE dev = ? AND t >= ?").bind(dev, ora - 86400).first();
+  if (q && q.c >= SEG_PER_TEL) return out({ error: "troppe segnalazioni da questo telefono oggi" }, 429);
+  await db.batch([
+    db.prepare("INSERT INTO s (t, dev, x, c, i) VALUES (?, ?, ?, ?, ?)").bind(ora, dev, x, c, i),
+    db.prepare("INSERT INTO g (d, n) VALUES (?, 1) ON CONFLICT(d) DO UPDATE SET n = n + 1").bind(gk),
+  ]);
+  return out({ ok: true });
+}
+
 // ======================= RICHIESTE DEI LOCALI (Issue della repo privata) nella pagina admin =======================
 // Segreto GH_RICHIESTE = chiave GitHub di Andrea con «Issues: lettura e scrittura» SOLO sulla repo privata; variabile RICHIESTE_REPO = "proprietario/nome".
 // La chiave e' di Andrea, quindi l'etichetta risulta messa da lui: il controllo della repo privata («solo il proprietario») la accetta.
@@ -785,6 +841,9 @@ export default {
     }
     if (url.pathname === "/visita" || url.pathname === "/admin/visite") {
       try { return await visiteRoute(req, env, url, out, admin); } catch (e) { console.log("visite:", String(e && e.message || e).slice(0, 120)); return out({ error: "visite non disponibili" }, 503); }
+    }
+    if (url.pathname === "/segnala" || url.pathname === "/admin/segnalazioni") {
+      try { return await segnalaRoute(req, env, url, out, admin); } catch (e) { console.log("segnala:", String(e && e.message || e).slice(0, 120)); return out({ error: "segnalazioni non disponibili" }, 503); }
     }
     if (url.pathname === "/auto/twitch" && req.method === "POST") return twEvento(req, env, out);
     if (url.pathname === "/auto/youtube" && (req.method === "GET" || req.method === "POST")) return ytEvento(req, env, out, url);
