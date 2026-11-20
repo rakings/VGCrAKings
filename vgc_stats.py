@@ -377,6 +377,13 @@ def list_events():
                     "winner": (t.get("winners") or {}).get("masters"), "rk9": t.get("rk9link"), "updated": t.get("lastUpdated") or "",
                     "winners": {d: person((t.get("winners") or {}).get(d)) for d in ("masters", "seniors", "juniors")},
                     "players_div": t.get("players") or {}})
+    # Pokedata a volte lascia «not started» anche quando il torneo e' gia' partito (es. Latin America 2027: round 2 gia' uscito
+    # ma stato fermo). Se la data di inizio e' arrivata e ci sono gia' dei round, il torneo e' in corso: lo seguiamo noi.
+    oggi_utc = time.strftime("%Y-%m-%d", time.gmtime())
+    for o in out:
+        if o["status"] == "not started" and o["rounds"] > 0 and o["start"] and o["start"] <= oggi_utc:
+            o["status"] = "running"
+            print("Pokedata segna «non iniziato» %s, ma ci sono gia' %d round: lo considero in corso." % (o["name"], o["rounds"]))
     completa_date(out)
     vecchi_in_corso(out)
     out.sort(key=lambda e: e["start"], reverse=True)
@@ -528,6 +535,8 @@ def collect(ev, write):
     if ev.get("fine_forzata"):
         status = "finished"
     elif ev.get("forzato") and status == "finished":
+        status = "running"
+    elif status == "not started" and ev.get("status") == "running":   # vedi list_events: partito anche se Pokedata non lo dice
         status = "running"
     last_status[tid] = status
     cut_state[tid] = cut_phase(swiss)
@@ -938,7 +947,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-02a (mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-20a (segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
