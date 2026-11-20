@@ -813,10 +813,13 @@ function nHtml(){var l=nList().slice(0,30),h='<div class="sheet2" role="document
 if(!l.length)h+='<p class="meta">Nessun avviso per ora.</p>';
 l.forEach(function(x){var nw=x.ms>NSEEN,d=x.ms?new Date(x.ms).toLocaleString(LCL,{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):"";
 var nk=vgcCat(x.cat||x.topic,x.title,x.url),nc=nk?' data-nc="'+nk+'"':'';var inner=vgcIco(nk,"nico2")+'<b>'+esc(x.title||"")+'</b>'+(nw?' <span class="nnew">nuovo</span>':'')+'<br><span>'+esc(x.body||"").replace(/\n/g,"<br>")+'</span><br><small>'+esc(d)+'</small>';
-h+=/^https?:/.test(x.url||"")?'<a class="nit"'+nc+' href="'+esc(x.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="nit"'+nc+'>'+inner+'</div>'});
+var qui=nQui(x.url);h+=/^https?:/.test(x.url||"")?'<a class="nit"'+nc+' href="'+esc(x.url)+'"'+(qui?' data-nqui="1"':' target="_blank" rel="noopener"')+'>'+inner+'</a>':'<div class="nit"'+nc+'>'+inner+'</div>'});
 return h+'</div>'}
 function nRedraw(vis){var o=$("np");if(o.hidden||!o.querySelector("[data-nclear]"))return;var s=NSEEN;if(vis!==undefined)NSEEN=vis;o.innerHTML=nHtml();NSEEN=s}
 $("bell").addEventListener("click",function(){var vis=NSEEN;$("np").innerHTML=nHtml();$("np").hidden=false;nLoad(function(){nRedraw(vis)});nClear();NSEEN=Date.now();nSave();nBadge()});
+/* avvisi della cronologia che portano a una sezione del sito: si aprono in questa stessa finestra (prima aprivano una seconda finestra/scheda) */
+function nQui(u){try{var x=new URL(u,location.href),d=function(p){return p.replace(/[^\/]*$/,"")};return x.origin===location.origin&&d(x.pathname)===d(location.pathname)}catch(e){return false}}
+$("np").addEventListener("click",function(ev){var q=ev.target.closest&&ev.target.closest("a[data-nqui]");if(q){ev.preventDefault();$("np").hidden=true;var hr=q.getAttribute("href");try{if(new URL(hr,location.href).hash)vgcGo(hr,"nh"+Date.now(),false);else location.href=hr}catch(e){location.href=hr}return}});
 $("np").addEventListener("click",function(ev){if(ev.target.closest("[data-nclear]")){NSEEN=Date.now();nSave();nClear(true);nBadge();$("np").innerHTML=nHtml()}else if(ev.target.closest("[data-ncut]")){NCUT=Date.now();NSEEN=NCUT;nSave();nClear(true);nBadge();$("np").innerHTML=nHtml()}});
 document.addEventListener("visibilitychange",function(){if(!document.hidden){nClear();nLoad()}});
 nLoad();nClear();
