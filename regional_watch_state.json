@@ -478,10 +478,11 @@
  },
  "vr_controllo": {
   "ok": true,
-  "quando": "2026-11-20T18:52+00:00",
-  "pagine": 25,
+  "quando": "2026-11-20T22:17+00:00",
+  "pagine": 0,
   "senza_pagina": 0,
-  "errori": 0,
-  "problemi": []
+  "errori": 25,
+  "problemi": [],
+  "nota": "Victory Road non ha risposto a questo giro"
  }
 }
