@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T22:48:32+00:00",
+ "updated": "2026-11-20T23:11:16+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -284,7 +284,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
@@ -329,7 +329,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "12:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
@@ -374,7 +374,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 79,
+   "players": 80,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -644,7 +644,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
