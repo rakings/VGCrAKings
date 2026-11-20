@@ -6,6 +6,9 @@ on:
         description: "Canale (TUTTI = tutti gli iscritti; oppure gc, money, regionali, vr, locali8...)"
         required: false
         default: "TUTTI"
+# solo lettura: il flusso manda una notifica di prova e non scrive niente nel repo
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
