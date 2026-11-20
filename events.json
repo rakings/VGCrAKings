@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T00:42:49+00:00",
+ "updated": "2026-11-20T01:28:10+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -238,7 +238,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "17:30",
-   "players": 23,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
   },
   {
@@ -287,6 +287,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6afc1050b2fccaf0272d4a28/details"
   },
   {
+   "name": "⛩️Chadweezy95 $20 VGC Champions Tourney Ep 38!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "95 $",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "21:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
+  },
+  {
    "name": "Metal",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -329,12 +344,12 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 95,
+   "players": 96,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
-   "name": "Texas Throwdown #2 (USPA Soon?)",
-   "org": "SyncTours",
+   "name": "ValkrixVGC Rising Champions League #09",
+   "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -344,8 +359,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
   },
   {
    "name": "Pokemon Dominicana - Champions League #19",
@@ -363,8 +378,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
   },
   {
-   "name": "ValkrixVGC Rising Champions League #09",
-   "org": "Valkrix/ Pokemon Champions VGC",
+   "name": "Texas Throwdown #2 (USPA Soon?)",
+   "org": "SyncTours",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -374,8 +389,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -449,7 +464,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 56,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -704,7 +719,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -839,7 +854,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
   },
   {
@@ -869,7 +884,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
   },
   {
