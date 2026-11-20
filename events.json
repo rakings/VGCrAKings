@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T20:49:49+00:00",
+ "updated": "2026-11-20T21:56:09+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -208,7 +208,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "23:30",
-   "players": 19,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
   },
   {
@@ -239,7 +239,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 138,
+   "players": 146,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -299,7 +299,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 67,
+   "players": 66,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
@@ -359,7 +359,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 61,
+   "players": 62,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -374,7 +374,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 74,
+   "players": 78,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -449,7 +449,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
@@ -719,7 +719,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
   },
   {
@@ -1103,7 +1103,7 @@
    "bo": "Bo3",
    "date": "2026-12-04",
    "time": "18:45",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac968ba115c12b73a5a00f5/details"
   },
   {
@@ -1130,6 +1130,21 @@
    "tz": "America/Los_Angeles",
    "juniorAt": "2025-11-15T17:00:00Z",
    "seniorAt": "2025-11-15T17:00:00Z"
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-05",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b00b52ee0b5cca158bb9f46/details"
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
