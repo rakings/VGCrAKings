@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T01:28:10+00:00",
+ "updated": "2026-11-20T03:07:22+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,51 +137,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6af6419300d53a11f5b9261e/details"
   },
   {
-   "name": "London Corviknights VGC Weekly Tour 22!",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "19:30",
-   "players": 51,
-   "url": "https://play.limitlesstcg.com/tournament/6ad7423a115c12b73a5a83b2/details"
-  },
-  {
-   "name": "VGC Gemeinde Showdown #14",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "19:00",
-   "players": 26,
-   "url": "https://play.limitlesstcg.com/tournament/6ab2b4d1f127b1b52c27fa0a/details"
-  },
-  {
-   "name": "Off Meta Fight Club #11",
-   "org": "DevinTLegend",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-19",
-   "time": "02:00",
-   "players": 37,
-   "url": "https://play.limitlesstcg.com/tournament/6afb5527ee43ef7891476567/details"
-  },
-  {
    "name": "Talon",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -208,7 +163,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "05:00",
-   "players": 10,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6aff394a2b9e244e6cee576e/details"
   },
   {
@@ -223,7 +178,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "13:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
@@ -253,7 +208,7 @@
    "bo": "Bo3",
    "date": "2026-11-20",
    "time": "18:45",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
@@ -298,7 +253,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "21:00",
-   "players": 5,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
   },
   {
@@ -313,7 +268,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "23:30",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
   },
   {
@@ -344,7 +299,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 96,
+   "players": 97,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -404,7 +359,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "04:00",
-   "players": 59,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
   },
   {
@@ -524,7 +479,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "18:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
   },
   {
@@ -648,6 +603,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details"
   },
   {
+   "name": "Meta Breaker League(by BV)",
+   "org": "Mahir PokéVgc",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "12:30",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details"
+  },
+  {
    "name": "VGC Gemeinde Stuttgart Prep",
    "org": "VGC Gemeinde",
    "mode": "online",
@@ -719,7 +689,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 21,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -888,6 +858,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details"
   },
   {
+   "name": "Off Meta Fight Club #12",
+   "org": "DevinTLegend",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "02:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details"
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 23!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1013,7 +998,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details"
   },
   {
