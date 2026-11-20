@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T17:18:09+00:00",
+ "updated": "2026-11-20T18:38:32+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -137,8 +137,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1f134c931f53978d972e5/details"
   },
   {
-   "name": "BK Cup #5 x Micelion | Lucario Deckbox de premio",
-   "org": "OscarBK",
+   "name": "🌟 Movember Cup 🌟",
+   "org": "Grombrooklyn Gaming",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -147,39 +147,9 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-20",
-   "time": "17:30",
-   "players": 40,
-   "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
-  },
-  {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "05:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6aff394a2b9e244e6cee576e/details"
-  },
-  {
-   "name": "Talon",
-   "org": "TalonMasterJ",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "01:00",
-   "players": 86,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
+   "time": "19:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
   },
   {
    "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
@@ -197,8 +167,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
-   "name": "🌟 Movember Cup 🌟",
-   "org": "Grombrooklyn Gaming",
+   "name": "BK Cup #5 x Micelion | Lucario Deckbox de premio",
+   "org": "OscarBK",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -207,9 +177,24 @@
    "reg": null,
    "bo": null,
    "date": "2026-11-20",
-   "time": "19:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
+   "time": "17:30",
+   "players": 40,
+   "url": "https://play.limitlesstcg.com/tournament/6ad864928a8383117e3f0925/details"
+  },
+  {
+   "name": "Talon",
+   "org": "TalonMasterJ",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-20",
+   "time": "01:00",
+   "players": 86,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8eb068a8383117e3f0b99/details"
   },
   {
    "name": "Unova Champions League #17",
@@ -223,7 +208,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "20:00",
-   "players": 6,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6afc1050b2fccaf0272d4a28/details"
   },
   {
@@ -238,7 +223,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "21:00",
-   "players": 43,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
   },
   {
@@ -253,7 +238,7 @@
    "bo": null,
    "date": "2026-11-20",
    "time": "23:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details"
   },
   {
@@ -284,7 +269,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "00:00",
-   "players": 119,
+   "players": 121,
    "url": "https://play.limitlesstcg.com/tournament/6af7f53cb2fccaf0272d1cb8/details"
   },
   {
@@ -299,7 +284,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afdcb249c256f7bbd23f5da/details"
   },
   {
@@ -329,7 +314,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
   },
   {
@@ -359,7 +344,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "12:00",
-   "players": 9,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
   },
   {
@@ -404,7 +389,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 67,
+   "players": 70,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -434,23 +419,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 46,
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
-  },
-  {
-   "name": "Risen Epsorts Thanksgiving Challenge",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
@@ -466,6 +436,21 @@
    "time": "18:00",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details"
+  },
+  {
+   "name": "Risen Epsorts Thanksgiving Challenge",
+   "org": "Risen Esports VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "18:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
    "name": "VGCJer Indigo Open 2",
@@ -524,7 +509,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
   },
   {
@@ -629,7 +614,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:30",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aff3c1b2b9e244e6cee57be/details"
   },
   {
@@ -674,7 +659,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details"
   },
   {
@@ -854,7 +839,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details"
   },
   {
