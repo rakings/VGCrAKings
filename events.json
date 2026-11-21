@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T10:52:48+00:00",
+ "updated": "2026-11-21T13:36:10+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -168,81 +168,6 @@
    "url": "https://serebii.net/playpokemon/2027/latinamericainternationalchampionships.shtml"
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "05:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6b009e46ada8eea1c94cedf6/details"
-  },
-  {
-   "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
-   "org": "Pokémon Philippines Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "04:00",
-   "players": 69,
-   "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
-  },
-  {
-   "name": "LEGA DEI BOLLENTI MC #2",
-   "org": "CkVerse_Twitch",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
-  },
-  {
-   "name": "Ukraine tryouts",
-   "org": "Champions Ukraine",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "12:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
-  },
-  {
-   "name": "Champions League VGC November",
-   "org": "Battle Chateau",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "13:00",
-   "players": 78,
-   "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
-  },
-  {
    "name": "ValkrixVGC Rising Champions League #10",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -273,6 +198,51 @@
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
+   "name": "Champions League VGC November",
+   "org": "Battle Chateau",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "13:00",
+   "players": 78,
+   "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
+  },
+  {
+   "name": "Ukraine tryouts",
+   "org": "Champions Ukraine",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "12:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
+  },
+  {
+   "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
+   "org": "Pokémon Philippines Community",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "04:00",
+   "players": 69,
+   "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details"
+  },
+  {
    "name": "Raichu Rivalry",
    "org": "Raichu Rivalry VGC",
    "mode": "online",
@@ -284,7 +254,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "15:00",
-   "players": 23,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6af8d364b2fccaf0272d27e5/details"
   },
   {
@@ -299,7 +269,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "17:00",
-   "players": 51,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6aee41fee99f3235a75e2751/details"
   },
   {
@@ -329,7 +299,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "18:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details"
   },
   {
@@ -344,7 +314,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:00",
-   "players": 40,
+   "players": 45,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details"
   },
   {
@@ -359,8 +329,23 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:30",
-   "players": 8,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6b00f567e0b5cca158bba21b/details"
+  },
+  {
+   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
+   "org": "biffpipp's Battle Frontier",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "22:00",
+   "players": 5,
+   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details"
   },
   {
    "name": "Thavorian Trials - 13",
@@ -378,36 +363,6 @@
    "url": "https://play.limitlesstcg.com/tournament/6afc90ddee43ef789147725e/details"
   },
   {
-   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
-   "org": "biffpipp's Battle Frontier",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "22:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details"
-  },
-  {
-   "name": "[2026 포켓몬 월드컵] 팀코리아 선발전",
-   "org": "너클시티 배틀연구소",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "05:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6afaa63dee43ef7891476030/details"
-  },
-  {
    "name": "OTS Pokemon VGC Arena #3",
    "org": "The Underground",
    "mode": "online",
@@ -419,8 +374,23 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "00:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af9e3a1ee43ef789147588a/details"
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "02:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
   },
   {
    "name": "VGC UU Regulation M-C Bi-Weekly #2",
@@ -436,21 +406,6 @@
    "time": "02:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b00fffbada8eea1c94cf298/details"
-  },
-  {
-   "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
-   "org": "Cusca eSports",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "02:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
   },
   {
    "name": "Denali Battle League VGC Series #1",
@@ -494,7 +449,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:30",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details"
   },
   {
@@ -524,7 +479,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:30",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6aff3c1b2b9e244e6cee57be/details"
   },
   {
@@ -629,7 +584,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details"
   },
   {
@@ -644,7 +599,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
   },
   {
@@ -749,7 +704,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 5,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details"
   },
   {
@@ -809,7 +764,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 0,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details"
   },
   {
@@ -839,7 +794,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 54,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details"
   },
   {
@@ -1083,7 +1038,7 @@
    "bo": null,
    "date": "2026-12-05",
    "time": "18:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b00b52ee0b5cca158bb9f46/details"
   },
   {
@@ -1158,7 +1113,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details"
   },
   {
