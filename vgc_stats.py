@@ -1070,6 +1070,28 @@ def live_cycle(write):
     return changed, any(e["status"] == "running" for e in events)
 
 
+CODICE_OGNI = 10 * 60   # ogni 10 minuti controlla se su GitHub e' stata caricata una versione nuova di questo file
+
+
+def codice_cambiato(mio=[None]):
+    """True se su GitHub c'e' un vgc_stats.py diverso da quello che sta girando (lo hai appena caricato):
+    il giro in corso cambia turno e quello nuovo parte con il codice nuovo, senza aspettare la fine del giro (fino a 6 ore)."""
+    repo = os.environ.get("GITHUB_REPOSITORY")
+    if not repo:
+        return False
+    try:
+        if mio[0] is None:
+            with open(os.path.abspath(__file__), "rb") as f:
+                mio[0] = hashlib.sha256(f.read()).hexdigest()
+        import urllib.request
+        url = "https://raw.githubusercontent.com/%s/main/vgc_stats.py?t=%d" % (repo, int(time.time()))
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"Cache-Control": "no-cache"}), timeout=15) as r:
+            online = r.read()
+        return len(online) > 1000 and hashlib.sha256(online).hexdigest() != mio[0]
+    except Exception:
+        return False
+
+
 def segnala_rilancio():
     """Il tempo del lavoro sta per finire ma il torneo continua: lascia un segno e il flusso lancia subito il turno dopo,
     senza aspettare il programma di GitHub (che puo' ritardare anche di mezz'ora o saltare un giro)."""
@@ -1094,6 +1116,7 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
     in_sospeso = False                         # dati nuovi gia' salvati ma non ancora pubblicati (parziali in attesa del loro turno)
     pairings_entro = 0.0                       # fino a quando si aspettano i pairings del round dopo (controlli ogni 2 minuti)
     sospeso_da = 0.0                           # quando e' arrivato il primo risultato non ancora pubblicato
+    codice_visto = now()                       # ultimo controllo della versione del codice su GitHub
 
     def pubblica_ora(final):
         nonlocal ultima_pub, in_sospeso
@@ -1158,6 +1181,16 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
                 git_publish()
             segnala_rilancio()
             return 0
+        if write and now() - codice_visto >= CODICE_OGNI:
+            codice_visto = now()
+            if codice_cambiato():
+                print("Su GitHub c'e' una versione nuova di vgc_stats.py: cambio turno adesso, il prossimo giro parte con il codice nuovo.")
+                if in_sospeso:
+                    pubblica_ora(False)
+                if commit and cf_enabled():
+                    git_publish()
+                segnala_rilancio()
+                return 0
         # quanto aspettare prima del prossimo controllo
         if "chiuso" in eventi_round:
             pairings_entro = now() + ATTESA_PAIRINGS
@@ -1204,7 +1237,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-21d (non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-21e (regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
