@@ -120,15 +120,48 @@ def get_json(url):
 
 unknown_forms = set()
 
+# Tutte le forme di tutti i Pokemon, prese da Pokemon Showdown (pacchetto @pkmn/dex, 21/11/2026).
+# "Pokemon": "forma base|forma 1|forma 2|..." (la forma base, se c'e', e' quella senza suffisso: es. Toxtricity = Amped).
+# Per aggiornarla: node -e con @pkmn/dex (Dex.species.all(): baseSpecies, forme, baseForme).
+SD_FORME = json.loads(r'''{"Abomasnow":"|Mega","Absol":"|Mega|Mega-Z","Aegislash":"Shield|Blade","Aerodactyl":"|Mega","Aggron":"|Mega","Alakazam":"|Mega","Alcremie":"Vanilla-Cream|Ruby-Cream|Matcha-Cream|Mint-Cream|Lemon-Cream|Ruby-Swirl|Caramel-Swirl|Rainbow-Swirl|Gmax","Altaria":"|Mega","Ampharos":"|Mega","Appletun":"|Gmax","Araquanid":"|Totem","Arcanine":"|Hisui","Arceus":"Normal|Bug|Dark|Dragon|Electric|Fairy|Fighting|Fire|Flying|Ghost|Grass|Ground|Ice|Poison|Psychic|Rock|Steel|Water","Articuno":"|Galar","Audino":"|Mega","Avalugg":"|Hisui","Banette":"|Mega","Barbaracle":"|Mega","Basculegion":"M|F","Basculin":"Red-Striped|Blue-Striped|White-Striped","Baxcalibur":"|Mega","Beedrill":"|Mega","Blastoise":"|Mega|Gmax","Blaziken":"|Mega","Braviary":"|Hisui","Burmy":"Plant|Sandy|Trash","Butterfree":"|Gmax","Calyrex":"|Ice|Shadow","Camerupt":"|Mega","Castform":"|Sunny|Rainy|Snowy","Centiskorch":"|Gmax","Chandelure":"|Mega","Charizard":"|Mega-X|Mega-Y|Gmax","Cherrim":"Overcast|Sunshine","Chesnaught":"|Mega","Chimecho":"|Mega","Cinderace":"|Gmax","Clefable":"|Mega","Coalossal":"|Gmax","Copperajah":"|Gmax","Corsola":"|Galar","Corviknight":"|Gmax","Crabominable":"|Mega","Cramorant":"|Gulping|Gorging","Darkrai":"|Mega","Darmanitan":"Standard|Zen|Galar|Galar-Zen","Darumaka":"|Galar","Decidueye":"|Hisui","Deerling":"Spring|Summer|Autumn|Winter","Delphox":"|Mega","Deoxys":"Normal|Attack|Defense|Speed","Dialga":"|Origin","Diancie":"|Mega","Diglett":"|Alola","Dragalge":"|Mega","Dragonite":"|Mega","Drampa":"|Mega","Drednaw":"|Gmax","Dudunsparce":"Two-Segment|Three-Segment","Dugtrio":"|Alola","Duraludon":"|Gmax","Eelektross":"|Mega","Eevee":"|Starter|Gmax","Eiscue":"Ice|Noice","Electrode":"|Hisui","Emboar":"|Mega","Enamorus":"Incarnate|Therian","Eternatus":"|Eternamax","Excadrill":"|Mega","Exeggutor":"|Alola","Falinks":"|Mega","Farfetch’d":"|Galar","Feraligatr":"|Mega","Flabébé":"Red","Flapple":"|Gmax","Floette":"Red|Eternal|Mega","Florges":"Red","Froslass":"|Mega","Furfrou":"Natural","Gallade":"|Mega","Garbodor":"|Gmax","Garchomp":"|Mega|Mega-Z","Gardevoir":"|Mega","Gastrodon":"West|East","Genesect":"|Douse|Shock|Burn|Chill","Gengar":"|Mega|Gmax","Geodude":"|Alola","Gimmighoul":"Chest|Roaming","Giratina":"Altered|Origin","Glalie":"|Mega","Glimmora":"|Mega","Golem":"|Alola","Golisopod":"|Mega","Golurk":"|Mega","Goodra":"|Hisui","Gourgeist":"Average|Small|Large|Super","Graveler":"|Alola","Greninja":"|Bond|Ash|Mega","Grimer":"|Alola","Grimmsnarl":"|Gmax","Groudon":"|Primal","Growlithe":"|Hisui","Gumshoos":"|Totem","Gyarados":"|Mega","Hatterene":"|Gmax","Hawlucha":"|Mega","Heatran":"|Mega","Heracross":"|Mega","Hoopa":"Confined|Unbound","Houndoom":"|Mega","Indeedee":"M|F","Inteleon":"|Gmax","Kangaskhan":"|Mega","Keldeo":"Ordinary|Resolute","Kingler":"|Gmax","Kommo-o":"|Totem","Kyogre":"|Primal","Kyurem":"|Black|White","Landorus":"Incarnate|Therian","Lapras":"|Gmax","Latias":"|Mega","Latios":"|Mega","Lilligant":"|Hisui","Linoone":"|Galar","Lopunny":"|Mega","Lucario":"|Mega|Mega-Z","Lurantis":"|Totem","Lycanroc":"Midday|Midnight|Dusk","Machamp":"|Gmax","Magearna":"|Original|Mega|Original-Mega","Malamar":"|Mega","Manectric":"|Mega","Marowak":"|Alola|Alola-Totem","Maushold":"Three|Four","Mawile":"|Mega","Medicham":"|Mega","Meganium":"|Mega","Melmetal":"|Gmax","Meloetta":"Aria|Pirouette","Meowstic":"M|F|M-Mega|F-Mega","Meowth":"|Alola|Galar|Gmax","Metagross":"|Mega","Mewtwo":"|Mega-X|Mega-Y","Mimikyu":"Disguised|Busted|Totem|Busted-Totem","Minior":"Red|Orange|Yellow|Green|Blue|Indigo|Violet|Meteor","Moltres":"|Galar","Morpeko":"Full-Belly|Hangry","Mr. Mime":"|Galar","Muk":"|Alola","Necrozma":"|Dusk-Mane|Dawn-Wings|Ultra","Ninetales":"|Alola","Ogerpon":"Teal|Wellspring|Hearthflame|Cornerstone|Teal-Tera|Wellspring-Tera|Hearthflame-Tera|Cornerstone-Tera","Oinkologne":"M|F","Orbeetle":"|Gmax","Oricorio":"Baile|Pom-Pom|Pa'u|Sensu","Palafin":"Zero|Hero","Palkia":"|Origin","Persian":"|Alola","Pichu":"|Spiky-eared","Pidgeot":"|Mega","Pikachu":"|Cosplay|Rock-Star|Belle|Pop-Star|PhD|Libre|Original|Hoenn|Sinnoh|Unova|Kalos|Alola|Partner|Starter|Gmax|World","Pinsir":"|Mega","Pokestar UFO":"|2|PropU2","Poltchageist":"Counterfeit|Artisan","Polteageist":"Phony|Antique","Ponyta":"|Galar","Pumpkaboo":"Average|Small|Large|Super","Pyroar":"|Mega","Qwilfish":"|Hisui","Raichu":"|Alola|Mega-X|Mega-Y","Ramnarok":"Dormant","Rapidash":"|Galar","Raticate":"|Alola|Alola-Totem","Rattata":"|Alola","Rayquaza":"|Mega","Ribombee":"|Totem","Rillaboom":"|Gmax","Rockruff":"Midday|Dusk","Rotom":"|Heat|Wash|Frost|Fan|Mow","Sableye":"|Mega","Salamence":"|Mega","Salazzle":"|Totem","Samurott":"|Hisui","Sandaconda":"|Gmax","Sandshrew":"|Alola","Sandslash":"|Alola","Sawsbuck":"Spring","Sceptile":"|Mega","Scizor":"|Mega","Scolipede":"|Mega","Scovillain":"|Mega","Scrafty":"|Mega","Sharpedo":"|Mega","Shaymin":"Land|Sky","Shellos":"West|East","Silvally":"Normal|Bug|Dark|Dragon|Electric|Fairy|Fighting|Fire|Flying|Ghost|Grass|Ground|Ice|Poison|Psychic|Rock|Steel|Water","Sinistcha":"Unremarkable|Masterpiece","Sinistea":"Phony|Antique","Skarmory":"|Mega","Sliggoo":"|Hisui","Slowbro":"|Mega|Galar","Slowking":"|Galar","Slowpoke":"|Galar","Sneasel":"|Hisui","Snorlax":"|Gmax","Squawkabilly":"Green|Blue|Yellow|White","Staraptor":"|Mega","Starmie":"|Mega","Steelix":"|Mega","Stunfisk":"|Galar","Swampert":"|Mega","Tatsugiri":"Curly|Droopy|Stretchy|Curly-Mega|Droopy-Mega|Stretchy-Mega","Tauros":"|Paldea-Combat|Paldea-Blaze|Paldea-Aqua","Terapagos":"|Terastal|Stellar","Thundurus":"Incarnate|Therian","Togedemaru":"|Totem","Tornadus":"Incarnate|Therian","Toxtricity":"Amped|Low-Key|Gmax|Low-Key-Gmax","Typhlosion":"|Hisui","Tyranitar":"|Mega","Unown":"A","Ursaluna":"|Bloodmoon","Urshifu":"Single-Strike|Rapid-Strike|Gmax|Rapid-Strike-Gmax","Venomicon":"Prologue","Venusaur":"|Mega|Gmax","Victreebel":"|Mega","Vikavolt":"|Totem","Vivillon":"Meadow|Icy Snow|Polar|Tundra|Continental|Garden|Elegant|Modern|Marine|Archipelago|High Plains|Sandstorm|River|Monsoon|Savanna|Sun|Ocean|Jungle|Fancy|Pokeball","Voltorb":"|Hisui","Vulpix":"|Alola","Weezing":"|Galar","Wishiwashi":"Solo|School","Wooper":"|Paldea","Wormadam":"Plant|Sandy|Trash","Xerneas":"Active|Neutral","Yamask":"|Galar","Zacian":"Hero|Crowned","Zamazenta":"Hero|Crowned","Zapdos":"|Galar","Zarude":"|Dada","Zeraora":"|Mega","Zigzagoon":"|Galar","Zoroark":"|Hisui","Zorua":"|Hisui","Zygarde":"50%|10%|Complete|Mega"}''')
+
+
+def _parti(t):
+    return [x for x in re.split(r"[^a-z0-9]+", t.lower()) if x]
+
+
+def forma_showdown(base, form):
+    """Trova la forma di Showdown che corrisponde all'etichetta di Pokedata/RK9: 'Low Key Form' -> 'Low-Key',
+    'Wash Rotom' -> 'Wash', 'Eternal Flower' -> 'Eternal', 'Amped Form' -> '' (forma base). None se non la trova."""
+    voci = SD_FORME.get(base)
+    if not voci:
+        return None
+    parole = _parti(form)
+    meglio, punti = None, 0
+    for i, f in enumerate(voci.split("|")):
+        if not f:
+            continue
+        pezzi = _parti(f)
+        if pezzi and all(any(w.startswith(p) for w in parole) for p in pezzi):
+            if len(pezzi) > punti or (len(pezzi) == punti and meglio is not None and len(f) > len(meglio[1])):
+                meglio, punti = (i, f), len(pezzi)
+    if meglio is None:
+        return None
+    return "" if meglio[0] == 0 else "-" + meglio[1]
+
 
 def showdown_name(raw):
-    """'Basculegion [Male]' -> 'Basculegion-M', 'Ninetales [Alolan Form]' -> 'Ninetales-Alola'."""
+    """'Basculegion [Male]' -> 'Basculegion-M', 'Ninetales [Alolan Form]' -> 'Ninetales-Alola',
+    'Toxtricity [Low Key Form]' -> 'Toxtricity-Low-Key' (forme prese da Showdown)."""
     m = re.match(r"^(.*?)\s*\[(.+)\]$", raw.strip())
     if not m:
         return raw.strip()
     base, form = m.group(1), m.group(2)
     if form in FORMS:
         return base + FORMS[form]
+    sd = forma_showdown(base, form)
+    if sd is not None:
+        return base + sd
     unknown_forms.add(raw)
     return base + "-" + form.split()[0]
 
@@ -1150,7 +1183,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-21b (pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-21c (tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
