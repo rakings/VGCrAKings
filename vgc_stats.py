@@ -585,7 +585,7 @@ def collect(ev, write):
     elif status == "not started" and ev.get("status") == "running":   # vedi list_events: partito anche se Pokedata non lo dice
         status = "running"
     elif status == "finished" and ev.get("status") == "running" and \
-            time.strftime("%Y-%m-%d", time.gmtime()) <= (ev.get("end") or "")[:10]:
+            time.strftime("%Y-%m-%d", time.gmtime()) <= fine_con_margine(ev):
         status = "running"   # l'elenco lo da' in corso ma la pagina del torneo dice «finito» (fine giornata dei tornei di piu' giorni)
     last_status[tid] = status
     cut_state[tid] = cut_phase(swiss)
@@ -936,6 +936,16 @@ def parse_utc(txt):
         return None
 
 
+def fine_con_margine(e):
+    """Ultimo giorno (UTC) in cui un torneo puo' essere ancora in corso: data di fine + 1 giorno, perche' i tornei
+    in America finiscono la sera, quando in UTC e' gia' il giorno dopo (es. LAIC a San Paolo, UTC-3)."""
+    fine = (e.get("end") or "")[:10]
+    try:
+        return time.strftime("%Y-%m-%d", time.gmtime(calendar.timegm(time.strptime(fine, "%Y-%m-%d")) + 86400))
+    except ValueError:
+        return fine
+
+
 def ancora_vivo(e, t=None):
     """Pokedata dice 'finito', ma lo avevamo visto in corso, non e' stato completato e i dati si muovono ancora: di solito e' la
     pausa tra i due giorni o la fase 2. Conta l'ultimo cambiamento dei NOSTRI dati (meta.updated) oppure l'orario di Pokedata
@@ -944,9 +954,11 @@ def ancora_vivo(e, t=None):
         return False
     meta = load(os.path.join(OUT, e["id"], "meta.json"), {})
     t = time.time() if t is None else t
+    if meta.get("finale_alle") and t - meta["finale_alle"] < FINALE_ORE * 3600:
+        return True                              # finale vista da meno di 1 ora: si segue fino all'ultimo salvataggio
     if not meta.get("finale_alle"):              # finale della Top 8 non ancora vista
         oggi = time.strftime("%Y-%m-%d", time.gmtime(t))
-        if (e.get("start") or "9999")[:10] <= oggi <= (e.get("end") or "")[:10]:
+        if (e.get("start") or "9999")[:10] <= oggi <= fine_con_margine(e):
             return True                          # siamo nei giorni del torneo: Pokedata segna «finito» a fine giornata (Internazionali: 3 giorni)
         recente = parse_utc(e.get("updated") or "")
         if (e.get("rounds") or 0) > (meta.get("rounds") or 0) and recente is not None and t - recente < FINITO_PRESTO_ORE * 3600:
