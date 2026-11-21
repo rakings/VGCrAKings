@@ -83,9 +83,10 @@
   }
  ],
  "ig_stato": {
-  "ok": false,
-  "msg": "da collegare",
-  "quando": "2026-11-14T20:57:29Z"
+  "ok": true,
+  "msg": "collegato",
+  "account": "vgc_rakings",
+  "quando": "2026-11-21T10:28:08Z"
  },
  "fatti": [
   "mon-202647",
