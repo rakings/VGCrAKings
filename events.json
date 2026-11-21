@@ -1,22 +1,6 @@
 {
- "updated": "2026-11-21T18:31:37+00:00",
+ "updated": "2026-11-21T20:32:21+00:00",
  "events": [
-  {
-   "name": "Metal's Meteor Mash-Up #8 - TOP 4 TEAM GRAPHIC",
-   "org": "Metal VGC Weeklies",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-20",
-   "time": "23:30",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6af966cab2fccaf0272d2f66/details",
-   "reg_letto": true
-  },
   {
    "name": "BKCup#5 x Micelion | Lucario Deckbox premio (20€)",
    "org": "OscarBK",
@@ -65,8 +49,8 @@
    "url": "https://play.limitlesstcg.com/tournament/6af1f14fc931f53978d972e7/details"
   },
   {
-   "name": "🇺🇦 Ukraine National Team Tryouts",
-   "org": "",
+   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 39!⛩️",
+   "org": "Chadweezy95",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -75,9 +59,26 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-21",
-   "time": "12:00",
-   "players": 8,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f7b5e99f3235a75e4cf0/details"
+   "time": "21:30",
+   "players": 32,
+   "url": "https://play.limitlesstcg.com/tournament/6b00f567e0b5cca158bba21b/details",
+   "reg_letto": true
+  },
+  {
+   "name": "VGCJer Indigo Open 2",
+   "org": "VGCJeremy",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "21:25",
+   "players": 58,
+   "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details",
+   "reg_letto": true
   },
   {
    "name": "Roria Conquest VGC Series C Tournament",
@@ -160,54 +161,6 @@
    "reg_letto": true
   },
   {
-   "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
-   "org": "Santa Fe VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6aece9040c463890f304c24f/details",
-   "reg_letto": true
-  },
-  {
-   "name": "VGCJer Indigo Open 2",
-   "org": "VGCJeremy",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "21:25",
-   "players": 58,
-   "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details",
-   "reg_letto": true
-  },
-  {
-   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 39!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "21:30",
-   "players": 32,
-   "url": "https://play.limitlesstcg.com/tournament/6b00f567e0b5cca158bba21b/details",
-   "reg_letto": true
-  },
-  {
    "name": "Thavorian Trials - 13",
    "org": "Thavorian Skies",
    "mode": "online",
@@ -219,7 +172,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "22:00",
-   "players": 9,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6afc90ddee43ef789147725e/details",
    "reg_letto": true
   },
@@ -235,7 +188,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "22:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details",
    "reg_letto": true
   },
@@ -267,7 +220,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "02:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details",
    "reg_letto": true
   },
@@ -347,7 +300,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:30",
-   "players": 27,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details",
    "reg_letto": true
   },
@@ -363,7 +316,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details",
    "reg_letto": true
   },
