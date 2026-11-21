@@ -233,7 +233,8 @@ def statistiche():
     s = load(STAT_FILE, {}) or {}
     try:
         ultimo = datetime.strptime(s.get("quando", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-        if s.get("v") == STAT_V and (datetime.now(timezone.utc) - ultimo).total_seconds() < STAT_ORE * 3600:
+        attesa = STAT_ORE if not s.get("errori") else 0      # se Meta ha rifiutato qualcosa si riprova a ogni giro
+        if s.get("v") == STAT_V and (datetime.now(timezone.utc) - ultimo).total_seconds() < attesa * 3600:
             return
     except ValueError:
         pass
