@@ -115,7 +115,8 @@ if __name__ == "__main__":   # prova: python3 social_img.py  -> crea prova_top8.
 
 
 # ======================= MONEY TOURNAMENT DELLA SETTIMANA + REGIONALI E VR (2026-11-16) =======================
-# Quadrato 1080x1080 diviso da una diagonale (da angolo ad angolo) in due triangoli con i colori del sito.
+# Formato 4:5 (1080x1350, quello che Instagram mostra piu' grande nel feed) diviso da una diagonale (da angolo ad angolo)
+# in due triangoli con i colori del sito.
 # Caratteri «da gioco» (licenza libera OFL), alternati una slide si' e una no: Russo One / Chakra Petch; titoli in Bungee.
 import re as _re, glob as _glob, hashlib as _hl
 
@@ -132,7 +133,17 @@ def carattere_per(nome, evita=None):
         i = (i + 1) % len(DIVERTENTI)
     return DIVERTENTI[i]
 
-Q = 1080
+Q, QH = 1080, 1350     # larghezza e altezza (4:5)
+
+
+def _xd(y):
+    """x della diagonale all'altezza y (la diagonale va da in alto a destra a in basso a sinistra)."""
+    return Q - y * Q / QH
+
+
+def _xr(y):
+    """spazio a destra della diagonale all'altezza y (triangolo in basso a destra)."""
+    return y * Q / QH
 F_A = os.path.join(QUI, "RussoOne-Regular.ttf")
 F_B = os.path.join(QUI, "ChakraPetch-Bold.ttf")
 F_T = os.path.join(QUI, "Bungee-Regular.ttf")
@@ -170,10 +181,10 @@ def a_capo(d, testo, font, larghezze, max_righe):
 
 
 def _diagonale(colA, colB):
-    im = Image.new("RGB", (Q, Q), colB)
+    im = Image.new("RGB", (Q, QH), colB)
     d = ImageDraw.Draw(im)
-    d.polygon([(0, 0), (Q, 0), (0, Q)], fill=colA)              # triangolo in alto a sinistra
-    d.line([(Q, 0), (0, Q)], fill=(255, 255, 255), width=10)   # la diagonale, da angolo ad angolo
+    d.polygon([(0, 0), (Q, 0), (0, QH)], fill=colA)             # triangolo in alto a sinistra
+    d.line([(Q, 0), (0, QH)], fill=(255, 255, 255), width=10)  # la diagonale, da angolo ad angolo
     return im, d
 
 
@@ -202,21 +213,21 @@ def _blocco(d, t, font_path, alto, colore_testo, colore_premio, fondo=0, fun=Non
         y = m
         d.text((m, y), "#%d" % pos, font=f_pos, fill=colore_testo); y += 50
         d.text((m, y - o_pr), premio, font=f_pr, fill=colore_premio); y += h_pr + 22
-        larg = [max(200, Q - (y + i * gap_nm + h_nm) - m - 50) for i in range(3)]
+        larg = [max(200, _xd(y + i * gap_nm + h_nm) - m - 50) for i in range(3)]
         for r in a_capo(d, nome, f_nm, larg, 3):
             d.text((m, y - o_nm), r, font=f_nm, fill=colore_testo); y += gap_nm
         y += 8
         for r in (quando, dove):
-            if r and Q - (y + h_in) - m - 50 > d.textlength(r, font=f_in):
+            if r and _xd(y + h_in) - m - 50 > d.textlength(r, font=f_in):
                 d.text((m, y - o_in), r, font=f_in, fill=colore_testo); y += h_in + 12
     else:
-        y = Q - m - fondo
+        y = QH - m - fondo
         for r in [r for r in (dove, quando) if r]:
             y -= h_in
             d.text((Q - m, y - o_in), r, font=f_in, fill=colore_testo, anchor="ra")
             y -= 12
         y -= 8
-        righe = a_capo(d, nome, f_nm, [max(200, (y - (i + 1) * gap_nm) - m - 50) for i in range(3)], 3)
+        righe = a_capo(d, nome, f_nm, [max(200, _xr(y - (i + 1) * gap_nm) - m - 50) for i in range(3)], 3)
         for r in reversed(righe):
             y -= gap_nm
             d.text((Q - m, y - o_nm), r, font=f_nm, fill=colore_testo, anchor="ra")
@@ -277,7 +288,7 @@ def settimana_copertina(settimana, primo, totale, out):
     tx, pr = inchiostro(cb)
     _blocco(d, primo, F_A, False, tx, pr, fondo=110 if totale > 1 else 0, fun=primo.get("fun") or carattere_per(primo["nome"]))
     if totale > 1:
-        d.text((Q - 64, Q - 70), "swipe: %d more  >>" % (totale - 1), font=ft(F_B, 38), fill=pr, anchor="ra")
+        d.text((Q - 64, QH - 70), "swipe: %d more  >>" % (totale - 1), font=ft(F_B, 38), fill=pr, anchor="ra")
     im.save(out, "JPEG", quality=90)
 
 
@@ -295,7 +306,7 @@ def settimana_slide(n, coppia, out):
     if len(coppia) > 1:
         _blocco(d, coppia[1], fnt, False, *inchiostro(cb), fun=coppia[1].get("fun") or carattere_per(coppia[1]["nome"], evita=f1))
     else:
-        d.text((Q - 64, Q - 80), "rAKings VGC", font=ft(F_T, 40), fill=inchiostro(cb)[0], anchor="ra")
+        d.text((Q - 64, QH - 80), "rAKings VGC", font=ft(F_T, 40), fill=inchiostro(cb)[0], anchor="ra")
     im.save(out, "JPEG", quality=90)
 
 
@@ -306,7 +317,7 @@ def evento(tipo, nome, riga1, riga2, riga3, out):
     im, d = _diagonale(NOTTE, col)
     m = 64
     def spazio(y, h):   # larghezza libera nel triangolo in alto a sinistra, per una riga alta h che parte a y
-        return Q - (y + h) - m - 40
+        return _xd(y + h) - m - 40
     etichetta = "REGIONAL" if tipo == "regionale" else "VICTORY ROAD"
     f_et = ft(F_T, 64)
     while d.textlength(etichetta, font=f_et) > spazio(64, f_et.size) and f_et.size > 30:
@@ -324,8 +335,8 @@ def evento(tipo, nome, riga1, riga2, riga3, out):
         for rr in a_capo(d, r, f, [spazio(y + i * 52, 42) for i in range(2)], 2):
             d.text((m, y), rr, font=f, fill=(255, 246, 247)); y += 52
     if riga3:
-        d.text((Q - m, Q - 150), riga3, font=ft(F_B, 52), fill=NOTTE, anchor="ra")
-    d.text((Q - m, Q - 80), "rAKings VGC", font=ft(F_T, 40), fill=NOTTE, anchor="ra")
+        d.text((Q - m, QH - 150), riga3, font=ft(F_B, 52), fill=NOTTE, anchor="ra")
+    d.text((Q - m, QH - 80), "rAKings VGC", font=ft(F_T, 40), fill=NOTTE, anchor="ra")
     im.save(out, "JPEG", quality=90)
 
 
