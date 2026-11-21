@@ -1,33 +1,27 @@
 {
  "v": 2,
- "quando": "2026-11-21T10:42:42Z",
- "errori": {
-  "reach": "(#10) Application does not have permission for this action (codice 10)",
-  "views": "(#10) Application does not have permission for this action (codice 10)",
-  "accounts_engaged": "(#10) Application does not have permission for this action (codice 10)",
-  "total_interactions": "(#10) Application does not have permission for this action (codice 10)",
-  "profile_views": "(#10) Application does not have permission for this action (codice 10)"
- },
+ "quando": "2026-11-21T10:46:43Z",
+ "errori": {},
  "account": "vgc_rakings",
  "follower": 1,
  "seguiti": 10,
  "post_totali": 0,
  "periodo28": {
-  "reach": null,
-  "views": null,
-  "accounts_engaged": null,
-  "total_interactions": null,
-  "profile_views": null
+  "reach": 5,
+  "views": 5,
+  "accounts_engaged": 0,
+  "total_interactions": 0,
+  "profile_views": 31
  },
  "giorni": [
   {
    "data": "2026-11-20",
    "follower": 1,
-   "reach": null,
-   "views": null,
-   "accounts_engaged": null,
-   "total_interactions": null,
-   "profile_views": null
+   "reach": 0,
+   "views": 0,
+   "accounts_engaged": 0,
+   "total_interactions": 0,
+   "profile_views": 1
   }
  ],
  "post": []
