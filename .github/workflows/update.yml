@@ -1,29 +1,13 @@
 name: Aggiorna tornei
 on:
-  schedule:
-    # 15 aggiornamenti al giorno, volutamente irregolari: più radi di notte, più fitti a pranzo, nel pomeriggio e la sera
-    # (18:31-20:19 = iscrizioni dei Regionali italiani). Gli orari di GitHub sono in UTC: in inverno cadono un'ora prima.
-    - cron: "7 22 * * *"   # 00:07 ora italiana (estiva)
-    - cron: "34 0 * * *"   # 02:34 ora italiana (estiva)
-    - cron: "3 3 * * *"   # 05:03 ora italiana (estiva)
-    - cron: "19 5 * * *"   # 07:19 ora italiana (estiva)
-    - cron: "2 7 * * *"   # 09:02 ora italiana (estiva)
-    - cron: "41 8 * * *"   # 10:41 ora italiana (estiva)
-    - cron: "17 10 * * *"   # 12:17 ora italiana (estiva)
-    - cron: "26 11 * * *"   # 13:26 ora italiana (estiva)
-    - cron: "52 12 * * *"   # 14:52 ora italiana (estiva)
-    - cron: "18 14 * * *"   # 16:18 ora italiana (estiva)
-    - cron: "27 15 * * *"   # 17:27 ora italiana (estiva)
-    - cron: "31 16 * * *"   # 18:31 ora italiana (estiva)
-    - cron: "22 17 * * *"   # 19:22 ora italiana (estiva)
-    - cron: "19 18 * * *"   # 20:19 ora italiana (estiva)
-    - cron: "52 19 * * *"   # 21:52 ora italiana (estiva)
+  # Niente orari di GitHub: lo fa partire il Worker di Cloudflare 12 volte al giorno (TORNEI_ORARI in cloudflare/worker.js),
+  # perche' GitHub i giri programmati li salta o li ritarda. Si puo' sempre avviare anche a mano.
   workflow_dispatch:
 permissions:
   contents: write
   issues: write
   actions: write      # solo per far partire «Social» alla fine (ultimo passo)
-# lo fa partire il Worker 28 volte al giorno: due giri non devono mai sovrapporsi (avvisi doppi)
+# lo fa partire il Worker 12 volte al giorno: due giri non devono mai sovrapporsi (avvisi doppi)
 concurrency:
   group: tornei
   cancel-in-progress: false
