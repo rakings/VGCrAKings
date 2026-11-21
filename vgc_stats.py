@@ -584,6 +584,9 @@ def collect(ev, write):
         status = "running"
     elif status == "not started" and ev.get("status") == "running":   # vedi list_events: partito anche se Pokedata non lo dice
         status = "running"
+    elif status == "finished" and ev.get("status") == "running" and \
+            time.strftime("%Y-%m-%d", time.gmtime()) <= (ev.get("end") or "")[:10]:
+        status = "running"   # l'elenco lo da' in corso ma la pagina del torneo dice «finito» (fine giornata dei tornei di piu' giorni)
     last_status[tid] = status
     cut_state[tid] = cut_phase(swiss)
     cut = sum(p["topcut"] for p in players)
@@ -1183,7 +1186,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-21c (tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-21d (non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
