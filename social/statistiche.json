@@ -1,28 +1,4 @@
 {
- "v": 2,
- "quando": "2026-11-21T10:46:43Z",
- "errori": {},
- "account": "vgc_rakings",
- "follower": 1,
- "seguiti": 10,
- "post_totali": 0,
- "periodo28": {
-  "reach": 5,
-  "views": 5,
-  "accounts_engaged": 0,
-  "total_interactions": 0,
-  "profile_views": 31
- },
- "giorni": [
-  {
-   "data": "2026-11-20",
-   "follower": 1,
-   "reach": 0,
-   "views": 0,
-   "accounts_engaged": 0,
-   "total_interactions": 0,
-   "profile_views": 1
-  }
- ],
- "post": []
+ "formato": "aes-256-cbc pbkdf2 sha256 200000",
+ "dati": "U2FsdGVkX1+whIgi6mpMqFiC0SkZFdcY3gp9Xv//yaX25oXLNWyTRgiLaOkRlhXNnov3gbapeqHR8glzaHSwoJHDgg3nHJ5VRIAFEsimPGxW0toJ6g0gRPrLmTzDf1GnzaSVj+LSMA99uDOHKCYwlmNewHyP0EV9svqF2kRzPdab1bFb9SfoX2rG3qjuHq5KseGMr9hHwjnGCSH49j/KQwxNH47Tuvp3JPB6MsCtT5eoU0r1WxSCi4GcJXIdRtuS0eG1vmo1RLEl8XWDIK8SqV4I2THXZdiRvL9ee6iaH1eAiEP1hOdFwETQm94Q57UsCcGEOCIARhQGs+SZLp1tX2q5p7DBUAe9H/z5IaxvBssJElDONf+qIQeDjiPX+W+CkPpgRlsKyDjBK9edwMAGUcv91thYnzm++WlvHW33NJCoSSnF0KUZajKpsMvQuonwI5jsg8t5L2NO1cKgnRH1uyXYIouJDJQbkeV6RPtTVsjc608m2Hct8PumZY/TfudW0Kn8TgL/IJKuADs5z/kZxRv8s0kMT3ORzfJdOw1nq55I2d0VpMmU5i7jNw6n40hubNQwYA6PNbob4vqnoqJBPkz0psEbU0/IWul5iIh+oT4="
 }
