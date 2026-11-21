@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-21w";
+const VERSIONE = "2026-11-21x";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -668,24 +668,36 @@ const SOCIAL_ORARI = ["08:30", "09:30", "10:30", "11:30", "12:00", "12:30", "13:
                       "18:00", "18:30", "19:00", "19:30", "20:30", "21:30"];
 const TORNEI_ORARI = ["00:30", "03:30", "06:30", "09:30", "11:30", "13:00", "14:30", "16:30", "18:00", "19:00", "19:30", "21:30"];
 const ORA_ROMA = new Intl.DateTimeFormat("it-IT", { timeZone: "Europe/Rome", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+// Diretta di VGC Stats: risveglio ogni 15 minuti (minuti 05, 20, 35, 50 UTC) da giovedi' alle 20 UTC a lunedi' sera,
+// come faceva il programma di GitHub (che pero' li faceva partire ogni 30-35 minuti). Se non c'e' un torneo in corso
+// il giro si chiude in pochi secondi; se un giro della diretta e' gia' acceso, GitHub ne tiene uno solo in coda.
+function oraDiretta(t) {
+  const d = new Date(t), g = d.getUTCDay(), h = d.getUTCHours(), m = d.getUTCMinutes();
+  const giorno = g === 5 || g === 6 || g === 0 || g === 1 || (g === 4 && h >= 20);
+  return giorno && m % 15 === 5;
+}
+
+async function lanciaFlusso(env, file, inputs) {
+  const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/" + file + "/dispatches", {
+    method: "POST",
+    headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "vgc-subs-flussi", "Content-Type": "application/json" },
+    body: JSON.stringify(inputs ? { ref: "main", inputs } : { ref: "main" }),
+  });
+  if (r.status !== 204) {                 // solo se qualcosa non va si scrive (nella cronologia degli avvisi automatici dell'admin)
+    const s = await autoStato(env);
+    autoLog(s, "flusso " + file + " non partito: GitHub ha risposto " + r.status);
+    await autoSalva(env, s);
+  }
+}
+
 async function socialGiro(env, quando) {
   if (!env.GH_AVVISI) return;
   const t = Math.floor((quando || Date.now()) / 300000) * 300000;      // il giro dei 5 minuti a cui appartiene
   const hhmm = ORA_ROMA.format(new Date(t));
   const file = TORNEI_ORARI.includes(hhmm) ? "update.yml" : SOCIAL_ORARI.includes(hhmm) ? "social.yml" : "";
-  if (file) {
-    const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/" + file + "/dispatches", {
-      method: "POST",
-      headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
-                 "User-Agent": "vgc-subs-flussi", "Content-Type": "application/json" },
-      body: JSON.stringify({ ref: "main" }),
-    });
-    if (r.status !== 204) {               // solo se qualcosa non va si scrive (nella cronologia degli avvisi automatici dell'admin)
-      const s = await autoStato(env);
-      autoLog(s, "flusso " + file + " non partito: GitHub ha risposto " + r.status);
-      await autoSalva(env, s);
-    }
-  }
+  if (file) await lanciaFlusso(env, file);
+  if (oraDiretta(t)) await lanciaFlusso(env, "vgc-stats.yml", { modo: "live", salva: "si" });
 }
 
 // manda l'avviso con lo STESSO flusso del pulsante di Francesco (avviso-partner.yml, invio diretto)
