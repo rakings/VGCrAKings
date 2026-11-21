@@ -3,6 +3,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- per vedere se Chrome o Samsung Internet sono installati (Android 11 e successivi) -->
+    <queries>
+        <package android:name="com.android.chrome" />
+        <package android:name="com.chrome.beta" />
+        <package android:name="com.sec.android.app.sbrowser" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,10 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Tema">
 
-        <!-- Il sito a schermo intero (Trusted Web Activity di Chrome): notifiche e tutto il resto come sul sito.
-             src = da dove arriva l'app: apk (sito) o play (Play Store); serve all'avviso «nuova versione» del sito -->
+        <!-- Il sito a schermo intero (Trusted Web Activity): notifiche e tutto il resto come sul sito.
+             src = da dove arriva l'app: apk (sito) o play (Play Store); serve all'avviso «nuova versione» del sito.
+             Avvio sceglie il browser: Chrome, poi Samsung Internet, poi il predefinito (Brave chiuso dava schermo nero). -->
         <activity
+            android:name=".Avvio"
+            android:exported="false"
+            android:label="@string/app_name">
+            <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL"
+                android:value="https://rakings.github.io/VGCrAKings/?app=android&amp;v=${versione}&amp;src=${fonte}" />
+            <meta-data android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+                android:resource="@color/sfondo" />
+            <meta-data android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+                android:resource="@color/sfondo" />
+            <meta-data android:name="android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR"
+                android:resource="@color/sfondo" />
+        </activity>
+        <!-- stesso nome di prima: l'icona sulla schermata home e i link restano validi dopo l'aggiornamento -->
+        <activity-alias
             android:name="com.google.androidbrowserhelper.trusted.LauncherActivity"
+            android:targetActivity=".Avvio"
             android:exported="true"
             android:label="@string/app_name">
             <meta-data android:name="android.support.customtabs.trusted.DEFAULT_URL"
@@ -34,7 +57,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="rakings.github.io" android:pathPrefix="/VGCrAKings" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <activity android:name="com.google.androidbrowserhelper.trusted.FocusActivity" />
         <activity android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
