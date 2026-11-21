@@ -22,6 +22,11 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write      # solo per far partire «Social» alla fine (ultimo passo)
+# lo fa partire il Worker 28 volte al giorno: due giri non devono mai sovrapporsi (avvisi doppi)
+concurrency:
+  group: tornei
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -80,4 +85,15 @@ jobs:
           [ -f notify_players_state.json ] && git add notify_players_state.json
           [ -f notifiche_avvisi.json ] && git add notifiche_avvisi.json
           [ -f news_cache.json ] && git add news_cache.json
-          git diff --staged --quiet || (git commit -m "Aggiorna tornei" && git pull --rebase && git push)
+          git diff --staged --quiet && exit 0
+          git commit -m "Aggiorna tornei"
+          # con i Regionali in diretta altri flussi salvano nello stesso momento: si riprova invece di fallire
+          for i in 1 2 3 4; do git pull --rebase --autostash -X theirs && git push && exit 0; git rebase --abort 2>/dev/null || true; sleep 6; done
+          exit 1
+      # finito l'aggiornamento dei tornei parte «Social» (prepara i post con i tornei appena aggiornati): una sola chiamata dal Worker basta per tutti e due
+      - name: Fa partire Social
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run social.yml --ref main --repo "$GITHUB_REPOSITORY"
