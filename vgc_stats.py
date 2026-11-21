@@ -12,9 +12,12 @@ Uso:
   python3 vgc_stats.py --live --write --commit   controlli ripetuti finche' un regionale e' in corso (vedi sotto)
   python3 vgc_stats.py --live --max-cycles 1     PROVA: un solo controllo, non salva nulla
   python3 vgc_stats.py --cf-test                 PROVA di Cloudflare: carica i dati gia' presenti e dice se ha funzionato
-Modo live: controlla ogni 3-5 minuti (a caso). Se trova dati nuovi li salva (e con --commit li pubblica),
-poi NON controlla per 12 minuti e al ritorno controlla subito. (Pubblicazioni: al massimo una ogni 12 minuti,
-cioe' al massimo 5 all'ora: GitHub Pages ne accetta in modo morbido 10 all'ora per tutta la repo.) Quando il regionale finisce salva e si chiude;
+Modo live (dal 21/11/2026, «a eventi»): pairings di un round nuovo -> pubblicati subito, poi 18 minuti di pausa (si gioca);
+dopo la pausa controlla ogni 2 minuti: i risultati parziali si pubblicano a gruppi, appena un certo numero di tavoli ha il
+risultato o dopo un tempo massimo (gruppo e tempo calcolati da soli in base alle pubblicazioni di Cloudflare rimaste nel mese e
+ai regionali che mancano; almeno 2 minuti tra due pubblicazioni), il round chiuso (ultimo tavolo) e ogni risultato
+della Top 8 si pubblicano SUBITO. Senza Cloudflare (o se il conteggio non si legge) i parziali restano ogni 10-12 minuti come prima.
+Quando il regionale finisce salva e si chiude;
 se non c'e' nessun regionale in corso si ferma subito. Si ferma da solo dopo 345 minuti (il flusso ne concede 355).
 Cloudflare (facoltativo): se sono impostati CF_PAGES_PROJECT, CLOUDFLARE_API_TOKEN e CLOUDFLARE_ACCOUNT_ID, a ogni salvataggio con
 dati nuovi i file vengono caricati anche su Cloudflare Pages (banda illimitata: regge anche tanta gente). Su GitHub allora si salva
@@ -25,6 +28,7 @@ import argparse
 import hashlib
 import calendar
 import json
+import math
 import os
 import random
 import re
@@ -76,6 +80,15 @@ LIVE_ATTIVO = False    # True solo nel modo live che salva: serve a non mandare 
 AVVISO_WORKFLOW = "avviso-vincitore-live.yml"
 any_changed = False   # True se un giro normale (elenco / auto / singolo regionale) ha salvato qualcosa: poi si aggiorna anche Cloudflare
 last_git = None        # momento dell'ultima pubblicazione su GitHub (con Cloudflare attivo si salva su GitHub piu' di rado)
+stato_round = {}       # id regionale -> (round attuale, tavoli ancora senza risultato) dell'ultimo controllo
+eventi_round = set()   # cosa e' successo in questo controllo: "pairings" (round nuovo), "chiuso" (ultimo tavolo), "top8" (risultato Top 8)
+round_aperto = False   # True se in un regionale in corso ci sono tavoli del round attuale ancora senza risultato
+cf_usate_mese = None   # pubblicazioni su Cloudflare gia' fatte nel mese (lette da Cloudflare all'inizio, poi contate qui)
+cf_mese = ""           # mese (UTC) a cui si riferisce cf_usate_mese
+lista_cache = None     # elenco dei regionali di Pokedata riletto al massimo ogni LISTA_OGNI secondi durante la diretta
+lista_alle = 0.0
+tavoli_nuovi = 0       # tavoli che hanno avuto il risultato dopo l'ultima pubblicazione (risultati parziali in attesa)
+tavoli_round = 0       # tavoli del round in corso (il regionale piu' grande, se ce n'e' piu' di uno)
 
 
 def fetch_text(url):
@@ -552,6 +565,10 @@ def collect(ev, write):
         print("Forme non riconosciute (controlla il paste): %s" % ", ".join(sorted(unknown_forms)))
     unres = sum(1 for e in swiss.values() for x in e if x and x.startswith("-1"))
     print("Scontri senza avversario risolto: %d" % unres)
+    ev_round = classifica_round(tid, swiss, cut_state[tid])
+    if ev_round:
+        eventi_round.update(ev_round)
+        print("Round: %s" % ", ".join(sorted(ev_round)))
     if not write:
         return False
     folder = os.path.join(OUT, tid)
@@ -589,6 +606,124 @@ def collect(ev, write):
         avvisa_finale(ev, players, swiss)
     return any(ch)
 
+# ---------- eventi del round (per pubblicare subito i momenti importanti) ----------
+
+def round_attuale(swiss):
+    """(numero del round attuale, tavoli del round ancora senza risultato). Un risultato mancante finisce con «?» (Pokedata -1)."""
+    R = max((len(v) for v in swiss.values()), default=0)
+    if not R:
+        return 0, 0
+    attesa = sum(1 for v in swiss.values() if len(v) >= R and v[R - 1] and str(v[R - 1]).endswith("?"))
+    return R, attesa
+
+
+def classifica_round(tid, swiss, top8):
+    """Confronta con il controllo precedente: «pairings» se e' comparso un round nuovo, «chiuso» se l'ultimo tavolo del round
+    ha appena avuto il risultato, «top8» se nella Top 8 e' arrivato un risultato. Aggiorna anche round_aperto."""
+    global round_aperto, tavoli_nuovi, tavoli_round
+    R, attesa = round_attuale(swiss)
+    prima = stato_round.get(tid)
+    stato_round[tid] = (R, attesa)
+    if attesa:
+        round_aperto = True
+        tavoli_round = max(tavoli_round, sum(1 for v in swiss.values() if len(v) >= R) // 2)
+    if not prima or not R:
+        return set()
+    out = set()
+    if R > prima[0]:
+        out.add("pairings" if attesa else "chiuso")
+    elif R == prima[0] and prima[1] > 0 and attesa < prima[1]:
+        tavoli_nuovi += (prima[1] - attesa + 1) // 2     # ogni tavolo conta due giocatori
+        if attesa == 0:
+            out.add("chiuso")
+        elif top8:
+            out.add("top8")
+    return out
+
+
+# ---------- pubblicazioni di Cloudflare: quante ne restano nel mese ----------
+CF_LIMITE_MESE = 500        # piano gratuito di Cloudflare Pages: 500 pubblicazioni al mese
+CF_RISERVA = 50             # mai usate dalla diretta: margine per regionali aggiunti tardi da Pokedata e per gli altri giri
+FISSE_PER_REGIONALE = 40    # pubblicazioni «immediate» di un regionale tipo: pairings + chiusura di ~16 round, Top 8
+PARZIALI_MAX = 20 * 60      # mai piu' di 20 minuti tra un risultato e la sua pubblicazione (solo a fine budget)
+ROUND_TIPO = 16             # round swiss di un regionale tipo
+QUOTA_GRUPPI = 0.6          # gruppo = tavoli del round x 0,6 diviso le pubblicazioni del round: cosi' si usa quasi esattamente il budget
+GRUPPO_MIN = 3              # mai una pubblicazione per meno di 3 tavoli nuovi (salvo il tempo massimo)
+DISTANZA_MIN = 2 * 60       # almeno 2 minuti tra due pubblicazioni di parziali: Cloudflare gratuito ne fa una alla volta
+ATTESA_MIN_GRUPPO = 6 * 60  # tempo massimo di attesa di un risultato: mai sotto 6 minuti...
+ATTESA_PER_GRUPPO = 40      # ...e circa 40 minuti di round diviso le pubblicazioni del round
+
+
+def cf_conta_mese():
+    """Pubblicazioni di questo mese (UTC) sul progetto Cloudflare Pages, lette dall'API di Cloudflare. None se non si riesce."""
+    acc, tok = os.environ.get("CLOUDFLARE_ACCOUNT_ID", ""), os.environ.get("CLOUDFLARE_API_TOKEN", "")
+    proj = os.environ.get("CF_PAGES_PROJECT", "").strip()
+    mese = time.strftime("%Y-%m", time.gmtime())
+    n = 0
+    try:
+        for page in range(1, 31):       # 25 per pagina, le piu' recenti prima: ci si ferma al mese precedente
+            req = urllib.request.Request("https://api.cloudflare.com/client/v4/accounts/%s/pages/projects/%s/deployments?per_page=25&page=%d"
+                                         % (acc, proj, page), headers={"Authorization": "Bearer " + tok, "User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                res = json.load(r).get("result") or []
+            if not res:
+                return n
+            for d in res:
+                c = str(d.get("created_on") or "")[:7]
+                if c == mese:
+                    n += 1
+                elif c and c < mese:
+                    return n
+        return n
+    except (OSError, ValueError) as e:
+        print("Conteggio delle pubblicazioni di Cloudflare non letto (%s): i parziali restano ogni 10-12 minuti." % str(e)[:120])
+        return None
+
+
+def cf_usate():
+    global cf_usate_mese, cf_mese
+    mese = time.strftime("%Y-%m", time.gmtime())
+    if cf_mese != mese:
+        cf_mese, cf_usate_mese = mese, cf_conta_mese()
+        if cf_usate_mese is not None:
+            print("Pubblicazioni su Cloudflare questo mese: %d su %d (riserva %d)." % (cf_usate_mese, CF_LIMITE_MESE, CF_RISERVA))
+    return cf_usate_mese
+
+
+def regionali_rimasti(events, t=None):
+    """Regionali di questo mese (UTC) non ancora finiti, compreso quello in corso: almeno 1."""
+    mese = time.strftime("%Y-%m", time.gmtime(t if t is not None else time.time()))
+    n = sum(1 for e in events if e.get("status") != "finished" and ((e.get("start") or "")[:7] == mese or e.get("status") == "running"))
+    return max(1, n)
+
+
+def parziali_regionale(events, usate=None):
+    """Quante pubblicazioni di risultati parziali restano per ogni regionale del mese. None = conteggio non disponibile."""
+    if usate is None:
+        if not cf_enabled():
+            return None
+        usate = cf_usate()
+        if usate is None:
+            return None
+    restano = CF_LIMITE_MESE - CF_RISERVA - usate
+    return max(0.0, restano / regionali_rimasti(events) - FISSE_PER_REGIONALE)
+
+
+def regola_parziali(events, tavoli, usate=None):
+    """(tavoli, secondi): i parziali si pubblicano appena «tavoli» tavoli nuovi hanno il risultato, o comunque dopo «secondi»
+    dal primo risultato in attesa. Calcolati sulle pubblicazioni rimaste nel mese, cosi' le 500 bastano per tutti i regionali."""
+    vecchio = LIVE_PAUSA_PIENO if mese_pieno else LIVE_PAUSA
+    p = parziali_regionale(events, usate)
+    if p is None:                                # conteggio non letto: solo a tempo, come prima (10-12 minuti)
+        return 10 ** 9, vecchio
+    per_round = p / ROUND_TIPO
+    if per_round < 1:                            # budget quasi finito: un parziale ogni 20 minuti al massimo
+        return 10 ** 9, PARZIALI_MAX
+    gruppo = max(GRUPPO_MIN, int(math.ceil(max(1, tavoli) * QUOTA_GRUPPI / per_round)))
+    attesa = int(min(PARZIALI_MAX, max(ATTESA_MIN_GRUPPO, ATTESA_PER_GRUPPO * ROUND_TIPO / p * 60)))
+    return gruppo, attesa
+
+
 # ---------- modo live ----------
 
 LIVE_MIN = 3 * 60          # secondi: controlli a intervalli casuali tra 3 e 5 minuti
@@ -602,6 +737,10 @@ FINITO_PRESTO_ORE = 3      # Pokedata puo' segnare "finito" un regionale in due 
 LIVE_PAUSA_CUT = 5 * 60    # durante la Top 8 (quarti, semifinali, finale): la pausa dopo un salvataggio con dati nuovi e' di 5 minuti
                            # (e' il numero che decide quanto e' "live" il sito: piu' basso = piu' veloce ma piu' pubblicazioni all'ora)
 LIVE_MAX_RUN = 345 * 60    # si ferma da solo prima del limite di 355 minuti del flusso
+LIVE_PAUSA_PAIRINGS = 18 * 60  # dopo i pairings di un round nuovo: 18 minuti senza controlli (si gioca, i primi tavoli finiscono dopo)
+LIVE_RISULTATI = 2 * 60    # dopo la pausa dei pairings, finche' il round e' aperto: un controllo ogni 2 minuti (una richiesta a Pokedata per regionale)
+ATTESA_PAIRINGS = 20 * 60  # dopo la chiusura di un round, per 20 minuti si controlla ogni 2 minuti: i pairings del round dopo escono di solito entro 10-15
+LISTA_OGNI = 10 * 60       # durante la diretta l'elenco dei regionali si rilegge al massimo ogni 10 minuti (meno richieste a Pokedata)
 LIVE_GIT_EVERY = 2 * 60 * 60   # con Cloudflare attivo: su GitHub si salva al massimo ogni 2 ore (e alla fine)
 GIT_RETRY_AFTER = 15 * 60       # se il salvataggio su GitHub fallisce: nuovo tentativo dopo 15 minuti (non a ogni controllo)
 git_block = 0                   # fino a che ora non riprovare dopo un errore
@@ -629,7 +768,10 @@ def cf_deploy():
         r = subprocess.run(["wrangler", "pages", "deploy", stage, "--project-name", project, "--branch", "main", "--commit-dirty=true"],
                            capture_output=True, text=True, timeout=240)
         if r.returncode == 0:
-            print("Dati pubblicati su Cloudflare (%s)." % project)
+            global cf_usate_mese
+            if cf_usate_mese is not None and cf_mese == time.strftime("%Y-%m", time.gmtime()):
+                cf_usate_mese += 1
+            print("Dati pubblicati su Cloudflare (%s)%s." % (project, " - pubblicazione %d del mese" % cf_usate_mese if cf_usate_mese is not None else ""))
             return True
         print("Cloudflare non riuscito: %s" % (r.stderr or r.stdout).strip()[-300:])
         return False
@@ -765,9 +907,16 @@ def ancora_vivo(e, t=None):
     if e.get("status") != "finished":
         return False
     meta = load(os.path.join(OUT, e["id"], "meta.json"), {})
+    t = time.time() if t is None else t
+    if not meta.get("finale_alle"):              # finale della Top 8 non ancora vista
+        oggi = time.strftime("%Y-%m-%d", time.gmtime(t))
+        if (e.get("start") or "9999")[:10] <= oggi <= (e.get("end") or "")[:10]:
+            return True                          # siamo nei giorni del torneo: Pokedata segna «finito» a fine giornata (Internazionali: 3 giorni)
+        recente = parse_utc(e.get("updated") or "")
+        if (e.get("rounds") or 0) > (meta.get("rounds") or 0) and recente is not None and t - recente < FINITO_PRESTO_ORE * 3600:
+            return True                          # Pokedata ha piu' round di quelli salvati e si e' mosso da poco: il torneo continua
     if meta.get("status") != "running" or meta.get("complete"):
         return False
-    t = time.time() if t is None else t
     for txt in (e.get("updated") or "", (meta.get("updated") or "")[:16] + ":00" if meta.get("updated") else ""):
         ts = parse_utc(txt)
         if ts is not None and -600 <= t - ts < FINITO_PRESTO_ORE * 3600:
@@ -807,10 +956,14 @@ def eventi_del_mese(events, t=None):
 
 def live_cycle(write):
     """Un controllo. Ritorna (dati_cambiati, ancora_in_corso)."""
-    global used, cut_active, mese_pieno, turno_nuovo
+    global used, cut_active, mese_pieno, turno_nuovo, round_aperto, lista_cache, lista_alle
     turno_nuovo = False
+    eventi_round.clear()
+    round_aperto = False
     used = 0                                   # il limite di richieste vale per ogni controllo
-    events = list_events()
+    if lista_cache is None or time.time() - lista_alle >= LISTA_OGNI:
+        lista_cache, lista_alle = list_events(), time.time()
+    events = json.loads(json.dumps(lista_cache))   # copia: i cambi di stato di questo giro non toccano l'elenco salvato
     pieno = eventi_del_mese(events) >= EVENTI_MESE_PIENO
     if pieno != mese_pieno:
         mese_pieno = pieno
@@ -853,7 +1006,8 @@ def live_cycle(write):
                 ended = ended or st == "finished"
                 e["status"] = st
         if ended:                              # appena finito: elenco aggiornato (vincitori) per l'ultimo salvataggio
-            events = list_events()
+            lista_cache, lista_alle = list_events(), time.time()
+            events = json.loads(json.dumps(lista_cache))
     except Budget:
         print("Raggiunto il massimo di richieste di questo controllo: il resto al prossimo.")
     if write and save_index(events):
@@ -875,14 +1029,28 @@ def segnala_rilancio():
 
 
 def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep=time.sleep, rnd=random.uniform):
-    global LIVE_ATTIVO
+    """Controlli ripetuti finche' un regionale e' in corso. Pubblica «a eventi»: pairings, round chiuso e risultati della Top 8 subito;
+    i risultati parziali a gruppi: appena un certo numero di tavoli ha il risultato, o dopo un tempo massimo (regola_parziali)."""
+    global LIVE_ATTIVO, tavoli_nuovi, tavoli_round
     LIVE_ATTIVO = bool(write)
     t0 = now()
     n = 0
     guasti = 0                                 # controlli di fila falliti per un problema di rete
+    ultima_pub = 0.0                           # momento dell'ultima pubblicazione (Cloudflare o GitHub)
+    in_sospeso = False                         # dati nuovi gia' salvati ma non ancora pubblicati (parziali in attesa del loro turno)
+    pairings_entro = 0.0                       # fino a quando si aspettano i pairings del round dopo (controlli ogni 2 minuti)
+    sospeso_da = 0.0                           # quando e' arrivato il primo risultato non ancora pubblicato
+
+    def pubblica_ora(final):
+        nonlocal ultima_pub, in_sospeso
+        global tavoli_nuovi
+        publish(True, commit, final, now)
+        ultima_pub, in_sospeso, tavoli_nuovi = now(), False, 0
+
     while True:
         n += 1
         stop = None
+        tavoli_round = 0
         try:
             changed, going = live_cycle(write)
             guasti = 0
@@ -892,20 +1060,34 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
             guasti += 1
             print("Controllo %d non riuscito (%s). Tentativo %d di 4." % (n, str(e)[:120], guasti))
             if guasti >= 4:
+                if write and in_sospeso:
+                    pubblica_ora(True)
                 print("Troppi errori di fila: mi fermo, riparte il prossimo giro programmato.")
                 return 1
             if max_cycles and n >= max_cycles:
                 return 1
             wait = rnd(LIVE_MIN, LIVE_MAX)
             if now() - t0 + wait > max_run:
+                if write and in_sospeso:
+                    pubblica_ora(True)
                 print("Limite di tempo quasi raggiunto: mi fermo e lancio subito il turno successivo.")
                 segnala_rilancio()
                 return 0
             sleep(wait)
             continue
         final = bool(stop) or not going or bool(max_cycles and n >= max_cycles)
-        if write and (changed or unpushed or stop):
-            publish(changed, commit, final, now)
+        if write and changed and not in_sospeso:
+            in_sospeso, sospeso_da = True, now()
+        # «subito» solo con Cloudflare: senza, si pubblica su GitHub Pages (circa 10 pubblicazioni all'ora) e restano le pause di prima
+        subito = bool(eventi_round & {"pairings", "chiuso", "top8"}) and cf_enabled()
+        gruppo, attesa_max = regola_parziali(lista_cache or [], tavoli_round)
+        gruppo_pronto = now() - ultima_pub >= DISTANZA_MIN and (tavoli_nuovi >= gruppo or now() - sospeso_da >= attesa_max)
+        if write and in_sospeso and (subito or final or not cf_enabled() or gruppo_pronto):
+            perche = ", ".join(sorted(eventi_round)) if subito else ("ultimo salvataggio" if final else "risultati parziali")
+            print("Pubblico adesso (%s)." % perche)
+            pubblica_ora(final)
+        elif write and (unpushed or stop):       # niente di nuovo da mostrare: solo il salvataggio di riserva su GitHub, se rimasto indietro
+            publish(False, commit, final, now)
         if stop:
             print("STOP: %s - mi fermo qui" % stop)
             return 1
@@ -915,20 +1097,41 @@ def live(write, commit, max_cycles=0, max_run=LIVE_MAX_RUN, now=time.time, sleep
         if max_cycles and n >= max_cycles:
             return 0
         if write and turno_nuovo and now() - t0 >= LIVE_RILANCIO_DA:
-            print("Round nuovo appena iniziato dopo %d minuti di lavoro: cambio turno adesso, i primi risultati arrivano tra almeno 20 minuti." % ((now() - t0) // 60))
+            print("Round nuovo appena iniziato dopo %d minuti di lavoro: cambio turno adesso, i primi risultati arrivano tra almeno 18 minuti." % ((now() - t0) // 60))
+            if in_sospeso:
+                pubblica_ora(False)
             if commit and cf_enabled():
                 git_publish()
             segnala_rilancio()
             return 0
-        pausa = LIVE_PAUSA_PIENO if mese_pieno else LIVE_PAUSA
-        wait = (LIVE_PAUSA_CUT if cut_active else pausa) if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
+        # quanto aspettare prima del prossimo controllo
+        if "chiuso" in eventi_round:
+            pairings_entro = now() + ATTESA_PAIRINGS
+        if "pairings" in eventi_round:
+            pairings_entro = 0.0
+        if not cf_enabled():                     # senza Cloudflare (solo GitHub Pages, ~10 pubblicazioni all'ora): tempi di prima
+            pausa = LIVE_PAUSA_PIENO if mese_pieno else LIVE_PAUSA
+            wait = (LIVE_PAUSA_CUT if cut_active else pausa) if (write and changed) else rnd(LIVE_MIN, LIVE_MAX)
+            perche = "senza Cloudflare: tempi di prima"
+        elif "pairings" in eventi_round and not cut_active:
+            wait, perche = LIVE_PAUSA_PAIRINGS, "pairings appena usciti: si gioca"
+        elif round_aperto or in_sospeso:
+            wait, perche = LIVE_RISULTATI, "round in corso"
+        elif now() < pairings_entro:
+            wait, perche = LIVE_RISULTATI, "round chiuso: aspetto i pairings del prossimo"
+        else:
+            wait, perche = rnd(LIVE_MIN, LIVE_MAX), "in attesa del prossimo round"
         if now() - t0 + wait > max_run:
             print("Limite di tempo quasi raggiunto: mi fermo e lancio subito il turno successivo.")
+            if write and in_sospeso:
+                pubblica_ora(False)
             if write and commit and cf_enabled():
                 git_publish()
             segnala_rilancio()
             return 0
-        print("Controllo %d fatto%s. Prossimo tra %.0f minuti." % (n, (" (dati nuovi salvati)" if (write and changed) else "") + (" - Top 8 in corso" if cut_active else ""), wait / 60.0))
+        print("Controllo %d fatto%s. Prossimo tra %.0f minuti (%s%s)." % (
+            n, (" (dati nuovi salvati)" if (write and changed) else "") + (" - Top 8 in corso" if cut_active else ""), wait / 60.0, perche,
+            ("; parziali ogni %d tavoli o %.0f min, %d in attesa" % (gruppo, attesa_max / 60.0, tavoli_nuovi)) if (write and cf_enabled()) else ""))
         sleep(wait)
 
 
@@ -947,7 +1150,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-20a (segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-21b (pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:

@@ -93,7 +93,8 @@ RE_DATE = (re.compile(r'data-time=["\'](\d{10,13})["\']'),
 def limitless_page(i):
     """Dettagli di un torneo letti dalla sua pagina pubblica: nome, organizzatore, data e ora di inizio."""
     page = get(SITE + "/tournament/%s/details" % i)
-    m = (re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)["\']', page)
+    m = (re.search(r'<meta[^>]+property=["\']og:title["\'][^>]+content="([^"]+)"', page)       # tra virgolette doppie:
+         or re.search(r"<meta[^>]+property=[\"']og:title[\"'][^>]+content='([^']+)'", page)   # «Women's Cup» resta intero
          or re.search(r'<title[^>]*>([^<]+)</title>', page))
     name = html.unescape(m.group(1)).strip() if m else ""
     name = re.sub(r"\s*[-|\u2013]\s*Limitless\w*\s*$", "", name, flags=re.I).strip()
@@ -111,13 +112,36 @@ def limitless_page(i):
         ctx = re.findall(r".{0,60}(?:data-time|datetime|data-date|startDate).{0,80}", page)[:3]
         print("Limitless %s: pagina letta ma %s non trovato. Titolo=%r; indizi=%r" % (i, "nome" if not name else "data", name[:60], ctx))
         return None
-    return {"id": i, "name": name, "organizer": {"name": org}, "game": "VGC",
+    m = re.search(r"Regulation Set (M-[A-Z])\b", page)
+    return {"id": i, "name": name, "organizer": {"name": org}, "game": "VGC", "reg": m.group(1) if m else None,
             "date": dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")}
+
+RE_RIGA = re.compile(r"<tr\s([^>]*\bdata-name=[^>]*)>(.*?)</tr>", re.S)
+
+def righe_elenco(page):
+    """Nell'elenco pubblico ogni torneo e' una riga con nome, data, organizzatore e iscritti gia' scritti dentro:
+    si leggono da li' a ogni giro, cosi' un torneo rinominato o spostato si aggiorna da solo (prima restava il vecchio)."""
+    out = {}
+    for attr, corpo in RE_RIGA.findall(page):
+        m = RE_ID.search(corpo)
+        if not m:
+            continue
+        a = {k: html.unescape(v) for k, v in re.findall(r'data-([a-z]+)="([^"]*)"', attr)}
+        dt = _dt_from(a.get("date"))
+        if not a.get("name") or not dt:
+            continue
+        try:
+            n = int(a.get("players") or "")
+        except ValueError:
+            n = None
+        out[m.group(1)] = {"name": a["name"].strip(), "org": a.get("organizer", "").strip(), "players": n,
+                           "date": dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")}
+    return out
 
 def limitless_upcoming(have):
     """L'API /tournaments può non elencare i tornei con iscrizioni aperte. Per non perderne nessuno si
     leggono gli ID dalle pagine pubbliche di Limitless e i dettagli di ognuno dall'API ufficiale."""
-    ids, iscritti = [], {}
+    ids, iscritti, righe = [], {}, {}
     for path, max_pag in PAGINE:
         for pg in range(1, max_pag + 1):
             url = SITE + path + ("&page=%d" % pg if pg > 1 else "")
@@ -141,6 +165,7 @@ def limitless_upcoming(have):
             ids.extend(nuovi)
             for i, n in RE_ISCRITTI.findall(page):
                 iscritti[i] = int(n)
+            righe.update(righe_elenco(page))
             time.sleep(1)
     print("Limitless: %d tornei trovati nelle pagine pubbliche" % len(ids))
     out = []
@@ -150,9 +175,14 @@ def limitless_upcoming(have):
         if url in have:
             continue
         old = PREV.get(url)
-        if old and old.get("date"):  # già noto dal giro precedente: si aggiorna solo il numero di iscritti
+        r = righe.get(i)
+        if old and old.get("date") and "reg_letto" in old:   # gia' noto: nome, data, organizzatore e iscritti si rinfrescano dall'elenco
             ev = dict(old)
-            ev["players"] = iscritti.get(i, ev.get("players"))
+            if r:
+                nuovo = limitless_event({"id": i, "name": r["name"], "organizer": {"name": r["org"]}, "date": r["date"], "reg": old.get("reg")})
+                for k in ("name", "org", "date", "time", "cash", "prize", "bo", "reg"):
+                    ev[k] = nuovo[k]
+            ev["players"] = iscritti.get(i, (r or {}).get("players", ev.get("players")))
             out.append(ev)
             continue
         t = None
@@ -178,21 +208,29 @@ def limitless_upcoming(have):
             time.sleep(0.5)
             try:
                 t = limitless_page(i)
-            except urllib.error.HTTPError as e:
-                if e.code not in (403, 404, 410):
-                    print("Limitless %s: pagina non letta (HTTP %s)" % (i, e.code))
-                    KEEP.add(url)
-                continue
             except Exception as ex:
-                print("Limitless %s: pagina non letta (%s)" % (i, ex))
-                KEEP.add(url)
-                continue
+                print("Limitless %s: pagina non letta (%s)%s" % (i, ex, ": uso i dati dell'elenco" if r else ""))
+                t = None
+                if not r:
+                    if not (isinstance(ex, urllib.error.HTTPError) and ex.code in (403, 404, 410)):
+                        KEEP.add(url)
+                    continue
             if not t:
+                if not r:
+                    continue
+                # pagina del torneo non letta, ma nome e data ci sono gia' nell'elenco: il torneo compare lo stesso
+                # (il regolamento si cerca di nuovo al giro dopo, perche' manca «reg_letto»)
+                ev = limitless_event({"id": i, "name": r["name"], "organizer": {"name": r["org"]}, "date": r["date"]})
+                ev["players"] = iscritti.get(i, r.get("players"))
+                out.append(ev)
                 continue
         if t.get("game") not in (None, "VGC") or t.get("isPublic") is False:
             continue
         t["id"] = i  # l'indirizzo è quello della pagina pubblica (con gli eventi in evidenza l'API può dare un ID diverso)
+        if r:                                   # nome e data dall'elenco: sempre giusti e aggiornati
+            t.update({"name": r["name"], "date": r["date"], "organizer": {"name": r["org"] or (t.get("organizer") or {}).get("name", "")}})
         ev = limitless_event(t)
+        ev["reg_letto"] = True
         ev["players"] = iscritti.get(i, t.get("players") or None)  # iscritti attuali; per i tornei futuri il numero dell'API non vale
         out.append(ev)
     return out
@@ -215,7 +253,7 @@ def limitless_event(t):
     if True:
         name = t.get("name", "")
         money = re.search(r"[€$£]\s?\d[\d.,]*(?:\s?k\b)?|\d[\d.,]*\s?(?:k\s?)?(?:[€$£]|usd\b|eur\b)|\$\$|\bcash\b|\bpremi[oi] in denaro\b", name, re.I)  # tutta la cifra: «$50» non «$5»
-        reg = re.search(r"\bM-[A-Z]\b", name, re.I)
+        reg = re.search(r"\bM\s?[-/]\s?([A-Z])\b", name, re.I)
         bo = re.search(r"\bBo([13])\b", name, re.I)
         org = t.get("organizer") or {}
         raw = t.get("date") or ""
@@ -229,7 +267,7 @@ def limitless_event(t):
             "mode": "online", "type": "Torneo", "fee": None,
             "cash": True if money else None,  # mai False: senza indicazione resta "non indicato"
             "prize": money.group(0).strip() if money else "",
-            "reg": reg.group(0).upper() if reg else None,
+            "reg": ("M-" + reg.group(1).upper()) if reg else (t.get("reg") or (t.get("format") if re.fullmatch(r"M-[A-Z]", str(t.get("format") or "")) else None)),
             "bo": "Bo" + bo.group(1) if bo else None,
             "date": date, "time": hhmm, "players": t.get("players"),
             "url": "https://play.limitlesstcg.com/tournament/%s/details" % t["id"],
@@ -914,6 +952,8 @@ def notify_all(events):
             if key in sent:
                 continue
             sent.add(key)
+            if (e.get("end") or e.get("date") or "9999") < datetime.now(ROME).strftime("%Y-%m-%d"):
+                continue      # torneo gia' iniziato nei giorni scorsi (es. nome corretto solo ora): si segna, niente avviso in ritardo
             if not first:
                 added.setdefault(topic, []).append(key)
                 todo.setdefault((e["url"], topic), {})[kind] = (title, e)
@@ -954,7 +994,10 @@ def ancora_valido(e, now):
     """Un torneo sparisce dall'elenco quando è finito: con orario, GRACE_H ore dopo l'inizio;
     senza orario o su più giorni, alla fine dell'ultimo giorno (ora di Roma). Senza data resta."""
     if e.get("url") in LIVE:
-        return True
+        try:   # «in corso» da piu' di 3 giorni: e' un torneo che l'organizzatore non ha mai chiuso, non si mostra
+            return datetime.strptime(e.get("date") or "", "%Y-%m-%d").replace(tzinfo=ROME) > now - timedelta(days=3)
+        except ValueError:
+            return True
     d = e.get("end") or e.get("date")
     if not d:
         return True
