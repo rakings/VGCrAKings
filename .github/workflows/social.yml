@@ -26,6 +26,7 @@ jobs:
       - id: crea
         run: python -u social.py crea
         env:
+          BACKUP_CHIAVE: ${{ secrets.BACKUP_CHIAVE }}
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_HOST: ${{ vars.IG_HOST }}
