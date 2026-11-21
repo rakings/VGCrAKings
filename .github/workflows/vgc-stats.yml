@@ -29,12 +29,9 @@ on:
   # Orari in UTC. Ora italiana invernale (fino a fine marzo) = UTC + 1; con l'ora legale = UTC + 2.
   # Minuti 07 e 37 (non 00 e 30): a inizio ora GitHub e' piu' carico e ritarda di piu'.
   schedule:
-    # LIVE: un risveglio ogni 15 minuti (minuti 07, 22, 37, 52: a inizio ora GitHub e' piu' carico) il giovedi sera
-    # (da 20:07 UTC = 21:07 in Italia con l'ora solare) e da venerdi a lunedi. Orari in UTC.
-    # Se c'e' un regionale in corso il lavoro resta attivo con controlli ogni 3-5 minuti; se non c'e', si ferma subito.
-    # Dopo un salvataggio con dati nuovi non controlla per 10 minuti (12 dal 4° torneo del mese, 5 durante la Top 8), poi controlla subito.
-    - cron: "7,22,37,52 * * * 5,6,0,1"
-    - cron: "7,22,37,52 20-23 * * 4"
+    # LIVE: i risvegli ogni 15 minuti (giovedi sera e da venerdi a lunedi) li fa partire il Worker di Cloudflare
+    # (oraDiretta in cloudflare/worker.js, minuti 05, 20, 35, 50 UTC), puntuali: GitHub li faceva partire ogni 30-35 minuti.
+    # Se c'e' un regionale in corso il lavoro resta attivo con controlli ogni 2-5 minuti; se non c'e', si ferma subito.
     # Recupero squadre (solo se mancano) - ora italiana invernale:
     - cron: "7,37 17-23 * * *"      # sera 18:07 - 00:37
     - cron: "7,37 0 * * *"          # 01:07 e 01:37
