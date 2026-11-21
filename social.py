@@ -3,7 +3,8 @@
 
   python3 social.py crea    -> per ogni torneo locale APPENA PUBBLICATO sul sito (locali.json) prepara una richiesta:
                                immagine della Top 8 + testo per Instagram + testo per X, da approvare nella tua pagina admin.
-                               Controlla anche, una volta al giorno, che la chiave di Instagram funzioni.
+                               Controlla anche, una volta al giorno, che la chiave di Instagram funzioni
+                               e legge le statistiche del profilo e degli ultimi post (social/statistiche.json).
   python3 social.py azione  -> esegue quello che hai scelto nella pagina admin (variabili ID, RETE, AZIONE, TESTO):
                                Instagram «approva» = pubblica davvero; X «fatto» = segna come pubblicato da te;
                                YouTube «approva» = crea lo Short dalle stesse immagini e lo carica (youtube.py); «rifiuta».
@@ -178,6 +179,95 @@ def controllo_chiave(d):
         return 1 if prima else 0
 
 
+STAT_FILE = "social/statistiche.json"
+STAT_ORE = 20            # ogni quanto si rileggono le statistiche di Instagram
+STAT_GIORNI = 120        # giorni di storico tenuti (follower e numeri del giorno)
+STAT_POST = 12           # ultimi post di cui si leggono i numeri
+METRICHE_CONTO = ("reach", "views", "accounts_engaged", "total_interactions", "profile_views")
+METRICHE_POST = ("reach", "views", "saved", "shares", "total_interactions")
+
+
+def _totale(metrica, da, a):
+    """Un numero dell'account tra due istanti (secondi UTC). None se Meta non lo da' (metrica non disponibile)."""
+    try:
+        j = graph("GET", "%s/insights" % os.environ["IG_USER_ID"],
+                  {"metric": metrica, "period": "day", "metric_type": "total_value", "since": str(da), "until": str(a)})
+    except RuntimeError:
+        return None
+    for m in j.get("data", []):
+        tv = m.get("total_value") or {}
+        if "value" in tv:
+            return tv["value"]
+    return None
+
+
+def _numeri_post(mid):
+    out = {}
+    try:                                         # prima tutte insieme (1 chiamata), se Meta ne rifiuta una si va una per una
+        j = graph("GET", "%s/insights" % mid, {"metric": ",".join(METRICHE_POST)})
+        for m in j.get("data", []):
+            out[m["name"]] = (m.get("values") or [{}])[0].get("value", (m.get("total_value") or {}).get("value"))
+        return out
+    except RuntimeError:
+        pass
+    for k in METRICHE_POST:
+        try:
+            j = graph("GET", "%s/insights" % mid, {"metric": k})
+            for m in j.get("data", []):
+                out[m["name"]] = (m.get("values") or [{}])[0].get("value", (m.get("total_value") or {}).get("value"))
+        except RuntimeError:
+            continue
+    return out
+
+
+def statistiche():
+    """Una volta al giorno: numeri del profilo Instagram (follower, copertura, visualizzazioni, interazioni) e degli ultimi post.
+    Si salvano in social/statistiche.json e si vedono nella scheda Instagram dell'admin. Un errore qui non ferma mai il resto."""
+    if not os.environ.get("IG_TOKEN") or not os.environ.get("IG_USER_ID"):
+        return
+    s = load(STAT_FILE, {}) or {}
+    try:
+        ultimo = datetime.strptime(s.get("quando", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        if (datetime.now(timezone.utc) - ultimo).total_seconds() < STAT_ORE * 3600:
+            return
+    except ValueError:
+        pass
+    uid = os.environ["IG_USER_ID"]
+    try:
+        conto = graph("GET", uid, {"fields": "username,followers_count,follows_count,media_count"})
+    except RuntimeError as ex:
+        log("[ATTENZIONE] Statistiche di Instagram non lette:", ex)
+        return
+    adesso = datetime.now(timezone.utc)
+    oggi = adesso.replace(hour=0, minute=0, second=0, microsecond=0)
+    ieri = oggi - timedelta(days=1)
+    t_oggi, t_ieri, t_28 = int(oggi.timestamp()), int(ieri.timestamp()), int((oggi - timedelta(days=28)).timestamp())
+    periodo = {k: _totale(k, t_28, t_oggi) for k in METRICHE_CONTO}
+    giorno = {"data": ieri.strftime("%Y-%m-%d"), "follower": conto.get("followers_count")}
+    for k in METRICHE_CONTO:
+        giorno[k] = _totale(k, t_ieri, t_oggi)
+    giorni = [g for g in s.get("giorni", []) if g.get("data") != giorno["data"]] + [giorno]
+    giorni = sorted(giorni, key=lambda g: g["data"])[-STAT_GIORNI:]
+    post = []
+    try:
+        lst = graph("GET", "%s/media" % uid, {"fields": "id,caption,media_type,media_product_type,timestamp,permalink,like_count,comments_count",
+                                              "limit": str(STAT_POST)}).get("data", [])
+    except RuntimeError as ex:
+        log("[ATTENZIONE] Post di Instagram non letti:", ex)
+        lst = []
+    for m in lst:
+        p = {"id": m.get("id"), "data": m.get("timestamp", ""), "tipo": m.get("media_product_type") or m.get("media_type") or "",
+             "testo": (m.get("caption") or "").split("\n")[0][:90], "link": m.get("permalink", ""),
+             "like": m.get("like_count"), "commenti": m.get("comments_count")}
+        p.update(_numeri_post(m["id"]))
+        post.append(p)
+    s = {"quando": ora(), "account": conto.get("username", ""), "follower": conto.get("followers_count"),
+         "seguiti": conto.get("follows_count"), "post_totali": conto.get("media_count"),
+         "periodo28": periodo, "giorni": giorni, "post": post}
+    save(STAT_FILE, s)
+    log("Statistiche di Instagram aggiornate: %s follower, %d post letti." % (s["follower"], len(post)))
+
+
 def pulisci(d):
     aperte = [r for r in d["richieste"] if r["ig"]["stato"] in APERTE or r["x"]["stato"] in APERTE or (r.get("yt") or {}).get("stato") in APERTE]
     chiuse = [r for r in d["richieste"] if r not in aperte]
@@ -243,6 +333,11 @@ def crea():
     except Exception as ex:
         log("[ATTENZIONE] YouTube:", ex)
     esito = controllo_chiave(d)
+    if (d.get("ig_stato") or {}).get("ok"):
+        try:
+            statistiche()
+        except Exception as ex:   # le statistiche non devono mai fermare i post
+            log("[ATTENZIONE] Statistiche di Instagram:", ex)
     pulisci(d)
     save(FILE, d)
     log("Fatto: %d richieste nuove, %d aggiornate, %d in elenco." % (nuove, agg, len(d["richieste"])))

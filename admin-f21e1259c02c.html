@@ -166,6 +166,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
     <div class="card"><h2>Tornei seguiti in tutto <small style="text-transform:none;letter-spacing:0">(anche finiti)</small></h2><div id="to"></div></div>
     <div class="card"><h2>Lingue</h2><div id="lg"></div></div>
     <div class="card"><h2>Visitatori del sito e dell'app</h2><div id="vi"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>Statistiche di Instagram</h2><div id="igs"><div class="hint">Carico…</div></div></div>
     <div class="card"><h2>Avvisi automatici di Francesco (Twitch e YouTube)</h2><div id="au"><div class="hint">Carico…</div></div></div>
     <div class="card"><h2>Controlli automatici</h2><div id="ca"><div class="hint">Carico…</div></div></div>
     <p class="hint">Le statistiche si leggono solo quando apri questa scheda (o premi Aggiorna stando qui): ogni lettura costa due letture di KV ogni 1.000 iscritti, quindi non serve aggiornare di continuo.</p>
@@ -382,7 +383,7 @@ function stato(s){var x=NOMI[s.stato]||[s.stato,""];return '<span class="st '+x[
 function aperta(s){return s.stato==="da approvare"||s.stato==="errore"}
 function social(){
   return fetch(SITE+"social/richieste.json?t="+Date.now(),{cache:"no-store"}).then(function(r){
-    if(r.status===404)return {nuovo:true};if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){SOC=d;disegnaIg();disegnaX();disegnaYt()})
+    if(r.status===404)return {nuovo:true};if(!r.ok)throw new Error("sito "+r.status);return r.json()}).then(function(d){SOC=d;disegnaIg();disegnaX();disegnaYt();statIg()})
   .catch(function(e){$("igl").innerHTML=$("xl").innerHTML=$("ylt").innerHTML='<div class="hint">Elenco non letto ('+esc(e.message||"errore")+'). Premi Aggiorna.</div>'})
 }
 function elenco(rete,el,riga){
@@ -412,6 +413,33 @@ function disegnaIg(){
     return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
       '<div class="bt"><button type="button" class="ok" data-so="approva" data-r="ig" data-id="'+esc(r.id)+'">'+(s.stato==="errore"?"Riprova a pubblicare":"Approva e pubblica")+'</button><button type="button" class="sec" data-so="rifiuta" data-r="ig" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':
       (s.url?'<div class="full"><a class="hint" href="'+esc(s.url)+'" target="_blank" rel="noopener">apri su Instagram</a></div>':''))+'</div>'})
+}
+/* ---- statistiche di Instagram: social/statistiche.json (le legge il flusso «Social» una volta al giorno) ---- */
+function nIt(v){return v==null?"–":Number(v).toLocaleString("it-IT")}
+function statIg(){
+  fetch(SITE+"social/statistiche.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error("sito "+r.status);return r.json()})
+  .then(disegnaStat).catch(function(e){$("igs").innerHTML='<div class="hint">Statistiche non lette ('+esc(e.message||"errore")+').</div>'})
+}
+function disegnaStat(s){
+  var el=$("igs");
+  if(!s){el.innerHTML='<div class="hint">Arrivano dal primo giro del flusso «Social» con Instagram collegato, poi si aggiornano da sole una volta al giorno.</div>';return}
+  var p=s.periodo28||{},g=(s.giorni||[]).filter(function(x){return x.follower!=null}),dl="";
+  if(g.length>1){var vec=g[Math.max(0,g.length-8)],d=s.follower-vec.follower;dl='<span style="color:'+(d>=0?"var(--ok)":"#ff8b95")+'">'+(d>=0?"+":"")+nIt(d)+'</span> in '+(g.length>8?7:g.length-1)+' gg'}
+  function mini(v,t,x){return '<div class="mini"><b>'+nIt(v)+'</b><span>'+t+'</span>'+(x?'<span style="display:block">'+x+'</span>':'')+'</div>'}
+  var h='<div class="grid3">'+mini(s.follower,"follower",dl)+mini(p.reach,"copertura 28 gg")+mini(p.views,"visualizzazioni 28 gg")+'</div>'+
+    '<div class="grid3" style="margin-top:8px">'+mini(p.total_interactions,"interazioni 28 gg")+mini(p.accounts_engaged,"account coinvolti 28 gg")+mini(p.profile_views,"visite al profilo 28 gg")+'</div>';
+  if(g.length>1){var u=g.slice(-30),mn=Math.min.apply(0,u.map(function(x){return x.follower})),mx=Math.max.apply(0,u.map(function(x){return x.follower})),W=300,H=60,sp=Math.max(1,mx-mn);
+    var pt=u.map(function(x,i){return (i*W/(u.length-1)).toFixed(1)+","+(H-4-(x.follower-mn)*(H-8)/sp).toFixed(1)}).join(" ");
+    h+='<div class="hint" style="margin-top:12px">Follower, ultimi '+u.length+' giorni ('+nIt(mn)+'–'+nIt(mx)+')</div><svg viewBox="0 0 '+W+' '+H+'" style="width:100%;height:60px;display:block" preserveAspectRatio="none"><polyline points="'+pt+'" fill="none" stroke="#ff4d5e" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg>'}
+  else h+='<div class="hint" style="margin-top:10px">L\'andamento dei follower compare dopo qualche giorno.</div>';
+  var cg=(s.giorni||[]).filter(function(x){return x.reach!=null}).slice(-7).reverse(),mr=Math.max.apply(0,cg.map(function(x){return x.reach}).concat([1]));
+  if(cg.length)h+='<div class="hint" style="margin-top:12px">Copertura giorno per giorno</div>'+cg.map(function(x){return '<div class="row"><span>'+esc(new Date(x.data+"T12:00:00Z").toLocaleDateString("it-IT",{weekday:"short",day:"2-digit",month:"2-digit"}))+'</span><div class="bar"><i style="width:'+Math.round(100*x.reach/mr)+'%"></i></div><span class="num">'+nIt(x.reach)+'</span></div>'}).join("");
+  var ps=s.post||[];
+  h+='<div class="hint" style="margin-top:14px">Ultimi post</div>'+(ps.length?ps.map(function(x){var t={"FEED":"post","REELS":"reel","STORY":"storia","CAROUSEL_ALBUM":"carosello","IMAGE":"post","VIDEO":"video"}[x.tipo]||String(x.tipo||"").toLowerCase();
+    return '<div class="pa"><div><b>'+esc(x.testo||t)+'</b><small>'+esc(quando(x.data))+' · '+esc(t)+'</small><small>copertura '+nIt(x.reach)+' · visualizzazioni '+nIt(x.views)+' · ❤ '+nIt(x.like)+' · 💬 '+nIt(x.commenti)+' · salvati '+nIt(x.saved)+(x.shares!=null?' · condivisioni '+nIt(x.shares):'')+'</small></div>'+
+      (x.link?'<a class="b" style="padding:8px 12px;font-size:.85rem" href="'+esc(x.link)+'" target="_blank" rel="noopener">apri</a>':'<span></span>')+'</div>'}).join(""):'<div class="hint">Nessun post ancora.</div>');
+  h+='<div class="hint" style="margin-top:10px">Aggiornate il '+esc(quando(s.quando))+(s.account?' · @'+esc(s.account):'')+' · i numeri di Meta possono arrivare con 1–2 giorni di ritardo.</div>';
+  el.innerHTML=h
 }
 function disegnaX(){
   elenco("x",$("xl"),function(r,ap){var s=r.x,k=r.id+"x",t=EDIT[k]!=null?EDIT[k]:s.testo;
