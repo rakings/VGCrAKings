@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T23:11:16+00:00",
+ "updated": "2026-11-21T00:03:14+00:00",
  "events": [
   {
    "name": "Teracademy#7",
@@ -152,6 +152,21 @@
    "url": "https://play.limitlesstcg.com/tournament/6aecb2c3e94eae0f94747e2b/details"
   },
   {
+   "name": "REG. M-C |👑CROWN FIGHT Bo3 TOUR #92👑",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": "Bo3",
+   "date": "2026-11-20",
+   "time": "18:30",
+   "players": 61,
+   "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
+  },
+  {
    "name": "Metal",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -180,21 +195,6 @@
    "time": "21:00",
    "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6aff98019c256f7bbd240527/details"
-  },
-  {
-   "name": "NEW SEASON START❗|👑CROWN FIGHT Bo3 TOUR #91👑",
-   "org": "Kampfstube",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": "Bo3",
-   "date": "2026-11-20",
-   "time": "18:45",
-   "players": 71,
-   "url": "https://play.limitlesstcg.com/tournament/6ac96a26115c12b73a5a0111/details"
   },
   {
    "name": "BK Cup #5 x Micelion | Lucario Deckbox de premio",
@@ -254,7 +254,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6af1f140c931f53978d972e6/details"
   },
   {
@@ -269,7 +269,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "02:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6aff7a962b9e244e6cee5b05/details"
   },
   {
@@ -314,7 +314,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "05:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b009e46ada8eea1c94cedf6/details"
   },
   {
@@ -329,7 +329,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "12:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af72934ee43ef7891473569/details"
   },
   {
@@ -359,7 +359,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "13:00",
-   "players": 63,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6a7c52512b308b6067b51ef7/details"
   },
   {
@@ -374,7 +374,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "14:00",
-   "players": 80,
+   "players": 84,
    "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details"
   },
   {
@@ -554,7 +554,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details"
   },
   {
@@ -719,7 +719,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
   },
   {
@@ -983,7 +983,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details"
   },
   {
