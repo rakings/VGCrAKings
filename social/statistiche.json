@@ -1,5 +1,13 @@
 {
- "quando": "2026-11-21T10:39:50Z",
+ "v": 2,
+ "quando": "2026-11-21T10:42:42Z",
+ "errori": {
+  "reach": "(#10) Application does not have permission for this action (codice 10)",
+  "views": "(#10) Application does not have permission for this action (codice 10)",
+  "accounts_engaged": "(#10) Application does not have permission for this action (codice 10)",
+  "total_interactions": "(#10) Application does not have permission for this action (codice 10)",
+  "profile_views": "(#10) Application does not have permission for this action (codice 10)"
+ },
  "account": "vgc_rakings",
  "follower": 1,
  "seguiti": 10,
