@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T17:01:51+00:00",
+ "updated": "2026-11-21T18:02:45+00:00",
  "events": [
   {
    "name": "Metal's Meteor Mash-Up #8 - TOP 4 TEAM GRAPHIC",
@@ -48,6 +48,21 @@
    "time": null,
    "where": "San Paolo, Brasile",
    "url": "https://serebii.net/playpokemon/2027/latinamericainternationalchampionships.shtml"
+  },
+  {
+   "name": "ValkrixVGC Rising Champions League #10",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "14:00",
+   "players": 14,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f14fc931f53978d972e7/details"
   },
   {
    "name": "🇺🇦 Ukraine National Team Tryouts",
@@ -113,22 +128,6 @@
    "reg_letto": true
   },
   {
-   "name": "ValkrixVGC Rising Champions League #10",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "14:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f14fc931f53978d972e7/details",
-   "reg_letto": true
-  },
-  {
    "name": "Champions League VGC November",
    "org": "Battle Chateau",
    "mode": "online",
@@ -161,22 +160,6 @@
    "reg_letto": true
   },
   {
-   "name": "Risen Epsorts Thanksgiving Challenge",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "18:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details",
-   "reg_letto": true
-  },
-  {
    "name": "VGC Santa Fe - Torneo de Halloween \"Yamil Mathey\"",
    "org": "Santa Fe VGC",
    "mode": "online",
@@ -204,7 +187,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:25",
-   "players": 53,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details",
    "reg_letto": true
   },
@@ -220,24 +203,8 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:30",
-   "players": 22,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6b00f567e0b5cca158bba21b/details",
-   "reg_letto": true
-  },
-  {
-   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
-   "org": "biffpipp's Battle Frontier",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "22:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details",
    "reg_letto": true
   },
   {
@@ -252,8 +219,24 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "22:00",
-   "players": 5,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6afc90ddee43ef789147725e/details",
+   "reg_letto": true
+  },
+  {
+   "name": "biffpipp’s Battle Frontier - CHAMPS M-C TOUR LCQ",
+   "org": "biffpipp's Battle Frontier",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-21",
+   "time": "22:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6afe04a89c256f7bbd23f95c/details",
    "reg_letto": true
   },
   {
@@ -476,7 +459,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "15:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f1b3c931f53978d972eb/details",
    "reg_letto": true
   },
@@ -684,7 +667,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -820,7 +803,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -1069,7 +1052,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details",
    "reg_letto": true
   },
