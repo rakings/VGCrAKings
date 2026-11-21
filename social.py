@@ -185,6 +185,8 @@ STAT_GIORNI = 120        # giorni di storico tenuti (follower e numeri del giorn
 STAT_POST = 12           # ultimi post di cui si leggono i numeri
 METRICHE_CONTO = ("reach", "views", "accounts_engaged", "total_interactions", "profile_views")
 METRICHE_POST = ("reach", "views", "saved", "shares", "total_interactions")
+STAT_V = 2               # cambia quando cambia il modo di leggere: le statistiche si rileggono subito
+STAT_ERR = {}            # primo errore di Meta per ogni metrica (si salva nel file, per capire cosa non va)
 
 
 def _totale(metrica, da, a):
@@ -192,8 +194,11 @@ def _totale(metrica, da, a):
     try:
         j = graph("GET", "%s/insights" % os.environ["IG_USER_ID"],
                   {"metric": metrica, "period": "day", "metric_type": "total_value", "since": str(da), "until": str(a)})
-    except RuntimeError:
+    except RuntimeError as ex:
+        STAT_ERR.setdefault(metrica, str(ex)[:200])
         return None
+    if not j.get("data"):
+        STAT_ERR.setdefault(metrica, "Meta non ha dato numeri (risposta vuota)")
     for m in j.get("data", []):
         tv = m.get("total_value") or {}
         if "value" in tv:
@@ -228,7 +233,7 @@ def statistiche():
     s = load(STAT_FILE, {}) or {}
     try:
         ultimo = datetime.strptime(s.get("quando", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-        if (datetime.now(timezone.utc) - ultimo).total_seconds() < STAT_ORE * 3600:
+        if s.get("v") == STAT_V and (datetime.now(timezone.utc) - ultimo).total_seconds() < STAT_ORE * 3600:
             return
     except ValueError:
         pass
@@ -261,7 +266,7 @@ def statistiche():
              "like": m.get("like_count"), "commenti": m.get("comments_count")}
         p.update(_numeri_post(m["id"]))
         post.append(p)
-    s = {"quando": ora(), "account": conto.get("username", ""), "follower": conto.get("followers_count"),
+    s = {"v": STAT_V, "quando": ora(), "errori": STAT_ERR, "account": conto.get("username", ""), "follower": conto.get("followers_count"),
          "seguiti": conto.get("follows_count"), "post_totali": conto.get("media_count"),
          "periodo28": periodo, "giorni": giorni, "post": post}
     save(STAT_FILE, s)

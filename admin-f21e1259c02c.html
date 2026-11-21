@@ -438,6 +438,8 @@ function disegnaStat(s){
   h+='<div class="hint" style="margin-top:14px">Ultimi post</div>'+(ps.length?ps.map(function(x){var t={"FEED":"post","REELS":"reel","STORY":"storia","CAROUSEL_ALBUM":"carosello","IMAGE":"post","VIDEO":"video"}[x.tipo]||String(x.tipo||"").toLowerCase();
     return '<div class="pa"><div><b>'+esc(x.testo||t)+'</b><small>'+esc(quando(x.data))+' · '+esc(t)+'</small><small>copertura '+nIt(x.reach)+' · visualizzazioni '+nIt(x.views)+' · ❤ '+nIt(x.like)+' · 💬 '+nIt(x.commenti)+' · salvati '+nIt(x.saved)+(x.shares!=null?' · condivisioni '+nIt(x.shares):'')+'</small></div>'+
       (x.link?'<a class="b" style="padding:8px 12px;font-size:.85rem" href="'+esc(x.link)+'" target="_blank" rel="noopener">apri</a>':'<span></span>')+'</div>'}).join(""):'<div class="hint">Nessun post ancora.</div>');
+  var er=s.errori||{},ek=Object.keys(er);
+  if(ek.length)h+='<div class="hint" style="margin-top:10px">Numeri non dati da Meta: '+esc(ek.join(", "))+' ('+esc(er[ek[0]])+')</div>';
   h+='<div class="hint" style="margin-top:10px">Aggiornate il '+esc(quando(s.quando))+(s.account?' · @'+esc(s.account):'')+' · i numeri di Meta possono arrivare con 1–2 giorni di ritardo.</div>';
   el.innerHTML=h
 }
