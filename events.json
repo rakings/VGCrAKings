@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T16:02:22+00:00",
+ "updated": "2026-11-21T16:27:10+00:00",
  "events": [
   {
    "name": "Metal's Meteor Mash-Up #8 - TOP 4 TEAM GRAPHIC",
@@ -172,7 +172,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "18:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aeb9fbbe94eae0f94747599/details",
    "reg_letto": true
   },
@@ -203,8 +203,8 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-21",
-   "time": "21:00",
-   "players": 45,
+   "time": "21:25",
+   "players": 47,
    "url": "https://play.limitlesstcg.com/tournament/6aee3e5fe99f3235a75e2736/details",
    "reg_letto": true
   },
@@ -220,7 +220,7 @@
    "bo": null,
    "date": "2026-11-21",
    "time": "21:30",
-   "players": 14,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6b00f567e0b5cca158bba21b/details",
    "reg_letto": true
   },
@@ -380,7 +380,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details",
    "reg_letto": true
   },
@@ -396,7 +396,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:30",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6aff3c1b2b9e244e6cee57be/details",
    "reg_letto": true
   },
@@ -444,7 +444,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details",
    "reg_letto": true
   },
@@ -668,7 +668,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
