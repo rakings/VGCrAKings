@@ -6,11 +6,11 @@
  "richieste": [
   {
    "id": "sto-133445398",
-   "v": 2,
+   "v": 3,
    "tipo": "storia",
    "storia": true,
    "rif": 0,
-   "creata": "2026-11-19T02:39:05Z",
+   "creata": "2026-11-21T11:18:49Z",
    "titolo": "Storia: Ezequiel Bustamante vince",
    "sotto": "2027 Buenos Aires Pokémon VG Special Championships",
    "img": "social/img/sto-133445398.jpg",
@@ -21,7 +21,7 @@
    },
    "x": {
     "stato": "da approvare",
-    "testo": "🏆 Ezequiel Bustamante (AR) wins 2027 Buenos Aires Pokémon VG Special Championships!\nTop 8: 2nd Bruno Quiroga, 3rd Samuel Pereira Marante, 4th Diego Ferreira Silva, 5th Len Deuel\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000084\n#PokemonVGC #PokemonChampions #VGC"
+    "testo": "🏆 Ezequiel Bustamante (AR) wins 2027 Buenos Aires Pokémon VG Special Championships!\nTop 8: 2nd Bruno Quiroga, 3rd Samuel Pereira Marante, 4th Diego Ferreira Silva, 5th Len Deuel, 6th Juan Velasco\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000084\n#PokemonChampions #VGC"
    },
    "yt": {
     "stato": "da approvare",
@@ -29,50 +29,26 @@
    }
   },
   {
-   "id": "reg-141713055",
-   "v": 2,
-   "tipo": "regionale",
-   "rif": 0,
-   "creata": "2026-11-18T02:57:42Z",
-   "titolo": "Latin America International Championships",
-   "sotto": "San Paolo, Brasile · ven 20 nov",
-   "img": "social/img/reg-141713055.jpg",
-   "link": "https://rakings.github.io/VGCrAKings/#regionali",
-   "ig": {
-    "stato": "da approvare",
-    "testo": "🏆 Latin America International Championships · in 2 days\n📍 San Paolo, Brasile\n📅 Fri Nov 20\n\nFollow it live in the rAKings VGC app: standings, teams and Top 8 📲\n\n#PokemonVGC #PokemonChampions #VGC #Regionals #VGCItalia"
-   },
-   "x": {
-    "stato": "da approvare",
-    "testo": "🏆 Latin America International Championships · in 2 days\n📍 San Paolo, Brasile\nFollow it live in the app 👇\nhttps://rakings.github.io/VGCrAKings/#regionali\n#PokemonVGC #PokemonChampions #VGC"
-   },
-   "yt": {
-    "stato": "da approvare",
-    "testo": "🏆 Latin America International Championships · in 2 days #Shorts"
-   }
-  },
-  {
    "id": "mon-202647",
-   "v": 2,
+   "v": 3,
    "tipo": "money",
    "rif": 0,
-   "creata": "2026-11-16T08:29:54Z",
+   "creata": "2026-11-21T11:18:48Z",
    "titolo": "Money tournament · 16–22 novembre",
-   "sotto": "4 tornei, dal premio piu' alto",
+   "sotto": "2 tornei, dal premio piu' alto",
    "img": "social/img/mon-202647-1.jpg",
    "imgs": [
     "social/img/mon-202647-1.jpg",
-    "social/img/mon-202647-2.jpg",
-    "social/img/mon-202647-3.jpg"
+    "social/img/mon-202647-2.jpg"
    ],
    "link": "https://rakings.github.io/VGCrAKings/#online",
    "ig": {
     "stato": "da approvare",
-    "testo": "💰 Money tournaments of the week · Nov 16–22\n\n1. 50€ · Torre Lotta Cup #4 50€ Amazon Gift Cards (Sat Nov 21 · 14:00 CET)\n2. $50 · Friday Fight Night 82! $50 Prize & Team Report (Sat Nov 21 · 00:00 CET)\n3. $50 · Runback Series #6 - Reg I $50 to 1st place (Sun Nov 22 · 23:00 CET)\n4. Cash · Amyverse VGC Champions Arena #19 Cash Prize! (Mon Nov 16 · 20:00 CET)\n\nSign-ups, reminders and every tournament in the rAKings VGC app: link in bio 📲\n\n#PokemonVGC #PokemonChampions #VGC #Pokemon #MoneyTournament #VGCItalia"
+    "testo": "💰 Pokémon VGC money tournaments this week · Nov 16–22\n\n1. 50€ · Torre Lotta Cup #4 50€ Amazon Gift Cards (Sat Nov 21 · 14:00 CET)\n2. $50 · Runback Series #6 - Reg I $50 to 1st place (Sun Nov 22 · 23:00 CET)\n\n🔖 Save it for the week and share it with your teammates.\nSign-ups and reminders: rAKings VGC app, link in bio 📲\n\n#PokemonChampions #PokemonVGC #VGC #MoneyTournament #PokemonTournament"
    },
    "x": {
     "stato": "da approvare",
-    "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Friday Fight Night 82! $50 Prize & Team…\n3) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonVGC #PokemonChampions #VGC"
+    "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonChampions #VGC"
    },
    "yt": {
     "stato": "pubblicato",
@@ -89,9 +65,8 @@
   "quando": "2026-11-21T10:28:08Z"
  },
  "fatti": [
-  "mon-202647",
   "sto-116899157",
-  "reg-141713055",
+  "mon-202647",
   "sto-133445398"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
