@@ -6,7 +6,9 @@ on:
     branches: [main]
     paths: ["locali.json", ".github/workflows/social.yml", "social.py", "social_img.py", "bric.ttf", "RussoOne-Regular.ttf", "ChakraPetch-Bold.ttf", "Bungee-Regular.ttf", "caratteri/**"]
   schedule:
-    - cron: "23 * * * *"
+    # riserva se il Worker non partisse (il Worker lo fa partire 18 volte al giorno, 8:30-21:30): 4 volte al giorno al minuto 32,
+    # solo di giorno: 8:32, 12:32, 16:32, 20:32 ora italiana d'inverno (un'ora dopo con l'ora legale). Orari di GitHub in UTC.
+    - cron: "32 7-19/4 * * *"
   workflow_dispatch:
 permissions:
   contents: write
