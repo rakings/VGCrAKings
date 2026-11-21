@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-21u";
+const VERSIONE = "2026-11-21w";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -658,22 +658,22 @@ async function autoStato(env) { return (await env.SUBS.get(AUTO_KEY, "json")) ||
 async function autoSalva(env, s) { s.log = (s.log || []).slice(-20); s.visti = (s.visti || []).slice(-AUTO.maxVisti); await env.SUBS.put(AUTO_KEY, JSON.stringify(s)); }
 function autoLog(s, t) { (s.log = s.log || []).push({ t: Math.floor(Date.now() / 1000), m: String(t).slice(0, 160) }); }
 
-// ---- giro dei flussi di GitHub fatto partire dal Worker (GitHub i giri programmati li salta spesso, il Worker e' puntuale).
-// UNA sola chiamata per giro: parte «Aggiorna tornei» (update.yml), che alla fine fa partire da solo anche «Social» (social.yml),
-// cosi' i post si preparano sempre con i tornei appena aggiornati. Usa la chiave GH_AVVISI dei pulsanti dell'admin.
-// 28 giri al giorno, ora italiana: ogni ora di giorno, piu' fitti nelle ore di punta (pranzo e sera), 5 di notte (tornei americani).
-// I calendari dentro i .yml restano come riserva.
-const GIRI_ORARI = ["00:30", "02:00", "03:30", "05:00", "06:30",
-                    "08:00", "09:00", "10:00", "11:00", "12:00", "12:30", "13:00", "13:30", "14:00", "15:00", "16:00", "17:00",
-                    "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00"];
-const FLUSSI = [["update.yml", GIRI_ORARI]];
+// ---- giri dei flussi di GitHub fatti partire dal Worker (GitHub i giri programmati li salta spesso, il Worker e' puntuale).
+// UNA sola chiamata per giro. Negli orari dei tornei parte «Aggiorna tornei» (update.yml), che alla fine fa partire da solo
+// anche «Social» (social.yml): cosi' i post si preparano con i tornei appena aggiornati. Negli altri orari di Social parte solo Social.
+// Ora italiana. Social 18 volte al giorno (8:30-21:30, piu' fitto a pranzo e la sera); tornei 12 volte (3 di notte per i tornei
+// americani, di giorno sempre insieme a un giro di Social, piu' fitti tra le 18 e le 20 per le iscrizioni ai Regionali italiani).
+// Usa la chiave GH_AVVISI dei pulsanti dell'admin.
+const SOCIAL_ORARI = ["08:30", "09:30", "10:30", "11:30", "12:00", "12:30", "13:00", "13:30", "14:30", "15:30", "16:30", "17:30",
+                      "18:00", "18:30", "19:00", "19:30", "20:30", "21:30"];
+const TORNEI_ORARI = ["00:30", "03:30", "06:30", "09:30", "11:30", "13:00", "14:30", "16:30", "18:00", "19:00", "19:30", "21:30"];
 const ORA_ROMA = new Intl.DateTimeFormat("it-IT", { timeZone: "Europe/Rome", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
 async function socialGiro(env, quando) {
   if (!env.GH_AVVISI) return;
   const t = Math.floor((quando || Date.now()) / 300000) * 300000;      // il giro dei 5 minuti a cui appartiene
   const hhmm = ORA_ROMA.format(new Date(t));
-  for (const [file, orari] of FLUSSI) {
-    if (!orari.includes(hhmm)) continue;
+  const file = TORNEI_ORARI.includes(hhmm) ? "update.yml" : SOCIAL_ORARI.includes(hhmm) ? "social.yml" : "";
+  if (file) {
     const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/" + file + "/dispatches", {
       method: "POST",
       headers: { "Authorization": "Bearer " + env.GH_AVVISI, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28",
