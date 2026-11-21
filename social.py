@@ -185,7 +185,7 @@ STAT_GIORNI = 120        # giorni di storico tenuti (follower e numeri del giorn
 STAT_POST = 12           # ultimi post di cui si leggono i numeri
 METRICHE_CONTO = ("reach", "views", "accounts_engaged", "total_interactions", "profile_views")
 METRICHE_POST = ("reach", "views", "saved", "shares", "total_interactions")
-STAT_V = 2               # cambia quando cambia il modo di leggere: le statistiche si rileggono subito
+STAT_V = 3               # cambia quando cambia il modo di leggere: le statistiche si rileggono subito
 STAT_ERR = {}            # primo errore di Meta per ogni metrica (si salva nel file, per capire cosa non va)
 
 
@@ -225,12 +225,71 @@ def _numeri_post(mid):
     return out
 
 
+def _openssl(args, dati):
+    import subprocess
+    r = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-iter", "200000", "-md", "sha256", "-a", "-A",
+                        "-pass", "env:BACKUP_CHIAVE"] + args, input=dati, capture_output=True, timeout=60)
+    if r.returncode != 0:
+        raise RuntimeError("openssl: %s" % r.stderr.decode("utf-8", "replace").strip()[:120])
+    return r.stdout
+
+
+def cifra(d):
+    """Le statistiche vanno nel repo pubblico: si salvano CIFRATE con BACKUP_CHIAVE (uguale al codice admin, che le decifra nel browser)."""
+    return {"formato": "aes-256-cbc pbkdf2 sha256 200000", "dati": _openssl(["-salt"], json.dumps(d, ensure_ascii=False).encode("utf-8")).decode("ascii")}
+
+
+def decifra(f):
+    if not isinstance(f, dict) or "dati" not in f:
+        return f or {}                      # file vecchio non cifrato (o assente)
+    try:
+        return json.loads(_openssl(["-d"], f["dati"].encode("ascii") + b"\n").decode("utf-8"))
+    except (RuntimeError, ValueError) as ex:
+        log("[ATTENZIONE] Statistiche vecchie non decifrabili (BACKUP_CHIAVE cambiata?), si riparte da zero:", ex)
+        return {}
+
+
+PUBBLICO_MIN = 100       # sotto i 100 follower Meta non da' i dati sul pubblico
+
+
+def _pubblico(follower):
+    """Citta', paesi, eta', genere e ore online dei follower (dati aggregati di Meta). Sotto i 100 follower Meta li rifiuta."""
+    if (follower or 0) < PUBBLICO_MIN:
+        return {"msg": "sotto %d follower" % PUBBLICO_MIN}
+    uid, out = os.environ["IG_USER_ID"], {}
+    for chiave, bd in (("citta", "city"), ("paesi", "country"), ("eta", "age"), ("genere", "gender")):
+        try:
+            j = graph("GET", "%s/insights" % uid, {"metric": "follower_demographics", "period": "lifetime",
+                                                   "metric_type": "total_value", "breakdown": bd})
+            res = []
+            for m in j.get("data", []):
+                for b in (m.get("total_value") or {}).get("breakdowns") or []:
+                    for r in b.get("results") or []:
+                        res.append([(r.get("dimension_values") or ["?"])[0], r.get("value", 0)])
+            out[chiave] = sorted(res, key=lambda x: -x[1])[:10]
+        except RuntimeError as ex:
+            out.setdefault("msg", str(ex)[:160])
+    try:
+        j = graph("GET", "%s/insights" % uid, {"metric": "online_followers", "period": "lifetime"})
+        for m in j.get("data", []):
+            v = (m.get("values") or [{}])[-1].get("value")
+            if isinstance(v, dict) and v:
+                out["ore"] = {str(k): v[k] for k in v}
+    except RuntimeError:
+        pass
+    return out
+
+
 def statistiche():
-    """Una volta al giorno: numeri del profilo Instagram (follower, copertura, visualizzazioni, interazioni) e degli ultimi post.
-    Si salvano in social/statistiche.json e si vedono nella scheda Instagram dell'admin. Un errore qui non ferma mai il resto."""
+    """Una volta al giorno: numeri del profilo Instagram (follower, copertura, visualizzazioni, interazioni), degli ultimi post
+    e, dai 100 follower, del pubblico (citta', eta', ore online). Si salvano CIFRATE in social/statistiche.json e si vedono
+    nella scheda Statistiche dell'admin. Un errore qui non ferma mai il resto."""
     if not os.environ.get("IG_TOKEN") or not os.environ.get("IG_USER_ID"):
         return
-    s = load(STAT_FILE, {}) or {}
+    if not os.environ.get("BACKUP_CHIAVE"):
+        log("[ATTENZIONE] Statistiche di Instagram non salvate: manca BACKUP_CHIAVE (servono cifrate, il repo e' pubblico).")
+        return
+    s = decifra(load(STAT_FILE, {}))
     try:
         ultimo = datetime.strptime(s.get("quando", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
         attesa = STAT_ORE if not s.get("errori") else 0      # se Meta ha rifiutato qualcosa si riprova a ogni giro
@@ -269,8 +328,8 @@ def statistiche():
         post.append(p)
     s = {"v": STAT_V, "quando": ora(), "errori": STAT_ERR, "account": conto.get("username", ""), "follower": conto.get("followers_count"),
          "seguiti": conto.get("follows_count"), "post_totali": conto.get("media_count"),
-         "periodo28": periodo, "giorni": giorni, "post": post}
-    save(STAT_FILE, s)
+         "periodo28": periodo, "giorni": giorni, "post": post, "pubblico": _pubblico(conto.get("followers_count"))}
+    save(STAT_FILE, cifra(s))
     log("Statistiche di Instagram aggiornate: %s follower, %d post letti." % (s["follower"], len(post)))
 
 

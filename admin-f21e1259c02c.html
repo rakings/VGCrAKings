@@ -416,9 +416,19 @@ function disegnaIg(){
 }
 /* ---- statistiche di Instagram: social/statistiche.json (le legge il flusso «Social» una volta al giorno) ---- */
 function nIt(v){return v==null?"–":Number(v).toLocaleString("it-IT")}
+/* il file nel repo pubblico e' CIFRATO (openssl aes-256-cbc, pbkdf2 sha256 200000) con BACKUP_CHIAVE = codice admin: si decifra qui */
+function decifraStat(b64,pass){
+  var raw=Uint8Array.from(atob(b64),function(c){return c.charCodeAt(0)}),C=crypto.subtle;
+  if(String.fromCharCode.apply(null,raw.slice(0,8))!=="Salted__")return Promise.reject(new Error("formato sconosciuto"));
+  return C.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveBits"]).then(function(km){
+    return C.deriveBits({name:"PBKDF2",salt:raw.slice(8,16),iterations:200000,hash:"SHA-256"},km,384)}).then(function(b){b=new Uint8Array(b);
+    return C.importKey("raw",b.slice(0,32),"AES-CBC",false,["decrypt"]).then(function(k){return C.decrypt({name:"AES-CBC",iv:b.slice(32,48)},k,raw.slice(16))})})
+  .then(function(pt){return JSON.parse(new TextDecoder().decode(pt))},function(){throw new Error("non decifrabili: BACKUP_CHIAVE su GitHub deve essere uguale al codice admin")})
+}
 function statIg(){
   fetch(SITE+"social/statistiche.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error("sito "+r.status);return r.json()})
-  .then(disegnaStat).catch(function(e){$("igs").innerHTML='<div class="hint">Statistiche non lette ('+esc(e.message||"errore")+').</div>'})
+  .then(function(f){return f&&f.dati?decifraStat(f.dati,getTok()||""):f}).then(disegnaStat)
+  .catch(function(e){$("igs").innerHTML='<div class="hint">Statistiche non lette ('+esc(e.message||"errore")+').</div>'})
 }
 function disegnaStat(s){
   var el=$("igs");
@@ -438,6 +448,16 @@ function disegnaStat(s){
   h+='<div class="hint" style="margin-top:14px">Ultimi post</div>'+(ps.length?ps.map(function(x){var t={"FEED":"post","REELS":"reel","STORY":"storia","CAROUSEL_ALBUM":"carosello","IMAGE":"post","VIDEO":"video"}[x.tipo]||String(x.tipo||"").toLowerCase();
     return '<div class="pa"><div><b>'+esc(x.testo||t)+'</b><small>'+esc(quando(x.data))+' · '+esc(t)+'</small><small>copertura '+nIt(x.reach)+' · visualizzazioni '+nIt(x.views)+' · ❤ '+nIt(x.like)+' · 💬 '+nIt(x.commenti)+' · salvati '+nIt(x.saved)+(x.shares!=null?' · condivisioni '+nIt(x.shares):'')+'</small></div>'+
       (x.link?'<a class="b" style="padding:8px 12px;font-size:.85rem" href="'+esc(x.link)+'" target="_blank" rel="noopener">apri</a>':'<span></span>')+'</div>'}).join(""):'<div class="hint">Nessun post ancora.</div>');
+  var pu=s.pubblico||{};
+  function barre(t,l,f){if(!l||!l.length)return "";var m=Math.max.apply(0,l.map(function(x){return x[1]}).concat([1]));
+    return '<div class="hint" style="margin-top:10px">'+t+'</div>'+l.slice(0,5).map(function(x){return '<div class="row"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(f?f(x[0]):x[0])+'</span><div class="bar"><i style="width:'+Math.round(100*x[1]/m)+'%"></i></div><span class="num">'+nIt(x[1])+'</span></div>'}).join("")}
+  if(pu.citta||pu.paesi||pu.eta||pu.genere||pu.ore){
+    h+='<div class="hint" style="margin-top:16px;font-weight:700">Chi ti segue</div>'+barre("Città",pu.citta)+barre("Paesi",pu.paesi)+barre("Età",pu.eta)+
+      barre("Genere",pu.genere,function(g){return {F:"donne",M:"uomini",U:"non indicato"}[g]||g});
+    if(pu.ore){var ho=[];for(var i=0;i<24;i++)ho.push(+(pu.ore[i]||pu.ore[String(i)]||0));var mo=Math.max.apply(0,ho.concat([1])),best=ho.indexOf(mo);
+      h+='<div class="hint" style="margin-top:10px">Ore in cui i follower sono online (picco alle '+best+':00, ora di Meta)</div><div style="display:flex;align-items:flex-end;gap:2px;height:50px">'+
+        ho.map(function(v,i){return '<i title="'+i+':00 · '+v+'" style="flex:1;height:'+Math.max(3,Math.round(48*v/mo))+'px;background:'+(i===best?"var(--go)":"var(--ac)")+';border-radius:2px"></i>'}).join("")+'</div>'}
+  }else h+='<div class="hint" style="margin-top:12px">Dati sui follower (città, paesi, età, genere, ore online): si sbloccano da soli a 100 follower'+(s.follower!=null?' (ora '+nIt(s.follower)+')':'')+'.</div>';
   var er=s.errori||{},ek=Object.keys(er);
   if(ek.length)h+='<div class="hint" style="margin-top:10px">Numeri non dati da Meta: '+esc(ek.join(", "))+' ('+esc(er[ek[0]])+')</div>';
   h+='<div class="hint" style="margin-top:10px">Aggiornate il '+esc(quando(s.quando))+(s.account?' · @'+esc(s.account):'')+' · i numeri di Meta possono arrivare con 1–2 giorni di ritardo.</div>';
