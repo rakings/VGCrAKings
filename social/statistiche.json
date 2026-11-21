@@ -1,0 +1,26 @@
+{
+ "quando": "2026-11-21T10:39:50Z",
+ "account": "vgc_rakings",
+ "follower": 1,
+ "seguiti": 10,
+ "post_totali": 0,
+ "periodo28": {
+  "reach": null,
+  "views": null,
+  "accounts_engaged": null,
+  "total_interactions": null,
+  "profile_views": null
+ },
+ "giorni": [
+  {
+   "data": "2026-11-20",
+   "follower": 1,
+   "reach": null,
+   "views": null,
+   "accounts_engaged": null,
+   "total_interactions": null,
+   "profile_views": null
+  }
+ ],
+ "post": []
+}
