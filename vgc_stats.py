@@ -613,6 +613,12 @@ def collect(ev, write):
     global turno_nuovo
     if old.get("rounds") and swiss_total > old["rounds"]:
         turno_nuovo = True
+    # REGOLA FISSA: un torneo non si chiude mai prima della finale della Top 8, qualunque cosa dica Pokedata
+    # (elenco o pagina del torneo). Unica eccezione: passata la data di fine + 1 giorno (finale mai vista).
+    if status == "finished" and not finale_alle and not ev.get("fine_forzata") and \
+            time.strftime("%Y-%m-%d", time.gmtime()) <= fine_con_margine(ev):
+        status = "running"
+        last_status[tid] = status
     meta = {"id": tid, "name": ev["name"], "city": ev["city"], "date": ev["start"], "end": ev["end"], "reg": ev["reg"],
             "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished", "finale_alle": finale_alle,
             "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "Pokedata (apiv3), dati RK9",
