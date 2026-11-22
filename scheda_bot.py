@@ -9,7 +9,7 @@ A ogni giro:
   - legge i messaggi nuovi (coda di Apps Script, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
   - unisce i messaggi di ogni giocatore arrivati nel giro (testo con il modello + foto: prima l'avatar, poi il logo del team);
   - controlla la scheda (18 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
-  - legge le squadre dai link Pokepaste (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
+  - legge le squadre dai link Pokepaste e Showdown psim.us/t/ (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
   - salva la scheda IN ATTESA in schede/attesa.json, CIFRATA con BACKUP_CHIAVE (il repo è pubblico: niente foto o
     link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin (scheda «Schede»), che lancia
     «python scheda_bot.py azione <id> approva|rifiuta [motivo]»: la scheda approvata va in schede/pubbliche.json
@@ -101,7 +101,7 @@ MODELLO = (
     "Twitch: (facoltativo)\n"
     "YouTube: (facoltativo)\n"
     "TikTok: (facoltativo)\n"
-    "Squadre: (fino a 6 link Pokepaste, uno per riga, con il formato davanti)\n"
+    "Squadre (fino a 6, una per riga):\n"
     "Reg M-C: https://pokepast.es/...\n"
     "Frase: (facoltativa, max 140 caratteri)\n"
     "Ho almeno 18 anni: SI"
@@ -109,7 +109,7 @@ MODELLO = (
 AIUTO = (
     "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona.\n"
     "Serve almeno un profilo Instagram o Facebook *pubblico*: lo usiamo per verificare che sei tu.\n"
-    "Le squadre vanno messe come link di pokepast.es."
+    "Le squadre vanno messe come link di pokepast.es o di Showdown (psim.us/t/…)."
 )
 
 
@@ -203,6 +203,38 @@ def norm(t):
     return re.sub(r"\s+", " ", (t or "").strip().lower())
 
 
+def squadra_da_riga(riga):
+    """(formato, link) da una riga con un link Pokepaste, anche scritto come [Nome](link) o con altro testo intorno."""
+    m = re.search(r"pokepast\.es/([0-9a-z]{6,32})", riga or "", re.I)
+    sd = None if m else re.search(r"(?:psim\.us/t/|pokemonshowdown\.com/(?:t/|view/))(\d{3,12})", riga or "", re.I)
+    if sd:                                            # squadre salvate su Showdown: https://psim.us/t/2091236
+        m = sd
+    if not m:
+        return None
+    prima = re.sub(r"(https?://)?(www\.|play\.|teams\.)?$", "", riga[:m.start()], flags=re.I)
+    md = re.search(r"\[([^\]]*)\]\(\s*$", prima)              # [Untitled 1 (OTS)](https://pokepast.es/...)
+    if md:
+        etichetta = prima[:md.start()].strip(" :-\t") or md.group(1).strip()
+    else:
+        etichetta = prima.strip(" :-\t[]()")
+    if ":" in etichetta and etichetta.split(":", 1)[0].strip():   # «Reg M-C: Untitled 1» -> «Reg M-C»
+        etichetta = etichetta.split(":", 1)[0].strip()
+    return etichetta, ("https://psim.us/t/" + m.group(1)) if sd else ("https://pokepast.es/" + m.group(1).lower())
+
+
+def con_link(msg):
+    """Testo del messaggio con i link «nascosti» di Telegram (testo cliccabile) scritti dopo il testo."""
+    t = msg.get("text") or msg.get("caption") or ""
+    ents = [e for e in (msg.get("entities") or msg.get("caption_entities") or []) if e.get("type") == "text_link" and e.get("url")]
+    if not ents:
+        return t
+    u = t.encode("utf-16-le")                       # Telegram conta le posizioni in unità UTF-16
+    for e in sorted(ents, key=lambda e: -e.get("offset", 0)):
+        fine = (e.get("offset", 0) + e.get("length", 0)) * 2
+        u = u[:fine] + (" " + e["url"]).encode("utf-16-le") + u[fine:]
+    return u.decode("utf-16-le", "replace")
+
+
 def leggi_modello(testo):
     """'Chiave: valore' riga per riga; le righe senza chiave nota dopo «Squadre:» sono altre squadre."""
     campi, squadre, ultimo = {}, [], None
@@ -215,14 +247,15 @@ def leggi_modello(testo):
             ultimo = chiave
             val = m.group(2).strip()
             if chiave == "squadre":
-                if val:
-                    squadre.append(("", val))
+                sq = squadra_da_riga(val)
+                if sq:
+                    squadre.append(sq)
             else:
                 campi[chiave] = val
         elif ultimo == "squadre":
-            m2 = re.match(r"^\s*(.*?)\s*:?\s*(https?://\S+)\s*$", riga)
-            if m2:
-                squadre.append((m2.group(1).strip(" :-"), m2.group(2)))
+            sq = squadra_da_riga(riga)
+            if sq:
+                squadre.append(sq)
     campi["squadre"] = squadre
     return campi
 
@@ -242,8 +275,77 @@ def link_social(campo, val):
     return "https://%s%s" % (host, u.path.rstrip("/"))
 
 
+NOMI_SD = None
+
+
+def nomi_showdown():
+    """id -> nome di mosse, strumenti e abilità dai dati di Showdown (una volta per giro). Vuoto se non raggiungibile."""
+    global NOMI_SD
+    if NOMI_SD is not None:
+        return NOMI_SD
+    NOMI_SD = {}
+    for f in ("moves", "items", "abilities"):
+        try:
+            with urllib.request.urlopen(urllib.request.Request("https://play.pokemonshowdown.com/data/%s.js" % f,
+                                                               headers={"User-Agent": "rakings-bot (+https://rakings.github.io)"}), timeout=30) as r:
+                t = r.read().decode("utf-8", "replace")
+        except Exception as ex:
+            log("Dati Showdown non letti:", f, ex)
+            continue
+        i, prof, chiave = t.find("{"), 0, None            # oggetto {id:{...,name:"Nome",...}, ...}: si contano le graffe
+        for m in re.finditer(r'[{}]|([a-z0-9]+):\{|name:"([^"]+)"', t[i:]):
+            tok = m.group(0)
+            if m.group(1) is not None:
+                if prof == 1:
+                    chiave = m.group(1)
+                prof += 1
+            elif tok == "{":
+                prof += 1
+            elif tok == "}":
+                prof -= 1
+            elif m.group(2) is not None and prof == 2 and chiave:
+                NOMI_SD.setdefault(chiave, m.group(2))
+                chiave = None
+    return NOMI_SD
+
+
+def nome_sd(v):
+    k = re.sub(r"[^a-z0-9]", "", (v or "").lower())
+    if not k:
+        return ""
+    return nomi_showdown().get(k) or re.sub(r"(?<=[a-z])(?=[A-Z])", " ", v)
+
+
+def leggi_showdown(url):
+    """Squadra salvata su Showdown (psim.us/t/ID): formato «packed» -> stessa lista di leggi_pokepaste."""
+    m = re.search(r"(\d{3,12})\s*$", url or "")
+    if not m:
+        return None
+    try:
+        req = urllib.request.Request("https://teams.pokemonshowdown.com/api/getteam?teamid=" + m.group(1),
+                                     headers={"User-Agent": "rakings-bot (+https://rakings.github.io)"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            dati = json.loads(r.read().decode("utf-8", "replace").lstrip("]"))
+    except Exception as ex:
+        log("Squadra Showdown non letta:", url, ex)
+        return None
+    squadra = []
+    for pk in (dati.get("team") or "").split("]"):
+        c = pk.split("|")
+        if len(c) < 5:
+            continue
+        specie = c[1] or c[0]
+        extra = c[11].split(",") if len(c) > 11 else []
+        squadra.append({"pokemon": specie.strip(), "strumento": nome_sd(c[2]), "abilita": nome_sd(c[3]),
+                        "tera": extra[5].strip() if len(extra) > 5 else "",
+                        "mosse": [nome_sd(x) for x in c[4].split(",") if x][:4]})
+    return squadra[:6] or None
+
+
 def leggi_pokepaste(url):
     """Pokepaste in formato Showdown -> lista di 6 {pokemon, strumento, abilita, tera, mosse}. Niente EV/IV/natura."""
+    if "psim.us/t/" in (url or ""):
+        return leggi_showdown(url)
     m = re.search(r"pokepast\.es/([0-9a-f]{6,32})", url or "", re.I)
     if not m:
         return None
@@ -322,6 +424,8 @@ def costruisci(campi, foto, utente):
     if len(tipi) == 1:
         tipi = tipi * 2
     squadre = []
+    if len(campi.get("squadre", [])) > MAX_SQUADRE:
+        avvisi.append("hai messo più di %d squadre: tengo le prime %d / more than %d teams: only the first %d are kept" % ((MAX_SQUADRE,) * 4))
     for formato, url in campi.get("squadre", [])[:MAX_SQUADRE]:
         s = leggi_pokepaste(url)
         if s:
@@ -458,7 +562,7 @@ def elabora(aggiornamenti, attesa):
         if chat.get("type") != "private" or not msg.get("from") or msg["from"].get("is_bot"):
             continue
         d = per_utente.setdefault(msg["from"]["id"], {"utente": msg["from"], "chat": chat["id"], "testi": [], "foto": [], "loghi": [], "comandi": []})
-        testo = msg.get("text") or msg.get("caption") or ""
+        testo = con_link(msg)
         fid = ""
         if msg.get("photo"):
             fid = sorted(msg["photo"], key=lambda p: p.get("file_size") or 0)[-1]["file_id"]
