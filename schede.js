@@ -65,6 +65,7 @@ var CSS='.sk-ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);o
 '.sk-cp{display:flex;align-items:center;gap:12px}.sk-cp b.n{font-size:1.6rem;font-weight:900;color:#ffd21f;white-space:nowrap}.sk-bar{height:10px;border-radius:99px;background:#3a1b1f;margin-top:8px;overflow:hidden}.sk-bar b{display:block;height:100%;background:linear-gradient(90deg,#ffd21f,#ff6b78);border-radius:99px}'+
 '.sk-sm{font-size:.8rem;color:#e0aaa6}.sk-r{display:flex;gap:8px;align-items:baseline;border-top:1px solid rgba(255,255,255,.12);padding:7px 2px;font-size:.88rem}.sk-r:first-of-type{border-top:0}.sk-r b{min-width:62px}.sk-rb{width:100%;background:none;border:0;border-top:1px solid rgba(255,255,255,.12);color:inherit;font:inherit;text-align:left;cursor:pointer}.sk-rb:first-of-type{border-top:0}.sk-rb i{margin-left:auto;font-style:normal;opacity:.7;font-size:1.1rem}.sk-rb:active{background:rgba(255,255,255,.06)}.sk-r .t{font-size:.65rem;font-weight:800;border-radius:6px;padding:1px 6px;white-space:nowrap}.sk-r .t0{background:rgba(255,255,255,.12)}'+
 '.sk-tag{display:inline-block;font-size:.68rem;font-weight:800;border:1.5px dashed #e0aaa6;color:#e0aaa6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}'+
+'.sk-seg{text-align:center;margin:4px 0 2px}.sk-seg button{background:none;border:0;color:#e0aaa6;font:inherit;font-size:.78rem;text-decoration:underline;cursor:pointer;padding:6px}'+
 '.sk-sqd{border:1.5px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(74,18,32,.55);margin-top:8px;overflow:hidden}.sk-sqd summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 12px;font-weight:800}.sk-sqd summary::-webkit-details-marker{display:none}'+
 '.sk-sqd summary b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sk-sqd summary small{color:#e0aaa6;font-weight:700;font-size:.75rem;white-space:nowrap}.sk-sqd summary i{margin-left:auto;font-style:normal;transition:transform .2s}.sk-sqd[open] summary i{transform:rotate(180deg)}.sk-sqd .sk-team{margin:0;padding:0 10px 10px}'+
 '.sk select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#4a1220;color:#fff;font:inherit;font-weight:700}'+
@@ -83,7 +84,7 @@ var ICO_SOC={"instagram":["FF0069","M7.0301.084c-1.2768.0602-2.1487.264-2.911.56
 function icoSocial(k){var i=ICO_SOC[k];return i?'<svg viewBox="0 0 24 24" aria-hidden="true" style="fill:#fff"><path d="'+i[1]+'"/></svg>':'<b>'+E(k)+'</b>'}
 function nomeSocial(k,u){try{var p=new URL(u).pathname.split("/").filter(Boolean);if(!p.length||/^(profile\.php|channel|c|user|people|pages)$/i.test(p[0])&&k!=="youtube")return"";
   var h=decodeURIComponent(p[p[0]==="c"||p[0]==="user"?1:0]||"");if(!h||h.length>30)return"";return(k==="twitch"||k==="facebook"||h.charAt(0)==="@")?h:"@"+h}catch(e){return""}}
-function bollino(n){return typeof window.phHtml==="function"?window.phHtml(n):'<span class="ph" style="width:26px;height:26px;border-radius:50%;background:#666;display:inline-block"></span>'}
+function bollino(n){return typeof window.phHtml==="function"?window.phHtml(n,true):'<span class="ph" style="width:26px;height:26px;border-radius:50%;background:#666;display:inline-block"></span>'}
 function squadraHtml(q){return '<div class="sk-team">'+(q.pokemon||[]).map(function(p){return '<div class="sk-mon"><div class="h">'+bollino(p.pokemon)+'<div><b>'+E(p.pokemon)+'</b><small>'+E(p.strumento||"—")+'</small></div></div>'+
   '<div class="ab">'+E(p.abilita||"")+(p.tera?'<span class="te">'+E(p.tera)+'</span>':'')+'</div><ul>'+(p.mosse||[]).map(function(m){return '<li>'+E(m)+'</li>'}).join("")+'</ul></div>'}).join("")+'</div>'}
 
@@ -109,6 +110,7 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
     var tit=q.nome||q.formato||("Squadra "+(i+1)),sub=q.nome&&q.formato&&q.formato!==q.nome?q.formato:"";
     return '<details class="sk-sqd"'+(i?'':' open')+'><summary><b>'+E(tit)+'</b>'+(sub?'<small>'+E(sub)+'</small>':'')+'<i>⌄</i></summary>'+squadraHtml(q)+'</details>'}).join("")+
     '<p class="sk-sm" style="margin-top:8px">Open teamsheet: niente EV né statistiche.</p></div>':'')+
+  (typeof window.segApri==="function"?'<p class="sk-seg"><button type="button" data-seg="">⚑ Segnala questa scheda</button></p>':'')+
   '</div>';
   ov.innerHTML=h;document.body.appendChild(ov);var prev=document.body.style.overflow;document.body.style.overflow="hidden";
   function chiudi(){ov.remove();document.body.style.overflow=prev;document.removeEventListener("keydown",esc);if(CHIUDI===chiudi)CHIUDI=null}
@@ -119,9 +121,11 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
     var rb=e.target.closest("[data-ri]");if(rb){                 /* risultato: chiude la scheda e apre il torneo, come la riga nella ricerca */
       var box=document.querySelector('.pr-nasc[data-sch-r="'+id+'"]'),el=box&&box.children[+rb.getAttribute("data-ri")];chiudi();
       if(el&&el.tagName==="BUTTON")el.click();return}
+    if(e.target.closest("[data-seg]")){                           /* segnalazione: stessa finestra di «Segnala un problema», arriva in admin → Statistiche */
+      window.segApri({titolo:"Segnala questa scheda",pre:"[Scheda "+(s.nome||"")+" · "+(s.id||"")+"] ",ph:"Es. non è lui, foto non sua, logo di un altro team, frase offensiva…"});return}
     var lv=e.target.closest("[data-live]");if(lv){                /* LIVE: chiude la scheda e apre il live, come la riga del torneo nella ricerca */
-      var id=lv.getAttribute("data-live")||((ctx.rows||[]).filter(function(r){return r.live&&r.id})[0]||{}).id;chiudi();
-      var riga=id&&Array.prototype.filter.call(document.querySelectorAll(".pr-r[data-pid]"),function(b){return b.getAttribute("data-pid")===id&&b.getAttribute("data-pn")===ctx.nome})[0];
+      var lid=lv.getAttribute("data-live")||((ctx.rows||[]).filter(function(r){return r.live&&r.id})[0]||{}).id;chiudi();
+      var riga=lid&&Array.prototype.filter.call(document.querySelectorAll(".pr-r[data-pid]"),function(b){return b.getAttribute("data-pid")===lid&&b.getAttribute("data-pn")===ctx.nome})[0];
       if(riga)riga.click();return}
     var tb=e.target.closest("[data-tm]");if(tb&&team){var nomi=(team.membri||[]).map(function(m){return PUB[m]&&PUB[m].nome}).filter(Boolean);
       var box=ov.querySelector(".sk-tml");if(box){box.remove();return}box=document.createElement("p");box.className="sk-sm sk-tml";box.style.marginTop="6px";box.textContent=(nomi.length>1?"Nel team: ":"Unico giocatore del team con la scheda: ")+nomi.join(" · ");tb.parentNode.appendChild(box)}});
