@@ -19,6 +19,8 @@ A ogni giro:
 Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub). Nessuna chiave nel repo.
 """
 import base64
+import difflib
+import unicodedata
 import hashlib
 import io
 import json
@@ -43,6 +45,8 @@ MAX_FRASE = 140
 MAX_RISULTATI = 10
 LATO_FOTO = 256
 
+CAMPI_S = None   # CAMPI con le chiavi senza accenti/punteggiatura (riempito dopo)
+
 COLORI = {  # colore del nickname: lista fissa, tonalità leggibili sullo sfondo scuro della scheda
     "rosso": "#ff5a5f", "red": "#ff5a5f", "arancione": "#ff9f43", "orange": "#ff9f43", "giallo": "#ffd21f",
     "yellow": "#ffd21f", "verde": "#4cd97b", "green": "#4cd97b", "azzurro": "#5ad1ff", "light blue": "#5ad1ff",
@@ -50,17 +54,30 @@ COLORI = {  # colore del nickname: lista fissa, tonalità leggibili sullo sfondo
     "bianco": "#ffffff", "white": "#ffffff", "oro": "#e8c060", "gold": "#e8c060",
 }
 
-TIPI = {  # nome italiano / inglese -> chiave
-    "normale": "normal", "normal": "normal", "fuoco": "fire", "fire": "fire", "acqua": "water", "water": "water",
-    "elettro": "electric", "electric": "electric", "erba": "grass", "grass": "grass", "ghiaccio": "ice", "ice": "ice",
-    "lotta": "fighting", "fighting": "fighting", "veleno": "poison", "poison": "poison", "terra": "ground", "ground": "ground",
-    "volante": "flying", "flying": "flying", "psico": "psychic", "psychic": "psychic", "coleottero": "bug", "bug": "bug",
-    "roccia": "rock", "rock": "rock", "spettro": "ghost", "ghost": "ghost", "drago": "dragon", "dragon": "dragon",
-    "buio": "dark", "dark": "dark", "acciaio": "steel", "steel": "steel", "folletto": "fairy", "fairy": "fairy",
+TIPI_NOMI = {  # chiave -> modi in cui la gente lo scrive (IT, EN, ES, FR, DE e varianti comuni)
+    "normal": "normale normal norm",
+    "fire": "fuoco fire fuego feu feuer",
+    "water": "acqua water agua eau wasser",
+    "electric": "elettro elettrico elettrica electric electrico elettr elektro electrik electrique",
+    "grass": "erba grass planta plante pflanze erbe",
+    "ice": "ghiaccio ice hielo glace eis",
+    "fighting": "lotta fighting fight combattimento lucha combat kampf",
+    "poison": "veleno poison veneno gift velenoso",
+    "ground": "terra ground tierra sol boden suolo",
+    "flying": "volante flying volo volador vol flug",
+    "psychic": "psico psichico psichica psychic psiquico psy psycho psycho",
+    "bug": "coleottero insetto bug bicho insecte kafer",
+    "rock": "roccia rock roca roche gestein",
+    "ghost": "spettro fantasma ghost spectre geist",
+    "dragon": "drago dragone dragon drache",
+    "dark": "buio oscurita oscuro dark siniestro tenebres unlicht tenebre sinistro",
+    "steel": "acciaio steel acero acier stahl metallo metal",
+    "fairy": "folletto fata fairy hada fee",
 }
+TIPI = {nome: k for k, nomi in TIPI_NOMI.items() for nome in nomi.split()}
 
 CAMPI = {  # chiave del modello (IT/EN) -> campo
-    "nome": "nome", "name": "nome", "first name": "nome",
+    "nome": "nome", "name": "nome", "first name": "nome", "nome e cognome": "nome", "nome completo": "nome", "full name": "nome",
     "cognome": "cognome", "surname": "cognome", "last name": "cognome",
     "nickname": "nickname", "nick": "nickname",
     "nickname battlefy/vr": "nick_vr", "nickname battlefy / vr": "nick_vr", "nickname battlefy": "nick_vr",
@@ -203,6 +220,20 @@ def norm(t):
     return re.sub(r"\s+", " ", (t or "").strip().lower())
 
 
+def semplice(t):
+    """minuscolo, senza accenti, solo lettere e numeri separati da uno spazio: «Acciàio,ACQUA» -> «acciaio acqua»"""
+    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode().lower()
+    return " ".join(re.findall(r"[a-z0-9]+", t))
+
+
+def simile(parola, scelte, soglia=0.8):
+    """la parola giusta anche con un errore di battitura («aciaio» -> «acciaio»), oppure None"""
+    if parola in scelte:
+        return parola
+    m = difflib.get_close_matches(parola, list(scelte), n=1, cutoff=soglia)
+    return m[0] if m else None
+
+
 def squadra_da_riga(riga):
     """(formato, link) da una riga con un link Pokepaste, anche scritto come [Nome](link) o con altro testo intorno."""
     m = re.search(r"pokepast\.es/([0-9a-z]{6,32})", riga or "", re.I)
@@ -239,12 +270,21 @@ def con_link(msg):
 
 def leggi_modello(testo):
     """'Chiave: valore' riga per riga; le righe senza chiave nota dopo «Squadre:» sono altre squadre."""
+    global CAMPI_S
+    if CAMPI_S is None:
+        CAMPI_S = {semplice(k): v for k, v in CAMPI.items()}
     campi, squadre, ultimo = {}, [], None
     for riga in (testo or "").splitlines():
         if not riga.strip():
             continue
-        m = re.match(r"^\s*([^:]{1,50}?)\s*:\s*(.*)$", riga)
-        chiave = CAMPI.get(norm(re.sub(r"\(.*?\)", "", m.group(1)))) if m else None   # «(facoltativo)» nell'etichetta non conta
+        m = re.match(r"^\s*([^:=]{1,50}?)\s*[:=]\s*(.*)$", riga)
+        chiave = None
+        if m and not re.match(r"^\s*https?$", m.group(1), re.I):
+            etichetta = re.sub(r"\(.*?\)", "", m.group(1))                 # «(facoltativo)» nell'etichetta non conta
+            chiave = CAMPI.get(norm(etichetta)) or CAMPI_S.get(semplice(etichetta))
+            if not chiave and len(semplice(etichetta)) >= 4:                # «Instragram», «Nikname»…
+                vicina = simile(semplice(etichetta), CAMPI_S, 0.85)
+                chiave = CAMPI_S.get(vicina) if vicina else None
         if chiave:
             ultimo = chiave
             val = m.group(2).strip()
@@ -393,8 +433,11 @@ def pn_norm(v):
 def costruisci(campi, foto, utente):
     """Ritorna (scheda, errori, avvisi)."""
     errori, avvisi = [], []
-    eta = norm(campi.get("eta"))
-    if eta not in ("si", "sì", "yes", "y", "s", "ok", "true"):
+    eta_scritta = campi.get("eta") or ""
+    eta = semplice(eta_scritta)
+    confermata = (eta.split()[:1] in (["si"], ["s"], ["yes"], ["y"], ["ok"], ["true"], ["confermo"], ["certo"], ["vero"], ["x"])
+                  or any(c in eta_scritta for c in "✅✔☑👍") or (eta.isdigit() and 18 <= int(eta) <= 99))
+    if not confermata:
         errori.append("manca la conferma «Ho almeno 18 anni: SI»: la scheda è solo per maggiorenni / missing «I am 18 or older: YES»")
     nome = (campi.get("nome") or "").strip()
     cognome = (campi.get("cognome") or "").strip()
@@ -419,12 +462,26 @@ def costruisci(campi, foto, utente):
         errori.append("⚠️ serve un profilo Instagram, Facebook o X pubblico: senza non possiamo verificare che sei davvero tu "
                       "e la scheda non può essere approvata / an open Instagram, Facebook or X profile is required to verify it is you")
     tipi = []
-    for t in re.split(r"[,/;]| e | and ", campi.get("tipi") or ""):
-        k = TIPI.get(norm(t))
-        if k and k not in tipi:
-            tipi.append(k)
-        elif norm(t) and not norm(t).startswith("("):
-            avvisi.append("tipo «%s» non riconosciuto / unknown type" % t.strip())
+    scritto = campi.get("tipi") or ""
+    if not scritto.strip().startswith("("):
+        for parola in semplice(scritto).split():         # qualsiasi separatore: spazio, virgola, /, -, +, «e», «and»…
+            if parola in ("e", "ed", "and", "y", "et", "und", "o", "or", "tipo", "tipi", "type", "types"):
+                continue
+            trovati = []
+            vicino = simile(parola, TIPI, 0.75) if len(parola) >= 3 else (parola if parola in TIPI else None)
+            if vicino:
+                trovati = [TIPI[vicino]]
+            elif len(parola) >= 6:                       # due tipi attaccati: «acciaioacqua», «fuocoerba»
+                for i in range(3, len(parola) - 2):
+                    a1, a2 = simile(parola[:i], TIPI, 0.85), simile(parola[i:], TIPI, 0.85)
+                    if a1 and a2:
+                        trovati = [TIPI[a1], TIPI[a2]]
+                        break
+            if not trovati:
+                avvisi.append("tipo «%s» non riconosciuto / unknown type" % parola)
+            for k in trovati:
+                if k not in tipi:
+                    tipi.append(k)
     tipi = tipi[:2]
     if len(tipi) == 1:
         tipi = tipi * 2
@@ -437,8 +494,9 @@ def costruisci(campi, foto, utente):
             squadre.append({"formato": formato[:30] or "Squadra %d" % (len(squadre) + 1), "link": url, "pokemon": s})
         else:
             avvisi.append("squadra non letta (serve un link pokepast.es valido): %s" % url[:60])
-    colore_scritto = norm(campi.get("colore") or "")
-    colore = COLORI.get(colore_scritto, "")
+    colore_scritto = semplice(campi.get("colore") or "")
+    nome_c = simile(colore_scritto, COLORI, 0.75) if colore_scritto else None
+    colore = COLORI.get(nome_c, "") if nome_c else ""
     if colore_scritto and not colore and not colore_scritto.startswith("("):
         avvisi.append("colore del nickname «%s» non in lista: resta bianco / unknown nickname colour, white is used" % campi.get("colore", "").strip()[:20])
     frase = (campi.get("frase") or "").strip()
