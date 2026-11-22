@@ -14,7 +14,9 @@ A ogni giro:
     link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin (scheda «Schede»), che lancia
     «python scheda_bot.py azione <id> approva|rifiuta [motivo]»: la scheda approvata va in schede/pubbliche.json
     (senza dati Telegram), l'avatar in schede/img/, il team in schede/team.json con il primo logo approvato;
-  - /cancella elimina subito la scheda pubblica (senza bisogno di approvazione);
+  - /cancella elimina subito la scheda pubblica (senza bisogno di approvazione); l'admin la può togliere dalla sua pagina;
+  - con la variabile ADMIN_TELEGRAM_ID (ID Telegram dell'admin, lo dà /id) avvisa l'admin in privato a ogni scheda nuova
+    e (con il segreto GH_RICHIESTE, sola lettura sulle Issue di VGCAK) a ogni richiesta nuova dei locali;
   - risponde al giocatore: ricevuta / cosa manca.
 Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub); PARDINI_CHIAVE facoltativo (codice di Francesco: copia delle schede in attesa per la sua pagina). Nessuna chiave nel repo.
 """
@@ -578,6 +580,89 @@ def togli_da_team(team, pid, tranne=""):
             del team[k]
 
 
+ADMIN_URL = "https://rakings.github.io/VGCrAKings/admin-f21e1259c02c.html"
+
+
+def avvisa_admin(sch):
+    """Messaggio Telegram privato all'admin quando arriva una scheda nuova (variabile ADMIN_TELEGRAM_ID su GitHub = il suo ID, lo dà /id)."""
+    admin = (os.environ.get("SCHEDA_ADMIN_ID") or "").strip()
+    if not re.fullmatch(r"\d{3,15}", admin):
+        return
+    tg_u = (sch.get("telegram") or {}).get("username") or ""
+    try:
+        tg("sendMessage", chat_id=admin, disable_web_page_preview="true",
+           text="🆕 Nuova scheda da approvare: %s%s%s\n%s" % (sch.get("nome") or "?",
+                (" · " + sch["nickname"]) if sch.get("nickname") else "", (" · @" + tg_u) if tg_u else "", ADMIN_URL))
+    except Exception as ex:
+        log("Avviso all'admin non inviato:", ex)
+
+
+RICHIESTE_VISTE = os.path.join(CARTELLA, "richieste_viste.json")   # solo il numero dell'ultima richiesta dei locali già avvisata
+
+
+def controlla_richieste():
+    """Richieste nuove dei locali (Issue della repo privata VGCAK): avviso Telegram privato all'admin.
+    Gira a ogni giro del bot (4 volte al giorno + quando scrivono al bot). Segreto GH_RICHIESTE = chiave in sola lettura sulle Issue di VGCAK."""
+    chiave = (os.environ.get("GH_RICHIESTE") or "").strip()
+    admin = (os.environ.get("SCHEDA_ADMIN_ID") or "").strip()
+    if not chiave or not re.fullmatch(r"\d{3,15}", admin):
+        return
+    try:
+        req = urllib.request.Request("https://api.github.com/repos/rakings/VGCAK/issues?state=open&per_page=20&sort=created&direction=desc",
+                                     headers={"Authorization": "Bearer " + chiave, "Accept": "application/vnd.github+json",
+                                              "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "rakings-bot"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            lista = [i for i in json.loads(r.read().decode("utf-8")) if not i.get("pull_request")
+                     and (i.get("user") or {}).get("login") == "github-actions[bot]"]
+    except Exception as ex:
+        log("Richieste dei locali non lette:", ex)
+        return
+    ultima = max([i["number"] for i in lista] or [0])
+    vista = carica(RICHIESTE_VISTE, None)
+    if not isinstance(vista, dict):                 # prima volta: si parte da qui, niente avvisi per le richieste vecchie
+        salva(RICHIESTE_VISTE, {"ultima": ultima})
+        return
+    prima = int(vista.get("ultima") or 0)
+    if ultima <= prima:
+        return
+    nuove = sorted([i for i in lista if i["number"] > prima], key=lambda i: i["number"])[:5]
+    try:
+        tg("sendMessage", chat_id=admin, disable_web_page_preview="true",
+           text="📍 Nuova richiesta da approvare (admin → Locali):\n" + "\n".join("• " + str(i.get("title") or "")[:90] for i in nuove) + "\n" + ADMIN_URL)
+    except Exception as ex:
+        log("Avviso richieste non inviato:", ex)
+        return                                      # riprova al prossimo giro
+    salva(RICHIESTE_VISTE, {"ultima": ultima})
+    log("Avvisate richieste nuove dei locali:", len(nuove))
+
+
+def cancella_da_admin(pid, motivo=""):
+    """Dall'admin: toglie una scheda pubblicata (pid = codice pubblico) e avvisa il giocatore su Telegram."""
+    mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
+    chiave = next((k for k, v in mappa.items() if v == pid), None)
+    pub, team = carica(PUBBLICHE, {}), carica(TEAM, {})
+    if pid not in pub and not chiave:
+        log("Scheda pubblica non trovata:", pid)
+        return 0
+    nome = (pub.pop(pid, None) or {}).get("nome")
+    togli_da_team(team, pid)
+    try:
+        os.remove(os.path.join(IMG, pid + ".webp"))
+    except OSError:
+        pass
+    if chiave:
+        mappa.pop(chiave, None)
+        salva(MAPPA, cifra(mappa))
+    salva(PUBBLICHE, pub)
+    salva(TEAM, team)
+    if chiave:
+        rispondi(chiave, "🗑 La tua scheda è stata tolta da rAKings VGC dall'admin. / Your card was removed by the admin." +
+                 ("\nMotivo / Reason: %s" % motivo[:200] if motivo else "") +
+                 "\nPuoi rimandarla con /scheda. / You can send it again with /scheda.")
+    log("Scheda cancellata dall'admin:", nome, pid)
+    return 0
+
+
 def elimina_pubblica(chiave):
     """Toglie la scheda pubblica del giocatore (comando /cancella o richiesta sua). True se c'era."""
     mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
@@ -750,6 +835,7 @@ def elabora(aggiornamenti, attesa):
         cambiate = True
         extra = ("\n\nNote:\n- " + "\n- ".join(avvisi)) if avvisi else ""
         rispondi(d["chat"], "✅ Scheda ricevuta, ora è in attesa di approvazione. / Card received, waiting for approval." + extra)
+        avvisa_admin(scheda)
         log("Scheda in attesa:", scheda["nome"], "| squadre", len(scheda["squadre"]), "| foto", len(foto))
 
     return cambiate, tenuti
@@ -825,7 +911,13 @@ if __name__ == "__main__":
     if len(sys.argv) >= 4 and sys.argv[1] == "azione":          # dalla pagina admin (flusso scheda-azione)
         if not os.environ.get("BACKUP_CHIAVE"):
             sys.exit("BACKUP_CHIAVE mancante")
+        if sys.argv[3] == "cancella":                            # scheda pubblicata: id = codice pubblico
+            if not re.fullmatch(r"[0-9a-f]{12}", sys.argv[2]):
+                sys.exit("richiesta non valida")
+            sys.exit(cancella_da_admin(sys.argv[2], sys.argv[4] if len(sys.argv) > 4 else ""))
         if not re.fullmatch(r"\d{3,15}", sys.argv[2]) or sys.argv[3] not in ("approva", "rifiuta"):
             sys.exit("richiesta non valida")
         sys.exit(azione(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else ""))
-    sys.exit(giro())
+    esito = giro()
+    controlla_richieste()
+    sys.exit(esito)

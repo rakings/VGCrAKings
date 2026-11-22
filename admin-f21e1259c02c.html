@@ -26,7 +26,7 @@ h1{font-size:1.35rem;margin:6px 0 2px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0}
 .card h2{font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);margin:0 0 10px;font-weight:700}
 label{display:block;font-size:.9rem;margin:8px 0 4px}
-input[type=password]{width:100%;font-size:16px;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit)}
+input[type=password],input[type=search]{width:100%;font-size:16px;padding:12px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit)}
 .chk{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--mu);margin:10px 0}
 .chk input{width:18px;height:18px}
 button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px 16px;background:var(--ac);color:#fff;cursor:pointer;min-height:44px}
@@ -154,6 +154,10 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
 
   <div id="p-sc" data-panel="sc" hidden>
     <div class="card"><h2>Schede giocatore da approvare</h2><div id="scl"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>Schede pubblicate <span id="scpn" style="text-transform:none;letter-spacing:0"></span></h2>
+      <input id="scpq" type="search" placeholder="Cerca per nome, nickname o team" autocomplete="off" style="margin:2px 0 8px">
+      <div id="scp"><div class="hint">Carico…</div></div>
+      <p class="hint">«Cancella» toglie la scheda dal sito (foto comprese) e avvisa il giocatore su Telegram. Il giocatore può sempre rimandarla con /scheda.</p></div>
     <p class="hint">Arrivano dal bot Telegram @rakings_vgc_bot (risponde entro un minuto). Prima di approvare apri il profilo social e controlla che foto e nome corrispondano al giocatore. «Approva» pubblica la scheda e avvisa il giocatore su Telegram; «Rifiuta» gli manda il motivo. Le schede in attesa sono cifrate: le vedi solo tu, con il tuo codice.</p>
   </div>
 
@@ -530,8 +534,40 @@ function schede(){
   .then(function(f){return f&&f.dati?decifraStat(f.dati,getTok()||""):{}})
   .then(function(a){return fetch(SITE+"schede/team.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{}}).catch(function(){return {}}).then(function(t){SC_TEAM=t||{};return a})})
   .then(disegnaSchede)
-  .catch(function(e){el.innerHTML='<div class="hint">Schede non lette ('+esc(e.message||"errore")+').</div>'})
+  .catch(function(e){el.innerHTML='<div class="hint">Schede non lette ('+esc(e.message||"errore")+').</div>'});
+  pubblicate()
 }
+/* ---- schede pubblicate (schede/pubbliche.json, pubblico): elenco con «Cancella» ---- */
+var SC_PUB={},SC_TOLTE={};
+function pubblicate(){
+  fetch(SITE+"schede/pubbliche.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return {};if(!r.ok)throw new Error("sito "+r.status);return r.json()})
+  .then(function(p){SC_PUB=p||{};return fetch(SITE+"schede/team.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{}}).catch(function(){return {}}).then(function(t){SC_TEAM=t||SC_TEAM;disegnaPub()})})
+  .catch(function(e){$("scp").innerHTML='<div class="hint">Schede pubblicate non lette ('+esc(e.message||"errore")+').</div>'})
+}
+function disegnaPub(){
+  var q=String($("scpq").value||"").toLowerCase().trim(),ids=Object.keys(SC_PUB).filter(function(k){return !SC_TOLTE[k]});
+  $("scpn").textContent="("+ids.length+")";
+  ids=ids.filter(function(k){var s=SC_PUB[k];return !q||[s.nome,s.nickname,s.nick_vr,s.nick_gioco,s.team,(SC_TEAM[s.team]||{}).nome].join(" ").toLowerCase().indexOf(q)>=0});
+  ids.sort(function(x,y){return String(SC_PUB[x].nome||"").localeCompare(String(SC_PUB[y].nome||""),"it")});
+  $("scp").innerHTML=ids.length?ids.map(function(k){var s=SC_PUB[k],d=new Date((s.aggiornata||0)*1000);
+    var av=s.avatar?'<img class="av" style="width:40px;height:40px" alt="" src="'+SITE+'schede/img/'+esc(k)+'.webp?t='+(s.aggiornata||0)+'">':'<div class="av" style="width:40px;height:40px;font-size:.8rem">'+esc(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase())+'</div>';
+    return '<div class="sc" data-scp="'+esc(k)+'" style="padding:8px 0"><div class="hd">'+av+'<div style="flex:1;min-width:0"><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span style="font-weight:900;color:'+(/^#[0-9a-f]{6}$/i.test(s.colore||"")?s.colore:"#fff")+'">'+esc(s.nickname)+'</span>':'')+
+      '<small>'+(s.team?'Team '+esc((SC_TEAM[s.team]&&SC_TEAM[s.team].nome)||s.team)+' · ':'')+(s.aggiornata?'aggiornata il '+d.toLocaleDateString("it-IT"):'')+'</small><small class="scok" style="color:var(--ok)" hidden>Cancellata ✓ Tra 1-2 minuti sparisce dal sito.</small></div>'+
+      '<div class="bt" style="margin:0"><button type="button" data-scc="1">Cancella</button></div></div></div>'}).join(""):'<div class="hint">'+(q?"Nessuna scheda trovata.":"Nessuna scheda pubblicata.")+'</div>';
+}
+$("scpq").addEventListener("input",disegnaPub);
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-scc]"):null;if(!b)return;
+  var box=b.closest("[data-scp]"),id=box.getAttribute("data-scp"),s=SC_PUB[id]||{};
+  if(!confirm("Cancellare la scheda di «"+(s.nome||id)+"»?\nSparisce dal sito con le foto e il giocatore riceve un messaggio su Telegram."))return;
+  var motivo=prompt("Motivo (lo riceve il giocatore, puoi lasciarlo vuoto):","");if(motivo===null)return;
+  b.disabled=true;
+  fetch(W+"/admin/scheda",{method:"POST",headers:{"Authorization":"Bearer "+getTok(),"Content-Type":"application/json"},body:JSON.stringify({id:id,azione:"cancella",motivo:motivo})})
+  .then(function(x){return x.json().catch(function(){return {}}).then(function(j){
+    if(x.ok&&j.ok){SC_TOLTE[id]=1;box.querySelector(".bt").remove();box.querySelector(".scok").hidden=false;$("scpn").textContent="("+Object.keys(SC_PUB).filter(function(k){return !SC_TOLTE[k]}).length+")"}
+    else{b.disabled=false;alert("Non fatto: "+(j.error||("errore "+x.status)))}})},
+  function(){b.disabled=false;alert("Nessuna connessione con il Worker.")})
+});
 var SC_TEAM={};
 function slugTeam(n){return String(n||"").normalize("NFKD").replace(/[^\x00-\x7f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)}
 function disegnaSchede(a){
