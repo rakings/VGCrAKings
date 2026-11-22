@@ -8,7 +8,7 @@ Gira anche da solo 4 volte al giorno come riserva. Senza SCHEDA_CODA_URL legge i
 A ogni giro:
   - legge i messaggi nuovi (coda di Apps Script, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
   - unisce i messaggi di ogni giocatore arrivati nel giro (testo con il modello + foto: prima l'avatar, poi il logo del team);
-  - controlla la scheda (14 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
+  - controlla la scheda (18 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
   - legge le squadre dai link Pokepaste (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
   - salva la scheda IN ATTESA in schede/attesa.json, CIFRATA con BACKUP_CHIAVE (il repo è pubblico: niente foto o
     link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin (scheda «Schede»), che lancia
@@ -74,15 +74,15 @@ CAMPI = {  # chiave del modello (IT/EN) -> campo
     "youtube": "youtube", "tiktok": "tiktok",
     "squadre": "squadre", "teams": "squadre", "pokepaste": "squadre",
     "frase": "frase", "quote": "frase",
-    "14 anni": "eta", "ho almeno 14 anni": "eta", "eta": "eta", "età": "eta", "age": "eta",
-    "i am 14 or older": "eta", "14+": "eta",
+    "18 anni": "eta", "ho almeno 18 anni": "eta", "sono maggiorenne": "eta", "eta": "eta", "età": "eta", "age": "eta",
+    "i am 18 or older": "eta", "18+": "eta",
 }
 SOCIAL_HOST = {
     "instagram": ("instagram.com",), "facebook": ("facebook.com", "fb.com"), "x": ("x.com", "twitter.com"),
     "twitch": ("twitch.tv",), "youtube": ("youtube.com", "youtu.be"), "tiktok": ("tiktok.com",),
 }
 
-BENVENUTO = "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n⚠️ *LEGGI PRIMA DI INIZIARE* ⚠️\n\n⚠️🔴 *Non sbagliare il logo del team!*\nIl logo vale per tutti i membri del team e si può cambiare solo con il permesso dell'admin di rAKings.\n\n⚠️ *Il tuo team è già iscritto?*\nSe un tuo compagno ha già mandato il logo del team, tu *non mandarlo di nuovo*: scrivi solo il nome del team nel modulo, altrimenti rischi di cambiarlo per tutti.\n\n⚠️ *Serve un profilo social aperto*\nCi vuole almeno un profilo Instagram o Facebook pubblico: è l'unico modo che abbiamo per verificare che sei davvero tu. Senza, la scheda non può essere approvata e non comparirà sull'app.\n\n📋 *Come funziona*\n1. Copia il modulo che trovi qui sotto, compilalo e mandalo.\n2. Manda le foto: prima l'avatar, poi (se serve) il logo del team.\n3. Ti rispondo in un paio di minuti; poi l'admin controlla la scheda e la pubblica.\n\n✏️ Per modificare la scheda rimanda il modulo con /scheda · 🗑 Per eliminarla scrivi /cancella\n\nInviando la scheda confermi di avere *almeno 14 anni* e che dati, foto e profili social sono tuoi. Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: la responsabilità del logo è tua.\n\n🇬🇧 Copy the template below, fill it in and send it with your avatar. ⚠️ Double-check your team logo: it is shared by the whole team and only the rAKings admin can change it. If a teammate already sent it, do not send it again. An open Instagram or Facebook profile is required to verify it is really you. You must be at least 14. /cancella deletes your card."   # stesso testo dello script Google (Codice.gs)
+BENVENUTO = "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n⚠️ *LEGGI PRIMA DI INIZIARE* ⚠️\n\n⚠️🔴 *Non sbagliare il logo del team!*\nIl logo vale per tutti i membri del team e si può cambiare solo con il permesso dell'admin di rAKings.\n\n⚠️ *Il tuo team è già iscritto?*\nSe un tuo compagno ha già mandato il logo del team, tu *non mandarlo di nuovo*: scrivi solo il nome del team nel modulo, altrimenti rischi di cambiarlo per tutti.\n\n⚠️ *Serve un profilo social aperto*\nCi vuole almeno un profilo Instagram o Facebook pubblico: è l'unico modo che abbiamo per verificare che sei davvero tu. Senza, la scheda non può essere approvata e non comparirà sull'app.\n\n📋 *Come funziona*\n1. Copia il modulo che trovi qui sotto, compilalo e mandalo.\n2. Manda le foto: prima l'avatar, poi (se serve) il logo del team.\n3. Ti rispondo in un paio di minuti; poi l'admin controlla la scheda e la pubblica.\n\n✏️ Per modificare la scheda rimanda il modulo con /scheda · 🗑 Per eliminarla scrivi /cancella\n\nInviando la scheda confermi di avere *almeno 18 anni* e che dati, foto e profili social sono tuoi. Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: la responsabilità del logo è tua.\n\n🇬🇧 Copy the template below, fill it in and send it with your avatar. ⚠️ Double-check your team logo: it is shared by the whole team and only the rAKings admin can change it. If a teammate already sent it, do not send it again. An open Instagram or Facebook profile is required to verify it is really you. You must be at least 18. /cancella deletes your card."   # stesso testo dello script Google (Codice.gs)
 MODELLO = (
     "Copia questo modello, compilalo e mandalo con le foto (prima avatar, poi logo del team) — "
     "copy, fill in and send it with your photos:\n\n"
@@ -104,7 +104,7 @@ MODELLO = (
     "Squadre: (fino a 6 link Pokepaste, uno per riga, con il formato davanti)\n"
     "Reg M-C: https://pokepast.es/...\n"
     "Frase: (facoltativa, max 140 caratteri)\n"
-    "Ho almeno 14 anni: SI"
+    "Ho almeno 18 anni: SI"
 )
 AIUTO = (
     "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona.\n"
@@ -288,7 +288,7 @@ def costruisci(campi, foto, utente):
     errori, avvisi = [], []
     eta = norm(campi.get("eta"))
     if eta not in ("si", "sì", "yes", "y", "s", "ok", "true"):
-        errori.append("manca la conferma «Ho almeno 14 anni: SI» / missing «I am 14 or older: YES»")
+        errori.append("manca la conferma «Ho almeno 18 anni: SI»: la scheda è solo per maggiorenni / missing «I am 18 or older: YES»")
     nome = (campi.get("nome") or "").strip()
     cognome = (campi.get("cognome") or "").strip()
     if nome.startswith("("):
