@@ -1,0 +1,54 @@
+name: Scheda giocatore - approva o rifiuta
+# Lo fa partire la pagina admin (scheda «Schede») tramite il Worker: approva o rifiuta una scheda in attesa
+# e avvisa il giocatore su Telegram. Non va lanciato a mano.
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: "id Telegram del giocatore"
+        required: true
+      azione:
+        description: "approva o rifiuta"
+        required: true
+      motivo:
+        description: "motivo del rifiuto (facoltativo)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency:
+  group: scheda-bot
+  cancel-in-progress: false
+jobs:
+  azione:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --quiet pillow
+      - run: python -u scheda_bot.py azione "$ID" "$AZIONE" "$MOTIVO"
+        env:
+          ID: ${{ inputs.id }}
+          AZIONE: ${{ inputs.azione }}
+          MOTIVO: ${{ inputs.motivo }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BACKUP_CHIAVE: ${{ secrets.BACKUP_CHIAVE }}
+      - name: Salva su GitHub (solo se cambiato)
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -d schede ] && git add -A schede
+          git diff --staged --quiet && exit 0
+          git commit -m "Schede giocatore: scheda ${AZIONE}ta dall'admin"
+          for i in 1 2 3 4; do
+            if git pull --rebase --autostash -X theirs && git push; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
+        env:
+          AZIONE: ${{ inputs.azione }}
