@@ -554,16 +554,17 @@ function disegnaSchede(a){
     return '<div class="sc" data-sc="'+esc(k)+'"><div class="hd">'+av+'<div><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span class="hint">@'+esc(s.nickname)+'</span>':'')+
       '<small>'+esc(s.paese||"")+(tg.username?' · Telegram @'+esc(tg.username):'')+' · ricevuta il '+d.toLocaleDateString("it-IT")+'</small>'+team+'<div style="margin-top:4px">'+tipi+'</div></div></div>'+
       (s.frase?'<small>«'+esc(s.frase)+'»</small>':'')+'<div>'+link+'</div>'+(sq?'<ul>'+sq+'</ul>':'')+ris+
-      '<div class="bt"><button type="button" class="ok" data-sca="approva">Approva</button><button type="button" data-sca="rifiuta">Rifiuta</button></div></div>'}).join("");
+      '<div class="bt"><button type="button" class="ok" data-sca="approva">Approva</button>'+(s.team&&s.logo_team?'<button type="button" data-sca="approva" data-nologo="1" title="Il giocatore entra nel team, il logo del team non cambia">Approva senza logo</button>':'')+'<button type="button" data-sca="rifiuta">Rifiuta</button></div></div>'}).join("");
 }
 document.addEventListener("click",function(ev){
   var b=ev.target&&ev.target.closest?ev.target.closest("[data-sca]"):null;if(!b)return;
   var box=b.closest("[data-sc]"),id=box.getAttribute("data-sc"),az=b.getAttribute("data-sca"),motivo="";
   if(az==="rifiuta"){motivo=prompt("Motivo del rifiuto (lo riceve il giocatore su Telegram, puoi lasciarlo vuoto):","");if(motivo===null)return}
+  if(b.getAttribute("data-nologo"))motivo="senza_logo";
   Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=true});
   fetch(W+"/admin/scheda",{method:"POST",headers:{"Authorization":"Bearer "+getTok(),"Content-Type":"application/json"},body:JSON.stringify({id:id,azione:az,motivo:motivo})})
   .then(function(x){return x.json().catch(function(){return {}}).then(function(j){
-    if(x.ok&&j.ok){SC_FATTE[id]=1;box.querySelector(".bt").innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Approvata ✓ Tra 1-2 minuti è pubblica e il giocatore riceve il messaggio su Telegram.":"Rifiutata ✓ Il giocatore riceve il messaggio su Telegram.")+'</small>';badge("bsc",Math.max(0,(+$("bsc").textContent||1)-1))}
+    if(x.ok&&j.ok){SC_FATTE[id]=1;box.querySelector(".bt").innerHTML='<small style="color:var(--ok)">'+(az==="approva"?(motivo==="senza_logo"?"Approvata senza logo ✓ Il logo del team resta quello di prima. ":"Approvata ✓ ")+"Tra 1-2 minuti è pubblica e il giocatore riceve il messaggio su Telegram.":"Rifiutata ✓ Il giocatore riceve il messaggio su Telegram.")+'</small>';badge("bsc",Math.max(0,(+$("bsc").textContent||1)-1))}
     else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Non fatto: "+(j.error||("errore "+x.status)))}})},
   function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Nessuna connessione con il Worker.")})
 });
