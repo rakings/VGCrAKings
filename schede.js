@@ -8,7 +8,7 @@ var BASE="schede/",TIPI_DIR="img/tipi/";
 var CPD="https://rakings.github.io/VGCdatiAK/dati/cp/";
 /* zone della CP bar: per ora solo l'Europa; le altre si aggiungono qui quando il collettore le prepara */
 var CP_ZONE=[{file:"vg-europe-masters",zona:"Europa"}];
-var PUB=null,TEAM=null,LOAD=null,CPP=null,IDX={},NICK={};
+var CHIUDI=null,PUB=null,TEAM=null,LOAD=null,CPP=null,IDX={},NICK={};
 var COL={normal:["#bdbc8e","#77764f"],fire:["#F7A04B","#c2410c"],water:["#4f7fe0","#173d9e"],electric:["#e8c51a","#8a6a00"],grass:["#8fd65c","#3f8f22"],ice:["#8cc3e0","#2f6f98"],fighting:["#ff7a00","#c41a00"],poison:["#c25bc0","#6b1f6a"],ground:["#ecd08a","#a8812c"],flying:["#7aa7ff","#2c5bd6"],psychic:["#fb7aa2","#c21e58"],bug:["#c0d23a","#6d7c0c"],rock:["#cbb84e","#7c6d13"],ghost:["#9478b8","#4a2f6e"],dragon:["#8f5cff","#3d14b8"],dark:["#3b2a6a","#0b0b26"],steel:["#5a5a66","#1a1a20"],fairy:["#eba3c6","#b04a82"]};
 var NOMI={normal:"Normale",fire:"Fuoco",water:"Acqua",electric:"Elettro",grass:"Erba",ice:"Ghiaccio",fighting:"Lotta",poison:"Veleno",ground:"Terra",flying:"Volante",psychic:"Psico",bug:"Coleottero",rock:"Roccia",ghost:"Spettro",dragon:"Drago",dark:"Buio",steel:"Acciaio",fairy:"Folletto"};
 /* paesi: nome (it/en) -> [alpha-2, alpha-3]; la CP bar usa alpha-3, la ricerca alpha-2 */
@@ -65,12 +65,14 @@ var CSS='.sk-ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);o
 '.sk-cp{display:flex;align-items:center;gap:12px}.sk-cp b.n{font-size:1.6rem;font-weight:900;color:#ffd21f;white-space:nowrap}.sk-bar{height:10px;border-radius:99px;background:#3a1b1f;margin-top:8px;overflow:hidden}.sk-bar b{display:block;height:100%;background:linear-gradient(90deg,#ffd21f,#ff6b78);border-radius:99px}'+
 '.sk-sm{font-size:.8rem;color:#e0aaa6}.sk-r{display:flex;gap:8px;align-items:baseline;border-top:1px solid rgba(255,255,255,.12);padding:7px 2px;font-size:.88rem}.sk-r:first-of-type{border-top:0}.sk-r b{min-width:62px}.sk-rb{width:100%;background:none;border:0;border-top:1px solid rgba(255,255,255,.12);color:inherit;font:inherit;text-align:left;cursor:pointer}.sk-rb:first-of-type{border-top:0}.sk-rb i{margin-left:auto;font-style:normal;opacity:.7;font-size:1.1rem}.sk-rb:active{background:rgba(255,255,255,.06)}.sk-r .t{font-size:.65rem;font-weight:800;border-radius:6px;padding:1px 6px;background:rgba(255,255,255,.12)}'+
 '.sk-tag{display:inline-block;font-size:.68rem;font-weight:800;border:1.5px dashed #e0aaa6;color:#e0aaa6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}'+
+'.sk-sqd{border:1.5px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(74,18,32,.55);margin-top:8px;overflow:hidden}.sk-sqd summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 12px;font-weight:800}.sk-sqd summary::-webkit-details-marker{display:none}'+
+'.sk-sqd summary b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sk-sqd summary small{color:#e0aaa6;font-weight:700;font-size:.75rem;white-space:nowrap}.sk-sqd summary i{margin-left:auto;font-style:normal;transition:transform .2s}.sk-sqd[open] summary i{transform:rotate(180deg)}.sk-sqd .sk-team{margin:0;padding:0 10px 10px}'+
 '.sk select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#4a1220;color:#fff;font:inherit;font-weight:700}'+
 '.sk-team{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}@media(min-width:700px){.sk-team{grid-template-columns:repeat(3,minmax(0,1fr))}}'+
 '.sk-mon{min-width:0;border:1.5px solid rgba(255,255,255,.14);border-radius:14px;padding:8px 10px;background:rgba(0,0,0,.15)}.sk-mon .h{display:flex;align-items:center;gap:6px;min-width:0}.sk-mon .h>div{min-width:0}'+
-'.sk-mon .ph{flex:none}.sk-mon b{display:block;font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sk-mon small{display:block;font-size:.72rem;color:#e0aaa6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+'.sk-mon .ph{flex:none}.sk-mon b{display:block;font-size:.85rem;line-height:1.15;overflow-wrap:break-word}.sk-mon small{display:block;font-size:.72rem;color:#e0aaa6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
 '.sk-mon .ab{font-size:.72rem;color:#e0aaa6;margin-top:4px}.sk-mon .te{float:right;font-size:.62rem;font-weight:800;border-radius:6px;padding:1px 6px;background:rgba(255,255,255,.15);color:#fff}'+
-'.sk-mon ul{list-style:none;padding:0;margin:6px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:3px}.sk-mon li{font-size:.72rem;background:#4a1220;border-radius:6px;padding:2px 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'+
+'.sk-mon ul{list-style:none;padding:0;margin:6px 0 0;display:grid;grid-template-columns:1fr;gap:3px}.sk-mon li{font-size:.72rem;line-height:1.2;background:#4a1220;border-radius:6px;padding:3px 6px;overflow-wrap:break-word}'+
 '.pr-sch.pr-schl{margin-left:auto;padding:3px 8px;border:0;border-radius:999px;background:linear-gradient(135deg,#e11d2e,#6d28d9);color:#fff;font-size:.64rem;font-weight:800;white-space:nowrap}.pr-sch.pr-schl+.pr-sch{margin-left:6px}.pr-sch{display:inline-flex;align-items:center;gap:5px;margin-left:auto;padding:2px 9px 2px 2px;border-radius:999px;border:1.5px solid currentColor;background:transparent;color:inherit;font:inherit;font-size:.78rem;font-weight:800;cursor:pointer}.pr-sav{width:22px;height:22px;border-radius:50%;object-fit:cover;display:inline-grid;place-items:center;font-size:.6rem;font-weight:900;background:linear-gradient(135deg,#e11d2e,#6d28d9);color:#fff}';
 function stile(){if(document.getElementById("sk-css"))return;var st=document.createElement("style");st.id="sk-css";st.textContent=CSS;document.head.appendChild(st)}
 function fondo(t,dove){var c=COL[t]||COL.normal;if(t==="fighting")return 'url("'+TIPI_DIR+'fighting.webp") center '+dove+'/100% auto no-repeat,radial-gradient(circle at 50% '+(dove==="bottom"?"85%":"15%")+',#ffd21a,#ff5a00 55%,#c41a00)';
@@ -100,11 +102,14 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
   (righe.length?'<div class="sk-c"><p class="sk-l">Risultati</p>'+righe.map(function(r,i){var tag=r.tag?'<span class="t">'+E(r.tag[0])+'</span>':'',
     dentro=(r.live&&r.id?'<span class="sk-lv">LIVE</span>':'')+'<b>'+E(r.res||"")+'</b><span>'+tag+' '+E(r.nome)+(r.data?' · <span class="sk-sm">'+E(r.data)+'</span>':'')+'</span>';
     return r.man?'<div class="sk-r">'+dentro+'</div>':'<button type="button" class="sk-r sk-rb" data-ri="'+i+'">'+dentro+'<i>›</i></button>'}).join("")+'</div>':'')+
-  ((s.squadre||[]).length?'<div class="sk-c"><p class="sk-l">Squadre preferite</p>'+(s.squadre.length>1?'<select class="sk-sq">'+s.squadre.map(function(q,i){return '<option value="'+i+'">'+E(q.formato)+'</option>'}).join("")+'</select>':'<p class="sk-sm">'+E(s.squadre[0].formato)+'</p>')+
-    '<div class="sk-sqv">'+squadraHtml(s.squadre[0])+'</div><p class="sk-sm" style="margin-top:8px">Open teamsheet: niente EV né statistiche.</p></div>':'')+
+  ((s.squadre||[]).length?'<div class="sk-c"><p class="sk-l">Squadre preferite</p>'+s.squadre.map(function(q,i){   /* una tendina per squadra: la prima aperta */
+    var tit=q.nome||q.formato||("Squadra "+(i+1)),sub=q.nome&&q.formato&&q.formato!==q.nome?q.formato:"";
+    return '<details class="sk-sqd"'+(i?'':' open')+'><summary><b>'+E(tit)+'</b>'+(sub?'<small>'+E(sub)+'</small>':'')+'<i>⌄</i></summary>'+squadraHtml(q)+'</details>'}).join("")+
+    '<p class="sk-sm" style="margin-top:8px">Open teamsheet: niente EV né statistiche.</p></div>':'')+
   '</div>';
   ov.innerHTML=h;document.body.appendChild(ov);var prev=document.body.style.overflow;document.body.style.overflow="hidden";
-  function chiudi(){ov.remove();document.body.style.overflow=prev;document.removeEventListener("keydown",esc)}
+  function chiudi(){ov.remove();document.body.style.overflow=prev;document.removeEventListener("keydown",esc);if(CHIUDI===chiudi)CHIUDI=null}
+  if(CHIUDI)CHIUDI();CHIUDI=chiudi;
   function esc(e){if(e.key==="Escape")chiudi()}
   document.addEventListener("keydown",esc);
   ov.addEventListener("click",function(e){if(e.target===ov||e.target.closest(".sk-x")){chiudi();return}
@@ -117,11 +122,12 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
       if(riga)riga.click();return}
     var tb=e.target.closest("[data-tm]");if(tb&&team){var nomi=(team.membri||[]).map(function(m){return PUB[m]&&PUB[m].nome}).filter(Boolean);
       var box=ov.querySelector(".sk-tml");if(box){box.remove();return}box=document.createElement("p");box.className="sk-sm sk-tml";box.style.marginTop="6px";box.textContent=(nomi.length>1?"Nel team: ":"Unico giocatore del team con la scheda: ")+nomi.join(" · ");tb.parentNode.appendChild(box)}});
-  var sel=ov.querySelector(".sk-sq");if(sel)sel.addEventListener("change",function(){ov.querySelector(".sk-sqv").innerHTML=squadraHtml(s.squadre[+sel.value]||s.squadre[0])});
+
   cpTrova(s).then(function(c){var el=ov.querySelector(".sk-cpv");if(!el)return;
     if(!c){el.innerHTML='<span class="sk-cp"><b class="n">CP: non identificato</b></span>';return}
     var pc=c.soglia?Math.min(100,Math.round(c.cp*100/c.soglia)):100;
     el.innerHTML='<div class="sk-cp"><b class="n">'+c.cp+' CP</b><div><b>'+String(c.pos).replace(/\D/g,"")+'° in '+E(c.zona)+'</b><br><span class="sk-sm">'+(c.soglia?(c.manca?"Soglia stimata "+c.soglia+" CP · mancano "+c.manca:"Sopra la soglia stimata di "+c.soglia+" CP"):"")+'</span></div></div><div class="sk-bar"><b style="width:'+pc+'%"></b></div>'});
 }
-window.SCHEDE={carica:carica,trova:trova,bottone:bottone,apri:apri};
+/* «indietro» (Android) e pulsante Indietro (iPhone): prima si chiude la scheda */
+window.SCHEDE={carica:carica,trova:trova,bottone:bottone,apri:apri,aperta:function(){return !!CHIUDI},chiudi:function(){if(CHIUDI){CHIUDI();return true}return false}};
 })();

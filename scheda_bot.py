@@ -387,19 +387,31 @@ def leggi_showdown(url):
     return squadra[:6] or None
 
 
+TITOLO_PASTE = ""   # titolo dell'ultimo Pokepaste letto (le squadre di Showdown non hanno un titolo leggibile)
+
+
 def leggi_pokepaste(url):
     """Pokepaste in formato Showdown -> lista di 6 {pokemon, strumento, abilita, tera, mosse}. Niente EV/IV/natura."""
+    global TITOLO_PASTE
+    TITOLO_PASTE = ""
     if "psim.us/t/" in (url or ""):
         return leggi_showdown(url)
     m = re.search(r"pokepast\.es/([0-9a-f]{6,32})", url or "", re.I)
     if not m:
         return None
-    try:
-        with urllib.request.urlopen("https://pokepast.es/%s/raw" % m.group(1), timeout=20) as r:
-            testo = r.read().decode("utf-8", "replace")
-    except Exception as ex:
-        log("Pokepaste non letto:", url, ex)
-        return None
+    try:                                              # /json: testo del paste + titolo (es. «Team pioggia»)
+        req = urllib.request.Request("https://pokepast.es/%s/json" % m.group(1), headers={"User-Agent": "rakings-bot (+https://rakings.github.io)"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            dati = json.loads(r.read().decode("utf-8", "replace"))
+        testo = dati.get("paste") or ""
+        TITOLO_PASTE = (dati.get("title") or "").strip()[:40]
+    except Exception:
+        try:
+            with urllib.request.urlopen("https://pokepast.es/%s/raw" % m.group(1), timeout=20) as r:
+                testo = r.read().decode("utf-8", "replace")
+        except Exception as ex:
+            log("Pokepaste non letto:", url, ex)
+            return None
     squadra = []
     for blocco in re.split(r"\n\s*\n", testo.replace("\r", "").strip()):
         righe = [x.strip() for x in blocco.split("\n") if x.strip()]
@@ -490,8 +502,8 @@ def costruisci(campi, foto, utente):
         avvisi.append("hai messo più di %d squadre: tengo le prime %d / more than %d teams: only the first %d are kept" % ((MAX_SQUADRE,) * 4))
     for formato, url in campi.get("squadre", [])[:MAX_SQUADRE]:
         s = leggi_pokepaste(url)
-        if s:
-            squadre.append({"formato": formato[:30] or "Squadra %d" % (len(squadre) + 1), "link": url, "pokemon": s})
+        if s:   # nome della squadra: il titolo del paste; il formato scritto dal giocatore resta come sottotitolo
+            squadre.append({"nome": TITOLO_PASTE, "formato": formato[:30], "link": url, "pokemon": s})
         else:
             avvisi.append("squadra non letta (serve un link pokepast.es valido): %s" % url[:60])
     colore_scritto = semplice(campi.get("colore") or "")
