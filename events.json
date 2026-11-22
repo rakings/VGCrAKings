@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T05:32:34+00:00",
+ "updated": "2026-11-22T08:32:43+00:00",
  "events": [
   {
    "name": "Latin America International Championships",
@@ -98,19 +98,19 @@
    "reg_letto": true
   },
   {
-   "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": null,
    "prize": "",
-   "reg": "M-B",
+   "reg": "M-C",
    "bo": null,
    "date": "2026-11-22",
-   "time": "02:00",
-   "players": 14,
-   "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
+   "time": "05:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6b0246cdada8eea1c94cff85/details"
   },
   {
    "name": "VGC UU Regulation M-C Bi-Weekly #2",
@@ -128,35 +128,19 @@
    "url": "https://play.limitlesstcg.com/tournament/6b00fffbada8eea1c94cf298/details"
   },
   {
-   "name": "OTS Pokemon VGC Arena #3",
+   "name": "Cusca Champions Weekly ⚡ #19 (PCVGC)",
    "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
    "cash": null,
    "prize": "",
-   "reg": "M-C",
+   "reg": "M-B",
    "bo": null,
    "date": "2026-11-22",
-   "time": "00:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6af9e3a1ee43ef789147588a/details"
-  },
-  {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "05:00",
-   "players": 9,
-   "url": "https://play.limitlesstcg.com/tournament/6b0246cdada8eea1c94cff85/details",
-   "reg_letto": true
+   "time": "02:00",
+   "players": 14,
+   "url": "https://play.limitlesstcg.com/tournament/6ae2177222fd412b92a4ea35/details"
   },
   {
    "name": "[2026 포켓몬 월드컵] 팀코리아 선발전",
@@ -186,7 +170,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:00",
-   "players": 34,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details",
    "reg_letto": true
   },
@@ -202,7 +186,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "12:30",
-   "players": 34,
+   "players": 37,
    "url": "https://play.limitlesstcg.com/tournament/6affab079c256f7bbd240677/details",
    "reg_letto": true
   },
@@ -218,7 +202,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:00",
-   "players": 31,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6ab2b78bf127b1b52c27fa42/details",
    "reg_letto": true
   },
@@ -234,8 +218,24 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "14:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6aff3c1b2b9e244e6cee57be/details",
+   "reg_letto": true
+  },
+  {
+   "name": "ValkrixVGC Champions League #11 |Shiny Dragonite|",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "15:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f1b3c931f53978d972eb/details",
    "reg_letto": true
   },
   {
@@ -250,7 +250,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "17:00",
-   "players": 6,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6aff4fee2b9e244e6cee5927/details",
    "reg_letto": true
   },
@@ -282,7 +282,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 42,
+   "players": 43,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details",
    "reg_letto": true
   },
@@ -298,24 +298,8 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "03:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details",
-   "reg_letto": true
-  },
-  {
-   "name": "ValkrixVGC Champions League #11 |Shiny Dragonite|",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "15:00",
    "players": 12,
-   "url": "https://play.limitlesstcg.com/tournament/6af1f1b3c931f53978d972eb/details",
+   "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details",
    "reg_letto": true
   },
   {
@@ -332,6 +316,22 @@
    "time": "20:00",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
+   "reg_letto": true
+  },
+  {
+   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 40!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-23",
+   "time": "20:30",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
   {
@@ -426,7 +426,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -586,7 +586,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 57,
+   "players": 58,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details",
    "reg_letto": true
   },
