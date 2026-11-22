@@ -5,13 +5,13 @@ on:
   workflow_dispatch:
     inputs:
       id:
-        description: "id Telegram del giocatore"
+        description: "id Telegram del giocatore (per cancella: codice pubblico della scheda)"
         required: true
       azione:
-        description: "approva o rifiuta"
+        description: "approva, rifiuta o cancella"
         required: true
       motivo:
-        description: "motivo del rifiuto (facoltativo)"
+        description: "motivo del rifiuto o della cancellazione (facoltativo)"
         required: false
         default: ""
 permissions:
