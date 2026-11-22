@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-22c";
+const VERSIONE = "2026-11-22d";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -917,7 +917,10 @@ export default {
       let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
       const id = String((b && b.id) || ""), az = String((b && b.azione) || "");
       const motivo = typeof (b && b.motivo) === "string" ? b.motivo.replace(/[\u0000-\u001f]/g, " ").slice(0, 200) : "";
-      if (!/^\d{3,15}$/.test(id) || !["approva", "rifiuta"].includes(az)) return out({ error: "richiesta non valida" }, 400);
+      if (az === "cancella") {                       // togliere una scheda gia' pubblicata (id = codice pubblico): SOLO Andrea
+        if (!admin()) return out({ error: "non autorizzato" }, 401);
+        if (!/^[0-9a-f]{12}$/.test(id)) return out({ error: "richiesta non valida" }, 400);
+      } else if (!/^\d{3,15}$/.test(id) || !["approva", "rifiuta"].includes(az)) return out({ error: "richiesta non valida" }, 400);
       if (!env.GH_AVVISI) return out({ error: "manca il segreto GH_AVVISI" }, 503);
       const r = await fetch("https://api.github.com/repos/rakings/VGCrAKings/actions/workflows/scheda-azione.yml/dispatches", {
         method: "POST",
