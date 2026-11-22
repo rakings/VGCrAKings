@@ -26,6 +26,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           BACKUP_CHIAVE: ${{ secrets.BACKUP_CHIAVE }}
+          PARDINI_CHIAVE: ${{ secrets.PARDINI_CHIAVE }}
           SCHEDA_CODA_URL: ${{ vars.SCHEDA_CODA_URL }}
       - name: Salva su GitHub (solo se cambiato)
         if: ${{ !cancelled() }}
