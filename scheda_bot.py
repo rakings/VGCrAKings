@@ -8,7 +8,10 @@ A ogni giro:
   - controlla la scheda (14 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
   - legge le squadre dai link Pokepaste (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
   - salva la scheda IN ATTESA in schede/attesa.json, CIFRATA con BACKUP_CHIAVE (il repo è pubblico: niente foto o
-    link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin;
+    link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin (scheda «Schede»), che lancia
+    «python scheda_bot.py azione <id> approva|rifiuta [motivo]»: la scheda approvata va in schede/pubbliche.json
+    (senza dati Telegram), l'avatar in schede/img/, il team in schede/team.json con il primo logo approvato;
+  - /cancella elimina subito la scheda pubblica (senza bisogno di approvazione);
   - risponde al giocatore: ricevuta / cosa manca.
 Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub). Nessuna chiave nel repo.
 """
@@ -26,6 +29,11 @@ import urllib.request
 CARTELLA = "schede"
 STATO = os.path.join(CARTELLA, "bot_stato.json")      # solo l'ultimo messaggio letto (niente dati personali)
 ATTESA = os.path.join(CARTELLA, "attesa.json")        # schede in attesa di approvazione, cifrate
+MAPPA = os.path.join(CARTELLA, "mappa.json")          # giocatore Telegram -> codice pubblico della scheda, cifrata
+PUBBLICHE = os.path.join(CARTELLA, "pubbliche.json")  # schede approvate (pubbliche, senza dati Telegram)
+TEAM = os.path.join(CARTELLA, "team.json")            # team: nome, logo, membri
+IMG = os.path.join(CARTELLA, "img")                   # avatar approvati: img/<codice>.webp
+LOGHI = os.path.join(CARTELLA, "team")                # loghi dei team: team/<nome-team>.webp
 MAX_SQUADRE = 6
 MAX_FRASE = 140
 MAX_RISULTATI = 10
@@ -314,6 +322,99 @@ def costruisci(campi, foto, utente):
     return scheda, errori, avvisi
 
 
+# ---------------- schede pubbliche (approvate dall'admin) ----------------
+def slug_team(nome):
+    """«Team Aurora», «team aurora», «TEAM  AURORA» -> «team-aurora» (stesso team)."""
+    import unicodedata
+    t = unicodedata.normalize("NFKD", nome or "").encode("ascii", "ignore").decode("ascii").lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")[:40]
+
+
+def scrivi_img(path, b64):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "wb") as f:
+        f.write(base64.b64decode(b64))
+
+
+def togli_da_team(team, pid):
+    for k in list(team):
+        m = team[k].get("membri", [])
+        if pid in m:
+            m.remove(pid)
+        if not m:                               # team rimasto senza giocatori: sparisce con il suo logo
+            try:
+                os.remove(os.path.join(LOGHI, k + ".webp"))
+            except OSError:
+                pass
+            del team[k]
+
+
+def elimina_pubblica(chiave):
+    """Toglie la scheda pubblica del giocatore (comando /cancella o richiesta sua). True se c'era."""
+    mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
+    pid = mappa.pop(chiave, None)
+    if not pid:
+        return False
+    pub, team = carica(PUBBLICHE, {}), carica(TEAM, {})
+    pub.pop(pid, None)
+    togli_da_team(team, pid)
+    try:
+        os.remove(os.path.join(IMG, pid + ".webp"))
+    except OSError:
+        pass
+    salva(PUBBLICHE, pub)
+    salva(TEAM, team)
+    salva(MAPPA, cifra(mappa))
+    return True
+
+
+def azione(chiave, az, motivo=""):
+    """Dall'admin: approva o rifiuta la scheda in attesa del giocatore (chiave = id Telegram)."""
+    attesa = decifra(carica(ATTESA, {})) if os.path.exists(ATTESA) else {}
+    sch = attesa.pop(chiave, None)
+    if not sch:
+        log("Nessuna scheda in attesa per", chiave)
+        return 0
+    chat = (sch.get("telegram") or {}).get("id") or chiave
+    if az == "rifiuta":
+        salva(ATTESA, cifra(attesa))
+        rispondi(chat, "❌ La tua scheda non è stata approvata. / Your card was not approved." +
+                 ("\nMotivo / Reason: %s" % motivo[:200] if motivo else "") +
+                 "\nPuoi correggerla e rimandarla con /scheda. / You can fix it and send it again.")
+        log("Scheda rifiutata:", sch.get("nome"))
+        return 0
+    mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
+    pid = mappa.get(chiave) or os.urandom(6).hex()
+    pub, team = carica(PUBBLICHE, {}), carica(TEAM, {})
+    togli_da_team(team, pid)
+    ts = ""
+    if sch.get("team"):
+        ts = slug_team(sch["team"])
+        t = team.setdefault(ts, {"nome": sch["team"], "logo": False, "membri": []})
+        if pid not in t["membri"]:
+            t["membri"].append(pid)
+        if sch.get("logo_team") and not t.get("logo"):      # vale il primo logo approvato
+            scrivi_img(os.path.join(LOGHI, ts + ".webp"), sch["logo_team"])
+            t["logo"] = True
+    if sch.get("avatar"):
+        scrivi_img(os.path.join(IMG, pid + ".webp"), sch["avatar"])
+    else:
+        try:
+            os.remove(os.path.join(IMG, pid + ".webp"))
+        except OSError:
+            pass
+    pub[pid] = {k: sch.get(k) for k in ("nome", "nickname", "paese", "tipi", "social", "squadre", "risultati", "frase")}
+    pub[pid].update({"team": ts, "avatar": bool(sch.get("avatar")), "aggiornata": int(time.time())})
+    mappa[chiave] = pid
+    salva(PUBBLICHE, pub)
+    salva(TEAM, team)
+    salva(MAPPA, cifra(mappa))
+    salva(ATTESA, cifra(attesa))
+    rispondi(chat, "🎉 La tua scheda è stata approvata ed è visibile su rAKings VGC! / Your card is approved and live on rAKings VGC!")
+    log("Scheda approvata:", sch.get("nome"), "->", pid)
+    return 0
+
+
 # ---------------- giro ----------------
 def giro():
     if not os.environ.get("TELEGRAM_BOT_TOKEN"):
@@ -358,10 +459,11 @@ def giro():
             elif c == "/aiuto":
                 rispondi(d["chat"], AIUTO)
             elif c == "/cancella":
-                attesa[chiave] = {"cancella": True, "telegram": {"id": uid, "username": d["utente"].get("username") or ""},
-                                  "ricevuta": int(time.time())}
+                attesa.pop(chiave, None)
                 cambiate = True
-                rispondi(d["chat"], "🗑 Richiesta ricevuta: la tua scheda verrà eliminata. / Your card will be deleted.")
+                tolta = elimina_pubblica(chiave)
+                rispondi(d["chat"], "🗑 Fatto: la tua scheda è stata eliminata%s. / Your card has been deleted." %
+                         ("" if tolta else " (non era ancora pubblicata)"))
         modello = next((t for t in reversed(d["testi"]) if re.search(r"^\s*(nome|name)\s*:", t, re.I | re.M)), "")
         if not modello:
             if d["testi"] and not d["comandi"]:
@@ -388,10 +490,15 @@ def giro():
         salva(ATTESA, cifra(attesa))
     salva(STATO, {"offset": offset, "letto": int(time.time())})
     tg("getUpdates", offset=offset, timeout=0)     # conferma a Telegram: i messaggi letti non tornano più
-    log("Fatto. Schede in attesa:", sum(1 for v in attesa.values() if not v.get("cancella")),
-        "| cancellazioni:", sum(1 for v in attesa.values() if v.get("cancella")))
+    log("Fatto. Schede in attesa:", len(attesa))
     return 0
 
 
 if __name__ == "__main__":
+    if len(sys.argv) >= 4 and sys.argv[1] == "azione":          # dalla pagina admin (flusso scheda-azione)
+        if not os.environ.get("BACKUP_CHIAVE"):
+            sys.exit("BACKUP_CHIAVE mancante")
+        if not re.fullmatch(r"\d{3,15}", sys.argv[2]) or sys.argv[3] not in ("approva", "rifiuta"):
+            sys.exit("richiesta non valida")
+        sys.exit(azione(sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else ""))
     sys.exit(giro())
