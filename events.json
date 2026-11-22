@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T17:02:13+00:00",
+ "updated": "2026-11-22T18:02:27+00:00",
  "events": [
   {
    "name": "Latin America International Championships",
@@ -34,22 +34,6 @@
    "reg_letto": true
   },
   {
-   "name": "⚔️Torre Lotta Cup #4⚔️ 🏆50€ Amazon Gift Cards🏆",
-   "org": "LaggerVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": true,
-   "prize": "50€",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "14:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6af0acfdc931f53978d967ee/details",
-   "reg_letto": true
-  },
-  {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
    "org": "Pokémon Philippines Community",
    "mode": "online",
@@ -64,6 +48,21 @@
    "players": null,
    "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details",
    "reg_letto": true
+  },
+  {
+   "name": "League Cup Ludoteca",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "16:00",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6af50cd400d53a11f5b91a21/details"
   },
   {
    "name": "Sunday Showdown #7",
@@ -94,22 +93,6 @@
    "time": "17:00",
    "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6aff4fee2b9e244e6cee5927/details",
-   "reg_letto": true
-  },
-  {
-   "name": "League Cup Ludoteca",
-   "org": "Pokegiohorganization",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "16:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6af50cd400d53a11f5b91a21/details",
    "reg_letto": true
   },
   {
@@ -188,7 +171,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "21:00",
-   "players": 3,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ae78c97ae67092a40740d47/details",
    "reg_letto": true
   },
@@ -204,7 +187,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 50,
+   "players": 54,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details",
    "reg_letto": true
   },
@@ -220,7 +203,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "03:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details",
    "reg_letto": true
   },
@@ -236,7 +219,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -252,7 +235,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
@@ -300,7 +283,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "01:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
@@ -316,7 +299,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -412,7 +395,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 14,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -508,7 +491,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 10,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -628,7 +611,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
