@@ -8,7 +8,7 @@ Gira anche da solo 4 volte al giorno come riserva. Senza SCHEDA_CODA_URL legge i
 A ogni giro:
   - legge i messaggi nuovi (coda di Apps Script, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
   - unisce i messaggi di ogni giocatore arrivati nel giro (testo con il modello + foto: prima l'avatar, poi il logo del team);
-  - controlla la scheda (18 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
+  - controlla la scheda (18 anni confermati, nome, almeno un profilo Instagram, Facebook o X, tipi validi, link Pokepaste);
   - legge le squadre dai link Pokepaste e Showdown psim.us/t/ (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
   - salva la scheda IN ATTESA in schede/attesa.json, CIFRATA con BACKUP_CHIAVE (il repo è pubblico: niente foto o
     link visibili prima dell'approvazione); l'approvazione si fa dalla pagina admin (scheda «Schede»), che lancia
@@ -82,7 +82,7 @@ SOCIAL_HOST = {
     "twitch": ("twitch.tv",), "youtube": ("youtube.com", "youtu.be"), "tiktok": ("tiktok.com",),
 }
 
-BENVENUTO = "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n⚠️ *LEGGI PRIMA DI INIZIARE* ⚠️\n\n⚠️🔴 *Non sbagliare il logo del team!*\nIl logo vale per tutti i membri del team e si può cambiare solo con il permesso dell'admin di rAKings.\n\n⚠️ *Il tuo team è già iscritto?*\nSe un tuo compagno ha già mandato il logo del team, tu *non mandarlo di nuovo*: scrivi solo il nome del team nel modulo, altrimenti rischi di cambiarlo per tutti.\n\n⚠️ *Serve un profilo social aperto*\nCi vuole almeno un profilo Instagram o Facebook pubblico: è l'unico modo che abbiamo per verificare che sei davvero tu. Senza, la scheda non può essere approvata e non comparirà sull'app.\n\n📋 *Come funziona*\n1. Copia il modulo che trovi qui sotto, compilalo e mandalo.\n2. Manda le foto: prima l'avatar, poi (se serve) il logo del team.\n3. Ti rispondo in un paio di minuti; poi l'admin controlla la scheda e la pubblica.\n\n✏️ Per modificare la scheda rimanda il modulo con /scheda · 🗑 Per eliminarla scrivi /cancella\n\nInviando la scheda confermi di avere *almeno 18 anni* e che dati, foto e profili social sono tuoi. Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: la responsabilità del logo è tua.\n\n🇬🇧 Copy the template below, fill it in and send it with your avatar. ⚠️ Double-check your team logo: it is shared by the whole team and only the rAKings admin can change it. If a teammate already sent it, do not send it again. An open Instagram or Facebook profile is required to verify it is really you. You must be at least 18. /cancella deletes your card."   # stesso testo dello script Google (Codice.gs)
+BENVENUTO = "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n⚠️ *LEGGI PRIMA DI INIZIARE* ⚠️\n\n⚠️🔴 *Non sbagliare il logo del team!*\nIl logo vale per tutti i membri del team e si può cambiare solo con il permesso dell'admin di rAKings.\n\n⚠️ *Il tuo team è già iscritto?*\nSe un tuo compagno ha già mandato il logo del team, tu *non mandarlo di nuovo*: scrivi solo il nome del team nel modulo, altrimenti rischi di cambiarlo per tutti.\n\n⚠️ *Serve un profilo social aperto*\nCi vuole almeno un profilo Instagram, Facebook o X pubblico: è l'unico modo che abbiamo per verificare che sei davvero tu. Senza, la scheda non può essere approvata e non comparirà sull'app.\n\n📋 *Come funziona*\n1. Copia il modulo che trovi qui sotto, compilalo e mandalo.\n2. Manda le foto: prima l'avatar, poi (se serve) il logo del team.\n3. Ti rispondo in un paio di minuti; poi l'admin controlla la scheda e la pubblica.\n\n✏️ Per modificare la scheda rimanda il modulo con /scheda · 🗑 Per eliminarla scrivi /cancella\n\nInviando la scheda confermi di avere *almeno 18 anni* e che dati, foto e profili social sono tuoi. Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: la responsabilità del logo è tua.\n\n🇬🇧 Copy the template below, fill it in and send it with your avatar. ⚠️ Double-check your team logo: it is shared by the whole team and only the rAKings admin can change it. If a teammate already sent it, do not send it again. An open Instagram, Facebook or X profile is required to verify it is really you. You must be at least 18. /cancella deletes your card."   # stesso testo dello script Google (Codice.gs)
 MODELLO = (
     "Copia questo modello, compilalo e mandalo con le foto (prima avatar, poi logo del team) — "
     "copy, fill in and send it with your photos:\n\n"
@@ -102,13 +102,13 @@ MODELLO = (
     "YouTube: (facoltativo)\n"
     "TikTok: (facoltativo)\n"
     "Squadre (fino a 6, una per riga):\n"
-    "Reg M-C: https://pokepast.es/...\n"
+    "Formato o nome squadra: \n"
     "Frase: (facoltativa, max 140 caratteri)\n"
     "Ho almeno 18 anni: SI"
 )
 AIUTO = (
     "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona.\n"
-    "Serve almeno un profilo Instagram o Facebook *pubblico*: lo usiamo per verificare che sei tu.\n"
+    "Serve almeno un profilo Instagram, Facebook o X *pubblico*: lo usiamo per verificare che sei tu.\n"
     "Le squadre vanno messe come link di pokepast.es o di Showdown (psim.us/t/…)."
 )
 
@@ -219,6 +219,8 @@ def squadra_da_riga(riga):
         etichetta = prima.strip(" :-\t[]()")
     if ":" in etichetta and etichetta.split(":", 1)[0].strip():   # «Reg M-C: Untitled 1» -> «Reg M-C»
         etichetta = etichetta.split(":", 1)[0].strip()
+    if norm(etichetta) in ("formato o nome squadra", "formato", "nome squadra", "squadra"):   # etichetta del modulo lasciata così
+        etichetta = ""
     return etichetta, ("https://psim.us/t/" + m.group(1)) if sd else ("https://pokepast.es/" + m.group(1).lower())
 
 
@@ -264,10 +266,13 @@ def link_social(campo, val):
     val = (val or "").strip()
     if not val or val.startswith("("):
         return ""
-    if not re.match(r"^https?://", val, re.I):
+    nome = re.match(r"^@?([\w.\-]{1,40})$", val)
+    if nome:                                             # solo il nome utente («@mario.rossi»): si costruisce il link
+        base = {"instagram": "instagram.com/", "facebook": "facebook.com/", "x": "x.com/", "twitch": "twitch.tv/",
+                "youtube": "youtube.com/@", "tiktok": "tiktok.com/@"}[campo]
+        val = "https://" + base + nome.group(1)
+    elif not re.match(r"^https?://", val, re.I):
         val = "https://" + val.lstrip("@/")
-        if campo == "instagram" and "instagram.com" not in val:
-            val = "https://instagram.com/" + val.split("//", 1)[1]
     u = urllib.parse.urlparse(val)
     host = u.netloc.lower().removeprefix("www.").removeprefix("m.")
     if not any(host == h or host.endswith("." + h) for h in SOCIAL_HOST[campo]):
@@ -410,9 +415,9 @@ def costruisci(campi, foto, utente):
             avvisi.append("link %s non valido, ignorato / invalid %s link, ignored" % (c, c))
         if v:
             social[c] = v
-    if not (social.get("instagram") or social.get("facebook")):
-        errori.append("⚠️ serve un profilo Instagram o Facebook pubblico: senza non possiamo verificare che sei davvero tu "
-                      "e la scheda non può essere approvata / an open Instagram or Facebook profile is required to verify it is you")
+    if not (social.get("instagram") or social.get("facebook") or social.get("x")):
+        errori.append("⚠️ serve un profilo Instagram, Facebook o X pubblico: senza non possiamo verificare che sei davvero tu "
+                      "e la scheda non può essere approvata / an open Instagram, Facebook or X profile is required to verify it is you")
     tipi = []
     for t in re.split(r"[,/;]| e | and ", campi.get("tipi") or ""):
         k = TIPI.get(norm(t))
@@ -547,7 +552,9 @@ def azione(chiave, az, motivo=""):
     salva(ATTESA, cifra(attesa))
     rispondi(chat, "🎉 La tua scheda è stata approvata ed è visibile su rAKings VGC! / Your card is approved and live on rAKings VGC!\n\n"
                    "✏️ Per modificarla rimanda il modulo completo con /scheda (le foto solo se vuoi cambiarle): la nuova versione "
-                   "sostituisce questa dopo l'approvazione. / To edit it, send the full template again with /scheda.")
+                   "sostituisce questa dopo l'approvazione. / To edit it, send the full template again with /scheda."
+                   + ("\n\n🛡 Il logo del team non è stato cambiato: resta quello già approvato per il tuo team. "
+                      "/ The team logo was not changed: the one already approved for your team stays." if senza_logo else ""))
     log("Scheda approvata%s:" % (" (senza logo)" if senza_logo else ""), sch.get("nome"), "->", pid)
     return 0
 

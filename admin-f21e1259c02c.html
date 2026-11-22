@@ -154,7 +154,7 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
 
   <div id="p-sc" data-panel="sc" hidden>
     <div class="card"><h2>Schede giocatore da approvare</h2><div id="scl"><div class="hint">Carico…</div></div></div>
-    <p class="hint">Arrivano dal bot Telegram @rakings_vgc_bot (letto 4 volte al giorno). Prima di approvare apri il profilo social e controlla che foto e nome corrispondano al giocatore. «Approva» pubblica la scheda e avvisa il giocatore su Telegram; «Rifiuta» gli manda il motivo. Le schede in attesa sono cifrate: le vedi solo tu, con il tuo codice.</p>
+    <p class="hint">Arrivano dal bot Telegram @rakings_vgc_bot (risponde entro un minuto). Prima di approvare apri il profilo social e controlla che foto e nome corrispondano al giocatore. «Approva» pubblica la scheda e avvisa il giocatore su Telegram; «Rifiuta» gli manda il motivo. Le schede in attesa sono cifrate: le vedi solo tu, con il tuo codice.</p>
   </div>
 
   <div id="p-st" data-panel="st" hidden>
@@ -549,7 +549,11 @@ function disegnaSchede(a){
     else if(s.team&&tg0)team+='<small class="hint">Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';
     var link=Object.keys(soc).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+esc(n)+' ↗</a>'}).join("");
     var sq=(s.squadre||[]).map(function(q){return '<li><b>'+esc(q.formato)+'</b>: '+esc((q.pokemon||[]).map(function(p){return p.pokemon}).join(", "))+' <a href="'+esc(q.link)+'" target="_blank" rel="noopener">paste ↗</a></li>'}).join("");
-    var ris="";
+    var verifica=['instagram','x','facebook'].filter(function(n){return soc[n]}).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+({instagram:"Instagram",x:"X",facebook:"Facebook"})[n]+' ↗</a>'}).join("");
+    var ris='<div class="lgw" style="background:rgba(90,209,255,.10);border-color:rgba(90,209,255,.45)">🔎 <b>Prima di approvare controlla</b> '+verifica+'<br>'+
+      '· <b>Data di iscrizione</b>: X → sotto la bio «Si è iscritto a…» · Instagram → ⋯ in alto a destra → «Informazioni su questo account» · Facebook → «Informazioni»<br>'+
+      '· Account creato da poco, pochi post o follower, niente legato al VGC, nome utente cambiato di recente = possibile account fatto apposta<br>'+
+      '· Foto e nome corrispondono al giocatore?</div>';
     var d=new Date((s.ricevuta||0)*1000);
     return '<div class="sc" data-sc="'+esc(k)+'"><div class="hd">'+av+'<div><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span style="font-weight:900;color:'+(/^#[0-9a-f]{6}$/i.test(s.colore||"")?s.colore:"#fff")+';text-shadow:0 1px 0 #000">'+esc(s.nickname)+'</span>':'')+
       ((s.nick_vr||s.nick_gioco)?'<small>'+(s.nick_vr?'Battlefy/VR: '+esc(s.nick_vr):'')+(s.nick_vr&&s.nick_gioco?' · ':'')+(s.nick_gioco?'In game: '+esc(s.nick_gioco):'')+'</small>':'')+
