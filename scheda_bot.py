@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Bot Telegram @rakings_vgc_bot: i giocatori mandano la loro «scheda giocatore».
 
-La parte «sempre accesa» del bot è su Deno Deploy (repo VGCbotAK): risponde subito ai giocatori, mette in coda moduli,
-foto e /cancella e avvia questo flusso, che legge la coda (GET /coda con una chiave ricavata dal token del bot).
-Gira anche da solo 4 volte al giorno come riserva. Se il bot non è ancora collegato a Deno (nessun webhook), legge i
-messaggi con getUpdates come prima.
+La parte «sempre accesa» del bot è su Google Apps Script (repo VGCbotAK, Codice.gs): ogni minuto legge Telegram,
+risponde subito ai comandi, mette in coda moduli, foto e /cancella e avvia questo flusso, che legge la coda chiamando
+l'app web dello script (indirizzo nella variabile SCHEDA_CODA_URL del repo, chiave ricavata dal token del bot).
+Gira anche da solo 4 volte al giorno come riserva. Senza SCHEDA_CODA_URL legge i messaggi con getUpdates come prima.
 A ogni giro:
-  - legge i messaggi nuovi (coda di Deno, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
+  - legge i messaggi nuovi (coda di Apps Script, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
   - unisce i messaggi di ogni giocatore arrivati nel giro (testo con il modello + foto: prima l'avatar, poi il logo del team);
   - controlla la scheda (14 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
   - legge le squadre dai link Pokepaste (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
@@ -504,12 +504,14 @@ def elabora(aggiornamenti, attesa):
 
 
 def coda_deno(base, chiave, ids=None):
-    """Legge (ids=None) o svuota la coda dei messaggi su Deno Deploy."""
-    dati = None if ids is None else json.dumps({"ids": ids}).encode()
-    req = urllib.request.Request(base + "/coda", data=dati, headers={"Authorization": "Bearer " + chiave, "User-Agent": "rakings-bot",
-                                                                       "Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    """Legge (ids=None) o svuota la coda dei messaggi dell'app web di Apps Script (POST; Google risponde con un rimando, seguito da urllib)."""
+    corpo = {"k": chiave, "op": "leggi"} if ids is None else {"k": chiave, "op": "fatti", "ids": ids}
+    req = urllib.request.Request(base, data=json.dumps(corpo).encode(), headers={"User-Agent": "rakings-bot", "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        out = json.loads(r.read().decode("utf-8"))
+    if not out.get("ok"):
+        raise RuntimeError("coda: %s" % out.get("errore", "risposta non valida"))
+    return out
 
 
 def giro_deno(base, attesa):
@@ -547,9 +549,9 @@ def giro():
         log("BACKUP_CHIAVE mancante: non posso salvare le schede cifrate, mi fermo.")
         return 1
     attesa = decifra(carica(ATTESA, {})) if os.path.exists(ATTESA) else {}
-    hook = tg("getWebhookInfo").get("url") or ""
-    if hook.endswith("/tg"):                             # bot collegato a Deno Deploy: si legge la sua coda
-        return giro_deno(hook[:-3], attesa)
+    coda_url = (os.environ.get("SCHEDA_CODA_URL") or "").strip()
+    if coda_url.startswith("https://script.google.com/"):   # bot su Apps Script: si legge la sua coda (mai getUpdates)
+        return giro_deno(coda_url, attesa)
     stato = carica(STATO, {})
     offset = int(stato.get("offset") or 0)
     aggiornamenti = tg("getUpdates", offset=offset, timeout=0, allowed_updates=["message"])
