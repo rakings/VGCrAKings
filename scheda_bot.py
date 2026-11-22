@@ -72,6 +72,8 @@ SOCIAL_HOST = {
 }
 
 BENVENUTO = (
+    "⚠️🔴 *ATTENZIONE: NON SBAGLIARE IL LOGO DEL TEAM!* 🔴⚠️\n"
+    "Il logo vale per tutti i membri del team e cambiarlo si può solo con il permesso dell'admin di rAKings.\n\n"
     "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n"
     "📋 Scrivi /scheda per avere il modello da compilare.\n"
     "📸 Manda il modello insieme alle foto: prima l'avatar, poi (facoltativo) il logo del tuo team.\n"
@@ -82,7 +84,8 @@ BENVENUTO = (
     "Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: "
     "la responsabilità del logo è tua.\n"
     "🛡 Il logo vale per tutti i membri dello stesso team che si registrano; se è sbagliato si può cambiare solo con il "
-    "permesso dell'admin di rAKings.\n\n"
+    "permesso dell'admin di rAKings: ricompila e rimanda l'intero modulo, poi manda solo il logo nuovo (senza avatar) con "
+    "scritto «logo» nella didascalia, e aspetta l'approvazione.\n\n"
     "🇬🇧 Hi! Use /scheda to get the template, send it with your avatar (and optionally your team logo). "
     "Every card is reviewed. By sending it you confirm you are at least 14 "
     "and that data, photos, socials and team logo are yours to share. /cancella deletes your card."
@@ -432,16 +435,24 @@ def elabora(aggiornamenti, attesa):
         chat = msg.get("chat") or {}
         if chat.get("type") != "private" or not msg.get("from") or msg["from"].get("is_bot"):
             continue
-        d = per_utente.setdefault(msg["from"]["id"], {"utente": msg["from"], "chat": chat["id"], "testi": [], "foto": [], "comandi": []})
+        d = per_utente.setdefault(msg["from"]["id"], {"utente": msg["from"], "chat": chat["id"], "testi": [], "foto": [], "loghi": [], "comandi": []})
         testo = msg.get("text") or msg.get("caption") or ""
+        fid = ""
+        if msg.get("photo"):
+            fid = sorted(msg["photo"], key=lambda p: p.get("file_size") or 0)[-1]["file_id"]
+        elif (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
+            fid = msg["document"]["file_id"]
+        # foto con «logo» nella didascalia (e non il modulo): è il logo del team, anche senza avatar
+        logo = bool(fid) and bool(re.search(r"\blogo\b", testo, re.I)) and not re.search(r"^\s*(nome|name)\s*:", testo, re.I | re.M)
+        if logo:
+            d["loghi"].append(fid)
+            continue
         if testo.strip().startswith("/"):
             d["comandi"].append(testo.strip().split()[0].split("@")[0].lower())
         elif testo.strip():
             d["testi"].append(testo)
-        if msg.get("photo"):
-            d["foto"].append(sorted(msg["photo"], key=lambda p: p.get("file_size") or 0)[-1]["file_id"])
-        elif (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
-            d["foto"].append(msg["document"]["file_id"])
+        if fid:
+            d["foto"].append(fid)
 
     cambiate = False
     tenuti = set()
@@ -462,6 +473,13 @@ def elabora(aggiornamenti, attesa):
                          ("" if tolta else " (non era ancora pubblicata)"))
         modello = next((t for t in reversed(d["testi"]) if re.search(r"^\s*(nome|name)\s*:", t, re.I | re.M)), "")
         if not modello:
+            if d["loghi"] and chiave in attesa and attesa[chiave].get("team"):   # logo mandato dopo il modulo
+                try:
+                    attesa[chiave]["logo_team"] = foto_quadrata(scarica_file(d["loghi"][-1]))
+                    cambiate = True
+                    rispondi(d["chat"], "🛡 Logo del team aggiunto alla tua scheda in attesa: vale dopo l'approvazione dell'admin. / Team logo added, pending approval.")
+                except Exception as ex:
+                    log("Logo non letto:", ex)
             if d["foto"] and chiave in attesa:              # foto mandate dopo il modulo: vanno nella scheda in attesa
                 sch, nuove = attesa[chiave], 0
                 for fid in d["foto"][:2]:
@@ -481,18 +499,25 @@ def elabora(aggiornamenti, attesa):
                     cambiate = True
                     rispondi(d["chat"], "📸 Foto aggiunta alla tua scheda in attesa. / Photo added to your pending card.")
                 continue
-            if d["foto"] and not d["testi"] and not d["comandi"]:
+            if (d["foto"] or d["loghi"]) and chiave in attesa:
+                continue
+            if (d["foto"] or d["loghi"]) and not d["testi"] and not d["comandi"]:
                 tenuti.add(uid)                             # foto arrivate prima del modulo: restano in coda
                 continue
             if d["testi"] and not d["comandi"]:
                 rispondi(d["chat"], "Non ho trovato il modello compilato. Scrivi /scheda per riceverlo. / Template not found: send /scheda.")
             continue
         foto = []
-        for fid in d["foto"][:2]:
+        for fid in d["foto"][:1 if d["loghi"] else 2]:
             try:
                 foto.append(foto_quadrata(scarica_file(fid)))
             except Exception as ex:
                 log("Foto non letta:", ex)
+        if d["loghi"]:                                      # logo indicato con la didascalia: avatar facoltativo
+            try:
+                foto = [foto[0] if foto else "", foto_quadrata(scarica_file(d["loghi"][-1]))]
+            except Exception as ex:
+                log("Logo non letto:", ex)
         scheda, errori, avvisi = costruisci(leggi_modello(modello), foto, d["utente"])
         if errori:
             rispondi(d["chat"], "❌ Scheda non accettata / Card not accepted:\n- " + "\n- ".join(errori) +
