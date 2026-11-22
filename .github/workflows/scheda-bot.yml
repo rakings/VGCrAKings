@@ -1,0 +1,42 @@
+name: Scheda giocatore - bot Telegram
+# Legge i messaggi del bot @rakings_vgc_bot, risponde ai giocatori e salva le schede IN ATTESA (cifrate) in schede/attesa.json.
+# Parte da solo 4 volte al giorno (1:23, 8:23, 15:23, 22:23 ora italiana d'inverno): Telegram tiene i messaggi per 24 ore,
+# quindi anche se GitHub salta un giro passano al massimo 14 ore e non si perde niente.
+# L'approvazione delle schede si fa dalla pagina admin.
+on:
+  schedule:
+    - cron: "23 0,7,14,21 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: scheda-bot
+  cancel-in-progress: false
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --quiet pillow
+      - run: python -u scheda_bot.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          BACKUP_CHIAVE: ${{ secrets.BACKUP_CHIAVE }}
+      - name: Salva su GitHub (solo se cambiato)
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          [ -d schede ] && git add -A schede
+          git diff --staged --quiet && exit 0
+          git commit -m "Schede giocatore: messaggi del bot"
+          for i in 1 2 3 4; do
+            if git pull --rebase --autostash -X theirs && git push; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
