@@ -5,6 +5,30 @@
  ],
  "richieste": [
   {
+   "id": "sto-150574390",
+   "v": 3,
+   "tipo": "storia",
+   "storia": true,
+   "rif": 0,
+   "creata": "2026-11-22T23:33:08Z",
+   "titolo": "Storia: Masahiro Taoka vince",
+   "sotto": "2027 Latin America Pokémon VGC International Championships",
+   "img": "social/img/sto-150574390.jpg",
+   "link": "https://rakings.github.io/VGCrAKings/#stats-reg-1000088",
+   "ig": {
+    "stato": "da approvare",
+    "testo": "(storia: Instagram non permette testo nelle storie)"
+   },
+   "x": {
+    "stato": "da approvare",
+    "testo": "🏆 Masahiro Taoka (JP) wins 2027 Latin America Pokémon VGC International Championships!\nTop 8: 2nd Emilio Forbes, 3rd Yuma Kinugawa, 4th Samuel Pereira, 5th Kandai Nagatome, 6th Louis Markl\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000088\n#PokemonChampions #VGC"
+   },
+   "yt": {
+    "stato": "da approvare",
+    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts"
+   }
+  },
+  {
    "id": "sto-133445398",
    "v": 3,
    "tipo": "storia",
@@ -49,8 +73,9 @@
     "url": "https://www.instagram.com/p/DgAH4ublXiC/"
    },
    "x": {
-    "stato": "da approvare",
-    "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonChampions #VGC"
+    "stato": "annullato",
+    "testo": "💰 Money tournaments of the week (Nov 16–22)\n1) 50€ Torre Lotta Cup #4 50€ Amazon Gift Cards\n2) $50 Runback Series #6 - Reg I $50 to 1st…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonChampions #VGC",
+    "msg": "la settimana e' finita"
    },
    "yt": {
     "stato": "pubblicato",
@@ -69,7 +94,8 @@
  "fatti": [
   "sto-116899157",
   "mon-202647",
-  "sto-133445398"
+  "sto-133445398",
+  "sto-150574390"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
  "storie_dal": "2026-11-16T08:29:54Z",
