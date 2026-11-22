@@ -406,7 +406,12 @@ list.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.rows[0].d<b.rows[0].
 if(!list.length)return'<div class="pr-box"><p class="pr-none">Nessun giocatore trovato per «'+E(q)+'».</p></div>';
 var SCH=window.SCHEDE;window.VGCS_PR={};
 return'<div class="pr-box">'+list.map(function(p){var sb=SCH?SCH.bottone(p.name,p.cc):"";if(sb){var sid=(sb.match(/data-sch="([^"]+)"/)||[])[1];if(sid)window.VGCS_PR[sid]={rows:p.rows,live:p.live,nome:p.name,cc:p.cc}}
-return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span>'+sb+'</div>'+
+var sid2=sb?(sb.match(/data-sch="([^"]+)"/)||[])[1]:"";
+/* chi ha la scheda allenatore: piccolo pulsante «Apri scheda allenatore» tra il nome e «Scheda»; le righe restano come per tutti
+   (in più una copia nascosta di tutte le righe, per i tocchi sui risultati dentro la scheda) */
+var apri=sid2?'<button type="button" class="pr-sch pr-schl" data-sch="'+E(sid2)+'">Apri scheda allenatore ›</button>':"";
+return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span>'+apri+sb+'</div>'+
+(sid2?'<div class="pr-nasc" data-sch-r="'+E(sid2)+'" hidden>'+p.rows.map(function(r){return pRiga(r,p.name,p.cc)}).join("")+'</div>':"")+
 (espandi&&espandi===pn(p.name)+"|"+p.cc?p.rows:p.rows.slice(0,5)).map(function(r){return pRiga(r,p.name,p.cc)}).join("")+
 (p.rows.length>5&&!(espandi&&espandi===pn(p.name)+"|"+p.cc)?'<button type="button" class="pr-more" data-k="'+E(pn(p.name)+"|"+p.cc)+'">+ '+(p.rows.length-5)+" altri tornei</button>":"")+"</div>"}).join("")+(LIMON?'<p class="pr-fonte">Storico dei giocatori: Pokédata e <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a></p>':"")+"</div>"})}
 function apriGiocatore(id,name,cc,pl){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}

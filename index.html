@@ -245,6 +245,9 @@ li.nw.frm .btn.main{border:2px solid #fff}
 .brand #cta-loc{margin-top:8px;width:100%;padding:8px 10px;font-size:.78rem;line-height:1.2;border-radius:12px}
 @media (min-width:700px){.src .short{display:none}.src .long{display:block}.brand .src span{font-size:.68rem}.brand #cta-loc{font-size:.95rem;padding:10px 12px}}
 @media (max-width:380px){.brand .src span{font-size:.58rem}.brand .src b{font-size:.86rem}}
+.qwrap{position:relative;margin:0 0 12px}.qwrap #q{margin:0;padding-right:66px}.qwrap #q::placeholder{font-size:.9em}@media(max-width:380px){.qwrap #q{padding-left:12px}.qwrap #q::placeholder{font-size:.82em}}
+.qsch{position:absolute;right:6px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3px 6px;border-radius:8px;background:linear-gradient(135deg,#e11d2e,#6d28d9);color:#fff;text-decoration:none;font-size:8px;font-weight:700;line-height:1.12;text-align:center;white-space:nowrap}
+.qsch .qs1{white-space:normal;max-width:52px}.qsch b{font-size:8px;font-weight:900;margin-top:1px;color:#fff}.qsch:active{transform:translateY(-50%) scale(.95)}
 #q{display:block;margin:0 0 12px;width:100%;padding:12px 16px;font-size:1rem;border-radius:14px;border:2px solid #e0b100;box-shadow:0 0 0 3px rgba(224,177,0,.22)}#q:focus{outline:0;border-color:#ffd21f;box-shadow:0 0 0 4px rgba(255,210,31,.35)}#pres{margin:-4px 0 12px}
 .brand .src span{overflow:hidden;text-overflow:ellipsis}
 .brand .logo{width:calc(min(44vw,180px) + 12px);margin-left:-12px}
@@ -411,7 +414,7 @@ li.nxhl{animation:nxhl 2.2s ease-out}
 <body>
 <main><p class="devby">Developed by: X: <a href="https://x.com/AndreaK_92" target="_blank" rel="noopener noreferrer">@AndreaK_92</a> · IG: <a href="https://www.instagram.com/AndreaK_92/" target="_blank" rel="noopener noreferrer">@AndreaK_92</a></p>
 <header class="brand"><div class="lcol"><img class="logo" src="logo-egg.webp" alt="Logo rAKings VGC" width="190" height="234"><button class="btn main" id="cta-loc" type="button">Organizzi un locale? Carica la top 8</button></div><div class="txt"><h1>rAKings VGC</h1><p class="head">Tornei ufficiali VGC e Tornei online</p><p class="lead">Solo videogioco Pokémon. Ogni torneo ha il tipo, il costo, il regolamento e un marcatore dorato se mette in palio denaro.</p><a class="nxt" id="nxt" href="#" hidden></a><div class="pwa" id="pwa-bar" hidden><span class="pwa-ic" aria-hidden="true">📲</span><div class="pwa-t"><b>Installa l'app</b><span>Aprila dalla Home e ricevi gli avvisi sui tornei.</span></div><button class="btn main" id="pwa-btn" type="button">Installa</button><button class="pwa-x" id="pwa-x" type="button" aria-label="Chiudi">✕</button></div></div></header>
-<input id="q" type="search" placeholder="Cerca tornei, giocatori live e storico" aria-label="Cerca tornei, giocatori in gara (live) e risultati storici"><div class="pres" id="pres" hidden></div>
+<div class="qwrap"><input id="q" type="search" placeholder="Cerca tornei, giocatori live e storico" aria-label="Cerca tornei, giocatori in gara (live) e risultati storici"><a class="qsch" href="https://t.me/rakings_vgc_bot" target="_blank" rel="noopener" aria-label="Compila la tua scheda allenatore con il bot Telegram"><span class="qs1">Scheda allenatore</span><b>✈️ Telegram</b></a></div><div class="pres" id="pres" hidden></div>
 
 
 
@@ -640,11 +643,11 @@ window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
 var VGP=null;
-function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261122a";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261122c";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
-var SKP=null;function schedeLoad(){if(window.SCHEDE)return SCHEDE.carica();if(SKP)return SKP;SKP=new Promise(function(ok){var sc=document.createElement("script");sc.src="schede.js?v=20261122e";sc.onload=function(){SCHEDE.carica().then(ok,ok)};sc.onerror=function(){SKP=null;ok()};document.head.appendChild(sc)});return SKP}
+var SKP=null;function schedeLoad(){if(window.SCHEDE)return SCHEDE.carica();if(SKP)return SKP;SKP=new Promise(function(ok){var sc=document.createElement("script");sc.src="schede.js?v=20261122g";sc.onload=function(){SCHEDE.carica().then(ok,ok)};sc.onerror=function(){SKP=null;ok()};document.head.appendChild(sc)});return SKP}
 function pSearch(v){clearTimeout(PT);var q=String(v||"").trim();PQ=q;var box=$("pres");if(q.length<3){box.hidden=true;box.innerHTML="";return}
 PT=setTimeout(function(){Promise.all([vgcsLoad(),schedeLoad()]).then(function(){return VGCS.cerca(q)}).then(function(html){if(PQ!==q)return;box.innerHTML=html;box.hidden=!html}).catch(function(){})},280)}
 $("pres").addEventListener("click",function(ev){var mo=ev.target.closest(".pr-more");
@@ -940,7 +943,7 @@ var MESI_IT=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","a
 function langIdx(){for(var i=1;i<LANGS.length;i++)if(LANGS[i][0]===LANG)return i-1;return -1}
 function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc2(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
-function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js';sc.onload=cb;document.head.appendChild(sc)}
+function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261122a';sc.onload=cb;document.head.appendChild(sc)}
 function buildTr(){EXM={};PHL=[];var i=langIdx();if(i<0)return;
 EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});TYM={};Object.keys(TYPE).forEach(function(k){TYM[k]=Array.isArray(TYPE[k])?TYPE[k][i]:TYPE[k]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
 var cn=Object.keys(CTRY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CTRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+cn+")(?![A-Za-zÀ-ÿ])","g");
