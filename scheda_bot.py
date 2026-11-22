@@ -237,7 +237,7 @@ def simile(parola, scelte, soglia=0.8):
 def squadra_da_riga(riga):
     """(formato, link) da una riga con un link Pokepaste, anche scritto come [Nome](link) o con altro testo intorno."""
     m = re.search(r"pokepast\.es/([0-9a-z]{6,32})", riga or "", re.I)
-    sd = None if m else re.search(r"(?:psim\.us/t/|pokemonshowdown\.com/(?:t/|view/))(\d{3,12})", riga or "", re.I)
+    sd = None if m else re.search(r"(?:psim\.us/t/|pokemonshowdown\.com/(?:t/|view/))(\d{3,12}(?:-[0-9a-z]{6,40})?)", riga or "", re.I)
     if sd:                                            # squadre salvate su Showdown: https://psim.us/t/2091236
         m = sd
     if not m:
@@ -250,9 +250,10 @@ def squadra_da_riga(riga):
         etichetta = prima.strip(" :-\t[]()")
     if ":" in etichetta and etichetta.split(":", 1)[0].strip():   # «Reg M-C: Untitled 1» -> «Reg M-C»
         etichetta = etichetta.split(":", 1)[0].strip()
-    if norm(etichetta) in ("formato o nome squadra", "formato", "nome squadra", "squadra"):   # etichetta del modulo lasciata così
+    if norm(etichetta) in ("formato o nome squadra", "formato", "nome squadra", "squadra") \
+            or re.fullmatch(r"(squadra|team)\s*\d*", norm(etichetta)):   # etichetta del modulo lasciata così o «Squadra 1»
         etichetta = ""
-    return etichetta, ("https://psim.us/t/" + m.group(1)) if sd else ("https://pokepast.es/" + m.group(1).lower())
+    return etichetta, ("https://teams.pokemonshowdown.com/view/" + m.group(1).lower()) if sd else ("https://pokepast.es/" + m.group(1).lower())
 
 
 def con_link(msg):
@@ -363,17 +364,20 @@ def nome_sd(v):
 
 def leggi_showdown(url):
     """Squadra salvata su Showdown (psim.us/t/ID): formato «packed» -> stessa lista di leggi_pokepaste."""
-    m = re.search(r"(\d{3,12})\s*$", url or "")
+    global TITOLO_PASTE
+    m = re.search(r"(\d{3,12})(?:-([0-9a-z]{6,40}))?/?\s*$", url or "", re.I)
     if not m:
         return None
-    try:
-        req = urllib.request.Request("https://teams.pokemonshowdown.com/api/getteam?teamid=" + m.group(1),
+    try:                                              # full=1 dà anche il nome della squadra; le squadre private hanno la password nel link
+        q = "teamid=" + m.group(1) + "&full=1" + ("&password=" + m.group(2) if m.group(2) else "")
+        req = urllib.request.Request("https://teams.pokemonshowdown.com/api/getteam?" + q,
                                      headers={"User-Agent": "rakings-bot (+https://rakings.github.io)"})
         with urllib.request.urlopen(req, timeout=20) as r:
             dati = json.loads(r.read().decode("utf-8", "replace").lstrip("]"))
     except Exception as ex:
         log("Squadra Showdown non letta:", url, ex)
         return None
+    TITOLO_PASTE = re.sub(r"^untitled\s*\d*$", "", (dati.get("title") or "").strip(), flags=re.I)[:40]
     squadra = []
     for pk in (dati.get("team") or "").split("]"):
         c = pk.split("|")
@@ -387,14 +391,14 @@ def leggi_showdown(url):
     return squadra[:6] or None
 
 
-TITOLO_PASTE = ""   # titolo dell'ultimo Pokepaste letto (le squadre di Showdown non hanno un titolo leggibile)
+TITOLO_PASTE = ""   # nome della squadra letto dall'ultimo Pokepaste o dalla squadra di Showdown
 
 
 def leggi_pokepaste(url):
     """Pokepaste in formato Showdown -> lista di 6 {pokemon, strumento, abilita, tera, mosse}. Niente EV/IV/natura."""
     global TITOLO_PASTE
     TITOLO_PASTE = ""
-    if "psim.us/t/" in (url or ""):
+    if re.search(r"psim\.us/t/|pokemonshowdown\.com/", url or "", re.I):
         return leggi_showdown(url)
     m = re.search(r"pokepast\.es/([0-9a-f]{6,32})", url or "", re.I)
     if not m:
@@ -404,7 +408,7 @@ def leggi_pokepaste(url):
         with urllib.request.urlopen(req, timeout=20) as r:
             dati = json.loads(r.read().decode("utf-8", "replace"))
         testo = dati.get("paste") or ""
-        TITOLO_PASTE = (dati.get("title") or "").strip()[:40]
+        TITOLO_PASTE = re.sub(r"^untitled\s*\d*$", "", (dati.get("title") or "").strip(), flags=re.I)[:40]
     except Exception:
         try:
             with urllib.request.urlopen("https://pokepast.es/%s/raw" % m.group(1), timeout=20) as r:
