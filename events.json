@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T18:02:27+00:00",
+ "updated": "2026-11-22T18:31:32+00:00",
  "events": [
   {
    "name": "Latin America International Championships",
@@ -187,7 +187,7 @@
    "bo": null,
    "date": "2026-11-22",
    "time": "23:00",
-   "players": 54,
+   "players": 57,
    "url": "https://play.limitlesstcg.com/tournament/6af372b500d53a11f5b90882/details",
    "reg_letto": true
   },
@@ -203,7 +203,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "03:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details",
    "reg_letto": true
   },
@@ -235,7 +235,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:30",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
