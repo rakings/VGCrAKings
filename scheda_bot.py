@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Bot Telegram @rakings_vgc_bot: i giocatori mandano la loro «scheda giocatore».
 
-Parte da solo su GitHub 4 volte al giorno (ogni 7 ore, piu' un giro la notte) (Telegram tiene i messaggi per 24 ore: anche saltando un giro non si perde niente).
+La parte «sempre accesa» del bot è su Deno Deploy (repo VGCbotAK): risponde subito ai giocatori, mette in coda moduli,
+foto e /cancella e avvia questo flusso, che legge la coda (GET /coda con una chiave ricavata dal token del bot).
+Gira anche da solo 4 volte al giorno come riserva. Se il bot non è ancora collegato a Deno (nessun webhook), legge i
+messaggi con getUpdates come prima.
 A ogni giro:
-  - legge i messaggi nuovi (getUpdates) e risponde ai comandi: /start, /scheda, /cancella, /aiuto;
+  - legge i messaggi nuovi (coda di Deno, oppure getUpdates) e, solo senza Deno, risponde ai comandi /start, /scheda, /aiuto;
   - unisce i messaggi di ogni giocatore arrivati nel giro (testo con il modello + foto: prima l'avatar, poi il logo del team);
   - controlla la scheda (14 anni confermati, nome, almeno un profilo Instagram o Facebook, tipi validi, link Pokepaste);
   - legge le squadre dai link Pokepaste (open teamsheet: Pokémon, strumento, abilità, tera, mosse; niente EV);
@@ -16,6 +19,7 @@ A ogni giro:
 Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub). Nessuna chiave nel repo.
 """
 import base64
+import hashlib
 import io
 import json
 import os
@@ -71,14 +75,14 @@ BENVENUTO = (
     "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings VGC.\n\n"
     "📋 Scrivi /scheda per avere il modello da compilare.\n"
     "📸 Manda il modello insieme alle foto: prima l'avatar, poi (facoltativo) il logo del tuo team.\n"
-    "⏳ I messaggi vengono letti 4 volte al giorno: riceverai la risposta entro 7 ore.\n"
+    "⏳ Ti rispondo in un paio di minuti.\n"
     "✅ Ogni scheda viene controllata (anche tramite il tuo profilo social) prima di essere pubblicata.\n"
     "🗑 Con /cancella elimini la tua scheda quando vuoi.\n\n"
     "⚠️ Inviando la scheda confermi di avere *almeno 14 anni* e che dati, foto e profili social sono tuoi. "
     "Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: "
     "la responsabilità del logo è tua.\n\n"
     "🇬🇧 Hi! Use /scheda to get the template, send it with your avatar (and optionally your team logo). "
-    "Messages are read 4 times a day and every card is reviewed. By sending it you confirm you are at least 14 "
+    "Every card is reviewed. By sending it you confirm you are at least 14 "
     "and that data, photos, socials and team logo are yours to share. /cancella deletes your card."
 )
 MODELLO = (
@@ -104,7 +108,7 @@ MODELLO = (
 AIUTO = (
     "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona.\n"
     "Serve almeno un profilo Instagram o Facebook *pubblico*: lo usiamo per verificare che sei tu.\n"
-    "Le squadre vanno messe come link di pokepast.es. Le risposte arrivano entro 7 ore."
+    "Le squadre vanno messe come link di pokepast.es."
 )
 
 
@@ -416,22 +420,10 @@ def azione(chiave, az, motivo=""):
 
 
 # ---------------- giro ----------------
-def giro():
-    if not os.environ.get("TELEGRAM_BOT_TOKEN"):
-        log("TELEGRAM_BOT_TOKEN mancante: niente da fare.")
-        return 0
-    if not os.environ.get("BACKUP_CHIAVE"):
-        log("BACKUP_CHIAVE mancante: non posso salvare le schede cifrate, mi fermo.")
-        return 1
-    stato = carica(STATO, {})
-    offset = int(stato.get("offset") or 0)
-    aggiornamenti = tg("getUpdates", offset=offset, timeout=0, allowed_updates=["message"])
-    log("Messaggi nuovi:", len(aggiornamenti))
-    if not aggiornamenti:
-        return 0
+def elabora(aggiornamenti, attesa):
+    """Unisce i messaggi di ogni giocatore e aggiorna le schede in attesa. Ritorna (cambiate, giocatori da tenere in coda)."""
     per_utente = {}
     for u in aggiornamenti:
-        offset = max(offset, u["update_id"] + 1)
         msg = u.get("message") or {}
         chat = msg.get("chat") or {}
         if chat.get("type") != "private" or not msg.get("from") or msg["from"].get("is_bot"):
@@ -447,8 +439,8 @@ def giro():
         elif (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
             d["foto"].append(msg["document"]["file_id"])
 
-    attesa = decifra(carica(ATTESA, {})) if os.path.exists(ATTESA) else {}
     cambiate = False
+    tenuti = set()
     for uid, d in per_utente.items():
         chiave = str(uid)
         for c in d["comandi"]:
@@ -466,6 +458,28 @@ def giro():
                          ("" if tolta else " (non era ancora pubblicata)"))
         modello = next((t for t in reversed(d["testi"]) if re.search(r"^\s*(nome|name)\s*:", t, re.I | re.M)), "")
         if not modello:
+            if d["foto"] and chiave in attesa:              # foto mandate dopo il modulo: vanno nella scheda in attesa
+                sch, nuove = attesa[chiave], 0
+                for fid in d["foto"][:2]:
+                    try:
+                        f = foto_quadrata(scarica_file(fid))
+                    except Exception as ex:
+                        log("Foto non letta:", ex)
+                        continue
+                    if not sch.get("avatar"):
+                        sch["avatar"] = f
+                    elif sch.get("team") and not sch.get("logo_team"):
+                        sch["logo_team"] = f
+                    else:
+                        sch["avatar"] = f
+                    nuove += 1
+                if nuove:
+                    cambiate = True
+                    rispondi(d["chat"], "📸 Foto aggiunta alla tua scheda in attesa. / Photo added to your pending card.")
+                continue
+            if d["foto"] and not d["testi"] and not d["comandi"]:
+                tenuti.add(uid)                             # foto arrivate prima del modulo: restano in coda
+                continue
             if d["testi"] and not d["comandi"]:
                 rispondi(d["chat"], "Non ho trovato il modello compilato. Scrivi /scheda per riceverlo. / Template not found: send /scheda.")
             continue
@@ -486,6 +500,65 @@ def giro():
         rispondi(d["chat"], "✅ Scheda ricevuta, ora è in attesa di approvazione. / Card received, waiting for approval." + extra)
         log("Scheda in attesa:", scheda["nome"], "| squadre", len(scheda["squadre"]), "| foto", len(foto))
 
+    return cambiate, tenuti
+
+
+def coda_deno(base, chiave, ids=None):
+    """Legge (ids=None) o svuota la coda dei messaggi su Deno Deploy."""
+    dati = None if ids is None else json.dumps({"ids": ids}).encode()
+    req = urllib.request.Request(base + "/coda", data=dati, headers={"Authorization": "Bearer " + chiave, "User-Agent": "rakings-bot",
+                                                                       "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def giro_deno(base, attesa):
+    chiave = hashlib.sha256(("rakings-coda:" + os.environ["TELEGRAM_BOT_TOKEN"]).encode()).hexdigest()
+    cambiate, visti = False, set()
+    for _ in range(4):                                   # rilegge: i messaggi arrivati mentre lavorava vanno nello stesso giro
+        coda = coda_deno(base, chiave)["coda"]
+        if coda:                                         # aspetta 30 secondi dall'ultimo messaggio: le foto arrivano dopo il testo
+            eta = time.time() - max(c["t"] for c in coda) / 1000
+            if eta < 30:
+                time.sleep(31 - eta)
+                coda = coda_deno(base, chiave)["coda"]
+        nuovi = [c for c in coda if c["id"] not in visti]
+        log("Messaggi in coda:", len(nuovi))
+        if not nuovi:
+            break
+        visti.update(c["id"] for c in nuovi)
+        c2, tenuti = elabora([c["u"] for c in nuovi], attesa)
+        cambiate = cambiate or c2
+        if c2:
+            salva(ATTESA, cifra(attesa))
+        vecchi = time.time() * 1000 - 86400000          # foto senza modulo da più di un giorno: si buttano
+        fatti = [c["id"] for c in nuovi if ((c["u"].get("message") or {}).get("from") or {}).get("id") not in tenuti or c["t"] < vecchi]
+        if fatti:
+            coda_deno(base, chiave, fatti)
+    log("Fatto. Schede in attesa:", len(attesa))
+    return 0
+
+
+def giro():
+    if not os.environ.get("TELEGRAM_BOT_TOKEN"):
+        log("TELEGRAM_BOT_TOKEN mancante: niente da fare.")
+        return 0
+    if not os.environ.get("BACKUP_CHIAVE"):
+        log("BACKUP_CHIAVE mancante: non posso salvare le schede cifrate, mi fermo.")
+        return 1
+    attesa = decifra(carica(ATTESA, {})) if os.path.exists(ATTESA) else {}
+    hook = tg("getWebhookInfo").get("url") or ""
+    if hook.endswith("/tg"):                             # bot collegato a Deno Deploy: si legge la sua coda
+        return giro_deno(hook[:-3], attesa)
+    stato = carica(STATO, {})
+    offset = int(stato.get("offset") or 0)
+    aggiornamenti = tg("getUpdates", offset=offset, timeout=0, allowed_updates=["message"])
+    log("Messaggi nuovi:", len(aggiornamenti))
+    if not aggiornamenti:
+        return 0
+    for u in aggiornamenti:
+        offset = max(offset, u["update_id"] + 1)
+    cambiate, _ = elabora(aggiornamenti, attesa)
     if cambiate:
         salva(ATTESA, cifra(attesa))
     salva(STATO, {"offset": offset, "letto": int(time.time())})
