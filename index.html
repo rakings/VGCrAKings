@@ -644,7 +644,7 @@ function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VG
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
-var SKP=null;function schedeLoad(){if(window.SCHEDE)return SCHEDE.carica();if(SKP)return SKP;SKP=new Promise(function(ok){var sc=document.createElement("script");sc.src="schede.js?v=20261122a";sc.onload=function(){SCHEDE.carica().then(ok,ok)};sc.onerror=function(){SKP=null;ok()};document.head.appendChild(sc)});return SKP}
+var SKP=null;function schedeLoad(){if(window.SCHEDE)return SCHEDE.carica();if(SKP)return SKP;SKP=new Promise(function(ok){var sc=document.createElement("script");sc.src="schede.js?v=20261122d";sc.onload=function(){SCHEDE.carica().then(ok,ok)};sc.onerror=function(){SKP=null;ok()};document.head.appendChild(sc)});return SKP}
 function pSearch(v){clearTimeout(PT);var q=String(v||"").trim();PQ=q;var box=$("pres");if(q.length<3){box.hidden=true;box.innerHTML="";return}
 PT=setTimeout(function(){Promise.all([vgcsLoad(),schedeLoad()]).then(function(){return VGCS.cerca(q)}).then(function(html){if(PQ!==q)return;box.innerHTML=html;box.hidden=!html}).catch(function(){})},280)}
 $("pres").addEventListener("click",function(ev){var mo=ev.target.closest(".pr-more");

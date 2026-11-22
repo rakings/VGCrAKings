@@ -43,6 +43,13 @@ MAX_FRASE = 140
 MAX_RISULTATI = 10
 LATO_FOTO = 256
 
+COLORI = {  # colore del nickname: lista fissa, tonalità leggibili sullo sfondo scuro della scheda
+    "rosso": "#ff5a5f", "red": "#ff5a5f", "arancione": "#ff9f43", "orange": "#ff9f43", "giallo": "#ffd21f",
+    "yellow": "#ffd21f", "verde": "#4cd97b", "green": "#4cd97b", "azzurro": "#5ad1ff", "light blue": "#5ad1ff",
+    "cyan": "#5ad1ff", "blu": "#7b93ff", "blue": "#7b93ff", "viola": "#b57bff", "purple": "#b57bff",
+    "bianco": "#ffffff", "white": "#ffffff", "oro": "#e8c060", "gold": "#e8c060",
+}
+
 TIPI = {  # nome italiano / inglese -> chiave
     "normale": "normal", "normal": "normal", "fuoco": "fire", "fire": "fire", "acqua": "water", "water": "water",
     "elettro": "electric", "electric": "electric", "erba": "grass", "grass": "grass", "ghiaccio": "ice", "ice": "ice",
@@ -55,13 +62,16 @@ TIPI = {  # nome italiano / inglese -> chiave
 CAMPI = {  # chiave del modello (IT/EN) -> campo
     "nome": "nome", "name": "nome",
     "nickname": "nickname", "nick": "nickname",
+    "nickname battlefy/vr": "nick_vr", "nickname battlefy / vr": "nick_vr", "nickname battlefy": "nick_vr",
+    "nickname victory road": "nick_vr", "nickname vr": "nick_vr", "battlefy": "nick_vr", "victory road": "nick_vr",
+    "nickname in game": "nick_gioco", "nickname in-game": "nick_gioco", "in game": "nick_gioco", "ign": "nick_gioco",
+    "colore nickname": "colore", "colore": "colore", "nickname color": "colore", "nickname colour": "colore", "color": "colore",
     "paese": "paese", "country": "paese", "bandiera": "paese", "flag": "paese",
     "team": "team", "squadra team": "team",
     "tipi": "tipi", "tipi preferiti": "tipi", "types": "tipi", "favourite types": "tipi", "favorite types": "tipi",
     "instagram": "instagram", "facebook": "facebook", "x": "x", "twitter": "x", "twitch": "twitch",
     "youtube": "youtube", "tiktok": "tiktok",
     "squadre": "squadre", "teams": "squadre", "pokepaste": "squadre",
-    "risultati": "risultati", "results": "risultati",
     "frase": "frase", "quote": "frase",
     "14 anni": "eta", "ho almeno 14 anni": "eta", "eta": "eta", "età": "eta", "age": "eta",
     "i am 14 or older": "eta", "14+": "eta",
@@ -77,6 +87,9 @@ MODELLO = (
     "copy, fill in and send it with your photos:\n\n"
     "Nome: (come nei risultati / as in the standings)\n"
     "Nickname: \n"
+    "Nickname Battlefy/VR (facoltativo): \n"
+    "Nickname in game (facoltativo): \n"
+    "Colore nickname: (rosso, arancione, giallo, verde, azzurro, blu, viola, bianco, oro)\n"
     "Paese: (es. Italia / Italy)\n"
     "Team: (facoltativo / optional)\n"
     "Tipi preferiti: (2 tipi, es. Fuoco, Acqua)\n"
@@ -88,7 +101,6 @@ MODELLO = (
     "TikTok: (facoltativo)\n"
     "Squadre: (fino a 6 link Pokepaste, uno per riga, con il formato davanti)\n"
     "Reg M-C: https://pokepast.es/...\n"
-    "Risultati: (facoltativo, tornei non presenti su rAKings, separati da virgola)\n"
     "Frase: (facoltativa, max 140 caratteri)\n"
     "Ho almeno 14 anni: SI"
 )
@@ -161,6 +173,11 @@ def scarica_file(file_id):
 def rispondi(chat, testo):
     try:
         tg("sendMessage", chat_id=chat, text=testo, parse_mode="Markdown", disable_web_page_preview="true")
+        return
+    except Exception as ex:
+        log("Risposta con formattazione rifiutata, la rimando senza:", ex)
+    try:                      # es. un «_» o un «*» scritto dal giocatore o nel motivo del rifiuto
+        tg("sendMessage", chat_id=chat, text=testo, disable_web_page_preview="true")
     except Exception as ex:   # un giocatore che ha bloccato il bot non deve fermare il giro
         log("Risposta non inviata a", chat, ":", ex)
 
@@ -190,8 +207,8 @@ def leggi_modello(testo):
     for riga in (testo or "").splitlines():
         if not riga.strip():
             continue
-        m = re.match(r"^\s*([^:]{1,30}?)\s*:\s*(.*)$", riga)
-        chiave = CAMPI.get(norm(m.group(1))) if m else None
+        m = re.match(r"^\s*([^:]{1,50}?)\s*:\s*(.*)$", riga)
+        chiave = CAMPI.get(norm(re.sub(r"\(.*?\)", "", m.group(1)))) if m else None   # «(facoltativo)» nell'etichetta non conta
         if chiave:
             ultimo = chiave
             val = m.group(2).strip()
@@ -296,15 +313,19 @@ def costruisci(campi, foto, utente):
             squadre.append({"formato": formato[:30] or "Squadra %d" % (len(squadre) + 1), "link": url, "pokemon": s})
         else:
             avvisi.append("squadra non letta (serve un link pokepast.es valido): %s" % url[:60])
-    risultati = [r.strip()[:80] for r in re.split(r"[,;]", campi.get("risultati") or "") if r.strip() and not r.strip().startswith("(")]
+    colore_scritto = norm(campi.get("colore") or "")
+    colore = COLORI.get(colore_scritto, "")
+    if colore_scritto and not colore and not colore_scritto.startswith("("):
+        avvisi.append("colore del nickname «%s» non in lista: resta bianco / unknown nickname colour, white is used" % campi.get("colore", "").strip()[:20])
     frase = (campi.get("frase") or "").strip()
     frase = "" if frase.startswith("(") else frase[:MAX_FRASE]
     team = (campi.get("team") or "").strip()
     team = "" if team.startswith("(") else team[:40]
     scheda = {
         "nome": nome[:60], "nickname": (campi.get("nickname") or "").strip()[:30],
+        "nick_vr": (campi.get("nick_vr") or "").strip()[:40], "nick_gioco": (campi.get("nick_gioco") or "").strip()[:20],
         "paese": (campi.get("paese") or "").strip()[:30], "team": team, "tipi": tipi, "social": social,
-        "squadre": squadre, "risultati": risultati[:MAX_RISULTATI], "frase": frase,
+        "squadre": squadre, "colore": colore, "frase": frase,
         "avatar": foto[0] if foto else "", "logo_team": foto[1] if (len(foto) > 1 and team) else "",
         "telegram": {"id": utente.get("id"), "username": utente.get("username") or "", "nome": utente.get("first_name") or ""},
         "ricevuta": int(time.time()),
@@ -398,7 +419,7 @@ def azione(chiave, az, motivo=""):
         scrivi_img(os.path.join(IMG, pid + ".webp"), sch["avatar"])
     elif (pub.get(pid) or {}).get("avatar") and os.path.exists(os.path.join(IMG, pid + ".webp")):
         avatar = True                     # scheda modificata senza foto nuova: resta l'avatar di prima
-    pub[pid] = {k: sch.get(k) for k in ("nome", "nickname", "paese", "tipi", "social", "squadre", "risultati", "frase")}
+    pub[pid] = {k: sch.get(k) for k in ("nome", "nickname", "nick_vr", "nick_gioco", "colore", "paese", "tipi", "social", "squadre", "frase")}
     pub[pid].update({"team": ts, "avatar": avatar, "aggiornata": int(time.time())})
     mappa[chiave] = pid
     salva(PUBBLICHE, pub)

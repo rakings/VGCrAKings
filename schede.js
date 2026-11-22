@@ -8,7 +8,7 @@ var BASE="schede/",TIPI_DIR="img/tipi/";
 var CPD="https://rakings.github.io/VGCdatiAK/dati/cp/";
 /* zone della CP bar: per ora solo l'Europa; le altre si aggiungono qui quando il collettore le prepara */
 var CP_ZONE=[{file:"vg-europe-masters",zona:"Europa"}];
-var PUB=null,TEAM=null,LOAD=null,CPP=null,IDX={};
+var PUB=null,TEAM=null,LOAD=null,CPP=null,IDX={},NICK={};
 var COL={normal:["#bdbc8e","#77764f"],fire:["#F7A04B","#c2410c"],water:["#4f7fe0","#173d9e"],electric:["#e8c51a","#8a6a00"],grass:["#8fd65c","#3f8f22"],ice:["#8cc3e0","#2f6f98"],fighting:["#ff7a00","#c41a00"],poison:["#c25bc0","#6b1f6a"],ground:["#ecd08a","#a8812c"],flying:["#7aa7ff","#2c5bd6"],psychic:["#fb7aa2","#c21e58"],bug:["#c0d23a","#6d7c0c"],rock:["#cbb84e","#7c6d13"],ghost:["#9478b8","#4a2f6e"],dragon:["#8f5cff","#3d14b8"],dark:["#3b2a6a","#0b0b26"],steel:["#5a5a66","#1a1a20"],fairy:["#eba3c6","#b04a82"]};
 var NOMI={normal:"Normale",fire:"Fuoco",water:"Acqua",electric:"Elettro",grass:"Erba",ice:"Ghiaccio",fighting:"Lotta",poison:"Veleno",ground:"Terra",flying:"Volante",psychic:"Psico",bug:"Coleottero",rock:"Roccia",ghost:"Spettro",dragon:"Drago",dark:"Buio",steel:"Acciaio",fairy:"Folletto"};
 /* paesi: nome (it/en) -> [alpha-2, alpha-3]; la CP bar usa alpha-3, la ricerca alpha-2 */
@@ -26,9 +26,10 @@ function J(u){return fetch(u+(u.indexOf("?")<0?"?":"&")+"t="+Math.floor(Date.now
 
 /* carica le schede pubbliche una volta: indice per nome normalizzato */
 function carica(){stile();if(LOAD)return LOAD;LOAD=Promise.all([J(BASE+"pubbliche.json").catch(function(){return{}}),J(BASE+"team.json").catch(function(){return{}})]).then(function(a){
-  PUB=a[0]||{};TEAM=a[1]||{};IDX={};Object.keys(PUB).forEach(function(id){var s=PUB[id];s.id=id;s.cc=codice(s.paese);(IDX[pn(s.nome)]=IDX[pn(s.nome)]||[]).push(s)});return PUB}).catch(function(){PUB={};TEAM={};return PUB});return LOAD}
+  PUB=a[0]||{};TEAM=a[1]||{};IDX={};NICK={};Object.keys(PUB).forEach(function(id){var s=PUB[id];s.id=id;s.cc=codice(s.paese);(IDX[pn(s.nome)]=IDX[pn(s.nome)]||[]).push(s);
+  if(s.nick_vr&&pn(s.nick_vr))(NICK[pn(s.nick_vr)]=NICK[pn(s.nick_vr)]||[]).push(s)});return PUB}).catch(function(){PUB={};TEAM={};return PUB});return LOAD}
 /* scheda di un giocatore della ricerca (nome + paese): stesso nome; se ci sono omonimi decide il paese */
-function trova(nome,cc){var l=IDX[pn(nome)];if(!l||!l.length)return null;if(l.length===1)return(!cc||!l[0].cc||l[0].cc===cc)?l[0]:null;
+function trova(nome,cc){var l=IDX[pn(nome)];if(!l||!l.length){var n=NICK[pn(nome)];return n&&n.length===1?n[0]:null}   /* nei VR la ricerca mostra il nickname Battlefy/VR */if(l.length===1)return(!cc||!l[0].cc||l[0].cc===cc)?l[0]:null;
   return l.filter(function(s){return s.cc&&s.cc===cc})[0]||null}
 function avatarHtml(s,cls){var ini=E(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase());
   return s.avatar?'<img class="'+cls+'" alt="" loading="lazy" src="'+BASE+'img/'+E(s.id)+'.webp?v='+(s.aggiornata||0)+'">':'<span class="'+cls+' sk-ini">'+ini+'</span>'}
@@ -55,8 +56,8 @@ var CSS='.sk-ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);o
 '.sk-hero{background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35));border:0;padding:14px 8px 18px;text-shadow:0 1px 3px rgba(0,0,0,.6)}'+
 '.sk-hd{display:flex;gap:14px;align-items:center}.sk-avw{flex:none;display:flex;flex-direction:column;align-items:center;gap:7px}'+
 '.sk-av{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,.85);background:#3a1b1f}.sk-ini{display:grid;place-items:center;font-weight:900;font-size:1.6rem;background:linear-gradient(135deg,#e11d2e,#6d28d9)}'+
-'.sk-nm{font-size:1.4rem;font-weight:900;line-height:1.1;margin:0}.sk-nk{font-weight:700;margin:3px 0 0;opacity:.95}.sk-ok{color:#bfffe0;font-size:.75rem;font-weight:800}.sk-fr{font-style:italic;margin:6px 0 0;font-size:.92rem}'+
-'.sk-lv{display:inline-flex;align-items:center;gap:5px;background:#ff6b78;color:#2a0508;font-weight:900;font-size:.72rem;letter-spacing:.06em;border-radius:999px;padding:3px 9px;text-shadow:none}.sk-lv:before{content:"";width:7px;height:7px;border-radius:50%;background:#2a0508;animation:skp 1.2s infinite}@keyframes skp{50%{opacity:.25}}'+
+'.sk-nm{font-size:1.4rem;font-weight:900;line-height:1.1;margin:0}.sk-nk{font-weight:700;margin:3px 0 0;opacity:.95}.sk-ng{font-size:.8rem;margin:3px 0 0;text-shadow:0 1px 0 rgba(0,0,0,.8),0 0 6px rgba(0,0,0,.7)}.sk-ng b{font-weight:800}.sk-nn{font-size:1.25rem;font-weight:900;line-height:1.15;margin:2px 0 0;letter-spacing:.01em;text-shadow:0 1px 0 rgba(0,0,0,.7),0 0 10px rgba(0,0,0,.55)}.sk-ok{color:#bfffe0;font-size:.75rem;font-weight:800}.sk-fr{font-style:italic;margin:6px 0 0;font-size:.92rem}'+
+'.sk-lv{border:0;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px;background:#ff6b78;color:#2a0508;font-weight:900;font-size:.72rem;letter-spacing:.06em;border-radius:999px;padding:3px 9px;text-shadow:none}.sk-lv:before{content:"";width:7px;height:7px;border-radius:50%;background:#2a0508;animation:skp 1.2s infinite}@keyframes skp{50%{opacity:.25}}'+
 '.sk-tp{display:inline-flex;gap:6px;margin-top:8px;flex-wrap:wrap}.sk-tp span{font-size:.7rem;font-weight:900;letter-spacing:.04em;border-radius:7px;padding:3px 9px;border:1.5px solid rgba(255,255,255,.5)}'+
 '.sk-tm{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:4px 10px 4px 4px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.35);color:#fff;font-weight:800;font-size:.85rem;cursor:pointer}.sk-tm img,.sk-tm i{width:24px;height:24px;border-radius:7px;object-fit:cover;display:grid;place-items:center;font-style:normal;font-size:.7rem;background:rgba(255,255,255,.2)}'+
 '.sk-so{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.sk-so a{display:inline-flex;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.35);border:1.5px solid rgba(255,255,255,.4);color:#fff;text-decoration:none;font-weight:700;font-size:.85rem}'+
@@ -87,14 +88,13 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
   var righe=(ctx.rows||[]).slice(0,12);
   var h='<div class="sk" style="'+(t1?'--b1:'+E(fondo(t1,"top"))+';--b2:'+E(fondo(t2,"bottom")):'--b1:linear-gradient(160deg,#4a1220,#1d0b0d);--b2:linear-gradient(160deg,#2c1316,#1d0b0d)')+'">'+
   '<button type="button" class="sk-x" aria-label="Chiudi">×</button>'+
-  '<div class="sk-c sk-hero"><div class="sk-hd"><div class="sk-avw">'+avatarHtml(s,"sk-av")+(ctx.live?'<span class="sk-lv">LIVE</span>':'')+'</div><div>'+
-  '<p class="sk-nm">'+E(s.nome)+' '+bandiera(s.cc)+'</p>'+(s.nickname?'<p class="sk-nk">@'+E(s.nickname)+' · <span class="sk-ok">✔ profilo verificato</span></p>':'<p class="sk-nk"><span class="sk-ok">✔ profilo verificato</span></p>')+
+  '<div class="sk-c sk-hero"><div class="sk-hd"><div class="sk-avw">'+avatarHtml(s,"sk-av")+(ctx.live?'<button type="button" class="sk-lv" data-live="" aria-label="Apri il live">LIVE ›</button>':'')+'</div><div>'+
+  '<p class="sk-nm">'+E(s.nome)+' '+bandiera(s.cc)+'</p>'+(s.nickname?'<p class="sk-nn" style="color:'+(/^#[0-9a-f]{6}$/i.test(s.colore||"")?s.colore:"#fff")+'">'+E(s.nickname)+'</p>':'')+((s.nick_vr||s.nick_gioco)?'<p class="sk-ng">'+(s.nick_vr?'Battlefy/VR: <b>'+E(s.nick_vr)+'</b>':'')+(s.nick_vr&&s.nick_gioco?' · ':'')+(s.nick_gioco?'In game: <b>'+E(s.nick_gioco)+'</b>':'')+'</p>':'')+'<p class="sk-nk"><span class="sk-ok">✔ profilo verificato</span></p>'+
   (s.frase?'<p class="sk-fr">«'+E(s.frase)+'»</p>':'')+(tp.length?'<div class="sk-tp">'+tp.filter(function(t,i,l){return l.indexOf(t)===i}).map(function(t){return '<span style="background:'+(COL[t]||COL.normal)[0]+'">'+E((NOMI[t]||t).toUpperCase())+'</span>'}).join("")+'</div>':'')+
   (team?'<div><button type="button" class="sk-tm" data-tm="1">'+(team.logo?'<img alt="" src="'+BASE+'team/'+E(s.team)+'.webp">':'<i>'+E(String(team.nome).slice(0,2).toUpperCase())+'</i>')+E(team.nome)+'</button></div>':'')+
   '</div></div>'+(Object.keys(soc).length?'<div class="sk-so">'+Object.keys(soc).map(function(k){return '<a href="'+E(soc[k])+'" target="_blank" rel="noopener">'+E(NS[k]||k)+'</a>'}).join("")+'</div>':'')+'</div>'+
   '<div class="sk-c"><p class="sk-l">Championship Points</p><div class="sk-cpv"><span class="sk-sm">Carico…</span></div></div>'+
-  (righe.length?'<div class="sk-c"><p class="sk-l">Risultati</p>'+righe.map(function(r){return '<div class="sk-r">'+(r.live?'<span class="sk-lv">LIVE</span>':'')+'<b>'+E(r.res||"")+'</b><span>'+E(r.nome)+(r.data?' · <span class="sk-sm">'+E(r.data)+'</span>':'')+'</span></div>'}).join("")+'</div>':'')+
-  ((s.risultati||[]).length?'<div class="sk-c"><p class="sk-l">Altri risultati <span class="sk-tag">dichiarati dal giocatore</span></p>'+s.risultati.map(function(r){return '<div class="sk-r"><span>'+E(r)+'</span></div>'}).join("")+'<p class="sk-sm">Non verificati: tornei che non sono nel nostro archivio.</p></div>':'')+
+  (righe.length?'<div class="sk-c"><p class="sk-l">Risultati</p>'+righe.map(function(r){return '<div class="sk-r">'+(r.live&&r.id?'<button type="button" class="sk-lv" data-live="'+E(r.id)+'" aria-label="Apri il live">LIVE ›</button>':r.live?'<span class="sk-lv">LIVE</span>':'')+'<b>'+E(r.res||"")+'</b><span>'+E(r.nome)+(r.data?' · <span class="sk-sm">'+E(r.data)+'</span>':'')+'</span></div>'}).join("")+'</div>':'')+
   ((s.squadre||[]).length?'<div class="sk-c"><p class="sk-l">Squadre preferite</p>'+(s.squadre.length>1?'<select class="sk-sq">'+s.squadre.map(function(q,i){return '<option value="'+i+'">'+E(q.formato)+'</option>'}).join("")+'</select>':'<p class="sk-sm">'+E(s.squadre[0].formato)+'</p>')+
     '<div class="sk-sqv">'+squadraHtml(s.squadre[0])+'</div><p class="sk-sm" style="margin-top:8px">Open teamsheet: niente EV né statistiche.</p></div>':'')+
   '</div>';
@@ -103,6 +103,10 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
   function esc(e){if(e.key==="Escape")chiudi()}
   document.addEventListener("keydown",esc);
   ov.addEventListener("click",function(e){if(e.target===ov||e.target.closest(".sk-x")){chiudi();return}
+    var lv=e.target.closest("[data-live]");if(lv){                /* LIVE: chiude la scheda e apre il live, come la riga del torneo nella ricerca */
+      var id=lv.getAttribute("data-live")||((ctx.rows||[]).filter(function(r){return r.live&&r.id})[0]||{}).id;chiudi();
+      var riga=id&&Array.prototype.filter.call(document.querySelectorAll(".pr-r[data-pid]"),function(b){return b.getAttribute("data-pid")===id&&b.getAttribute("data-pn")===ctx.nome})[0];
+      if(riga)riga.click();return}
     var tb=e.target.closest("[data-tm]");if(tb&&team){var nomi=(team.membri||[]).map(function(m){return PUB[m]&&PUB[m].nome}).filter(Boolean);
       var box=ov.querySelector(".sk-tml");if(box){box.remove();return}box=document.createElement("p");box.className="sk-sm sk-tml";box.style.marginTop="6px";box.textContent=(nomi.length>1?"Nel team: ":"Unico giocatore del team con la scheda: ")+nomi.join(" · ");tb.parentNode.appendChild(box)}});
   var sel=ov.querySelector(".sk-sq");if(sel)sel.addEventListener("change",function(){ov.querySelector(".sk-sqv").innerHTML=squadraHtml(s.squadre[+sel.value]||s.squadre[0])});

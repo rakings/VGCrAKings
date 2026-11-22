@@ -549,9 +549,10 @@ function disegnaSchede(a){
     else if(s.team&&tg0)team+='<small class="hint">Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';
     var link=Object.keys(soc).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+esc(n)+' ↗</a>'}).join("");
     var sq=(s.squadre||[]).map(function(q){return '<li><b>'+esc(q.formato)+'</b>: '+esc((q.pokemon||[]).map(function(p){return p.pokemon}).join(", "))+' <a href="'+esc(q.link)+'" target="_blank" rel="noopener">paste ↗</a></li>'}).join("");
-    var ris=(s.risultati||[]).length?'<small>Risultati dichiarati: '+esc(s.risultati.join(" · "))+'</small>':'';
+    var ris="";
     var d=new Date((s.ricevuta||0)*1000);
-    return '<div class="sc" data-sc="'+esc(k)+'"><div class="hd">'+av+'<div><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span class="hint">@'+esc(s.nickname)+'</span>':'')+
+    return '<div class="sc" data-sc="'+esc(k)+'"><div class="hd">'+av+'<div><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span style="font-weight:900;color:'+(/^#[0-9a-f]{6}$/i.test(s.colore||"")?s.colore:"#fff")+';text-shadow:0 1px 0 #000">'+esc(s.nickname)+'</span>':'')+
+      ((s.nick_vr||s.nick_gioco)?'<small>'+(s.nick_vr?'Battlefy/VR: '+esc(s.nick_vr):'')+(s.nick_vr&&s.nick_gioco?' · ':'')+(s.nick_gioco?'In game: '+esc(s.nick_gioco):'')+'</small>':'')+
       '<small>'+esc(s.paese||"")+(tg.username?' · Telegram @'+esc(tg.username):'')+' · ricevuta il '+d.toLocaleDateString("it-IT")+'</small>'+team+'<div style="margin-top:4px">'+tipi+'</div></div></div>'+
       (s.frase?'<small>«'+esc(s.frase)+'»</small>':'')+'<div>'+link+'</div>'+(sq?'<ul>'+sq+'</ul>':'')+ris+
       '<div class="bt"><button type="button" class="ok" data-sca="approva">Approva</button>'+(s.team&&s.logo_team?'<button type="button" data-sca="approva" data-nologo="1" title="Il giocatore entra nel team, il logo del team non cambia">Approva senza logo</button>':'')+'<button type="button" data-sca="rifiuta">Rifiuta</button></div></div>'}).join("");
