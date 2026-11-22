@@ -80,7 +80,9 @@ BENVENUTO = (
     "🗑 Con /cancella elimini la tua scheda quando vuoi.\n\n"
     "⚠️ Inviando la scheda confermi di avere *almeno 14 anni* e che dati, foto e profili social sono tuoi. "
     "Se invii il logo di un team dichiari di avere il diritto di usarlo e accetti che venga mostrato su rAKings VGC: "
-    "la responsabilità del logo è tua.\n\n"
+    "la responsabilità del logo è tua.\n"
+    "🛡 Il logo vale per tutti i membri dello stesso team che si registrano; se è sbagliato si può cambiare solo con il "
+    "permesso dell'admin di rAKings.\n\n"
     "🇬🇧 Hi! Use /scheda to get the template, send it with your avatar (and optionally your team logo). "
     "Every card is reviewed. By sending it you confirm you are at least 14 "
     "and that data, photos, socials and team logo are yours to share. /cancella deletes your card."
@@ -340,8 +342,10 @@ def scrivi_img(path, b64):
         f.write(base64.b64decode(b64))
 
 
-def togli_da_team(team, pid):
+def togli_da_team(team, pid, tranne=""):
     for k in list(team):
+        if k == tranne:                         # stesso team della scheda nuova: il giocatore resta, logo compreso
+            continue
         m = team[k].get("membri", [])
         if pid in m:
             m.remove(pid)
@@ -390,31 +394,31 @@ def azione(chiave, az, motivo=""):
     mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
     pid = mappa.get(chiave) or os.urandom(6).hex()
     pub, team = carica(PUBBLICHE, {}), carica(TEAM, {})
-    togli_da_team(team, pid)
+    togli_da_team(team, pid, slug_team(sch.get("team") or ""))
     ts = ""
     if sch.get("team"):
         ts = slug_team(sch["team"])
         t = team.setdefault(ts, {"nome": sch["team"], "logo": False, "membri": []})
         if pid not in t["membri"]:
             t["membri"].append(pid)
-        if sch.get("logo_team") and not t.get("logo"):      # vale il primo logo approvato
+        if sch.get("logo_team"):          # il logo vale per tutto il team; lo cambia solo chi approva (l'admin vede l'avviso)
             scrivi_img(os.path.join(LOGHI, ts + ".webp"), sch["logo_team"])
             t["logo"] = True
-    if sch.get("avatar"):
+    avatar = bool(sch.get("avatar"))
+    if avatar:
         scrivi_img(os.path.join(IMG, pid + ".webp"), sch["avatar"])
-    else:
-        try:
-            os.remove(os.path.join(IMG, pid + ".webp"))
-        except OSError:
-            pass
+    elif (pub.get(pid) or {}).get("avatar") and os.path.exists(os.path.join(IMG, pid + ".webp")):
+        avatar = True                     # scheda modificata senza foto nuova: resta l'avatar di prima
     pub[pid] = {k: sch.get(k) for k in ("nome", "nickname", "paese", "tipi", "social", "squadre", "risultati", "frase")}
-    pub[pid].update({"team": ts, "avatar": bool(sch.get("avatar")), "aggiornata": int(time.time())})
+    pub[pid].update({"team": ts, "avatar": avatar, "aggiornata": int(time.time())})
     mappa[chiave] = pid
     salva(PUBBLICHE, pub)
     salva(TEAM, team)
     salva(MAPPA, cifra(mappa))
     salva(ATTESA, cifra(attesa))
-    rispondi(chat, "🎉 La tua scheda è stata approvata ed è visibile su rAKings VGC! / Your card is approved and live on rAKings VGC!")
+    rispondi(chat, "🎉 La tua scheda è stata approvata ed è visibile su rAKings VGC! / Your card is approved and live on rAKings VGC!\n\n"
+                   "✏️ Per modificarla rimanda il modulo completo con /scheda (le foto solo se vuoi cambiarle): la nuova versione "
+                   "sostituisce questa dopo l'approvazione. / To edit it, send the full template again with /scheda.")
     log("Scheda approvata:", sch.get("nome"), "->", pid)
     return 0
 

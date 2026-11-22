@@ -57,7 +57,7 @@ button:disabled{opacity:.55;cursor:default}
 [hidden]{display:none!important}
 .sc{border-top:1px solid var(--line);padding:12px 0;font-size:.9rem}.sc:first-child{border-top:0}
 .sc .hd{display:flex;gap:12px;align-items:center}.sc .av{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none;background:rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800}
-.sc .lg{width:22px;height:22px;border-radius:6px;vertical-align:middle;margin-right:4px}
+.sc .lg{width:22px;height:22px;border-radius:6px;vertical-align:middle;margin-right:4px}.sc .lgw{margin:6px 0;padding:8px 10px;border-radius:10px;background:rgba(255,193,7,.14);border:1px solid rgba(255,193,7,.55);font-size:.85rem}.sc .lgw .lg{width:32px;height:32px}
 .sc .tp{display:inline-block;font-size:.7rem;font-weight:800;border-radius:6px;padding:2px 7px;margin-right:4px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
 .sc a.so{display:inline-block;margin:4px 6px 0 0;padding:4px 9px;border:1px solid var(--line);border-radius:999px;font-size:.8rem;color:inherit;text-decoration:none}
 .sc ul{margin:6px 0 0;padding-left:18px;font-size:.82rem}.sc small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}
@@ -527,9 +527,13 @@ var SC_FATTE={};
 function schede(){
   var el=$("scl");el.innerHTML='<div class="hint">Carico…</div>';
   fetch(SITE+"schede/attesa.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error("sito "+r.status);return r.json()})
-  .then(function(f){return f&&f.dati?decifraStat(f.dati,getTok()||""):{}}).then(disegnaSchede)
+  .then(function(f){return f&&f.dati?decifraStat(f.dati,getTok()||""):{}})
+  .then(function(a){return fetch(SITE+"schede/team.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{}}).catch(function(){return {}}).then(function(t){SC_TEAM=t||{};return a})})
+  .then(disegnaSchede)
   .catch(function(e){el.innerHTML='<div class="hint">Schede non lette ('+esc(e.message||"errore")+').</div>'})
 }
+var SC_TEAM={};
+function slugTeam(n){return String(n||"").normalize("NFKD").replace(/[^\x00-\x7f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)}
 function disegnaSchede(a){
   var el=$("scl"),ids=Object.keys(a||{}).filter(function(k){return !SC_FATTE[k]});
   badge("bsc",ids.length);
@@ -540,6 +544,9 @@ function disegnaSchede(a){
     var av=s.avatar?'<img class="av" alt="" src="data:image/webp;base64,'+s.avatar+'">':'<div class="av">'+ini+'</div>';
     var tipi=(s.tipi||[]).filter(function(t,i,l){return l.indexOf(t)===i}).map(function(t){return '<span class="tp" style="background:'+(COL_TIPI[t]||"#555")+'">'+esc(NOMI_TIPI[t]||t)+'</span>'}).join("");
     var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+'</small>':'';
+    var tg0=s.team?SC_TEAM[slugTeam(s.team)]:null;
+    if(s.team&&s.logo_team&&tg0&&tg0.logo)team+='<div class="lgw">⚠️ Questa scheda <b>cambia il logo del team «'+esc(tg0.nome||s.team)+'»</b> per tutti i membri ('+((tg0.membri||[]).length)+'). Attuale: <img class="lg" alt="" src="'+SITE+'schede/team/'+esc(slugTeam(s.team))+'.webp?t='+Date.now()+'"> → nuovo: <img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'"> · Se non va bene, rifiuta.</div>';
+    else if(s.team&&tg0)team+='<small class="hint">Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';
     var link=Object.keys(soc).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+esc(n)+' ↗</a>'}).join("");
     var sq=(s.squadre||[]).map(function(q){return '<li><b>'+esc(q.formato)+'</b>: '+esc((q.pokemon||[]).map(function(p){return p.pokemon}).join(", "))+' <a href="'+esc(q.link)+'" target="_blank" rel="noopener">paste ↗</a></li>'}).join("");
     var ris=(s.risultati||[]).length?'<small>Risultati dichiarati: '+esc(s.risultati.join(" · "))+'</small>':'';
