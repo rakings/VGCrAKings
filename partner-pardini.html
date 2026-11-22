@@ -53,6 +53,14 @@ button:disabled{opacity:.5;cursor:default}
 .hint{color:var(--mu);font-size:.82rem;margin-top:4px}
 .tabs{display:flex;gap:6px;margin:12px 0 2px}.tabs button{width:auto;flex:1;background:transparent;border:1px solid var(--line);color:var(--tx);min-height:42px}
 .tabs button[aria-pressed="true"]{background:var(--ac);border-color:transparent}
+.bdg{display:inline-block;min-width:20px;padding:0 6px;margin-left:5px;border-radius:999px;background:var(--go);color:#2b0a0c;font-size:.75rem;line-height:20px}
+.sc{border-top:1px solid var(--line);padding:12px 0;font-size:.9rem}.sc:first-child{border-top:0}
+.sc .hd{display:flex;gap:12px;align-items:center}.sc .av{width:64px;height:64px;border-radius:50%;object-fit:cover;flex:none;background:rgba(255,255,255,.08);display:grid;place-items:center;font-weight:800}
+.sc .lg{width:22px;height:22px;border-radius:6px;vertical-align:middle;margin-right:4px}.sc .lgw{margin:6px 0;padding:8px 10px;border-radius:10px;background:rgba(255,193,7,.14);border:1px solid rgba(255,193,7,.55);font-size:.85rem}.sc .lgw .lg{width:32px;height:32px}
+.sc .tp{display:inline-block;font-size:.7rem;font-weight:800;border-radius:6px;padding:2px 7px;margin-right:4px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.sc a.so{display:inline-block;margin:4px 6px 0 0;padding:4px 9px;border:1px solid var(--line);border-radius:999px;font-size:.8rem;color:inherit;text-decoration:none}
+.sc ul{margin:6px 0 0;padding-left:18px;font-size:.82rem}.sc ul a{color:inherit}.sc small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}
+.sc .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.sc .bt button{width:auto;padding:8px 12px;min-height:38px;font-size:.85rem}.sc .bt button.ok{background:#1f8a4c}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -60,7 +68,7 @@ button:disabled{opacity:.5;cursor:default}
 <main>
 <h1>Avvisi di Francesco Pardini</h1>
 <p style="margin:0 0 6px"><img src="img/team-aqua.jpg" alt="Team Aqua ASD" width="44" height="44" style="border-radius:50%;vertical-align:middle"> <b style="vertical-align:middle">Team Aqua ASD × rAKings VGC</b></p>
-<p class="sub">Da qui mandi una notifica a chi segue il tuo canale nell'app rAKings VGC (arriva in circa 1 minuto) e vedi le statistiche degli iscritti.</p>
+<p class="sub">Da qui mandi una notifica a chi segue il tuo canale nell'app rAKings VGC (arriva in circa 1 minuto), vedi le statistiche degli iscritti e approvi le schede giocatore.</p>
 
 <section id="login" class="card">
   <h2>Accesso</h2>
@@ -72,7 +80,12 @@ button:disabled{opacity:.5;cursor:default}
 </section>
 
 <div id="app" hidden>
-  <div class="tabs"><button type="button" data-tab="avvisi" aria-pressed="true">Avvisi</button><button type="button" data-tab="stat" aria-pressed="false">Statistiche</button></div>
+  <div class="tabs"><button type="button" data-tab="avvisi" aria-pressed="true">Avvisi</button><button type="button" data-tab="stat" aria-pressed="false">Statistiche</button><button type="button" data-tab="schede" aria-pressed="false">Schede<span class="bdg" id="bsc" hidden>0</span></button></div>
+  <div id="tab-schede" hidden>
+    <div class="card"><h2>Schede giocatore da approvare</h2><div id="scl"><div class="hint">Carico…</div></div></div>
+    <p class="hint">Arrivano dal bot Telegram @rakings_vgc_bot. Prima di approvare apri il profilo social e controlla che foto e nome corrispondano al giocatore. «Approva» pubblica la scheda e avvisa il giocatore su Telegram; «Rifiuta» gli manda il motivo. Le vede anche Andrea: chi approva per primo vale per tutti e due. Le schede in attesa sono cifrate: le vedi solo con il tuo codice.</p>
+    <div class="foot"><span></span><button class="sec" id="scagg" type="button">Aggiorna schede</button></div>
+  </div>
   <div id="tab-stat" hidden>
     <div class="card"><h2>Iscritti al tuo canale</h2><div class="big" id="sp">–</div><div class="hint" id="spp"></div></div>
     <div class="card"><h2>Iscritti alle notifiche dell'app</h2><div class="big" id="sn" style="font-size:2rem">–</div></div>
@@ -175,7 +188,7 @@ function load(t,remember){
     quote(j.quote);$("log").innerHTML=logHtml(j.log);
     if(!j.attivo){msg("smsg","Gli avvisi sono sospesi in questo momento.","err");$("send").disabled=true;$("live").disabled=true}
     var d=new Date();$("when").textContent="Aggiornato alle "+d.toLocaleTimeString("it-IT",{hour:"2-digit",minute:"2-digit"});
-    $("login").hidden=true;$("app").hidden=false
+    $("login").hidden=true;$("app").hidden=false;schede()
   },function(){$("go").disabled=false;msg("lmsg","Nessuna connessione con il servizio. Riprova.","err")})
 }
 function invia(body,box,btn){
@@ -240,10 +253,73 @@ function caricaStat(){
   }).catch(function(e){msg("smsg2",e.soft?e.message+" Intanto vedi i dati dell'ultima volta.":"Statistiche non lette ("+(e.message||"errore")+").",e.soft?"":"err")})
   .then(function(){$("sagg").disabled=false})
 }
+/* ---- schede giocatore: schede/attesa_p.json, CIFRATO con il tuo codice (lo scrive il bot Telegram); stesse azioni della pagina admin ---- */
+var SITE="https://rakings.github.io/VGCrAKings/";
+function decifra(b64,pass){
+  var raw=Uint8Array.from(atob(b64),function(c){return c.charCodeAt(0)}),C=crypto.subtle;
+  if(String.fromCharCode.apply(null,raw.slice(0,8))!=="Salted__")return Promise.reject(new Error("formato sconosciuto"));
+  return C.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveBits"]).then(function(km){
+    return C.deriveBits({name:"PBKDF2",salt:raw.slice(8,16),iterations:200000,hash:"SHA-256"},km,384)}).then(function(b){b=new Uint8Array(b);
+    return C.importKey("raw",b.slice(0,32),"AES-CBC",false,["decrypt"]).then(function(k){return C.decrypt({name:"AES-CBC",iv:b.slice(32,48)},k,raw.slice(16))})})
+  .then(function(pt){return JSON.parse(new TextDecoder().decode(pt))},function(){throw new Error("non decifrabili: il segreto PARDINI_CHIAVE su GitHub deve essere uguale al tuo codice")})
+}
+var COL_TIPI={normal:"#9a9a6e",fire:"#e8762c",water:"#4f7fe0",electric:"#d8b10f",grass:"#5fae3a",ice:"#5cbcb8",fighting:"#b8312b",poison:"#9a3c98",ground:"#c7a24c",flying:"#8f78e0",psychic:"#e84b7c",bug:"#93a51a",rock:"#a8962e",ghost:"#6a5290",dragon:"#6634e8",dark:"#6a5446",steel:"#9a9ab8",fairy:"#d47ba6"};
+var NOMI_TIPI={normal:"Normale",fire:"Fuoco",water:"Acqua",electric:"Elettro",grass:"Erba",ice:"Ghiaccio",fighting:"Lotta",poison:"Veleno",ground:"Terra",flying:"Volante",psychic:"Psico",bug:"Coleottero",rock:"Roccia",ghost:"Spettro",dragon:"Drago",dark:"Buio",steel:"Acciaio",fairy:"Folletto"};
+var SC_FATTE={},SC_TEAM={};
+function badgeSc(n){var b=$("bsc");b.textContent=n;b.hidden=!n}
+function slugTeam(n){return String(n||"").normalize("NFKD").replace(/[^\x00-\x7f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)}
+function schede(){
+  var el=$("scl");if(!el.querySelector(".sc"))el.innerHTML='<div class="hint">Carico…</div>';
+  fetch(SITE+"schede/attesa_p.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error("sito "+r.status);return r.json()})
+  .then(function(f){return f&&f.dati?decifra(f.dati,String(TOK||"").trim()):{}})
+  .then(function(a){return fetch(SITE+"schede/team.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():{}}).catch(function(){return {}}).then(function(t){SC_TEAM=t||{};return a})})
+  .then(disegnaSchede)
+  .catch(function(e){el.innerHTML='<div class="hint">Schede non lette ('+esc(e.message||"errore")+').</div>'})
+}
+function disegnaSchede(a){
+  var el=$("scl"),ids=Object.keys(a||{}).filter(function(k){return !SC_FATTE[k]});
+  badgeSc(ids.length);
+  if(!ids.length){el.innerHTML='<div class="hint">Nessuna scheda in attesa.</div>';return}
+  ids.sort(function(x,y){return (a[x].ricevuta||0)-(a[y].ricevuta||0)});
+  el.innerHTML=ids.map(function(k){var s=a[k],tg=s.telegram||{},soc=s.social||{};
+    var ini=esc(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase());
+    var av=s.avatar?'<img class="av" alt="" src="data:image/webp;base64,'+s.avatar+'">':'<div class="av">'+ini+'</div>';
+    var tipi=(s.tipi||[]).filter(function(t,i,l){return l.indexOf(t)===i}).map(function(t){return '<span class="tp" style="background:'+(COL_TIPI[t]||"#555")+'">'+esc(NOMI_TIPI[t]||t)+'</span>'}).join("");
+    var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+'</small>':'';
+    var tg0=s.team?SC_TEAM[slugTeam(s.team)]:null;
+    if(s.team&&s.logo_team&&tg0&&tg0.logo)team+='<div class="lgw">⚠️ Questa scheda <b>cambia il logo del team «'+esc(tg0.nome||s.team)+'»</b> per tutti i membri ('+((tg0.membri||[]).length)+'). Attuale: <img class="lg" alt="" src="'+SITE+'schede/team/'+esc(slugTeam(s.team))+'.webp?t='+Date.now()+'"> → nuovo: <img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'"> · Se non va bene, rifiuta.</div>';
+    else if(s.team&&tg0)team+='<small>Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';
+    var link=Object.keys(soc).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+esc(n)+' ↗</a>'}).join("");
+    var sq=(s.squadre||[]).map(function(q){return '<li><b>'+esc(q.nome||q.formato||"Squadra")+'</b>: '+esc((q.pokemon||[]).map(function(p){return p.pokemon}).join(", "))+' <a href="'+esc(q.link)+'" target="_blank" rel="noopener">paste ↗</a></li>'}).join("");
+    var verifica=['instagram','x','facebook'].filter(function(n){return soc[n]}).map(function(n){return '<a class="so" href="'+esc(soc[n])+'" target="_blank" rel="noopener">'+({instagram:"Instagram",x:"X",facebook:"Facebook"})[n]+' ↗</a>'}).join("");
+    var ris='<div class="lgw" style="background:rgba(90,209,255,.10);border-color:rgba(90,209,255,.45)">🔎 <b>Prima di approvare controlla</b> '+verifica+'<br>'+
+      '· <b>Data di iscrizione</b>: X → sotto la bio «Si è iscritto a…» · Instagram → ⋯ in alto a destra → «Informazioni su questo account» · Facebook → «Informazioni»<br>'+
+      '· Account creato da poco, pochi post o follower, niente legato al VGC, nome utente cambiato di recente = possibile account fatto apposta<br>'+
+      '· Foto e nome corrispondono al giocatore?</div>';
+    var d=new Date((s.ricevuta||0)*1000);
+    return '<div class="sc" data-sc="'+esc(k)+'"><div class="hd">'+av+'<div><b>'+esc(s.nome||"")+'</b>'+(s.nickname?' <span style="font-weight:900;color:'+(/^#[0-9a-f]{6}$/i.test(s.colore||"")?s.colore:"#fff")+';text-shadow:0 1px 0 #000">'+esc(s.nickname)+'</span>':'')+
+      ((s.nick_vr||s.nick_gioco)?'<small>'+(s.nick_vr?'Battlefy/VR: '+esc(s.nick_vr):'')+(s.nick_vr&&s.nick_gioco?' · ':'')+(s.nick_gioco?'In game: '+esc(s.nick_gioco):'')+'</small>':'')+
+      '<small>'+esc(s.paese||"")+(tg.username?' · Telegram @'+esc(tg.username):'')+' · ricevuta il '+d.toLocaleDateString("it-IT")+'</small>'+team+'<div style="margin-top:4px">'+tipi+'</div></div></div>'+
+      (s.frase?'<small>«'+esc(s.frase)+'»</small>':'')+'<div>'+link+'</div>'+(sq?'<ul>'+sq+'</ul>':'')+ris+
+      '<div class="bt"><button type="button" class="ok" data-sca="approva">Approva</button>'+(s.team&&s.logo_team?'<button type="button" class="sec" data-sca="approva" data-nologo="1" title="Il giocatore entra nel team, il logo del team non cambia">Approva senza logo</button>':'')+'<button type="button" class="sec" data-sca="rifiuta">Rifiuta</button></div></div>'}).join("");
+}
+document.addEventListener("click",function(ev){
+  var b=ev.target&&ev.target.closest?ev.target.closest("[data-sca]"):null;if(!b)return;
+  var box=b.closest("[data-sc]"),id=box.getAttribute("data-sc"),az=b.getAttribute("data-sca"),motivo="";
+  if(az==="rifiuta"){motivo=prompt("Motivo del rifiuto (lo riceve il giocatore su Telegram, puoi lasciarlo vuoto):","");if(motivo===null)return}
+  if(b.getAttribute("data-nologo"))motivo="senza_logo";
+  Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=true});
+  api("/admin/scheda",{id:id,azione:az,motivo:motivo}).then(function(j){
+    if(j._s===200&&j.ok){SC_FATTE[id]=1;box.querySelector(".bt").innerHTML='<small style="color:var(--ok)">'+(az==="approva"?(motivo==="senza_logo"?"Approvata senza logo ✓ Il logo del team resta quello di prima. ":"Approvata ✓ ")+"Tra 1-2 minuti è pubblica e il giocatore riceve il messaggio su Telegram.":"Rifiutata ✓ Il giocatore riceve il messaggio su Telegram.")+'</small>';badgeSc(Math.max(0,(+$("bsc").textContent||1)-1))}
+    else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Non fatto: "+(j.error||("errore "+j._s)))}},
+  function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Nessuna connessione con il servizio.")})
+});
+$("scagg").addEventListener("click",schede);
 var statFatte=false;
 Array.prototype.forEach.call(document.querySelectorAll("[data-tab]"),function(b){b.addEventListener("click",function(){
   var t=b.getAttribute("data-tab");Array.prototype.forEach.call(document.querySelectorAll("[data-tab]"),function(x){x.setAttribute("aria-pressed",String(x===b))});
-  $("tab-stat").hidden=t!=="stat";$("tab-avvisi").hidden=t!=="avvisi";
+  $("tab-stat").hidden=t!=="stat";$("tab-avvisi").hidden=t!=="avvisi";$("tab-schede").hidden=t!=="schede";
+  if(t==="schede")schede();
   if(t==="stat"){try{mostraStat(JSON.parse(localStorage.getItem(SKEY)||"null"))}catch(e){}if(!statFatte){statFatte=true;caricaStat()}}
 })});
 $("sagg").addEventListener("click",caricaStat);

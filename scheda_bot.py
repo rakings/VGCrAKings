@@ -16,7 +16,7 @@ A ogni giro:
     (senza dati Telegram), l'avatar in schede/img/, il team in schede/team.json con il primo logo approvato;
   - /cancella elimina subito la scheda pubblica (senza bisogno di approvazione);
   - risponde al giocatore: ricevuta / cosa manca.
-Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub). Nessuna chiave nel repo.
+Chiavi: TELEGRAM_BOT_TOKEN e BACKUP_CHIAVE (segreti di GitHub); PARDINI_CHIAVE facoltativo (codice di Francesco: copia delle schede in attesa per la sua pagina). Nessuna chiave nel repo.
 """
 import base64
 import difflib
@@ -35,6 +35,7 @@ import urllib.request
 CARTELLA = "schede"
 STATO = os.path.join(CARTELLA, "bot_stato.json")      # solo l'ultimo messaggio letto (niente dati personali)
 ATTESA = os.path.join(CARTELLA, "attesa.json")        # schede in attesa di approvazione, cifrate
+ATTESA_P = os.path.join(CARTELLA, "attesa_p.json")    # stessa cosa, cifrata con il codice di Francesco (pagina partner)
 MAPPA = os.path.join(CARTELLA, "mappa.json")          # giocatore Telegram -> codice pubblico della scheda, cifrata
 PUBBLICHE = os.path.join(CARTELLA, "pubbliche.json")  # schede approvate (pubbliche, senza dati Telegram)
 TEAM = os.path.join(CARTELLA, "team.json")            # team: nome, logo, membri
@@ -135,17 +136,30 @@ def log(*a):
 
 
 # ---------------- cifratura (stessa di social.py: l'admin decifra nel browser con il suo codice) ----------------
-def _openssl(args, dati):
+def _openssl(args, dati, chiave=None):
+    amb = dict(os.environ)
+    if chiave is not None:                            # chiave diversa da BACKUP_CHIAVE (es. il codice di Francesco)
+        amb["BACKUP_CHIAVE"] = chiave
     r = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-iter", "200000", "-md", "sha256", "-a", "-A",
-                        "-pass", "env:BACKUP_CHIAVE"] + args, input=dati, capture_output=True, timeout=60)
+                        "-pass", "env:BACKUP_CHIAVE"] + args, input=dati, capture_output=True, timeout=60, env=amb)
     if r.returncode != 0:
         raise RuntimeError("openssl: %s" % r.stderr.decode("utf-8", "replace").strip()[:120])
     return r.stdout
 
 
-def cifra(d):
+def cifra(d, chiave=None):
     return {"formato": "aes-256-cbc pbkdf2 sha256 200000",
-            "dati": _openssl(["-salt"], json.dumps(d, ensure_ascii=False).encode("utf-8")).decode("ascii")}
+            "dati": _openssl(["-salt"], json.dumps(d, ensure_ascii=False).encode("utf-8"), chiave).decode("ascii")}
+
+
+def salva_attesa(attesa):
+    """Schede in attesa: una copia per l'admin (BACKUP_CHIAVE) e una per Francesco (PARDINI_CHIAVE = il suo codice della pagina partner)."""
+    salva(ATTESA, cifra(attesa))
+    chiave_p = (os.environ.get("PARDINI_CHIAVE") or "").strip()
+    if chiave_p:
+        salva(ATTESA_P, cifra(attesa, chiave_p))
+    elif os.path.exists(ATTESA_P):
+        os.remove(ATTESA_P)
 
 
 def decifra(f):
@@ -461,6 +475,8 @@ def costruisci(campi, foto, utente):
         nome = ""
     if cognome.startswith("("):
         cognome = ""
+    nome = " ".join(w[:1].upper() + w[1:] if w.islower() else w for w in nome.split())      # «andrea» -> «Andrea»
+    cognome = " ".join(w[:1].upper() + w[1:] if w.islower() else w for w in cognome.split())
     if cognome and pn_norm(cognome) not in pn_norm(nome):     # nome completo come nei risultati: «Nome Cognome»
         nome = (nome + " " + cognome).strip()
     if not nome:
@@ -593,7 +609,7 @@ def azione(chiave, az, motivo=""):
         sch["logo_team"] = ""
     chat = (sch.get("telegram") or {}).get("id") or chiave
     if az == "rifiuta":
-        salva(ATTESA, cifra(attesa))
+        salva_attesa(attesa)
         rispondi(chat, "❌ La tua scheda non è stata approvata. / Your card was not approved." +
                  ("\nMotivo / Reason: %s" % motivo[:200] if motivo else "") +
                  "\nPuoi correggerla e rimandarla con /scheda. / You can fix it and send it again.")
@@ -623,7 +639,7 @@ def azione(chiave, az, motivo=""):
     salva(PUBBLICHE, pub)
     salva(TEAM, team)
     salva(MAPPA, cifra(mappa))
-    salva(ATTESA, cifra(attesa))
+    salva_attesa(attesa)
     rispondi(chat, "🎉 La tua scheda è stata approvata ed è visibile su rAKings VGC! / Your card is approved and live on rAKings VGC!\n\n"
                    "✏️ Per modificarla rimanda il modulo completo con /scheda (le foto solo se vuoi cambiarle): la nuova versione "
                    "sostituisce questa dopo l'approvazione. / To edit it, send the full template again with /scheda."
@@ -768,7 +784,7 @@ def giro_deno(base, attesa):
         c2, tenuti = elabora([c["u"] for c in nuovi], attesa)
         cambiate = cambiate or c2
         if c2:
-            salva(ATTESA, cifra(attesa))
+            salva_attesa(attesa)
         vecchi = time.time() * 1000 - 86400000          # foto senza modulo da più di un giorno: si buttano
         fatti = [c["id"] for c in nuovi if ((c["u"].get("message") or {}).get("from") or {}).get("id") not in tenuti or c["t"] < vecchi]
         if fatti:
@@ -798,7 +814,7 @@ def giro():
         offset = max(offset, u["update_id"] + 1)
     cambiate, _ = elabora(aggiornamenti, attesa)
     if cambiate:
-        salva(ATTESA, cifra(attesa))
+        salva_attesa(attesa)
     salva(STATO, {"offset": offset, "letto": int(time.time())})
     tg("getUpdates", offset=offset, timeout=0)     # conferma a Telegram: i messaggi letti non tornano più
     log("Fatto. Schede in attesa:", len(attesa))
