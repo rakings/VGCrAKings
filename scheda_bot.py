@@ -60,7 +60,8 @@ TIPI = {  # nome italiano / inglese -> chiave
 }
 
 CAMPI = {  # chiave del modello (IT/EN) -> campo
-    "nome": "nome", "name": "nome",
+    "nome": "nome", "name": "nome", "first name": "nome",
+    "cognome": "cognome", "surname": "cognome", "last name": "cognome",
     "nickname": "nickname", "nick": "nickname",
     "nickname battlefy/vr": "nick_vr", "nickname battlefy / vr": "nick_vr", "nickname battlefy": "nick_vr",
     "nickname victory road": "nick_vr", "nickname vr": "nick_vr", "battlefy": "nick_vr", "victory road": "nick_vr",
@@ -85,7 +86,8 @@ BENVENUTO = "👋 Ciao! Con questo bot crei la tua *scheda giocatore* su rAKings
 MODELLO = (
     "Copia questo modello, compilalo e mandalo con le foto (prima avatar, poi logo del team) — "
     "copy, fill in and send it with your photos:\n\n"
-    "Nome: (come nei risultati / as in the standings)\n"
+    "Nome: \n"
+    "Cognome: \n"
     "Nickname: \n"
     "Nickname Battlefy/VR (facoltativo): \n"
     "Nickname in game (facoltativo): \n"
@@ -277,6 +279,10 @@ def leggi_pokepaste(url):
     return squadra[:6] or None
 
 
+def pn_norm(v):
+    return " ".join(norm(v).split())
+
+
 def costruisci(campi, foto, utente):
     """Ritorna (scheda, errori, avvisi)."""
     errori, avvisi = [], []
@@ -284,8 +290,17 @@ def costruisci(campi, foto, utente):
     if eta not in ("si", "sì", "yes", "y", "s", "ok", "true"):
         errori.append("manca la conferma «Ho almeno 14 anni: SI» / missing «I am 14 or older: YES»")
     nome = (campi.get("nome") or "").strip()
-    if not nome or nome.startswith("("):
+    cognome = (campi.get("cognome") or "").strip()
+    if nome.startswith("("):
+        nome = ""
+    if cognome.startswith("("):
+        cognome = ""
+    if cognome and pn_norm(cognome) not in pn_norm(nome):     # nome completo come nei risultati: «Nome Cognome»
+        nome = (nome + " " + cognome).strip()
+    if not nome:
         errori.append("manca il Nome / missing Name")
+    elif not cognome and len(nome.split()) < 2:
+        errori.append("manca il Cognome (serve per collegare la scheda ai tuoi risultati) / missing Surname")
     social = {}
     for c in SOCIAL_HOST:
         v = link_social(c, campi.get(c))
