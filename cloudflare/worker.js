@@ -137,7 +137,7 @@ function contaChiavi(g) {
 
 
 // ======================= ARGOMENTI FIREBASE =======================
-const VERSIONE = "2026-11-22b";
+const VERSIONE = "2026-11-22c";
 const MAX_CHIAMATE = 40;     // chiamate a Google per messaggio della coda (il limite del piano gratuito e' 50 per esecuzione, con GET e firma ne servono altre 2)
 const PARALLELE = 6;
 const MAX_CONTINUAZIONI = 10;
@@ -912,8 +912,8 @@ export default {
       if (r.status !== 204) return out({ error: "GitHub ha risposto " + r.status }, 502);
       return out({ ok: true });
     }
-    if (req.method === "POST" && url.pathname === "/admin/scheda") {   // SOLO Andrea (ADMIN_TOKEN): approva o rifiuta una scheda giocatore
-      if (!admin()) return out({ error: "non autorizzato" }, 401);
+    if (req.method === "POST" && url.pathname === "/admin/scheda") {   // Andrea (ADMIN_TOKEN) o Francesco (PARDINI_TOKEN, dalla pagina partner): approva o rifiuta una scheda giocatore
+      if (!admin() && !(await partnerDi(req, env))) return out({ error: "non autorizzato" }, 401);
       let b; try { b = JSON.parse(await req.text()); } catch (e) { return out({ error: "json non valido" }, 400); }
       const id = String((b && b.id) || ""), az = String((b && b.azione) || "");
       const motivo = typeof (b && b.motivo) === "string" ? b.motivo.replace(/[\u0000-\u001f]/g, " ").slice(0, 200) : "";
