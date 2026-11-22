@@ -404,7 +404,9 @@ var list=Object.keys(P).map(function(k){return P[k]});
 list.forEach(function(p){p.rows.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.d<b.d?1:a.d>b.d?-1:0)});p.live=p.rows.some(function(r){return r.live})});
 list.sort(function(a,b){return(b.live?1:0)-(a.live?1:0)||(a.rows[0].d<b.rows[0].d?1:-1)});list=list.slice(0,8);
 if(!list.length)return'<div class="pr-box"><p class="pr-none">Nessun giocatore trovato per «'+E(q)+'».</p></div>';
-return'<div class="pr-box">'+list.map(function(p){return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span></div>'+
+var SCH=window.SCHEDE;window.VGCS_PR={};
+return'<div class="pr-box">'+list.map(function(p){var sb=SCH?SCH.bottone(p.name,p.cc):"";if(sb){var sid=(sb.match(/data-sch="([^"]+)"/)||[])[1];if(sid)window.VGCS_PR[sid]={rows:p.rows,live:p.live,nome:p.name,cc:p.cc}}
+return'<div class="pr-p"><div class="pr-h"><b>'+E(p.name)+'</b><span class="pr-cc">'+E(p.cc)+'</span>'+sb+'</div>'+
 (espandi&&espandi===pn(p.name)+"|"+p.cc?p.rows:p.rows.slice(0,5)).map(function(r){return pRiga(r,p.name,p.cc)}).join("")+
 (p.rows.length>5&&!(espandi&&espandi===pn(p.name)+"|"+p.cc)?'<button type="button" class="pr-more" data-k="'+E(pn(p.name)+"|"+p.cc)+'">+ '+(p.rows.length-5)+" altri tornei</button>":"")+"</div>"}).join("")+(LIMON?'<p class="pr-fonte">Storico dei giocatori: Pokédata e <a href="https://limitlessvgc.com" target="_blank" rel="noopener">Limitless VGC</a></p>':"")+"</div>"})}
 function apriGiocatore(id,name,cc,pl){var vr=!!VRID[id];if(vr&&S.sx!=="vr"&&IDXV){S.sx="vr";IDX=IDXV;S.reg="all";S.treg=IDX.current}else if(!vr&&S.sx==="vr"&&IDXR){S.sx="reg";IDX=IDXR;S.reg="all";S.treg=IDX.current}
