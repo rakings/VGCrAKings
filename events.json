@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T18:02:35+00:00",
+ "updated": "2026-11-23T18:31:29+00:00",
  "events": [
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 66,
+   "players": 77,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -77,7 +77,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:30",
-   "players": 27,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
@@ -93,7 +93,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "23:00",
-   "players": 30,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
    "reg_letto": true
   },
@@ -175,6 +175,22 @@
    "time": "19:00",
    "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Matcha Gotcha MonoType #2",
+   "org": "Oak Stadium",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-25",
+   "time": "00:30",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6b048111ada8eea1c94d0f62/details",
    "reg_letto": true
   },
   {
@@ -365,7 +381,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -461,7 +477,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -613,7 +629,7 @@
    "bo": null,
    "date": "2026-11-30",
    "time": "03:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af17730c931f53978d9707c/details",
    "reg_letto": true
   },
