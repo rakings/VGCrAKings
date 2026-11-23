@@ -1,22 +1,6 @@
 {
- "updated": "2026-11-23T20:32:44+00:00",
+ "updated": "2026-11-23T23:32:35+00:00",
  "events": [
-  {
-   "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
-   "org": "Pokémon Philippines Community",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-21",
-   "time": "04:00",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6aef7a9ac931f53978d95b01/details",
-   "reg_letto": true
-  },
   {
    "name": "Outlanders Trainers Camp: Encampment",
    "org": "Outlanders Trainers' Camp",
@@ -31,6 +15,22 @@
    "time": "12:00",
    "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6aeeba6bc931f53978d954f9/details",
+   "reg_letto": true
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny Charizard",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-23",
+   "time": "23:00",
+   "players": 38,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
    "reg_letto": true
   },
   {
@@ -66,22 +66,6 @@
    "reg_letto": true
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny Charizard",
-   "org": "RookideeVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "23:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
-   "reg_letto": true
-  },
-  {
    "name": "Intimidators Champions Challenge #56 REG M-C",
    "org": "INTIMIDATORS VGC",
    "mode": "online",
@@ -109,8 +93,24 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:30",
-   "players": 18,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6b030cf9ada8eea1c94d0584/details",
+   "reg_letto": true
+  },
+  {
+   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-24",
+   "time": "01:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
   {
@@ -125,7 +125,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "01:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b047217ada8eea1c94d0e8a/details",
    "reg_letto": true
   },
@@ -141,7 +141,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "05:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b0490baada8eea1c94d111c/details",
    "reg_letto": true
   },
@@ -157,7 +157,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -173,7 +173,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "19:00",
-   "players": 15,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
    "reg_letto": true
   },
@@ -189,7 +189,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "00:30",
-   "players": 9,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6b048111ada8eea1c94d0f62/details",
    "reg_letto": true
   },
@@ -237,7 +237,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "18:00",
-   "players": 11,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details",
    "reg_letto": true
   },
@@ -253,7 +253,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 35,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -269,8 +269,24 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
+   "reg_letto": true
+  },
+  {
+   "name": "VGC: 8vo Torneo Express Reg M-C",
+   "org": "MI.Team",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "00:30",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
    "reg_letto": true
   },
   {
@@ -290,22 +306,6 @@
    "reg_letto": true
   },
   {
-   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "01:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
-   "reg_letto": true
-  },
-  {
    "name": "Off Meta Fight Club #12",
    "org": "DevinTLegend",
    "mode": "online",
@@ -317,7 +317,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -333,7 +333,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
@@ -349,7 +349,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 9,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -381,7 +381,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -397,7 +397,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "17:00",
-   "players": 4,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
    "reg_letto": true
   },
@@ -498,6 +498,22 @@
    "reg_letto": true
   },
   {
+   "name": "🏆 METAVGC ARENA #6 | REG M-C 🏆",
+   "org": "Oak Stadium",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "17:00",
+   "players": 8,
+   "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
+   "reg_letto": true
+  },
+  {
    "name": "Stuttgart Regional Championships",
    "org": "",
    "mode": "regional",
@@ -533,7 +549,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 16,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -581,7 +597,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -1038,7 +1054,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "16:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6aec7b2b0c463890f304bd09/details",
    "reg_letto": true
   },
