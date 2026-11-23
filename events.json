@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T23:32:29+00:00",
+ "updated": "2026-11-23T02:33:47+00:00",
  "events": [
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -18,6 +18,21 @@
    "reg_letto": true
   },
   {
+   "name": "Chaos League Sunday Slam #121",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-22",
+   "time": "23:00",
+   "players": 9,
+   "url": "https://play.limitlesstcg.com/tournament/6b034b6ee0b5cca158bbb59a/details"
+  },
+  {
    "name": "Women's League VGC #21",
    "org": "",
    "mode": "online",
@@ -31,22 +46,6 @@
    "time": "21:00",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ae78c97ae67092a40740d47/details"
-  },
-  {
-   "name": "Chaos League Sunday Slam #121",
-   "org": "Chaos League",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "23:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6b034b6ee0b5cca158bbb59a/details",
-   "reg_letto": true
   },
   {
    "name": "Runback Series #6 - Reg I $100 to 1st place",
@@ -113,22 +112,6 @@
    "reg_letto": true
   },
   {
-   "name": "Culture Cup #3 | Practice Tour",
-   "org": "iClan",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6b035312ada8eea1c94d0710/details",
-   "reg_letto": true
-  },
-  {
    "name": "Sketch Academy Sunday Regulation M-C Tournament",
    "org": "Sketch Academy",
    "mode": "online",
@@ -145,6 +128,22 @@
    "reg_letto": true
   },
   {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-23",
+   "time": "05:00",
+   "players": 6,
+   "url": "https://play.limitlesstcg.com/tournament/6b0392a9e0b5cca158bbb78c/details",
+   "reg_letto": true
+  },
+  {
    "name": "Amyverse VGC Champions Arena #20 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -156,7 +155,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 19,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -172,7 +171,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
@@ -188,7 +187,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "23:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
    "reg_letto": true
   },
@@ -300,7 +299,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 10,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -332,7 +331,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -396,7 +395,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -428,7 +427,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -500,7 +499,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 9,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -548,7 +547,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details",
    "reg_letto": true
   },
@@ -564,7 +563,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -751,6 +750,22 @@
    "time": "18:00",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b00b52ee0b5cca158bb9f46/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Culture Cup #3 | Practice Tour",
+   "org": "iClan",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-06",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b035312ada8eea1c94d0710/details",
    "reg_letto": true
   },
   {
