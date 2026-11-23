@@ -5,6 +5,33 @@
  ],
  "richieste": [
   {
+   "id": "mon-202648",
+   "v": 3,
+   "tipo": "money",
+   "rif": 0,
+   "creata": "2026-11-23T07:30:30Z",
+   "titolo": "Money tournament · 23–29 novembre",
+   "sotto": "3 tornei, dal premio piu' alto",
+   "img": "social/img/mon-202648-1.jpg",
+   "imgs": [
+    "social/img/mon-202648-1.jpg",
+    "social/img/mon-202648-2.jpg"
+   ],
+   "link": "https://rakings.github.io/VGCrAKings/#online",
+   "ig": {
+    "stato": "da approvare",
+    "testo": "💰 Pokémon VGC money tournaments this week · Nov 23–29\n\n1. $500 · Xperience Play-Monthly Champions $500 Tournament#1 (Sun Nov 29 · 18:00 CET)\n2. $50 · Friday Fight Night 83! $50 Prize & Team Report (Sat Nov 28 · 00:00 CET)\n3. Cash · Amyverse VGC Champions Arena #20 Cash Prize! (Mon Nov 23 · 20:00 CET)\n\n🔖 Save it for the week and share it with your teammates.\nSign-ups and reminders: rAKings VGC app, link in bio 📲\n\n#PokemonChampions #PokemonVGC #MoneyTournament #VGC #CompetitivePokemon"
+   },
+   "x": {
+    "stato": "da approvare",
+    "testo": "💰 Money tournaments of the week (Nov 23–29)\n1) $500 Xperience Play-Monthly Champions $500…\n2) $50 Friday Fight Night 83! $50 Prize & Team…\n3) Cash Amyverse VGC Champions Arena #20 Cash…\nAll of them in the app 👇\nhttps://rakings.github.io/VGCrAKings/#online\n#PokemonChampions #VGC"
+   },
+   "yt": {
+    "stato": "da approvare",
+    "testo": "💰 Pokémon VGC money tournaments this week · Nov 23–29 #Shorts"
+   }
+  },
+  {
    "id": "sto-150574390",
    "v": 3,
    "tipo": "storia",
@@ -95,7 +122,8 @@
   "sto-116899157",
   "mon-202647",
   "sto-133445398",
-  "sto-150574390"
+  "sto-150574390",
+  "mon-202648"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
  "storie_dal": "2026-11-16T08:29:54Z",
