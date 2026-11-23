@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T02:33:47+00:00",
+ "updated": "2026-11-23T05:32:20+00:00",
  "events": [
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -31,21 +31,6 @@
    "time": "23:00",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b034b6ee0b5cca158bbb59a/details"
-  },
-  {
-   "name": "Women's League VGC #21",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "21:00",
-   "players": 5,
-   "url": "https://play.limitlesstcg.com/tournament/6ae78c97ae67092a40740d47/details"
   },
   {
    "name": "Runback Series #6 - Reg I $100 to 1st place",
@@ -128,22 +113,6 @@
    "reg_letto": true
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "05:00",
-   "players": 6,
-   "url": "https://play.limitlesstcg.com/tournament/6b0392a9e0b5cca158bbb78c/details",
-   "reg_letto": true
-  },
-  {
    "name": "Amyverse VGC Champions Arena #20 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -155,7 +124,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 23,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -187,7 +156,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "23:00",
-   "players": 17,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
    "reg_letto": true
   },
@@ -203,24 +172,8 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:30",
-   "players": 4,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6b030cf9ada8eea1c94d0584/details",
-   "reg_letto": true
-  },
-  {
-   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-24",
-   "time": "01:00",
-   "players": 2,
-   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
   {
@@ -253,6 +206,22 @@
    "time": "19:00",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
+   "reg_letto": true
+  },
+  {
+   "name": "HeroicTitan’s VGC Battle Arena",
+   "org": "The PokeKitchen Battle Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-25",
+   "time": "02:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b03b20ae0b5cca158bbb8d5/details",
    "reg_letto": true
   },
   {
@@ -299,7 +268,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 13,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -317,6 +286,22 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae6241eae67092a4073ffab/details",
+   "reg_letto": true
+  },
+  {
+   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "01:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
   {
@@ -347,7 +332,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "12:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b03109cada8eea1c94d059c/details",
    "reg_letto": true
   },
@@ -395,7 +380,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -411,7 +396,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "23:30",
-   "players": 11,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6b0260a0e0b5cca158bbaee2/details",
    "reg_letto": true
   },
@@ -427,8 +412,24 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Raichu Rivalry",
+   "org": "Raichu Rivalry VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "00:30",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b03ad7fe0b5cca158bbb8a9/details",
    "reg_letto": true
   },
   {
@@ -499,7 +500,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -769,6 +770,22 @@
    "reg_letto": true
   },
   {
+   "name": "Cusca Champions Weekly ⚡ #21 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-B",
+   "bo": null,
+   "date": "2026-12-06",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b03b1a3e0b5cca158bbb8d3/details",
+   "reg_letto": true
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -846,6 +863,22 @@
    "time": "10:00",
    "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #22 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-B",
+   "bo": null,
+   "date": "2026-12-13",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b03b24de0b5cca158bbb8d6/details",
    "reg_letto": true
   },
   {
