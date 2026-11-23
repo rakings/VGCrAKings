@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T08:32:31+00:00",
+ "updated": "2026-11-23T10:32:13+00:00",
  "events": [
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -82,21 +82,6 @@
    "reg_letto": true
   },
   {
-   "name": "Sketch Academy Sunday Regulation M-C Tournament",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "03:00",
-   "players": 55,
-   "url": "https://play.limitlesstcg.com/tournament/6af1770ce99f3235a75e49ae/details"
-  },
-  {
    "name": "Amyverse VGC Champions Arena #20 ❤️ Cash Prize!",
    "org": "The Amyverse",
    "mode": "online",
@@ -108,7 +93,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 30,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -124,7 +109,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:30",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
@@ -236,7 +221,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -321,7 +306,7 @@
    "reg_letto": true
   },
   {
-   "name": "ApexVGC -1",
+   "name": "ApexVGC  3v3 ( PRIZE SHINY MEWTWO ZERAORA MOLTRES)",
    "org": "ApexVGC",
    "mode": "online",
    "type": "Torneo",
@@ -332,7 +317,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
    "reg_letto": true
   },
@@ -380,7 +365,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -532,7 +517,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
