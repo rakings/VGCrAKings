@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T15:32:42+00:00",
+ "updated": "2026-11-23T17:02:28+00:00",
  "events": [
   {
    "name": "Team Philippines @ VRWC 2026: Tryouts #2 🇵🇭 ONLY",
@@ -34,22 +34,6 @@
    "reg_letto": true
   },
   {
-   "name": "VGC Trainer School; champions M/C #8",
-   "org": "VGC Trainers School",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-22",
-   "time": "17:00",
-   "players": 21,
-   "url": "https://play.limitlesstcg.com/tournament/6aff4fee2b9e244e6cee5927/details",
-   "reg_letto": true
-  },
-  {
    "name": "Outlanders Trainers Camp: Encampment",
    "org": "Outlanders Trainers' Camp",
    "mode": "online",
@@ -77,7 +61,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "20:00",
-   "players": 50,
+   "players": 58,
    "url": "https://play.limitlesstcg.com/tournament/6afba7bfb2fccaf0272d46ea/details",
    "reg_letto": true
   },
@@ -109,7 +93,7 @@
    "bo": null,
    "date": "2026-11-23",
    "time": "23:00",
-   "players": 27,
+   "players": 28,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
    "reg_letto": true
   },
@@ -125,7 +109,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:00",
-   "players": 6,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b042840e0b5cca158bbba23/details",
    "reg_letto": true
   },
@@ -141,7 +125,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "00:30",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6b030cf9ada8eea1c94d0584/details",
    "reg_letto": true
   },
@@ -157,7 +141,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 11,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -237,7 +221,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 28,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -285,7 +269,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "01:00",
-   "players": 2,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
@@ -517,7 +501,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -565,7 +549,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -995,22 +979,6 @@
    "reg_letto": true
   },
   {
-   "name": "PokeBros Invitational 2026",
-   "org": "Nino",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": null,
-   "bo": null,
-   "date": "2026-12-19",
-   "time": "17:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/pokebros2026/details",
-   "reg_letto": true
-  },
-  {
    "name": "Virtual Cheese League Friendly 12/19/26",
    "org": "SimplyGabby",
    "mode": "online",
@@ -1027,6 +995,22 @@
    "reg_letto": true
   },
   {
+   "name": "PokeBros Invitational 2026",
+   "org": "Nino",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": null,
+   "bo": null,
+   "date": "2026-12-19",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/pokebros2026/details",
+   "reg_letto": true
+  },
+  {
    "name": "Risen Open League #4 Reg M-D",
    "org": "Risen Esports VGC",
    "mode": "online",
@@ -1040,6 +1024,22 @@
    "time": "18:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b01d2d5ada8eea1c94cfb1b/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #23 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-B",
+   "bo": null,
+   "date": "2026-12-20",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b045c13e0b5cca158bbbb73/details",
    "reg_letto": true
   },
   {
@@ -1072,6 +1072,22 @@
    "time": "18:00",
    "players": 149,
    "url": "https://play.limitlesstcg.com/tournament/6a7d22852b308b6067b52844/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #24 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-B",
+   "bo": null,
+   "date": "2026-12-27",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b045d5dada8eea1c94d0d80/details",
    "reg_letto": true
   },
   {
@@ -1136,6 +1152,22 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ad8eea18a8383117e3f0bb6/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Cusca Champions Weekly ⚡ #25 (PCVGC)",
+   "org": "Cusca eSports",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-B",
+   "bo": null,
+   "date": "2027-01-03",
+   "time": "02:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b045dd8e0b5cca158bbbb92/details",
    "reg_letto": true
   },
   {
