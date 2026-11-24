@@ -483,14 +483,16 @@
   "2027-merida-pokemon-regional-championships": {
    "name": "Mérida Regional Championships",
    "link": "https://rk9.gg/event/pokemon-merida-2026",
-   "waves": [],
+   "waves": [
+    "2026-11-26T01:00:00+00:00"
+   ],
    "sorpresa": 0,
    "stato": ""
   }
  },
  "vr_controllo": {
   "ok": true,
-  "quando": "2026-11-24T11:29+00:00",
+  "quando": "2026-11-24T18:52+00:00",
   "pagine": 25,
   "senza_pagina": 0,
   "errori": 0,
