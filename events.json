@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T12:02:46+00:00",
+ "updated": "2026-11-24T13:33:55+00:00",
  "events": [
   {
    "name": "Outlanders Trainers Camp: Encampment",
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 26,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -77,24 +77,8 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "19:00",
-   "players": 28,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
-   "reg_letto": true
-  },
-  {
-   "name": "Matcha Gotcha MonoType #2",
-   "org": "Oak Stadium",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-25",
-   "time": "00:30",
-   "players": 14,
-   "url": "https://play.limitlesstcg.com/tournament/6b048111ada8eea1c94d0f62/details",
    "reg_letto": true
   },
   {
@@ -125,7 +109,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 6,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -141,7 +125,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 40,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -349,7 +333,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 37,
+   "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -429,7 +413,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 10,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -469,7 +453,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 20,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -485,7 +469,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:07",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b050cc2ada8eea1c94d1944/details",
    "reg_letto": true
   },
