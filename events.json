@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T02:32:22+00:00",
+ "updated": "2026-11-24T05:32:37+00:00",
  "events": [
   {
    "name": "Outlanders Trainers Camp: Encampment",
@@ -18,7 +18,7 @@
    "reg_letto": true
   },
   {
-   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 40!⛩️",
+   "name": "RookideeVGC Qualifier| Prize Shiny Charizard",
    "org": "",
    "mode": "online",
    "type": "Torneo",
@@ -28,25 +28,9 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-23",
-   "time": "20:30",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details"
-  },
-  {
-   "name": "RookideeVGC Qualifier| Prize Shiny Charizard",
-   "org": "RookideeVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
    "time": "23:00",
-   "players": 38,
-   "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
-   "reg_letto": true
+   "players": 46,
+   "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details"
   },
   {
    "name": "Amyverse VGC Champions Arena #20 ❤️ Cash Prize!",
@@ -78,6 +62,22 @@
    "time": "00:05",
    "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6b042840e0b5cca158bbba23/details"
+  },
+  {
+   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
+   "org": "Pomelo",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-24",
+   "time": "05:00",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6b0490baada8eea1c94d111c/details",
+   "reg_letto": true
   },
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -112,22 +112,6 @@
    "reg_letto": true
   },
   {
-   "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
-   "org": "Pomelo",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-24",
-   "time": "05:00",
-   "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6b0490baada8eea1c94d111c/details",
-   "reg_letto": true
-  },
-  {
    "name": "VGC UmbreNews 24.11.2026 #41 - Champion",
    "org": "UmbreNews",
    "mode": "online",
@@ -139,7 +123,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -155,7 +139,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "19:00",
-   "players": 22,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
    "reg_letto": true
   },
@@ -187,7 +171,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "02:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b03b20ae0b5cca158bbb8d5/details",
    "reg_letto": true
   },
@@ -203,7 +187,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -251,7 +235,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -267,7 +251,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:30",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
    "reg_letto": true
   },
@@ -315,7 +299,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
@@ -384,6 +368,22 @@
    "reg_letto": true
   },
   {
+   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 41!⛩️",
+   "org": "Chadweezy95",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-27",
+   "time": "20:30",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
+   "reg_letto": true
+  },
+  {
    "name": "Metal's Meteor Mash-Up #9 - REG F THROWBACK TOUR",
    "org": "Metal VGC Weeklies",
    "mode": "online",
@@ -411,7 +411,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 32,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -536,6 +536,22 @@
    "reg_letto": true
   },
   {
+   "name": "Extreme Speed Adios MC",
+   "org": "Ewokpadawan",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "01:07",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6b050cc2ada8eea1c94d1944/details",
+   "reg_letto": true
+  },
+  {
    "name": "Cusca Champions Weekly ⚡ #20 (PCVGC)",
    "org": "Cusca eSports",
    "mode": "online",
@@ -629,6 +645,22 @@
    "time": "03:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6af17730c931f53978d9707c/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Amyverse VGC Champions Arena #21 ❤️ Cash Prize!",
+   "org": "The Amyverse",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "Cash",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-30",
+   "time": "20:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b050886ada8eea1c94d1935/details",
    "reg_letto": true
   },
   {
@@ -833,7 +865,7 @@
    "reg_letto": true
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "name": "RookideeVGC Qualifier| Prize Shiny Volcarona",
    "org": "RookideeVGC",
    "mode": "online",
    "type": "Torneo",
@@ -1089,6 +1121,22 @@
    "reg_letto": true
   },
   {
+   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-19",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b05129cada8eea1c94d1966/details",
+   "reg_letto": true
+  },
+  {
    "name": "Risen Open League #4 Reg M-D",
    "org": "Risen Esports VGC",
    "mode": "online",
@@ -1134,6 +1182,22 @@
    "time": "23:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16eeb245696afb351590c/details",
+   "reg_letto": true
+  },
+  {
+   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "org": "RookideeVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-26",
+   "time": "18:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b051320ada8eea1c94d1967/details",
    "reg_letto": true
   },
   {
