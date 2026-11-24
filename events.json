@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T08:32:29+00:00",
+ "updated": "2026-11-24T10:32:24+00:00",
  "events": [
   {
    "name": "Outlanders Trainers Camp: Encampment",
@@ -76,7 +76,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 21,
+   "players": 23,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -140,7 +140,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -444,7 +444,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
