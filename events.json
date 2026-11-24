@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T23:32:35+00:00",
+ "updated": "2026-11-24T02:32:22+00:00",
  "events": [
   {
    "name": "Outlanders Trainers Camp: Encampment",
@@ -18,6 +18,21 @@
    "reg_letto": true
   },
   {
+   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 40!⛩️",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-23",
+   "time": "20:30",
+   "players": 25,
+   "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details"
+  },
+  {
    "name": "RookideeVGC Qualifier| Prize Shiny Charizard",
    "org": "RookideeVGC",
    "mode": "online",
@@ -31,22 +46,6 @@
    "time": "23:00",
    "players": 38,
    "url": "https://play.limitlesstcg.com/tournament/6ac16d8e85920e4d25363414/details",
-   "reg_letto": true
-  },
-  {
-   "name": "⛩️Chadweezy95 VGC Champions Tournament Ep 40!⛩️",
-   "org": "Chadweezy95",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-23",
-   "time": "20:30",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6b02871bada8eea1c94d019c/details",
    "reg_letto": true
   },
   {
@@ -67,7 +66,7 @@
   },
   {
    "name": "Intimidators Champions Challenge #56 REG M-C",
-   "org": "INTIMIDATORS VGC",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -76,9 +75,24 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-24",
-   "time": "00:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6b042840e0b5cca158bbba23/details",
+   "time": "00:05",
+   "players": 33,
+   "url": "https://play.limitlesstcg.com/tournament/6b042840e0b5cca158bbba23/details"
+  },
+  {
+   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-24",
+   "time": "01:00",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
   },
   {
@@ -98,38 +112,6 @@
    "reg_letto": true
   },
   {
-   "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-24",
-   "time": "01:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
-   "reg_letto": true
-  },
-  {
-   "name": "HOTG Online Series - Champions - S105",
-   "org": "Competitive Corner RD",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-24",
-   "time": "01:00",
-   "players": 3,
-   "url": "https://play.limitlesstcg.com/tournament/6b047217ada8eea1c94d0e8a/details",
-   "reg_letto": true
-  },
-  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -141,7 +123,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "05:00",
-   "players": 4,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6b0490baada8eea1c94d111c/details",
    "reg_letto": true
   },
@@ -157,7 +139,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "17:30",
-   "players": 17,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6afd75e9ee43ef7891477dae/details",
    "reg_letto": true
   },
@@ -173,7 +155,7 @@
    "bo": null,
    "date": "2026-11-24",
    "time": "19:00",
-   "players": 20,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6afcb24bee43ef78914773e1/details",
    "reg_letto": true
   },
@@ -205,7 +187,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "02:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b03b20ae0b5cca158bbb8d5/details",
    "reg_letto": true
   },
@@ -221,7 +203,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -269,7 +251,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 19,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -285,7 +267,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:30",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
    "reg_letto": true
   },
@@ -317,7 +299,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 24,
+   "players": 25,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -413,7 +395,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "23:30",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6b0260a0e0b5cca158bbaee2/details",
    "reg_letto": true
   },
@@ -429,7 +411,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 29,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -445,7 +427,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b03ad7fe0b5cca158bbb8a9/details",
    "reg_letto": true
   },
@@ -509,7 +491,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -549,7 +531,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 19,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -650,7 +632,7 @@
    "reg_letto": true
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "name": "RookideeVGC Qualifier| Prize Shiny Blastoise",
    "org": "RookideeVGC",
    "mode": "online",
    "type": "Torneo",
@@ -663,6 +645,22 @@
    "time": "23:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac16db585920e4d25363415/details",
+   "reg_letto": true
+  },
+  {
+   "name": "HOTG Online Series - Champions - S105",
+   "org": "Competitive Corner RD",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-01",
+   "time": "01:00",
+   "players": 3,
+   "url": "https://play.limitlesstcg.com/tournament/6b047217ada8eea1c94d0e8a/details",
    "reg_letto": true
   },
   {
@@ -787,7 +785,7 @@
    "seniorAt": "2025-11-15T17:00:00Z"
   },
   {
-   "name": "RookideeVGC Qualifier| Prize Shiny TBD",
+   "name": "RookideeVGC Qualifier| Prize Shiny Tyranitar",
    "org": "RookideeVGC",
    "mode": "online",
    "type": "Torneo",
