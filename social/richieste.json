@@ -71,16 +71,19 @@
    "img": "social/img/sto-133445398.jpg",
    "link": "https://rakings.github.io/VGCrAKings/#stats-reg-1000084",
    "ig": {
-    "stato": "da approvare",
-    "testo": "(storia: Instagram non permette testo nelle storie)"
+    "stato": "annullato",
+    "testo": "(storia: Instagram non permette testo nelle storie)",
+    "msg": "notizia ormai vecchia"
    },
    "x": {
-    "stato": "da approvare",
-    "testo": "🏆 Ezequiel Bustamante (AR) wins 2027 Buenos Aires Pokémon VG Special Championships!\nTop 8: 2nd Bruno Quiroga, 3rd Samuel Pereira Marante, 4th Diego Ferreira Silva, 5th Len Deuel, 6th Juan Velasco\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000084\n#PokemonChampions #VGC"
+    "stato": "annullato",
+    "testo": "🏆 Ezequiel Bustamante (AR) wins 2027 Buenos Aires Pokémon VG Special Championships!\nTop 8: 2nd Bruno Quiroga, 3rd Samuel Pereira Marante, 4th Diego Ferreira Silva, 5th Len Deuel, 6th Juan Velasco\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000084\n#PokemonChampions #VGC",
+    "msg": "notizia ormai vecchia"
    },
    "yt": {
-    "stato": "da approvare",
-    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts"
+    "stato": "annullato",
+    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts",
+    "msg": "notizia ormai vecchia"
    }
   },
   {
@@ -120,7 +123,7 @@
   "ok": true,
   "msg": "collegato",
   "account": "vgc_rakings",
-  "quando": "2026-11-24T02:33:01Z"
+  "quando": "2026-11-24T23:32:54Z"
  },
  "fatti": [
   "sto-116899157",
