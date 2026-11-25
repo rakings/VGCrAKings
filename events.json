@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T05:32:30+00:00",
+ "updated": "2026-11-25T08:32:43+00:00",
  "events": [
   {
    "name": "VGC UmbreNews 24.11.2026 #41 - Champion",
@@ -34,6 +34,21 @@
    "reg_letto": true
   },
   {
+   "name": "HeroicTitan’s VGC Battle Arena",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-25",
+   "time": "02:00",
+   "players": 31,
+   "url": "https://play.limitlesstcg.com/tournament/6b03b20ae0b5cca158bbb8d5/details"
+  },
+  {
    "name": "˗ˋˏ❤︎ˎˊ˗ Pomelo Late Night Practice",
    "org": "Pomelo",
    "mode": "online",
@@ -50,22 +65,6 @@
    "reg_letto": true
   },
   {
-   "name": "HeroicTitan’s VGC Battle Arena",
-   "org": "The PokeKitchen Battle Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-25",
-   "time": "02:00",
-   "players": 30,
-   "url": "https://play.limitlesstcg.com/tournament/6b03b20ae0b5cca158bbb8d5/details",
-   "reg_letto": true
-  },
-  {
    "name": "ValkrixVGC Rising Champions League #11",
    "org": "Valkrix/ Pokemon Champions VGC",
    "mode": "online",
@@ -77,7 +76,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 29,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -93,7 +92,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 81,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -109,7 +108,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 34,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -157,7 +156,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 28,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -205,7 +204,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -237,7 +236,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "12:30",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b03109cada8eea1c94d059c/details",
    "reg_letto": true
   },
@@ -253,7 +252,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 26,
+   "players": 30,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -317,7 +316,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 41,
+   "players": 42,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -365,7 +364,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -397,7 +396,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -485,7 +484,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details",
    "reg_letto": true
   },
