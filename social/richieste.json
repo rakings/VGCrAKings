@@ -5,6 +5,30 @@
  ],
  "richieste": [
   {
+   "id": "reg-33661298",
+   "v": 3,
+   "tipo": "regionale",
+   "rif": 0,
+   "creata": "2026-11-25T23:33:11Z",
+   "data": "2026-11-28",
+   "titolo": "Stuttgart Regional Championships",
+   "sotto": "Stoccarda, Germania · sab 28 nov",
+   "img": "social/img/reg-33661298.jpg",
+   "link": "https://rakings.github.io/VGCrAKings/#regionali",
+   "ig": {
+    "stato": "da approvare",
+    "testo": "🏆 Pokémon VGC · Stuttgart Regional Championships · in 2 days\n📍 Stoccarda, Germania\n📅 Sat Nov 28\n\nFollow it live in the rAKings VGC app: standings, teams and Top 8 📲\n\n#PokemonChampions #VGC #PokemonVGC #Regionals #PlayPokemon"
+   },
+   "x": {
+    "stato": "da approvare",
+    "testo": "🏆 Stuttgart Regional Championships · in 2 days\n📍 Stoccarda, Germania\nFollow it live in the app 👇\nhttps://rakings.github.io/VGCrAKings/#regionali\n#PokemonChampions #VGC"
+   },
+   "yt": {
+    "stato": "da approvare",
+    "testo": "🏆 Pokémon VGC · Stuttgart Regional Championships · in 2 days #Shorts"
+   }
+  },
+  {
    "id": "mon-202648",
    "v": 3,
    "tipo": "money",
@@ -51,12 +75,14 @@
     "url": "https://www.instagram.com/stories/"
    },
    "x": {
-    "stato": "da approvare",
-    "testo": "🏆 Masahiro Taoka (JP) wins 2027 Latin America Pokémon VGC International Championships!\nTop 8: 2nd Emilio Forbes, 3rd Yuma Kinugawa, 4th Samuel Pereira, 5th Kandai Nagatome, 6th Louis Markl\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000088\n#PokemonChampions #VGC"
+    "stato": "annullato",
+    "testo": "🏆 Masahiro Taoka (JP) wins 2027 Latin America Pokémon VGC International Championships!\nTop 8: 2nd Emilio Forbes, 3rd Yuma Kinugawa, 4th Samuel Pereira, 5th Kandai Nagatome, 6th Louis Markl\nTeams and results in the app 👇\nhttps://rakings.github.io/VGCrAKings/#stats-reg-1000088\n#PokemonChampions #VGC",
+    "msg": "notizia ormai vecchia"
    },
    "yt": {
-    "stato": "da approvare",
-    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts"
+    "stato": "annullato",
+    "testo": "(storia: Instagram non permette testo nelle storie) #Shorts",
+    "msg": "notizia ormai vecchia"
    }
   },
   {
@@ -130,7 +156,8 @@
   "mon-202647",
   "sto-133445398",
   "sto-150574390",
-  "mon-202648"
+  "mon-202648",
+  "reg-33661298"
  ],
  "tornei_dal": "2026-11-16T07:51:42Z",
  "storie_dal": "2026-11-16T08:29:54Z",
