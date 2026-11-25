@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T20:32:15+00:00",
+ "updated": "2026-11-25T23:32:35+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -19,7 +19,7 @@
   },
   {
    "name": "Alpensee Tour (Reg M-C) #85",
-   "org": "Alpensee eSports e.V.",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -29,9 +29,8 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 137,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
-   "reg_letto": true
+   "players": 128,
+   "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
   },
   {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
@@ -61,7 +60,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:30",
-   "players": 14,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
    "reg_letto": true
   },
@@ -77,7 +76,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "01:00",
-   "players": 0,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ae6241eae67092a4073ffab/details",
    "reg_letto": true
   },
@@ -93,7 +92,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 43,
+   "players": 52,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -125,7 +124,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "18:00",
-   "players": 17,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details",
    "reg_letto": true
   },
@@ -141,7 +140,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 18,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -157,7 +156,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "00:15",
-   "players": 4,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details",
    "reg_letto": true
   },
@@ -189,7 +188,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 33,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -237,7 +236,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 47,
+   "players": 48,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -301,7 +300,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:00",
-   "players": 2,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b071f15e0b5cca158bbd40f/details",
    "reg_letto": true
   },
@@ -333,7 +332,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -389,7 +388,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -437,7 +436,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 13,
+   "players": 12,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details",
    "reg_letto": true
   },
@@ -517,7 +516,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 27,
+   "players": 29,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -677,7 +676,7 @@
    "bo": null,
    "date": "2026-12-02",
    "time": "12:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6aff0e979c256f7bbd23ff05/details",
    "reg_letto": true
   },
@@ -801,6 +800,22 @@
    "tz": "America/Los_Angeles",
    "juniorAt": "2025-11-15T17:00:00Z",
    "seniorAt": "2025-11-15T17:00:00Z"
+  },
+  {
+   "name": "⚔️Torre Lotta Cup #5⚔️ 🏆50€ Amazon Gift Cards🏆",
+   "org": "LaggerVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": true,
+   "prize": "50€",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-05",
+   "time": "14:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b075278ada8eea1c94d2a21/details",
+   "reg_letto": true
   },
   {
    "name": "RookideeVGC Qualifier| Prize Shiny Tyranitar",
@@ -942,7 +957,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 15,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details",
    "reg_letto": true
   },
