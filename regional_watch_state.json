@@ -492,10 +492,10 @@
  },
  "vr_controllo": {
   "ok": true,
-  "quando": "2026-11-25T20:16+00:00",
-  "pagine": 20,
+  "quando": "2026-11-25T23:41+00:00",
+  "pagine": 25,
   "senza_pagina": 0,
-  "errori": 5,
+  "errori": 0,
   "problemi": []
  }
 }
