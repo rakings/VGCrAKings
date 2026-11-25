@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T10:32:17+00:00",
+ "updated": "2026-11-25T12:02:54+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -45,7 +45,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "13:00",
-   "players": 45,
+   "players": 65,
    "url": "https://play.limitlesstcg.com/tournament/6af1f16be99f3235a75e4c96/details",
    "reg_letto": true
   },
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-25",
    "time": "19:00",
-   "players": 86,
+   "players": 88,
    "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details",
    "reg_letto": true
   },
@@ -93,7 +93,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:30",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
    "reg_letto": true
   },
@@ -173,7 +173,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -285,7 +285,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 43,
+   "players": 44,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -458,6 +458,22 @@
    "reg_letto": true
   },
   {
+   "name": "ValkrixVGC Champions League #11 |Shiny tatsugiri |",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "14:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6af1f1b4c931f53978d972ec/details",
+   "reg_letto": true
+  },
+  {
    "name": "✨👑 King's Gambit #13 | Reg M-C 👑✨",
    "org": "Astral Community",
    "mode": "online",
@@ -487,6 +503,22 @@
    "time": "17:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6b05e2a5ada8eea1c94d1d90/details",
+   "reg_letto": true
+  },
+  {
+   "name": "FINISTERRAE SERIES VGC #6",
+   "org": "FINISTERRAE SERIES",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
    "reg_letto": true
   },
   {
