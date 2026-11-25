@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T18:01:35+00:00",
+ "updated": "2026-11-25T18:32:22+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "00:00",
-   "players": 58,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
    "reg_letto": true
   },
@@ -109,7 +109,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "02:00",
-   "players": 38,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details",
    "reg_letto": true
   },
@@ -125,7 +125,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
@@ -490,22 +490,6 @@
    "reg_letto": true
   },
   {
-   "name": "Semanal VGC Roaring #2 - Premiação no Pix!",
-   "org": "SongFuê",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-29",
-   "time": "17:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6b05e2a5ada8eea1c94d1d90/details",
-   "reg_letto": true
-  },
-  {
    "name": "FINISTERRAE SERIES VGC #6",
    "org": "FINISTERRAE SERIES",
    "mode": "online",
@@ -519,6 +503,22 @@
    "time": "17:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Semanal VGC Roaring #2 - Premiação no Pix!",
+   "org": "SongFuê",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "17:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b05e2a5ada8eea1c94d1d90/details",
    "reg_letto": true
   },
   {
@@ -551,6 +551,22 @@
    "time": "21:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ae78cedae67092a40740d51/details",
+   "reg_letto": true
+  },
+  {
+   "name": "biffpipp’s Battle Frontier - Reg M-C Invitational",
+   "org": "biffpipp's Battle Frontier",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "22:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b06c64fe0b5cca158bbd147/details",
    "reg_letto": true
   },
   {
@@ -1070,7 +1086,7 @@
    "bo": null,
    "date": "2026-12-19",
    "time": "16:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6aec7b2b0c463890f304bd09/details",
    "reg_letto": true
   },
