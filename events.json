@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T23:32:35+00:00",
+ "updated": "2026-11-26T02:32:30+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -15,69 +15,6 @@
    "time": "01:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
-   "reg_letto": true
-  },
-  {
-   "name": "Alpensee Tour (Reg M-C) #85",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-25",
-   "time": "19:00",
-   "players": 128,
-   "url": "https://play.limitlesstcg.com/tournament/6ad8f15d115c12b73a5a907e/details"
-  },
-  {
-   "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
-   "org": "HM4coach & The Boys",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "00:00",
-   "players": 72,
-   "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
-   "reg_letto": true
-  },
-  {
-   "name": "VGC: 8vo Torneo Express Reg M-C",
-   "org": "MI.Team",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "00:30",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
-   "reg_letto": true
-  },
-  {
-   "name": "Hatterene Series Weekly #13 2027 - 7PM EST - M-C",
-   "org": "Hatterene Series",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "01:00",
-   "players": 4,
-   "url": "https://play.limitlesstcg.com/tournament/6ae6241eae67092a4073ffab/details",
    "reg_letto": true
   },
   {
@@ -97,6 +34,54 @@
    "reg_letto": true
   },
   {
+   "name": "Hatterene Series Weekly #13 2027 - 7PM EST - M-C",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "01:00",
+   "players": 4,
+   "url": "https://play.limitlesstcg.com/tournament/6ae6241eae67092a4073ffab/details",
+   "reg_letto": true
+  },
+  {
+   "name": "VGC: 8vo Torneo Express Reg M-C",
+   "org": "MI.Team",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "00:30",
+   "players": 20,
+   "url": "https://play.limitlesstcg.com/tournament/6b04c304ada8eea1c94d1591/details",
+   "reg_letto": true
+  },
+  {
+   "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
+   "org": "HM4coach & The Boys",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "00:00",
+   "players": 72,
+   "url": "https://play.limitlesstcg.com/tournament/6af5b1c900d53a11f5b91f07/details",
+   "reg_letto": true
+  },
+  {
    "name": "Tenki's Cart Weekly #128 - Reg M-C",
    "org": "TenkiPK",
    "mode": "online",
@@ -108,7 +93,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 16,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
@@ -124,7 +109,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "18:00",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details",
    "reg_letto": true
   },
@@ -140,7 +125,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 21,
+   "players": 24,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -156,7 +141,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "00:15",
-   "players": 9,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details",
    "reg_letto": true
   },
@@ -188,7 +173,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 34,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -204,7 +189,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -220,7 +205,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "23:30",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6b0260a0e0b5cca158bbaee2/details",
    "reg_letto": true
   },
@@ -236,7 +221,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 48,
+   "players": 50,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -350,6 +335,22 @@
    "time": "17:00",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Thavorian Trials 14",
+   "org": "Thavorian Skies",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "22:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b04dc13ada8eea1c94d17af/details",
    "reg_letto": true
   },
   {
@@ -548,7 +549,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "22:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b06c64fe0b5cca158bbd147/details",
    "reg_letto": true
   },
@@ -596,7 +597,7 @@
    "bo": null,
    "date": "2026-11-30",
    "time": "20:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b050886ada8eea1c94d1935/details",
    "reg_letto": true
   },
