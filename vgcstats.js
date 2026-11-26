@@ -184,13 +184,13 @@ h+='<div class="vg-tw"><table class="vg-t"><thead><tr><th>Pokémon</th><th>'+(S.
 h+=a.map(function(p){return'<tr class="vg-r" data-vg="mon" data-id="'+E(p.slug)+'"><td>'+dot(p.name)+" "+E(p.name)+tyHtml(p.slug)+"</td><td>"+val(p)+(tot?" · "+pc(val(p),tot)+"%":"")+"</td><td>"+wr(p.wins,p.losses)+"</td><td>"+p.top256+"</td><td>"+p.day2+"</td></tr>"}).join("")||'<tr><td colspan="5">Nessun Pokémon trovato. Controlla il nome.</td></tr>';
 return h+"</tbody></table></div>"+foot()}
 function detail(d){var p=d.pk.filter(function(x){return x.slug===S.mon})[0];if(!p)return"";var sz=szOf(d),bg=typeof window.sprSfondo==="function"?window.sprSfondo(p.name):"";   /* sul sito: il Pokémon grande fa da sfondo a nome e statistiche */
-var h=bg+'<button class="vg-back" type="button" data-vg="bkm">← Torna all’elenco</button>'+(bg?'<div class="vg-hero">':'')+'<h2 class="vg-h">'+dot(p.name)+" "+E(p.name)+tyHtml(p.slug)+"</h2>";
+var h='<button class="vg-back" type="button" data-vg="bkm">← Torna all’elenco</button>'+(bg?'<div class="vg-det"><div class="vg-bgw">'+bg+'</div><div class="vg-hero">':'')+'<h2 class="vg-h">'+dot(p.name)+" "+E(p.name)+tyHtml(p.slug)+"</h2>";
 h+='<div class="vg-grid"><div><b>'+p.count+"</b><small>Usati ("+pc(p.count,sz.all)+"%)</small></div><div><b>"+wr(p.wins,p.losses)+"</b><small>Vittorie</small></div><div><b>"+p.top256+"</b><small>Top 256</small></div><div><b>"+p.day2+"</b><small>Fase 2</small></div><div><b>"+p.cut+"</b><small>Top cut</small></div><div><b>"+pc(p.day2,p.count)+"%</b><small>Arrivo in fase 2</small></div></div>"+(bg?"</div>":"");
 if(p.sample){h+='<p class="vg-mute">Nella Top 256: '+p.sample+" giocatori con "+E(p.name)+". Ogni voce con il suo numero.</p>"+bars("Natura",p.nature,p.sample)+bars("Strumento",p.item,p.sample)+bars("Abilità",p.ability,p.sample)+bars("Mosse",p.moves,p.sample);Object.keys(p.extra||{}).forEach(function(k){h+=bars(k,p.extra[k],p.sample)})}
 else h+='<div class="vg-box vg-mute">Per questo Pokémon non ci sono squadre pubblicate nella Top 256.</div>';
 if(p.partners&&p.partners.length)h+=bars("Compagni di squadra",p.partners.map(function(x){return[nameOf(d,x[0]),x[1],x[0]]}),p.count);
 if(!d.tot&&p.players&&p.players.length){h+='<div class="vg-box"><h3>Giocatori che lo hanno usato</h3>'+p.players.map(function(id){return d.by[id]}).filter(Boolean).sort(function(a,b){return a[3]-b[3]}).map(function(r){return'<div class="vg-pl"><span><b>'+r[3]+"°</b> "+E(r[1])+' <small class="vg-mute">'+E(r[2])+" · "+r[4]+"-"+r[5]+"</small>"+italia(r[2])+'</span><span class="vg-btns"><button class="btn sm" type="button" data-vg="gosw" data-id="'+r[0]+'">Swiss</button>'+copyBtn(S.ev,r[0])+"</span></div>"}).join("")+"</div>"}
-return h+foot()}
+return h+(bg?"</div>":"")+foot()}
 function nameOf(d,slug){var f=d.pk.filter(function(x){return x.slug===slug})[0];return f?f.name:slug.replace(/-/g," ").replace(/\b\w/g,function(c){return c.toUpperCase()})}
 
 /* ---------- Swiss ---------- */
