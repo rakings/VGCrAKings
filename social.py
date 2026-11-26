@@ -677,6 +677,51 @@ def tipi_di(ref, slug):
     return [x for x in (t or "").split("/") if x]
 
 
+def _nome_n(x):
+    import unicodedata
+    x = unicodedata.normalize("NFKD", str(x or "")).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "", x)
+
+
+def _handle(url, k):
+    rx = r"instagram\.com/([A-Za-z0-9._]{1,30})" if k == "ig" else r"(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})"
+    m = re.search(rx, url or "", re.I)
+    return m.group(1) if m and m.group(1).lower() not in ("p", "reel", "stories", "home", "intent", "share", "i") else ""
+
+
+def social_scheda(nome):
+    """Instagram e X del giocatore (e del suo team), se ha una scheda allenatore approvata con lo stesso nome:
+    {"ig": .., "x": .., "team_ig": .., "team_x": ..} (solo le voci trovate)."""
+    try:
+        with open(os.path.join("schede", "pubbliche.json"), encoding="utf-8") as f:
+            pub = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    chi = _nome_n(nome)
+    for v in (pub.values() if isinstance(pub, dict) else []):
+        if chi and _nome_n(v.get("nome")) == chi:
+            soc, out = v.get("social") or {}, {}
+            for k, c in (("ig", "instagram"), ("x", "x")):
+                h = _handle(soc.get(c), k)
+                if h:
+                    out[k] = h
+            if v.get("team"):
+                try:
+                    with open(os.path.join("schede", "team.json"), encoding="utf-8") as f:
+                        ts = (json.load(f).get(v["team"]) or {}).get("social") or {}
+                except (OSError, ValueError, AttributeError):
+                    ts = {}
+                for k, c in (("ig", "instagram"), ("x", "x")):
+                    h = _handle(ts.get(c), k)
+                    if h and h.lower() != (out.get(k) or "").lower():
+                        out["team_" + k] = h
+            return out
+    return {}
+
+
+TAG_RX = re.compile(r"(?<![\w.@])@([A-Za-z0-9._]{1,30})")
+
+
 def storia_vincitore(d, tipo, eid, meta, giocatori, squadre, ref):
     rid = "sto-%d" % numero(tipo + str(eid))
     top = sorted([p for p in giocatori if isinstance(p, list) and len(p) > 3 and isinstance(p[3], int) and 1 <= p[3] <= 8], key=lambda p: p[3])
@@ -693,15 +738,19 @@ def storia_vincitore(d, tipo, eid, meta, giocatori, squadre, ref):
     social_img.storia("vr" if tipo == "vr" else "regionale", evento, quando, w[1], w[2], sq, [(p[3], p[1], p[2]) for p in top[1:]], img)
     link = SITO + ("#stats-vr-" + eid if tipo == "vr" else "#stats-reg-" + str(eid))
     paese = " (%s)" % w[2] if w[2] else ""
+    soc = social_scheda(w[1])                       # vincitore con scheda allenatore: tag su Instagram e menzione su X
+    xn = " @%s" % soc["x"] if soc.get("x") else ""
+    xt = "\nTeam: @%s" % soc["team_x"] if soc.get("team_x") else ""
+    tag_ig = "Tag:" + "".join(" @" + soc[k] for k in ("ig", "team_ig") if soc.get(k))
     def x_con(k):
-        return "🏆 %s%s wins %s!\nTop 8: %s\nTeams and results in the app 👇\n%s\n#PokemonChampions #VGC" % (
-            w[1], paese, corto(evento, 60), ", ".join("%s %s" % (social_img.ordinale(p[3]), corto(p[1], 22)) for p in top[1:1 + k]), link)
+        return "🏆 %s%s%s wins %s!%s\nTop 8: %s\nTeams and results in the app 👇\n%s\n#PokemonChampions #VGC" % (
+            w[1], xn, paese, corto(evento, 60), xt, ", ".join("%s %s" % (social_img.ordinale(p[3]), corto(p[1], 22)) for p in top[1:1 + k]), link)
     k = len(top) - 1
     while k > 0 and peso_x(x_con(k), link) > 275:
         k -= 1
     d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": "storia", "storia": True, "rif": 0, "creata": ora(),
                            "titolo": "Storia: %s vince" % w[1], "sotto": corto(evento, 70), "img": img, "link": link,
-                           "ig": {"stato": "da approvare", "testo": "(storia: Instagram non permette testo nelle storie)"},
+                           "ig": {"stato": "da approvare", "testo": tag_ig},
                            "x": {"stato": "da approvare", "testo": x_con(k)}})
     log("Nuova richiesta: storia del vincitore, %s" % evento)
     return rid
@@ -851,8 +900,19 @@ def pubblica_ig(r, testo):
     for url in urls:
         if not immagine_online(url):
             raise RuntimeError("l'immagine non e' ancora online sul sito, riprova tra qualche minuto")
-    if r.get("storia"):   # storia: un'immagine verticale, senza testo (l'API non permette adesivi ne' link)
-        c = graph("POST", "%s/media" % user, {"image_url": urls[0], "media_type": "STORIES"})
+    if r.get("storia"):   # storia: un'immagine verticale, senza testo (l'API non permette adesivi ne' link, ma si possono taggare account)
+        tag = list(dict.fromkeys(TAG_RX.findall(testo or "")))[:5]
+        dati = {"image_url": urls[0], "media_type": "STORIES"}
+        if tag:
+            dati["user_tags"] = json.dumps([{"username": t} for t in tag])
+        try:
+            c = graph("POST", "%s/media" % user, dati)
+        except RuntimeError as ex:
+            if not tag:
+                raise
+            log("Storia: tag %s rifiutati da Meta (%s), la pubblico senza tag." % (", ".join("@" + t for t in tag), ex))
+            dati.pop("user_tags", None)
+            c = graph("POST", "%s/media" % user, dati)
         cid = c.get("id")
         if not cid:
             raise RuntimeError("Meta non ha preparato la storia (account Creator? passalo ad Azienda)")

@@ -285,7 +285,7 @@ function disegnaSchede(a){
     var ini=esc(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase());
     var av=s.avatar?'<img class="av" alt="" src="data:image/webp;base64,'+s.avatar+'">':'<div class="av">'+ini+'</div>';
     var tipi=(s.tipi||[]).filter(function(t,i,l){return l.indexOf(t)===i}).map(function(t){return '<span class="tp" style="background:'+(COL_TIPI[t]||"#555")+'">'+esc(NOMI_TIPI[t]||t)+'</span>'}).join("");
-    var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+'</small>':'';
+    var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+(s.team_social?Object.keys(s.team_social).map(function(n){return ' <a class="so" href="'+esc(s.team_social[n])+'" target="_blank" rel="noopener">'+({instagram:"IG",x:"X"}[n]||n)+' del team ↗</a>'}).join(""):"")+'</small>':'';
     var tg0=s.team?SC_TEAM[slugTeam(s.team)]:null;
     if(s.team&&s.logo_team&&tg0&&tg0.logo)team+='<div class="lgw">⚠️ Questa scheda <b>cambia il logo del team «'+esc(tg0.nome||s.team)+'»</b> per tutti i membri ('+((tg0.membri||[]).length)+'). Attuale: <img class="lg" alt="" src="'+SITE+'schede/team/'+esc(slugTeam(s.team))+'.webp?t='+Date.now()+'"> → nuovo: <img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'"> · Se non va bene, rifiuta.</div>';
     else if(s.team&&tg0)team+='<small>Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';

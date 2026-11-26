@@ -89,6 +89,8 @@ CAMPI = {  # chiave del modello (IT/EN) -> campo
     "colore nickname": "colore", "colore": "colore", "nickname color": "colore", "nickname colour": "colore", "color": "colore",
     "paese": "paese", "country": "paese", "bandiera": "paese", "flag": "paese",
     "team": "team", "squadra team": "team",
+    "instagram del team": "team_ig", "instagram team": "team_ig", "team instagram": "team_ig", "ig del team": "team_ig", "ig team": "team_ig",
+    "x del team": "team_x", "x team": "team_x", "team x": "team_x", "twitter del team": "team_x", "twitter team": "team_x", "team twitter": "team_x",
     "tipi": "tipi", "tipi preferiti": "tipi", "types": "tipi", "favourite types": "tipi", "favorite types": "tipi",
     "instagram": "instagram", "facebook": "facebook", "x": "x", "twitter": "x", "twitch": "twitch",
     "youtube": "youtube", "tiktok": "tiktok",
@@ -114,6 +116,8 @@ MODELLO = (
     "Colore nickname: (rosso, arancione, giallo, verde, azzurro, blu, viola, bianco, oro)\n"
     "Paese: (es. Italia / Italy)\n"
     "Team: (facoltativo / optional)\n"
+    "Instagram del team: (facoltativo)\n"
+    "X del team: (facoltativo)\n"
     "Tipi preferiti: (2 tipi, es. Fuoco, Acqua)\n"
     "Instagram: https://instagram.com/...\n"
     "Facebook: (facoltativo)\n"
@@ -127,7 +131,7 @@ MODELLO = (
     "Ho almeno 18 anni: SI"
 )
 AIUTO = (
-    "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona.\n"
+    "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona · /idea proponi un'idea per l'app.\n"
     "Serve almeno un profilo Instagram, Facebook o X *pubblico*: lo usiamo per verificare che sei tu.\n"
     "Le squadre vanno messe come link di pokepast.es o di Showdown (psim.us/t/…)."
 )
@@ -537,10 +541,17 @@ def costruisci(campi, foto, utente):
     frase = "" if frase.startswith("(") else frase[:MAX_FRASE]
     team = (campi.get("team") or "").strip()
     team = "" if team.startswith("(") else team[:40]
+    team_social = {}
+    for c, k in (("instagram", "team_ig"), ("x", "team_x")):          # profili social del team (per i tag nei post e nelle storie)
+        v = link_social(c, campi.get(k)) if team else ""
+        if campi.get(k) and not campi.get(k, "").startswith("(") and not v and team:
+            avvisi.append("link %s del team non valido, ignorato / invalid team %s link, ignored" % (c, c))
+        if v:
+            team_social[c] = v
     scheda = {
         "nome": nome[:60], "nickname": (campi.get("nickname") or "").strip()[:30],
         "nick_vr": (campi.get("nick_vr") or "").strip()[:40], "nick_gioco": (campi.get("nick_gioco") or "").strip()[:20],
-        "paese": (campi.get("paese") or "").strip()[:30], "team": team, "tipi": tipi, "social": social,
+        "paese": (campi.get("paese") or "").strip()[:30], "team": team, "team_social": team_social, "tipi": tipi, "social": social,
         "squadre": squadre, "colore": colore, "frase": frase,
         "avatar": foto[0] if foto else "", "logo_team": foto[1] if (len(foto) > 1 and team) else "",
         "telegram": {"id": utente.get("id"), "username": utente.get("username") or "", "nome": utente.get("first_name") or ""},
@@ -636,6 +647,42 @@ def controlla_richieste():
     log("Avvisate richieste nuove dei locali:", len(nuove))
 
 
+IDEE = os.path.join(CARTELLA, "idee.json")            # idee per l'app mandate con /idea, cifrate (le legge solo l'admin)
+MAX_IDEE_GIORNO = 3
+
+
+def salva_idea(utente, testo, chat):
+    """Idea per l'app (/idea): si salva cifrata in schede/idee.json e l'admin riceve un avviso privato su Telegram."""
+    testo = re.sub(r"\s+\n", "\n", (testo or "").strip())[:1000]
+    if len(testo) < 8:
+        return
+    idee = decifra(carica(IDEE, {})) if os.path.exists(IDEE) else []
+    if not isinstance(idee, list):
+        idee = []
+    oggi = time.strftime("%Y-%m-%d", time.gmtime())
+    uid = utente.get("id")
+    if sum(1 for i in idee if i.get("uid") == uid and time.strftime("%Y-%m-%d", time.gmtime(i.get("t", 0))) == oggi) >= MAX_IDEE_GIORNO:
+        log("Idea ignorata (troppe oggi):", uid)
+        return
+    if any(i.get("uid") == uid and i.get("testo") == testo for i in idee):
+        return                                           # doppione
+    voce = {"id": os.urandom(4).hex(), "t": int(time.time()), "uid": uid,
+            "utente": utente.get("username") or "", "nome": utente.get("first_name") or "", "testo": testo}
+    idee.append(voce)
+    salva(IDEE, cifra(idee[-300:]))
+    if not os.environ.get("SCHEDA_CODA_URL", "").startswith("https://script.google.com/"):
+        rispondi(chat, "💡 Grazie! La tua idea è arrivata all'admin di rAKings. / Thanks! Your idea has been sent to the admin.")
+    admin = (os.environ.get("SCHEDA_ADMIN_ID") or "").strip()
+    if re.fullmatch(r"\d{3,15}", admin):
+        try:
+            chi = ("@" + voce["utente"]) if voce["utente"] else (voce["nome"] or "un utente")
+            tg("sendMessage", chat_id=admin, disable_web_page_preview="true",
+               text="💡 Nuova idea per l'app da %s:\n\n%s\n\n%s" % (chi, testo[:700], ADMIN_URL))
+        except Exception as ex:
+            log("Avviso idea non inviato:", ex)
+    log("Idea salvata:", voce["id"])
+
+
 def cancella_da_admin(pid, motivo=""):
     """Dall'admin: toglie una scheda pubblicata (pid = codice pubblico) e avvisa il giocatore su Telegram."""
     mappa = decifra(carica(MAPPA, {})) if os.path.exists(MAPPA) else {}
@@ -710,6 +757,8 @@ def azione(chiave, az, motivo=""):
         t = team.setdefault(ts, {"nome": sch["team"], "logo": False, "membri": []})
         if pid not in t["membri"]:
             t["membri"].append(pid)
+        if sch.get("team_social"):        # Instagram / X del team: valgono per tutto il team (l'admin li vede prima di approvare)
+            t["social"] = dict(t.get("social") or {}, **sch["team_social"])
         if sch.get("logo_team"):          # il logo vale per tutto il team; lo cambia solo chi approva (l'admin vede l'avviso)
             scrivi_img(os.path.join(LOGHI, ts + ".webp"), sch["logo_team"])
             t["logo"] = True
@@ -743,7 +792,7 @@ def elabora(aggiornamenti, attesa):
         chat = msg.get("chat") or {}
         if chat.get("type") != "private" or not msg.get("from") or msg["from"].get("is_bot"):
             continue
-        d = per_utente.setdefault(msg["from"]["id"], {"utente": msg["from"], "chat": chat["id"], "testi": [], "foto": [], "loghi": [], "comandi": []})
+        d = per_utente.setdefault(msg["from"]["id"], {"utente": msg["from"], "chat": chat["id"], "testi": [], "foto": [], "loghi": [], "comandi": [], "idee": []})
         testo = con_link(msg)
         fid = ""
         if msg.get("photo"):
@@ -754,6 +803,10 @@ def elabora(aggiornamenti, attesa):
         logo = bool(fid) and bool(re.search(r"\blogo\b", testo, re.I)) and not re.search(r"^\s*(nome|name)\s*:", testo, re.I | re.M)
         if logo:
             d["loghi"].append(fid)
+            continue
+        mi = re.match(r"^\s*/idea(?:@\w+)?\s+(.+)$", testo, re.I | re.S)
+        if mi:                                           # /idea <testo>: idea per l'app, la legge l'admin
+            d["idee"].append(mi.group(1).strip())
             continue
         if testo.strip().startswith("/"):
             d["comandi"].append(testo.strip().split()[0].split("@")[0].lower())
@@ -766,8 +819,12 @@ def elabora(aggiornamenti, attesa):
     tenuti = set()
     for uid, d in per_utente.items():
         chiave = str(uid)
+        for idea in d["idee"]:
+            salva_idea(d["utente"], idea, d["chat"])
         for c in d["comandi"]:
-            if c == "/start":
+            if c == "/idea":
+                rispondi(d["chat"], "💡 Scrivi /idea seguito dalla tua idea, tutto in un solo messaggio. / Send /idea followed by your idea.")
+            elif c == "/start":
                 rispondi(d["chat"], BENVENUTO)
             elif c == "/scheda":
                 rispondi(d["chat"], MODELLO)

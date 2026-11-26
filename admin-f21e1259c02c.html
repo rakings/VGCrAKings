@@ -72,7 +72,7 @@ button:disabled{opacity:.55;cursor:default}
 .so b{display:block}.so small{display:block;color:var(--mu);font-size:.8rem;margin-top:2px}
 .so .full{grid-column:1/-1}
 .car{grid-column:1/-1;display:flex;gap:6px;overflow-x:auto;padding:2px 0 4px}.car a{flex:none}.car img{width:84px;height:84px;object-fit:cover;border-radius:6px;border:1px solid var(--line);display:block}
-.so textarea{width:100%;min-height:150px;font:inherit;font-size:15px;line-height:1.35;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit);resize:vertical}
+.tagr{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 2px}.tagr button{width:auto;min-height:34px;padding:6px 10px;font-size:.82rem}.tagr input{flex:1 1 160px;min-width:140px;font:inherit;font-size:15px;padding:7px 9px;border-radius:9px;border:2px solid var(--line);background:var(--fi);color:var(--fit)}.so textarea{width:100%;min-height:150px;font:inherit;font-size:15px;line-height:1.35;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--fi);color:var(--fit);resize:vertical}
 .so .bt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.so .bt button,.so .bt a.b{padding:8px 12px;min-height:38px;font-size:.85rem}
 .so .bt button.ok{background:#1f8a4c}
 a.b{display:inline-flex;align-items:center;font-weight:700;border-radius:10px;border:1px solid var(--line);color:var(--tx);text-decoration:none;background:rgba(0,0,0,.35)}
@@ -163,6 +163,8 @@ details.old{margin-top:6px}details.old summary{cursor:pointer;color:var(--mu);fo
 
   <div id="p-st" data-panel="st" hidden>
     <div class="card"><h2>Segnalazioni degli utenti</h2><div id="sg"><div class="hint">Carico…</div></div></div>
+    <div class="card"><h2>💡 Idee per l'app <span id="idn" style="text-transform:none;letter-spacing:0"></span></h2><div id="idl"><div class="hint">Carico…</div></div>
+      <p class="hint">Arrivano dal bot Telegram con /idea (massimo 3 al giorno per persona). Sono cifrate: le vedi solo tu. «Letta» la sposta in fondo, solo su questo dispositivo.</p></div>
     <div class="card">
       <h2>Iscritti</h2>
       <div class="big" id="n">–</div>
@@ -392,6 +394,12 @@ $("an-go").addEventListener("click",function(){
 
 /* ---- post per Instagram e X: social/richieste.json del sito (lo scrive il flusso «Social»), azioni tramite il Worker ---- */
 var SOC=null,EDIT={},BLOB={},FATTI={};
+/* post già approvati/rifiutati da qui: restano nascosti tra quelli da approvare (anche dopo «Aggiorna» o ricaricando la pagina)
+   finché GitHub non scrive lo stato nuovo, per un massimo di 30 minuti: così non si pubblica due volte */
+var FKEY="vgc-adm-fatti";try{FATTI=JSON.parse(localStorage.getItem(FKEY)||"{}")||{}}catch(e){FATTI={}}
+function fattiSalva(){try{localStorage.setItem(FKEY,JSON.stringify(FATTI))}catch(e){}}
+function inCorso(r,rete){var f=FATTI[r.id+rete],s=r[rete]||{};if(!f||typeof f!=="object")return false;
+  if(Date.now()-f.t>30*60000||s.stato!==f.st||(s.msg||"")!==f.msg){delete FATTI[r.id+rete];fattiSalva();return false}return true}
 function badge(id,n){var e=$(id);if(!e)return;e.textContent=n>99?"99+":String(n);e.hidden=!(n>0)}
 function quando(iso){var d=new Date(iso||0);return isNaN(d)?"":d.toLocaleString("it-IT",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}
 function pesoX(t,link){if(link)t=t.split(link).join("xxxxxxxxxxxxxxxxxxxxxxx");var n=0;for(var c of t)n+=c.codePointAt(0)<0x1100?1:2;return n}
@@ -405,10 +413,10 @@ function social(){
 }
 function elenco(rete,el,riga){
   if(SOC&&SOC.nuovo){el.innerHTML='<div class="hint">Non ancora attivo: carica i file del pacchetto (flusso «Social»). Le richieste nascono dal primo locale approvato dopo.</div>';badge(BID[rete],0);return}
-  var l=((SOC&&SOC.richieste)||[]).filter(function(r){return r[rete]}),ap=l.filter(function(r){return aperta(r[rete])&&!FATTI[r.id+rete]}),ch=l.filter(function(r){return ap.indexOf(r)<0});
+  var l=((SOC&&SOC.richieste)||[]).filter(function(r){return r[rete]}),ap=l.filter(function(r){return aperta(r[rete])&&!inCorso(r,rete)}),ch=l.filter(function(r){return ap.indexOf(r)<0});
   badge(BID[rete],ap.length);
   el.innerHTML=(ap.length?ap.map(function(r){return riga(r,true)}).join(""):'<div class="hint">Nessun post da approvare.</div>')+
-    (ch.length?'<details class="old"><summary>Già fatti ('+ch.length+')</summary>'+ch.map(function(r){return riga(r,false)}).join("")+'</details>':'')
+    (ch.length?'<details class="old"><summary>Già fatti ('+ch.length+')</summary>'+ch.map(function(r){return (aperta(r[rete])&&inCorso(r,rete)?'<div class="hint" style="margin:8px 0 -4px">⏳ Inviato dalla pagina admin: in corso, non premere di nuovo</div>':'')+riga(r,false)}).join("")+'</details>':'')
 }
 var BID={ig:"bi",x:"bx",yt:"by"};
 function disegnaYt(){
@@ -427,7 +435,7 @@ function disegnaIg(){
     st.msg==="da collegare"||!st.msg?'<div class="ban">Instagram non ancora collegato: le richieste si preparano lo stesso e le pubblichi appena metti la chiave su GitHub.</div>':
     '<div class="ban err">Attenzione: '+esc(st.msg)+'</div>'):"";
   elenco("ig",$("igl"),function(r,ap){var s=r.ig,k=r.id+"ig";
-    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+
+    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" maxlength="2200">'+esc(EDIT[k]!=null?EDIT[k]:s.testo)+'</textarea>'+tagRiga(k,r.storia)+
       '<div class="bt"><button type="button" class="ok" data-so="approva" data-r="ig" data-id="'+esc(r.id)+'">'+(s.stato==="errore"?"Riprova a pubblicare":"Approva e pubblica")+'</button><button type="button" class="sec" data-so="rifiuta" data-r="ig" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':
       (s.url?'<div class="full"><a class="hint" href="'+esc(s.url)+'" target="_blank" rel="noopener">apri su Instagram</a></div>':''))+'</div>'})
 }
@@ -483,13 +491,26 @@ function disegnaStat(s){
 function disegnaX(){
   elenco("x",$("xl"),function(r,ap){var s=r.x,k=r.id+"x",t=EDIT[k]!=null?EDIT[k]:s.testo;
     if(ap)tutte(r).slice(0,4).forEach(function(im){if(!BLOB[im])fetch(SITE+im).then(function(x){return x.blob()}).then(function(b){BLOB[im]=b}).catch(function(){})});   /* pronte per «Condividi»: il telefono le vuole subito (X: massimo 4) */
-    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" data-link="'+esc(r.link||"")+'">'+esc(t)+'</textarea><div class="cnt" data-c="'+esc(k)+'"></div>'+
+    return '<div class="so">'+testa(r,s)+striscia(r)+(ap?'<div class="full"><textarea data-k="'+esc(k)+'" data-link="'+esc(r.link||"")+'">'+esc(t)+'</textarea><div class="cnt" data-c="'+esc(k)+'"></div>'+tagRiga(k,false,"x")+
       '<div class="bt"><button type="button" class="ok" data-xs="'+esc(r.id)+'">Condividi su X</button><button type="button" class="sec" data-xi="'+esc(r.id)+'">Apri X (solo testo)</button>'+
       '<a class="b" href="'+esc(SITE+r.img)+'" download="'+esc(r.id)+'.jpg">Scarica immagine</a></div>'+
       '<div class="bt"><button type="button" class="ok" data-so="fatto" data-r="x" data-id="'+esc(r.id)+'">Fatto, pubblicato</button><button type="button" class="sec" data-so="rifiuta" data-r="x" data-id="'+esc(r.id)+'">Rifiuta</button></div></div>':'')+'</div>'});
   Array.prototype.forEach.call($("xl").querySelectorAll("textarea"),conta)
 }
 function conta(t){var c=document.querySelector('[data-c="'+t.getAttribute("data-k")+'"]');if(!c)return;var n=pesoX(t.value,t.getAttribute("data-link"));c.textContent=n+" / 280";c.className="cnt"+(n>280?" over":"")}
+/* ---- tag Instagram: pulsanti fissi + campo libero; aggiungono @nome nella casella (storia = tag, post = menzione nel testo) ---- */
+var TAG_FISSI=[["Io","andreak_92"],["Francesco","franc3scopardini"],["Team Aqua","teamaqua_officialprofile"]];
+var TAG_X=[["Io","AndreaK_92"],["Francesco","Alexis_Vgc"],["Team Aqua","TeamAqua_offic"]];   /* X: la menzione la pubblichi tu a mano (niente API), quindi è permessa */
+function tagRiga(k,storia,rete){var x=rete==="x";return '<div class="tagr" data-tk="'+esc(k)+'" data-tr="'+(x?"x":"ig")+'"><span class="hint">'+(storia&&!x?"Tagga nella storia:":"Menziona nel testo:")+'</span>'+
+  (x?TAG_X:TAG_FISSI).map(function(t){return '<button type="button" class="sec" data-tag="'+esc(t[1])+'">+ '+esc(t[0])+'</button>'}).join("")+
+  '<input type="text" placeholder="altro: @nome o link del profilo" autocomplete="off" autocapitalize="off"><button type="button" class="sec" data-tag="">Aggiungi</button></div>'}
+function tagNome(v,x){v=String(v||"").trim();var m=x?v.match(/(?:x|twitter)\.com\/([A-Za-z0-9_]{1,15})/i):v.match(/instagram\.com\/([A-Za-z0-9._]{1,30})/i);if(m)v=m[1];v=v.replace(/^@+/,"").split(/[\s?\/]/)[0];
+  return (x?/^[A-Za-z0-9_]{1,15}$/:/^[A-Za-z0-9._]{1,30}$/).test(v)?v:""}
+document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-tag]"):null;if(!b)return;
+  var box=b.closest("[data-tk]"),k=box.getAttribute("data-tk"),ta=document.querySelector('textarea[data-k="'+k+'"]'),inp=box.querySelector("input"),n=b.getAttribute("data-tag")||tagNome(inp.value,box.getAttribute("data-tr")==="x");
+  if(!n){alert("Scrivi il nome dell'account (es. @nome) oppure incolla il link del profilo.");return}
+  if(!ta)return;if(new RegExp("(^|[^\\w.])@"+n.replace(/\./g,"\\.")+"(?![\\w.])","i").test(ta.value)){if(!b.getAttribute("data-tag"))inp.value="";return}
+  ta.value=ta.value.replace(/\s*$/,"")+" @"+n;EDIT[k]=ta.value;if(!b.getAttribute("data-tag"))inp.value="";if(typeof conta==="function")conta(ta)});
 document.addEventListener("input",function(ev){var t=ev.target;if(t&&t.tagName==="TEXTAREA"&&t.getAttribute("data-k")){EDIT[t.getAttribute("data-k")]=t.value;conta(t)}});
 function trova(id){return ((SOC&&SOC.richieste)||[]).filter(function(r){return r.id===id})[0]}
 function testoX(id){var t=document.querySelector('textarea[data-k="'+id+'x"]');return t?t.value:""}
@@ -518,7 +539,7 @@ document.addEventListener("click",function(ev){
   var box=b.parentNode;Array.prototype.forEach.call(box.querySelectorAll("button"),function(x){x.disabled=true});
   fetch(W+"/admin/social",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({id:id,rete:rete,azione:az,testo:rete!=="x"?testo:""})})
     .then(function(x){return x.json().catch(function(){return {}}).then(function(j){
-      if(x.ok&&j.ok){FATTI[id+rete]=1;box.innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Inviato ✓ Pubblicazione in corso: tra 1-2 minuti premi Aggiorna (se qualcosa va storto lo vedi qui, con «Riprova»).":"Fatto ✓ Tra un minuto, premendo Aggiorna, passa in «Già fatti».")+'</small>';badge(BID[rete],Math.max(0,(+$(BID[rete]).textContent||1)-1))}
+      if(x.ok&&j.ok){var s0=r[rete]||{};FATTI[id+rete]={t:Date.now(),st:s0.stato,msg:s0.msg||""};fattiSalva();box.innerHTML='<small style="color:var(--ok)">'+(az==="approva"?"Inviato ✓ Pubblicazione in corso: tra 1-2 minuti premi Aggiorna (se qualcosa va storto lo vedi qui, con «Riprova»).":"Fatto ✓ Tra un minuto, premendo Aggiorna, passa in «Già fatti».")+'</small>';badge(BID[rete],Math.max(0,(+$(BID[rete]).textContent||1)-1))}
       else{Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Non fatto: "+(j.error||("errore "+x.status)))}})},
     function(){Array.prototype.forEach.call(box.querySelectorAll("button"),function(y){y.disabled=false});alert("Nessuna connessione con il Worker.")})
 });
@@ -579,7 +600,7 @@ function disegnaSchede(a){
     var ini=esc(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase());
     var av=s.avatar?'<img class="av" alt="" src="data:image/webp;base64,'+s.avatar+'">':'<div class="av">'+ini+'</div>';
     var tipi=(s.tipi||[]).filter(function(t,i,l){return l.indexOf(t)===i}).map(function(t){return '<span class="tp" style="background:'+(COL_TIPI[t]||"#555")+'">'+esc(NOMI_TIPI[t]||t)+'</span>'}).join("");
-    var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+'</small>':'';
+    var team=s.team?'<small>Team: '+(s.logo_team?'<img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'">':'')+esc(s.team)+(s.team_social?Object.keys(s.team_social).map(function(n){return ' <a class="so" href="'+esc(s.team_social[n])+'" target="_blank" rel="noopener">'+({instagram:"IG",x:"X"}[n]||n)+' del team ↗</a>'}).join(""):"")+'</small>':'';
     var tg0=s.team?SC_TEAM[slugTeam(s.team)]:null;
     if(s.team&&s.logo_team&&tg0&&tg0.logo)team+='<div class="lgw">⚠️ Questa scheda <b>cambia il logo del team «'+esc(tg0.nome||s.team)+'»</b> per tutti i membri ('+((tg0.membri||[]).length)+'). Attuale: <img class="lg" alt="" src="'+SITE+'schede/team/'+esc(slugTeam(s.team))+'.webp?t='+Date.now()+'"> → nuovo: <img class="lg" alt="" src="data:image/webp;base64,'+s.logo_team+'"> · Se non va bene, rifiuta.</div>';
     else if(s.team&&tg0)team+='<small class="hint">Team già presente ('+((tg0.membri||[]).length)+' membri): il giocatore si unisce, logo invariato.</small>';
@@ -661,6 +682,20 @@ function controlli(){
 }
 
 /* segnalazioni dal pulsante «Segnala un problema» del sito (database D1 del Worker): si leggono all'accesso, il numero va sulla scheda Statistiche */
+/* idee per l'app mandate con /idea al bot Telegram: schede/idee.json, cifrato con il codice admin */
+var IDKEY="vgc-adm-idee-lette",IDLETTE={};try{IDLETTE=JSON.parse(localStorage.getItem(IDKEY)||"{}")||{}}catch(e){}
+var IDEE_L=[];
+function idee(){var el=$("idl");
+  fetch(SITE+"schede/idee.json?t="+Date.now(),{cache:"no-store"}).then(function(r){if(r.status===404)return null;if(!r.ok)throw new Error("sito "+r.status);return r.json()})
+  .then(function(f){return f&&f.dati?decifraStat(f.dati,getTok()||""):[]}).then(function(l){IDEE_L=Array.isArray(l)?l.slice().reverse():[];disegnaIdee()})
+  .catch(function(e){el.innerHTML='<div class="hint">Idee non lette ('+esc(e.message||"errore")+').</div>'})}
+function disegnaIdee(){var el=$("idl"),nuove=IDEE_L.filter(function(i){return !IDLETTE[i.id]}),vecchie=IDEE_L.filter(function(i){return IDLETTE[i.id]});
+  $("idn").textContent=nuove.length?"("+nuove.length+" nuove)":"";
+  function riga(i,letta){return '<div class="pa"><span><small>'+esc(quando(new Date((i.t||0)*1000).toISOString()))+' · '+(i.utente?'<a href="https://t.me/'+esc(i.utente)+'" target="_blank" rel="noopener">@'+esc(i.utente)+'</a>':esc(i.nome||"utente"))+'</small><b style="font-weight:600;white-space:pre-wrap;overflow-wrap:anywhere">'+esc(i.testo)+'</b></span>'+(letta?'':'<button class="sec" type="button" data-idl="'+esc(i.id)+'">Letta</button>')+'</div>'}
+  el.innerHTML=(nuove.length?nuove.map(function(i){return riga(i,false)}).join(""):'<div class="hint">Nessuna idea nuova.</div>')+
+    (vecchie.length?'<details class="old"><summary>Già lette ('+vecchie.length+')</summary>'+vecchie.map(function(i){return riga(i,true)}).join("")+'</details>':'')}
+document.addEventListener("click",function(ev){var b=ev.target&&ev.target.closest?ev.target.closest("[data-idl]"):null;if(!b)return;
+  IDLETTE[b.getAttribute("data-idl")]=1;try{localStorage.setItem(IDKEY,JSON.stringify(IDLETTE))}catch(e){}disegnaIdee()});
 function segnalazioni(token){
   var el=$("sg");el.innerHTML='<div class="hint">Carico…</div>';
   fetch(W+"/admin/segnalazioni",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("Worker "+r.status);return r.json()}).then(function(j){
@@ -700,7 +735,7 @@ function load(token,remember){
     $("go").disabled=false;$("again").disabled=false;
     if(s===401){msg("Codice non valido.",true);clearTok();$("res").hidden=true;$("login").hidden=false;return}
     setTok(token,remember);$("tk").value="";msg("");$("login").hidden=true;$("res").hidden=false;ora();
-    annunciPartner(token);social();segnalazioni(token);schede();
+    annunciPartner(token);social();segnalazioni(token);schede();idee();
     if(STATS||TAB==="st"){STATS=true;stats(token)}
   })
 }
@@ -711,7 +746,7 @@ $("go").addEventListener("click",function(){
   load(t,$("rem").checked)
 });
 $("tk").addEventListener("keydown",function(e){if(e.key==="Enter")$("go").click()});
-$("again").addEventListener("click",function(){var t=getTok();FATTI={};if(t){STATS=TAB==="st";load(t,!!(store()&&store().getItem(KEY)))}else{$("res").hidden=true;$("login").hidden=false}});
+$("again").addEventListener("click",function(){var t=getTok();if(t){STATS=TAB==="st";load(t,!!(store()&&store().getItem(KEY)))}else{$("res").hidden=true;$("login").hidden=false}});
 $("out").addEventListener("click",function(){clearTok();$("res").hidden=true;$("login").hidden=false;$("tk").value="";msg("Uscito: il codice non e' piu' salvato su questo dispositivo.")});
 try{vai(localStorage.getItem(TKEY)||"loc")}catch(e){vai("loc")}
 var saved=getTok();
