@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T08:32:42+00:00",
+ "updated": "2026-11-26T10:32:48+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -16,21 +16,6 @@
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
    "reg_letto": true
-  },
-  {
-   "name": "Off Meta Fight Club #12",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "02:00",
-   "players": 58,
-   "url": "https://play.limitlesstcg.com/tournament/6affb0bd9c256f7bbd24067e/details"
   },
   {
    "name": "🍋Sitrus-Series🍋|Champions-MC|#84",
@@ -76,7 +61,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "17:00",
-   "players": 31,
+   "players": 34,
    "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
@@ -91,8 +76,8 @@
    "reg": "M-C",
    "bo": null,
    "date": "2026-11-26",
-   "time": "18:00",
-   "players": 19,
+   "time": "19:00",
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details",
    "reg_letto": true
   },
@@ -108,7 +93,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 31,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -124,7 +109,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "00:15",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details",
    "reg_letto": true
   },
@@ -156,7 +141,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 37,
+   "players": 40,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -172,7 +157,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 9,
+   "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -188,7 +173,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "23:30",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6b0260a0e0b5cca158bbaee2/details",
    "reg_letto": true
   },
@@ -204,7 +189,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 53,
+   "players": 55,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -257,6 +242,22 @@
    "reg_letto": true
   },
   {
+   "name": "ValkrixVGC Rising Champions League #12",
+   "org": "Valkrix/ Pokemon Champions VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "14:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b07f90fe0b5cca158bbdd22/details",
+   "reg_letto": true
+  },
+  {
    "name": "VGC UU Regulation M-C \"Osaka Regional\"",
    "org": "VGC UU Circuit",
    "mode": "online",
@@ -289,22 +290,6 @@
    "reg_letto": true
   },
   {
-   "name": "ApexVGC  3v3 ( PRIZE SHINY MEWTWO ZERAORA MOLTRES)",
-   "org": "ApexVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-28",
-   "time": "17:00",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
-   "reg_letto": true
-  },
-  {
    "name": "🏆 METAVGC ARENA #6 | REG M-C 🏆",
    "org": "Oak Stadium",
    "mode": "online",
@@ -316,8 +301,24 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 21,
+   "players": 22,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
+   "reg_letto": true
+  },
+  {
+   "name": "ApexVGC  3v3 ( PRIZE SHINY MEWTWO ZERAORA MOLTRES)",
+   "org": "ApexVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-28",
+   "time": "17:00",
+   "players": 11,
+   "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
    "reg_letto": true
   },
   {
@@ -457,22 +458,6 @@
    "reg_letto": true
   },
   {
-   "name": "FINISTERRAE SERIES VGC #6",
-   "org": "FINISTERRAE SERIES",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-29",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
-   "reg_letto": true
-  },
-  {
    "name": "Semanal VGC Roaring #2 - Premiação no Pix!",
    "org": "SongFuê",
    "mode": "online",
@@ -489,6 +474,22 @@
    "reg_letto": true
   },
   {
+   "name": "FINISTERRAE SERIES VGC #6",
+   "org": "FINISTERRAE SERIES",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "17:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
+   "reg_letto": true
+  },
+  {
    "name": "Xperience Play-Monthly Champions $500 Tournament#1",
    "org": "Xperience Play",
    "mode": "online",
@@ -500,7 +501,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 29,
+   "players": 31,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
