@@ -1,0 +1,29 @@
+name: Sprite animati ogni 2 anni
+# Una volta ogni 2 anni (2 gennaio degli anni pari: 2028, 2030…) fa ripartire il flusso «Sprite animati»
+# della repo rakings/VGCspriteAK, che aggiunge le animazioni dei Pokémon nuovi (giochi nuovi).
+# Sta qui perché GitHub spegne gli orari automatici delle repo senza movimento da 60 giorni, e questa repo è sempre attiva.
+# Segreto SPRITE_TOKEN: chiave GitHub con solo «Actions: read and write» sulla repo VGCspriteAK.
+# Si può anche lanciare a mano da qui (Run workflow), oppure direttamente dalla repo VGCspriteAK.
+on:
+  schedule:
+    - cron: "17 5 2 1 *"
+  workflow_dispatch:
+permissions: {}
+jobs:
+  avvia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Avvia la conversione nella repo degli sprite
+        env:
+          TOKEN: ${{ secrets.SPRITE_TOKEN }}
+          EVENTO: ${{ github.event_name }}
+        run: |
+          ANNO=$(date -u +%Y)
+          if [ "$EVENTO" = "schedule" ] && [ $((ANNO % 2)) -ne 0 ]; then echo "Anno dispari: si salta (gira negli anni pari)"; exit 0; fi
+          if [ -z "$TOKEN" ]; then echo "Manca il segreto SPRITE_TOKEN"; exit 1; fi
+          code=$(curl -sS -o /tmp/r.txt -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $TOKEN" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/rakings/VGCspriteAK/actions/workflows/sprite.yml/dispatches -d '{"ref":"main"}')
+          echo "Risposta GitHub: $code"
+          [ "$code" = "204" ] || { cat /tmp/r.txt; exit 1; }

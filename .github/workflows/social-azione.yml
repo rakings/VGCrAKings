@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Versione più recente (se un altro giro ha appena pubblicato, lo stato è già aggiornato e non si pubblica due volte)
+        run: git fetch -q --depth=1 origin "${GITHUB_REF_NAME:-main}" && git reset -q --hard FETCH_HEAD
       - name: Strumenti per gli Shorts (solo YouTube)
         if: ${{ inputs.rete == 'yt' }}
         run: |
