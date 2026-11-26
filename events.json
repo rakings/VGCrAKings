@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T18:01:28+00:00",
+ "updated": "2026-11-26T18:32:29+00:00",
  "events": [
   {
    "name": "🇧🇷 Hit Break #10 | Pokémon Champions",
@@ -15,22 +15,6 @@
    "time": "01:00",
    "players": 10,
    "url": "https://play.limitlesstcg.com/tournament/6afe33529c256f7bbd23fb78/details",
-   "reg_letto": true
-  },
-  {
-   "name": "Tenki's Cart Weekly #128 - Reg M-C",
-   "org": "TenkiPK",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "17:00",
-   "players": 58,
-   "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
    "reg_letto": true
   },
   {
@@ -50,6 +34,22 @@
    "reg_letto": true
   },
   {
+   "name": "Tenki's Cart Weekly #128 - Reg M-C",
+   "org": "TenkiPK",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-26",
+   "time": "17:00",
+   "players": 58,
+   "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details",
+   "reg_letto": true
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 23!",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-26",
    "time": "19:30",
-   "players": 56,
+   "players": 60,
    "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
    "reg_letto": true
   },
@@ -77,7 +77,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "00:15",
-   "players": 20,
+   "players": 21,
    "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details",
    "reg_letto": true
   },
@@ -109,7 +109,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 48,
+   "players": 49,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -157,7 +157,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 63,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -301,7 +301,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "22:00",
-   "players": 1,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b04dc13ada8eea1c94d17af/details",
    "reg_letto": true
   },
@@ -330,22 +330,6 @@
    "seniorAt": "2025-11-29T08:00:00Z"
   },
   {
-   "name": "DMV Open #3",
-   "org": "KingDomVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-29",
-   "time": "01:00",
-   "players": 24,
-   "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
-   "reg_letto": true
-  },
-  {
    "name": "🍬 CARAMELO RARO — WEEKLY #7",
    "org": "Papuno - Caramelo Raro",
    "mode": "online",
@@ -359,6 +343,22 @@
    "time": "01:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b08622ae0b5cca158bbdf9a/details",
+   "reg_letto": true
+  },
+  {
+   "name": "DMV Open #3",
+   "org": "KingDomVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "01:00",
+   "players": 24,
+   "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
   {
@@ -442,6 +442,22 @@
    "reg_letto": true
   },
   {
+   "name": "FINISTERRAE SERIES VGC #6",
+   "org": "FINISTERRAE SERIES",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "17:00",
+   "players": 2,
+   "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
+   "reg_letto": true
+  },
+  {
    "name": "Semanal VGC Roaring #2 - Premiação no Pix!",
    "org": "SongFuê",
    "mode": "online",
@@ -455,22 +471,6 @@
    "time": "17:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6b05e2a5ada8eea1c94d1d90/details",
-   "reg_letto": true
-  },
-  {
-   "name": "FINISTERRAE SERIES VGC #6",
-   "org": "FINISTERRAE SERIES",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-29",
-   "time": "17:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
    "reg_letto": true
   },
   {
@@ -631,6 +631,22 @@
    "time": "12:00",
    "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6aff0e979c256f7bbd23ff05/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Hatterene Series Weekly #14 2027 - 7PM UTC - M-D",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-02",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b08764ee0b5cca158bbe0ca/details",
    "reg_letto": true
   },
   {
@@ -851,6 +867,22 @@
    "reg_letto": true
   },
   {
+   "name": "Hatterene Series Weekly #15 2027 - 7PM EST - M-D",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-10",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b08770fada8eea1c94d32dd/details",
+   "reg_letto": true
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 25! (Reg M-D)",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -995,6 +1027,22 @@
    "reg_letto": true
   },
   {
+   "name": "Hatterene Series Weekly #16 2027 - 7PM UTC - M-D",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-16",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b087754e0b5cca158bbe0ce/details",
+   "reg_letto": true
+  },
+  {
    "name": "London Corviknights VGC Weekly Tour 26! (Reg M-D)",
    "org": "London Corviknights VGC",
    "mode": "online",
@@ -1091,22 +1139,6 @@
    "reg_letto": true
   },
   {
-   "name": "Risen Open League #4 Reg M-D",
-   "org": "Risen Esports VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-D",
-   "bo": null,
-   "date": "2026-12-19",
-   "time": "18:00",
-   "players": 1,
-   "url": "https://play.limitlesstcg.com/tournament/6b01d2d5ada8eea1c94cfb1b/details",
-   "reg_letto": true
-  },
-  {
    "name": "RookideeVGC Qualifier| Prize Shiny TBD",
    "org": "RookideeVGC",
    "mode": "online",
@@ -1120,6 +1152,22 @@
    "time": "18:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6b05129cada8eea1c94d1966/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Risen Open League #4 Reg M-D",
+   "org": "Risen Esports VGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-19",
+   "time": "18:00",
+   "players": 1,
+   "url": "https://play.limitlesstcg.com/tournament/6b01d2d5ada8eea1c94cfb1b/details",
    "reg_letto": true
   },
   {
@@ -1152,6 +1200,22 @@
    "time": "23:00",
    "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6ac16eeb245696afb351590c/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Hatterene Series Weekly #17 2027 - 7PM EST - M-D",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-24",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b0877a4ada8eea1c94d32e6/details",
    "reg_letto": true
   },
   {
@@ -1232,6 +1296,22 @@
    "time": "23:00",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac16f1d245696afb351590d/details",
+   "reg_letto": true
+  },
+  {
+   "name": "Hatterene Series Weekly #18 2027 - 7PM UTC - M-D",
+   "org": "Hatterene Series",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-D",
+   "bo": null,
+   "date": "2026-12-30",
+   "time": "19:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b0877caada8eea1c94d32e7/details",
    "reg_letto": true
   },
   {
