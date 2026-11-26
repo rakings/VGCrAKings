@@ -224,6 +224,11 @@
    "name": "Mérida Regional Championships",
    "link": "https://rk9.gg/event/pokemon-merida-2026",
    "opens": "2026-11-26T01:00:00+00:00"
+  },
+  "2027-birmingham-pokemon-regional-championships": {
+   "name": "Birmingham Regional Championships",
+   "link": "https://rk9.gg/event/pokemon-birmingham-2026",
+   "opens": "2026-12-02T19:00:00+00:00"
   }
  },
  "vr": {
@@ -235,7 +240,7 @@
     "2026-11-12T18:00:00+00:00"
    ],
    "sorpresa": 0,
-   "stato": "open"
+   "stato": "closed"
   },
   "2027-las-vegas-pokemon-regional-championships": {
    "name": "Las Vegas Regional Championships",
@@ -487,14 +492,14 @@
     "2026-11-26T01:00:00+00:00"
    ],
    "sorpresa": 0,
-   "stato": ""
+   "stato": "open"
   }
  },
  "vr_controllo": {
   "ok": true,
-  "quando": "2026-11-26T09:55+00:00",
-  "pagine": 25,
-  "senza_pagina": 0,
+  "quando": "2026-11-26T17:42+00:00",
+  "pagine": 24,
+  "senza_pagina": 1,
   "errori": 0,
   "problemi": []
  }
