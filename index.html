@@ -198,7 +198,7 @@ body #np a.nit[data-nc],body #np div.nit[data-nc]{border-color:color-mix(in srgb
 .bk .dot[hidden]{display:none}
 /* annunci nuovi: numero rosso + contorno giallo che pulsa (come il bagliore del torneo scelto dall'anteprima) */
 @keyframes bkglow{0%,100%{box-shadow:0 0 0 2px #ffd21f,0 0 8px 2px rgba(255,210,31,.55)}50%{box-shadow:0 0 0 3px #ffd21f,0 0 22px 6px rgba(255,210,31,.9)}}
-.bk.nuovo{animation:bkglow 1.6s ease-in-out infinite}
+.bk.nuovo{animation:bkglow 1.6s ease-in-out infinite}.pill [data-v="vgcs"].lvbr{animation:bkglow 1.6s ease-in-out 2}
 @media (prefers-reduced-motion:reduce){.bk.nuovo{animation:none;box-shadow:0 0 0 3px #ffd21f,0 0 16px 4px rgba(255,210,31,.8)}}
 .bk .dot.n,.bkseg .dot.n{top:-7px;right:-6px;width:auto;height:20px;min-width:20px;padding:0 5px;border-radius:999px;color:#fff;font-style:normal;font-size:.72rem;font-weight:800;line-height:16px;text-align:center;box-sizing:border-box}
 li.seg .grp button.bkseg .dot.n{top:-6px;right:-4px}
@@ -287,7 +287,7 @@ html.calc-open,html.calc-open body{overflow:hidden}html.calc-open #vgc-up{displa
 .langs{display:grid;gap:8px;margin-top:6px}
 .langs .btn{text-align:left;font-size:1rem;padding:12px 16px;border-radius:14px}
 #list{grid-template-columns:minmax(0,1fr)}
-#list li{min-width:0;overflow-wrap:anywhere}
+#list .lv{display:inline-flex;align-items:center;background:#e11d2e;color:#fff;font-weight:800;letter-spacing:.06em;border-radius:999px}#list .tags:has(.lv){align-items:center}#list .tags .lv{text-decoration:none;vertical-align:middle;margin:0;font-size:.9rem;padding:5px 12px 5px 10px;gap:6px;box-shadow:0 0 0 2px #fff3,0 0 14px #e11d2e99}#list .lv::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;animation:lvp 1.2s ease-in-out infinite}#list .lvb .lv{font-size:.72rem;padding:3px 9px 3px 8px;gap:5px;margin:0 8px 0 0}#list .lvb .lv::before{width:7px;height:7px}@keyframes lvp{50%{opacity:.25}}@media (prefers-reduced-motion:reduce){#list .lv::before{animation:none}}#list li{min-width:0;overflow-wrap:anywhere}
 .filters{grid-template-columns:minmax(0,1fr)}
 .filters #f-prize,.filters #f-row2{flex-wrap:wrap !important}
 .rt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.85rem;margin-top:6px}
@@ -726,8 +726,9 @@ var t=(e.mode==="online"?'<span class="tag t-online">Online</span>':'<span class
 (e.cash===true?'<span class="tag t-money">Money tournament'+(e.prize?": "+esc(e.prize):"")+'</span>':'<span class="tag t-none">For Fun</span>')+
 (e.fee==null?'':'<span class="tag t-none">'+(e.fee?"Iscrizione "+String(e.fee).replace(".",",")+" "+(e.cur||"€")+(e.feeNote?" "+esc(e.feeNote):""):"Gratis")+'</span>')+
 (e.reg||e.bo?'<span class="tag t-none">'+[e.reg?"Reg. "+esc(e.reg):"",e.bo?esc(e.bo):""].filter(Boolean).join(" · ")+'</span>':"");
-var title=e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.name)+'</a>':esc(e.name);
-return '<li class="'+e.mode+(e.org==="Victory Road"?" vr":"")+(e.cash===true&&e.mode==="online"&&e.org!=="Victory Road"&&e.type!=="Global Challenge"?" cash":"")+(e.type==="Global Challenge"?" gc":e.mode==="regional"?(e.type==="Special Event"?" sp":e.type==="Internazionale"?" int":e.type==="Mondiale"?" ww":" rg"):"")+'">'+'<div class="head"><h2>'+title+'</h2>'+fol(e)+'</div><p class="meta">'+esc(e.org)+' · '+(e.date?fmt(e.date)+(e.end?" – "+fmt(e.end):"")+(e.time?", ore "+e.time:""):(e.type==="Global Challenge"?"date da annunciare":"nei prossimi 7 giorni, data su Limitless"))+(e.mode==="regional"&&e.where?" · "+esc(e.where):"")+'</p><div class="tags">'+t+'</div>'+(e.mode==="regional"?'<p class="meta" style="margin:8px 0 0">'+(e.regCloseAt&&rtm(e.regCloseAt)?"Iscrizioni fino a "+esc(rtm(e.regCloseAt)):e.regClose?"Iscrizioni fino al "+fmt(e.regClose):"Iscrizioni: controlla sul link ufficiale")+(e.price?" · "+esc(e.price):"")+'</p>'+rsch(e):'')+rem(e)+cal(e)+(e.signup?'<div class="act"><a class="btn main" href="'+esc(e.signup)+'" target="_blank" rel="noopener">'+(e.signupLabel||"Iscriviti su Battlefy")+'</a></div>':'')+'</li>'}).join("")}
+var lid=rLive(e),lh=lid?"#stats-reg-"+lid:"";if(lid)t='<a class="lv lvl" href="'+lh+'">LIVE</a>'+t;
+var title=lid?'<a href="'+lh+'">'+esc(e.name)+'</a>':e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.name)+'</a>':esc(e.name);
+return '<li class="'+e.mode+(e.org==="Victory Road"?" vr":"")+(e.cash===true&&e.mode==="online"&&e.org!=="Victory Road"&&e.type!=="Global Challenge"?" cash":"")+(e.type==="Global Challenge"?" gc":e.mode==="regional"?(e.type==="Special Event"?" sp":e.type==="Internazionale"?" int":e.type==="Mondiale"?" ww":" rg"):"")+'">'+'<div class="head"><h2>'+title+'</h2>'+fol(e)+'</div><p class="meta">'+esc(e.org)+' · '+(e.date?fmt(e.date)+(e.end?" – "+fmt(e.end):"")+(e.time?", ore "+e.time:""):(e.type==="Global Challenge"?"date da annunciare":"nei prossimi 7 giorni, data su Limitless"))+(e.mode==="regional"&&e.where?" · "+esc(e.where):"")+'</p><div class="tags">'+t+'</div>'+(e.mode==="regional"?'<p class="meta" style="margin:8px 0 0">'+(e.regCloseAt&&rtm(e.regCloseAt)?"Iscrizioni fino a "+esc(rtm(e.regCloseAt)):e.regClose?"Iscrizioni fino al "+fmt(e.regClose):"Iscrizioni: controlla sul link ufficiale")+(e.price?" · "+esc(e.price):"")+'</p>'+rsch(e):'')+rem(e)+cal(e)+(lid?'<div class="act"><a class="btn main lvb" href="'+lh+'"><span class="lv">LIVE</span>In diretta su <b>VGC Stats &amp; Live</b> ›</a></div>':e.signup?'<div class="act"><a class="btn main" href="'+esc(e.signup)+'" target="_blank" rel="noopener">'+(e.signupLabel||"Iscriviti su Battlefy")+'</a></div>':'')+'</li>'}).join("")}
 function p2(n){return(n<10?"0":"")+n}
 function ds(d,t){return d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+(t?"T"+p2(d.getHours())+p2(d.getMinutes())+"00":"")}
 /* Orari dei Regionali (letti da RK9, salvati in UTC): si mostrano sempre in ora italiana, con l'ora del luogo se è diversa */
@@ -1086,17 +1087,23 @@ goHash();
 applyTr();
 if(LANG!=="it")loadTr(function(){buildTr();rebuildCal();render();applyTr()});
 /* Anteprima in alto: prossimo VR e prossimo Regionale/Internazionale. Durante il torneo: LIVE e il tocco apre VGC Stats & Live. */
-var NXL={t:0,r:null,v:null};
+var NXL={t:0,r:null,v:null,run:[],sg:""};
 function nxtToday(){var d=new Date();return d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())}
 function nxtShort(e){var n=String(e.name||"");if(e.org==="Victory Road")return n.replace(/^(VR|Victory Road)\s+/i,"");return n.replace(/\s+(Regional|International)\s+Championships?$/i,"").replace(/\s+Championships?$/i,"")||n}
 function nxtDate(e){var o={day:"numeric",month:"short"};try{var a=new Date(e.date+"T12:00:00"),b=e.end&&e.end!==e.date?new Date(e.end+"T12:00:00"):null;if(!b)return a.toLocaleDateString(LCL,o);if(a.getMonth()===b.getMonth())return a.getDate()+"–"+b.toLocaleDateString(LCL,o);return a.toLocaleDateString(LCL,o)+" – "+b.toLocaleDateString(LCL,o)}catch(x){return e.date}}
 function nxtPick(){var t=nxtToday(),f=function(ok){return EVENTS.filter(function(e){return e.date&&(e.end||e.date)>=t&&ok(e)}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:0})[0]||null};
 return{v:f(function(e){return e.org==="Victory Road"}),r:f(function(e){return e.mode==="regional"})}}
 function nxtOggi(e){var t=nxtToday();return e&&e.date<=t&&(e.end||e.date)>=t}
+/* Regionale in corso: id di VGC Stats (prima per codice RK9, poi per città, poi unico torneo in corso in quelle date) */
+function rLive(e){if(!e||e.mode!=="regional"||!nxtOggi(e)||!NXL.run.length)return null;var sl=function(s){return String(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"")};
+var lk=String(e.signup||"")+" "+String(e.url||""),c=NXL.run.filter(function(x){return x.start<=(e.end||e.date)&&(x.end||x.start)>=e.date});if(!c.length)return null;
+var k=c.filter(function(x){return x.rk9&&lk.indexOf(x.rk9)>=0});if(k.length)return k[0].id;
+var cn=sl(String(e.name||"").replace(/\s+(Regional|International|Special)\s+Championships?.*$/i,""));k=c.filter(function(x){return cn&&(sl(x.city).indexOf(cn)>=0||sl(x.name).indexOf(cn)>=0)});if(k.length)return k[0].id;
+return c.length===1?c[0].id:null}
 /* Stato live letto solo nei giorni del torneo (file piccoli, al massimo ogni 5 minuti) */
 function nxtLive(cb){var p=nxtPick(),need=[];if(Date.now()-NXL.t<3e5){cb();return}NXL.t=Date.now();
 function J(u){return fetch(u,{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return null})}
-if(nxtOggi(p.r))need.push(J("vgcstats/index.json").then(function(j){NXL.r=null;((j&&j.events)||[]).forEach(function(x){if(x.status==="running"&&x.start<=(p.r.end||p.r.date)&&(x.end||x.start)>=p.r.date)NXL.r=x.id})}));else NXL.r=null;
+if(EVENTS.some(function(e){return e.mode==="regional"&&nxtOggi(e)}))need.push(J("vgcstats/index.json").then(function(j){NXL.run=((j&&j.events)||[]).filter(function(x){return x.status==="running"});NXL.r=rLive(p.r)}));else{NXL.run=[];NXL.r=null}
 if(nxtOggi(p.v))need.push(J(String(window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/")+"index.json").then(function(j){NXL.v=null;var sl=function(s){return String(s||"").toLowerCase().replace(/[^a-z0-9]+/g,"")};((j&&j.events)||[]).forEach(function(x){if(x.status==="running"&&(x.start===p.v.date||sl(x.name)===sl(p.v.name)))NXL.v=x.id})}));else NXL.v=null;
 Promise.all(need).then(cb,cb)}
 function nxtRender(){var el=$("nxt");if(!el||!EVENTS.length)return;var p=nxtPick(),v=p.v,r=p.r;if(!v&&!r){el.hidden=true;return}
@@ -1109,7 +1116,9 @@ if(one){h=blk(one,one===v?lv:lr,"t1");el.className="nxt solo"}else{h=blk(v,lv,"t
 if(lv)href="#stats-vr-"+NXL.v;else if(lr)href="#stats-reg-"+NXL.r;else{var f=one||(v.date<=r.date?v:r);href=f.url?"#e="+eh(f.url):"#";el.setAttribute("data-url",f.url||"")}
 el.style.setProperty("--nc",c2);el.style.setProperty("--c1",one&&one===r?"#ffd21f":"#86d8f0");
 el.href=href;el.innerHTML='<span class="sq">'+h+'</span><span class="ft">'+(lv||lr?'In diretta su <b>VGC Stats &amp; Live</b> ›':'Classifiche, squadre e diretta su <b>VGC Stats &amp; Live</b> ›')+'</span>';el.hidden=false}
-function nxtGo(){nxtRender();nxtLive(nxtRender)}
+function nxtGo(){nxtRender();nxtLive(function(){nxtRender();var sg=NXL.run.map(function(x){return x.id}).join(",");if(sg!==NXL.sg){NXL.sg=sg;render()}lvBrilla()})}
+/* Regionale in diretta: il tasto VGC Stats brilla 2 volte, una sola volta per apertura dell'app */
+function lvBrilla(){if(!NXL.run.length)return;try{if(sessionStorage.getItem("vgc-lvbr"))return;sessionStorage.setItem("vgc-lvbr","1")}catch(x){}var b=document.querySelector('.pill [data-v="vgcs"]');if(!b)return;b.classList.remove("lvbr");void b.offsetWidth;b.classList.add("lvbr");b.addEventListener("animationend",function(){b.classList.remove("lvbr")},{once:true})}
 /* tocco fuori dal live: porta alla scheda del torneo nell'elenco e la evidenzia */
 document.addEventListener("click",function(ev){var a=ev.target.closest&&ev.target.closest("#nxt");if(!a)return;var h=a.getAttribute("href")||"";if(h.indexOf("#e=")!==0)return;ev.preventDefault();
 var u=a.getAttribute("data-url");if(!u)return;function trova(){var x=null;[].forEach.call(document.querySelectorAll("#list li"),function(li){var l=li.querySelector("h2 a");if(!x&&l&&l.getAttribute("href")===u)x=li});return x}
