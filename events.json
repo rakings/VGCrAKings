@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T15:32:29+00:00",
+ "updated": "2026-11-27T17:02:42+00:00",
  "events": [
   {
    "name": "VGC Indigo League #8 (Prize: Eternal Floette)",
@@ -29,7 +29,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 33,
+   "players": 39,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 110,
+   "players": 121,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -141,7 +141,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:00",
-   "players": 6,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6b071f15e0b5cca158bbd40f/details",
    "reg_letto": true
   },
