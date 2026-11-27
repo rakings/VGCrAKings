@@ -428,7 +428,7 @@ function disegnaYt(){
 function tutte(r){return (r.imgs&&r.imgs.length)?r.imgs:[r.img]}
 function striscia(r){var l=tutte(r);if(l.length<2)return "";return '<div class="car" title="Tutte le immagini del carosello (tocca per scaricarla)">'+l.map(function(x,i){return '<a href="'+esc(SITE+x)+'" download="'+esc(r.id)+'-'+(i+1)+'.jpg"><img src="'+esc(SITE+x)+'" alt="" loading="lazy"></a>'}).join("")+'</div>'}
 function testa(r,s){return '<img src="'+esc(SITE+r.img)+'" alt="" loading="lazy"><div><b>'+esc(r.titolo||r.id)+stato(s)+'</b><small>'+esc(r.sotto||"")+'</small><small>preparato il '+esc(quando(r.creata))+(s.quando?" · "+esc(s.stato)+" il "+esc(quando(s.quando)):"")+'</small>'+
-  (s.msg?'<small class="err">'+esc(s.msg)+'</small>':'')+'<small><a href="'+esc(r.link||SITE)+'" target="_blank" rel="noopener" style="color:var(--mu)">vedi sul sito</a></small></div>'}
+  (s.msg?'<small class="err">'+esc(s.msg)+'</small>':'')+'<small><a href="'+esc(r.link||SITE)+'" target="_blank" rel="noopener" style="color:var(--mu)">vedi sul sito</a>'+(r.img?' · <a href="'+esc(SITE+r.img)+'" download="'+esc(r.id)+'.jpg" style="color:var(--mu)">⬇ scarica immagine</a>':'')+'</small></div>'}
 function disegnaIg(){
   var st=(SOC&&SOC.ig_stato)||{},b=$("igst");
   b.innerHTML=SOC&&!SOC.nuovo?(st.ok?'<div class="ban ok">Instagram collegato'+(st.account?" (@"+esc(st.account)+")":"")+' ✓ · controllato il '+esc(quando(st.quando))+'</div>':
