@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T08:32:16+00:00",
+ "updated": "2026-11-27T10:32:32+00:00",
  "events": [
   {
    "name": "Hidden Power Hour #3 - Imprison",
@@ -13,7 +13,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "12:30",
-   "players": 8,
+   "players": 7,
    "url": "https://play.limitlesstcg.com/tournament/6b03109cada8eea1c94d059c/details",
    "reg_letto": true
   },
@@ -29,7 +29,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 66,
+   "players": 71,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -45,7 +45,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 16,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -77,7 +77,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 94,
+   "players": 96,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -125,7 +125,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -173,7 +173,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 77,
+   "players": 80,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details",
    "reg_letto": true
   },
@@ -894,7 +894,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 17,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details",
    "reg_letto": true
   },
