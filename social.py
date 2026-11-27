@@ -626,9 +626,16 @@ def grande_evento(d, e, tipo, riga3, rid):
         e1 = ((e.get("where") or "") + " · " if e.get("where") else "") + quando_en(e["date"])
         e2 = "Prizes: " + e["prize"] if e.get("prize") else ""
     e3 = {"iscrizioni aperte": "Registration open", "tra 2 giorni": "In 2 days", "domani": "Tomorrow", "oggi": "Today"}.get(riga3, riga3)
-    social_img.evento("vr" if tipo == "vr" else "regionale", nome, e1, e2, e3, img)
-    d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": tipo, "rif": 0, "creata": ora(), "data": e["date"], "titolo": nome, "sotto": r1, "img": img, "link": link,
+    storia = tipo != "vr"   # Regionali: storia verticale (sparisce in 24 ore, non resta in bacheca); VR: post come prima
+    if storia:
+        social_img.evento_storia("regionale", nome, e1, e2, e3, img)
+        ig = "Tag:"         # la storia non ha testo: qui solo gli account da taggare (pulsanti in admin)
+    else:
+        social_img.evento("vr", nome, e1, e2, e3, img)
+    d["richieste"].append({"id": rid, "v": LINGUA_V, "tipo": tipo, "rif": 0, "creata": ora(), "data": e["date"], "titolo": ("Storia: " if storia else "") + nome, "sotto": r1, "img": img, "link": link,
                            "ig": {"stato": "da approvare", "testo": ig[:MAX_IG]}, "x": {"stato": "da approvare", "testo": xt}})
+    if storia:
+        d["richieste"][-1]["storia"] = True
     log("Nuova richiesta: %s" % nome)
 
 
@@ -835,6 +842,11 @@ def tornei(d, adesso=None):
         elif e.get("type") in GRANDI:
             mancano = (g - oggi).days
             rid = "reg-%d" % numero(e["name"] + e["date"])
+            vecchio = next((r for r in d["richieste"] if r.get("id") == rid and r.get("tipo") == "regionale" and not r.get("storia")
+                            and r.get("ig", {}).get("stato") == "da approvare" and r.get("x", {}).get("stato") == "da approvare"), None)
+            if vecchio and 0 <= mancano <= 2:   # post di annuncio ancora da approvare (versione vecchia): rifatto come storia
+                d["richieste"].remove(vecchio)
+                grande_evento(d, e, "regionale", "tra 2 giorni" if mancano == 2 else "domani" if mancano == 1 else "oggi", rid); nuove += 1
             if 0 <= mancano <= 2 and rid not in fatti:
                 fatti.append(rid)
                 if not primo:

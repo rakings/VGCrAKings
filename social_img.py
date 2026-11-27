@@ -423,6 +423,41 @@ def storia(tipo, evento, data, vincitore, paese, squadra, top8, out):
     im.save(out, "JPEG", quality=90)
 
 
+# ======================= STORIA ANNUNCIO: Regionale tra 2 giorni / domani / oggi (2026-11-27) =======================
+# Stesso stile del post, ma verticale 1080x1920: la storia sparisce dopo 24 ore e non resta in bacheca.
+def evento_storia(tipo, nome, riga1, riga2, riga3, out):
+    col = GIALLO2 if tipo == "regionale" else AZZURRO
+    im = Image.new("RGB", (SW, SH), col)
+    d = ImageDraw.Draw(im)
+    d.polygon([(0, 0), (SW, 0), (0, SH)], fill=NOTTE)
+    d.line([(SW, 0), (0, SH)], fill=(255, 255, 255), width=10)
+    m = 70
+    def spazio(y, h):   # larghezza libera nel triangolo scuro in alto a sinistra
+        return SW * (1 - (y + h) / SH) - m - 30
+    d.text((m, 110), "REGIONAL" if tipo == "regionale" else "VICTORY ROAD", font=ft(F_T, 76), fill=col)
+    y = 250
+    fun = carattere_per(nome) or F_A
+    f_nm = ft(fun, 84)
+    for r in a_capo(d, pulito(nome), f_nm, [spazio(y + i * 100, 84) for i in range(3)], 3):
+        h, o = _alt(d, f_nm, r)
+        d.text((m, y - o), r, font=f_nm, fill=(255, 246, 247)); y += max(h, 70) + 30
+    y += 20
+    for r in (riga1, riga2):
+        if not r:
+            continue
+        f = ft(F_B, 48)
+        for rr in a_capo(d, r, f, [spazio(y + i * 62, 48) for i in range(2)], 2):
+            d.text((m, y), rr, font=f, fill=(255, 246, 247)); y += 62
+    if riga3:
+        d.text((SW - m, SH - 530), riga3.upper(), font=ft(F_T, 92), fill=NOTTE, anchor="ra")
+    d.text((SW - m, SH - 390), "Live pairings,", font=ft(F_B, 46), fill=NOTTE, anchor="ra")
+    d.text((SW - m, SH - 330), "Swiss standings & stats", font=ft(F_B, 46), fill=NOTTE, anchor="ra")
+    d.text((SW - m, SH - 270), "on rAKings VGC", font=ft(F_B, 46), fill=NOTTE, anchor="ra")
+    d.text((SW - m, SH - 175), "Free app: link in bio", font=ft(F_B, 38), fill=NOTTE, anchor="ra")
+    d.text((SW - m, SH - 100), "rAKings VGC", font=ft(F_T, 44), fill=NOTTE, anchor="ra")
+    im.save(out, "JPEG", quality=90)
+
+
 # ======================= TOP 8 DEI LOCALI (2026-11-16): tre fasce oblique rosso / nero / bianco =======================
 def top8(titolo, negozio, citta, data, nomi, out):
     """Tre fasce oblique: in alto il rosso (torneo e negozio), al centro il nero (vincitore e Top 8, a scaletta lungo
