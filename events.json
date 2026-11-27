@@ -1,9 +1,9 @@
 {
- "updated": "2026-11-27T02:32:21+00:00",
+ "updated": "2026-11-27T05:32:16+00:00",
  "events": [
   {
    "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟕",
-   "org": "IRGamers",
+   "org": "",
    "mode": "online",
    "type": "Torneo",
    "fee": null,
@@ -13,9 +13,8 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "00:15",
-   "players": 25,
-   "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details",
-   "reg_letto": true
+   "players": 56,
+   "url": "https://play.limitlesstcg.com/tournament/6b061d1cada8eea1c94d2050/details"
   },
   {
    "name": "Hidden Power Hour #3 - Imprison",
@@ -45,7 +44,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 64,
+   "players": 67,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -61,7 +60,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 14,
+   "players": 15,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -93,7 +92,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 78,
+   "players": 83,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -141,7 +140,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 16,
+   "players": 17,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -205,7 +204,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 33,
+   "players": 36,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -469,7 +468,7 @@
    "bo": null,
    "date": "2026-11-30",
    "time": "03:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6af17730c931f53978d9707c/details",
    "reg_letto": true
   },
@@ -750,7 +749,7 @@
    "bo": null,
    "date": "2026-12-05",
    "time": "18:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b00b52ee0b5cca158bb9f46/details",
    "reg_letto": true
   },
