@@ -262,7 +262,7 @@ li.nw.frm .btn.main{border:2px solid #fff}
 .filters #f-prize,.filters #f-row2{flex-wrap:nowrap}
 .filters #f-prize button,.filters #f-row2 button,.filters #f-row2 select{padding:6px 11px;font-size:.8rem;min-height:32px;white-space:nowrap}
 .filters #f-row2 select{padding-right:6px;max-width:100%}
-.filters #reset{padding:5px 11px;font-size:1.05rem;line-height:1}
+.filters #reset{padding:5px 11px;font-size:1.05rem;line-height:1}#f-ord{display:inline-flex;align-items:center;gap:2px;padding:5px 8px}@media(max-width:430px){.filters #f-row2{gap:5px}.filters #f-row2 button,.filters #f-row2 select{padding-left:9px;padding-right:9px}.filters #f-row2 select{padding-right:4px}#f-ord{padding:5px 7px}#reset{padding:5px 9px}}#f-ord b{font-size:.95rem;line-height:1}
 @media (max-width:345px){.filters #f-prize,.filters #f-row2{flex-wrap:wrap}}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 *{-webkit-tap-highlight-color:transparent}
@@ -339,7 +339,7 @@ button.pr-more{background:transparent;border:0;font:inherit;font-size:.78rem;tex
 .t-none{background:var(--none);color:var(--mute)}
 :root{--money:#ff7a00}.t-money{background:var(--money);color:#2b0a0c}
 .dots{flex-wrap:wrap;justify-content:center}.mgrid .dots{gap:2px}.mgrid .dots i{width:6px;height:6px}
-.dleg{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 10px;font-size:.72rem;color:var(--mute)}.dleg span{display:inline-flex;align-items:center;gap:4px}.dleg i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.cvrow{display:flex;align-items:center;gap:12px;margin:0 0 12px}.cvrow .grp{flex:none}.cvrow .dleg{flex:1;min-width:0;display:grid;grid-template-columns:max-content max-content;justify-content:space-between;gap:3px 6px;margin:0;font-size:.62rem;line-height:1.15}.cvrow .dleg span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cvrow .dleg i{flex:none;width:7px;height:7px}@media(min-width:700px){.cvrow .dleg{grid-template-columns:repeat(4,max-content);font-size:.72rem;gap:4px 14px}}#cal .filters{margin:12px 0 4px}.dleg{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 10px;font-size:.72rem;color:var(--mute)}.dleg span{display:inline-flex;align-items:center;gap:4px}.dleg i{width:8px;height:8px;border-radius:50%;display:inline-block}
 .empty{padding:24px;text-align:center;color:var(--mute)}
 details{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
 summary{font-weight:700;cursor:pointer}
@@ -435,6 +435,7 @@ li.nxhl{animation:nxhl 2.2s ease-out}
 <button class="btn" id="f-big" type="button" aria-pressed="false" title="Solo tornei con più di 33 iscritti">33+ iscritti</button>
 <select id="f-fee" aria-label="Costo di iscrizione"><option value="">Costo</option><option value="free">Gratis</option><option value="paid">A pagamento</option></select>
 <select id="f-bo" aria-label="Formato"></select>
+<button class="btn" id="f-ord" type="button" aria-pressed="false" aria-label="Ordine: dal più vicino" title="Ordine: dal più vicino"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>↓</b></button>
 <button class="btn" id="reset" type="button" aria-label="Azzera filtri" title="Azzera filtri">↺</button>
 </div>
 </div>
@@ -675,14 +676,14 @@ function dotSt(c){return "background:"+c+((c==="#fff"||c==="#000")?";box-shadow:
 function dotCol(e){return e.mode==="online"?"var(--online)":e.type==="Mondiale"?"#000":e.type==="Internazionale"?"var(--intl)":e.type==="Special Event"?"var(--coin)":"var(--amber)"}
 function calInit(){var n=new Date();CAL.y=n.getFullYear();CAL.m=n.getMonth();CAL.day=iso(CAL.y,CAL.m,n.getDate())}
 function calHtml(ev){var dim=new Date(CAL.y,CAL.m+1,0).getDate(),h='<div class="calbar"><button class="cnav" data-cn="-1" aria-label="Mese precedente">‹</button><b>'+MN[CAL.m]+' '+CAL.y+'</b><button class="cnav" data-cn="1" aria-label="Mese successivo">›</button></div>';
-h+='<div class="grp" style="margin:0 0 10px"><button data-cv="days" aria-pressed="'+(CAL.view==="days")+'">Giorni</button><button data-cv="month" aria-pressed="'+(CAL.view==="month")+'">Mese</button></div>';
-h+='<div class="dleg">'+[["var(--online)","Online"],["var(--money)","Money tournament"],["var(--vr)","Victory Road"],["#fff","Global Challenge"],["var(--amber)","Regionale"],["var(--coin)","Special Event"],["var(--intl)","Internazionale"],["#000","Mondiale"]].map(function(x){return '<span><i style="'+dotSt(x[0])+'"></i>'+x[1]+'</span>'}).join("")+'</div>';
+h+='<div class="cvrow"><div class="grp" style="margin:0"><button data-cv="days" aria-pressed="'+(CAL.view==="days")+'">Giorni</button><button data-cv="month" aria-pressed="'+(CAL.view==="month")+'">Mese</button></div>';
+h+='<div class="dleg">'+[["var(--online)","Online"],["var(--money)","Money tournament"],["var(--vr)","Victory Road"],["#fff","Global Challenge"],["var(--amber)","Regionale"],["var(--coin)","Special Event"],["var(--intl)","Internazionale"],["#000","Mondiale"]].map(function(x){return '<span><i style="'+dotSt(x[0])+'"></i>'+x[1]+'</span>'}).join("")+'</div></div>';
 function dots(d){var seen=[],o="";ev.forEach(function(e){if(inDay(e,d)){dotCols(e).forEach(function(c){if(seen.indexOf(c)<0&&seen.length<6){seen.push(c);o+='<i style="'+dotSt(c)+'"></i>'}})}});return o}
 var d,k;
 if(CAL.view==="days"){h+='<div class="strip">';for(d=1;d<=dim;d++){k=iso(CAL.y,CAL.m,d);h+='<button class="day" data-day="'+k+'" aria-pressed="'+(CAL.day===k)+'"><b>'+d+'</b><span>'+WD[new Date(CAL.y,CAL.m,d).getDay()]+'</span><span class="dots">'+dots(k)+'</span></button>'}h+='</div>'}
 else{var f=(new Date(CAL.y,CAL.m,1).getDay()+6)%7;h+='<div class="mgrid">'+["L","M","M","G","V","S","D"].map(function(x){return '<span class="mh">'+x+'</span>'}).join("");for(var i=0;i<f;i++)h+='<span></span>';for(d=1;d<=dim;d++){k=iso(CAL.y,CAL.m,d);h+='<button class="day" data-day="'+k+'" aria-pressed="'+(CAL.day===k)+'"><b>'+d+'</b><span class="dots">'+dots(k)+'</span></button>'}h+='</div>'}
 return h}
-$("cal").addEventListener("click",function(ev){var t=ev.target.closest("button");if(!t)return;
+$("cal").addEventListener("click",function(ev){var t=ev.target.closest("button");if(!t||t.closest(".filters"))return;
 if(t.dataset.cn){CAL.m+=+t.dataset.cn;if(CAL.m<0){CAL.m=11;CAL.y--}if(CAL.m>11){CAL.m=0;CAL.y++}var n=new Date();CAL.day=(CAL.y===n.getFullYear()&&CAL.m===n.getMonth())?iso(CAL.y,CAL.m,n.getDate()):iso(CAL.y,CAL.m,1)}
 else if(t.dataset.cv)CAL.view=t.dataset.cv;else if(t.dataset.day)CAL.day=t.dataset.day;
 render()});
@@ -708,7 +709,11 @@ if(mo){var q0=PQ;vgcsLoad().then(function(){return VGCS.cerca(q0,mo.dataset.k)})
 var sk=ev.target.closest(".pr-sch");if(sk){if(window.SCHEDE)SCHEDE.apri(sk.dataset.sch,(window.VGCS_PR||{})[sk.dataset.sch]);return}
 var b=ev.target.closest(".pr-r");if(!b)return;if(b.dataset.href){window.open(b.dataset.href,"_blank","noopener");return}if(!b.dataset.pid)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn,b.dataset.cc,b.dataset.pl);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
 if(st.mode==="vgcs"){render();return}var t=document.querySelector('button[data-v="vgcs"]');if(t)t.click();else{st.mode="vgcs";render()}});
-function render(){ var nw=st.mode==="news";$("upd").style.display=(st.mode==="all"&&!BK)?"":"none";$("count").style.display="";
+/* Calendario a giorni: i filtri vanno sotto la striscia dei giorni; altrimenti restano al loro posto */
+/* Ordine per data e ora: ORD=false dal più vicino (predefinito), true dal più lontano; i tornei senza data restano in fondo */
+var ORD=false;try{ORD=localStorage.getItem("vgc-ord")==="1"}catch(x){}
+function ordSync(){var b=$("f-ord");if(!b)return;var t=ORD?"Ordine: dal più lontano":"Ordine: dal più vicino";b.setAttribute("aria-pressed",String(ORD));b.setAttribute("aria-label",t);b.title=t;b.querySelector("b").textContent=ORD?"↑":"↓"}
+var FLT=null;function render(){FLT=FLT||document.querySelector(".filters");if(!(CAL.on&&CAL.view==="days")&&FLT&&FLT.nextElementSibling!==$("upd"))$("upd").parentNode.insertBefore(FLT,$("upd")); var nw=st.mode==="news";$("upd").style.display=(st.mode==="all"&&!BK)?"":"none";$("count").style.display="";
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="";$("count").style.display="none";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
 if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
@@ -718,8 +723,8 @@ return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.
 &&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||e.bo===st.bo)
 &&(!st.fee||(st.fee==="free"?e.fee===0:e.fee>0))&&(!st.big||e.players==null||e.players>33)&&(!st.q||(e.name+" "+(e.org||"")+" "+(e.where||"")+" "+(e.type||"")+" "+(e.reg||"")).toLowerCase().indexOf(st.q)>-1)
 
-}).sort(function(a,b){return (a.date||"9999")<(b.date||"9999")?-1:1});
-var cl=$("cal");if(CAL.on){cl.innerHTML=calHtml(ev);var sd=cl.querySelector(".strip");if(sd){var sb=sd.querySelector('[aria-pressed="true"]');if(sb)sd.scrollLeft=sb.offsetLeft-sd.clientWidth/2+sb.clientWidth/2}var und=ev.filter(function(e){return !e.date}).length;ev=ev.filter(function(e){return inDay(e,CAL.day)});var dd=new Date(CAL.day+"T12:00:00");$("count").textContent=cap1(dd.toLocaleDateString(LCL,{weekday:"long",day:"numeric",month:"long",year:"numeric"}))+" · "+ev.length+(ev.length===1?" evento":" eventi")+(und?" · "+und+" senza data non compaiono nel calendario":"")}else{cl.innerHTML="";$("count").textContent=ev.length+(ev.length===1?" torneo":" tornei")}
+}).sort(function(a,b){var x=(a.date||"9999")+" "+(a.time||"99:99"),y=(b.date||"9999")+" "+(b.time||"99:99");if(!a.date||!b.date)return a.date?-1:b.date?1:0;return x<y?(ORD?1:-1):x>y?(ORD?-1:1):0});
+var cl=$("cal");FLT=FLT||document.querySelector(".filters");if(CAL.on){cl.innerHTML=calHtml(ev);if(CAL.view==="days")cl.appendChild(FLT);var sd=cl.querySelector(".strip");if(sd){var sb=sd.querySelector('[aria-pressed="true"]');if(sb)sd.scrollLeft=sb.offsetLeft-sd.clientWidth/2+sb.clientWidth/2}var und=ev.filter(function(e){return !e.date}).length;ev=ev.filter(function(e){return inDay(e,CAL.day)});var dd=new Date(CAL.day+"T12:00:00");$("count").textContent=cap1(dd.toLocaleDateString(LCL,{weekday:"long",day:"numeric",month:"long",year:"numeric"}))+" · "+ev.length+(ev.length===1?" evento":" eventi")+(und?" · "+und+" senza data non compaiono nel calendario":"")}else{cl.innerHTML="";$("count").textContent=ev.length+(ev.length===1?" torneo":" tornei")}
 if(!ev.length){$("list").innerHTML='<li class="empty">'+(CAL.on?"Nessun torneo in questo giorno.":st.mode==="follow"?"Non segui ancora nessun torneo. Tocca il + su una scheda.":st.mode==="regional"?"Nessun Regionale con questi filtri.":"Nessun torneo con questi filtri. Prova ad azzerarli.")+'</li>';return}
 $("list").innerHTML=ev.map(function(e){
 var t=(e.mode==="online"?'<span class="tag t-online">Online</span>':'<span class="tag '+(e.type==="Special Event"?"t-reg":e.type==="Internazionale"?"t-int":e.type==="Mondiale"?"t-ww":"t-rg")+'">'+esc(e.type||"Regionale")+'</span>'+(e.italia?'<span class="tag t-it">In Italia</span>':''))+(e.org==="Victory Road"?'<span class="tag t-vr">Victory Road</span>':'')+(e.type==="Global Challenge"?'<span class="tag t-gc">Global Challenge</span>':'')+
@@ -763,7 +768,8 @@ $(p[0]).addEventListener("click",function(ev){var b=ev.target.closest("button");
 this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});render()})});
 [["f-fee","fee"],["f-bo","bo"]].forEach(function(p){
 $(p[0]).addEventListener("change",function(){st[p[1]]=this.value;render()})});
-$("reset").addEventListener("click",function(){st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",region:"",prov:"",q:""};
+$("f-ord").addEventListener("click",function(){ORD=!ORD;try{localStorage.setItem("vgc-ord",ORD?"1":"0")}catch(x){}ordSync();render()});ordSync();
+$("reset").addEventListener("click",function(){ORD=false;try{localStorage.setItem("vgc-ord","0")}catch(x){}ordSync();st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",region:"",prov:"",q:""};
 document.querySelectorAll("button[data-v]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.v==="all")});
 $("f-fee").value="";$("f-big").setAttribute("aria-pressed","false");$("q").value="";setup();render()});
 $("s-go").addEventListener("click",function(){
