@@ -1,52 +1,6 @@
 {
- "updated": "2026-11-26T23:32:34+00:00",
+ "updated": "2026-11-27T02:32:21+00:00",
  "events": [
-  {
-   "name": "Champions Tour LEPE #11 (Shiny Tyranitar for 1st)",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "19:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6afa6243ee43ef7891475e4a/details"
-  },
-  {
-   "name": "Tenki's Cart Weekly #128 - Reg M-C",
-   "org": "",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "17:00",
-   "players": 52,
-   "url": "https://play.limitlesstcg.com/tournament/6b007216ada8eea1c94cebc1/details"
-  },
-  {
-   "name": "London Corviknights VGC Weekly Tour 23!",
-   "org": "London Corviknights VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-26",
-   "time": "19:30",
-   "players": 60,
-   "url": "https://play.limitlesstcg.com/tournament/6ad74367115c12b73a5a83b3/details",
-   "reg_letto": true
-  },
   {
    "name": "𝗡𝗲𝗺𝗲 𝗪𝗲𝗲𝗸𝗹𝘆 𝗠-𝐂 𝗧𝗼𝘂𝗿 🏆 #𝟕𝟕",
    "org": "IRGamers",
@@ -75,7 +29,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "12:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6b03109cada8eea1c94d059c/details",
    "reg_letto": true
   },
@@ -91,7 +45,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "14:00",
-   "players": 56,
+   "players": 64,
    "url": "https://play.limitlesstcg.com/tournament/6af0ac12c931f53978d967ec/details",
    "reg_letto": true
   },
@@ -107,7 +61,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 12,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -139,7 +93,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 71,
+   "players": 78,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -155,7 +109,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:30",
-   "players": 7,
+   "players": 8,
    "url": "https://play.limitlesstcg.com/tournament/6b03ad7fe0b5cca158bbb8a9/details",
    "reg_letto": true
   },
@@ -187,7 +141,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 15,
+   "players": 16,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -251,7 +205,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 31,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -283,7 +237,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "22:00",
-   "players": 2,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b04dc13ada8eea1c94d17af/details",
    "reg_letto": true
   },
