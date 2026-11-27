@@ -98,6 +98,8 @@ CAMPI = {  # chiave del modello (IT/EN) -> campo
     "frase": "frase", "quote": "frase",
     "18 anni": "eta", "ho almeno 18 anni": "eta", "sono maggiorenne": "eta", "eta": "eta", "età": "eta", "age": "eta",
     "i am 18 or older": "eta", "18+": "eta",
+    "accetto le regole delle schede": "regole", "accetto le regole delle schede (scrivi si)": "regole", "accetto le regole": "regole",
+    "regole": "regole", "accetto": "regole", "i accept the card rules": "regole", "i accept the rules": "regole",
 }
 SOCIAL_HOST = {
     "instagram": ("instagram.com",), "facebook": ("facebook.com", "fb.com"), "x": ("x.com", "twitter.com"),
@@ -128,7 +130,9 @@ MODELLO = (
     "Squadre (fino a 6, una per riga):\n"
     "Formato o nome squadra: \n"
     "Frase: (facoltativa, max 140 caratteri)\n"
-    "Ho almeno 18 anni: SI"
+    "Ho almeno 18 anni: SI\n"
+    "Accetto le regole delle schede (scrivi SI): \n\n"
+    "Regole delle schede / card rules → rakings.github.io/VGCrAKings/regole-schede.html"
 )
 AIUTO = (
     "ℹ️ /scheda modello da compilare · /cancella elimina la tua scheda · /start come funziona · /idea proponi un'idea per l'app.\n"
@@ -475,6 +479,12 @@ def costruisci(campi, foto, utente):
                   or any(c in eta_scritta for c in "✅✔☑👍") or (eta.isdigit() and 18 <= int(eta) <= 99))
     if not confermata:
         errori.append("manca la conferma «Ho almeno 18 anni: SI»: la scheda è solo per maggiorenni / missing «I am 18 or older: YES»")
+    reg_scritta = campi.get("regole") or ""            # regole delle schede accettate in modo esplicito (Google Play, contenuti degli utenti)
+    reg = semplice(reg_scritta)
+    if not (reg.split()[:1] in (["si"], ["s"], ["yes"], ["y"], ["ok"], ["accetto"], ["confermo"], ["certo"], ["x"])
+            or any(c in reg_scritta for c in "✅✔☑👍")):
+        errori.append("manca «Accetto le regole delle schede: SI» (regole: rakings.github.io/VGCrAKings/regole-schede.html) / "
+                      "missing «I accept the card rules: YES»")
     nome = (campi.get("nome") or "").strip()
     cognome = (campi.get("cognome") or "").strip()
     if nome.startswith("("):

@@ -34,7 +34,12 @@ function trova(nome,cc){var l=IDX[pn(nome)];if(!l||!l.length){var n=NICK[pn(nome
 function avatarHtml(s,cls){var ini=E(String(s.nome||"?").split(/\s+/).map(function(w){return w.charAt(0)}).join("").slice(0,2).toUpperCase());
   return s.avatar?'<img class="'+cls+'" alt="" loading="lazy" src="'+BASE+'img/'+E(s.id)+'.webp?v='+(s.aggiornata||0)+'">':'<span class="'+cls+' sk-ini">'+ini+'</span>'}
 /* pulsante nella ricerca, accanto al nome */
+/* Schede nascoste da questo telefono (blocco richiesto da Google Play per i contenuti degli utenti): restano solo qui, nel telefono */
+var NASC={};try{(JSON.parse(localStorage.getItem("vgc-sch-nasc")||"[]")||[]).forEach(function(k){NASC[k]=1})}catch(x){}
+function nascSalva(){try{localStorage.setItem("vgc-sch-nasc",JSON.stringify(Object.keys(NASC)))}catch(x){}}
+function chipNasc(s,nome,cc){return '<button type="button" class="pr-sch pr-sch-nas" data-schn="'+E(s.id)+'" data-n="'+E(nome||s.nome||"")+'" data-c="'+E(cc||"")+'" aria-label="Scheda nascosta: tocca per mostrarla di nuovo"><span>Scheda nascosta</span></button>'}
 function bottone(nome,cc){var s=trova(nome,cc);if(!s)return"";
+  if(NASC[s.id])return chipNasc(s,nome,cc);
   return '<button type="button" class="pr-sch" data-sch="'+E(s.id)+'" aria-label="Apri la scheda di '+E(s.nome)+'">'+avatarHtml(s,"pr-sav")+'<span>Scheda</span></button>'}
 
 /* CP: cerca il giocatore in tutte le zone; Pokédata a volte accorcia il cognome («Francesco Pio P») */
@@ -65,7 +70,8 @@ var CSS='.sk-ov{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);o
 '.sk-cp{display:flex;align-items:center;gap:12px}.sk-cp b.n{font-size:1.6rem;font-weight:900;color:#ffd21f;white-space:nowrap}.sk-bar{height:10px;border-radius:99px;background:#3a1b1f;margin-top:8px;overflow:hidden}.sk-bar b{display:block;height:100%;background:linear-gradient(90deg,#ffd21f,#ff6b78);border-radius:99px}'+
 '.sk-sm{font-size:.8rem;color:#e0aaa6}.sk-r{display:flex;gap:8px;align-items:baseline;border-top:1px solid rgba(255,255,255,.12);padding:7px 2px;font-size:.88rem}.sk-r:first-of-type{border-top:0}.sk-r b{min-width:62px}.sk-rb{width:100%;background:none;border:0;border-top:1px solid rgba(255,255,255,.12);color:inherit;font:inherit;text-align:left;cursor:pointer}.sk-rb:first-of-type{border-top:0}.sk-rb i{margin-left:auto;font-style:normal;opacity:.7;font-size:1.1rem}.sk-rb:active{background:rgba(255,255,255,.06)}.sk-r .t{font-size:.65rem;font-weight:800;border-radius:6px;padding:1px 6px;white-space:nowrap}.sk-r .t0{background:rgba(255,255,255,.12)}'+
 '.sk-tag{display:inline-block;font-size:.68rem;font-weight:800;border:1.5px dashed #e0aaa6;color:#e0aaa6;border-radius:999px;padding:1px 8px;margin-left:6px;vertical-align:middle}'+
-'.sk-seg{text-align:center;margin:4px 0 2px}.sk-seg button{background:none;border:0;color:#e0aaa6;font:inherit;font-size:.78rem;text-decoration:underline;cursor:pointer;padding:6px}'+
+'.pr-sch.pr-sch-nas{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.28);color:#bfb3b6;font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:999px}'+
+'.sk-segc{padding:8px 10px}.sk-seg{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 10px}.sk-seg{text-align:center;margin:4px 0 2px}.sk-seg button{background:none;border:0;color:#e0aaa6;font:inherit;font-size:.78rem;text-decoration:underline;cursor:pointer;padding:6px}'+
 '.sk-sqd{border:1.5px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(74,18,32,.55);margin-top:8px;overflow:hidden}.sk-sqd summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 12px;font-weight:800}.sk-sqd summary::-webkit-details-marker{display:none}'+
 '.sk-sqd summary b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sk-sqd summary small{color:#e0aaa6;font-weight:700;font-size:.75rem;white-space:nowrap}.sk-sqd summary i{margin-left:auto;font-style:normal;transition:transform .2s}.sk-sqd[open] summary i{transform:rotate(180deg)}.sk-sqd .sk-team{margin:0;padding:0 10px 10px}'+
 '.sk select{width:100%;padding:10px 12px;border-radius:12px;border:1.5px solid rgba(255,255,255,.2);background:#4a1220;color:#fff;font:inherit;font-weight:700}'+
@@ -110,7 +116,8 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
     var tit=q.nome||q.formato||("Squadra "+(i+1)),sub=q.nome&&q.formato&&q.formato!==q.nome?q.formato:"";
     return '<details class="sk-sqd"'+(i?'':' open')+'><summary><b>'+E(tit)+'</b>'+(sub?'<small>'+E(sub)+'</small>':'')+'<i>⌄</i></summary>'+squadraHtml(q)+'</details>'}).join("")+
     '<p class="sk-sm" style="margin-top:8px">Open teamsheet: niente EV né statistiche.</p></div>':'')+
-  (typeof window.segApri==="function"?'<p class="sk-seg"><button type="button" data-seg="">⚑ Segnala questa scheda</button></p>':'')+
+  '<div class="sk-c sk-segc"><p class="sk-seg">'+(typeof window.segApri==="function"?'<button type="button" data-seg="">⚑ Segnala questa scheda</button>':'')+'<button type="button" data-nasc="">🚫 Nascondi questa scheda</button></p>'+
+  '<p class="sk-sm" style="text-align:center;margin:0 0 4px">Nascondere una scheda vale solo su questo telefono: non la vedrai più nelle ricerche. · <a href="regole-schede.html" target="_blank" rel="noopener" style="color:inherit">Regole delle schede</a></p></div>'+
   '</div>';
   ov.innerHTML=h;document.body.appendChild(ov);var prev=document.body.style.overflow;document.body.style.overflow="hidden";
   function chiudi(){ov.remove();document.body.style.overflow=prev;document.removeEventListener("keydown",esc);if(CHIUDI===chiudi)CHIUDI=null}
@@ -121,6 +128,10 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
     var rb=e.target.closest("[data-ri]");if(rb){                 /* risultato: chiude la scheda e apre il torneo, come la riga nella ricerca */
       var box=document.querySelector('.pr-nasc[data-sch-r="'+id+'"]'),el=box&&box.children[+rb.getAttribute("data-ri")];chiudi();
       if(el&&el.tagName==="BUTTON")el.click();return}
+    var nb=e.target.closest("[data-nasc]");if(nb){                /* blocco: primo tocco chiede conferma, il secondo nasconde la scheda su questo telefono */
+      if(!nb.dataset.ok){nb.dataset.ok="1";nb.textContent="Tocca di nuovo per nasconderla";return}
+      NASC[id]=1;nascSalva();chiudi();
+      Array.prototype.forEach.call(document.querySelectorAll('.pr-sch[data-sch="'+id+'"]'),function(b){if(b.classList.contains("pr-schl")){b.remove();return}b.outerHTML=chipNasc(s,s.nome,s.cc)});return}
     if(e.target.closest("[data-seg]")){                           /* segnalazione: stessa finestra di «Segnala un problema», arriva in admin → Statistiche */
       window.segApri({titolo:"Segnala questa scheda",pre:"[Scheda "+(s.nome||"")+" · "+(s.id||"")+"] ",ph:"Es. non è lui, foto non sua, logo di un altro team, frase offensiva…"});return}
     var lv=e.target.closest("[data-live]");if(lv){                /* LIVE: chiude la scheda e apre il live, come la riga del torneo nella ricerca */
@@ -136,5 +147,9 @@ function apri(id,ctx){var s=PUB&&PUB[id];if(!s)return;stile();ctx=ctx||{};
     el.innerHTML='<div class="sk-cp"><b class="n">'+c.cp+' CP</b><div><b>'+String(c.pos).replace(/\D/g,"")+'° in '+E(c.zona)+'</b><br><span class="sk-sm">'+(c.soglia?(c.manca?"Soglia stimata "+c.soglia+" CP · mancano "+c.manca:"Sopra la soglia stimata di "+c.soglia+" CP"):"")+'</span></div></div><div class="sk-bar"><b style="width:'+pc+'%"></b></div>'});
 }
 /* «indietro» (Android) e pulsante Indietro (iPhone): prima si chiude la scheda */
+/* scheda nascosta: primo tocco chiede conferma, il secondo la mostra di nuovo */
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-schn]");if(!b)return;e.preventDefault();e.stopPropagation();
+  if(!b.dataset.ok){b.dataset.ok="1";b.querySelector("span").textContent="Mostrarla di nuovo?";return}
+  delete NASC[b.dataset.schn];nascSalva();var h=bottone(b.dataset.n,b.dataset.c);if(h)b.outerHTML=h;else b.remove()},true);
 window.SCHEDE={carica:carica,trova:trova,bottone:bottone,apri:apri,aperta:function(){return !!CHIUDI},chiudi:function(){if(CHIUDI){CHIUDI();return true}return false}};
 })();
