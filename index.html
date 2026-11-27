@@ -709,11 +709,12 @@ if(mo){var q0=PQ;vgcsLoad().then(function(){return VGCS.cerca(q0,mo.dataset.k)})
 var sk=ev.target.closest(".pr-sch");if(sk){if(window.SCHEDE)SCHEDE.apri(sk.dataset.sch,(window.VGCS_PR||{})[sk.dataset.sch]);return}
 var b=ev.target.closest(".pr-r");if(!b)return;if(b.dataset.href){window.open(b.dataset.href,"_blank","noopener");return}if(!b.dataset.pid)return;if(window.VGCS&&VGCS.apri)VGCS.apri(b.dataset.pid,b.dataset.pn,b.dataset.cc,b.dataset.pl);$("pres").hidden=true;$("q").value="";st.q="";PQ="";
 if(st.mode==="vgcs"){render();return}var t=document.querySelector('button[data-v="vgcs"]');if(t)t.click();else{st.mode="vgcs";render()}});
-/* Calendario (giorni o mese): i filtri vanno sotto il calendario; nell'Elenco restano al loro posto */
+/* Calendario (giorni o mese): i filtri vanno sotto il calendario; nell'Elenco restano al loro posto.
+   A ogni render tornano prima al loro posto, cosi' svuotare #cal (Bacheca, VGC Stats, news) non li cancella */
 /* Ordine per data e ora: ORD=false dal più vicino (predefinito), true dal più lontano; i tornei senza data restano in fondo */
 var ORD=false;try{ORD=localStorage.getItem("vgc-ord")==="1"}catch(x){}
 function ordSync(){var b=$("f-ord");if(!b)return;var t=ORD?"Ordine: dal più lontano":"Ordine: dal più vicino";b.setAttribute("aria-pressed",String(ORD));b.setAttribute("aria-label",t);b.title=t;b.querySelector("b").textContent=ORD?"↑":"↓"}
-var FLT=null;function render(){FLT=FLT||document.querySelector(".filters");if(!CAL.on&&FLT&&FLT.nextElementSibling!==$("upd"))$("upd").parentNode.insertBefore(FLT,$("upd")); var nw=st.mode==="news";$("upd").style.display=(st.mode==="all"&&!BK)?"":"none";$("count").style.display="";
+var FLT=null;function render(){FLT=FLT||document.querySelector(".filters");if(FLT&&FLT.nextElementSibling!==$("upd"))$("upd").parentNode.insertBefore(FLT,$("upd")); var nw=st.mode==="news";$("upd").style.display=(st.mode==="all"&&!BK)?"":"none";$("count").style.display="";
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="";$("count").style.display="none";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
 if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
