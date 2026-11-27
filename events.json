@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T13:32:27+00:00",
+ "updated": "2026-11-27T15:32:29+00:00",
  "events": [
   {
    "name": "VGC Indigo League #8 (Prize: Eternal Floette)",
@@ -29,7 +29,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "20:30",
-   "players": 22,
+   "players": 33,
    "url": "https://play.limitlesstcg.com/tournament/6b0505fcada8eea1c94d192f/details",
    "reg_letto": true
   },
@@ -45,7 +45,7 @@
    "bo": null,
    "date": "2026-11-27",
    "time": "23:30",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6b0260a0e0b5cca158bbaee2/details",
    "reg_letto": true
   },
@@ -61,7 +61,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "00:00",
-   "players": 102,
+   "players": 110,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
    "reg_letto": true
   },
@@ -125,7 +125,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "14:00",
-   "players": 0,
+   "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6b07f90fe0b5cca158bbdd22/details",
    "reg_letto": true
   },
@@ -157,7 +157,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 82,
+   "players": 84,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details",
    "reg_letto": true
   },
@@ -173,12 +173,12 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 12,
+   "players": 13,
    "url": "https://play.limitlesstcg.com/tournament/6b03dd7fe0b5cca158bbb988/details",
    "reg_letto": true
   },
   {
-   "name": "🏆 METAVGC ARENA #6 | REG M-C | Prize: R$50🏆",
+   "name": "🏆 METAVGC ARENA #6 | M-C | Prize: R$50 / $10🏆",
    "org": "Oak Stadium",
    "mode": "online",
    "type": "Torneo",
@@ -189,7 +189,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "17:00",
-   "players": 39,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6b039701ada8eea1c94d0870/details",
    "reg_letto": true
   },
@@ -325,7 +325,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6af1f1b4c931f53978d972ec/details",
    "reg_letto": true
   },
@@ -389,7 +389,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 33,
+   "players": 32,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -453,7 +453,7 @@
    "bo": null,
    "date": "2026-11-30",
    "time": "20:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6b050886ada8eea1c94d1935/details",
    "reg_letto": true
   },
@@ -581,7 +581,7 @@
    "bo": null,
    "date": "2026-12-03",
    "time": "17:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b08bec1e0b5cca158bbe43f/details",
    "reg_letto": true
   },
@@ -613,7 +613,7 @@
    "bo": null,
    "date": "2026-12-03",
    "time": "19:30",
-   "players": 3,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ad7442e8a8383117e3efee1/details",
    "reg_letto": true
   },
@@ -629,7 +629,7 @@
    "bo": null,
    "date": "2026-12-03",
    "time": "20:00",
-   "players": 1,
+   "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6b05e996ada8eea1c94d1e1e/details",
    "reg_letto": true
   },
@@ -878,7 +878,7 @@
    "bo": null,
    "date": "2026-12-12",
    "time": "10:00",
-   "players": 18,
+   "players": 20,
    "url": "https://play.limitlesstcg.com/tournament/6af9f938b2fccaf0272d3610/details",
    "reg_letto": true
   },
@@ -1326,7 +1326,7 @@
    "bo": null,
    "date": "2027-01-09",
    "time": "10:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6afa0602ee43ef7891475a12/details",
    "reg_letto": true
   },
