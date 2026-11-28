@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-28T17:02:14+00:00",
+ "updated": "2026-11-28T18:02:54+00:00",
  "events": [
   {
    "name": "Metal's Meteor Mash-Up #9 - REG F THROWBACK TOUR",
@@ -26,11 +26,44 @@
    "cash": null,
    "prize": "",
    "reg": "M-C",
-   "bo": null,
+   "bo": "Bo3",
    "date": "2026-11-28",
    "time": "15:00",
    "players": 11,
-   "url": "https://play.limitlesstcg.com/tournament/6b071f15e0b5cca158bbd40f/details"
+   "url": "https://play.limitlesstcg.com/tournament/6b071f15e0b5cca158bbd40f/details",
+   "bo_letto": true
+  },
+  {
+   "name": "ValkrixVGC Rising Champions League #12",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": "Bo3",
+   "date": "2026-11-28",
+   "time": "14:00",
+   "players": 15,
+   "url": "https://play.limitlesstcg.com/tournament/6b07f90fe0b5cca158bbdd22/details",
+   "bo_letto": true
+  },
+  {
+   "name": "ACE Cup S2: Revival Blessing! 1st place: HEATRAN",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": "Bo3",
+   "date": "2026-11-28",
+   "time": "14:00",
+   "players": 28,
+   "url": "https://play.limitlesstcg.com/tournament/6b079ce0e0b5cca158bbdc4d/details",
+   "bo_letto": true
   },
   {
    "name": "ApexVGC  3v3 ( PRIZE SHINY MEWTWO ZERAORA MOLTRES)",
@@ -65,38 +98,6 @@
    "reg_letto": true
   },
   {
-   "name": "ValkrixVGC Rising Champions League #12",
-   "org": "Valkrix/ Pokemon Champions VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-28",
-   "time": "14:00",
-   "players": 16,
-   "url": "https://play.limitlesstcg.com/tournament/6b07f90fe0b5cca158bbdd22/details",
-   "reg_letto": true
-  },
-  {
-   "name": "ACE Cup S2: Revival Blessing! 1st place: HEATRAN",
-   "org": "Outlanders Trainers' Camp",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-28",
-   "time": "14:00",
-   "players": 20,
-   "url": "https://play.limitlesstcg.com/tournament/6b079ce0e0b5cca158bbdc4d/details",
-   "reg_letto": true
-  },
-  {
    "name": "Reg M-C Last Stand (Battle Chateau)",
    "org": "Battle Chateau",
    "mode": "online",
@@ -124,7 +125,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "22:00",
-   "players": 13,
+   "players": 18,
    "url": "https://play.limitlesstcg.com/tournament/6b04dc13ada8eea1c94d17af/details",
    "reg_letto": true
   },
@@ -165,7 +166,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 26,
+   "players": 27,
    "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
    "reg_letto": true
   },
@@ -181,7 +182,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b08622ae0b5cca158bbdf9a/details",
    "reg_letto": true
   },
@@ -197,7 +198,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:07",
-   "players": 10,
+   "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6b050cc2ada8eea1c94d1944/details",
    "reg_letto": true
   },
@@ -245,7 +246,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "14:00",
-   "players": 18,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6af1f1b4c931f53978d972ec/details",
    "reg_letto": true
   },
@@ -277,7 +278,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "17:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6acbff3b115c12b73a5a19ad/details",
    "reg_letto": true
   },
@@ -309,7 +310,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "18:00",
-   "players": 42,
+   "players": 41,
    "url": "https://play.limitlesstcg.com/tournament/6ad589528a8383117e3eefe7/details",
    "reg_letto": true
   },
@@ -647,7 +648,8 @@
    "time": "18:45",
    "players": 11,
    "url": "https://play.limitlesstcg.com/tournament/6ac968ba115c12b73a5a00f5/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Las Vegas Regional Championships",
@@ -689,7 +691,7 @@
    "bo": null,
    "date": "2026-12-05",
    "time": "00:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6b0a89e0e0b5cca158bbf696/details",
    "reg_letto": true
   },
@@ -867,7 +869,8 @@
    "time": "18:45",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac969038a8383117e3e8160/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Maddo's Cup #14 | 100€ for the Winner | Reg M-D",
@@ -1011,7 +1014,8 @@
    "time": "18:45",
    "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6ac969448a8383117e3e816c/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Christmas Charity Tour|£116 Prize Pot|M-D|£5 Entry",
@@ -1315,7 +1319,8 @@
    "time": "18:40",
    "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac96b0e115c12b73a5a011b/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Maddo's Cup #15 | 100€ for the Winner | Reg M-D",
@@ -1363,7 +1368,8 @@
    "time": "18:40",
    "players": 3,
    "url": "https://play.limitlesstcg.com/tournament/6ac96e74115c12b73a5a0182/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Atlanta Regional Championships",
@@ -1435,7 +1441,8 @@
    "time": "18:45",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac96e9f115c12b73a5a0183/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "RookideeVGC Grand Tourney Invitational",
@@ -1495,7 +1502,8 @@
    "time": "18:45",
    "players": 2,
    "url": "https://play.limitlesstcg.com/tournament/6ac96ed48a8383117e3e81d8/details",
-   "reg_letto": true
+   "reg_letto": true,
+   "bo_letto": true
   },
   {
    "name": "Birmingham Regional Championships",
