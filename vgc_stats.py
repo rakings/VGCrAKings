@@ -766,9 +766,23 @@ def _rk9_sovrapponi(data, ev):
                     continue
                 g = gioc.setdefault(rk9_esatto(n), {"name": n, "rounds": {}, "rec": None, "ultimo": 0})
                 g["rounds"][str(r)] = {"name": re.sub(r"\s*\[[A-Za-z]{2,3}\]\s*$", "", avv) if avv else None,
-                                       "result": e if avv else 3, "table": t if avv else None}
+                                       "result": e if avv else (e if e in (0, 3) else 3), "table": t if avv else None}
+                g.setdefault("recr", {})[r] = rec
                 if r >= g["ultimo"]:
                     g["ultimo"], g["rec"] = r, rec
+    # senza avversario non e' sempre un bye: chi arriva tardi o non si presenta ha una sconfitta a tavolino (RK9: record 0-1-0).
+    # Si guarda come cambia il record rispetto al round prima: vittoria in piu' = bye (3), sconfitta in piu' = persa (0).
+    for g in gioc.values():
+        for rs, x in g["rounds"].items():
+            if x["name"]:
+                continue
+            r = int(rs)
+            ora, prima = g["recr"].get(r), g["recr"].get(r - 1) if r > 1 else (0, 0, 0)
+            if ora and prima:
+                if ora[1] > prima[1] and ora[0] == prima[0]:
+                    x["result"] = 0
+                elif ora[0] > prima[0]:
+                    x["result"] = 3
     # controlli: se qualcosa non torna si resta su Pokedata
     pd_max = max([max([int(k) for k in (p.get("rounds") or {})] or [0]) for p in raw] or [0])
     if rk9_ultimo_round.get(codice, 0) > R:
@@ -1510,7 +1524,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-28b (parte anche solo con RK9 se Pokedata non ha ancora i dati; RK9 fonte principale di abbinamenti, risultati e classifica con Pokedata di riserva automatica, interruttore RK9_ATTIVO; regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-28c (sconfitte a tavolino di RK9 riconosciute; parte anche solo con RK9 se Pokedata non ha ancora i dati; RK9 fonte principale di abbinamenti, risultati e classifica con Pokedata di riserva automatica, interruttore RK9_ATTIVO; regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
