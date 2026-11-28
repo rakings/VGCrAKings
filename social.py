@@ -524,8 +524,46 @@ def quando_en(d_iso, hhmm=None):
     return "%s %s %d" % (GIORNI_EN[g.weekday()], MESI_EN[g.month - 1], g.day) + (" · %s%s" % (hhmm, fuso) if hhmm else "")
 
 
+PREMI_EN = {"montepremi": "Prize pool", "in base alle presenze": "Based on attendance",
+            "premi alti, secondo serebii": "High prizes (per Serebii)", "da confermare": "TBC"}
+PAESI_EN = {"Stati Uniti": "USA", "Regno Unito": "UK", "Germania": "Germany", "Italia": "Italy", "Francia": "France",
+            "Spagna": "Spain", "Portogallo": "Portugal", "Paesi Bassi": "Netherlands", "Belgio": "Belgium", "Svizzera": "Switzerland",
+            "Austria": "Austria", "Polonia": "Poland", "Repubblica Ceca": "Czech Republic", "Svezia": "Sweden", "Norvegia": "Norway",
+            "Danimarca": "Denmark", "Finlandia": "Finland", "Irlanda": "Ireland", "Grecia": "Greece", "Turchia": "Turkey",
+            "Messico": "Mexico", "Brasile": "Brazil", "Cile": "Chile", "Perù": "Peru", "Argentina": "Argentina", "Colombia": "Colombia",
+            "Canada": "Canada", "Australia": "Australia", "Nuova Zelanda": "New Zealand", "Giappone": "Japan", "Corea del Sud": "South Korea",
+            "Cina": "China", "Taiwan": "Taiwan", "Singapore": "Singapore", "Sudafrica": "South Africa", "Ungheria": "Hungary",
+            "Croazia": "Croatia", "Slovenia": "Slovenia", "Romania": "Romania", "Emirati Arabi Uniti": "UAE"}
+CITTA_EN = {"Stoccarda": "Stuttgart", "Lisbona": "Lisbon", "Londra": "London", "Praga": "Prague", "Parigi": "Paris",
+            "Francoforte": "Frankfurt", "Monaco di Baviera": "Munich", "Colonia": "Cologne", "Anversa": "Antwerp", "Bruxelles": "Brussels",
+            "Ginevra": "Geneva", "Zurigo": "Zurich", "Vienna": "Vienna", "Varsavia": "Warsaw", "Danzica": "Gdansk", "Copenaghen": "Copenhagen",
+            "Stoccolma": "Stockholm", "Siviglia": "Seville", "Barcellona": "Barcelona", "Atene": "Athens", "Dublino": "Dublin",
+            "Edimburgo": "Edinburgh", "Città del Messico": "Mexico City", "San Paolo": "São Paulo", "Mosca": "Moscow", "Pechino": "Beijing",
+            "Seul": "Seoul", "Tokyo": "Tokyo", "Milano": "Milan", "Roma": "Rome", "Torino": "Turin", "Napoli": "Naples", "Firenze": "Florence",
+            "Venezia": "Venice", "Genova": "Genoa", "Padova": "Padua"}
+
+
 def premio_en(p):
-    return "Prize pool" if p == "Montepremi" else p
+    """Premio in inglese per immagini e testi social (sul sito resta in italiano)."""
+    t = str(p or "").strip()
+    return PREMI_EN.get(t.lower(), t)
+
+
+def dove_en(t):
+    """«Stoccarda, Germania» -> «Stuttgart, Germany»; «(date da confermare)» -> «(dates TBC)». Solo per i social."""
+    t = str(t or "").strip()
+    if not t:
+        return ""
+    nota = ""
+    m = re.search(r"\s*\((.*?)\)\s*$", t)
+    if m:
+        nota = " (dates TBC)" if "confermar" in m.group(1).lower() else " (" + m.group(1) + ")"
+        t = t[:m.start()].strip()
+    parti = [x.strip() for x in t.split(",")]
+    if parti:
+        parti[0] = CITTA_EN.get(parti[0], parti[0])
+        parti[-1] = PAESI_EN.get(parti[-1], parti[-1]) if len(parti) > 1 else PAESI_EN.get(parti[0], parti[0])
+    return ", ".join(parti) + nota
 
 
 LINGUA_V = 3   # versione dei testi: 2 = tutto in inglese; 3 = max 5 hashtag, parola chiave in testa, immagini 4:5 (21/11/2026)
@@ -616,15 +654,15 @@ def grande_evento(d, e, tipo, riga3, rid):
         link = SITO + "#regionali"
         q3 = {"iscrizioni aperte": "registration open", "tra 2 giorni": "in 2 days", "domani": "tomorrow", "oggi": "today"}.get(riga3, riga3)
         ig = ("🏆 Pokémon VGC · %s · %s\n📍 %s\n📅 %s\n\nFollow it live in the rAKings VGC app: standings, teams and Top 8 📲"
-              "\n\n%s") % (nome, q3, dove or "TBA", quando_en(e["date"]), hashtag_ig("regionale", rid))
-        xt = "🏆 %s · %s\n📍 %s\nFollow it live in the app 👇\n%s\n#PokemonChampions #VGC" % (nome, q3, dove or "", link)
+              "\n\n%s") % (nome, q3, dove_en(dove) or "TBA", quando_en(e["date"]), hashtag_ig("regionale", rid))
+        xt = "🏆 %s · %s\n📍 %s\nFollow it live in the app 👇\n%s\n#PokemonChampions #VGC" % (nome, q3, dove_en(dove), link)
     # righe dell'immagine in inglese
     if tipo == "vr":
         e1 = "Online · %s" % quando_en(e["date"], e.get("time"))
         e2 = "Prize pool" + (" · Entry €%.2f" % e["fee"] if isinstance(e.get("fee"), (int, float)) else "")
     else:
-        e1 = ((e.get("where") or "") + " · " if e.get("where") else "") + quando_en(e["date"])
-        e2 = "Prizes: " + e["prize"] if e.get("prize") else ""
+        e1 = (dove_en(e.get("where")) + " · " if e.get("where") else "") + quando_en(e["date"])
+        e2 = "Prizes: " + premio_en(e["prize"]) if e.get("prize") else ""
     e3 = {"iscrizioni aperte": "Registration open", "tra 2 giorni": "In 2 days", "domani": "Tomorrow", "oggi": "Today"}.get(riga3, riga3)
     storia = tipo != "vr"   # Regionali: storia verticale (sparisce in 24 ore, non resta in bacheca); VR: post come prima
     if storia:
