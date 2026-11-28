@@ -171,7 +171,7 @@ li.nw.rp-box{border-left-color:var(--accent)!important;box-shadow:0 0 0 2.5px #f
 #rp-team{margin:6px 0 8px;resize:vertical}.rp-lab{font-size:.82rem;color:var(--mute)}
 #rp-sug{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .rp-s{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;font:inherit;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:8px 10px;cursor:pointer}.rp-s span{font-size:.74rem;color:var(--mute)}
-.rp-pl{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rp-pl{display:flex;align-items:center;gap:8px;margin-bottom:8px}.rp-selr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.rp-selr .rp-sel{flex:1;min-width:0;margin:0}.rp-selr .rp-vr{margin-left:0}
 .rp-t{width:100%;justify-content:flex-start;margin-bottom:6px;gap:6px}.rp-t>span:not(.rp-pos){font-size:.7rem;flex:none}.rp-t b{font-size:.9rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rp-pos{font-weight:900;color:#ffd21f;width:26px;flex:none}.rp-t em{font-style:normal;font-weight:800;color:#86d8f0;font-size:.8rem;flex:none}
 .rp-t:disabled{opacity:.6;cursor:default}
@@ -706,9 +706,9 @@ document.addEventListener("visibilitychange",function(){if(document.visibilitySt
 /* ---------- Report (Altopiano Blu): matchup, giocatore, la mia squadra. Dati: report.json (partite vere dei tornei ufficiali). ---------- */
 var REP=null,REPP=null,REPKO=false,RP={tab:"mu",mon:0,pl:-1,q:"",vr:true},RPS="vgc-rep-squadra";
 function repLoad(){if(REP||REPP)return;REPKO=false;REPP=fetch("report.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
-var mu={};(d.mu||[]).forEach(function(x){(mu[x[0]]=mu[x[0]]||[]).push([x[1],x[2],x[3]])});
+var mu={},muu={};(d.mu||[]).forEach(function(x){(mu[x[0]]=mu[x[0]]||[]).push([x[1],x[2],x[3]])});(d.muu||[]).forEach(function(x){(muu[x[0]]=muu[x[0]]||[]).push([x[1],x[2],x[3]])});
 var nk={};d.mon.forEach(function(m,i){nk[repK(m[0])]=i;nk[repK(m[1])]=i});
-REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg,top:[]};REPP=null;render();
+REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,muu:muu,pl:d.pl,nk:nk,reg:d.reg,top:[]};REPP=null;render();
 /* Top 8 della CP bar: file piccolo a parte; il giocatore si ritrova per nome e paese */
 fetch("report_top.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(t){if(!t||!REP)return;
 REP.top=(t.top||[]).map(function(x){var k=repK(x[1]),i=-1;for(var j=0;j<REP.pl.length;j++){if(repK(REP.pl[j][0])===k&&REP.pl[j][1]===x[2]){i=j;break}}return [x[0],x[1],x[2],x[3],i]});render()}).catch(function(){})}).catch(function(){REPP=null;REPKO=true;render()})}
@@ -726,15 +726,21 @@ function repSquadra(t,it){return '<div class="rp-team">'+t.map(function(i,j){var
 function repHtml(){var h='<li class="seg rp"><div class="rp-sub">'+[["mu","Matchup"],["pl","Giocatore"],["sq","La mia squadra"]].map(function(x){return '<button type="button" data-rpt="'+x[0]+'" aria-pressed="'+(RP.tab===x[0])+'">'+x[1]+'</button>'}).join("")+'</div></li>';
 if(!REP){repLoad();return h+'<li class="nw rp-box">'+(REPKO?'Report non disponibile in questo momento. Riprova tra poco.':'Caricamento del report…')+'</li>'}
 return h+(RP.tab==="pl"?repGioc():RP.tab==="sq"?repSq():repMu())}
+/* «+VR»: con i VR (predefinito) o solo tornei ufficiali; vale per Matchup, Giocatore e La mia squadra */
+function repVrBtn(){return '<button type="button" class="rp-vr" data-rpvr="1" aria-pressed="'+RP.vr+'" aria-label="'+(RP.vr?'Victory Road inclusi: tocca per escluderli':'Victory Road esclusi: tocca per includerli')+'"><span class="rp-piu">+</span><span class="rp-vrt">VR</span></button>'}
+function repMuDi(i){return (RP.vr?REP.mu:REP.muu)[i]||[]}
+function repTot(i){var m=REP.mon[i];return RP.vr?[m[2],m[3]]:[m[4]||0,m[5]||0]}
+function repNEv(){return RP.vr?REP.ev.length:REP.ev.filter(function(e){return e[2]!=="v"}).length}
+function repHaVr(){return REP.ev.some(function(e){return e[2]==="v"})}
 function repTop(rows,min){var r=rows.filter(function(x){return x[1]+x[2]>=min});if(r.length<6&&min>100)return repTop(rows,Math.round(min/2));return r}
-function repMu(){var opz=REP.mon.map(function(m,i){return [i,m[2]+m[3]]}).filter(function(x){return x[1]>=300});if(!opz.length)return '<li class="nw rp-box">Ancora pochi dati per il regolamento in corso.</li>';
-if(!opz.some(function(x){return x[0]===RP.mon}))RP.mon=opz[0][0];var m=REP.mon[RP.mon],g=m[2]+m[3];
-var rows=repTop(REP.mu[RP.mon]||[],400),best=rows.slice().sort(function(a,b){return repPc(b[1],b[2])-repPc(a[1],a[2])}).slice(0,5),worst=rows.slice().sort(function(a,b){return repPc(a[1],a[2])-repPc(b[1],b[2])}).slice(0,5);
-return '<li class="nw rp-box"><label class="rp-sel">'+repDot(RP.mon)+'<select id="rp-mon" aria-label="Scegli un Pokémon">'+opz.map(function(x){return '<option value="'+x[0]+'"'+(x[0]===RP.mon?' selected':'')+'>'+esc(repN(x[0]))+'</option>'}).join("")+'</select></label>'
-+'<div class="rp-kpi"><div><b>'+repNum(g)+'</b><span>partite</span></div><div><b>'+repPc(m[2],m[3])+'%</b><span>vittorie</span></div><div><b>'+REP.ev.length+'</b><span>tornei</span></div></div>'
+function repMu(){var opz=REP.mon.map(function(m,i){var t=repTot(i);return [i,t[0]+t[1]]}).filter(function(x){return x[1]>=300});if(!opz.length)return '<li class="nw rp-box">Ancora pochi dati per il regolamento in corso.</li>';
+if(!opz.some(function(x){return x[0]===RP.mon}))RP.mon=opz[0][0];var tt=repTot(RP.mon),g=tt[0]+tt[1];
+var rows=repTop(repMuDi(RP.mon),400),best=rows.slice().sort(function(a,b){return repPc(b[1],b[2])-repPc(a[1],a[2])}).slice(0,5),worst=rows.slice().sort(function(a,b){return repPc(a[1],a[2])-repPc(b[1],b[2])}).slice(0,5);
+return '<li class="nw rp-box"><div class="rp-selr"><label class="rp-sel">'+repDot(RP.mon)+'<select id="rp-mon" aria-label="Scegli un Pokémon">'+opz.map(function(x){return '<option value="'+x[0]+'"'+(x[0]===RP.mon?' selected':'')+'>'+esc(repN(x[0]))+'</option>'}).join("")+'</select></label>'+(repHaVr()?repVrBtn():'')+'</div>'
++'<div class="rp-kpi"><div><b>'+repNum(g)+'</b><span>partite</span></div><div><b>'+repPc(tt[0],tt[1])+'%</b><span>vittorie</span></div><div><b>'+repNEv()+'</b><span>tornei</span></div></div>'
 +'<div class="rp-h">Contro chi vince di più</div>'+best.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
 +'<div class="rp-h">Contro chi soffre</div>'+worst.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
-+'<p class="rp-nota">Partite vere dei tornei ufficiali e dei Victory Road del regolamento '+esc(REP.reg||"")+'. «'+esc(repN(RP.mon))+' contro X» = partite in cui una squadra aveva '+esc(repN(RP.mon))+' e l\'avversaria X. È una tendenza, non la causa del risultato.</p></li>'}
++'<p class="rp-nota">Partite vere dei tornei ufficiali'+(RP.vr?' e dei Victory Road':'')+' del regolamento '+esc(REP.reg||"")+'. «'+esc(repN(RP.mon))+' contro X» = partite in cui una squadra aveva '+esc(repN(RP.mon))+' e l\'avversaria X. È una tendenza, non la causa del risultato.</p></li>'}
 function repSug(q){var k=repK(q);if(k.length<2)return "";var o=[];for(var i=0;i<REP.pl.length&&o.length<8;i++){if(repK(REP.pl[i][0]).indexOf(k)>-1)o.push(i)}
 return o.length?o.map(function(i){var p=REP.pl[i];return '<button type="button" class="rp-s" data-rpp="'+i+'"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+' · '+p[2].length+(p[2].length===1?' torneo':' tornei')+'</span></button>'}).join(""):'<p class="rp-nota">Nessun giocatore trovato.</p>'}
 /* lista pronta: Top 8 della CP bar (Europa), una riga a giocatore; toccando il nome si apre il report con tutte le squadre */
@@ -743,7 +749,7 @@ return '<button type="button" class="rp-s rp-t"'+(p?' data-rpp="'+x[4]+'"':' dis
 function repGioc(){var h='<li class="nw rp-box"><input id="rp-q" type="search" autocomplete="off" placeholder="Cerca un giocatore" value="'+esc(RP.q)+'"><div id="rp-sug">'+(RP.pl<0?repSug(RP.q):"")+'</div></li>'+(RP.pl<0&&repK(RP.q).length<2?repTop10():"");
 var p=REP.pl[RP.pl];if(!p)return h;var haVr=p[2].some(function(t){return REP.ev[t[0]][2]==="v"}),tt=p[2].filter(function(t){return RP.vr||REP.ev[t[0]][2]!=="v"}),W=0,L=0;tt.forEach(function(t){W+=t[2];L+=t[3]});var bt=RP.vr||!p[5]?p[3]:p[5],ft=RP.vr||!p[6]?p[4]:p[6];
 var ev=tt.slice().sort(function(a,b){return String(REP.ev[b[0]][3]).localeCompare(String(REP.ev[a[0]][3]))});
-return h+'<li class="nw rp-box"><div class="rp-pl"><b>'+esc(p[0])+'</b>'+(p[1]?'<span class="tag">'+esc(p[1])+'</span>':'')+(haVr?'<button type="button" class="rp-vr" data-rpvr="1" aria-pressed="'+RP.vr+'" aria-label="'+(RP.vr?'Victory Road inclusi: tocca per escluderli':'Victory Road esclusi: tocca per includerli')+'"><span class="rp-piu">+</span><span class="rp-vrt">VR</span></button>':'')+'</div>'
+return h+'<li class="nw rp-box"><div class="rp-pl"><b>'+esc(p[0])+'</b>'+(p[1]?'<span class="tag">'+esc(p[1])+'</span>':'')+(haVr?repVrBtn():'')+'</div>'
 +'<div class="rp-kpi"><div><b>'+tt.length+'</b><span>tornei</span></div><div><b>'+W+'-'+L+'</b><span>record</span></div><div><b>'+repPc(W,L)+'%</b><span>vittorie</span></div></div>'
 +ev.map(function(t){var e=repEv(t[0]);return '<div class="rp-evw"><details class="rp-ev" open><summary><span class="rp-et"><b>'+esc(e.c)+'</b><small>'+e.k+' · '+repData(e.d)+'</small></span><span class="rp-er"><b>'+(t[1]===1?'🏆 ':'')+t[1]+'°</b><small>/'+e.n+'</small><span>'+t[2]+'-'+t[3]+'</span></span>'+'</summary></details>'+repSquadra(t[4],t[5])+'</div>'}).join("")
 +'<div class="rp-due"><div><div class="rp-h">Ha battuto più spesso</div>'+bt.map(function(x){return '<div class="rp-r">'+repDot(x[0])+'<b>'+esc(repN(x[0]))+'</b><span class="rp-pc rp-v">'+x[1]+'</span></div>'}).join("")+'</div>'
@@ -752,12 +758,12 @@ function repTeam(){var t=[];try{t=JSON.parse(localStorage.getItem(RPS)||"[]")||[
 function repLeggi(tx){var v=parseTeam(tx||""),o=[],no=[];v.forEach(function(m){var n=String(m.n||"").replace(/\s*\(.*?\)\s*/g," ").trim(),i=REP.nk[repK(n)];if(i===undefined)i=REP.nk[repK(String(m.n||"").replace(/[()]/g,""))];if(i===undefined)i=REP.nk[repK(n.replace(/-(mega|m|f)$/i,""))];if(i!==undefined&&o.indexOf(i)<0)o.push(i);else if(i===undefined)no.push(m.n)});return {t:o.slice(0,6),no:no}}
 function repSq(){var t=repTeam(),h='<li class="nw rp-box"><label class="rp-lab" for="rp-team">Incolla la tua squadra: testo di Showdown/Pokepaste oppure 6 nomi separati da virgola</label><textarea id="rp-team" rows="4" placeholder="Incineroar, Rillaboom, Kingambit…">'+esc(t.map(repN).join(", "))+'</textarea><button type="button" class="btn main" id="rp-go">Analizza la squadra</button><p class="rp-nota" id="rp-msg"></p></li>';
 if(!t.length)return h;
-var tot={};t.forEach(function(a){(REP.mu[a]||[]).forEach(function(x){if(t.indexOf(x[0])>-1)return;var q=tot[x[0]]||(tot[x[0]]=[0,0]);q[0]+=x[1];q[1]+=x[2]})});
+var tot={};t.forEach(function(a){repMuDi(a).forEach(function(x){if(t.indexOf(x[0])>-1)return;var q=tot[x[0]]||(tot[x[0]]=[0,0]);q[0]+=x[1];q[1]+=x[2]})});
 var rows=Object.keys(tot).map(function(k){return [+k,tot[k][0],tot[k][1]]}),rr=repTop(rows,600);
 var minacce=rr.slice().sort(function(a,b){return repPc(a[1],a[2])-repPc(b[1],b[2])}).slice(0,5),forza=rr.slice().sort(function(a,b){return repPc(b[1],b[2])-repPc(a[1],a[2])}).slice(0,5);
-var sim=[];REP.pl.forEach(function(p){p[2].forEach(function(x){var c=x[4].filter(function(i){return t.indexOf(i)>-1}).length;if(c>=Math.min(4,t.length))sim.push([c,x,p])})});
+var sim=[];REP.pl.forEach(function(p){p[2].forEach(function(x){if(!RP.vr&&REP.ev[x[0]][2]==="v")return;var c=x[4].filter(function(i){return t.indexOf(i)>-1}).length;if(c>=Math.min(4,t.length))sim.push([c,x,p])})});
 sim.sort(function(a,b){return b[0]-a[0]||a[1][1]-b[1][1]});
-return h+'<li class="nw rp-box"><div class="rp-h">La tua squadra</div>'+repDots(t)
+return h+'<li class="nw rp-box"><div class="rp-pl"><div class="rp-h" style="margin:0">La tua squadra</div>'+(repHaVr()?repVrBtn():'')+'</div>'+repDots(t)
 +'<div class="rp-h">Le minacce</div>'+minacce.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
 +'<div class="rp-h">I punti di forza</div>'+forza.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
 +'<div class="rp-h">Squadre più simili ai tornei</div>'+(sim.length?sim.slice(0,8).map(function(s){var e=repEv(s[1][0]);return '<div class="rp-ev rp-sim"><span class="rp-et"><b>'+esc(s[2][0])+'</b><small>'+esc(e.c)+' · '+s[0]+' su 6 uguali</small></span><span class="rp-er"><b>'+s[1][1]+'°</b><small>/'+e.n+'</small><span>'+s[1][2]+'-'+s[1][3]+'</span></span>'+'</div>'+repSquadra(s[1][4],s[1][5])}).join(""):'<p class="rp-nota">Nessuna squadra con almeno 4 Pokémon uguali.</p>')

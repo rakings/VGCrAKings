@@ -88,6 +88,7 @@ def main():
             return b + "-m"
         return alt[0] if len(alt) == 1 else b
     nomi, tot, mu = {}, collections.defaultdict(lambda: [0, 0]), collections.defaultdict(lambda: [0, 0])
+    totu, muu = collections.defaultdict(lambda: [0, 0]), collections.defaultdict(lambda: [0, 0])   # stessi conteggi senza i VR (pulsante «+VR»)
     gioc = {}
     for ei, e in enumerate(evs):
         vr = e.get("kind") == "VR"
@@ -132,9 +133,13 @@ def main():
                     continue
                 for a in A:
                     tot[a][0 if r == "W" else 1] += 1
+                    if not vr:
+                        totu[a][0 if r == "W" else 1] += 1
                     for b in Bt:
                         if a != b and b not in A:
                             mu[(a, b)][0 if r == "W" else 1] += 1
+                            if not vr:
+                                muu[(a, b)][0 if r == "W" else 1] += 1
             st = {m[0]: str(m[2] or "") for m in TM.get(pid, []) if isinstance(m, list) and len(m) > 2}   # strumenti: solo Top 256
             g["t"].append([ei, int(p[3] or 0), w, l, A, [st.get(x, "") for x in A]])
     # elenco dei Pokemon per indice (file piu' piccolo): i piu' usati per primi
@@ -145,9 +150,10 @@ def main():
     out = {
         "v": 1, "reg": reg,
         "ev": [[e["id"], citta(e), ("v" if e.get("kind") == "VR" else KIND.get(e.get("kind"), "s")), e.get("start"), int(e.get("players") or 0)] for e in evs],
-        "mon": [[s, nomi[s]] + list(tot.get(s, [0, 0])) for s in ordine],
+        "mon": [[s, nomi[s]] + list(tot.get(s, [0, 0])) + list(totu.get(s, [0, 0])) for s in ordine],
         "it": strum,
         "mu": [[pos[a], pos[b], v[0], v[1]] for (a, b), v in mu.items() if sum(v) >= MIN_COPPIA],
+        "muu": [[pos[a], pos[b], v[0], v[1]] for (a, b), v in muu.items() if sum(v) >= MIN_COPPIA],
         "pl": [[g["n"], g["c"], [[t[0], t[1], t[2], t[3], [pos[x] for x in t[4] if x in pos], [spos.get(y, -1) for x, y in zip(t[4], t[5]) if x in pos]] for t in g["t"]],
                 [[pos[x], n] for x, n in g["b"].most_common(4) if x in pos], [[pos[x], n] for x, n in g["f"].most_common(4) if x in pos],
                 ] + ([[[pos[x], n] for x, n in g["bu"].most_common(4) if x in pos], [[pos[x], n] for x, n in g["fu"].most_common(4) if x in pos]]
