@@ -685,7 +685,10 @@ var REP=null,REPP=null,REPKO=false,RP={tab:"mu",mon:0,pl:-1,q:"",vr:true},RPS="v
 function repLoad(){if(REP||REPP)return;REPKO=false;REPP=fetch("report.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
 var mu={};(d.mu||[]).forEach(function(x){(mu[x[0]]=mu[x[0]]||[]).push([x[1],x[2],x[3]])});
 var nk={};d.mon.forEach(function(m,i){nk[repK(m[0])]=i;nk[repK(m[1])]=i});
-REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg,top:d.top||[]};REPP=null;render()}).catch(function(){REPP=null;REPKO=true;render()})}
+REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg,top:[]};REPP=null;render();
+/* Top 8 della CP bar: file piccolo a parte; il giocatore si ritrova per nome e paese */
+fetch("report_top.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){return r.ok?r.json():null}).then(function(t){if(!t||!REP)return;
+REP.top=(t.top||[]).map(function(x){var k=repK(x[1]),i=-1;for(var j=0;j<REP.pl.length;j++){if(repK(REP.pl[j][0])===k&&REP.pl[j][1]===x[2]){i=j;break}}return [x[0],x[1],x[2],x[3],i]});render()}).catch(function(){})}).catch(function(){REPP=null;REPKO=true;render()})}
 function repK(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"")}
 function repN(i){var m=REP.mon[i];return m?m[1]:"?"}
 function repDot(i){return phHtml(repN(i))}

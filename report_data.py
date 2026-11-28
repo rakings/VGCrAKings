@@ -10,6 +10,9 @@ from datetime import datetime, timezone
 
 B = "vgcstats/"
 OUT = "report.json"
+OUT_TOP = "report_top.json"   # Top 8 della CP bar: file piccolo a parte (cambia quasi ogni giorno, il file grande no)
+MAX_GZ = 2200 * 1024          # tetto: oltre 2,2 MB compressi si tengono i dettagli solo di chi ha almeno 2 tornei
+SEMPRE = {"andreaciccone"}    # eccezioni al tetto: questi giocatori restano sempre, anche con un torneo solo
 MIN_COPPIA = 60          # una coppia di Pokemon entra nel file solo con almeno 60 partite (le righe poco affidabili restano fuori)
 KIND = {"Regional Championships": "r", "International Championships": "i", "World Championship": "w"}
 VR = "https://rakings.github.io/VGCdatiAK/vr/"
@@ -151,32 +154,45 @@ def main():
                      if any(evs[t[0]].get("kind") == "VR" for t in g["t"]) else [])   # solo per chi ha giocato anche dei VR
                for g in sorted(gioc.values(), key=lambda g: (-len(g["t"]), g["n"].lower()))],
     }
-    # Top 8 della CP bar (Europa): nome (Pokedata lo accorcia, es. «Francesco Pio P»), paese, CP e giocatore del report se c'e'
+    # tetto alla dimensione: se il file compresso supera MAX_GZ si tolgono i giocatori con un solo torneo (tranne SEMPRE)
+    import gzip
+    peso = len(gzip.compress(json.dumps(out, ensure_ascii=False, separators=(",", ":")).encode()))
+    if peso > MAX_GZ:
+        prima = len(out["pl"])
+        out["pl"] = [g for g in out["pl"] if len(g[2]) >= 2 or chiave(g[0]) in SEMPRE]
+        print("report.json oltre %d KB compressi (%d KB): tenuti %d giocatori su %d (almeno 2 tornei)." % (MAX_GZ // 1024, peso // 1024, len(out["pl"]), prima))
+    scrivi(OUT, out, "report.json scritto: %d tornei, %d Pokemon, %d coppie, %d giocatori" % (len(evs), len(ordine), len(out["mu"]), len(out["pl"])))
+
+    # Top 8 della CP bar (Europa): nome (Pokedata lo accorcia, es. «Francesco Pio P»), paese e CP, col nome completo del report se c'e'
     try:
         righe = scarica(CP).get("righe", [])[:8]
-        top = []
-        for r in righe:
-            k, cc = chiave(r.get("name")), ISO3.get(str(r.get("country") or "").upper(), "")
-            cand = [i for i, g in enumerate(out["pl"]) if chiave(g[0]).startswith(k) and k]
-            stessi = [i for i in cand if out["pl"][i][1] == cc]
-            scelti = stessi or (cand if len(cand) == 1 else [])
-            i = max(scelti, key=lambda i: len(out["pl"][i][2])) if scelti else -1
-            top.append([int(r.get("pos") or r.get("rank") or len(top) + 1), out["pl"][i][0] if i > -1 else r.get("name"), cc, int(r.get("cp") or 0), i])
-        out["top"] = top
     except Exception as x:
         print("CP bar non letta (%s): tengo la Top 8 di prima." % x)
-        out["top"] = (leggi(OUT, {}) or {}).get("top", [])
-    vecchio = leggi(OUT, None)
-    if vecchio:
-        vecchio.pop("agg", None)
-    if vecchio == out:
-        print("report.json invariato")
         return
-    out["agg"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
-    print("report.json scritto: %d tornei, %d Pokemon, %d coppie, %d giocatori, %d byte"
-          % (len(evs), len(ordine), len(out["mu"]), len(out["pl"]), os.path.getsize(OUT)))
+    top = []
+    for r in righe:
+        k, cc = chiave(r.get("name")), ISO3.get(str(r.get("country") or "").upper(), "")
+        cand = [i for i, g in enumerate(out["pl"]) if chiave(g[0]).startswith(k) and k]
+        stessi = [i for i in cand if out["pl"][i][1] == cc]
+        scelti = stessi or (cand if len(cand) == 1 else [])
+        i = max(scelti, key=lambda i: len(out["pl"][i][2])) if scelti else -1
+        top.append([int(r.get("pos") or r.get("rank") or len(top) + 1), out["pl"][i][0] if i > -1 else r.get("name"),
+                    out["pl"][i][1] if i > -1 else cc, int(r.get("cp") or 0)])
+    scrivi(OUT_TOP, {"v": 1, "top": top}, "report_top.json scritto")
+
+
+def scrivi(nome, dati, messaggio):
+    """Scrive il file solo se il contenuto e' cambiato (la data «agg» non conta)."""
+    vecchio = leggi(nome, None)
+    if isinstance(vecchio, dict):
+        vecchio.pop("agg", None)
+    if vecchio == dati:
+        print(nome + " invariato")
+        return
+    dati = dict(dati, agg=datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"))
+    with open(nome, "w", encoding="utf-8") as f:
+        json.dump(dati, f, ensure_ascii=False, separators=(",", ":"))
+    print("%s (%d byte)" % (messaggio, os.path.getsize(nome)))
 
 
 if __name__ == "__main__":
