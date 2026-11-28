@@ -114,7 +114,13 @@ def limitless_page(i):
         return None
     m = re.search(r"Regulation Set (M-[A-Z])\b", page)
     return {"id": i, "name": name, "organizer": {"name": org}, "game": "VGC", "reg": m.group(1) if m else None,
-            "date": dt.strftime("%Y-%m-%dT%H:%M:%S+00:00")}
+            "date": dt.strftime("%Y-%m-%dT%H:%M:%S+00:00"), "bo": formato_pagina(page)}
+
+
+def formato_pagina(page):
+    """Formato vero dalla pagina del torneo («Tournament Structure»: es. «5 Swiss Rounds - BO3»): conta la fase svizzera."""
+    m = re.search(r"Swiss Rounds\s*-\s*BO([13])\b", page, re.I) or re.search(r'class="rounds">[^<]*-\s*BO([13])\b', page, re.I)
+    return "Bo" + m.group(1) if m else None
 
 RE_RIGA = re.compile(r"<tr\s([^>]*\bdata-name=[^>]*)>(.*?)</tr>", re.S)
 
@@ -181,6 +187,8 @@ def limitless_upcoming(have):
             if r:
                 nuovo = limitless_event({"id": i, "name": r["name"], "organizer": {"name": r["org"]}, "date": r["date"], "reg": old.get("reg")})
                 for k in ("name", "org", "date", "time", "cash", "prize", "bo", "reg"):
+                    if k == "bo" and not nuovo[k]:
+                        continue                      # il formato letto dalla pagina resta (il titolo spesso non lo dice)
                     ev[k] = nuovo[k]
             ev["players"] = iscritti.get(i, (r or {}).get("players", ev.get("players")))
             out.append(ev)
@@ -247,7 +255,39 @@ def limitless_all():
     except Exception as ex:
         print("Limitless (pagine pubbliche) non lette: %s" % ex)
         PARTIAL.add("Limitless")
+    formato_bo(out)
     return out
+
+
+BO_GIRO = 40   # pagine lette al massimo per giro solo per il formato (una volta per torneo, poi si ricorda)
+
+def formato_bo(out):
+    """Bo1/Bo3 per i tornei Limitless: il titolo lo dice di rado, la pagina del torneo sempre. Letto una volta, poi «bo_letto»."""
+    letti = 0
+    for ev in out:
+        url = ev.get("url") or ""
+        if "limitlesstcg.com/tournament/" not in url:
+            continue
+        old = PREV.get(url) or {}
+        if ev.get("bo") and (ev.get("bo_letto") or old.get("bo_letto") or re.search(r"\bBo[13]\b", ev.get("name") or "", re.I)):
+            ev["bo_letto"] = True
+            continue
+        if old.get("bo_letto"):
+            ev["bo"], ev["bo_letto"] = old.get("bo") or ev.get("bo"), True
+            continue
+        if letti >= BO_GIRO:
+            continue
+        letti += 1
+        try:
+            time.sleep(0.6)
+            bo = formato_pagina(get(url))
+        except Exception as ex:
+            print("Limitless: formato non letto per %s (%s), riprovo al prossimo giro" % (url, ex))
+            continue
+        if bo:
+            ev["bo"], ev["bo_letto"] = bo, True
+    if letti:
+        print("Limitless: formato (Bo1/Bo3) letto dalle pagine di %d tornei" % letti)
 
 def limitless_event(t):
     if True:
@@ -268,7 +308,7 @@ def limitless_event(t):
             "cash": True if money else None,  # mai False: senza indicazione resta "non indicato"
             "prize": money.group(0).strip() if money else "",
             "reg": ("M-" + reg.group(1).upper()) if reg else (t.get("reg") or (t.get("format") if re.fullmatch(r"M-[A-Z]", str(t.get("format") or "")) else None)),
-            "bo": "Bo" + bo.group(1) if bo else None,
+            "bo": "Bo" + bo.group(1) if bo else t.get("bo"),   # dal titolo, altrimenti dalla pagina del torneo
             "date": date, "time": hhmm, "players": t.get("players"),
             "url": "https://play.limitlesstcg.com/tournament/%s/details" % t["id"],
         }

@@ -195,6 +195,20 @@ li.nw.rp-box{border-left-color:var(--accent)!important;box-shadow:0 0 0 2.5px #f
 .rp-m small{font-size:.64rem;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rp-sim+.rp-team{margin:-4px 0 12px;padding:0 10px}
 .rp-due{display:flex;gap:10px}.rp-due>div{flex:1;min-width:0}.rp-due .rp-r{font-size:.8rem}
+
+/* filtri: prima riga a barra unica, seconda riga con tutti i comandi su una riga (testo che si adatta alla larghezza) */
+.filters{padding:8px!important;gap:8px!important}
+.filters #f-prize{display:grid!important;grid-template-columns:1fr 1.45fr 1fr;gap:0!important;padding:3px;border-radius:999px;border:2px solid color-mix(in srgb,var(--ink) 80%,transparent);background:var(--card)}
+.filters #f-prize button{border:0!important;box-shadow:none!important;background:none;border-radius:999px;min-height:34px!important;font-weight:800;justify-content:center;text-align:center}
+.filters #f-prize button[aria-pressed="true"]{background:linear-gradient(120deg,#e11d2e,#7c3aed)!important;color:#fff}
+.filters #f-row2{display:grid!important;min-width:0;grid-template-columns:34px auto auto auto auto auto 28px;gap:3px!important}
+.filters #f-row2>*{min-height:36px!important;border-radius:12px!important;border:1.5px solid color-mix(in srgb,var(--ink) 75%,transparent)!important;background-color:var(--card)!important;color:var(--ink)!important;font-weight:800;font-size:clamp(.55rem,2.6vw,.84rem)!important;width:100%!important;max-width:none!important;min-width:0;box-sizing:border-box;justify-content:center;text-align:center;padding:0 2px!important}
+.filters #f-big{padding:0 6px!important}
+.filters #f-row2 select{-webkit-appearance:none;appearance:none;text-align-last:center;padding:0 9px 0 1px!important;text-overflow:clip;letter-spacing:-.01em;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23999'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 3px center!important}
+.filters #f-ord,.filters #reset{padding:0!important;display:flex;align-items:center;justify-content:center}
+.filters #f-row2>[aria-pressed="true"],.filters #f-row2 select.on{border-color:#ffd21f!important;background-color:color-mix(in srgb,#ffd21f 18%,var(--card))!important}
+@media (min-width:600px){.filters #f-row2{gap:6px!important;grid-template-columns:48px auto 1fr 1fr 1fr 1fr 40px}}
+.filters #f-row2 select{field-sizing:content}
 /* modulo «Carica la top 8»: bordo esterno giallo (resta il rosso) */
 li.nw.frm{box-shadow:0 0 0 2.5px #ffd21f,0 2px 10px rgba(124,58,237,.12)!important}
 li.nw.loc{border-left-color:var(--mute)}li.nw.frm{border-left-color:var(--accent)}
@@ -509,10 +523,12 @@ li.nxhl{animation:nxhl 2.2s ease-out}
 <button data-v="nocash" aria-pressed="false">For Fun</button>
 </div>
 <div class="grp" id="f-row2">
-<button class="btn" id="f-big" type="button" aria-pressed="false" title="Solo tornei con più di 33 iscritti">33+ iscritti</button>
-<select id="f-fee" aria-label="Costo di iscrizione"><option value="">Costo</option><option value="free">Gratis</option><option value="paid">A pagamento</option></select>
-<select id="f-bo" aria-label="Formato"></select>
 <button class="btn" id="f-ord" type="button" aria-pressed="false" aria-label="Ordine: dal più vicino" title="Ordine: dal più vicino"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b>↓</b></button>
+<button class="btn" id="f-big" type="button" aria-pressed="false" title="Solo tornei con più di 33 iscritti" aria-label="Solo tornei con più di 33 iscritti">33+</button>
+<select id="f-fee" aria-label="Costo di iscrizione"><option value="">Costo</option><option value="free">Gratis</option><option value="paid">Pagati</option></select>
+<select id="f-bo" aria-label="Formato"></select>
+<select id="f-reg" aria-label="Regolamento"></select>
+<select id="f-ora" aria-label="Orario (ora del tuo telefono)"><option value="">Orario</option><option value="m">Mattina</option><option value="p">Pomeriggio</option><option value="s">Sera</option><option value="n">Notte</option></select>
 <button class="btn" id="reset" type="button" aria-label="Azzera filtri" title="Azzera filtri">↺</button>
 </div>
 </div>
@@ -558,7 +574,7 @@ li.nxhl{animation:nxhl 2.2s ease-out}
 <script>
 var EVENTS=[];
 var REG=["Abruzzo","Basilicata","Calabria","Campania","Emilia-Romagna","Friuli-Venezia Giulia","Lazio","Liguria","Lombardia","Marche","Molise","Piemonte","Puglia","Sardegna","Sicilia","Toscana","Trentino-Alto Adige","Umbria","Valle d'Aosta","Veneto"];
-var st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",region:"",prov:"",q:""};
+var st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",ora:"",region:"",prov:"",q:""};
 var $=function(i){return document.getElementById(i)};
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function fmt(d){try{return new Date(d+"T12:00:00").toLocaleDateString(LCL,{weekday:"short",day:"numeric",month:"long",year:"numeric"})}catch(e){return d}}
@@ -892,7 +908,7 @@ if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTM
 document.querySelector(".filters").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",rep:"Report: statistiche dalle partite vere dei tornei ufficiali",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
 var ev=EVENTS.filter(function(e){
 return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.mode))&&(st.prize==="all"||(st.prize==="cash"?e.cash===true:e.cash!==true))
-&&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||e.bo===st.bo)
+&&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||(e.bo||(e.mode==="regional"?"Bo3":""))===st.bo)&&(!st.ora||fascia(e)===st.ora)
 &&(!st.fee||(st.fee==="free"?e.fee===0:e.fee>0))&&(!st.big||e.players==null||e.players>33)&&(!st.q||(e.name+" "+(e.org||"")+" "+(e.where||"")+" "+(e.type||"")+" "+(e.reg||"")).toLowerCase().indexOf(st.q)>-1)
 
 }).sort(function(a,b){var x=(a.date||"9999")+" "+(a.time||"99:99"),y=(b.date||"9999")+" "+(b.time||"99:99");if(!a.date||!b.date)return a.date?-1:b.date?1:0;return x<y?(ORD?1:-1):x>y?(ORD?-1:1):0});
@@ -934,16 +950,24 @@ function fol(e){var on=FOLL.indexOf(e.url)>-1;return '<span class="hb"><button c
 $("list").addEventListener("click",function(ev){var b=ev.target.closest("[data-f]");if(!b)return;var u=EVENTS[b.dataset.f].url,i=FOLL.indexOf(u);if(i<0)FOLL.push(u);else FOLL.splice(i,1);try{localStorage.setItem("vgc-seguiti",JSON.stringify(FOLL))}catch(e){}render()});
 function provs(){var l=[];EVENTS.forEach(function(e){if(e.mode==="live"&&e.region===st.region&&l.indexOf(e.prov)<0)l.push(e.prov)});
 fill("f-prov","Tutte le province",l.sort());$("f-prov").disabled=!st.region;st.prov=""}
-function setup(){fill("f-bo","Formato",uniq("bo"));}
+function setup(){fill("f-bo","Formato",["Bo1","Bo3"]);fill("f-reg","Reg.",uniq("reg"));fltOn()}
+/* filtri attivi: bordo giallo sul menu scelto */
+function fltOn(){["f-fee","f-bo","f-reg","f-ora"].forEach(function(i){var x=$(i);if(x)x.classList.toggle("on",!!x.value)})}
+/* Orario: fascia nell'ora del telefono. Gli orari dei tornei sono salvati in ora italiana (Europe/Rome) */
+var ROMAF=null;
+function oraLocale(e){if(!e.date||!e.time)return -1;var a=e.date.split("-"),b=e.time.split(":"),g=Date.UTC(+a[0],a[1]-1,+a[2],+b[0],+b[1]);
+try{ROMAF=ROMAF||new Intl.DateTimeFormat("en-US",{timeZone:"Europe/Rome",hourCycle:"h23",year:"numeric",month:"numeric",day:"numeric",hour:"numeric",minute:"numeric"});
+var q={};ROMAF.formatToParts(new Date(g)).forEach(function(x){q[x.type]=+x.value});var w=Date.UTC(q.year,q.month-1,q.day,q.hour%24,q.minute);return new Date(g-(w-g)).getHours()}catch(x){return +b[0]}}
+function fascia(e){var h=oraLocale(e);return h<0?"":h<6?"n":h<12?"m":h<18?"p":"s"}
 [["f-mode","mode"],["f-prize","prize"]].forEach(function(p){
 $(p[0]).addEventListener("click",function(ev){var b=ev.target.closest("button");if(!b)return;if(p[1]==="mode"){if(st.mode==="news"&&b.dataset.v!=="news")amVisto();if(ev.isTrusted&&b.dataset.v==="news"&&st.mode!=="news")NV="loc";BK=false;try{sessionStorage.setItem("vgc-last-mode",b.dataset.v)}catch(e){}}st[p[1]]=b.dataset.v;
 this.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});render()})});
-[["f-fee","fee"],["f-bo","bo"]].forEach(function(p){
-$(p[0]).addEventListener("change",function(){st[p[1]]=this.value;render()})});
+[["f-fee","fee"],["f-bo","bo"],["f-reg","reg"],["f-ora","ora"]].forEach(function(p){
+$(p[0]).addEventListener("change",function(){st[p[1]]=this.value;fltOn();render()})});
 $("f-ord").addEventListener("click",function(){ORD=!ORD;try{localStorage.setItem("vgc-ord",ORD?"1":"0")}catch(x){}ordSync();render()});ordSync();
-$("reset").addEventListener("click",function(){ORD=false;try{localStorage.setItem("vgc-ord","0")}catch(x){}ordSync();st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",region:"",prov:"",q:""};
+$("reset").addEventListener("click",function(){ORD=false;try{localStorage.setItem("vgc-ord","0")}catch(x){}ordSync();st={mode:"all",prize:"all",type:"",fee:"",reg:"",bo:"",ora:"",region:"",prov:"",q:""};
 document.querySelectorAll("button[data-v]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.v==="all")});
-$("f-fee").value="";$("f-big").setAttribute("aria-pressed","false");$("q").value="";setup();render()});
+$("f-fee").value="";$("f-ora").value="";$("f-big").setAttribute("aria-pressed","false");$("q").value="";setup();render()});
 $("s-go").addEventListener("click",function(){
 var v=function(i){return $(i).value.trim()};
 $("s-out").value=["Nome: "+v("s-name"),"Data: "+v("s-date"),"Modalità: "+v("s-mode"),"Luogo o piattaforma: "+v("s-where"),"Tipo: "+v("s-type"),"Costo: "+(Number(v("s-fee"))?v("s-fee")+" €":"Gratis"),"Premi in denaro: "+(v("s-prize")||"No"),"Regolamento: "+v("s-reg"),"Formato: "+v("s-bo"),"Link: "+v("s-url")].join("\n");
@@ -1175,7 +1199,7 @@ var MESI_IT=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","a
 function langIdx(){for(var i=1;i<LANGS.length;i++)if(LANGS[i][0]===LANG)return i-1;return -1}
 function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc2(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
-function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128d';sc.onload=cb;document.head.appendChild(sc)}
+function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128e';sc.onload=cb;document.head.appendChild(sc)}
 function buildTr(){EXM={};PHL=[];var i=langIdx();if(i<0)return;
 EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});TYM={};Object.keys(TYPE).forEach(function(k){TYM[k]=Array.isArray(TYPE[k])?TYPE[k][i]:TYPE[k]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
 var cn=Object.keys(CTRY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CTRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+cn+")(?![A-Za-zÀ-ÿ])","g");
