@@ -1,9 +1,10 @@
 name: Widget - dati per l'app
-# Parte DA SOLO ogni ora (e quando cambiano tornei, annunci o questo file): prepara widget.json, il file piccolo che leggono i widget dell'app Android.
+# Parte DA SOLO ogni ora (e quando cambiano tornei, annunci o questo file): prepara widget.json, il file piccolo che leggono i widget dell'app Android,
+# e report.json (sezione Report di Altopiano Blu: si aggiorna da solo quando finisce un torneo, vgcstats/index.json).
 on:
   push:
     branches: [main]
-    paths: ["events.json", "annunci.json", "locali.json", "vgcstats/index.json", "widget_data.py", ".github/workflows/widget.yml"]
+    paths: ["events.json", "annunci.json", "locali.json", "vgcstats/index.json", "widget_data.py", "report_data.py", ".github/workflows/widget.yml"]
   schedule:
     - cron: "29 * * * *"
   workflow_dispatch:
@@ -22,11 +23,13 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -u widget_data.py
+      - run: python -u report_data.py
       - name: Salva su GitHub (solo se cambiato)
         run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
           git add widget.json
+          if [ -f report.json ]; then git add report.json; fi
           if [ -f widget_usage.json ]; then git add widget_usage.json; fi
           if ! git diff --staged --quiet; then
             git commit -m "Widget: dati aggiornati"
