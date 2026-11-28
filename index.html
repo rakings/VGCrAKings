@@ -140,6 +140,49 @@ li.seg.amenu{border:0!important;box-shadow:none!important;background:none!import
 .am-t svg{flex:none}.am-t small{font-size:.64rem;font-weight:900;letter-spacing:.06em;color:#ffd21f}.am-t.on small{color:#fff}
 .am-new{position:absolute;top:-7px;right:8px;background:#86d8f0;color:#06222c;border-radius:999px;font-size:.58rem;font-weight:900;padding:2px 6px}
 @media (prefers-reduced-motion:reduce){.am-big.brilla,.am-bk.brilla{animation:none}}
+
+/* Report (Altopiano Blu) */
+li.seg.rp{margin:0 0 8px}
+.rp-sub{display:flex;gap:4px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:3px}
+.rp-sub button{flex:1;border:0;border-radius:11px;padding:9px 2px;font:inherit;font-size:.78rem;white-space:nowrap;font-weight:700;background:none;color:var(--ink);cursor:pointer}
+.rp-sub button[aria-pressed="true"]{background:#ffd21f;color:#3a2a00}
+li.nw.rp-box{border-left-color:var(--accent)!important;box-shadow:0 0 0 2.5px #fff,inset 4px 0 0 #ffd21f,0 2px 10px rgba(124,58,237,.12)!important}
+.rp-sel{display:flex;align-items:center;gap:10px;border:1.5px solid #ffd21f;border-radius:14px;padding:6px 10px;background:var(--card);margin-bottom:10px}
+.rp-sel select{flex:1;border:0;background:none;color:var(--ink);font:inherit;font-weight:800;font-size:1.02rem;padding:6px 0}
+.rp-sel select option{color:#111}
+.rp-kpi{display:flex;gap:8px;margin:0 0 10px}.rp-kpi div{flex:1;text-align:center;border:1.5px solid color-mix(in srgb,#ffd21f 40%,transparent);background:color-mix(in srgb,#ffd21f 8%,transparent);border-radius:12px;padding:6px}
+.rp-kpi b{display:block;font-size:1.08rem;color:#ffd21f}.rp-kpi span{font-size:.7rem;color:var(--mute)}
+.rp-h{font-size:.76rem;font-weight:800;color:#86d8f0;text-transform:uppercase;letter-spacing:.04em;margin:10px 2px 4px}
+.rp-r{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.rp-r:last-child{border-bottom:0}
+.rp-r b{flex:1;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rp-r .ph,.rp-sel .ph,.rp-dots .ph{width:20px;height:20px}
+.rp-rec{font-size:.72rem;color:var(--mute);white-space:nowrap}
+.rp-bar{width:46px;height:6px;border-radius:3px;background:var(--line);overflow:hidden;flex:none}.rp-bar i{display:block;height:100%}.rp-bar i.rp-v{background:#3ddc97}.rp-bar i.rp-p{background:#ff6b6b}
+.rp-pc{width:38px;text-align:right;font-weight:900}.rp-pc.rp-v{color:#3ddc97}.rp-pc.rp-p{color:#ff6b6b}
+.rp-nota{font-size:.74rem;color:var(--mute);margin:8px 0 0;line-height:1.35}
+#rp-q,#rp-team{width:100%;box-sizing:border-box;font:inherit;border-radius:12px;border:1.5px solid #ffd21f;background:var(--card);color:var(--ink);padding:10px 12px}
+#rp-team{margin:6px 0 8px;resize:vertical}.rp-lab{font-size:.82rem;color:var(--mute)}
+#rp-sug{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.rp-s{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;font:inherit;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:8px 10px;cursor:pointer}.rp-s span{font-size:.74rem;color:var(--mute)}
+.rp-pl{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rp-vr{margin-left:auto;flex:none;font:inherit;font-size:1.08rem;font-weight:900;line-height:1.1;border-radius:999px;padding:6px 14px;cursor:pointer;border:1.5px solid #86d8f0;background:color-mix(in srgb,#86d8f0 18%,transparent);color:var(--ink)}
+.rp-piu{color:#e11d2e;font-weight:900;font-size:1.1em}.rp-vrt{-webkit-text-stroke:1.2px #86d8f0;paint-order:stroke fill;letter-spacing:.03em}.rp-vr[aria-pressed="false"] .rp-vrt{-webkit-text-stroke-color:var(--mute)}.rp-vr[aria-pressed="false"] .rp-piu{color:var(--mute)}
+.rp-vr[aria-pressed="false"]{border-color:var(--line);background:var(--card);color:var(--mute);text-decoration:line-through}.rp-pl b{font-size:1.1rem}
+.rp-ev{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;margin:0 0 8px}
+.rp-ev summary,.rp-sim{list-style:none;display:grid;grid-template-columns:1fr auto;gap:4px;cursor:pointer}.rp-ev summary::-webkit-details-marker{display:none}
+.rp-sim{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;margin:0 0 8px;cursor:default}
+.rp-et b{display:block}.rp-et small,.rp-er small{font-size:.72rem;color:var(--mute);font-weight:400}
+.rp-er{text-align:right}.rp-er b{color:#ffd21f;font-size:1.02rem}.rp-er span{display:block;font-size:.8rem}
+.rp-dots{grid-column:1/3;display:flex;gap:5px;margin-top:2px}
+.rp-nomi{grid-column:1/3;display:none;font-size:.74rem;color:var(--mute)}.rp-ev[open] .rp-nomi,.rp-sim .rp-nomi,.rp-box>.rp-nomi{display:block}
+.rp-box>.rp-dots{margin:4px 0}
+.rp-evw{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;margin:0 0 8px}.rp-evw .rp-ev{border:0;padding:0;margin:0}.rp-evw .rp-ev summary{cursor:default;padding-right:0}.rp-evw .rp-ev summary::after,.rp-evw .rp-ev summary::before{display:none!important;content:none!important}
+.rp-team{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 8px;margin-top:8px}
+.rp-m{display:flex;align-items:center;gap:5px;min-width:0}.rp-m .ph{width:15px;height:15px}
+.rp-m>span{display:flex;flex-direction:column;min-width:0}.rp-m b{font-size:.74rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rp-m small{font-size:.64rem;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rp-sim+.rp-team{margin:-4px 0 12px;padding:0 10px}
+.rp-due{display:flex;gap:10px}.rp-due>div{flex:1;min-width:0}.rp-due .rp-r{font-size:.8rem}
 /* modulo «Carica la top 8»: bordo esterno giallo (resta il rosso) */
 li.nw.frm{box-shadow:0 0 0 2.5px #ffd21f,0 2px 10px rgba(124,58,237,.12)!important}
 li.nw.loc{border-left-color:var(--mute)}li.nw.frm{border-left-color:var(--accent)}
@@ -632,7 +675,68 @@ LOC[0].tm={0:TEAMS[0].map(slot),1:TEAMS[1].map(slot)};LOC[0].rt={0:"A1B2C3"};LOC
 /* Altopiano Blu: menu. In alto Locali (pulsante grande), sotto la barra sottile della Bacheca, poi le altre sezioni.
    Locali e Bacheca brillano UNA volta quando c'e' una novita': smettono appena li apri o quando esci da Altopiano Blu. */
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"&&st.mode==="news")amVisto()});
-var REPORT=false;   /* linguetta Report: si accende nello step successivo */
+/* ---------- Report (Altopiano Blu): matchup, giocatore, la mia squadra. Dati: report.json (partite vere dei tornei ufficiali). ---------- */
+var REP=null,REPP=null,REPKO=false,RP={tab:"mu",mon:0,pl:-1,q:"",vr:true},RPS="vgc-rep-squadra";
+function repLoad(){if(REP||REPP)return;REPKO=false;REPP=fetch("report.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+var mu={};(d.mu||[]).forEach(function(x){(mu[x[0]]=mu[x[0]]||[]).push([x[1],x[2],x[3]])});
+var nk={};d.mon.forEach(function(m,i){nk[repK(m[0])]=i;nk[repK(m[1])]=i});
+REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg};REPP=null;render()}).catch(function(){REPP=null;REPKO=true;render()})}
+function repK(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"")}
+function repN(i){var m=REP.mon[i];return m?m[1]:"?"}
+function repDot(i){return phHtml(repN(i))}
+function repPc(w,l){return w+l?Math.round(100*w/(w+l)):0}
+function repRiga(i,w,l){var p=repPc(w,l),c=p>=50?"rp-v":"rp-p";return '<div class="rp-r">'+repDot(i)+'<b>'+esc(repN(i))+'</b><span class="rp-rec">'+w+'-'+l+'</span><span class="rp-bar"><i class="'+c+'" style="width:'+p+'%"></i></span><span class="rp-pc '+c+'">'+p+'%</span></div>'}
+function repData(d){try{return new Date(d+"T12:00:00").toLocaleDateString(document.documentElement.lang||"it",{day:"numeric",month:"short",year:"numeric"})}catch(e){return d||""}}
+function repNum(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".")}
+function repEv(i){var e=REP.ev[i];return e?{c:e[1],k:{r:"Regionale",i:"Internazionale",w:"Mondiale",v:"Victory Road"}[e[2]]||"Special",d:e[3],n:e[4]}:{c:"?",k:"",d:"",n:0}}
+function repDots(t){return '<span class="rp-dots">'+t.map(repDot).join("")+'</span><span class="rp-nomi">'+t.map(function(i){return esc(repN(i))}).join(" · ")+'</span>'}
+/* squadra di un torneo: nome e strumento di ogni Pokemon (strumento solo per la Top 256) */
+function repSquadra(t,it){return '<div class="rp-team">'+t.map(function(i,j){var s=it&&it[j]>-1?REP.it[it[j]]:"";return '<span class="rp-m">'+repDot(i)+'<span><b>'+esc(repN(i))+'</b>'+(s?'<small>@ '+esc(s)+'</small>':'')+'</span></span>'}).join("")+'</div>'}
+function repHtml(){var h='<li class="seg rp"><div class="rp-sub">'+[["mu","Matchup"],["pl","Giocatore"],["sq","La mia squadra"]].map(function(x){return '<button type="button" data-rpt="'+x[0]+'" aria-pressed="'+(RP.tab===x[0])+'">'+x[1]+'</button>'}).join("")+'</div></li>';
+if(!REP){repLoad();return h+'<li class="nw rp-box">'+(REPKO?'Report non disponibile in questo momento. Riprova tra poco.':'Caricamento del report…')+'</li>'}
+return h+(RP.tab==="pl"?repGioc():RP.tab==="sq"?repSq():repMu())}
+function repTop(rows,min){var r=rows.filter(function(x){return x[1]+x[2]>=min});if(r.length<6&&min>100)return repTop(rows,Math.round(min/2));return r}
+function repMu(){var opz=REP.mon.map(function(m,i){return [i,m[2]+m[3]]}).filter(function(x){return x[1]>=300});if(!opz.length)return '<li class="nw rp-box">Ancora pochi dati per il regolamento in corso.</li>';
+if(!opz.some(function(x){return x[0]===RP.mon}))RP.mon=opz[0][0];var m=REP.mon[RP.mon],g=m[2]+m[3];
+var rows=repTop(REP.mu[RP.mon]||[],400),best=rows.slice().sort(function(a,b){return repPc(b[1],b[2])-repPc(a[1],a[2])}).slice(0,5),worst=rows.slice().sort(function(a,b){return repPc(a[1],a[2])-repPc(b[1],b[2])}).slice(0,5);
+return '<li class="nw rp-box"><label class="rp-sel">'+repDot(RP.mon)+'<select id="rp-mon" aria-label="Scegli un Pokémon">'+opz.map(function(x){return '<option value="'+x[0]+'"'+(x[0]===RP.mon?' selected':'')+'>'+esc(repN(x[0]))+'</option>'}).join("")+'</select></label>'
++'<div class="rp-kpi"><div><b>'+repNum(g)+'</b><span>partite</span></div><div><b>'+repPc(m[2],m[3])+'%</b><span>vittorie</span></div><div><b>'+REP.ev.length+'</b><span>tornei</span></div></div>'
++'<div class="rp-h">Contro chi vince di più</div>'+best.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
++'<div class="rp-h">Contro chi soffre</div>'+worst.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
++'<p class="rp-nota">Partite vere dei tornei ufficiali e dei Victory Road del regolamento '+esc(REP.reg||"")+'. «'+esc(repN(RP.mon))+' contro X» = partite in cui una squadra aveva '+esc(repN(RP.mon))+' e l\'avversaria X. È una tendenza, non la causa del risultato.</p></li>'}
+function repSug(q){var k=repK(q);if(k.length<2)return "";var o=[];for(var i=0;i<REP.pl.length&&o.length<8;i++){if(repK(REP.pl[i][0]).indexOf(k)>-1)o.push(i)}
+return o.length?o.map(function(i){var p=REP.pl[i];return '<button type="button" class="rp-s" data-rpp="'+i+'"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+' · '+p[2].length+(p[2].length===1?' torneo':' tornei')+'</span></button>'}).join(""):'<p class="rp-nota">Nessun giocatore trovato.</p>'}
+function repGioc(){var h='<li class="nw rp-box"><input id="rp-q" type="search" autocomplete="off" placeholder="Cerca un giocatore" value="'+esc(RP.q)+'"><div id="rp-sug">'+(RP.pl<0?repSug(RP.q):"")+'</div></li>';
+var p=REP.pl[RP.pl];if(!p)return h;var haVr=p[2].some(function(t){return REP.ev[t[0]][2]==="v"}),tt=p[2].filter(function(t){return RP.vr||REP.ev[t[0]][2]!=="v"}),W=0,L=0;tt.forEach(function(t){W+=t[2];L+=t[3]});var bt=RP.vr||!p[5]?p[3]:p[5],ft=RP.vr||!p[6]?p[4]:p[6];
+var ev=tt.slice().sort(function(a,b){return String(REP.ev[b[0]][3]).localeCompare(String(REP.ev[a[0]][3]))});
+return h+'<li class="nw rp-box"><div class="rp-pl"><b>'+esc(p[0])+'</b>'+(p[1]?'<span class="tag">'+esc(p[1])+'</span>':'')+(haVr?'<button type="button" class="rp-vr" data-rpvr="1" aria-pressed="'+RP.vr+'" aria-label="'+(RP.vr?'Victory Road inclusi: tocca per escluderli':'Victory Road esclusi: tocca per includerli')+'"><span class="rp-piu">+</span><span class="rp-vrt">VR</span></button>':'')+'</div>'
++'<div class="rp-kpi"><div><b>'+tt.length+'</b><span>tornei</span></div><div><b>'+W+'-'+L+'</b><span>record</span></div><div><b>'+repPc(W,L)+'%</b><span>vittorie</span></div></div>'
++ev.map(function(t){var e=repEv(t[0]);return '<div class="rp-evw"><details class="rp-ev" open><summary><span class="rp-et"><b>'+esc(e.c)+'</b><small>'+e.k+' · '+repData(e.d)+'</small></span><span class="rp-er"><b>'+(t[1]===1?'🏆 ':'')+t[1]+'°</b><small>/'+e.n+'</small><span>'+t[2]+'-'+t[3]+'</span></span>'+'</summary></details>'+repSquadra(t[4],t[5])+'</div>'}).join("")
++'<div class="rp-due"><div><div class="rp-h">Ha battuto più spesso</div>'+bt.map(function(x){return '<div class="rp-r">'+repDot(x[0])+'<b>'+esc(repN(x[0]))+'</b><span class="rp-pc rp-v">'+x[1]+'</span></div>'}).join("")+'</div>'
++'<div><div class="rp-h">L\'ha fermato più spesso</div>'+ft.map(function(x){return '<div class="rp-r">'+repDot(x[0])+'<b>'+esc(repN(x[0]))+'</b><span class="rp-pc rp-p">'+x[1]+'</span></div>'}).join("")+'</div></div></li>'}
+function repTeam(){var t=[];try{t=JSON.parse(localStorage.getItem(RPS)||"[]")||[]}catch(e){}return t.filter(function(i){return REP.mon[i]})}
+function repLeggi(tx){var v=parseTeam(tx||""),o=[],no=[];v.forEach(function(m){var n=String(m.n||"").replace(/\s*\(.*?\)\s*/g," ").trim(),i=REP.nk[repK(n)];if(i===undefined)i=REP.nk[repK(String(m.n||"").replace(/[()]/g,""))];if(i===undefined)i=REP.nk[repK(n.replace(/-(mega|m|f)$/i,""))];if(i!==undefined&&o.indexOf(i)<0)o.push(i);else if(i===undefined)no.push(m.n)});return {t:o.slice(0,6),no:no}}
+function repSq(){var t=repTeam(),h='<li class="nw rp-box"><label class="rp-lab" for="rp-team">Incolla la tua squadra: testo di Showdown/Pokepaste oppure 6 nomi separati da virgola</label><textarea id="rp-team" rows="4" placeholder="Incineroar, Rillaboom, Kingambit…">'+esc(t.map(repN).join(", "))+'</textarea><button type="button" class="btn main" id="rp-go">Analizza la squadra</button><p class="rp-nota" id="rp-msg"></p></li>';
+if(!t.length)return h;
+var tot={};t.forEach(function(a){(REP.mu[a]||[]).forEach(function(x){if(t.indexOf(x[0])>-1)return;var q=tot[x[0]]||(tot[x[0]]=[0,0]);q[0]+=x[1];q[1]+=x[2]})});
+var rows=Object.keys(tot).map(function(k){return [+k,tot[k][0],tot[k][1]]}),rr=repTop(rows,600);
+var minacce=rr.slice().sort(function(a,b){return repPc(a[1],a[2])-repPc(b[1],b[2])}).slice(0,5),forza=rr.slice().sort(function(a,b){return repPc(b[1],b[2])-repPc(a[1],a[2])}).slice(0,5);
+var sim=[];REP.pl.forEach(function(p){p[2].forEach(function(x){var c=x[4].filter(function(i){return t.indexOf(i)>-1}).length;if(c>=Math.min(4,t.length))sim.push([c,x,p])})});
+sim.sort(function(a,b){return b[0]-a[0]||a[1][1]-b[1][1]});
+return h+'<li class="nw rp-box"><div class="rp-h">La tua squadra</div>'+repDots(t)
++'<div class="rp-h">Le minacce</div>'+minacce.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
++'<div class="rp-h">I punti di forza</div>'+forza.map(function(x){return repRiga(x[0],x[1],x[2])}).join("")
++'<div class="rp-h">Squadre più simili ai tornei</div>'+(sim.length?sim.slice(0,8).map(function(s){var e=repEv(s[1][0]);return '<div class="rp-ev rp-sim"><span class="rp-et"><b>'+esc(s[2][0])+'</b><small>'+esc(e.c)+' · '+s[0]+' su 6 uguali</small></span><span class="rp-er"><b>'+s[1][1]+'°</b><small>/'+e.n+'</small><span>'+s[1][2]+'-'+s[1][3]+'</span></span>'+'</div>'+repSquadra(s[1][4],s[1][5])}).join(""):'<p class="rp-nota">Nessuna squadra con almeno 4 Pokémon uguali.</p>')
++'<p class="rp-nota">Somma delle partite vere dei tornei tra i Pokémon della tua squadra e quelli avversari: minacce = contro chi le squadre con i tuoi Pokémon hanno vinto di meno.</p></li>'}
+$("list").addEventListener("click",function(ev){var t=ev.target,b=t.closest("[data-rpt]");if(b){RP.tab=b.dataset.rpt;render();return}
+if(t.closest("[data-rpvr]")){RP.vr=!RP.vr;render();return}
+b=t.closest("[data-rpp]");if(b){RP.pl=+b.dataset.rpp;RP.q=REP.pl[RP.pl][0];render();return}
+if(t.id==="rp-go"){var r=repLeggi($("rp-team").value);if(r.t.length<2){$("rp-msg").textContent="Non ho riconosciuto abbastanza Pokémon: scrivi almeno 2 nomi.";return}
+try{localStorage.setItem(RPS,JSON.stringify(r.t))}catch(e){}render();if(r.no.length){var m=$("rp-msg");if(m)m.textContent="Non riconosciuti: "+r.no.join(", ")}}});
+$("list").addEventListener("change",function(ev){if(ev.target.id==="rp-mon"){RP.mon=+ev.target.value;render()}});
+$("list").addEventListener("input",function(ev){if(ev.target.id==="rp-q"&&REP){RP.q=ev.target.value;RP.pl=-1;var s=$("rp-sug");if(s)s.innerHTML=repSug(RP.q)}});
+
+var REPORT=true;    /* linguetta Report (report.json, creato da report_data.py) */
 var LOCPEND=false,BKPEND=[],LOCS="vgc-loc-visto",BKLS="vgc-bk-luce";
 var AMI={store:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9v11h16V9"/><path d="M3 9h18"/><path d="M9 20v-6h6v6"/></svg>',
 trophy:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>',
@@ -711,7 +815,7 @@ var l=BN?a.filter(function(p){return p.c===BN}):a;
 return '<li class="nw best"><p class="meta" style="margin:0 0 8px">Giocatori con almeno una top 16 a un Regionale nella stagione 2026, in ordine di risultati. Elenco parziale: per il Regional Recife c\'è la top 16 completa, per gli altri 16 Regionali solo i vincitori. Con il bot sarà completo. Fonte: Limitless VGC.</p><label>Nazionalità<select id="b-nat"><option value="">Tutte le nazioni ('+a.length+')</option>'+o+'</select></label></li>'+l.map(bestRow).join("")}
 function bestTeaser(){return '<li class="nw best"><b>Best Player</b><span class="meta" style="display:block;margin:2px 0 8px">I primi 5 per numero di top 16 a un Regionale</span>'+bestList().slice(0,5).map(function(p){return '<div class="row"><b>'+esc(p.n)+'</b> <span class="meta" style="margin:0">('+esc(CN[p.c]||p.c)+') · '+p.f.length+(p.f.length===1?' Regionale':' Regionali')+' in top 16</span></div>'}).join("")+'<button class="btn" type="button" data-nv="best" style="margin-top:8px">Vedi tutti i Best Player</button></li>'}
 function ctaLoc(){return '<li class="nw frm"><b>Organizzi un torneo locale?</b><span class="meta" style="display:block;margin:2px 0 8px">Carica la top 8 con le squadre: nome, item, natura, abilità e mosse.</span><button class="btn main" type="button" data-nv="loc">Carica la top 8 del tuo locale</button></li>'}
-function newsView(){switch(NV){case"big":return newsHtml();case"best":return bestHtml();case"loc":return localiHtml();case"it":return italiHtml();default:return localiHtml()}}
+function newsView(){switch(NV){case"big":return newsHtml();case"best":return bestHtml();case"loc":return localiHtml();case"it":return italiHtml();case"rep":return repHtml();default:return localiHtml()}}
 $("list").addEventListener("change",function(ev){if(ev.target.id==="b-nat"){BN=ev.target.value;render()}});
 var CAL={on:true,y:0,m:0,day:"",view:"days"};   /* predefinito: Calendario (a giorni, oggi) */
 var MN=[],WD=[],WDL=[];
@@ -764,7 +868,7 @@ var FLT=null;function render(){FLT=FLT||document.querySelector(".filters");if(FL
 if(st.mode==="vgcs"){bkSync(true);document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="";$("count").style.display="none";$("list").innerHTML='<li class="vgcs-host" id="vgcs"></li>';vgcsOpen();return}
 bkSync(nw);
 if(BK){document.querySelector(".filters").style.display="none";$("cal").innerHTML="";$("count").textContent="Bacheca: annunci e regolamento";annSeen();bkSync(nw);$("list").innerHTML=(nw?segHtml():"")+infoHtml();return}
-document.querySelector(".filters").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
+document.querySelector(".filters").style.display=nw?"none":"";if(nw)$("cal").innerHTML="";if(nw){$("count").textContent=({all:"Tutto in un colpo d'occhio",big:"Grandi tornei: tocca un torneo per vedere le squadre",best:"Best Player: almeno una top 16 a un Regionale",loc:"Locali: risultati inviati dagli organizzatori",it:"Italiani in evidenza",rep:"Report: statistiche dalle partite vere dei tornei ufficiali",info:"Regolamento e punti"})[NV];$("list").innerHTML=segHtml()+newsView();return}
 var ev=EVENTS.filter(function(e){
 return (st.mode==="all"||(st.mode==="follow"?FOLL.indexOf(e.url)>-1:e.mode===st.mode))&&(st.prize==="all"||(st.prize==="cash"?e.cash===true:e.cash!==true))
 &&(!st.type||e.type===st.type)&&(!st.reg||e.reg===st.reg)&&(!st.bo||e.bo===st.bo)
@@ -1050,7 +1154,7 @@ var MESI_IT=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","a
 function langIdx(){for(var i=1;i<LANGS.length;i++)if(LANGS[i][0]===LANG)return i-1;return -1}
 function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc2(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
-function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128a';sc.onload=cb;document.head.appendChild(sc)}
+function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128b';sc.onload=cb;document.head.appendChild(sc)}
 function buildTr(){EXM={};PHL=[];var i=langIdx();if(i<0)return;
 EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});TYM={};Object.keys(TYPE).forEach(function(k){TYM[k]=Array.isArray(TYPE[k])?TYPE[k][i]:TYPE[k]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
 var cn=Object.keys(CTRY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CTRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+cn+")(?![A-Za-zÀ-ÿ])","g");
