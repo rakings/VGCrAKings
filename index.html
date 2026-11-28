@@ -697,7 +697,7 @@ window.VGCS_VR=window.VGCS_VR||"https://rakings.github.io/VGCdatiAK/vr/";
 /* Icone degli strumenti nelle squadre e nelle statistiche. Vuoto = nessuna icona. {id} = nome dello strumento (es. life-orb). */
 window.VGCS_ICONS=window.VGCS_ICONS||"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/{id}.png";
 var VGP=null;
-function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261128a";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
+function vgcsLoad(){if(window.VGCS)return Promise.resolve();if(VGP)return VGP;VGP=new Promise(function(ok,ko){var sc=document.createElement("script");sc.src="vgcstats.js?v=20261128b";sc.onload=ok;sc.onerror=function(){VGP=null;ko()};document.head.appendChild(sc)});return VGP}
 function vgcsOpen(){var h=$("vgcs");if(window.VGCS){VGCS.mount(h);return}vgcsLoad().then(function(){var x=$("vgcs");if(st.mode==="vgcs"&&x)VGCS.mount(x)}).catch(function(){h.innerHTML='<p class="meta">Non riesco a caricare la sezione. Riprova tra poco.</p>'})}
 /* ricerca giocatore: parte da 3 lettere, in tutte le schede */
 var PT=0,PQ="";
