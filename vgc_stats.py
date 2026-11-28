@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""VGC Stats - raccolta dati dei regionali VGC dalla API di Pokedata (pokedata.ovh/apiv3).
+"""VGC Stats - raccolta dati dei regionali VGC: abbinamenti, risultati e classifica da RK9 (fonte originale), squadre dalla API di
+Pokedata (pokedata.ovh/apiv3). Se RK9 non va o da' dati strani si usa solo Pokedata (riserva automatica, vedi RK9_ATTIVO).
 
 L'autore di Pokedata ha dato il permesso di usare i suoi dati, anche in tempo reale.
 Solo libreria standard. UNA richiesta per regionale (classifica + squadre + swiss tutto insieme).
@@ -565,9 +566,226 @@ def avvisa_finale(ev, players, swiss):
     return False
 
 
+# ---------- RK9 come fonte PRINCIPALE di abbinamenti, risultati e classifica (dal 28/11/2026) ----------
+# RK9 e' la fonte originale (Pokedata copia da li'): durante la diretta e' piu' aggiornata. Pokedata resta per le squadre
+# e come RISERVA AUTOMATICA: se RK9 non risponde, ci blocca o da' dati strani, questo giro usa solo Pokedata (come prima).
+# INTERRUTTORE: RK9_ATTIVO = False -> si torna subito a solo Pokedata, senza toccare altro.
+RK9_ATTIVO = True
+RK9_URL = "https://rk9.gg/pairings/"
+RK9_UA = "rAKings VGC bot (+https://rakings.github.io/VGCrAKings/)"
+RK9_DELAY = 2.0          # secondi tra due richieste a RK9 (ritmo tranquillo)
+RK9_PAUSA = 15 * 60      # dopo un errore di RK9 si usa solo Pokedata per 15 minuti, poi si riprova
+RK9_MIN_GIOCATORI = 0.9  # RK9 deve avere almeno il 90% dei giocatori di Pokedata
+RK9_MIN_ABBINATI = 0.97  # almeno il 97% dei giocatori di Pokedata deve ritrovarsi su RK9
+RK9_MAX_DIVERSI = 0.03   # al massimo il 3% di risultati gia' chiusi diversi tra RK9 e Pokedata
+rk9_round_chiusi = {}    # codice RK9 -> {round: partite} dei round gia' completi (non cambiano piu': non si riscaricano)
+rk9_ultimo_round = {}    # codice RK9 -> ultimo round visto (se torna indietro i dati sono strani)
+rk9_pausa_fino = {}      # codice RK9 -> momento fino a cui si salta RK9 dopo un errore
+rk9_usato = {}           # id regionale -> True se l'ultimo giro ha usato RK9
+
+
+def rk9_get(url):
+    time.sleep(RK9_DELAY)
+    req = urllib.request.Request(url, headers={"User-Agent": RK9_UA})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        return r.read().decode("utf-8", "replace")
+
+
+def rk9_testo(h):
+    t = re.sub(r"<br\s*/?>", " ", h or "")
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = t.replace("&amp;", "&").replace("&#39;", "'").replace("&quot;", '"').replace("&nbsp;", " ")
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def rk9_esatto(nome):
+    """Nome esatto (solo spazi sistemati): distingue anche omonimi che differiscono per maiuscole («Ricardo gomes» / «Ricardo Gomes»)."""
+    return re.sub(r"\s+", " ", nome or "").strip()
+
+
+def rk9_chiave(nome):
+    """«Théotime  Massaut [FR]» -> «theotime massaut|FR»: per ritrovare lo stesso giocatore su RK9 e Pokedata se il nome esatto non c'e'."""
+    import unicodedata
+    m = re.match(r"^(.*?)\s*\[([A-Za-z]{2,3})\]\s*$", nome or "")
+    n, cc = (m.group(1), m.group(2).upper()) if m else (nome or "", "")
+    n = unicodedata.normalize("NFKD", n).encode("ascii", "ignore").decode().lower()
+    return " ".join(re.findall(r"[a-z0-9]+", n)) + "|" + cc
+
+
+def rk9_partite(html, pod):
+    """Partite di una pagina (o di un pezzo) di RK9 per la divisione pod: {round: [(g1, esito1, tavolo, g2, esito2, record1, record2)]}.
+    Esito: 3 vinta, 0 persa, 1 pari, -1 ancora da giocare. Bye: g2 vuoto e tavolo None."""
+    celle = re.findall(r'<div id="cell-(\d+)-(\d+)-(\d+)-([123])" class="([^"]*)"\s*>(.*?)</div>', html, re.S)
+    out, cur = {}, None
+    for p, r, t, col, cls, inner in celle:
+        if int(p) != pod:
+            continue
+        r = int(r)
+        if col == "1":
+            cur = {"r": r, "t": int(t)}
+            out.setdefault(r, []).append(cur)
+        if cur is None:
+            continue
+        if col in "12":
+            nome = rk9_testo((re.search(r'<span class="name">(.*?)</span>', inner, re.S) or [None, ""])[1]) if "name" in inner else ""
+            rec = re.search(r'data-wins="(\d+)" data-losses="(\d+)" data-ties="(\d+)"', inner) or re.search(r"\((\d+)-(\d+)-(\d+)\)", inner)
+            c = cls.split()
+            esito = 3 if "winner" in c else 0 if "loser" in c else 1 if ("tie" in c or "draw" in c) else -1
+            cur["n" + col], cur["e" + col] = nome, esito
+            cur["rec" + col] = tuple(int(x) for x in rec.groups()) if rec else None
+    partite = {}
+    for r, lista in out.items():
+        partite[r] = [(m.get("n1", ""), m.get("e1", -1), m["t"] or None, m.get("n2", ""), m.get("e2", -1), m.get("rec1"), m.get("rec2"))
+                      for m in lista if m.get("n1") or m.get("n2")]
+    return partite
+
+
+def rk9_leggi(codice):
+    """Legge da RK9 tutti i round e la classifica dei Masters. Una richiesta per la pagina principale (round in corso e classifica)
+    piu' una per ogni round vecchio non ancora in memoria (solo la prima volta)."""
+    html = rk9_get(RK9_URL + codice)
+    m = re.search(r'id="P(\d)-tab"[^>]*>\s*Masters', html)
+    pod = int(m.group(1)) if m else (2 if 'id="P2"' in html else max([int(x) for x in re.findall(r'id="P(\d)"', html)] or [0]))
+    R = max([int(x) for x in re.findall(r'id="P%dR(\d+)-tab"' % pod, html)] or [0])
+    if not R:
+        raise ValueError("RK9: nessun round dei Masters")
+    in_pagina = rk9_partite(html, pod)
+    chiusi = rk9_round_chiusi.setdefault(codice, {})
+    rounds = {}
+    for r in range(1, R + 1):
+        if r in chiusi:
+            rounds[r] = chiusi[r]
+            continue
+        lista = in_pagina.get(r)
+        if lista is None:
+            lista = rk9_partite(rk9_get("%s%s?pod=%d&rnd=%d" % (RK9_URL, codice, pod, r)), pod).get(r, [])
+        rounds[r] = lista
+        if r < R and lista and all(x[1] != -1 and (not x[3] or x[4] != -1) for x in lista):
+            chiusi[r] = lista
+    posto = {}
+    s = re.search(r'id="P%d-standings"[^>]*>(.*?)</div>' % pod, html, re.S)
+    if s:
+        for n, nome in re.findall(r"(\d+)\.\s*([^<]+?)\s*<br", s.group(1)):
+            posto.setdefault(rk9_esatto(rk9_testo(nome)), int(n))
+    return R, rounds, posto
+
+
+def rk9_record(g):
+    """Record del giocatore: quello scritto da RK9 nell'ultimo round giocato (tiene conto anche di penalita' e ritiri);
+    se manca, contato dai risultati dei round."""
+    if g.get("rec"):
+        w, l, t = g["rec"]
+        return {"wins": w, "losses": l, "ties": t}
+    es = [x["result"] for x in g["rounds"].values()]
+    return {"wins": es.count(3), "losses": es.count(0), "ties": es.count(1)}
+
+
+def rk9_sovrapponi(data, ev):
+    """Protezione: qualunque errore imprevisto nella parte RK9 lascia i dati di Pokedata intatti (lavora su una copia)."""
+    import copy
+    try:
+        return _rk9_sovrapponi(copy.deepcopy(data), ev)
+    except Exception as e:
+        print("RK9 non usato per %s (errore imprevisto: %s): resto su Pokedata." % (ev.get("name"), e))
+        rk9_usato[ev.get("id")] = False
+        return data, False
+
+
+def _rk9_sovrapponi(data, ev):
+    """Mette i dati di RK9 (abbinamenti, risultati, classifica) al posto di quelli di Pokedata, tenendo le squadre di Pokedata.
+    Ritorna (data, True) se ha usato RK9, (data, False) se ha lasciato Pokedata (RK9 spento, assente, bloccato o strano)."""
+    tid = ev.get("id")
+    rk9_usato[tid] = False
+    codice = str(ev.get("rk9") or "").strip().rstrip("/").split("/")[-1]
+    if not RK9_ATTIVO or not re.match(r"^[A-Za-z0-9-]{8,40}$", codice):
+        return data, False
+    if rk9_pausa_fino.get(codice, 0) > time.time():
+        return data, False
+    block = next((b for b in data.get("tournament_data") or [] if b.get("division") == "masters"), None)
+    if block is None:
+        return data, False
+    raw = block.get("data") or []
+
+    def riserva(motivo, pausa=False):
+        print("RK9 non usato per %s (%s): resto su Pokedata." % (ev.get("name"), motivo))
+        if pausa:
+            rk9_pausa_fino[codice] = time.time() + RK9_PAUSA
+        return data, False
+
+    try:
+        R, rounds, posto = rk9_leggi(codice)
+    except urllib.error.HTTPError as e:
+        return riserva("RK9 ha risposto %s" % e.code, True)
+    except Exception as e:
+        return riserva("errore: %s" % e, True)
+    # giocatori di RK9 con i loro round
+    gioc = {}
+    for r, lista in rounds.items():
+        for n1, e1, t, n2, e2, rec1, rec2 in lista:
+            for n, e, avv, rec in ((n1, e1, n2, rec1), (n2, e2, n1, rec2)):
+                if not n:
+                    continue
+                g = gioc.setdefault(rk9_esatto(n), {"name": n, "rounds": {}, "rec": None, "ultimo": 0})
+                g["rounds"][str(r)] = {"name": re.sub(r"\s*\[[A-Za-z]{2,3}\]\s*$", "", avv) if avv else None,
+                                       "result": e if avv else 3, "table": t if avv else None}
+                if r >= g["ultimo"]:
+                    g["ultimo"], g["rec"] = r, rec
+    # controlli: se qualcosa non torna si resta su Pokedata
+    pd_max = max([max([int(k) for k in (p.get("rounds") or {})] or [0]) for p in raw] or [0])
+    if rk9_ultimo_round.get(codice, 0) > R:
+        return riserva("il round e' tornato indietro (%d -> %d)" % (rk9_ultimo_round[codice], R))
+    if R < pd_max:
+        return riserva("RK9 e' al round %d, Pokedata al %d" % (R, pd_max))
+    if raw and len(gioc) < RK9_MIN_GIOCATORI * len(raw):
+        return riserva("pochi giocatori su RK9 (%d contro %d)" % (len(gioc), len(raw)))
+    norm = {}
+    for k in gioc:
+        norm.setdefault(rk9_chiave(k), []).append(k)
+    def trova(nome):   # prima il nome esatto, poi quello senza accenti e maiuscole se e' uno solo
+        e = rk9_esatto(nome)
+        if e in gioc:
+            return e
+        c = norm.get(rk9_chiave(nome)) or []
+        return c[0] if len(c) == 1 else None
+    chiavi = [trova(p.get("name")) for p in raw]
+    abbinati = sum(1 for k in chiavi if k)
+    if raw and abbinati < RK9_MIN_ABBINATI * len(raw):
+        return riserva("solo %d giocatori su %d ritrovati su RK9" % (abbinati, len(raw)))
+    tot = diversi = 0
+    for p, k in zip(raw, chiavi):
+        g = gioc.get(k)
+        if not g:
+            continue
+        for r, e in (p.get("rounds") or {}).items():
+            x = g["rounds"].get(r)
+            if x and e.get("result") in (0, 1, 3) and x["result"] in (0, 1, 3):
+                tot += 1
+                diversi += e["result"] != x["result"]
+    if tot and diversi > RK9_MAX_DIVERSI * tot:
+        return riserva("%d risultati su %d diversi da Pokedata" % (diversi, tot))
+    # tutto a posto: abbinamenti, risultati e classifica da RK9
+    for p, k in zip(raw, chiavi):
+        g = gioc.get(k)
+        if not g:
+            continue
+        p["rounds"] = g["rounds"]
+        p["record"] = rk9_record(g)
+        if k in posto:
+            p["placing"] = posto[k]
+    nuovi = [k for k in gioc if k not in set(chiavi)]
+    for k in nuovi:   # iscritti che Pokedata non ha ancora: senza squadra
+        g = gioc[k]
+        raw.append({"name": g["name"], "placing": posto.get(k, len(raw) + 1), "rounds": g["rounds"], "teamlist": [], "record": rk9_record(g)})
+    rk9_ultimo_round[codice] = R
+    rk9_usato[tid] = True
+    print("RK9 usato per %s: round %d, %d giocatori (%d nuovi rispetto a Pokedata)." % (ev.get("name"), R, len(gioc), len(nuovi)))
+    return data, True
+
+
 def collect(ev, write):
     tid = ev["id"]
     data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
+    data, da_rk9 = rk9_sovrapponi(data, ev)
     ids_path = os.path.join(OUT, str(tid), "ids.json")
     ids = load(ids_path, {})
     ids = ids if isinstance(ids, dict) else {}
@@ -621,7 +839,7 @@ def collect(ev, write):
         last_status[tid] = status
     meta = {"id": tid, "name": ev["name"], "city": ev["city"], "date": ev["start"], "end": ev["end"], "reg": ev["reg"],
             "players": len(players), "rounds": swiss_total, "status": status, "complete": status == "finished", "finale_alle": finale_alle,
-            "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "Pokedata (apiv3), dati RK9",
+            "teams": len(teams), "top": TOP, "day1_rounds": day1, "day2_players": day2, "cut_players": cut, "source": "RK9 (abbinamenti e classifica) + Pokedata (squadre)" if da_rk9 else "Pokedata (apiv3), dati RK9",
             "players_fields": ["id", "name", "country", "placement", "wins", "losses", "day2", "cut", "team"],
             "swiss": "per giocatore, una voce per round: id avversario + esito (W vinta, L persa, T pari, B bye; -1 = avversario non risolto)",
             "updated": time.strftime("%Y-%m-%d %H:%M", time.gmtime())}
@@ -1237,7 +1455,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-21e (regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-28a (RK9 fonte principale di abbinamenti, risultati e classifica con Pokedata di riserva automatica, interruttore RK9_ATTIVO; regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
