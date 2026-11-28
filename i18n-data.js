@@ -25,3 +25,5 @@ Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else
 Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
 (function(){var X={"Pagati": ["Paid", "De pago", "Pagos", "Payants", "Bezahlt", "有料", "유료"]};
 Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
+(function(){var X={"(ufficiali + VR)": ["(official + VR)", "(oficiales + VR)", "(oficiais + VR)", "(officiels + VR)", "(offiziell + VR)", "（公式＋VR）", "(공식 + VR)"], "(solo ufficiali)": ["(official only)", "(solo oficiales)", "(só oficiais)", "(officiels seulement)", "(nur offiziell)", "（公式のみ）", "(공식만)"]};
+Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
