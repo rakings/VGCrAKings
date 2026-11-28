@@ -11,7 +11,7 @@ import android.os.Bundle;
 
 import com.google.androidbrowserhelper.trusted.LauncherActivity;
 
-/** Parte comune dei widget: un solo download aggiorna tutti i widget (Tornei, CP bar, Bacheca, Top 8 dei locali, Top usage). */
+/** Parte comune dei widget: un solo download aggiorna tutti i widget (Tornei, CP bar, Bacheca, Top 8 dei locali, Top usage, Calendario). */
 abstract class Base extends AppWidgetProvider {
 
     abstract void disegna(Context c, AppWidgetManager m, int id);
@@ -39,7 +39,7 @@ abstract class Base extends AppWidgetProvider {
 
     static void ridisegnaTutti(Context c) {
         AppWidgetManager m = AppWidgetManager.getInstance(c);
-        for (Base b : new Base[]{new WidgetTornei(), new WidgetCp(), new WidgetBacheca(), new WidgetLocali(), new WidgetUsage()}) {
+        for (Base b : new Base[]{new WidgetTornei(), new WidgetCp(), new WidgetBacheca(), new WidgetLocali(), new WidgetUsage(), new WidgetCalendario()}) {
             int[] ids = m.getAppWidgetIds(new ComponentName(c, b.getClass()));
             for (int id : ids) b.disegna(c, m, id);
         }
@@ -57,7 +57,8 @@ abstract class Base extends AppWidgetProvider {
 
     /** colori del tema sulla testata (uovo + titolo) e sul fondo del widget */
     static void tema(android.widget.RemoteViews v, Tema t, boolean testata) {
-        v.setInt(R.id.radice, "setBackgroundResource", t.fondo);
+        v.setImageViewResource(R.id.sfondo, t.fondo);
+        v.setInt(R.id.sfondo, "setImageAlpha", t.alfa);   // trasparenza scelta nelle impostazioni (vale per tutti i widget)
         if (testata) { v.setTextColor(R.id.t_titolo, t.accento); v.setTextColor(R.id.t_destra, t.tenue); }
     }
 

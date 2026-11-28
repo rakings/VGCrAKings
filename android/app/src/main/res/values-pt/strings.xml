@@ -62,4 +62,31 @@
     <string name="n_tornei">%d torneios</string>
     <string name="cfg_n_us">Pokémon a mostrar</string>
     <string name="cfg_n_us_nota">Soma dos Regionais, Internacionais e Especiais terminados do regulamento atual. Os sets vêm das equipas publicadas. A lista desliza.</string>
+    <!-- widget Calendario -->
+    <string name="w_cal">Calendário</string>
+    <string name="d_cal">O mês com todos os torneios, LIVE durante Regionais e VR</string>
+    <string name="cal_prec">Mês anterior</string>
+    <string name="cal_succ">Próximo mês</string>
+    <string name="cal_on">Online</string>
+    <string name="cal_mo">Money</string>
+    <string name="cal_vr">Victory Road</string>
+    <string name="cal_gc">Global Ch.</string>
+    <string name="cal_rg">Regional</string>
+    <string name="cal_sp">Special</string>
+    <string name="cal_in">Internac.</string>
+    <string name="cal_ww">Mundial</string>
+    <string name="cfg_cal_tipi">O que mostrar</string>
+    <string name="cfg_cal_fissi">Money tournaments, Victory Road e Regionais aparecem sempre.</string>
+    <string name="cfg_cal_lun">A semana começa no</string>
+    <string name="cfg_lunedi">Segunda</string>
+    <string name="cfg_domenica">Domingo</string>
+    <string name="cfg_cal_leg">Mostrar a legenda</string>
+    <string name="cfg_cal_auto">Voltar sozinho ao mês atual (após 5 minutos)</string>
+    <string name="cfg_trasp">Transparência do fundo</string>
+    <string name="cfg_trasp_nota">Vale para todos os widgets.</string>
+    <string name="cfg_t_on">Online</string>
+    <string name="cfg_t_gc">Global Challenge</string>
+    <string name="cfg_t_sp">Special Event</string>
+    <string name="cfg_t_in">Internacionais</string>
+    <string name="cfg_t_ww">Mundiais</string>
 </resources>

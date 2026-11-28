@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@drawable/fondo_widget">
+<!-- radice: sfondo del tema in un'immagine a parte, cosi' si puo' rendere trasparente (impostazioni dei widget) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:id="@+id/sfondo" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scaleType="fitXY" android:src="@drawable/fondo_widget" android:importantForAccessibility="no" />
+<LinearLayout
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
     <include android:id="@+id/testata" layout="@layout/w_testata" />
     <TextView android:id="@+id/b_nome" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:paddingStart="12dp" android:paddingEnd="12dp" android:textColor="@color/testo" android:textStyle="bold" android:textSize="13sp" android:maxLines="1" android:ellipsize="end" />
@@ -18,3 +23,4 @@
     <TextView android:id="@+id/b_delta" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingTop="4dp" android:textStyle="bold" android:textSize="10.5sp" android:maxLines="1" />
 </LinearLayout>
+</FrameLayout>

@@ -101,6 +101,12 @@
             </intent-filter>
         </receiver>
 
+        <!-- Calendario: le frecce ‹ › e il ritorno al mese corrente arrivano con intent espliciti (nessuna azione pubblica in piu') -->
+        <receiver android:name=".WidgetCalendario" android:exported="true" android:label="@string/w_cal">
+            <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_calendario" />
+        </receiver>
+
         <receiver android:name=".WidgetUsage" android:exported="true" android:label="@string/w_us">
             <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/info_usage" />

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@drawable/fondo_widget">
+<!-- radice: sfondo del tema in un'immagine a parte, cosi' si puo' rendere trasparente (impostazioni dei widget) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:id="@+id/sfondo" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scaleType="fitXY" android:src="@drawable/fondo_widget" android:importantForAccessibility="no" />
+<LinearLayout
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
     <include android:id="@+id/testata" layout="@layout/w_testata" />
     <LinearLayout android:id="@+id/box" android:layout_width="match_parent" android:layout_height="wrap_content"
         android:layout_marginStart="12dp" android:layout_marginEnd="12dp" android:layout_marginBottom="5dp"
@@ -31,3 +36,4 @@
         android:paddingStart="12dp" android:paddingEnd="12dp" android:paddingBottom="8dp" android:clipToPadding="false"
         android:divider="#26808080" android:dividerHeight="1dp" android:scrollbars="vertical" />
 </LinearLayout>
+</FrameLayout>

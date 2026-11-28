@@ -82,6 +82,41 @@ def usage():
     return {"v": 1, "reg": cur, "ev": len(ev), "sq": tot, "r": r}
 
 
+def lettere(e):
+    """Colori del calendario, come dotCols() in index.html: o online, w Mondiale, i Internazionale, s Special, r Regionale;
+    in piu' v Victory Road, g Global Challenge, m money tournament."""
+    c = ["o" if e.get("mode") == "online" else {"Mondiale": "w", "Internazionale": "i", "Special Event": "s"}.get(e.get("type"), "r")]
+    if e.get("org") == "Victory Road" or re.search(r"victoryroad\.pro/vr-", str(e.get("url") or "")):
+        c.append("v")
+    if e.get("type") == "Global Challenge":
+        c.append("g")
+    if e.get("cash") is True:
+        c.append("m")
+    return c
+
+
+def calendario(ev):
+    """Widget Calendario: per ogni giorno le lettere dei tipi di torneo (es. {"2026-12-05":"omv"}). Pochi KB."""
+    giorni = {}
+    for e in ev:
+        if not e.get("date"):
+            continue
+        try:
+            d = datetime.fromisoformat(e["date"]).date()
+            f = datetime.fromisoformat(e.get("end") or e["date"]).date()
+        except Exception:
+            continue
+        for _ in range(40):            # tornei di piu' giorni (massimo 40 per sicurezza)
+            if d > f:
+                break
+            k = d.isoformat()
+            for x in lettere(e):
+                if x not in giorni.get(k, ""):
+                    giorni[k] = giorni.get(k, "") + x
+            d += timedelta(days=1)
+    return dict(sorted(giorni.items()))
+
+
 def main():
     oggi = datetime.now(ROMA).date().isoformat()
     ev = leggi("events.json", {}).get("events", [])
@@ -125,7 +160,16 @@ def main():
            "tm": {k: [str(m.get("n", "")) for m in v if isinstance(m, dict) and m.get("n")] for k, v in (l.get("tm") or {}).items() if isinstance(v, list)},
            "u": SITO + "#locali-" + eh("|".join([l.get("t", ""), l.get("s", ""), l.get("c", ""), l.get("d", "")]))} for l in lo[:3]]
 
+    # calendario: i giorni gia' passati non sono piu' in events.json, quindi si tengono quelli dell'ultimo widget.json (dal mese scorso in poi)
+    cal = calendario(ev)
+    inizio = (datetime.now(ROMA).date().replace(day=1) - timedelta(days=1)).replace(day=1).isoformat()
+    for k, x in (leggi(OUT, {}).get("cal") or {}).items():
+        if inizio <= k < oggi and k not in cal:
+            cal[k] = x
+    cal = dict(sorted(cal.items()))
+
     w = {"v": 1, "vr": ev_w(vr, "vr") if vr else None, "rg": ev_w(rg, tipo(rg)) if rg else None, "money": money, "cp": cp, "bk": bk, "lc": lc,
+         "cal": cal,
          "live": {"reg": SITO + "vgcstats/index.json", "vr": "https://rakings.github.io/VGCdatiAK/vr/index.json"}}
     us = usage()
     if us and leggi(OUT_US, None) != us:

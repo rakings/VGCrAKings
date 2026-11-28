@@ -1202,8 +1202,10 @@ var ANNGO=null;
 var DLINK={italiani:["news","it"],grandi:["news","big"],best:["news","best"],locali:["news","loc"],info:["all"],tutti:["all"],online:["online"],regionali:["regional"]};
 /* #cpbar apre la CP bar (link del widget) */
 function annGo(){if(location.hash==="#cpbar"){try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}(function t(n){if(typeof window.cpOpen==="function")window.cpOpen();else if(n<40)setTimeout(function(){t(n+1)},150)})(0);return}
-var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),mode="news",wantBK=false;
-if(lo){LOCGO=lo[1];LOCDONE=false;VRGO=null;NV="loc"}
+var h=location.hash,m=h.match(/^#annuncio-(\d+)$/),d=h.match(/^#([a-z]+)$/),v=h.match(/^#vr-([a-z0-9-]+)$/),lo=h.match(/^#locali-([a-z0-9]+)$/),sg=h.match(/^#stats-(vr|reg)(?:-([a-z0-9-]+))?$/),ca=h.match(/^#cal-(\d{4})-(\d{2})-(\d{2})$/),mode="news",wantBK=false;
+/* widget Calendario dell'app: apre il calendario su quel giorno (#cal-AAAA-MM-GG) */
+if(ca){VRGO=null;CAL.on=true;CAL.y=+ca[1];CAL.m=+ca[2]-1;CAL.day=ca[1]+"-"+ca[2]+"-"+ca[3];document.querySelectorAll("#f-view button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.vw==="cal")});try{history.replaceState(history.state,"",location.pathname+location.search)}catch(e){}mode="all"}
+else if(lo){LOCGO=lo[1];LOCDONE=false;VRGO=null;NV="loc"}
 else if(sg){VRGO=null;mode="vgcs";STG={sx:sg[1],key:sg[2]||""}}
 else if(v){VRGO=v[1];VRDONE=false;NV="big"}
 else if(m){ANNGO=ANNOPEN=+m[1];annSeen();mode="all";wantBK=true}

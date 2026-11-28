@@ -37,12 +37,53 @@
         <TextView android:id="@+id/n_nota" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
             android:textColor="@color/tenue" android:textSize="12sp" />
     </LinearLayout>
+    <!-- Calendario: tipi da mostrare (Money, VR e Regionali sempre), primo giorno, legenda, ritorno al mese corrente -->
+    <LinearLayout android:id="@+id/sez_cal" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:visibility="gone">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:text="@string/cfg_cal_tipi" android:textColor="@color/testo" android:textSize="14sp" />
+        <CheckBox android:id="@+id/k_on" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_t_on"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <CheckBox android:id="@+id/k_gc" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_t_gc"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <CheckBox android:id="@+id/k_sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_t_sp"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <CheckBox android:id="@+id/k_in" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_t_in"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <CheckBox android:id="@+id/k_ww" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_t_ww"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp"
+            android:text="@string/cfg_cal_fissi" android:textColor="@color/tenue" android:textSize="12sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp"
+            android:text="@string/cfg_cal_lun" android:textColor="@color/testo" android:textSize="14sp" />
+        <RadioGroup android:id="@+id/k_primo" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <RadioButton android:id="@+id/k_lun" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cfg_lunedi"
+                android:textColor="@color/testo" android:textSize="13sp" android:buttonTint="#FFD21F" />
+            <RadioButton android:id="@+id/k_dom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cfg_domenica"
+                android:textColor="@color/testo" android:textSize="13sp" android:buttonTint="#FFD21F" android:layout_marginStart="12dp" />
+        </RadioGroup>
+        <CheckBox android:id="@+id/k_leg" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_cal_leg"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+        <CheckBox android:id="@+id/k_auto" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/cfg_cal_auto"
+            android:textColor="@color/testo" android:textSize="14sp" android:buttonTint="#FFD21F" android:checked="true" />
+    </LinearLayout>
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
         android:text="@string/cfg_colore" android:textColor="@color/tenue" android:textSize="13sp" />
     <LinearLayout android:id="@+id/colori" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
         android:layout_marginTop="6dp" />
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp"
         android:text="@string/cfg_colore_nota" android:textColor="@color/tenue" android:textSize="12sp" />
+    <!-- trasparenza dello sfondo: vale per tutti i widget -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="16dp">
+        <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content"
+            android:text="@string/cfg_trasp" android:textColor="@color/tenue" android:textSize="13sp" />
+        <TextView android:id="@+id/trasp_val" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textColor="@color/testo" android:textStyle="bold" android:textSize="13sp" />
+    </LinearLayout>
+    <SeekBar android:id="@+id/trasp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp"
+        android:max="8" android:progressTint="#FFD21F" android:thumbTint="#FFD21F" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp"
+        android:text="@string/cfg_trasp_nota" android:textColor="@color/tenue" android:textSize="12sp" />
     <Button android:id="@+id/salva" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="14dp"
         android:text="@string/salva" android:textColor="#FFFFFF" android:textStyle="bold" android:background="@drawable/fondo_bottone" />
 </LinearLayout>

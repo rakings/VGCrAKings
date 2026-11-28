@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget Calendario (4 settimane, con legenda). Il disegno e' un'immagine (DisegnoCal.java); qui sopra ci sono solo le zone da toccare,
+     con le stesse proporzioni del disegno. Generato: non modificarlo a mano (vedi DisegnoCal: PX, PT, TESTA, SETT, LEG, PB). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radice" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:id="@+id/cal" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scaleType="fitXY" android:contentDescription="@string/w_cal" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+        <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.0300" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1150" android:orientation="horizontal">
+            <FrameLayout android:id="@+id/prima" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.22" android:contentDescription="@string/cal_prec" />
+            <FrameLayout android:id="@+id/mese" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.56" />
+            <FrameLayout android:id="@+id/dopo" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.22" android:contentDescription="@string/cal_succ" />
+        </LinearLayout>
+        <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.0600" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1612" android:orientation="horizontal">
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+            <FrameLayout android:id="@+id/c0" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c1" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c3" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c4" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c5" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c6" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1612" android:orientation="horizontal">
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+            <FrameLayout android:id="@+id/c7" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c8" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c9" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c10" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c11" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c12" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c13" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1612" android:orientation="horizontal">
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+            <FrameLayout android:id="@+id/c14" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c15" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c16" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c17" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c18" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c19" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c20" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1612" android:orientation="horizontal">
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+            <FrameLayout android:id="@+id/c21" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c22" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c23" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c24" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c25" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c26" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:id="@+id/c27" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.1343" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="0.0300" />
+        </LinearLayout>
+        <FrameLayout android:id="@+id/legenda" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.1200" />
+        <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="0.0300" />
+    </LinearLayout>
+</FrameLayout>

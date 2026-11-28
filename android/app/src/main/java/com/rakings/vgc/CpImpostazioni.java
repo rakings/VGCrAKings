@@ -31,7 +31,7 @@ public class CpImpostazioni extends Activity {
     final List<String[]> trovati = new ArrayList<>();
     ArrayAdapter<String[]> ad;
     boolean cp = true;
-    String tipo = "cp";   // cp, bk (bacheca), lc (top 8 dei locali), altro
+    String tipo = "cp";   // cp, bk (bacheca), lc (top 8 dei locali), us (top usage), cal (calendario), altro
     String temaScelto;
     final java.util.List<TextView> chip = new ArrayList<>();
 
@@ -45,14 +45,16 @@ public class CpImpostazioni extends Activity {
         setContentView(R.layout.cp_impostazioni);
         android.appwidget.AppWidgetProviderInfo info = AppWidgetManager.getInstance(this).getAppWidgetInfo(id);
         String cl = info == null || info.provider == null ? "WidgetCp" : info.provider.getClassName();
-        tipo = cl.endsWith("WidgetCp") ? "cp" : cl.endsWith("WidgetBacheca") ? "bk" : cl.endsWith("WidgetLocali") ? "lc" : cl.endsWith("WidgetUsage") ? "us" : "altro";
+        tipo = cl.endsWith("WidgetCp") ? "cp" : cl.endsWith("WidgetBacheca") ? "bk" : cl.endsWith("WidgetLocali") ? "lc" : cl.endsWith("WidgetUsage") ? "us" : cl.endsWith("WidgetCalendario") ? "cal" : "altro";
         cp = "cp".equals(tipo);
         temaScelto = Tema.attuale(this).id;
         preparaColori();
+        preparaTrasparenza();
         if (!cp) {
             findViewById(R.id.sez_cp).setVisibility(View.GONE);
             ((TextView) findViewById(R.id.titolo)).setText(R.string.cfg_widget);
             if ("bk".equals(tipo) || "lc".equals(tipo) || "us".equals(tipo)) preparaQuanti();
+            if ("cal".equals(tipo)) preparaCal();
             findViewById(R.id.salva).setOnClickListener(v -> salva());
             return;
         }
@@ -127,6 +129,45 @@ public class CpImpostazioni extends Activity {
         s.setSelection(sel);
     }
 
+    /** Calendario: caselle dei tipi che si possono nascondere (Money, VR e Regionali restano sempre), primo giorno, legenda, ritorno */
+    static final char[] TIPI_CAL = {'o', 'g', 's', 'i', 'w'};
+    static final int[] CASELLE_CAL = {R.id.k_on, R.id.k_gc, R.id.k_sp, R.id.k_in, R.id.k_ww};
+
+    void preparaCal() {
+        findViewById(R.id.sez_cal).setVisibility(View.VISIBLE);
+        String sp = WidgetCalendario.spenti(this, id);
+        for (int i = 0; i < TIPI_CAL.length; i++) ((android.widget.CheckBox) findViewById(CASELLE_CAL[i])).setChecked(sp.indexOf(TIPI_CAL[i]) < 0);
+        ((RadioGroup) findViewById(R.id.k_primo)).check(WidgetCalendario.lunedi(this, id) ? R.id.k_lun : R.id.k_dom);
+        ((android.widget.CheckBox) findViewById(R.id.k_leg)).setChecked(WidgetCalendario.legenda(this, id));
+        ((android.widget.CheckBox) findViewById(R.id.k_auto)).setChecked(WidgetCalendario.auto(this, id));
+    }
+
+    void salvaCal() {
+        StringBuilder sp = new StringBuilder();
+        for (int i = 0; i < TIPI_CAL.length; i++) if (!((android.widget.CheckBox) findViewById(CASELLE_CAL[i])).isChecked()) sp.append(TIPI_CAL[i]);
+        boolean auto = ((android.widget.CheckBox) findViewById(R.id.k_auto)).isChecked();
+        android.content.SharedPreferences.Editor e = WidgetCalendario.imp(this).edit()
+                .putString("spenti_" + id, sp.toString())
+                .putBoolean("lun_" + id, ((RadioGroup) findViewById(R.id.k_primo)).getCheckedRadioButtonId() != R.id.k_dom)
+                .putBoolean("leg_" + id, ((android.widget.CheckBox) findViewById(R.id.k_leg)).isChecked())
+                .putBoolean("auto_" + id, auto);
+        if (auto) e.putInt("off_" + id, 0);   // appena salvato torna al mese corrente
+        e.apply();
+    }
+
+    /** trasparenza dello sfondo di tutti i widget: 0-80% a passi di 10 */
+    void preparaTrasparenza() {
+        android.widget.SeekBar sb = findViewById(R.id.trasp);
+        TextView val = findViewById(R.id.trasp_val);
+        sb.setProgress(Tema.trasparenza(this) / 10);
+        val.setText(sb.getProgress() * 10 + "%");
+        sb.setOnSeekBarChangeListener(new android.widget.SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(android.widget.SeekBar s, int v, boolean u) { val.setText(v * 10 + "%"); }
+            public void onStartTrackingTouch(android.widget.SeekBar s) { }
+            public void onStopTrackingTouch(android.widget.SeekBar s) { }
+        });
+    }
+
     /** pulsanti dei colori, due per riga; quello scelto e' giallo */
     void preparaColori() {
         android.widget.LinearLayout box = findViewById(R.id.colori);
@@ -197,6 +238,8 @@ public class CpImpostazioni extends Activity {
 
     void salva() {
         Tema.scegli(this, temaScelto);
+        Tema.scegliTrasparenza(this, ((android.widget.SeekBar) findViewById(R.id.trasp)).getProgress() * 10);
+        if ("cal".equals(tipo)) salvaCal();
         if ("bk".equals(tipo) || "lc".equals(tipo) || "us".equals(tipo)) {
             int[] val = valori();
             int pos = Math.max(0, Math.min(val.length - 1, ((android.widget.Spinner) findViewById(R.id.n_scelta)).getSelectedItemPosition()));

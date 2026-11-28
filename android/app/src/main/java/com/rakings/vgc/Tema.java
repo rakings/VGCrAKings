@@ -6,6 +6,7 @@ import android.content.Context;
 final class Tema {
     final String id; final int nome, fondo, riquadro, pallino; final boolean chiaro; final int accento, box;
     final int testo, tenue, linea;
+    int alfa = 255;   // opacita' dello sfondo dei widget (0-255), dalle impostazioni
     Tema(String id, int nome, int fondo, int riquadro, int pallino, boolean chiaro, int accento, int box) {
         this.id = id; this.nome = nome; this.fondo = fondo; this.riquadro = riquadro; this.pallino = pallino; this.chiaro = chiaro;
         this.accento = accento; this.box = box;
@@ -32,9 +33,21 @@ final class Tema {
     };
 
     static Tema attuale(Context c) {
-        String id = c.getSharedPreferences("tema_widget", Context.MODE_PRIVATE).getString("id", "nerorosso");
-        for (Tema t : TUTTI) if (t.id.equals(id)) return t;
-        return TUTTI[0];
+        android.content.SharedPreferences p = c.getSharedPreferences("tema_widget", Context.MODE_PRIVATE);
+        String id = p.getString("id", "nerorosso");
+        Tema s = TUTTI[0];
+        for (Tema t : TUTTI) if (t.id.equals(id)) { s = t; break; }
+        s.alfa = Math.round(255 * (100 - trasparenza(c)) / 100f);
+        return s;
+    }
+
+    /** trasparenza dello sfondo di tutti i widget, in percentuale (0 = pieno, massimo 80) */
+    static int trasparenza(Context c) {
+        return Math.max(0, Math.min(80, c.getSharedPreferences("tema_widget", Context.MODE_PRIVATE).getInt("trasp", 0)));
+    }
+
+    static void scegliTrasparenza(Context c, int perc) {
+        c.getSharedPreferences("tema_widget", Context.MODE_PRIVATE).edit().putInt("trasp", Math.max(0, Math.min(80, perc))).apply();
     }
 
     static void scegli(Context c, String id) {
