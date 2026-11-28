@@ -1,6 +1,21 @@
 {
- "updated": "2026-11-27T23:36:04+00:00",
+ "updated": "2026-11-28T02:32:24+00:00",
  "events": [
+  {
+   "name": "Thistle Tavern League - #1",
+   "org": "",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-27",
+   "time": "19:40",
+   "players": 10,
+   "url": "https://play.limitlesstcg.com/tournament/6b09ce0ee0b5cca158bbec45/details"
+  },
   {
    "name": "Metal's Meteor Mash-Up #9 - REG F THROWBACK TOUR",
    "org": "Metal VGC Weeklies",
@@ -34,22 +49,6 @@
    "reg_letto": true
   },
   {
-   "name": "Thistle Tavern League - #1",
-   "org": "Scotland VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-27",
-   "time": "19:40",
-   "players": null,
-   "url": "https://play.limitlesstcg.com/tournament/6b09ce0ee0b5cca158bbec45/details",
-   "reg_letto": true
-  },
-  {
    "name": "Friday Fight Night 83! $50 Prize & Team Report",
    "org": "Team Rainbow Gaming",
    "mode": "online",
@@ -63,22 +62,6 @@
    "time": "00:00",
    "players": 139,
    "url": "https://play.limitlesstcg.com/tournament/6b013e66e0b5cca158bba495/details",
-   "reg_letto": true
-  },
-  {
-   "name": "Raichu Rivalry",
-   "org": "Raichu Rivalry VGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-28",
-   "time": "00:30",
-   "players": 10,
-   "url": "https://play.limitlesstcg.com/tournament/6b03ad7fe0b5cca158bbb8a9/details",
    "reg_letto": true
   },
   {
@@ -109,7 +92,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "13:00",
-   "players": 24,
+   "players": 26,
    "url": "https://play.limitlesstcg.com/tournament/6b036e63ada8eea1c94d07c5/details",
    "reg_letto": true
   },
@@ -125,7 +108,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "14:00",
-   "players": 5,
+   "players": 6,
    "url": "https://play.limitlesstcg.com/tournament/6b079ce0e0b5cca158bbdc4d/details",
    "reg_letto": true
   },
@@ -141,7 +124,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "14:00",
-   "players": 4,
+   "players": 5,
    "url": "https://play.limitlesstcg.com/tournament/6b07f90fe0b5cca158bbdd22/details",
    "reg_letto": true
   },
@@ -173,7 +156,7 @@
    "bo": null,
    "date": "2026-11-28",
    "time": "15:30",
-   "players": 84,
+   "players": 85,
    "url": "https://play.limitlesstcg.com/tournament/6afacae4b2fccaf0272d3d4a/details",
    "reg_letto": true
   },
@@ -224,30 +207,15 @@
    "time": null,
    "where": "Stoccarda, Germania",
    "url": "https://serebii.net/playpokemon/2027/stuttgartregionalchampionships.shtml",
-   "signup": "https://rk9.gg/tournament/SG02gVKM38QMVGTcAiZN",
+   "signup": "https://rk9.gg/tournament/SG002-Ib57cab14fzOGr",
    "signupLabel": "Iscriviti su RK9",
    "signupAuto": true,
    "price": "Junior €40, Senior €40, Master €70",
-   "startAt": "2025-11-29T07:30:00Z",
+   "listAt": "2026-11-28T06:30:00Z",
    "tz": "Europe/Berlin",
-   "juniorAt": "2025-11-29T08:00:00Z",
-   "seniorAt": "2025-11-29T08:00:00Z"
-  },
-  {
-   "name": "DMV Open #3",
-   "org": "KingDomVGC",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-11-29",
-   "time": "01:00",
-   "players": 27,
-   "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
-   "reg_letto": true
+   "startAt": "2026-11-28T07:30:00Z",
+   "juniorAt": "2026-11-28T08:00:00Z",
+   "seniorAt": "2026-11-28T08:00:00Z"
   },
   {
    "name": "🍬 CARAMELO RARO — WEEKLY #7",
@@ -266,6 +234,22 @@
    "reg_letto": true
   },
   {
+   "name": "DMV Open #3",
+   "org": "KingDomVGC",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-11-29",
+   "time": "01:00",
+   "players": 27,
+   "url": "https://play.limitlesstcg.com/tournament/6afe63f72b9e244e6cee53a1/details",
+   "reg_letto": true
+  },
+  {
    "name": "Extreme Speed Adios MC",
    "org": "Ewokpadawan",
    "mode": "online",
@@ -277,7 +261,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "01:07",
-   "players": 8,
+   "players": 9,
    "url": "https://play.limitlesstcg.com/tournament/6b050cc2ada8eea1c94d1944/details",
    "reg_letto": true
   },
@@ -309,7 +293,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "13:00",
-   "players": 17,
+   "players": 19,
    "url": "https://play.limitlesstcg.com/tournament/6afcb394b2fccaf0272d4f28/details",
    "reg_letto": true
   },
@@ -341,7 +325,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "15:00",
-   "players": 13,
+   "players": 14,
    "url": "https://play.limitlesstcg.com/tournament/6b05dd14ada8eea1c94d1d4a/details",
    "reg_letto": true
   },
@@ -373,7 +357,7 @@
    "bo": null,
    "date": "2026-11-29",
    "time": "17:00",
-   "players": 0,
+   "players": 1,
    "url": "https://play.limitlesstcg.com/tournament/6b05e2a5ada8eea1c94d1d90/details",
    "reg_letto": true
   },
@@ -469,7 +453,7 @@
    "bo": null,
    "date": "2026-11-30",
    "time": "23:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16db585920e4d25363415/details",
    "reg_letto": true
   },
@@ -650,22 +634,6 @@
    "reg_letto": true
   },
   {
-   "name": "🇧🇷 Hit Break #11 | Pokémon Champions",
-   "org": "Hit Legends TCG",
-   "mode": "online",
-   "type": "Torneo",
-   "fee": null,
-   "cash": null,
-   "prize": "",
-   "reg": "M-C",
-   "bo": null,
-   "date": "2026-12-04",
-   "time": "01:00",
-   "players": 0,
-   "url": "https://play.limitlesstcg.com/tournament/6b0a0021ada8eea1c94d42cc/details",
-   "reg_letto": true
-  },
-  {
    "name": "Talon's FIGHT CLUB #112 POKEMON CHAMPIONS REG M-D",
    "org": "TalonMasterJ",
    "mode": "online",
@@ -679,6 +647,22 @@
    "time": "01:00",
    "players": 0,
    "url": "https://play.limitlesstcg.com/tournament/6ad8ecc3115c12b73a5a905e/details",
+   "reg_letto": true
+  },
+  {
+   "name": "🇧🇷 Hit Break #11 | Pokémon Champions",
+   "org": "Hit Legends TCG",
+   "mode": "online",
+   "type": "Torneo",
+   "fee": null,
+   "cash": null,
+   "prize": "",
+   "reg": "M-C",
+   "bo": null,
+   "date": "2026-12-04",
+   "time": "01:00",
+   "players": 0,
+   "url": "https://play.limitlesstcg.com/tournament/6b0a0021ada8eea1c94d42cc/details",
    "reg_letto": true
   },
   {
@@ -713,14 +697,17 @@
    "where": "Las Vegas, Stati Uniti",
    "url": "https://serebii.net/playpokemon/2027/lasvegasregionalchampionships.shtml",
    "opensAt": "2026-10-08T02:00:00Z",
-   "signup": "https://rk9.gg/tournament/LV02kSgge3zYTKAwlomv",
+   "signup": "https://rk9.gg/tournament/LV002-GAcR2TUERtuPPp",
    "signupLabel": "Iscriviti su RK9",
    "signupAuto": true,
+   "regClose": "2026-12-02",
    "price": "Junior $40, Senior $40, Master $80",
-   "startAt": "2025-11-15T16:30:00Z",
+   "regCloseAt": "2026-12-03T07:59:00Z",
    "tz": "America/Los_Angeles",
-   "juniorAt": "2025-11-15T17:00:00Z",
-   "seniorAt": "2025-11-15T17:00:00Z"
+   "listAt": "2026-12-05T15:30:00Z",
+   "startAt": "2026-12-05T16:30:00Z",
+   "juniorAt": "2026-12-05T17:00:00Z",
+   "seniorAt": "2026-12-05T17:00:00Z"
   },
   {
    "name": "⚔️Torre Lotta Cup #5⚔️ 🏆50€ Amazon Gift Cards🏆",
@@ -814,7 +801,7 @@
    "bo": null,
    "date": "2026-12-07",
    "time": "23:00",
-   "players": 3,
+   "players": 4,
    "url": "https://play.limitlesstcg.com/tournament/6ac16df185920e4d25363417/details",
    "reg_letto": true
   },
@@ -1438,14 +1425,17 @@
    "where": "Sydney, Australia",
    "url": "https://serebii.net/playpokemon/2027/sydneyregionalchampionships.shtml",
    "opensAt": "2026-11-11T08:00:00Z",
-   "signup": "https://rk9.gg/tournament/SY02sMDp6JmCcnCynSLn",
+   "signup": "https://rk9.gg/tournament/SY002-jX5qUfUWDF0K0G",
    "signupLabel": "Iscriviti su RK9",
    "signupAuto": true,
-   "price": "Junior A$40, Senior A$40, Master A$50",
-   "startAt": "2026-02-06T21:30:00Z",
+   "regClose": "2027-01-13",
+   "price": "Junior A$45, Senior A$45, Master A$55",
+   "regCloseAt": "2027-01-13T12:59:00Z",
    "tz": "Australia/Sydney",
-   "juniorAt": "2026-02-06T22:00:00Z",
-   "seniorAt": "2026-02-06T22:00:00Z"
+   "listAt": "2027-01-15T20:30:00Z",
+   "startAt": "2027-01-15T21:30:00Z",
+   "juniorAt": "2027-01-15T22:00:00Z",
+   "seniorAt": "2027-01-15T22:00:00Z"
   },
   {
    "name": "REG. |👑CROWN FIGHT Bo3 TOUR #98👑",
@@ -1495,14 +1485,17 @@
    "where": "Mérida, Messico",
    "url": "https://serebii.net/playpokemon/2027/meridaregionalchampionships.shtml",
    "opensAt": "2026-11-26T01:00:00Z",
-   "signup": "https://rk9.gg/tournament/ME02w00ChbJUX07ROH4K",
+   "signup": "https://rk9.gg/tournament/ME002-zkBAuxCUeA3fHQ",
    "signupLabel": "Iscriviti su RK9",
    "signupAuto": true,
+   "regClose": "2027-01-20",
    "price": "Junior MX$800, Senior MX$800, Master MX$1,300",
-   "startAt": "2026-01-24T14:30:00Z",
+   "regCloseAt": "2027-01-21T05:59:00Z",
    "tz": "America/Merida",
-   "juniorAt": "2026-01-24T15:00:00Z",
-   "seniorAt": "2026-01-24T15:00:00Z"
+   "listAt": "2027-01-23T13:30:00Z",
+   "startAt": "2027-01-23T14:30:00Z",
+   "juniorAt": "2027-01-23T15:00:00Z",
+   "seniorAt": "2027-01-23T15:00:00Z"
   },
   {
    "name": "REG. |👑CROWN FIGHT Bo3 TOUR #99👑",
@@ -1541,9 +1534,9 @@
    "signupAuto": true,
    "price": "Junior £40, Senior £40, Master £70",
    "startAt": "2026-01-24T08:30:00Z",
-   "tz": "Europe/London",
    "juniorAt": "2026-01-24T09:00:00Z",
-   "seniorAt": "2026-01-24T09:00:00Z"
+   "seniorAt": "2026-01-24T09:00:00Z",
+   "tz": "Europe/London"
   },
   {
    "name": "Auckland Special Event",
