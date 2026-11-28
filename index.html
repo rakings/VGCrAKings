@@ -133,7 +133,14 @@ li.seg.amenu{border:0!important;box-shadow:none!important;background:none!import
 .am-bk{position:relative;display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;margin-top:8px;border-radius:12px;padding:7px 12px;background:var(--card);border:1.5px solid var(--line);color:var(--ink);font:inherit;font-size:.86rem;font-weight:700;text-align:left;cursor:pointer}
 .am-bk svg{width:18px;height:18px;flex:none}.am-c{margin-left:auto;font-size:.74rem;color:var(--mute);font-weight:600}
 .am-n{background:var(--accent);color:#fff;border-radius:999px;font-style:normal;font-size:.68rem;font-weight:900;padding:1px 7px}
-.am-bk.brilla{border-color:#ffd21f;box-shadow:0 0 14px 2px rgba(255,210,31,.45);animation:am-luce 2.4s ease-in-out infinite}
+.am-bk.brilla{box-shadow:0 0 14px 2px rgba(255,210,31,.55);animation:am-luce 2.4s ease-in-out infinite}
+/* contorni piu' visibili sullo sfondo; Bacheca gialla */
+.am-t,.rp-sub{border:2px solid color-mix(in srgb,var(--ink) 80%,transparent)!important}.am-t.on{border-color:#ffd21f!important}
+/* Locali e Bacheca: contenuto al centro del pulsante */
+.am-big,.am-bk{justify-content:center}.am-big .am-tx{text-align:center;align-items:center}.am-bk .am-c{margin-left:4px}.am-bk .am-c::before{content:"· ";}
+/* i 4 pulsanti di Altopiano Blu un po' piu' compatti (stessi testi; Locali e Bacheca invariati) */
+.am-grid{gap:7px}.am-t{min-height:44px;padding:4px 12px}
+.am-bk{background:#ffd21f;border:2px solid #b8920a;color:#2a1f00}.am-bk .am-c{color:#5a4600}.am-bk svg{color:#2a1f00}
 .am-bk.on,.am-t.on{background:linear-gradient(120deg,#e11d2e,#7c3aed);border-color:#ffd21f;color:#fff}.am-bk.on .am-c{color:#fff}
 .am-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.am-grid.tre .am-t:last-child{grid-column:1/3}
 .am-t{position:relative;display:flex;align-items:center;gap:9px;min-height:50px;box-sizing:border-box;border-radius:14px;background:var(--card);border:1.5px solid var(--line);color:var(--ink);font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;padding:6px 12px;text-align:left}
