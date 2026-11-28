@@ -84,7 +84,11 @@ def parse(page):
             e["opens"] = when_utc(m, now())
     for e in out.values():
         city = norm(re.sub(r"^20\d\d\s+", "", e["name"]).split(" Pok")[0])
-        slug = next((s for s in links if city and city in s), None)
+        anno = (re.match(r"^(20\d\d)\s", e["name"]) or [None, ""])[1]
+        cand = [s for s in links if city and city in s]
+        # stessa citta' in piu' stagioni (pokemon-stuttgart-2026 e -2027): si prende quella dell'anno del titolo,
+        # altrimenti la piu' recente (prima si prendeva la prima in ordine alfabetico, cioe' quella dell'anno prima)
+        slug = next((s for s in cand if anno and s.endswith("-" + anno)), None) or (max(cand) if cand else None)
         e["link"] = "https://rk9.gg/event/" + slug if slug else LIST_URL
     return list(out.values())
 
@@ -152,6 +156,7 @@ def check():
                 log("regional_watch: annuncio non inviato:", ex)
                 continue  # si riprova al giro dopo
         known[k] = entry(e) if (iso or s is None or not s.get("opens")) else s
+        known[k]["link"] = e["link"]   # il link della pagina evento si aggiorna sempre (corregge anche quelli salvati sbagliati)
         save(st)
     for k in [k for k in known if k not in cur]:  # via gli eventi spariti dall'elenco
         del known[k]

@@ -404,11 +404,26 @@ def rk9_watch(e):
     except Exception:
         return ""
     k = slug_nome(e.get("name"))
-    for v in st.values():
-        if slug_nome(v.get("name")) != k:
-            continue
+    # stesso nome in due stagioni (es. «2026-stuttgart-...» e «2027-stuttgart-...»): si usa quella della stagione del torneo
+    # (la stagione Pokémon va da settembre ad agosto: un Regionale di novembre 2026 e' della stagione 2027)
+    try:
+        d = datetime.strptime(e.get("date") or "", "%Y-%m-%d")
+        stagione = d.year + 1 if d.month >= 9 else d.year
+    except ValueError:
+        stagione = None
+    trovati = [(kk, v) for kk, v in st.items() if slug_nome(v.get("name")) == k]
+    def anno(kk):
+        m = re.match(r"^(20\d\d)-", kk)
+        return int(m.group(1)) if m else 0
+    if stagione and trovati:
+        trovati.sort(key=lambda x: (abs(anno(x[0]) - stagione), -anno(x[0])))
+        trovati = trovati[:1]
+    for kk, v in trovati:
         if "/event/" in (v.get("link") or ""):
             link = v["link"]
+            m = re.search(r"-(20\d\d)$", link)
+            if stagione and m and int(m.group(1)) != stagione:   # link salvato della stagione sbagliata: si usa quello giusto
+                link = link[:m.start()] + "-%d" % stagione
         if v.get("opens"):
             opens = v["opens"]
     if opens and not e.get("opensAt"):
