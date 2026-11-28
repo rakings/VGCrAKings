@@ -165,6 +165,11 @@ li.nw.rp-box{border-left-color:var(--accent)!important;box-shadow:0 0 0 2.5px #f
 #rp-sug{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .rp-s{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;font:inherit;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:8px 10px;cursor:pointer}.rp-s span{font-size:.74rem;color:var(--mute)}
 .rp-pl{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.rp-t{width:100%;justify-content:flex-start;margin-bottom:6px;gap:6px}.rp-t>span:not(.rp-pos){font-size:.7rem;flex:none}.rp-t b{font-size:.9rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rp-pos{font-weight:900;color:#ffd21f;width:26px;flex:none}.rp-t em{font-style:normal;font-weight:800;color:#86d8f0;font-size:.8rem;flex:none}
+.rp-t:disabled{opacity:.6;cursor:default}
+.rp-tc{cursor:pointer}.rp-tt{display:flex;align-items:center;gap:6px}.rp-tt b{flex:1;min-width:0;font-size:.98rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rp-cc{font-size:.72rem;color:var(--mute)}.rp-tt em{font-style:normal;font-weight:800;color:#86d8f0;font-size:.82rem}.rp-ul{font-size:.72rem;color:var(--mute);margin-top:3px}
 .rp-vr{margin-left:auto;flex:none;font:inherit;font-size:1.08rem;font-weight:900;line-height:1.1;border-radius:999px;padding:6px 14px;cursor:pointer;border:1.5px solid #86d8f0;background:color-mix(in srgb,#86d8f0 18%,transparent);color:var(--ink)}
 .rp-piu{color:#e11d2e;font-weight:900;font-size:1.1em}.rp-vrt{-webkit-text-stroke:1.2px #86d8f0;paint-order:stroke fill;letter-spacing:.03em}.rp-vr[aria-pressed="false"] .rp-vrt{-webkit-text-stroke-color:var(--mute)}.rp-vr[aria-pressed="false"] .rp-piu{color:var(--mute)}
 .rp-vr[aria-pressed="false"]{border-color:var(--line);background:var(--card);color:var(--mute);text-decoration:line-through}.rp-pl b{font-size:1.1rem}
@@ -680,7 +685,7 @@ var REP=null,REPP=null,REPKO=false,RP={tab:"mu",mon:0,pl:-1,q:"",vr:true},RPS="v
 function repLoad(){if(REP||REPP)return;REPKO=false;REPP=fetch("report.json?h="+Math.floor(Date.now()/36e5),{cache:"no-cache"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
 var mu={};(d.mu||[]).forEach(function(x){(mu[x[0]]=mu[x[0]]||[]).push([x[1],x[2],x[3]])});
 var nk={};d.mon.forEach(function(m,i){nk[repK(m[0])]=i;nk[repK(m[1])]=i});
-REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg};REPP=null;render()}).catch(function(){REPP=null;REPKO=true;render()})}
+REP={ev:d.ev,mon:d.mon,it:d.it||[],mu:mu,pl:d.pl,nk:nk,reg:d.reg,top:d.top||[]};REPP=null;render()}).catch(function(){REPP=null;REPKO=true;render()})}
 function repK(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"")}
 function repN(i){var m=REP.mon[i];return m?m[1]:"?"}
 function repDot(i){return phHtml(repN(i))}
@@ -706,7 +711,10 @@ return '<li class="nw rp-box"><label class="rp-sel">'+repDot(RP.mon)+'<select id
 +'<p class="rp-nota">Partite vere dei tornei ufficiali e dei Victory Road del regolamento '+esc(REP.reg||"")+'. «'+esc(repN(RP.mon))+' contro X» = partite in cui una squadra aveva '+esc(repN(RP.mon))+' e l\'avversaria X. È una tendenza, non la causa del risultato.</p></li>'}
 function repSug(q){var k=repK(q);if(k.length<2)return "";var o=[];for(var i=0;i<REP.pl.length&&o.length<8;i++){if(repK(REP.pl[i][0]).indexOf(k)>-1)o.push(i)}
 return o.length?o.map(function(i){var p=REP.pl[i];return '<button type="button" class="rp-s" data-rpp="'+i+'"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+' · '+p[2].length+(p[2].length===1?' torneo':' tornei')+'</span></button>'}).join(""):'<p class="rp-nota">Nessun giocatore trovato.</p>'}
-function repGioc(){var h='<li class="nw rp-box"><input id="rp-q" type="search" autocomplete="off" placeholder="Cerca un giocatore" value="'+esc(RP.q)+'"><div id="rp-sug">'+(RP.pl<0?repSug(RP.q):"")+'</div></li>';
+/* lista pronta: Top 8 della CP bar (Europa), una riga a giocatore; toccando il nome si apre il report con tutte le squadre */
+function repTop10(){if(!REP.top.length)return "";return '<li class="nw rp-box"><div class="rp-h" style="margin-top:0">Top 8 CP bar · Europa</div>'+REP.top.map(function(x){var p=x[4]>-1?REP.pl[x[4]]:null;
+return '<button type="button" class="rp-s rp-t"'+(p?' data-rpp="'+x[4]+'"':' disabled')+'><span class="rp-pos">'+x[0]+'°</span><b>'+esc(x[1])+'</b><span>'+esc(x[2])+(p?' · '+p[2].length+(p[2].length===1?' torneo':' tornei'):'')+'</span><em>'+x[3]+' CP</em></button>'}).join("")+'</li>'}
+function repGioc(){var h='<li class="nw rp-box"><input id="rp-q" type="search" autocomplete="off" placeholder="Cerca un giocatore" value="'+esc(RP.q)+'"><div id="rp-sug">'+(RP.pl<0?repSug(RP.q):"")+'</div></li>'+(RP.pl<0&&repK(RP.q).length<2?repTop10():"");
 var p=REP.pl[RP.pl];if(!p)return h;var haVr=p[2].some(function(t){return REP.ev[t[0]][2]==="v"}),tt=p[2].filter(function(t){return RP.vr||REP.ev[t[0]][2]!=="v"}),W=0,L=0;tt.forEach(function(t){W+=t[2];L+=t[3]});var bt=RP.vr||!p[5]?p[3]:p[5],ft=RP.vr||!p[6]?p[4]:p[6];
 var ev=tt.slice().sort(function(a,b){return String(REP.ev[b[0]][3]).localeCompare(String(REP.ev[a[0]][3]))});
 return h+'<li class="nw rp-box"><div class="rp-pl"><b>'+esc(p[0])+'</b>'+(p[1]?'<span class="tag">'+esc(p[1])+'</span>':'')+(haVr?'<button type="button" class="rp-vr" data-rpvr="1" aria-pressed="'+RP.vr+'" aria-label="'+(RP.vr?'Victory Road inclusi: tocca per escluderli':'Victory Road esclusi: tocca per includerli')+'"><span class="rp-piu">+</span><span class="rp-vrt">VR</span></button>':'')+'</div>'
@@ -734,7 +742,8 @@ b=t.closest("[data-rpp]");if(b){RP.pl=+b.dataset.rpp;RP.q=REP.pl[RP.pl][0];rende
 if(t.id==="rp-go"){var r=repLeggi($("rp-team").value);if(r.t.length<2){$("rp-msg").textContent="Non ho riconosciuto abbastanza Pokémon: scrivi almeno 2 nomi.";return}
 try{localStorage.setItem(RPS,JSON.stringify(r.t))}catch(e){}render();if(r.no.length){var m=$("rp-msg");if(m)m.textContent="Non riconosciuti: "+r.no.join(", ")}}});
 $("list").addEventListener("change",function(ev){if(ev.target.id==="rp-mon"){RP.mon=+ev.target.value;render()}});
-$("list").addEventListener("input",function(ev){if(ev.target.id==="rp-q"&&REP){RP.q=ev.target.value;RP.pl=-1;var s=$("rp-sug");if(s)s.innerHTML=repSug(RP.q)}});
+$("list").addEventListener("input",function(ev){if(ev.target.id==="rp-q"&&REP){var prima=repK(RP.q).length<2,ora=repK(ev.target.value).length<2,tutto=RP.pl>-1||prima!==ora;RP.q=ev.target.value;RP.pl=-1;
+if(tutto){render();var i=$("rp-q");if(i){i.focus();try{i.setSelectionRange(i.value.length,i.value.length)}catch(e){}}}else{var s=$("rp-sug");if(s)s.innerHTML=repSug(RP.q)}}});
 
 var REPORT=true;    /* linguetta Report (report.json, creato da report_data.py) */
 var LOCPEND=false,BKPEND=[],LOCS="vgc-loc-visto",BKLS="vgc-bk-luce";
@@ -1154,7 +1163,7 @@ var MESI_IT=["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","a
 function langIdx(){for(var i=1;i<LANGS.length;i++)if(LANGS[i][0]===LANG)return i-1;return -1}
 function cap1(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function esc2(s){return s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
-function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128b';sc.onload=cb;document.head.appendChild(sc)}
+function loadTr(cb){if(EXK.length>0){cb();return}var sc=document.createElement('script');sc.src='i18n-data.js?v=20261128d';sc.onload=cb;document.head.appendChild(sc)}
 function buildTr(){EXM={};PHL=[];var i=langIdx();if(i<0)return;
 EXK.forEach(function(k,j){EXM[k]=EXV[j][i]});TYM={};Object.keys(TYPE).forEach(function(k){TYM[k]=Array.isArray(TYPE[k])?TYPE[k][i]:TYPE[k]});PHK.forEach(function(k,j){PHL.push([k,PHV[j][i]])});PHL.sort(function(a,b){return b[0].length-a[0].length});
 var cn=Object.keys(CTRY).sort(function(a,b){return b.length-a.length}).map(esc2).join("|");CTRX=new RegExp("(^|[^A-Za-zÀ-ÿ])("+cn+")(?![A-Za-zÀ-ÿ])","g");

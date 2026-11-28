@@ -17,3 +17,7 @@ Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else
 Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
 (function(){var X={"Con VR": ["With VR", "Con VR", "Com VR", "Avec VR", "Mit VR", "VR込み", "VR 포함"], "Senza VR": ["Without VR", "Sin VR", "Sem VR", "Sans VR", "Ohne VR", "VRなし", "VR 제외"]};
 Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
+(function(){var X={"Top 10 CP bar · Europa": ["Top 10 CP bar · Europe", "Top 10 CP bar · Europa", "Top 10 CP bar · Europa", "Top 10 CP bar · Europe", "Top 10 CP-Bar · Europa", "CPバー上位10 · ヨーロッパ", "CP 바 상위 10 · 유럽"]};
+Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();
+(function(){var X={"Top 8 CP bar · Europa": ["Top 8 CP bar · Europe", "Top 8 CP bar · Europa", "Top 8 CP bar · Europa", "Top 8 CP bar · Europe", "Top 8 CP-Bar · Europa", "CPバー上位8 · ヨーロッパ", "CP 바 상위 8 · 유럽"]};
+Object.keys(X).forEach(function(k){var i=EXK.indexOf(k);if(i>-1)EXV[i]=X[k];else{EXK.push(k);EXV.push(X[k])}})})();

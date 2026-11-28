@@ -13,6 +13,16 @@ OUT = "report.json"
 MIN_COPPIA = 60          # una coppia di Pokemon entra nel file solo con almeno 60 partite (le righe poco affidabili restano fuori)
 KIND = {"Regional Championships": "r", "International Championships": "i", "World Championship": "w"}
 VR = "https://rakings.github.io/VGCdatiAK/vr/"
+CP = "https://rakings.github.io/VGCdatiAK/dati/cp/vg-europe-masters.json"   # Top 8 della CP bar: lista pronta nel Report Giocatore
+ISO3 = {"ITA": "IT", "ESP": "ES", "FRA": "FR", "DEU": "DE", "GER": "DE", "GBR": "UK", "POR": "PT", "PRT": "PT", "NLD": "NL", "NED": "NL",
+        "BEL": "BE", "CHE": "CH", "SUI": "CH", "AUT": "AT", "POL": "PL", "SWE": "SE", "NOR": "NO", "DNK": "DK", "DEN": "DK", "FIN": "FI",
+        "IRL": "IE", "CZE": "CZ", "HUN": "HU", "GRC": "GR", "GRE": "GR", "ROU": "RO", "TUR": "TR", "UKR": "UA", "SVK": "SK", "SVN": "SI",
+        "HRV": "HR", "CRO": "HR", "SRB": "RS", "BGR": "BG", "LUX": "LU", "ISL": "IS", "EST": "EE", "LVA": "LV", "LTU": "LT"}
+
+
+def chiave(n):
+    import unicodedata
+    return re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFD", str(n or "").lower()).encode("ascii", "ignore").decode())
 
 
 def scarica(u):
@@ -141,6 +151,21 @@ def main():
                      if any(evs[t[0]].get("kind") == "VR" for t in g["t"]) else [])   # solo per chi ha giocato anche dei VR
                for g in sorted(gioc.values(), key=lambda g: (-len(g["t"]), g["n"].lower()))],
     }
+    # Top 8 della CP bar (Europa): nome (Pokedata lo accorcia, es. «Francesco Pio P»), paese, CP e giocatore del report se c'e'
+    try:
+        righe = scarica(CP).get("righe", [])[:8]
+        top = []
+        for r in righe:
+            k, cc = chiave(r.get("name")), ISO3.get(str(r.get("country") or "").upper(), "")
+            cand = [i for i, g in enumerate(out["pl"]) if chiave(g[0]).startswith(k) and k]
+            stessi = [i for i in cand if out["pl"][i][1] == cc]
+            scelti = stessi or (cand if len(cand) == 1 else [])
+            i = max(scelti, key=lambda i: len(out["pl"][i][2])) if scelti else -1
+            top.append([int(r.get("pos") or r.get("rank") or len(top) + 1), out["pl"][i][0] if i > -1 else r.get("name"), cc, int(r.get("cp") or 0), i])
+        out["top"] = top
+    except Exception as x:
+        print("CP bar non letta (%s): tengo la Top 8 di prima." % x)
+        out["top"] = (leggi(OUT, {}) or {}).get("top", [])
     vecchio = leggi(OUT, None)
     if vecchio:
         vecchio.pop("agg", None)
