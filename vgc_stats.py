@@ -431,6 +431,12 @@ def list_events():
         if o["status"] == "not started" and o["rounds"] > 0 and o["start"] and o["start"] <= oggi_utc:
             o["status"] = "running"
             print("Pokedata segna «non iniziato» %s, ma ci sono gia' %d round: lo considero in corso." % (o["name"], o["rounds"]))
+    # RK9 (fonte originale) pubblica i round prima di Pokedata: se oggi e' un giorno del torneo e su RK9 c'e' gia' il round 1
+    # dei Masters, il torneo e' in corso anche se Pokedata dice ancora «non iniziato» (una sola richiesta a RK9, solo quel giorno).
+    for o in out:
+        if o["status"] == "not started" and o["start"] and o["start"] <= oggi_utc <= (o["end"] or o["start"]) and rk9_partito(o.get("rk9")):
+            o["status"] = "running"
+            print("RK9 ha gia' il round 1 di %s (Pokedata dice ancora «non iniziato»): lo considero in corso." % o["name"])
     completa_date(out)
     vecchi_in_corso(out)
     out.sort(key=lambda e: e["start"], reverse=True)
@@ -670,6 +676,37 @@ def rk9_leggi(codice):
     return R, rounds, posto
 
 
+def rk9_codice(c):
+    c = str(c or "").strip().rstrip("/").split("/")[-1]
+    return c if re.match(r"^[A-Za-z0-9-]{8,40}$", c) else ""
+
+
+def rk9_partito(codice):
+    """True se su RK9 c'e' gia' almeno il round 1 dei Masters (usato solo il giorno del torneo, se Pokedata non lo segna in corso)."""
+    codice = rk9_codice(codice)
+    if not RK9_ATTIVO or not codice or rk9_pausa_fino.get(codice, 0) > time.time():
+        return False
+    try:
+        html = rk9_get(RK9_URL + codice)
+    except Exception as e:
+        print("RK9 non letto per sapere se %s e' partito: %s" % (codice, e))
+        rk9_pausa_fino[codice] = time.time() + RK9_PAUSA
+        return False
+    m = re.search(r'id="P(\d)-tab"[^>]*>\s*Masters', html)
+    return bool(m and re.search(r'id="P%sR1-tab"' % m.group(1), html))
+
+
+def rk9_scheletro(ev, data):
+    """Quando Pokedata non ha ancora i dati del torneo (inizio del Day 1): struttura vuota da riempire solo con RK9 (senza squadre)."""
+    info = (data or {}).get("tournament") if isinstance(data, dict) else None
+    info = dict(info) if isinstance(info, dict) else {}
+    info.setdefault("name", ev.get("name"))
+    info.setdefault("date", {"start": ev.get("start"), "end": ev.get("end")})
+    info.setdefault("roundNumbers", {"masters": ev.get("rounds") or 0})
+    info["tournamentStatus"] = info.get("tournamentStatus") or "running"
+    return {"tournament": info, "tournament_data": [{"division": "masters", "data": []}]}
+
+
 def rk9_record(g):
     """Record del giocatore: quello scritto da RK9 nell'ultimo round giocato (tiene conto anche di penalita' e ritiri);
     se manca, contato dai risultati dei round."""
@@ -696,15 +733,17 @@ def _rk9_sovrapponi(data, ev):
     Ritorna (data, True) se ha usato RK9, (data, False) se ha lasciato Pokedata (RK9 spento, assente, bloccato o strano)."""
     tid = ev.get("id")
     rk9_usato[tid] = False
-    codice = str(ev.get("rk9") or "").strip().rstrip("/").split("/")[-1]
-    if not RK9_ATTIVO or not re.match(r"^[A-Za-z0-9-]{8,40}$", codice):
+    codice = rk9_codice(ev.get("rk9"))
+    if not RK9_ATTIVO or not codice:
         return data, False
     if rk9_pausa_fino.get(codice, 0) > time.time():
         return data, False
     block = next((b for b in data.get("tournament_data") or [] if b.get("division") == "masters"), None)
     if block is None:
         return data, False
-    raw = block.get("data") or []
+    if not isinstance(block.get("data"), list):
+        block["data"] = []
+    raw = block["data"]       # stessa lista del blocco: i giocatori aggiunti da RK9 finiscono nei dati
 
     def riserva(motivo, pausa=False):
         print("RK9 non usato per %s (%s): resto su Pokedata." % (ev.get("name"), motivo))
@@ -784,8 +823,24 @@ def _rk9_sovrapponi(data, ev):
 
 def collect(ev, write):
     tid = ev["id"]
-    data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
+    errore_pd = None
+    try:
+        data = get_json("%s/vg/id/%s/division/masters" % (API, tid))
+    except (Stop, Budget):
+        raise
+    except Exception as e:          # es. Pokedata non ha ancora i dati del torneo (risponde con un errore PHP)
+        errore_pd, data = e, None
+    vuoto = not data or not next((b.get("data") for b in (data.get("tournament_data") or []) if b.get("division") == "masters"), None)
+    if vuoto and RK9_ATTIVO and rk9_codice(ev.get("rk9")):
+        print("Pokedata non ha ancora i dati di %s: provo solo con RK9 (abbinamenti e risultati, squadre quando arrivano)." % ev.get("name"))
+        data = rk9_scheletro(ev, data)
+    elif errore_pd is not None:
+        raise errore_pd
     data, da_rk9 = rk9_sovrapponi(data, ev)
+    if vuoto and not da_rk9:
+        if errore_pd is not None:
+            raise errore_pd
+        raise ValueError("nessun dato da Pokedata ne' da RK9 per %s" % ev.get("name"))
     ids_path = os.path.join(OUT, str(tid), "ids.json")
     ids = load(ids_path, {})
     ids = ids if isinstance(ids, dict) else {}
@@ -1455,7 +1510,7 @@ def main():
     ap.add_argument("--max-events", type=int, default=2, help="con --auto: quanti regionali finiti non raccolti per giro")
     a = ap.parse_args()
     budget = int(os.environ.get("VGC_BUDGET", "6"))
-    print("Versione del collettore: 2026-11-28a (RK9 fonte principale di abbinamenti, risultati e classifica con Pokedata di riserva automatica, interruttore RK9_ATTIVO; regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
+    print("Versione del collettore: 2026-11-28b (parte anche solo con RK9 se Pokedata non ha ancora i dati; RK9 fonte principale di abbinamenti, risultati e classifica con Pokedata di riserva automatica, interruttore RK9_ATTIVO; regola fissa: mai chiuso prima della finale della Top 8; se carichi una versione nuova il giro in corso cambia turno entro 10 minuti; non chiude il torneo se l'elenco di Pokedata lo da' ancora in corso, tutte le forme dei Pokemon prese da Showdown, pubblicazione a eventi: pairings, round chiuso e Top 8 subito, 18 minuti di pausa dopo i pairings, parziali a gruppi di tavoli secondo le pubblicazioni di Cloudflare rimaste nel mese, segue i tornei di piu' giorni anche se Pokedata li segna «finito» a fine giornata, elenco dei regionali riletto ogni 10 minuti; segue da solo i tornei che Pokedata lascia «non iniziato» anche se sono partiti, mette da solo la data di partenza se Pokedata non la da' (file date_manuali.json per le eccezioni), rilancio automatico: cambio turno al primo round nuovo dopo 4 ore e 52, segue il regionale anche se Pokedata lo segna «finito» troppo presto o se scrivi il suo id in forza_live.txt, si ferma 1 ora dopo la finale della Top 8, salvataggio su GitHub robusto, pausa 10 minuti (12 dal 4° torneo del mese), Top 8 ogni 5 minuti)")
     print("%s - massimo %d richieste" % ("SALVATAGGIO" if a.write else "PROVA (non salva nulla)", budget))
     try:
         if a.cf_test:
